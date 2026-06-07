@@ -1,465 +1,342 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 14: Monitoreo y Análisis de Rendimiento</title>
+    <title>Sesión 14: Proyecto Práctico I - Diseño de Techos</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary-color);
             padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
+            border-radius: 5px;
             color: #2c3e50;
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+
+        /* Roof Designer Simulator */
+        .roof-sim {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .back-button:hover {
-            background-color: #2980b9;
-        }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        .monitoring-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .safety-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        .safety-box h4 {
-            color: #c62828;
-            margin-top: 0;
-        }
-        .specs-table {
+
+        .roof-grid {
             width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #e8f5e9;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #2e7d32;
-        }
-        .practical-exercise h4 {
-            color: #1b5e20;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .tip-box {
-            background-color: #fff8e1;
-            border-left: 3px solid #ffa000;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .warning-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .note-box {
-            background-color: #e3f2fd;
-            border-left: 3px solid #1976d2;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-        .data-box {
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            font-family: monospace;
-            overflow-x: auto;
-        }
-        .step {
-            margin: 15px 0;
+            max-width: 500px;
+            height: 300px;
+            background: #95a5a6;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
             padding: 10px;
-            background-color: #f9f9f9;
-            border-left: 3px solid #3498db;
+            border-radius: 5px;
+            border: 5px solid #7f8c8d;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .specs-table {
-                font-size: 0.9em;
-            }
+
+        .grid-cell {
+            background: rgba(255,255,255,0.2);
+            border: 1px dashed rgba(255,255,255,0.4);
+            border-radius: 3px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
         }
+
+        .grid-cell:hover { background: rgba(255,255,255,0.4); }
+
+        .cell-panel {
+            background: #2980b9;
+            border: 2px solid #ecf0f1;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            color: white;
+        }
+
+        .cell-obstacle {
+            background: #e74c3c;
+            border: 2px solid #c0392b;
+            cursor: not-allowed;
+        }
+        .cell-obstacle:hover { background: #e74c3c; }
+
+        .cell-shadow {
+            background: rgba(44, 62, 80, 0.8);
+            border: 2px solid #1a252f;
+            cursor: not-allowed;
+        }
+        .cell-shadow:hover { background: rgba(44, 62, 80, 0.8); }
+
+        .dashboard {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+
+        .dash-box {
+            flex: 1;
+            background: #1a252f;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #34495e;
+        }
+
+        .dash-box h4 { margin: 0 0 5px 0; color: #bdc3c7; font-size: 0.9rem; }
+        .dash-box .val { font-size: 1.5rem; font-weight: bold; font-family: monospace; }
+        
+        .val-target { color: #f1c40f; }
+        .val-current { color: #2ecc71; }
+
+        .status-msg {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            background: #e67e22;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 14: Monitoreo y Análisis de Rendimiento</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Comprender los principios y técnicas de monitoreo de sistemas fotovoltaicos, aprender a interpretar datos de rendimiento, identificar problemas comunes y aplicar herramientas de análisis para optimizar la producción de energía solar.</p>
-        </div>
 
-        <h2>1. Fundamentos del monitoreo fotovoltaico</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Proyecto Práctico I: Diseño</h1>
+        <p class="sesion-subtitle">Sesión 14 - Módulo 5: Arquitectos del Sol</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-pencil-ruler"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Bienvenidos al Proyecto Final. Antes de comprar equipos, todo ingeniero solar diseña en papel. Aprenderás a ubicar paneles en un techo real evitando obstáculos (tinacos, chimeneas) y sus sombras asesinas.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>La Batalla por el Espacio</h2>
         
-        <div class="monitoring-box">
-            <h4>1.1 Importancia del monitoreo</h4>
-            
-            <ul>
-                <li><strong>Detección temprana de fallos:</strong> Pérdidas de rendimiento, sombreados, suciedad</li>
-                <li><strong>Optimización del rendimiento:</strong> Ajuste de parámetros operativos</li>
-                <li><strong>Verificación de garantías:</strong> Cumplimiento de especificaciones del fabricante</li>
-                <li><strong>Análisis financiero:</strong> Retorno de inversión, ahorros energéticos</li>
-                <li><strong>Mantenimiento predictivo:</strong> Anticipación a fallos potenciales</li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.NB3ZV21ZXJJQMLjVH0tz5wHaFV" alt="Sistema de monitoreo fotovoltaico" class="img-small">
-                <p><em>Panel de control de un sistema de monitoreo fotovoltaico</em></p>
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h3>El Enemigo: El Sombreado</h3>
+                <p>Una chimenea no solo estorba el espacio físico, sino que <strong>proyecta una sombra</strong>. Nunca debes instalar un panel en el área donde la sombra caerá durante el día, o matarás la producción de todo el arreglo.</p>
             </div>
-            
-            <h4>1.2 Parámetros clave a monitorear</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Descripción</th>
-                    <th>Unidades</th>
-                </tr>
-                <tr>
-                    <td>Energía generada</td>
-                    <td>Energía total producida por el sistema</td>
-                    <td>kWh</td>
-                </tr>
-                <tr>
-                    <td>Potencia activa</td>
-                    <td>Potencia instantánea generada</td>
-                    <td>kW</td>
-                </tr>
-                <tr>
-                    <td>Radiación solar</td>
-                    <td>Irradiancia en el plano de los paneles</td>
-                    <td>W/m²</td>
-                </tr>
-                <tr>
-                    <td>Temperatura módulos</td>
-                    <td>Temperatura de operación de los paneles</td>
-                    <td>°C</td>
-                </tr>
-                <tr>
-                    <td>Factor de capacidad</td>
-                    <td>Relación entre energía real y teórica máxima</td>
-                    <td>%</td>
-                </tr>
-                <tr>
-                    <td>PR (Performance Ratio)</td>
-                    <td>Eficiencia energética del sistema</td>
-                    <td>%</td>
-                </tr>
-                <tr>
-                    <td>Horas pico solares</td>
-                    <td>Horas equivalentes a máxima radiación</td>
-                    <td>h</td>
-                </tr>
-            </table>
-        </div>
-
-        <h2>2. Sistemas de monitoreo</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="monitoring-box">
-            <h4>2.1 Tipos de sistemas de monitoreo</h4>
-            
-            <p><strong>a) Sistemas integrados en inversor:</strong></p>
-            <ul>
-                <li>Ventajas: Solución todo en uno, fácil de instalar</li>
-                <li>Desventajas: Limitado a las capacidades del inversor</li>
-                <li>Ejemplos: Fronius Solar.web, SMA Sunny Portal, SolarEdge Monitoring</li>
-            </ul>
-            
-            <p><strong>b) Sistemas independientes:</strong></p>
-            <ul>
-                <li>Ventajas: Mayor flexibilidad, independencia del fabricante</li>
-                <li>Desventajas: Mayor complejidad de instalación</li>
-                <li>Ejemplos: Solar-Log, Meteocontrol, Sunny Portal</li>
-            </ul>
-            
-            <p><strong>c) Sistemas de adquisición de datos (DAQ):</strong></p>
-            <ul>
-                <li>Ventajas: Alta precisión, personalizable</li>
-                <li>Desventajas: Mayor costo, requiere configuración experta</li>
-                <li>Ejemplos: Campbell Scientific, National Instruments</li>
-            </ul>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Para instalaciones residenciales, los sistemas integrados en el inversor suelen ser suficientes. Para plantas comerciales o industriales, considera sistemas independientes con mayor capacidad de análisis.</p>
+            <div class="concept-card">
+                <h3>Orientación (Sur Verdadero)</h3>
+                <p>En el hemisferio norte (México), los paneles <strong>siempre deben mirar al Sur</strong>. Si el techo de tu cliente tiene dos caídas (Este y Oeste), producirás menos energía. Debes acomodar los paneles en la cara Sur siempre que sea posible.</p>
             </div>
-            
-            <h4>2.2 Componentes de un sistema de monitoreo</h4>
-            
-            <ol>
-                <li><strong>Sensores:</strong> Irradiación, temperatura, viento, humedad</li>
-                <li><strong>Adquisición de datos:</strong> Datalogger o inversor con capacidades de registro</li>
-                <li><strong>Comunicación:</strong> WiFi, Ethernet, GPRS/4G, PLC</li>
-                <li><strong>Plataforma de visualización:</strong> Aplicación web o móvil</li>
-                <li><strong>Alarmas y notificaciones:</strong> Alertas por correo, SMS o app</li>
-            </ol>
-        </div>
-
-        <h2>3. Análisis de rendimiento</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>3.1 Métricas clave de rendimiento (KPI)</h4>
-            
-            <p><strong>a) Performance Ratio (PR):</strong></p>
-            <p>PR (%) = (Energía generada real / Energía teórica máxima) × 100</p>
-            <p>Donde: Energía teórica = Potencia pico (kWp) × Irradiación (kWh/m²) × Eficiencia de referencia</p>
-            
-            <p><strong>Valores de referencia:</strong></p>
-            <ul>
-                <li>Excelente: > 85%</li>
-                <li>Bueno: 75-85%</li>
-                <li>Mejorable: 65-75%</li>
-                <li>Inaceptable: < 65%</li>
-            </ul>
-            
-            <p><strong>b) Factor de capacidad:</strong></p>
-            <p>FC (%) = (Energía generada / (Potencia pico × 24 horas × días)) × 100</p>
-            
-            <p><strong>c) Pérdidas del sistema:</strong></p>
-            <ul>
-                <li>Pérdidas por temperatura</li>
-                <li>Pérdidas por sombreado</li>
-                <li>Pérdidas por suciedad</li>
-                <li>Pérdidas por desajuste de módulos</li>
-                <li>Pérdidas por conversión CC/CA</li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="Ratio performance.png" alt="Ejemplo de Performance Ratio" class="img-small">
-                <p><em>Ejemplo de variación del Performance Ratio a lo largo de un año</em></p>
+            <div class="concept-card">
+                <h3>Pasillos de Mantenimiento</h3>
+                <p>No puedes tapizar el 100% del techo. Debes dejar <strong>al menos 50 cm</strong> alrededor de los bordes y entre arreglos grandes para poder caminar, limpiar los paneles y hacer reparaciones sin pisar el cristal.</p>
             </div>
-            
-            <h4>3.2 Análisis de curvas I-V y P-V</h4>
-            
-            <p><strong>Curva I-V:</strong> Muestra la relación corriente-voltaje del generador fotovoltaico</p>
-            <p><strong>Curva P-V:</strong> Muestra la relación potencia-voltaje</p>
-            
-            <p><strong>Identificación de problemas:</strong></p>
-            <ul>
-                <li><strong>Módulos sucios:</strong> Reducción de corriente de cortocircuito (Isc)</li>
-                <li><strong>Hotspots:</strong> Caídas de tensión anómalas</li>
-                <li><strong>Diodos en cortocircuito:</strong> Reducción de tensión en circuito abierto (Voc)</li>
-                <li><strong>Módulos desconectados:</strong> Pérdida de potencia escalonada</li>
-            </ul>
-        </div>
-
-        <h2>4. Herramientas de análisis</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="monitoring-box">
-            <h4>4.1 Software de análisis de rendimiento</h4>
-            
-            <p><strong>a) Plataformas comerciales:</strong></p>
-            <ul>
-                <li><strong>PVsyst:</strong> Análisis detallado, simulación y comparación con datos reales</li>
-                <li><strong>PV*SOL:</strong> Análisis de rendimiento y diseño de sistemas</li>
-                <li><strong>SolarEdge Monitoring:</strong> Para sistemas con inversores SolarEdge</li>
-                <li><strong>Fronius Solar.web:</strong> Para sistemas con inversores Fronius</li>
-            </ul>
-            
-            <p><strong>b) Herramientas de código abierto:</strong></p>
-            <ul>
-                <li><strong>PVLib (Python):</strong> Biblioteca para modelado de sistemas fotovoltaicos</li>
-                <li><strong>OpenSolar:</strong> Herramienta de diseño y monitoreo</li>
-                <li><strong>Home Assistant:</strong> Para integración de diferentes sistemas de monitoreo</li>
-            </ul>
-            
-            <h4>4.2 Análisis de datos con hojas de cálculo</h4>
-            
-            <p><strong>Ejemplo de cálculo de rendimiento:</strong></p>
-            <div class="data-box">
-                <pre>
-Fecha       | Hora  | Energía (kWh) | Irradiación (kWh/m²) | Temperatura (°C) | PR (%)
-------------|-------|---------------|----------------------|------------------|-------
-2025-09-20 | 12:00 | 4.2           | 0.95                 | 45               | 82.5
-2025-09-20 | 13:00 | 4.0           | 0.90                 | 48               | 80.1
-2025-09-20 | 14:00 | 3.8           | 0.85                 | 47               | 81.3
-                </pre>
-            </div>
-            
-            <p><strong>Fórmulas útiles en Excel/Google Sheets:</strong></p>
-            <div class="data-box">
-                <pre>
-# Cálculo de PR
-= (B2 / (Potencia_pico * D2 * 0.85)) * 100
-
-# Cálculo de pérdidas por temperatura
-= (Temperatura_celda - 25) * Coeficiente_temperatura * Potencia_pico
-
-# Cálculo de energía perdida por sombreado
-= (PR_teórico - PR_real) * Energía_teórica
-                </pre>
-            </div>
-        </div>
-
-        <h2>5. Caso práctico: Análisis de un sistema real</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>5.1 Análisis de datos de producción</h4>
-            
-            <p><strong>Datos del sistema:</strong></p>
-            <ul>
-                <li>Potencia pico: 5 kWp</li>
-                <li>Ubicación: Ciudad de México</li>
-                <li>Inclinación: 20°</li>
-                <li>Orientación: Sur</li>
-            </ul>
-            
-            <p><strong>Datos de producción (ejemplo):</strong></p>
-            <div class="data-box">
-                <pre>
-Día     | Energía (kWh) | Irradiación (kWh/m²) | PR (%)
---------|---------------|----------------------|-------
-Lunes   | 28.5          | 6.2                  | 81.3
-Martes  | 26.8          | 5.9                  | 79.5
-Miércol | 15.2          | 6.0                  | 45.1  # Posible problema
-Jueves  | 27.3          | 6.1                  | 80.2
-Viernes | 27.8          | 6.3                  | 81.0
-                </pre>
-            </div>
-            
-            <p><strong>Análisis:</strong></p>
-            <ol>
-                <li>El miércoles hubo una caída significativa en el PR (45.1% vs. promedio de 80.5%)</li>
-                <li>La irradiación fue normal (6.0 kWh/m²), similar a otros días</li>
-                <li>Posibles causas: Sombreado temporal, fallo en un string, limpieza del sistema, etc.</li>
-                <li>Acción recomendada: Revisar registros de alarmas, verificar si hubo mantenimiento programado, inspeccionar el sistema</li>
-            </ol>
-            
-            <h4>5.2 Herramientas de diagnóstico remoto</h4>
-            
-            <ul>
-                <li><strong>Análisis de curvas I-V remotas:</strong> Disponible en algunos inversores avanzados</li>
-                <li><strong>Termografía con drones:</strong> Para detectar puntos calientes</li>
-                <li><strong>Análisis de datos históricos:</strong> Identificar tendencias y degradación</li>
-                <li><strong>Comparativa con sistemas similares:</strong> Benchmarking de rendimiento</li>
-            </ul>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en el análisis de casos prácticos.</p>
-            <p><strong>Ejercicio práctico:</strong> Análisis de un conjunto de datos de producción solar.</p>
-            <p><strong>Cuestionario:</strong> Preguntas sobre interpretación de parámetros de rendimiento.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre soluciones de almacenamiento de energía para sistemas fotovoltaicos, incluyendo tecnologías de baterías, sistemas de gestión de energía y casos de uso prácticos.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion13.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion15.html" class="back-button next-button">Siguiente sesión →</a>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Diseño de Techos</h2>
+        <p>Tu cliente requiere generar <strong>3,000 Watts</strong>. Tienes paneles de 500W cada uno. <br>Instrucciones: Haz clic en las cuadrículas vacías para colocar paneles. Evita el Tinaco Rojo y su Sombra Oscura.</p>
+
+        <div class="roof-sim">
+            
+            <div class="dashboard">
+                <div class="dash-box">
+                    <h4>Meta del Cliente</h4>
+                    <div class="val val-target">3000 W</div>
+                </div>
+                <div class="dash-box">
+                    <h4>Paneles Instalados</h4>
+                    <div class="val val-current" id="val-current">0 W</div>
+                </div>
+            </div>
+
+            <div class="roof-grid" id="grid-container">
+                <!-- Grid will be generated by JS -->
+            </div>
+
+            <div class="status-msg" id="sim-status">
+                Haz clic en el techo para colocar paneles de 500W.
+            </div>
+
+            <button onclick="resetSim()" style="margin-top:15px; background:transparent; border:none; color:#bdc3c7; cursor:pointer; text-decoration:underline;">
+                Limpiar Techo
+            </button>
+
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Vives en México (Hemisferio Norte). Tu cliente tiene un techo plano. ¿Hacia dónde debes inclinar los paneles?",
+                "options": [
+                    "Hacia el Norte.",
+                    "Hacia el Este, por donde sale el sol.",
+                    "Hacia el Sur Verdadero (Sur geográfico)."
+                ],
+                "correctIndex": 2,
+                "explanation": "En el hemisferio norte, el sol cruza el cielo ligeramente inclinado hacia el sur. Apuntar los paneles al sur asegura que reciban la máxima cantidad de radiación directa durante todo el día."
+            },
+            {
+                "question": "¿Por qué NUNCA se debe cubrir el 100% de la losa de un techo con paneles solares?",
+                "options": [
+                    "Porque el techo se puede derrumbar por el peso.",
+                    "Porque es obligatorio dejar pasillos (mínimo 50cm) para poder caminar, limpiar los paneles y dar mantenimiento seguro.",
+                    "Porque el exceso de paneles calienta la casa por dentro."
+                ],
+                "correctIndex": 1,
+                "explanation": "El mantenimiento (limpieza) es obligatorio cada 6 meses. Si no dejas pasillos, el técnico no podrá lavar los paneles del centro sin pisar los cristales (lo cual los rompería)."
+            },
+            {
+                "question": "Hay un tinaco de agua en el techo. Además de no poder poner paneles donde está físicamente el tinaco, ¿Qué más debes calcular?",
+                "options": [
+                    "El peso del agua.",
+                    "El espacio de la sombra que proyectará el tinaco durante las horas críticas del día.",
+                    "El reflejo del plástico."
+                ],
+                "correctIndex": 1,
+                "explanation": "Una sombra, por pequeña que sea, sobre un panel (que está en serie con los demás) derribará la producción de toda la cadena. Debes calcular la trayectoria de la sombra y no poner paneles en esa área."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion13.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion15.html" class="nav-btn next">Siguiente Sesión (Proyecto Práctico II) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    const TARGET_W = 3000;
+    const PANEL_W = 500;
+    let installedPanels = 0;
+    
+    // Grid 5x3
+    // Obstacle at (1,1) -> index 6
+    // Shadow at (1,2) -> index 7
+    // Layout: 0 1 2 3 4
+    //         5 T S 8 9 (T=Tinaco, S=Shadow)
+    //        10 11 12 13 14
+
+    const gridContainer = document.getElementById('grid-container');
+    const valCurrent = document.getElementById('val-current');
+    const statusMsg = document.getElementById('sim-status');
+    let cells = [];
+
+    function initGrid() {
+        gridContainer.innerHTML = '';
+        cells = [];
+        installedPanels = 0;
+        updateUI();
+
+        for(let i=0; i<15; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'grid-cell';
+            
+            if(i === 6) {
+                cell.className += ' cell-obstacle';
+                cell.innerHTML = '<i class="fas fa-water"></i>';
+                cell.title = "Tinaco (Obstáculo)";
+            } else if (i === 7) {
+                cell.className += ' cell-shadow';
+                cell.title = "Sombra del Tinaco a las 4 PM";
+            } else {
+                cell.onclick = () => togglePanel(cell, i);
+            }
+
+            gridContainer.appendChild(cell);
+            cells.push({ el: cell, hasPanel: false });
+        }
+    }
+
+    function togglePanel(cell, index) {
+        if(cells[index].hasPanel) {
+            // Remove
+            cells[index].hasPanel = false;
+            cell.classList.remove('cell-panel');
+            cell.innerHTML = '';
+            installedPanels--;
+        } else {
+            // Add
+            cells[index].hasPanel = true;
+            cell.classList.add('cell-panel');
+            cell.innerHTML = '<i class="fas fa-solar-panel"></i>';
+            installedPanels++;
+        }
+        updateUI();
+    }
+
+    function updateUI() {
+        const currentW = installedPanels * PANEL_W;
+        valCurrent.textContent = currentW + " W";
+
+        if(currentW === 0) {
+            statusMsg.textContent = "Haz clic en el techo para colocar paneles de 500W.";
+            statusMsg.style.background = "#e67e22";
+        } else if(currentW < TARGET_W) {
+            statusMsg.textContent = `Faltan ${TARGET_W - currentW} W para cumplir la meta.`;
+            statusMsg.style.background = "#3498db";
+        } else if(currentW === TARGET_W) {
+            statusMsg.textContent = "¡DISEÑO PERFECTO! Lograste los 3000W evitando las sombras.";
+            statusMsg.style.background = "#2ecc71";
+        } else {
+            statusMsg.textContent = "Te pasaste de paneles. El inversor no lo soportará. Quita algunos.";
+            statusMsg.style.background = "#e74c3c";
+        }
+    }
+
+    function resetSim() {
+        initGrid();
+    }
+
+    // Run on load
+    initGrid();
+
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion14');
+          window.markLessonCompleted('electricidad5', 'sesion14');
       }
   });
 </script>
