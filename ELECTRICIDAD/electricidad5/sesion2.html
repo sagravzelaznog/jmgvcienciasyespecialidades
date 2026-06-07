@@ -3,367 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 2: Fundamentos de Electricidad Básica</title>
+    <title>Sesión 2: Fundamentos Eléctricos Solares</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
+        .water-analogy {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: #1a252f;
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            flex-wrap: wrap;
+            gap: 20px;
         }
-        .back-button:hover {
-            background-color: #2980b9;
+
+        .water-item {
+            text-align: center;
+            max-width: 200px;
         }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
+
+        .water-item i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .water-item h4 {
+            color: var(--accent-color);
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        /* Power Calculator */
+        .power-calc {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .device-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .device-card {
+            background: #34495e;
             padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-left: 4px solid var(--primary-color);
         }
-        .activity {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
+
+        .device-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
         }
-        .activity h4 {
-            margin-top: 0;
-            color: #2c3e50;
+        
+        .device-header i { color: var(--accent-color); font-size: 1.2rem; }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
         }
-        .formula {
-            background-color: #f0f8ff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
+
+        .input-group input {
+            width: 60px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #7f8c8d;
+            background: #1a252f;
+            color: white;
             text-align: center;
         }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .practical-exercise {
-            background-color: #fff8e1;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #ffa000;
-        }
-        .practical-exercise h4 {
-            color: #e65100;
-            margin-top: 0;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
+
+        .total-panel {
+            background: #1a252f;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #f1c40f;
+            text-align: center;
             margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
         }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
+
+        .total-val {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2ecc71;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 10px 0;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+
+        .formula-box {
+            background: linear-gradient(135deg, var(--bg-card), #2c3e50);
+            border-left: 5px solid var(--primary-color);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
+
+        .formula {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin: 1rem 0;
+            color: var(--accent-color);
+            font-family: 'Courier New', Courier, monospace;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 2: Fundamentos de Electricidad Básica</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Comprender los conceptos fundamentales de la electricidad (voltaje, corriente, resistencia, potencia) y su aplicación en sistemas fotovoltaicos, mediante ejercicios prácticos y mediciones con multímetro.</p>
-        </div>
 
-        <h2>1. Conceptos de voltaje, corriente y resistencia</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="activity">
-            <h4>Actividad: Analogía hidráulica</h4>
-            <p>Usar la analogía de agua en tuberías para explicar los conceptos eléctricos:</p>
-            
-            <table>
-                <tr>
-                    <th>Concepto Eléctrico</th>
-                    <th>Análogo Hidráulico</th>
-                    <th>Definición</th>
-                    <th>Unidad de medida</th>
-                    <th>Símbolo</th>
-                </tr>
-                <tr>
-                    <td>Voltaje (V)</td>
-                    <td>Presión del agua</td>
-                    <td>Diferencia de potencial eléctrico</td>
-                    <td>Voltios (V)</td>
-                    <td>V</td>
-                </tr>
-                <tr>
-                    <td>Corriente (I)</td>
-                    <td>Flujo de agua</td>
-                    <td>Cantidad de carga eléctrica por unidad de tiempo</td>
-                    <td>Amperios (A)</td>
-                    <td>I</td>
-                </tr>
-                <tr>
-                    <td>Resistencia (R)</td>
-                    <td>Obstrucción en la tubería</td>
-                    <td>Oposición al flujo de corriente</td>
-                    <td>Ohmios (Ω)</td>
-                    <td>R</td>
-                </tr>
-            </table>
-            
-            <p class="time">Tiempo estimado: 15 minutos</p>
-        </div>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
 
-        <h2>2. Ley de Ohm</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="activity">
-            <h4>Actividad: Demostración práctica</h4>
-            
-            <div class="formula">
-                V = I × R
+    <div class="sesion-header">
+        <h1 class="sesion-title">Electricidad Básica para Sistemas Solares</h1>
+        <p class="sesion-subtitle">Sesión 2 - Módulo 1: Hablando el idioma de la energía</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-bolt"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Antes de instalar un panel, debes saber qué vas a alimentar. Entenderás Voltaje, Corriente, y sobre todo, dominarás la "Ley de Watt" para calcular exactamente cuánta energía consume una casa al día.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>El Idioma Eléctrico (Analogía del Agua)</h2>
+        <p>Los cables eléctricos funcionan exactamente igual que las tuberías de agua en tu casa. Comprender esta relación es vital para evitar quemar tus paneles o baterías.</p>
+
+        <div class="water-analogy">
+            <div class="water-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <h4>Voltaje (V)</h4>
+                <p>Es la <strong>Presión</strong> del agua. Los paneles suelen empujar la electricidad a 12V, 24V o 48V de presión.</p>
             </div>
-            
-            <p>Donde:</p>
-            <ul>
-                <li>V = Voltaje (en voltios)</li>
-                <li>I = Corriente (en amperios)</li>
-                <li>R = Resistencia (en ohmios)</li>
-            </ul>
-            
-            <p><strong>Ejercicios prácticos:</strong></p>
-            <ol>
-                <li>Calcular el voltaje necesario para que circule una corriente de 2A a través de una resistencia de 10Ω.</li>
-                <li>Determinar la corriente que circulará por un circuito de 12V con una resistencia de 4Ω.</li>
-                <li>Hallar la resistencia de un circuito por el que circulan 0.5A con un voltaje de 9V.</li>
-            </ol>
-            
-            <p class="time">Tiempo estimado: 15 minutos</p>
-        </div>
-
-        <h2>3. Potencia y energía eléctrica</h2>
-        <p><strong>Duración:</strong> 10 minutos</p>
-        
-        <div class="activity">
-            <h4>Actividad: Cálculo de consumo</h4>
-            
-            <div class="formula">
-                P = V × I
+            <div class="water-item">
+                <i class="fas fa-water"></i>
+                <h4>Corriente (A)</h4>
+                <p>Es el <strong>Flujo</strong> (Amperaje). La cantidad de litros de agua que pasan por el tubo. Muchos Amperes requieren cables gruesos.</p>
             </div>
-            
-            <p>Donde:</p>
-            <ul>
-                <li>P = Potencia (en vatios, W)</li>
-                <li>V = Voltaje (en voltios, V)</li>
-                <li>I = Corriente (en amperios, A)</li>
-            </ul>
-            
-            <p><strong>Ejercicio práctico:</strong></p>
-            <p>Calcular la potencia consumida por diferentes electrodomésticos y su consumo energético diario:</p>
-            
-            <table>
-                <tr>
-                    <th>Electrodoméstico</th>
-                    <th>Potencia (W)</th>
-                    <th>Horas de uso al día</th>
-                    <th>Energía (Wh/día)</th>
-                </tr>
-                <tr>
-                    <td>Foco LED</td>
-                    <td>9</td>
-                    <td>5</td>
-                    <td>45</td>
-                </tr>
-                <tr>
-                    <td>Televisor</td>
-                    <td>100</td>
-                    <td>4</td>
-                    <td>400</td>
-                </tr>
-                <tr>
-                    <td>Ventilador</td>
-                    <td>50</td>
-                    <td>8</td>
-                    <td>400</td>
-                </tr>
-                <tr>
-                    <td>Refrigerador pequeño</td>
-                    <td>100</td>
-                    <td>12*</td>
-                    <td>1200</td>
-                </tr>
-            </table>
-            <p class="small-note">* El refrigerador no consume energía constantemente, este es un valor estimado</p>
-            
-            <p class="time">Tiempo estimado: 10 minutos</p>
+            <div class="water-item">
+                <i class="fas fa-compress-arrows-alt"></i>
+                <h4>Resistencia (Ω)</h4>
+                <p>Es el <strong>Grosor del tubo</strong>. Un cable muy delgado "resiste" el paso del agua y se calienta hasta derretirse.</p>
+            </div>
         </div>
 
-        <h2>4. Mediciones básicas con multímetro</h2>
-        <p><strong>Duración:</strong> 5 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>Práctica: Uso del multímetro</h4>
-            
-            <p><strong>Objetivo:</strong> Aprender a medir voltaje, corriente y resistencia con un multímetro digital.</p>
-            
-            <p><strong>Materiales por equipo:</strong></p>
-            <ul>
-                <li>1 multímetro digital</li>
-                <li>1 batería de 9V</li>
-                <li>3 resistencias de diferentes valores (ej. 100Ω, 1kΩ, 10kΩ)</li>
-                <li>Cables de conexión</li>
-                <li>1 foco LED</li>
-            </ul>
-            
-            <p><strong>Procedimiento:</strong></p>
-            <ol>
-                <li><strong>Medir voltaje de la batería:</strong> Configurar el multímetro en escala de voltaje DC, seleccionar 20V, conectar las puntas a los polos de la batería y registrar el valor.</li>
-                <li><strong>Medir resistencia:</strong> Configurar el multímetro en la escala de ohmios (Ω), tocar las puntas a los extremos de cada resistencia y registrar los valores.</li>
-                <li><strong>Medir corriente en un circuito simple:</strong> Armar un circuito con la batería, el foco LED y una resistencia. Configurar el multímetro en escala de corriente DC (200mA), conectarlo en serie y medir la corriente.</li>
-            </ol>
-            
-            <p><strong>Tabla de resultados:</strong></p>
-            <table>
-                <tr>
-                    <th>Medición</th>
-                    <th>Valor medido</th>
-                    <th>Valor esperado</th>
-                    <th>% de error</th>
-                </tr>
-                <tr>
-                    <td>Voltaje de la batería</td>
-                    <td></td>
-                    <td>9V</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Resistencia 1</td>
-                    <td></td>
-                    <td>100Ω</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Resistencia 2</td>
-                    <td></td>
-                    <td>1kΩ</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Resistencia 3</td>
-                    <td></td>
-                    <td>10kΩ</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Corriente en el circuito</td>
-                    <td></td>
-                    <td>Calculado</td>
-                    <td></td>
-                </tr>
-            </table>
-            
-            <p><strong>Preguntas de análisis:</strong></p>
-            <ol>
-                <li>¿Por qué la lectura del voltaje de la batería puede diferir del valor nominal?</li>
-                <li>¿Qué factores pueden afectar la precisión de las mediciones de resistencia?</li>
-                <li>¿Cómo se relacionan los valores medidos con los cálculos teóricos usando la Ley de Ohm?</li>
-            </ol>
-            
-            <p class="time">Tiempo estimado: 15 minutos (continuación en la siguiente sesión si es necesario)</p>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en las actividades prácticas.</p>
-            <p><strong>Ejercicio de aplicación:</strong> Resolución de problemas aplicando la Ley de Ohm.</p>
-            <p><strong>Informe de laboratorio:</strong> Entrega de la tabla de resultados con las mediciones realizadas.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los conceptos de radiación solar y su importancia en los sistemas fotovoltaicos.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion1.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion3.html" class="back-button next-button">Siguiente sesión →</a>
+        <div class="formula-box">
+            <h3>La Fórmula Mágica del Instalador Solar (Ley de Watt)</h3>
+            <p>Para saber el tamaño del sistema solar que necesitas comprar, no sumas "Amperes" ni "Voltios", sumas la potencia total (Watts) y el tiempo que están encendidos (Horas).</p>
+            <div class="formula">P = V × I</div>
+            <p><strong>Potencia (Watts) = Voltaje (V) × Corriente (A)</strong><br>
+            <em>Ejemplo: Un panel de 12V que entrega 10 Amperes está generando 120 Watts de potencia.</em></p>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Auditoría Energética</h2>
+        <p>El primer paso de CUALQUIER instalación solar es hacer una "Auditoría". Selecciona cuántos electrodomésticos tiene el cliente y cuántas horas los usa al día. El simulador calculará la energía diaria requerida (Watts-hora o Wh), el dato más importante para comprar tus paneles y baterías.</p>
+
+        <div class="power-calc">
+            <div class="device-list">
+                <!-- Focos -->
+                <div class="device-card">
+                    <div class="device-header">
+                        <span>Focos LED (10W)</span>
+                        <i class="far fa-lightbulb"></i>
+                    </div>
+                    <div class="input-group">
+                        <label>Cantidad:</label>
+                        <input type="number" id="qty-led" value="5" min="0" oninput="calcEnergy()">
+                    </div>
+                    <div class="input-group">
+                        <label>Horas uso al día:</label>
+                        <input type="number" id="hrs-led" value="6" min="0" max="24" oninput="calcEnergy()">
+                    </div>
+                </div>
+
+                <!-- TV -->
+                <div class="device-card">
+                    <div class="device-header">
+                        <span>Televisión LED (80W)</span>
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="input-group">
+                        <label>Cantidad:</label>
+                        <input type="number" id="qty-tv" value="1" min="0" oninput="calcEnergy()">
+                    </div>
+                    <div class="input-group">
+                        <label>Horas uso al día:</label>
+                        <input type="number" id="hrs-tv" value="4" min="0" max="24" oninput="calcEnergy()">
+                    </div>
+                </div>
+
+                <!-- Refri -->
+                <div class="device-card">
+                    <div class="device-header">
+                        <span>Refrigerador (150W)</span>
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <div class="input-group">
+                        <label>Cantidad:</label>
+                        <input type="number" id="qty-ref" value="1" min="0" oninput="calcEnergy()">
+                    </div>
+                    <div class="input-group">
+                        <label>Horas de motor activo:</label>
+                        <input type="number" id="hrs-ref" value="8" min="0" max="24" title="El compresor no está prendido 24 horas, aprox 8-10 hrs." oninput="calcEnergy()">
+                    </div>
+                </div>
+
+                <!-- Laptop -->
+                <div class="device-card">
+                    <div class="device-header">
+                        <span>Laptop Carga (50W)</span>
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="input-group">
+                        <label>Cantidad:</label>
+                        <input type="number" id="qty-lap" value="1" min="0" oninput="calcEnergy()">
+                    </div>
+                    <div class="input-group">
+                        <label>Horas uso al día:</label>
+                        <input type="number" id="hrs-lap" value="3" min="0" max="24" oninput="calcEnergy()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="total-panel">
+                <div style="color: #bdc3c7; font-size: 1.1rem; text-transform: uppercase;">Consumo Diario Total de la Casa</div>
+                <div class="total-val" id="total-wh">0 Wh/día</div>
+                <div style="font-size: 0.9rem; color: #7f8c8d;" id="total-kwh">(0.0 kWh/día)</div>
+                <p style="margin-top: 15px; font-size: 0.9rem;">
+                    <em>Para diseñar un sistema solar aislado, tus paneles deberán captar esta cantidad de energía de sol CADA DÍA, y tus baterías deberán ser capaces de almacenarla para la noche.</em>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Tienes un foco LED de 10W. Si lo dejas encendido durante 5 horas seguidas, ¿Cuánta energía total ha consumido de tu batería solar?",
+                "options": [
+                    "10 Watts-hora (Wh).",
+                    "50 Watts-hora (Wh).",
+                    "50 Amperes."
+                ],
+                "correctIndex": 1,
+                "explanation": "La energía total se calcula multiplicando la Potencia por el Tiempo (Energía = Watts × Horas). 10W × 5h = 50 Wh."
+            },
+            {
+                "question": "Según la Ley de Watt (P = V × I), si tienes un Panel Solar que empuja a 20 Voltios y entrega una corriente de 5 Amperes, ¿De cuántos Watts es ese panel?",
+                "options": [
+                    "100 Watts.",
+                    "4 Watts.",
+                    "25 Watts."
+                ],
+                "correctIndex": 0,
+                "explanation": "Simplemente multiplicas Voltios por Amperes. 20V × 5A = 100W de Potencia."
+            },
+            {
+                "question": "En la 'Analogía del Agua', si el Voltaje es la Presión con la que sale el agua, ¿Qué es el 'Amperaje' (Corriente)?",
+                "options": [
+                    "El grosor del tubo por donde pasa el agua.",
+                    "El grifo que abre y cierra el agua.",
+                    "La cantidad o volumen de agua (litros) que está fluyendo a través del tubo."
+                ],
+                "correctIndex": 2,
+                "explanation": "Los Amperes miden el 'flujo' o cantidad de electrones pasando por un punto en un segundo. Muchos aparatos encendidos = mucho flujo de agua (Amperes), lo que requerirá cables más gruesos (tubos anchos) para no generar fricción y calor."
+            },
+            {
+                "question": "El cliente te dice: 'Quiero paneles solares'. ¿Cuál es el paso NÚMERO UNO que debes hacer como profesional antes de cotizar nada?",
+                "options": [
+                    "Comprar los paneles más baratos que encuentres.",
+                    "Hacer una auditoría de consumo sumando los Watts de todos sus aparatos y las horas que los usa para sacar el Wh/día.",
+                    "Instalar un inversor gigante para que nunca le falte luz."
+                ],
+                "correctIndex": 1,
+                "explanation": "Nunca puedes diseñar un sistema solar si no sabes exactamente cuánta energía consume el usuario en un día promedio. La auditoría de cargas (Wh/día) dicta el tamaño de los paneles, las baterías, el controlador y el inversor."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion1.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion3.html" class="nav-btn next">Siguiente Sesión (Radiación Solar) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function calcEnergy() {
+        const pLed = 10;
+        const pTv = 80;
+        const pRef = 150;
+        const pLap = 50;
+
+        const qLed = parseFloat(document.getElementById('qty-led').value) || 0;
+        const hLed = parseFloat(document.getElementById('hrs-led').value) || 0;
+        
+        const qTv = parseFloat(document.getElementById('qty-tv').value) || 0;
+        const hTv = parseFloat(document.getElementById('hrs-tv').value) || 0;
+        
+        const qRef = parseFloat(document.getElementById('qty-ref').value) || 0;
+        const hRef = parseFloat(document.getElementById('hrs-ref').value) || 0;
+        
+        const qLap = parseFloat(document.getElementById('qty-lap').value) || 0;
+        const hLap = parseFloat(document.getElementById('hrs-lap').value) || 0;
+
+        // Wh = Watts * Quantity * Hours
+        const whLed = pLed * qLed * hLed;
+        const whTv = pTv * qTv * hTv;
+        const whRef = pRef * qRef * hRef;
+        const whLap = pLap * qLap * hLap;
+
+        const totalWh = whLed + whTv + whRef + whLap;
+        const totalKwh = totalWh / 1000;
+
+        document.getElementById('total-wh').textContent = totalWh.toLocaleString() + " Wh/día";
+        document.getElementById('total-kwh').textContent = "(" + totalKwh.toFixed(2) + " kWh/día)";
+    }
+
+    // Init
+    calcEnergy();
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion2');
+          window.markLessonCompleted('electricidad5', 'sesion2');
       }
   });
 </script>
