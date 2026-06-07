@@ -37,8 +37,13 @@
             <p>En ciertos materiales, como el cobre de los cables, estos electrones exteriores no están muy apegados a su núcleo. Si les damos un pequeño "empujón" de energía, pueden saltar de un átomo a otro. <strong>Ese río de electrones saltando en cadena es lo que llamamos corriente eléctrica.</strong></p>
         </div>
 
-        <!-- Infografía Generada por IA -->
-        <img src="assets/img/atom_flow.png" alt="Infografía del átomo y el flujo de electrones" class="course-banner" style="margin-top: 2rem;">
+        <!-- Infografía Generada por IA con Overlays en Español -->
+        <div class="image-overlay-container" style="display: block; width: 100%; max-width: 600px;">
+            <img src="assets/img/atom_flow.png" alt="Infografía del átomo y el flujo de electrones">
+            <div class="overlay-label" style="top: 50%; left: 30%;">Núcleo del Átomo</div>
+            <div class="overlay-label" style="top: 20%; left: 70%;">Electrón Liberado</div>
+            <div class="overlay-label" style="top: 80%; left: 80%; background: rgba(16, 185, 129, 0.9);">Flujo de Corriente</div>
+        </div>
         <p class="fig-caption">Fig 1. Representación del átomo y la liberación de un electrón creando flujo eléctrico.</p>
     </div>
 
@@ -51,7 +56,12 @@
         <div class="phase-content">
             <p>El comportamiento de los electrones invisibles puede ser difícil de imaginar. Por suerte, se comportan casi exactamente igual que <strong>el agua fluyendo por un río</strong>.</p>
 
-            <img src="assets/img/river_analogy.png" alt="Analogía del río y la electricidad" class="course-banner" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="image-overlay-container" style="display: block; width: 100%; max-width: 600px;">
+                <img src="assets/img/river_analogy.png" alt="Analogía del río y la electricidad">
+                <div class="overlay-label" style="top: 15%; left: 50%; background: rgba(245, 158, 11, 0.9);">Voltaje (Inclinación)</div>
+                <div class="overlay-label" style="top: 50%; left: 30%; background: rgba(2, 132, 199, 0.9);">Corriente (Agua)</div>
+                <div class="overlay-label" style="top: 75%; left: 60%; background: rgba(239, 68, 68, 0.9);">Resistencia (Rocas)</div>
+            </div>
             <p class="fig-caption">Fig 2. El río eléctrico: Voltaje, Corriente y Resistencia.</p>
 
             <ul>
@@ -89,6 +99,70 @@
         <p>¿Qué tipo de "trabajo" están haciendo los electrones al pasar por ellos? (¿Crear luz, generar frío, procesar datos en una pantalla?). Trata de visualizar ese río de energía invisible fluyendo en las paredes de tu habitación ahora mismo.</p>
     </div>
 
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Qué es fundamentalmente la electricidad?",
+                "options": [
+                    "Magia oscura creada en laboratorios.",
+                    "El flujo de protones a través de la madera.",
+                    "El movimiento de electrones a través de un conductor.",
+                    "La condensación del agua en las nubes."
+                ],
+                "correctIndex": 2,
+                "explanation": "La electricidad es el flujo continuo de electrones de un átomo a otro a través de un material conductor como el cobre."
+            },
+            {
+                "question": "En la analogía del río, ¿qué representa el Voltaje?",
+                "options": [
+                    "Las rocas que estorban el paso.",
+                    "La cantidad de agua que fluye.",
+                    "La inclinación o desnivel de la montaña.",
+                    "Los peces nadando."
+                ],
+                "correctIndex": 2,
+                "explanation": "El voltaje es la 'presión' que empuja a los electrones, igual que la gravedad (inclinación) empuja al agua hacia abajo."
+            },
+            {
+                "question": "Si froto dos globos con lana y ambos adquieren carga negativa, ¿qué pasará al acercarlos?",
+                "options": [
+                    "Se pegarán inmediatamente.",
+                    "Se repelerán el uno al otro.",
+                    "Explotarán generando luz.",
+                    "No pasará absolutamente nada."
+                ],
+                "correctIndex": 1,
+                "explanation": "Las cargas iguales siempre se repelen (negativo rechaza a negativo)."
+            },
+            {
+                "question": "¿Qué partícula subatómica es la responsable de la corriente eléctrica?",
+                "options": [
+                    "El Protón",
+                    "El Neutrón",
+                    "El Electrón",
+                    "El Núcleo completo"
+                ],
+                "correctIndex": 2,
+                "explanation": "Los electrones están en las capas externas del átomo y pueden liberarse fácilmente para moverse de átomo en átomo."
+            },
+            {
+                "question": "¿Qué elemento en un circuito actúa como las 'rocas' en el río eléctrico?",
+                "options": [
+                    "La Batería (Voltaje)",
+                    "El Cable (Conductor)",
+                    "El Interruptor",
+                    "La Resistencia (Ej. el filamento de un foco)"
+                ],
+                "correctIndex": 3,
+                "explanation": "La resistencia se opone al flujo libre de los electrones, generando trabajo útil como luz o calor."
+            }
+        ]
+        </script>
+    </div>
+
     <!-- Navegación Inferior -->
     <div class="sesion-navigation">
         <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa</a>
@@ -107,6 +181,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
