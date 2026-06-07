@@ -121,9 +121,33 @@
             color: var(--text-heading);
         }
 
-        /* Utilidad para arrastrar */
         .dragging {
             opacity: 0.5;
+        }
+
+        /* Contenedor Infográfico Flex */
+        .infographic-flex {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .infographic-text {
+            flex: 1;
+        }
+
+        .infographic-image {
+            flex: 1;
+            max-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .infographic-flex {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -143,8 +167,8 @@
     </div>
 
     <div class="teoria-section">
-        <h2>Características Físicas (Sin usar Multímetro)</h2>
-        <p>Un buen electricista puede identificar el comportamiento eléctrico de un objeto con solo mirarlo o tocarlo. Existen pistas visuales universales.</p>
+        <h2>Características Físicas (Identificación Visual)</h2>
+        <p>Un buen electricista puede identificar el comportamiento eléctrico de un objeto con solo mirarlo o tocarlo. Existen pistas visuales universales que revelan la naturaleza atómica del material.</p>
         
         <div class="phase-block" style="margin-top: 2rem;">
             <div class="phase-header" style="background: #e74c3c; color: white;">
@@ -152,11 +176,30 @@
                 <span><i class="fas fa-bolt"></i></span>
             </div>
             <div class="phase-content" style="border-left-color: #e74c3c;">
-                <ul>
-                    <li><strong>Brillo Metálico:</strong> Reflejan la luz intensamente (oro, plata, cobre desnudo).</li>
-                    <li><strong>Fríos al tacto:</strong> Los buenos conductores eléctricos también son excelentes conductores térmicos. Roban el calor de tu mano rápidamente, por eso el metal se siente frío.</li>
-                    <li><strong>Maleabilidad:</strong> Se pueden doblar sin quebrarse fácilmente.</li>
-                </ul>
+                <div class="infographic-flex">
+                    <div class="infographic-text">
+                        <ul>
+                            <li><strong>Brillo Metálico:</strong> Los electrones libres en la superficie reflejan fotones de luz intensamente (oro, plata, cobre desnudo).</li>
+                            <li><strong>Fríos al tacto:</strong> Los buenos conductores eléctricos también son excelentes conductores térmicos. Roban el calor de tu mano rápidamente, por eso el metal se siente "frío".</li>
+                            <li><strong>Maleabilidad:</strong> La nube de electrones permite que los átomos se deslicen entre sí, por lo que se pueden doblar sin quebrarse fácilmente.</li>
+                        </ul>
+                    </div>
+                    <div class="infographic-image">
+                        <!-- Imagen SVG 100% vector, sin texto, bajo recurso -->
+                        <svg viewBox="0 0 200 200" width="100%" height="200px">
+                            <!-- Fondo abstracto -->
+                            <circle cx="100" cy="100" r="90" fill="#fef2f2" />
+                            <!-- Tuerca / Metal Brillante -->
+                            <path d="M70 50 L130 50 L160 100 L130 150 L70 150 L40 100 Z" fill="#94a3b8" stroke="#64748b" stroke-width="8" stroke-linejoin="round"/>
+                            <circle cx="100" cy="100" r="30" fill="#fef2f2" stroke="#64748b" stroke-width="8"/>
+                            <!-- Brillo (Highlights) -->
+                            <path d="M75 58 L125 58 L148 98" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M85 75 L100 75" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+                            <!-- Líneas de transmisión de calor/frío -->
+                            <path d="M20 100 L0 100 M30 70 L15 55 M30 130 L15 145" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -166,11 +209,32 @@
                 <span><i class="fas fa-shield-alt"></i></span>
             </div>
             <div class="phase-content" style="border-left-color: #3498db;">
-                <ul>
-                    <li><strong>Opacidad:</strong> Colores mate, sin brillo reflectante metálico (plásticos, goma, madera).</li>
-                    <li><strong>Cálidos o neutros al tacto:</strong> No roban el calor de tu mano tan rápido como el metal.</li>
-                    <li><strong>Fragilidad o Flexibilidad extrema:</strong> El vidrio se rompe; la goma se dobla infinitamente.</li>
-                </ul>
+                <div class="infographic-flex">
+                    <div class="infographic-text">
+                        <ul>
+                            <li><strong>Opacidad:</strong> Colores mate, sin brillo reflectante metálico (plásticos, goma, madera). Absorben o difunden la luz de manera diferente.</li>
+                            <li><strong>Cálidos o neutros al tacto:</strong> Al no tener electrones libres, no roban el calor de tu mano tan rápido como el metal, sintiéndose a temperatura ambiente.</li>
+                            <li><strong>Fragilidad o Flexibilidad extrema:</strong> Sus enlaces rígidos hacen que se rompan (como el vidrio o cerámica), o sus cadenas de polímeros los hacen elásticos (como la goma).</li>
+                        </ul>
+                    </div>
+                    <div class="infographic-image">
+                        <!-- Imagen SVG 100% vector, sin texto, bajo recurso -->
+                        <svg viewBox="0 0 200 200" width="100%" height="200px">
+                            <!-- Fondo abstracto -->
+                            <circle cx="100" cy="100" r="90" fill="#f0f9ff" />
+                            <!-- Bloque de Goma / Aislante -->
+                            <rect x="50" y="60" width="100" height="80" rx="15" fill="#334155" />
+                            <rect x="50" y="60" width="100" height="30" rx="15" fill="#475569" />
+                            <!-- Textura mate / sin brillo -->
+                            <circle cx="80" cy="100" r="4" fill="#1e293b"/>
+                            <circle cx="120" cy="100" r="4" fill="#1e293b"/>
+                            <circle cx="100" cy="120" r="4" fill="#1e293b"/>
+                            <!-- Efecto de barrera (escudo eléctrico) -->
+                            <path d="M170 50 Q130 100 170 150" fill="none" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" stroke-dasharray="10, 5"/>
+                            <path d="M185 70 Q145 100 185 130" fill="none" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" stroke-dasharray="10, 5"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

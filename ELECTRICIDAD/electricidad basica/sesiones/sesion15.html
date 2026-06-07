@@ -118,6 +118,135 @@
             <div class="practica-section">
                 <h2>🛠️ Práctica: Medición de Consumo</h2>
 
+                <h3>Simulador Interactivo: Medidor de Energía (Watthorímetro)</h3>
+                <p>Enciende o apaga los electrodomésticos de la casa y observa cómo el disco del medidor analógico gira más rápido cuanta más potencia (Watts) se está demandando. El contador registra la energía consumida en <strong>Kilovatios-hora (kWh)</strong>.</p>
+                
+                <div class="didactic-example" style="text-align: center; position: relative;">
+                    <svg viewBox="0 0 600 350" width="100%" max-width="600px" style="margin: 10px auto; background: #0f172a; border-radius: 8px; padding: 10px;">
+                        
+                        <!-- Watthorímetro Analógico -->
+                        <g transform="translate(100, 30)">
+                            <!-- Carcasa del medidor -->
+                            <rect x="0" y="0" width="200" height="280" rx="100" ry="20" fill="#cbd5e1" stroke="#94a3b8" stroke-width="4"/>
+                            <circle cx="100" cy="140" r="90" fill="#f8fafc" stroke="#64748b" stroke-width="5"/>
+                            
+                            <!-- Display de números (Diales) -->
+                            <rect x="30" y="80" width="140" height="40" fill="#1e293b" rx="5"/>
+                            <text x="100" y="110" fill="#4ade80" font-family="monospace" font-size="28" font-weight="bold" text-anchor="middle" id="kwh-display">00000.0</text>
+                            <text x="100" y="135" fill="#64748b" font-size="10" text-anchor="middle">KILOWATT HOURS</text>
+
+                            <!-- Disco giratorio -->
+                            <rect x="50" y="170" width="100" height="10" fill="#000"/>
+                            <!-- Marcas en el disco para ver que gira -->
+                            <rect x="95" y="170" width="10" height="10" fill="#ef4444" id="meter-disc-mark" style="transform-origin: 100px 175px;"/>
+                            
+                            <text x="100" y="210" fill="#334155" font-size="12" font-weight="bold" text-anchor="middle">240V 3-WIRE 60Hz</text>
+                        </g>
+
+                        <!-- Panel de Electrodomésticos -->
+                        <g transform="translate(350, 20)">
+                            <rect x="0" y="0" width="230" height="300" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+                            <text x="115" y="30" fill="#38bdf8" font-size="16" font-weight="bold" text-anchor="middle">Electrodomésticos</text>
+                            
+                            <!-- Botones -->
+                            <g transform="translate(10, 60)" cursor="pointer" onclick="toggleAppliance('tv')">
+                                <rect x="0" y="0" width="210" height="40" rx="5" fill="#334155" id="btn-tv"/>
+                                <text x="10" y="25" fill="#fff" font-size="14">📺 Televisor (100W)</text>
+                                <circle cx="190" cy="20" r="8" fill="#ef4444" id="ind-tv"/>
+                            </g>
+
+                            <g transform="translate(10, 110)" cursor="pointer" onclick="toggleAppliance('fridge')">
+                                <rect x="0" y="0" width="210" height="40" rx="5" fill="#334155" id="btn-fridge"/>
+                                <text x="10" y="25" fill="#fff" font-size="14">❄️ Refrigerador (400W)</text>
+                                <circle cx="190" cy="20" r="8" fill="#ef4444" id="ind-fridge"/>
+                            </g>
+
+                            <g transform="translate(10, 160)" cursor="pointer" onclick="toggleAppliance('microwave')">
+                                <rect x="0" y="0" width="210" height="40" rx="5" fill="#334155" id="btn-microwave"/>
+                                <text x="10" y="25" fill="#fff" font-size="14">♨️ Microondas (1200W)</text>
+                                <circle cx="190" cy="20" r="8" fill="#ef4444" id="ind-microwave"/>
+                            </g>
+
+                            <g transform="translate(10, 210)" cursor="pointer" onclick="toggleAppliance('ac')">
+                                <rect x="0" y="0" width="210" height="40" rx="5" fill="#334155" id="btn-ac"/>
+                                <text x="10" y="25" fill="#fff" font-size="14">❄️ Aire Acond. (2500W)</text>
+                                <circle cx="190" cy="20" r="8" fill="#ef4444" id="ind-ac"/>
+                            </g>
+
+                            <text x="115" y="280" fill="#94a3b8" font-size="14" text-anchor="middle">Demanda Actual:</text>
+                            <text x="115" y="305" fill="#facc15" font-size="20" font-weight="bold" text-anchor="middle" id="current-power">0 W</text>
+                        </g>
+
+                    </svg>
+
+                    <script>
+                        const appliances = {
+                            'tv': { power: 100, on: false },
+                            'fridge': { power: 400, on: false },
+                            'microwave': { power: 1200, on: false },
+                            'ac': { power: 2500, on: false }
+                        };
+
+                        let totalWatts = 0;
+                        let kwhCounter = 0; // en kWh
+                        let discPosition = 0;
+
+                        function toggleAppliance(id) {
+                            appliances[id].on = !appliances[id].on;
+                            const isOn = appliances[id].on;
+                            
+                            document.getElementById(`ind-${id}`).style.fill = isOn ? '#22c55e' : '#ef4444';
+                            document.getElementById(`btn-${id}`).style.fill = isOn ? '#475569' : '#334155';
+                            
+                            updatePower();
+                        }
+
+                        function updatePower() {
+                            totalWatts = 0;
+                            for (let key in appliances) {
+                                if (appliances[key].on) {
+                                    totalWatts += appliances[key].power;
+                                }
+                            }
+                            document.getElementById('current-power').textContent = totalWatts + ' W';
+                        }
+
+                        // Bucle de animación (60 FPS)
+                        setInterval(() => {
+                            if (totalWatts > 0) {
+                                // 1. Actualizar el disco analógico
+                                // Velocidad proporcional a la potencia. (Un medidor típico gira x veces por kW).
+                                const speed = (totalWatts / 1000) * 2; // Factor visual
+                                discPosition += speed;
+                                
+                                // Simular el giro 3D moviendo la marca de lado a lado con seno
+                                const posScale = Math.sin(discPosition * Math.PI / 180); // de -1 a 1
+                                const mark = document.getElementById('meter-disc-mark');
+                                // Transformar escala X para simular rotación
+                                mark.style.transform = `scaleX(${posScale})`;
+                                
+                                // Ocultar si está en la parte de atrás del disco (cuando seno < 0)
+                                if(posScale < 0) {
+                                    mark.style.opacity = '0';
+                                } else {
+                                    mark.style.opacity = '1';
+                                }
+
+                                // 2. Acelerar el tiempo del medidor para fines didácticos
+                                // 1 hora de simulación pasará en pocos segundos si el consumo es alto.
+                                // Un multiplicador exagerado para ver cambiar el número rápido
+                                const kwh_per_tick = (totalWatts / 1000) * (1 / 3600) * 100; // x100 velocidad del tiempo
+                                kwhCounter += kwh_per_tick;
+
+                                // Mostrar formato 00000.0
+                                const displayStr = kwhCounter.toFixed(1).padStart(7, '0');
+                                document.getElementById('kwh-display').textContent = displayStr;
+                            }
+                        }, 1000 / 60); // 60fps
+                    </script>
+                </div>
+
+
                 <h3>Ejercicio 1: Auditoría Energética Básica</h3>
                 <p><strong>Objetivo:</strong> Medir consumo de electrodomésticos</p>
                 

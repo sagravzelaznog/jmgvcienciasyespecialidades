@@ -291,6 +291,136 @@
                 <div class="danger-box">
                     <strong>⚠️ Seguridad:</strong> Siempre verifica las conexiones antes de energizar el circuito. Una conexión incorrecta puede dañar el multímetro.
                 </div>
+
+                <h3>Multímetro Virtual Interactivo</h3>
+                <p>Practica el uso del multímetro. Gira la perilla a la posición correcta y selecciona qué quieres medir:</p>
+                
+                <div class="didactic-example" style="text-align: center;">
+                    <!-- SVG Multímetro -->
+                    <svg viewBox="0 0 300 450" width="100%" max-width="300px" style="margin: 10px auto; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));">
+                        <!-- Cuerpo -->
+                        <rect x="20" y="20" width="260" height="410" rx="20" fill="#facc15" stroke="#ca8a04" stroke-width="4"/>
+                        <rect x="30" y="30" width="240" height="390" rx="10" fill="#333"/>
+                        
+                        <!-- Pantalla -->
+                        <rect x="50" y="50" width="200" height="80" rx="5" fill="#a3e635" stroke="#4d7c0f" stroke-width="3"/>
+                        <text x="150" y="105" fill="#064e3b" font-size="40" font-family="monospace" text-anchor="middle" id="mm-display">0.00</text>
+                        <text x="230" y="115" fill="#064e3b" font-size="16" font-family="monospace" text-anchor="end" id="mm-unit">V</text>
+                        
+                        <!-- Perilla Selectora -->
+                        <circle cx="150" cy="220" r="60" fill="#1f2937" stroke="#4b5563" stroke-width="2"/>
+                        <!-- Posiciones de la perilla (marcas) -->
+                        <text x="150" y="145" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">OFF</text>
+                        <text x="225" y="180" fill="#fff" font-size="14" font-weight="bold" text-anchor="start">V~</text>
+                        <text x="235" y="225" fill="#fff" font-size="14" font-weight="bold" text-anchor="start">V-</text>
+                        <text x="215" y="280" fill="#fff" font-size="14" font-weight="bold" text-anchor="start">A-</text>
+                        <text x="85" y="280" fill="#fff" font-size="14" font-weight="bold" text-anchor="end">Ω</text>
+                        
+                        <!-- Perilla (Rotatoria) -->
+                        <g id="mm-dial" transform="rotate(0, 150, 220)" style="transition: transform 0.3s ease;">
+                            <circle cx="150" cy="220" r="45" fill="#374151" stroke="#000" stroke-width="2"/>
+                            <!-- Indicador -->
+                            <polygon points="145,180 155,180 150,165" fill="#facc15"/>
+                            <circle cx="150" cy="220" r="20" fill="#111827"/>
+                        </g>
+                        
+                        <!-- Puertos de conexión -->
+                        <circle cx="90" cy="360" r="15" fill="#000" stroke="#4b5563" stroke-width="2"/>
+                        <text x="90" y="390" fill="#fff" font-size="12" text-anchor="middle">COM</text>
+                        
+                        <circle cx="150" cy="360" r="15" fill="#f87171" stroke="#4b5563" stroke-width="2"/>
+                        <text x="150" y="390" fill="#fff" font-size="12" text-anchor="middle">VΩmA</text>
+                        
+                        <circle cx="210" cy="360" r="15" fill="#f87171" stroke="#4b5563" stroke-width="2"/>
+                        <text x="210" y="390" fill="#fff" font-size="12" text-anchor="middle">10A</text>
+                    </svg>
+
+                    <!-- Controles del Simulador -->
+                    <div style="background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; max-width: 400px; margin: 0 auto; text-align: left;">
+                        <label style="font-weight:bold; color:var(--primary-color);">1. Selecciona Modo en el Multímetro:</label><br>
+                        <select id="mm-mode" onchange="updateMultimeter()" style="width: 100%; padding: 8px; margin-bottom: 15px; border-radius:4px;">
+                            <option value="off">OFF (Apagado)</option>
+                            <option value="vac">V~ (Voltaje Alterno)</option>
+                            <option value="vdc">V- (Voltaje Directo)</option>
+                            <option value="adc">A- (Corriente Directa)</option>
+                            <option value="ohm">Ω (Resistencia)</option>
+                        </select>
+
+                        <label style="font-weight:bold; color:var(--primary-color);">2. ¿Qué quieres medir?</label><br>
+                        <select id="mm-target" onchange="updateMultimeter()" style="width: 100%; padding: 8px; border-radius:4px;">
+                            <option value="none">-- Nada conectado --</option>
+                            <option value="bat9v">Batería de 9V</option>
+                            <option value="outlet">Enchufe de pared (AC)</option>
+                            <option value="resistor">Resistencia de 220Ω</option>
+                            <option value="circuit">Corriente en circuito LED</option>
+                        </select>
+                        
+                        <div id="mm-feedback" style="margin-top: 15px; font-weight:bold; font-size:0.9rem; color:#ef4444; min-height: 20px;"></div>
+                    </div>
+                </div>
+
+                <script>
+                    function updateMultimeter() {
+                        const mode = document.getElementById('mm-mode').value;
+                        const target = document.getElementById('mm-target').value;
+                        const display = document.getElementById('mm-display');
+                        const unit = document.getElementById('mm-unit');
+                        const dial = document.getElementById('mm-dial');
+                        const feedback = document.getElementById('mm-feedback');
+                        
+                        // Rotación de la perilla
+                        const angles = {
+                            'off': 0,
+                            'vac': 45,
+                            'vdc': 90,
+                            'adc': 135,
+                            'ohm': -45
+                        };
+                        dial.style.transform = `rotate(${angles[mode]}deg, 150px, 220px)`;
+                        
+                        // Lógica de medición
+                        feedback.textContent = '';
+                        feedback.style.color = '#ef4444';
+                        
+                        if (mode === 'off') {
+                            display.textContent = '';
+                            unit.textContent = '';
+                            return;
+                        }
+                        
+                        let value = '0.00';
+                        let u = '';
+                        
+                        if (target === 'none') {
+                            if(mode === 'ohm') { value = 'OL'; u = 'MΩ'; }
+                            else { value = '0.00'; }
+                        } else if (target === 'bat9v') {
+                            if (mode === 'vdc') { value = '9.15'; u = 'V'; feedback.style.color='#10b981'; feedback.textContent = '¡Correcto! Midiendo voltaje DC.'; }
+                            else if (mode === 'vac') { value = '0.00'; u = 'V'; feedback.textContent = 'Error: Estás midiendo DC en modo AC.'; }
+                            else if (mode === 'ohm') { value = 'ERR'; feedback.textContent = '¡PELIGRO! Nunca midas resistencia en una fuente de energía.'; }
+                            else { value = '0.00'; feedback.textContent = 'Modo incorrecto para medir una batería.'; }
+                        } else if (target === 'outlet') {
+                            if (mode === 'vac') { value = '120.5'; u = 'V'; feedback.style.color='#10b981'; feedback.textContent = '¡Correcto! Midiendo voltaje AC.'; }
+                            else if (mode === 'vdc') { value = '0.00'; u = 'V'; feedback.textContent = 'Error: Estás midiendo AC en modo DC.'; }
+                            else if (mode === 'ohm') { value = 'ERR'; feedback.textContent = '¡PELIGRO EXTREMO! Riesgo de explosión del multímetro.'; }
+                            else { value = '0.00'; feedback.textContent = 'Modo incorrecto para medir la red eléctrica.'; }
+                        } else if (target === 'resistor') {
+                            if (mode === 'ohm') { value = '218.4'; u = 'Ω'; feedback.style.color='#10b981'; feedback.textContent = '¡Correcto! Midiendo resistencia aislada.'; }
+                            else { value = '0.00'; feedback.textContent = 'Modo incorrecto. Selecciona Ω para medir resistencia.'; }
+                        } else if (target === 'circuit') {
+                            if (mode === 'adc') { value = '15.2'; u = 'mA'; feedback.style.color='#10b981'; feedback.textContent = '¡Correcto! Multímetro en serie midiendo corriente.'; }
+                            else { value = '0.00'; feedback.textContent = 'Modo incorrecto. Selecciona A- para medir corriente DC.'; }
+                        }
+                        
+                        display.textContent = value;
+                        if(mode === 'vdc' || mode === 'vac') unit.textContent = u || 'V';
+                        else if(mode === 'adc') unit.textContent = u || 'A';
+                        else if(mode === 'ohm') unit.textContent = u || 'Ω';
+                    }
+                    
+                    // Inicializar
+                    updateMultimeter();
+                </script>
             </div>
 
             <!-- Otras Herramientas de Medición -->

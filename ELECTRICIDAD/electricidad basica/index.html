@@ -6,36 +6,6 @@
     <title>Curso de Electricidad Básica - 16 Sesiones</title>
     <link rel="stylesheet" href="../../global-lesson.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-    <style>
-        .hero { text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, var(--bg-card) 0%, #e0f2fe 100%); border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; }
-        .hero h1 { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; color: var(--text-muted); }
-        
-        .nav-links { list-style: none; display: flex; gap: 1.5rem; }
-        .nav-links a { text-decoration: none; color: var(--text-heading); font-weight: 600; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--primary-color); }
-        
-        .sesiones-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .sesion-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; box-shadow: var(--shadow-soft); transition: transform 0.3s, box-shadow 0.3s; }
-        .sesion-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary-color); }
-        
-        .sesion-meta { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.85rem; font-weight: bold; color: var(--text-muted); }
-        .sesion-tipo { padding: 0.2rem 0.6rem; border-radius: 4px; color: white; }
-        .tipo-teoria { background-color: #3498db; }
-        .tipo-practica { background-color: #e67e22; }
-        .tipo-mixto { background-color: #9b59b6; }
-        
-        .sesion-card h3 { margin-top: 0; font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-heading); }
-        .sesion-content { flex-grow: 1; margin-bottom: 1.5rem; font-size: 0.95rem; }
-        .sesion-objectives { background: var(--bg-main); padding: 1rem; border-radius: 8px; margin-top: 1rem; }
-        .sesion-objectives h4 { margin-top: 0; font-size: 1rem; margin-bottom: 0.5rem; }
-        .sesion-objectives ul { margin-bottom: 0; padding-left: 1.2rem; }
-        
-        .sesion-actions { text-align: center; margin-top: auto; }
-        .btn { display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background 0.2s; }
-        .btn:hover { background: #026ca0; color: white;}
-        .btn-small { padding: 0.5rem 1rem; font-size: 0.9rem; }
-    </style>
 </head>
 <body>
     <!-- Header -->
@@ -52,456 +22,207 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Curso de Electricidad Básica</h1>
-            <p>16 sesiones de teoría y práctica para dominar los fundamentos de la electricidad</p>
-            <a href="#sesiones" class="btn">Comenzar Curso</a>
+    <section class="hero-section">
+        <div class="container" style="text-align: center; padding: 4rem 1rem;">
+            <h1 class="sesion-title">Curso de Electricidad Básica</h1>
+            <p class="sesion-subtitle" style="max-width: 600px; margin: 0 auto 2rem; color: #94a3b8;">16 sesiones de teoría y práctica para dominar los fundamentos de la electricidad con el framework Genius</p>
+            <a href="#sesiones" class="nav-btn next">Comenzar Curso →</a>
         </div>
     </section>
 
     <!-- Programa del Curso -->
-    <section id="programa" class="container">
+    <section id="programa" class="container" style="margin-top: -2rem; padding-top: 4rem;">
         <div class="sesion-content-main">
             <h2>📋 Programa del Curso</h2>
-            <p>Este curso está diseñado para proporcionar una comprensión sólida de los fundamentos de la electricidad, combinando teoría con práctica para un aprendizaje efectivo.</p>
+            <p>Este curso está diseñado para proporcionar una comprensión sólida de los fundamentos de la electricidad, combinando teoría con simuladores interactivos para un aprendizaje visual y efectivo.</p>
             
             <div class="info-box">
-                <strong>Duración:</strong> 16 sesiones | <strong>Modalidad:</strong> Teoría + Práctica | <strong>Nivel:</strong> Básico a Intermedio
+                <strong>Duración:</strong> 16 sesiones | <strong>Modalidad:</strong> Teoría + Práctica Interactiva | <strong>Nivel:</strong> Básico a Intermedio
             </div>
 
             <h3>🎯 Objetivos del Curso</h3>
             <ul>
-                <li>Comprender los conceptos fundamentales de la electricidad</li>
+                <li>Comprender los conceptos fundamentales de la electricidad de manera visual</li>
                 <li>Identificar y utilizar componentes eléctricos básicos</li>
-                <li>Diseñar y construir circuitos eléctricos simples</li>
-                <li>Aplicar medidas de seguridad en trabajos eléctricos</li>
-                <li>Interpretar esquemas y planos eléctricos</li>
-                <li>Realizar instalaciones eléctricas básicas</li>
-                <li>Troubleshooting y mantenimiento básico</li>
-            </ul>
-
-            <h3>📚 Metodología</h3>
-            <p>Cada sesión combina:</p>
-            <ul>
-                <li><strong>Teoría:</strong> Conceptos fundamentales explicados de manera clara</li>
-                <li><strong>Práctica:</strong> Ejercicios y proyectos hands-on</li>
-                <li><strong>Evaluación:</strong> Actividades de verificación del aprendizaje</li>
-                <li><strong>Recursos:</strong> Materiales complementarios y referencias</li>
+                <li>Diseñar y simular circuitos eléctricos simples y mixtos</li>
+                <li>Aplicar medidas de seguridad mediante simuladores de riesgo</li>
+                <li>Interpretar esquemas y realizar cálculos con interactividad</li>
             </ul>
         </div>
     </section>
 
     <!-- Grid de Sesiones -->
-    <section id="sesiones" class="container">
-        <h2 style="text-align: center; margin-bottom: 2rem;">📚 Sesiones del Curso</h2>
+    <section id="sesiones" class="container" style="padding-top: 4rem;">
+        <h2 style="text-align: center; margin-bottom: 2rem;">📚 Módulos y Sesiones</h2>
         
-        <div class="sesiones-grid">
+        <!-- FASE 1 -->
+        <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 0.5rem; margin-top: 2rem;">Fase 1: Fundamentos Teóricos</h3>
+        <div class="course-grid">
             <!-- Sesión 1 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-teoria">Sesión 1</span>
-                    <span>2 horas</span>
-                </div>
-                <h3>Fundamentos de la Electricidad</h3>
-                <div class="sesion-content">
-                    <p>Introducción a los conceptos básicos: átomos, electrones, corriente eléctrica, voltaje y resistencia.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Entender la naturaleza de la electricidad</li>
-                            <li>Comprender la estructura atómica</li>
-                            <li>Identificar las magnitudes eléctricas básicas</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion01.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">⚛️</div>
+                <div class="course-info">
+                    <h3>Sesión 1: Fundamentos</h3>
+                    <p>Introducción a los conceptos básicos: átomos, electrones, corriente, voltaje y resistencia con simuladores interactivos.</p>
+                    <a href="sesiones/sesion01.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 2 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-teoria">Sesión 2</span>
-                    <span>2 horas</span>
-                </div>
-                <h3>Ley de Ohm y Potencia</h3>
-                <div class="sesion-content">
-                    <p>Estudio de la Ley de Ohm, cálculos de potencia eléctrica y su aplicación en circuitos básicos.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Aplicar la Ley de Ohm</li>
-                            <li>Calcular potencia eléctrica</li>
-                            <li>Resolver problemas básicos</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion02.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">📐</div>
+                <div class="course-info">
+                    <h3>Sesión 2: Ley de Ohm</h3>
+                    <p>Estudio de la Ley de Ohm y cálculos de potencia con calculadoras interactivas integradas.</p>
+                    <a href="sesiones/sesion02.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 3 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-mixto">Sesión 3</span>
-                    <span>2.5 horas</span>
-                </div>
-                <h3>Componentes Eléctricos Básicos</h3>
-                <div class="sesion-content">
-                    <p>Identificación y funcionamiento de resistencias, capacitores, inductores y otros componentes fundamentales.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Identificar componentes básicos</li>
-                            <li>Entender su funcionamiento</li>
-                            <li>Practicar con multímetro</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion03.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🔌</div>
+                <div class="course-info">
+                    <h3>Sesión 3: Componentes Básicos</h3>
+                    <p>Identificación visual e interactiva de resistencias, capacitores e inductores.</p>
+                    <a href="sesiones/sesion03.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 4 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-practica">Sesión 4</span>
-                    <span>2.5 horas</span>
-                </div>
-                <h3>Circuitos en Serie</h3>
-                <div class="sesion-content">
-                    <p>Construcción y análisis de circuitos en serie. Medición de voltajes y corrientes.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Construir circuitos en serie</li>
-                            <li>Medir voltajes y corrientes</li>
-                            <li>Verificar cálculos teóricos</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion04.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🔗</div>
+                <div class="course-info">
+                    <h3>Sesión 4: Circuitos Serie</h3>
+                    <p>Simulación interactiva de circuitos en serie. Análisis visual de caídas de tensión.</p>
+                    <a href="sesiones/sesion04.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
+        </div>
 
+        <!-- FASE 2 -->
+        <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 0.5rem; margin-top: 3rem;">Fase 2: Análisis Avanzado</h3>
+        <div class="course-grid">
             <!-- Sesión 5 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-practica">Sesión 5</span>
-                    <span>2.5 horas</span>
-                </div>
-                <h3>Circuitos en Paralelo</h3>
-                <div class="sesion-content">
-                    <p>Diseño y construcción de circuitos en paralelo. Análisis de características eléctricas.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Construir circuitos en paralelo</li>
-                            <li>Comparar con circuitos serie</li>
-                            <li>Aplicar fórmulas de paralelo</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion05.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🔀</div>
+                <div class="course-info">
+                    <h3>Sesión 5: Circuitos Paralelo</h3>
+                    <p>Diseño y construcción simulada de circuitos en paralelo. División de corrientes.</p>
+                    <a href="sesiones/sesion05.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 6 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-mixto">Sesión 6</span>
-                    <span>3 horas</span>
-                </div>
-                <h3>Circuitos Mixtos</h3>
-                <div class="sesion-content">
-                    <p>Análisis de circuitos que combinan conexiones en serie y paralelo. Métodos de simplificación.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Simplificar circuitos mixtos</li>
-                            <li>Calcular resistencias equivalentes</li>
-                            <li>Proyecto práctico</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion06.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🧩</div>
+                <div class="course-info">
+                    <h3>Sesión 6: Circuitos Mixtos</h3>
+                    <p>Análisis de circuitos complejos. Interacción con calculadoras de resistencia equivalente.</p>
+                    <a href="sesiones/sesion06.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 7 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-teoria">Sesión 7</span>
-                    <span>2 horas</span>
-                </div>
-                <h3>Herramientas de Medición</h3>
-                <div class="sesion-content">
-                    <p>Uso del multímetro, osciloscopio y otras herramientas de medición eléctrica.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Manejar multímetro</li>
-                            <li>Interpretar mediciones</li>
-                            <li>Precisión en mediciones</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion07.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">📏</div>
+                <div class="course-info">
+                    <h3>Sesión 7: Herramientas Medición</h3>
+                    <p>Simulador interactivo de Multímetro para medir voltajes, corrientes y resistencias.</p>
+                    <a href="sesiones/sesion07.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 8 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-teoria">Sesión 8</span>
-                    <span>2 horas</span>
-                </div>
-                <h3>Simbología Eléctrica</h3>
-                <div class="sesion-content">
-                    <p>Símbolos estándar, planos eléctricos y diagramas de circuitos según normas internacionales.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Conocer símbolos estándar</li>
-                            <li>Leer planos eléctricos</li>
-                            <li>Crear diagramas</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion08.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">📝</div>
+                <div class="course-info">
+                    <h3>Sesión 8: Simbología</h3>
+                    <p>Símbolos estándar y planos eléctricos. Arrastra y suelta para armar esquemas.</p>
+                    <a href="sesiones/sesion08.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
+        </div>
 
+        <!-- FASE 3 -->
+        <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 0.5rem; margin-top: 3rem;">Fase 3: Instalaciones Prácticas</h3>
+        <div class="course-grid">
             <!-- Sesión 9 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-practica">Sesión 9</span>
-                    <span>3 horas</span>
-                </div>
-                <h3>Instalación de Interruptores</h3>
-                <div class="sesion-content">
-                    <p>Instalación práctica de interruptores simples, dobles y conmutadores.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Instalar interruptores</li>
-                            <li>Conectar conmutadores</li>
-                            <li>Verificar funcionamiento</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion09.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">💡</div>
+                <div class="course-info">
+                    <h3>Sesión 9: Interruptores</h3>
+                    <p>Simulador interactivo de cableado de interruptores simples, dobles y conmutadores de 3 vías.</p>
+                    <a href="sesiones/sesion09.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 10 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-practica">Sesión 10</span>
-                    <span>3 horas</span>
-                </div>
-                <h3>Instalación de Tomas de Corriente</h3>
-                <div class="sesion-content">
-                    <p>Instalación de tomas de corriente estándar, con toma a tierra y GFCI.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Instalar tomas de corriente</li>
-                            <li>Conectar tierra correctamente</li>
-                            <li>Probar GFCI</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion10.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🔌</div>
+                <div class="course-info">
+                    <h3>Sesión 10: Tomas Corriente</h3>
+                    <p>Instalación de tomas estándar y GFCI con simulador visual de conexiones.</p>
+                    <a href="sesiones/sesion10.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 11 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-mixto">Sesión 11</span>
-                    <span>3 horas</span>
-                </div>
-                <h3>Iluminación Básica</h3>
-                <div class="sesion-content">
-                    <p>Instalación de sistemas de iluminación: bombillas incandescentes, LED y fluorescentes.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Instalar diferentes tipos de luces</li>
-                            <li>Calcular consumo energético</li>
-                            <li>Optimizar eficiencia</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion11.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">✨</div>
+                <div class="course-info">
+                    <h3>Sesión 11: Iluminación</h3>
+                    <p>Comparador interactivo de tecnologías (Incandescente, CFL, LED) y cálculo de eficiencia.</p>
+                    <a href="sesiones/sesion11.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 12 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-teoria">Sesión 12</span>
-                    <span>2 horas</span>
-                </div>
-                <h3>Seguridad Eléctrica</h3>
-                <div class="sesion-content">
-                    <p>Medidas de seguridad, protección personal y prevención de accidentes eléctricos.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Identificar riesgos eléctricos</li>
-                            <li>Usar EPP correctamente</li>
-                            <li>Procedimientos de emergencia</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion12.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🛡️</div>
+                <div class="course-info">
+                    <h3>Sesión 12: Seguridad</h3>
+                    <p>Simulador fisiológico de los efectos de la corriente en el cuerpo humano y uso de EPP.</p>
+                    <a href="sesiones/sesion12.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
+        </div>
 
+        <!-- FASE 4 -->
+        <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 0.5rem; margin-top: 3rem;">Fase 4: Proyectos Especiales</h3>
+        <div class="course-grid">
             <!-- Sesión 13 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-practica">Sesión 13</span>
-                    <span>3 horas</span>
-                </div>
-                <h3>Proyecto: Tablero de Control</h3>
-                <div class="sesion-content">
-                    <p>Diseño y construcción de un tablero de control básico con interruptores y protecciones.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Diseñar tablero de control</li>
-                            <li>Instalar protecciones</li>
-                            <li>Probar funcionamiento</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion13.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🎛️</div>
+                <div class="course-info">
+                    <h3>Sesión 13: Tablero Control</h3>
+                    <p>Simulador dinámico de centro de carga. Calcula amperajes y evita sobrecargas (Trip).</p>
+                    <a href="sesiones/sesion13.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 14 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-practica">Sesión 14</span>
-                    <span>3 horas</span>
-                </div>
-                <h3>Troubleshooting Básico</h3>
-                <div class="sesion-content">
-                    <p>Técnicas de diagnóstico y reparación de problemas eléctricos comunes.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Diagnosticar problemas</li>
-                            <li>Usar herramientas de prueba</li>
-                            <li>Reparar fallas comunes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion14.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🕵️</div>
+                <div class="course-info">
+                    <h3>Sesión 14: Troubleshooting</h3>
+                    <p>Mini-juego interactivo: Eres el detective eléctrico. Encuentra la falla usando el multímetro.</p>
+                    <a href="sesiones/sesion14.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 15 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-mixto">Sesión 15</span>
-                    <span>3 horas</span>
-                </div>
-                <h3>Eficiencia Energética</h3>
-                <div class="sesion-content">
-                    <p>Conceptos de eficiencia energética, medición de consumo y optimización de instalaciones.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Medir consumo energético</li>
-                            <li>Identificar ineficiencias</li>
-                            <li>Implementar mejoras</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion15.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">📊</div>
+                <div class="course-info">
+                    <h3>Sesión 15: Eficiencia</h3>
+                    <p>Simulador animado de medidor de energía (Watthorímetro). Controla cargas para ver el giro.</p>
+                    <a href="sesiones/sesion15.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
-
             <!-- Sesión 16 -->
-            <div class="sesion-card">
-                <div class="sesion-meta">
-                    <span class="sesion-tipo tipo-mixto">Sesión 16</span>
-                    <span>3 horas</span>
-                </div>
-                <h3>Proyecto Final Integrador</h3>
-                <div class="sesion-content">
-                    <p>Proyecto final que integra todos los conocimientos adquiridos: instalación completa básica.</p>
-                    <div class="sesion-objectives">
-                        <h4>Objetivos:</h4>
-                        <ul>
-                            <li>Diseñar instalación completa</li>
-                            <li>Aplicar todos los conocimientos</li>
-                            <li>Presentar proyecto final</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="sesion-actions">
-                    <a href="sesiones/sesion16.html" class="btn btn-small">Ver Sesión</a>
+            <div class="course-card">
+                <div class="course-icon">🏆</div>
+                <div class="course-info">
+                    <h3>Sesión 16: Proyecto Final</h3>
+                    <p>Simulador de verificación técnica pre-energización. Inspecciona antes de encender.</p>
+                    <a href="sesiones/sesion16.html" class="nav-btn next" style="margin-top: 1rem; width: 100%; text-align: center;">Ver Sesión</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Recursos Adicionales -->
-    <section id="recursos" class="container">
-        <div class="sesion-content-main">
-            <h2>📚 Recursos Adicionales</h2>
-            
-            <h3>🛠️ Herramientas Necesarias</h3>
-            <ul>
-                <li><strong>Multímetro digital</strong> - Para mediciones de voltaje, corriente y resistencia</li>
-                <li><strong>Destornilladores aislados</strong> - Juego básico para trabajos eléctricos</li>
-                <li><strong>Pelacables</strong> - Para preparar conexiones</li>
-                <li><strong>Probador de continuidad</strong> - Para verificar conexiones</li>
-                <li><strong>Protoboard</strong> - Para construcción de circuitos de prueba</li>
-                <li><strong>Cables de conexión</strong> - Varios calibres y colores</li>
-            </ul>
-
-            <h3>📖 Material de Referencia</h3>
-            <ul>
-                <li>Código Eléctrico Nacional (NEC)</li>
-                <li>Manual de instalaciones eléctricas residenciales</li>
-                <li>Catálogos de fabricantes de componentes</li>
-                <li>Normas de seguridad OSHA</li>
-            </ul>
-
-            <h3>🔗 Enlaces Útiles</h3>
-            <ul>
-                <li><a href="#" target="_blank">Simuladores de circuitos online</a></li>
-                <li><a href="#" target="_blank">Calculadoras eléctricas</a></li>
-                <li><a href="#" target="_blank">Base de datos de símbolos eléctricos</a></li>
-                <li><a href="#" target="_blank">Foros de electricistas profesionales</a></li>
-            </ul>
-        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" style="margin-top: 4rem;">
         <div class="container">
             <p>&copy; JMGV-PTEL 2025. Todos los derechos reservados.</p>
         </div>
@@ -523,12 +244,8 @@
             });
         });
 
-        // Animación de entrada para las tarjetas
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Animación de entrada
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -538,23 +255,11 @@
             });
         }, observerOptions);
 
-        // Observar todas las tarjetas de sesión
-        document.querySelectorAll('.sesion-card').forEach(card => {
+        document.querySelectorAll('.course-card').forEach((card, index) => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            card.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
             observer.observe(card);
-        });
-
-        // Efecto hover mejorado para botones
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px) scale(1.05)';
-            });
-            
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
         });
     </script>
 

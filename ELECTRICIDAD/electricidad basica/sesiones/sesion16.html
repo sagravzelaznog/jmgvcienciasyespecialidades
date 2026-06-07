@@ -128,6 +128,153 @@
             <div class="practica-section">
                 <h2>🛠️ Fases del Proyecto</h2>
 
+                <h3>Simulador Interactivo: Verificación Pre-Energización</h3>
+                <p>Antes de conectar la energía a tu Proyecto Final, debes realizar una inspección visual y técnica de todos los componentes críticos. Haz clic en cada elemento resaltado en la habitación para inspeccionarlo. Solo cuando todo esté verificado, podrás pulsar el botón <strong>ENERGIZAR SISTEMA</strong> de manera segura.</p>
+
+                <div class="didactic-example" style="text-align: center; position: relative;">
+                    <svg viewBox="0 0 600 400" width="100%" max-width="600px" style="margin: 10px auto; background: #e2e8f0; border-radius: 8px; border: 2px solid #94a3b8;">
+                        
+                        <!-- Fondo de la habitación -->
+                        <path d="M 0 300 L 600 300 L 600 400 L 0 400 Z" fill="#cbd5e1"/> <!-- Piso -->
+                        <path d="M 150 0 L 150 300 M 450 0 L 450 300" stroke="#94a3b8" stroke-width="2"/> <!-- Esquinas -->
+                        <path d="M 0 0 L 150 100 L 450 100 L 600 0 Z" fill="#f8fafc" opacity="0.5"/> <!-- Techo -->
+
+                        <!-- Elemento 1: Tablero Eléctrico -->
+                        <g transform="translate(50, 120)">
+                            <rect x="0" y="0" width="60" height="90" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+                            <rect x="5" y="5" width="50" height="80" fill="#cbd5e1"/>
+                            <line x1="15" y1="20" x2="45" y2="20" stroke="#ef4444" stroke-width="4"/>
+                            <line x1="15" y1="40" x2="45" y2="40" stroke="#3b82f6" stroke-width="4"/>
+                            <line x1="15" y1="60" x2="45" y2="60" stroke="#3b82f6" stroke-width="4"/>
+                            
+                            <!-- Botón/Área clickable -->
+                            <rect x="-10" y="-10" width="80" height="110" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" cursor="pointer" id="chk-panel" onclick="checkItem('panel')"/>
+                            <circle cx="65" cy="-5" r="12" fill="#ef4444" id="status-panel"/>
+                            <text x="65" y="0" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle" cursor="pointer" style="pointer-events:none;">1</text>
+                        </g>
+
+                        <!-- Elemento 2: Toma GFCI -->
+                        <g transform="translate(260, 240)">
+                            <rect x="0" y="0" width="30" height="40" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+                            <circle cx="15" cy="12" r="4" fill="#000"/>
+                            <circle cx="15" cy="28" r="4" fill="#000"/>
+                            
+                            <!-- Botón/Área clickable -->
+                            <rect x="-15" y="-15" width="60" height="70" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" cursor="pointer" id="chk-gfci" onclick="checkItem('gfci')"/>
+                            <circle cx="45" cy="-5" r="12" fill="#ef4444" id="status-gfci"/>
+                            <text x="45" y="0" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle" cursor="pointer" style="pointer-events:none;">2</text>
+                        </g>
+
+                        <!-- Elemento 3: Interruptor -->
+                        <g transform="translate(480, 160)">
+                            <rect x="0" y="0" width="25" height="40" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+                            <rect x="8" y="10" width="9" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+                            
+                            <!-- Botón/Área clickable -->
+                            <rect x="-15" y="-15" width="55" height="70" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" cursor="pointer" id="chk-switch" onclick="checkItem('switch')"/>
+                            <circle cx="40" cy="-5" r="12" fill="#ef4444" id="status-switch"/>
+                            <text x="40" y="0" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle" cursor="pointer" style="pointer-events:none;">3</text>
+                        </g>
+
+                        <!-- Elemento 4: Lámpara -->
+                        <g transform="translate(270, 20)">
+                            <!-- Soporte -->
+                            <rect x="25" y="0" width="10" height="20" fill="#94a3b8"/>
+                            <path d="M 10 20 L 50 20 L 40 40 L 20 40 Z" fill="#64748b"/>
+                            <circle cx="30" cy="50" r="15" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+                            
+                            <!-- Botón/Área clickable -->
+                            <rect x="0" y="-5" width="60" height="80" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" cursor="pointer" id="chk-lamp" onclick="checkItem('lamp')"/>
+                            <circle cx="65" cy="10" r="12" fill="#ef4444" id="status-lamp"/>
+                            <text x="65" y="15" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle" cursor="pointer" style="pointer-events:none;">4</text>
+                        </g>
+
+                        <!-- Panel de Progreso y Energizar -->
+                        <rect x="20" y="320" width="560" height="70" rx="8" fill="#1e293b"/>
+                        <text x="40" y="350" fill="#94a3b8" font-size="14">Elementos Verificados:</text>
+                        <text x="40" y="375" fill="#38bdf8" font-size="24" font-weight="bold" id="progress-text">0 / 4</text>
+                        
+                        <g transform="translate(400, 330)" cursor="pointer" onclick="energizeSystem()">
+                            <rect x="0" y="0" width="150" height="50" rx="25" fill="#ef4444" id="btn-energize" style="transition: fill 0.3s;"/>
+                            <text x="75" y="30" fill="#fff" font-size="16" font-weight="bold" text-anchor="middle">ENERGIZAR</text>
+                        </g>
+
+                        <!-- Oscuridad superpuesta (si se energiza mal) o luz (si se energiza bien) -->
+                        <rect x="0" y="0" width="600" height="400" fill="#000" opacity="0" id="overlay" style="pointer-events:none; transition: opacity 0.5s;"/>
+                        
+                    </svg>
+
+                    <!-- Mensajes del sistema -->
+                    <div id="inspector-msg" style="margin-top: 15px; min-height: 50px; font-weight:bold; font-size:1.1rem; color:#3b82f6; padding: 10px; border-radius: 5px; background: #f8fafc; border: 1px solid #e2e8f0;">
+                        Haz clic en las áreas resaltadas para realizar la inspección técnica de cada componente antes de energizar.
+                    </div>
+
+                    <script>
+                        const items = {
+                            'panel': { checked: false, name: 'Tablero Principal', desc: '✓ Neutros en barra separada de tierras. ✓ Todos los disyuntores ajustados a torque. ✓ Sin cables sueltos.' },
+                            'gfci': { checked: false, name: 'Toma GFCI', desc: '✓ Polaridad correcta (Fase a dorado, Neutro a plata). ✓ Cable de tierra asegurado al tornillo verde.' },
+                            'switch': { checked: false, name: 'Interruptor', desc: '✓ Corta la fase (cable caliente), no el neutro. ✓ Instalado firmemente en la caja de la pared.' },
+                            'lamp': { checked: false, name: 'Lámpara LED', desc: '✓ Neutro conectado a la rosca exterior. Fase al contacto central. ✓ Base bien asegurada al techo.' }
+                        };
+
+                        let checkedCount = 0;
+
+                        function checkItem(id) {
+                            if (items[id].checked) return;
+
+                            items[id].checked = true;
+                            checkedCount++;
+
+                            // Cambiar color a verde
+                            document.getElementById(`status-${id}`).style.fill = '#22c55e';
+                            document.getElementById(`chk-${id}`).style.stroke = '#22c55e';
+                            document.getElementById(`chk-${id}`).style.fill = 'rgba(34, 197, 94, 0.2)';
+
+                            // Actualizar progreso
+                            document.getElementById('progress-text').textContent = `${checkedCount} / 4`;
+
+                            // Mostrar mensaje
+                            const msgBox = document.getElementById('inspector-msg');
+                            msgBox.innerHTML = `<strong>Inspeccionando ${items[id].name}:</strong><br/><span style="color:#10b981;">${items[id].desc}</span>`;
+                            msgBox.style.borderColor = '#10b981';
+
+                            // Si todos están verificados, habilitar el botón
+                            if (checkedCount === 4) {
+                                document.getElementById('btn-energize').style.fill = '#22c55e'; // Verde
+                                setTimeout(() => {
+                                    msgBox.innerHTML = `<strong>¡Inspección Completa!</strong><br/>El sistema ha sido verificado. Ahora puedes pulsar ENERGIZAR de forma segura.`;
+                                }, 2000);
+                            }
+                        }
+
+                        function energizeSystem() {
+                            const overlay = document.getElementById('overlay');
+                            const msgBox = document.getElementById('inspector-msg');
+
+                            if (checkedCount < 4) {
+                                // Fallo: Explotar/Cortocircuito
+                                overlay.style.fill = '#fff'; // Flashazo
+                                overlay.style.opacity = '1';
+                                msgBox.innerHTML = `<strong>💥 ¡BOOM! CORTOCIRCUITO 💥</strong><br/><span style="color:#ef4444;">¡No verificaste todos los componentes! Un cable suelto causó un corto. Reinicia la página.</span>`;
+                                msgBox.style.borderColor = '#ef4444';
+                                msgBox.style.color = '#ef4444';
+                                
+                                setTimeout(() => {
+                                    overlay.style.fill = '#000'; // Apagón
+                                }, 200);
+
+                            } else {
+                                // Éxito: Encender la luz
+                                overlay.style.fill = '#facc15';
+                                overlay.style.opacity = '0.3'; // Luz cálida encendida
+                                msgBox.innerHTML = `<strong>⚡ ¡SISTEMA ENERGIZADO CON ÉXITO! ⚡</strong><br/><span style="color:#10b981;">Excelente trabajo. La instalación es segura, funcional y cumple con todos los estándares. Has aprobado el Proyecto Final.</span>`;
+                                document.getElementById('btn-energize').style.fill = '#94a3b8'; // Deshabilitar visualmente
+                            }
+                        }
+                    </script>
+                </div>
+
+
                 <h3>Fase 1: Diseño y Planificación (1 hora)</h3>
                 <p><strong>Actividades:</strong></p>
                 <ol>

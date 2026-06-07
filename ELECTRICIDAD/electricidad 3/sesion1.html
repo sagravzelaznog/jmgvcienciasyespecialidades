@@ -109,26 +109,38 @@
     </div>
 
     <div class="practica-section">
-        <h2>Simulador Atómico: Prueba de Materiales</h2>
-        <p>Selecciona un material para colocarlo en el centro de nuestro circuito microscópico. Observa qué pasa con los electrones (puntos amarillos) que intentan cruzar desde la batería de la izquierda hacia el foco de la derecha.</p>
+        <h2>Simulador Atómico con Imágenes Realistas</h2>
+        <p>Selecciona un material para conectarlo al circuito. El material central muestra una **infografía macroscópica** real. Observa cómo fluyen (o se detienen) los electrones dependiendo de la estructura molecular del material.</p>
         
         <div class="simulator-container">
             <div class="material-buttons">
-                <button class="mat-btn active" onclick="setMaterial('cobre', this)">Cable de Cobre</button>
-                <button class="mat-btn" onclick="setMaterial('goma', this)">Bloque de Goma</button>
-                <button class="mat-btn" onclick="setMaterial('vidrio', this)">Vidrio</button>
+                <button class="mat-btn active" onclick="setMaterial('cobre', this)">Hilo de Cobre</button>
+                <button class="mat-btn" onclick="setMaterial('goma', this)">Revestimiento de Goma</button>
+                <button class="mat-btn" onclick="setMaterial('vidrio', this)">Aislador de Vidrio</button>
             </div>
             
             <svg id="simulator-svg" viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg">
                 <!-- Cables fijos -->
                 <rect x="50" y="110" width="150" height="30" fill="#34495e" rx="5"/>
                 <rect x="400" y="110" width="150" height="30" fill="#34495e" rx="5"/>
-                <text x="125" y="100" fill="var(--text-color)" font-size="12" text-anchor="middle">Polo +</text>
-                <text x="475" y="100" fill="var(--text-color)" font-size="12" text-anchor="middle">Foco</text>
+                <text x="125" y="100" fill="var(--text-color)" font-size="12" text-anchor="middle">Terminal (+)</text>
+                <text x="475" y="100" fill="var(--text-color)" font-size="12" text-anchor="middle">Hacia el Foco</text>
                 
-                <!-- Material Central Dinámico -->
-                <rect id="mat-block" x="220" y="100" width="160" height="50" fill="#cd7f32" rx="4" stroke="#8b4513" stroke-width="3"/>
-                <text id="mat-text" x="300" y="130" fill="white" font-weight="bold" font-size="16" text-anchor="middle">Cobre (Conductor)</text>
+                <!-- Material Central Dinámico (Imagen SVG) -->
+                <!-- Marco del material -->
+                <rect id="mat-frame" x="200" y="70" width="200" height="110" fill="none" stroke="#3b82f6" stroke-width="4" rx="8"/>
+                
+                <!-- Imagen infográfica macro -->
+                <defs>
+                    <clipPath id="mat-clip">
+                        <rect x="202" y="72" width="196" height="106" rx="6" />
+                    </clipPath>
+                </defs>
+                <image id="mat-image" x="202" y="72" width="196" height="106" href="assets/cobre.png" preserveAspectRatio="xMidYMid slice" clip-path="url(#mat-clip)"/>
+                
+                <!-- Etiqueta del material -->
+                <rect x="230" y="190" width="140" height="30" rx="15" fill="#1e293b"/>
+                <text id="mat-text" x="300" y="210" fill="white" font-weight="bold" font-size="14" text-anchor="middle">Cobre Puro</text>
                 
                 <!-- Electrones (Grupo) -->
                 <g id="electron-group">
@@ -136,7 +148,7 @@
                 </g>
 
                 <!-- Status Text -->
-                <text id="status-text" x="300" y="210" fill="#2ecc71" font-weight="bold" font-size="18" text-anchor="middle">¡Los electrones fluyen libremente! Foco Encendido.</text>
+                <text id="status-text" x="300" y="45" fill="#2ecc71" font-weight="bold" font-size="18" text-anchor="middle">Cobre: Excelente Conductor.</text>
             </svg>
         </div>
         
@@ -212,34 +224,36 @@
 <script>
     // SIMULADOR LÓGICA
     const electronGroup = document.getElementById('electron-group');
-    const matBlock = document.getElementById('mat-block');
+    const matImage = document.getElementById('mat-image');
     const matText = document.getElementById('mat-text');
     const statusText = document.getElementById('status-text');
-    let animationInterval;
-
+    const matFrame = document.getElementById('mat-frame');
+    
     function createElectrons(isConductor) {
         electronGroup.innerHTML = '';
-        const numElectrons = 10;
+        const numElectrons = 12;
         for(let i=0; i<numElectrons; i++) {
             let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("r", "5");
-            circle.setAttribute("fill", "#f1c40f");
+            circle.setAttribute("r", "4");
+            circle.setAttribute("fill", "#facc15"); // Amarillo eléctrico brillante
+            circle.setAttribute("stroke", "#ca8a04");
+            circle.setAttribute("stroke-width", "1");
             
             let animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
             animate.setAttribute("attributeName", "cx");
             
-            let startDelay = (i * 0.3) + "s";
+            let startDelay = (i * 0.25) + "s";
             animate.setAttribute("begin", startDelay);
             animate.setAttribute("repeatCount", "indefinite");
             
             if(isConductor) {
-                // Atraviesan todo
+                // Atraviesan la imagen
                 animate.setAttribute("values", "60; 540");
-                animate.setAttribute("dur", "1.5s");
+                animate.setAttribute("dur", "1.2s");
             } else {
-                // Chocan contra la pared del material (x=220) y rebotan
-                animate.setAttribute("values", "60; 210; 210; 60");
-                animate.setAttribute("dur", "2s");
+                // Chocan contra la pared del material (x=200) y rebotan
+                animate.setAttribute("values", "60; 195; 195; 60");
+                animate.setAttribute("dur", "1.8s");
                 animate.setAttribute("keyTimes", "0; 0.4; 0.6; 1");
             }
             
@@ -255,31 +269,35 @@
         document.querySelectorAll('.mat-btn').forEach(btn => btn.classList.remove('active'));
         btnElement.classList.add('active');
 
-        if(type === 'cobre') {
-            matBlock.setAttribute('fill', '#cd7f32'); // Cobre
-            matBlock.setAttribute('stroke', '#8b4513');
-            matText.textContent = "Cobre (Conductor)";
-            matText.setAttribute('fill', 'white');
-            statusText.textContent = "¡Los electrones fluyen libremente! Foco Encendido.";
-            statusText.setAttribute('fill', '#2ecc71');
-            createElectrons(true);
-        } else if (type === 'goma') {
-            matBlock.setAttribute('fill', '#2c3e50'); // Dark gray/black
-            matBlock.setAttribute('stroke', '#1a252f');
-            matText.textContent = "Goma (Aislante)";
-            matText.setAttribute('fill', 'white');
-            statusText.textContent = "¡Muro infranqueable! Los electrones chocan. Foco Apagado.";
-            statusText.setAttribute('fill', '#e74c3c');
-            createElectrons(false);
-        } else if (type === 'vidrio') {
-            matBlock.setAttribute('fill', 'rgba(173, 216, 230, 0.5)'); // Light blue transparent
-            matBlock.setAttribute('stroke', '#3498db');
-            matText.textContent = "Vidrio (Aislante)";
-            matText.setAttribute('fill', '#2c3e50');
-            statusText.textContent = "¡El vidrio no deja pasar nada! Corriente Cero.";
-            statusText.setAttribute('fill', '#e74c3c');
-            createElectrons(false);
-        }
+        // Efecto de transición simple
+        matImage.style.opacity = 0;
+        
+        setTimeout(() => {
+            if(type === 'cobre') {
+                matImage.setAttribute('href', 'assets/cobre.png');
+                matFrame.setAttribute('stroke', '#3b82f6');
+                matText.textContent = "Cobre Puro";
+                statusText.textContent = "Flujo continuo a través del conductor.";
+                statusText.setAttribute('fill', '#3b82f6');
+                createElectrons(true);
+            } else if (type === 'goma') {
+                matImage.setAttribute('href', 'assets/goma.png');
+                matFrame.setAttribute('stroke', '#ef4444');
+                matText.textContent = "Goma Industrial";
+                statusText.textContent = "Los electrones rebotan contra el aislante.";
+                statusText.setAttribute('fill', '#ef4444');
+                createElectrons(false);
+            } else if (type === 'vidrio') {
+                matImage.setAttribute('href', 'assets/vidrio.png');
+                matFrame.setAttribute('stroke', '#f59e0b');
+                matText.textContent = "Aislador de Vidrio";
+                statusText.textContent = "Bloqueo total. Flujo de corriente cero.";
+                statusText.setAttribute('fill', '#f59e0b');
+                createElectrons(false);
+            }
+            matImage.style.opacity = 1;
+            matImage.style.transition = 'opacity 0.3s';
+        }, 150);
     }
 
     // Inicializar

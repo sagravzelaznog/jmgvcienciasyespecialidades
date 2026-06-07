@@ -106,6 +106,105 @@
                     <li>Permite control desde múltiples puntos</li>
                     <li>Aplicaciones: Control de iluminación en grandes espacios</li>
                 </ul>
+
+                <h3>Simulador Interactivo: Conmutadores (Circuito de Escalera)</h3>
+                <p>Prueba cómo funcionan dos conmutadores de 3 vías. Haz clic en cualquiera de los interruptores para encender o apagar el foco. ¡Ambos controlan la misma luz!</p>
+
+                <div class="didactic-example" style="text-align: center;">
+                    <svg viewBox="0 0 600 250" width="100%" max-width="600px" style="margin: 10px auto; background: #0f172a; border-radius: 8px; padding: 10px;">
+                        
+                        <!-- Cables de Neutro (Directo al foco) -->
+                        <path d="M 50 200 L 450 200 L 450 150" fill="none" stroke="#94a3b8" stroke-width="4"/>
+                        <text x="50" y="220" fill="#94a3b8" font-size="14" font-family="monospace">Neutro (Blanco)</text>
+
+                        <!-- Cable de Fase (Entra al Switch 1) -->
+                        <path d="M 50 100 L 120 100" fill="none" stroke="#ef4444" stroke-width="4"/>
+                        <text x="50" y="90" fill="#ef4444" font-size="14" font-family="monospace">Fase (Negro)</text>
+
+                        <!-- Terminales Switch 1 -->
+                        <circle cx="120" cy="100" r="5" fill="#fff"/> <!-- Común -->
+                        <circle cx="200" cy="70" r="5" fill="#fff"/>  <!-- Viajero A -->
+                        <circle cx="200" cy="130" r="5" fill="#fff"/> <!-- Viajero B -->
+
+                        <!-- Terminales Switch 2 -->
+                        <circle cx="360" cy="70" r="5" fill="#fff"/>  <!-- Viajero A -->
+                        <circle cx="360" cy="130" r="5" fill="#fff"/> <!-- Viajero B -->
+                        <circle cx="420" cy="100" r="5" fill="#fff"/> <!-- Común -->
+
+                        <!-- Cables Viajeros (Rojo y Negro/Azul) -->
+                        <path d="M 200 70 L 360 70" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="5,5"/>
+                        <path d="M 200 130 L 360 130" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="5,5"/>
+                        <text x="280" y="60" fill="#3b82f6" font-size="12" text-anchor="middle">Viajero 1</text>
+                        <text x="280" y="150" fill="#ef4444" font-size="12" text-anchor="middle">Viajero 2</text>
+
+                        <!-- Palanca Switch 1 (Línea) -->
+                        <line x1="120" y1="100" x2="200" y2="70" stroke="#facc15" stroke-width="6" stroke-linecap="round" id="sw1-line" style="transition: all 0.3s ease; cursor: pointer;"/>
+                        <!-- Botón interactivo Switch 1 -->
+                        <rect x="110" y="50" width="100" height="100" fill="transparent" cursor="pointer" onclick="toggleSw1()"/>
+
+                        <!-- Palanca Switch 2 (Línea) -->
+                        <line x1="420" y1="100" x2="360" y2="130" stroke="#facc15" stroke-width="6" stroke-linecap="round" id="sw2-line" style="transition: all 0.3s ease; cursor: pointer;"/>
+                        <!-- Botón interactivo Switch 2 -->
+                        <rect x="350" y="50" width="80" height="100" fill="transparent" cursor="pointer" onclick="toggleSw2()"/>
+
+                        <!-- Retorno (Del Switch 2 al Foco) -->
+                        <path d="M 420 100 L 450 100 L 450 110" fill="none" stroke="#ef4444" stroke-width="4" id="retorno-cable"/>
+                        
+                        <!-- Foco -->
+                        <g transform="translate(450, 130)">
+                            <!-- Halo de Luz (oculto por defecto) -->
+                            <circle cx="0" cy="0" r="40" fill="#fef08a" opacity="0" id="bulb-halo" style="transition: opacity 0.3s ease;"/>
+                            <!-- Foco Base -->
+                            <path d="M -15 -20 C -25 -20, -25 5, -10 10 L -10 15 L 10 15 L 10 10 C 25 5, 25 -20, 15 -20 Z" fill="#334155" id="bulb-glass" style="transition: fill 0.3s ease;"/>
+                            <rect x="-8" y="15" width="16" height="10" fill="#94a3b8"/>
+                        </g>
+
+                        <!-- Textos interactivos -->
+                        <text x="160" y="180" fill="#fff" font-size="14" text-anchor="middle" cursor="pointer" onclick="toggleSw1()">Interruptor 1</text>
+                        <text x="390" y="180" fill="#fff" font-size="14" text-anchor="middle" cursor="pointer" onclick="toggleSw2()">Interruptor 2</text>
+                    </svg>
+
+                    <script>
+                        // Estado de los interruptores: true = Arriba (Viajero 1), false = Abajo (Viajero 2)
+                        let sw1Up = true;
+                        let sw2Up = false;
+
+                        function toggleSw1() {
+                            sw1Up = !sw1Up;
+                            updateCircuit();
+                        }
+
+                        function toggleSw2() {
+                            sw2Up = !sw2Up;
+                            updateCircuit();
+                        }
+
+                        function updateCircuit() {
+                            const sw1Line = document.getElementById('sw1-line');
+                            const sw2Line = document.getElementById('sw2-line');
+                            
+                            sw1Line.setAttribute('y2', sw1Up ? '70' : '130');
+                            sw2Line.setAttribute('y2', sw2Up ? '70' : '130');
+
+                            // La luz enciende si AMBOS interruptores conectan la misma vía (ambos arriba o ambos abajo)
+                            const isLightOn = (sw1Up === sw2Up);
+
+                            const bulbHalo = document.getElementById('bulb-halo');
+                            const bulbGlass = document.getElementById('bulb-glass');
+                            const retorno = document.getElementById('retorno-cable');
+
+                            if (isLightOn) {
+                                bulbHalo.style.opacity = '0.4';
+                                bulbGlass.setAttribute('fill', '#fde047');
+                                retorno.setAttribute('stroke', '#ef4444');
+                            } else {
+                                bulbHalo.style.opacity = '0';
+                                bulbGlass.setAttribute('fill', '#334155');
+                                retorno.setAttribute('stroke', '#334155');
+                            }
+                        }
+                    </script>
+                </div>
             </div>
 
             <!-- Componentes y Herramientas -->

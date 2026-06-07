@@ -183,6 +183,180 @@
                     [Alimentación] → [Principal 100A] → [Diferencial 30mA] → [Derivados]
                 </div>
 
+                <h3>Simulador Interactivo: Carga del Tablero</h3>
+                <p>Enciende (ON) los diferentes circuitos haciendo clic en sus disyuntores. Observa cómo la carga total se acumula. Si superas la capacidad del disyuntor principal (100A), éste se "disparará" para proteger la instalación.</p>
+
+                <div class="didactic-example" style="text-align: center; position: relative;">
+                    <svg viewBox="0 0 600 450" width="100%" max-width="600px" style="margin: 10px auto; background: #0f172a; border-radius: 8px; padding: 10px;">
+                        
+                        <!-- Caja del Tablero -->
+                        <rect x="150" y="20" width="300" height="400" rx="5" fill="#475569" stroke="#94a3b8" stroke-width="4"/>
+                        <rect x="170" y="40" width="260" height="360" rx="2" fill="#334155" stroke="#1e293b" stroke-width="2"/>
+                        
+                        <!-- Main Breaker (100A) -->
+                        <rect x="250" y="60" width="100" height="60" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="2"/>
+                        <rect x="285" y="75" width="30" height="30" rx="3" fill="#ef4444" id="main-switch" style="transition: fill 0.3s;" cursor="pointer" onclick="toggleMain()"/>
+                        <text x="300" y="95" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle" id="main-label" cursor="pointer" onclick="toggleMain()">ON</text>
+                        <text x="300" y="140" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">PRINCIPAL 100A</text>
+
+                        <!-- Busbars -->
+                        <rect x="270" y="160" width="10" height="200" fill="#94a3b8"/>
+                        <rect x="320" y="160" width="10" height="200" fill="#94a3b8"/>
+
+                        <!-- Sub Breakers (Left Side) -->
+                        <g id="breakers-left">
+                            <!-- B1: Ilum 1 (15A) -->
+                            <rect x="180" y="170" width="80" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+                            <rect x="230" y="175" width="15" height="15" fill="#ef4444" id="b1-sw" cursor="pointer" onclick="toggleBreaker(1, 15)"/>
+                            <text x="210" y="187" fill="#fff" font-size="10" text-anchor="middle">15A (10A)</text>
+
+                            <!-- B3: Ilum 2 (15A) -->
+                            <rect x="180" y="210" width="80" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+                            <rect x="230" y="215" width="15" height="15" fill="#ef4444" id="b3-sw" cursor="pointer" onclick="toggleBreaker(3, 15)"/>
+                            <text x="210" y="227" fill="#fff" font-size="10" text-anchor="middle">15A (12A)</text>
+
+                            <!-- B5: Tomas Cocina (20A) -->
+                            <rect x="180" y="250" width="80" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+                            <rect x="230" y="255" width="15" height="15" fill="#ef4444" id="b5-sw" cursor="pointer" onclick="toggleBreaker(5, 20)"/>
+                            <text x="210" y="267" fill="#fff" font-size="10" text-anchor="middle">20A (18A)</text>
+
+                            <!-- B7: Horno (30A) -->
+                            <rect x="180" y="290" width="80" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+                            <rect x="230" y="295" width="15" height="15" fill="#ef4444" id="b7-sw" cursor="pointer" onclick="toggleBreaker(7, 30)"/>
+                            <text x="210" y="307" fill="#fff" font-size="10" text-anchor="middle">30A (28A)</text>
+                        </g>
+
+                        <!-- Sub Breakers (Right Side) -->
+                        <g id="breakers-right">
+                            <!-- B2: Ilum 1 (15A) -->
+                            <rect x="340" y="170" width="80" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+                            <rect x="355" y="175" width="15" height="15" fill="#ef4444" id="b2-sw" cursor="pointer" onclick="toggleBreaker(2, 15)"/>
+                            <text x="390" y="187" fill="#fff" font-size="10" text-anchor="middle">15A (8A)</text>
+
+                            <!-- B4: Ilum 2 (15A) -->
+                            <rect x="340" y="210" width="80" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+                            <rect x="355" y="215" width="15" height="15" fill="#ef4444" id="b4-sw" cursor="pointer" onclick="toggleBreaker(4, 15)"/>
+                            <text x="390" y="227" fill="#fff" font-size="10" text-anchor="middle">15A (14A)</text>
+
+                            <!-- B6: Tomas Baño (20A) -->
+                            <rect x="340" y="250" width="80" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+                            <rect x="355" y="255" width="15" height="15" fill="#ef4444" id="b6-sw" cursor="pointer" onclick="toggleBreaker(6, 20)"/>
+                            <text x="390" y="267" fill="#fff" font-size="10" text-anchor="middle">20A (16A)</text>
+
+                            <!-- B8: AC (30A) -->
+                            <rect x="340" y="290" width="80" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+                            <rect x="355" y="295" width="15" height="15" fill="#ef4444" id="b8-sw" cursor="pointer" onclick="toggleBreaker(8, 30)"/>
+                            <text x="390" y="307" fill="#fff" font-size="10" text-anchor="middle">30A (25A)</text>
+                        </g>
+
+                        <!-- Indicadores de estado en vivo -->
+                        <g transform="translate(10, 50)">
+                            <text x="0" y="0" fill="#94a3b8" font-size="14">Carga Actual Panel:</text>
+                            <text x="0" y="30" fill="#4ade80" font-size="32" font-weight="bold" id="total-load-text">0 A</text>
+                            
+                            <text x="0" y="70" fill="#94a3b8" font-size="12">Capacidad Máxima: 100A</text>
+                        </g>
+
+                        <g transform="translate(470, 50)">
+                            <text x="0" y="0" fill="#94a3b8" font-size="14">Estado Sistema:</text>
+                            <text x="0" y="25" fill="#4ade80" font-size="18" font-weight="bold" id="system-status">NORMAL</text>
+                        </g>
+
+                        <!-- Alarma de Sobrecarga -->
+                        <rect x="150" y="20" width="300" height="400" rx="5" fill="rgba(239, 68, 68, 0.3)" opacity="0" id="overload-flash" style="pointer-events:none; transition: opacity 0.2s;"/>
+
+                    </svg>
+
+                    <script>
+                        let mainOn = true;
+                        let totalLoad = 0;
+                        const mainCapacity = 100;
+                        
+                        // Consumos simulados para cada circuito cuando están ON
+                        const circuitLoads = {
+                            1: 10, 2: 8, 3: 12, 4: 14, 5: 18, 6: 16, 7: 28, 8: 25
+                        };
+                        const circuitStates = {
+                            1: true, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false
+                        };
+
+                        function toggleMain() {
+                            mainOn = !mainOn;
+                            const mainSw = document.getElementById('main-switch');
+                            const mainLabel = document.getElementById('main-label');
+                            
+                            if(mainOn) {
+                                mainSw.style.fill = '#ef4444'; // Rojo (ON en breakers)
+                                mainLabel.textContent = 'ON';
+                                document.getElementById('system-status').textContent = 'NORMAL';
+                                document.getElementById('system-status').setAttribute('fill', '#4ade80');
+                            } else {
+                                mainSw.style.fill = '#22c55e'; // Verde (OFF seguro)
+                                mainLabel.textContent = 'OFF';
+                                document.getElementById('system-status').textContent = 'APAGADO';
+                                document.getElementById('system-status').setAttribute('fill', '#94a3b8');
+                            }
+                            updateSystem();
+                        }
+
+                        function toggleBreaker(id, maxA) {
+                            if (!mainOn) return; // Si main está OFF, no pasa nada
+                            
+                            circuitStates[id] = !circuitStates[id];
+                            updateSystem();
+                        }
+
+                        function updateSystem() {
+                            totalLoad = 0;
+                            
+                            // Calcular carga
+                            for (let i = 1; i <= 8; i++) {
+                                const sw = document.getElementById(`b${i}-sw`);
+                                if (circuitStates[i] && mainOn) {
+                                    totalLoad += circuitLoads[i];
+                                    sw.style.fill = '#ef4444'; // Rojo = Energizado/Peligro
+                                } else {
+                                    sw.style.fill = '#22c55e'; // Verde = Desconectado/Seguro
+                                }
+                            }
+
+                            // Si main está OFF, carga es 0 (independiente de los breakers)
+                            if (!mainOn) totalLoad = 0;
+
+                            // Actualizar UI de Carga
+                            const loadText = document.getElementById('total-load-text');
+                            loadText.textContent = totalLoad + ' A';
+
+                            // Evaluar Sobrecarga
+                            if (totalLoad > mainCapacity) {
+                                // Disparo!
+                                loadText.setAttribute('fill', '#ef4444');
+                                document.getElementById('system-status').textContent = '¡SOBRECARGA!';
+                                document.getElementById('system-status').setAttribute('fill', '#ef4444');
+                                
+                                // Flash efecto
+                                document.getElementById('overload-flash').style.opacity = '1';
+                                setTimeout(() => {
+                                    // Apagar main automático
+                                    mainOn = false;
+                                    document.getElementById('main-switch').style.fill = '#22c55e';
+                                    document.getElementById('main-label').textContent = 'OFF';
+                                    document.getElementById('overload-flash').style.opacity = '0';
+                                    updateSystem();
+                                    
+                                    document.getElementById('system-status').textContent = 'DISPARADO (TRIP)';
+                                    document.getElementById('system-status').setAttribute('fill', '#ef4444');
+                                }, 800);
+                            } else {
+                                loadText.setAttribute('fill', '#4ade80');
+                            }
+                        }
+
+                        // Inicializar
+                        updateSystem();
+                    </script>
+                </div>
+
                 <h3>Verificaciones Post-Instalación</h3>
                 <ol>
                     <li>Continuidad de conductores de fase</li>

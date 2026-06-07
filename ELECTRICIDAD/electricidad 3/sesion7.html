@@ -9,7 +9,7 @@
     <style>
         .lamp-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -24,6 +24,9 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .lamp-card:hover {
@@ -31,15 +34,9 @@
             transform: translateY(-5px);
         }
 
-        .lamp-card i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
         .lamp-card h3 {
             color: var(--primary-color);
-            margin-top: 0;
+            margin-top: 1rem;
         }
 
         .lamp-card ul {
@@ -47,6 +44,7 @@
             font-size: 0.9rem;
             padding-left: 1.5rem;
             color: var(--text-muted);
+            width: 100%;
         }
 
         .tag-obsoleto {
@@ -59,6 +57,20 @@
             font-size: 0.7rem;
             font-weight: bold;
             transform: rotate(45deg);
+            z-index: 20;
+        }
+
+        .lamp-svg-box {
+            width: 100%;
+            height: 150px;
+            background: var(--bg-main);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
         }
 
         /* Simulator Styles */
@@ -194,37 +206,91 @@
         <p>Durante 100 años usamos focos que eran básicamente <strong>estufas que daban luz por accidente</strong>. Hoy en día, la tecnología LED ha revolucionado cómo iluminamos nuestros espacios. Conoce a los protagonistas:</p>
         
         <div class="lamp-grid">
+            <!-- Incandescente -->
             <div class="lamp-card">
                 <div class="tag-obsoleto">OBSOLETO</div>
-                <i class="fas fa-lightbulb" style="color: #e67e22;"></i>
+                <div class="lamp-svg-box">
+                    <svg viewBox="0 0 100 150" width="100%" height="100%">
+                        <!-- Base Rosca -->
+                        <path d="M40 120 L60 120 L55 140 L45 140 Z" fill="#94a3b8"/>
+                        <rect x="42" y="120" width="16" height="4" fill="#64748b"/>
+                        <rect x="43" y="128" width="14" height="4" fill="#64748b"/>
+                        <!-- Vidrio -->
+                        <path d="M50 20 C20 20 25 70 38 100 C40 110 40 120 40 120 L60 120 C60 120 60 110 62 100 C75 70 80 20 50 20 Z" fill="rgba(255, 255, 255, 0.3)" stroke="#e2e8f0" stroke-width="2"/>
+                        <!-- Filamento de Tungsteno -->
+                        <path d="M45 120 L45 70 M55 120 L55 70" stroke="#94a3b8" stroke-width="2"/>
+                        <path d="M40 50 Q50 30 60 50" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                        <!-- Heat aura -->
+                        <circle cx="50" cy="50" r="15" fill="#ef4444" opacity="0.3" filter="blur(5px)"/>
+                        <circle cx="50" cy="50" r="30" fill="#f59e0b" opacity="0.1"/>
+                    </svg>
+                </div>
                 <h3>Incandescente</h3>
                 <p>El clásico de Edison.</p>
                 <ul>
-                    <li><strong>Cómo funciona:</strong> Calienta un alambre de tungsteno hasta que brilla.</li>
-                    <li><strong>Problema:</strong> Desperdicia el 90% de la energía en calor.</li>
+                    <li><strong>Cómo funciona:</strong> Calienta un alambre de tungsteno hasta que brilla por pura temperatura extrema.</li>
+                    <li><strong>Problema:</strong> Desperdicia el 90% de la energía en calor. Es una "estufa luminosa".</li>
                     <li><strong>Vida útil:</strong> 1,000 horas (se funde rápido).</li>
                 </ul>
             </div>
             
+            <!-- Fluorescente -->
             <div class="lamp-card">
-                <i class="fas fa-water" style="color: #3498db;"></i>
-                <h3>Fluorescente (Ahorrador)</h3>
-                <p>El rey de los 2000s.</p>
+                <div class="lamp-svg-box">
+                    <svg viewBox="0 0 100 150" width="100%" height="100%">
+                        <!-- Base Rosca -->
+                        <path d="M40 130 L60 130 L55 145 L45 145 Z" fill="#94a3b8"/>
+                        <rect x="42" y="130" width="16" height="4" fill="#64748b"/>
+                        <rect x="43" y="138" width="14" height="4" fill="#64748b"/>
+                        <!-- Balastro electrónico (Base de plástico) -->
+                        <rect x="30" y="100" width="40" height="30" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+                        <!-- Tubos espiral -->
+                        <path d="M35 100 L35 40 Q35 20 50 20 Q65 20 65 40 L65 100" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+                        <path d="M45 100 L45 50 Q45 35 50 35 Q55 35 55 50 L55 100" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+                        <path d="M35 100 L35 40 Q35 20 50 20 Q65 20 65 40 L65 100" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+                        <path d="M45 100 L45 50 Q45 35 50 35 Q55 35 55 50 L55 100" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+                        <!-- Fósforo / UV aura -->
+                        <circle cx="50" cy="50" r="30" fill="#38bdf8" opacity="0.15" filter="blur(10px)"/>
+                    </svg>
+                </div>
+                <h3 style="color: #3498db;">Fluorescente (CFL)</h3>
+                <p>El ahorrador de los años 2000s.</p>
                 <ul>
-                    <li><strong>Cómo funciona:</strong> Gas excitado que emite luz ultravioleta, el polvo blanco del tubo la vuelve visible.</li>
-                    <li><strong>Problema:</strong> Contiene Mercurio tóxico. Tarda en encender.</li>
+                    <li><strong>Cómo funciona:</strong> Pasa corriente por gas argón emitiendo rayos UV invisibles; el polvo blanco del tubo lo convierte en luz visible.</li>
+                    <li><strong>Problema:</strong> Contiene vapor de Mercurio tóxico. Tarda en dar el 100% de luz.</li>
                     <li><strong>Vida útil:</strong> 8,000 horas.</li>
                 </ul>
             </div>
 
+            <!-- LED -->
             <div class="lamp-card" style="border-color: var(--accent-color);">
-                <i class="fas fa-microchip" style="color: var(--accent-color);"></i>
+                <div class="lamp-svg-box" style="background: rgba(46, 204, 113, 0.05);">
+                    <svg viewBox="0 0 100 150" width="100%" height="100%">
+                        <!-- Base Rosca -->
+                        <path d="M40 130 L60 130 L55 145 L45 145 Z" fill="#94a3b8"/>
+                        <rect x="42" y="130" width="16" height="4" fill="#64748b"/>
+                        <rect x="43" y="138" width="14" height="4" fill="#64748b"/>
+                        <!-- Heatsink (Disipador de calor de aluminio) -->
+                        <path d="M30 90 L70 90 L60 130 L40 130 Z" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2"/>
+                        <line x1="38" y1="90" x2="45" y2="130" stroke="#cbd5e1" stroke-width="2"/>
+                        <line x1="62" y1="90" x2="55" y2="130" stroke="#cbd5e1" stroke-width="2"/>
+                        <!-- Chips LED (SMD) -->
+                        <rect x="40" y="86" width="6" height="4" fill="#fde047"/>
+                        <rect x="48" y="86" width="4" height="4" fill="#fde047"/>
+                        <rect x="54" y="86" width="6" height="4" fill="#fde047"/>
+                        <!-- Difusor (Plástico domo) -->
+                        <path d="M30 90 C30 50 70 50 70 90 Z" fill="rgba(255, 255, 255, 0.8)" stroke="#cbd5e1" stroke-width="2"/>
+                        <!-- Pure Light Aura -->
+                        <circle cx="50" cy="50" r="40" fill="#f1c40f" opacity="0.2" filter="blur(8px)"/>
+                        <path d="M50 20 L50 0 M20 50 L0 50 M80 50 L100 50 M30 30 L10 10 M70 30 L90 10" stroke="#f1c40f" stroke-width="2" opacity="0.6"/>
+                    </svg>
+                </div>
                 <h3>Tecnología LED</h3>
-                <p>El estándar actual.</p>
+                <p>El estándar absoluto de la actualidad.</p>
                 <ul>
-                    <li><strong>Cómo funciona:</strong> Un chip electrónico que emite fotones directamente al recibir corriente.</li>
-                    <li><strong>Ventaja:</strong> No calienta casi nada. Máxima eficiencia.</li>
-                    <li><strong>Vida útil:</strong> +25,000 horas (años sin fundirse).</li>
+                    <li><strong>Cómo funciona:</strong> Un chip electrónico sólido que libera fotones inmediatamente al recibir corriente. Sin calor, sin gas, puro silicio.</li>
+                    <li><strong>Ventaja:</strong> No genera calor residual. Es hasta 90% más eficiente. No contamina.</li>
+                    <li><strong>Vida útil:</strong> +25,000 horas (puede durar décadas sin fundirse).</li>
                 </ul>
             </div>
         </div>

@@ -116,20 +116,35 @@
 
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
         .concept-card {
             background: var(--bg-card);
-            border-left: 4px solid var(--primary-color);
+            border-top: 4px solid var(--primary-color);
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
         .concept-card h3 {
-            margin-top: 0;
+            margin-top: 1rem;
             color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        .concept-svg-box {
+            width: 100%;
+            height: 120px;
+            background: var(--bg-main);
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--border-color);
         }
     </style>
 </head>
@@ -149,25 +164,88 @@
     </div>
 
     <div class="teoria-section">
-        <h2>Interruptores Especiales</h2>
-        <p>En la sesión anterior vimos el interruptor simple (SPST) que solo tiene un camino: abierto o cerrado. Hoy conoceremos mecanismos que tienen <strong>MÚLTIPLES CAMINOS</strong>.</p>
+        <h2>Interruptores Especiales Infográficos</h2>
+        <p>En la sesión anterior vimos el interruptor simple (SPST) que solo tiene un camino: abierto o cerrado. Hoy conoceremos mecanismos físicos que tienen <strong>MÚLTIPLES CAMINOS</strong> o se accionan de formas exóticas.</p>
         
         <div class="card-grid">
             <div class="concept-card">
-                <h3><i class="fas fa-random"></i> Conmutador (SPDT / 3 Vías)</h3>
-                <p>En lugar de "apagar", este interruptor redirige la corriente hacia un camino A o hacia un camino B. Siempre está conectado a algo. Es la estrella del circuito de escalera.</p>
+                <div class="concept-svg-box">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <!-- SPDT Switch -->
+                        <circle cx="20" cy="50" r="6" fill="#3b82f6"/>
+                        <circle cx="80" cy="30" r="6" fill="#94a3b8"/>
+                        <circle cx="80" cy="70" r="6" fill="#94a3b8"/>
+                        <!-- Pole -->
+                        <line x1="20" y1="50" x2="80" y2="30" stroke="#f1c40f" stroke-width="4" stroke-linecap="round"/>
+                        <!-- Arrow showing toggle -->
+                        <path d="M 60 40 Q 65 50 60 60" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="2,2"/>
+                        <path d="M 58 60 L 60 63 L 62 60" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3>Conmutador (3 Vías)</h3>
+                <p>En lugar de "apagar", este interruptor redirige la corriente hacia el camino A o el camino B. Es la estrella del circuito de escalera.</p>
             </div>
-            <div class="concept-card">
-                <h3><i class="fas fa-magnet"></i> Reed Switch</h3>
-                <p>Un interruptor de cristal diminuto. Sus contactos internos se cierran únicamente cuando sienten la presencia de un <strong>campo magnético</strong> (un imán). Se usan en alarmas de puertas y ventanas.</p>
+
+            <div class="concept-card" style="border-top-color: var(--accent-color);">
+                <div class="concept-svg-box">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <!-- Reed Switch -->
+                        <rect x="20" y="40" width="60" height="20" rx="10" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2"/>
+                        <!-- Reeds -->
+                        <line x1="10" y1="50" x2="45" y2="50" stroke="#94a3b8" stroke-width="3"/>
+                        <line x1="90" y1="50" x2="55" y2="48" stroke="#94a3b8" stroke-width="3"/>
+                        <!-- Magnet -->
+                        <rect x="40" y="10" width="20" height="15" fill="#ef4444"/>
+                        <rect x="40" y="25" width="20" height="5" fill="#e2e8f0"/>
+                        <!-- Magnetic Field -->
+                        <path d="M 30 20 Q 10 50 45 48" fill="none" stroke="#f87171" stroke-width="1" stroke-dasharray="2,2"/>
+                        <path d="M 70 20 Q 90 50 55 48" fill="none" stroke="#f87171" stroke-width="1" stroke-dasharray="2,2"/>
+                    </svg>
+                </div>
+                <h3 style="color: var(--accent-color);">Reed Switch</h3>
+                <p>Un interruptor de cristal diminuto. Sus contactos internos se cierran únicamente cuando sienten la presencia de un imán. Ideal para alarmas de puertas.</p>
             </div>
-            <div class="concept-card">
-                <h3><i class="fas fa-car-crash"></i> Final de Carrera</h3>
-                <p>Un interruptor con una palanca mecánica. Se usa en impresoras 3D, portones eléctricos y grúas. Cuando la máquina choca físicamente contra la palanca, corta la energía para no estrellarse.</p>
+
+            <div class="concept-card" style="border-top-color: var(--danger-color);">
+                <div class="concept-svg-box">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <!-- Limit Switch -->
+                        <rect x="30" y="40" width="40" height="30" rx="4" fill="#334155" stroke="#1e293b" stroke-width="2"/>
+                        <circle cx="40" cy="50" r="3" fill="#cbd5e1"/>
+                        <circle cx="60" cy="50" r="3" fill="#cbd5e1"/>
+                        <!-- Roller Lever -->
+                        <line x1="30" y1="40" x2="80" y2="20" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="80" cy="20" r="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+                        <!-- Box hitting it -->
+                        <rect x="70" y="5" width="25" height="15" fill="#eab308"/>
+                        <path d="M 82 5 L 82 15" stroke="#ca8a04" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3 style="color: var(--danger-color);">Final de Carrera</h3>
+                <p>Un interruptor con una palanca mecánica (roller lever). Cuando una máquina en movimiento choca contra la rueda, corta la energía de su propio motor.</p>
             </div>
-            <div class="concept-card">
-                <h3><i class="fas fa-sliders-h"></i> DIP Switch</h3>
-                <p>Un bloque en miniatura con muchos interruptorcitos (a veces 4 o u 8). Se usa en tarjetas electrónicas de portones automáticos para configurar códigos de seguridad. Se operan con un desarmador o aguja.</p>
+
+            <div class="concept-card" style="border-top-color: var(--purple-color);">
+                <div class="concept-svg-box">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <!-- DIP Switch -->
+                        <rect x="20" y="30" width="60" height="40" rx="3" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/>
+                        <!-- Small switches -->
+                        <rect x="25" y="40" width="8" height="20" fill="#94a3b8"/>
+                        <rect x="25" y="40" width="8" height="10" fill="#ffffff"/> <!-- ON -->
+                        
+                        <rect x="38" y="40" width="8" height="20" fill="#94a3b8"/>
+                        <rect x="38" y="50" width="8" height="10" fill="#ffffff"/> <!-- OFF -->
+                        
+                        <rect x="51" y="40" width="8" height="20" fill="#94a3b8"/>
+                        <rect x="51" y="40" width="8" height="10" fill="#ffffff"/> <!-- ON -->
+                        
+                        <rect x="64" y="40" width="8" height="20" fill="#94a3b8"/>
+                        <rect x="64" y="50" width="8" height="10" fill="#ffffff"/> <!-- OFF -->
+                    </svg>
+                </div>
+                <h3 style="color: var(--purple-color);">DIP Switch</h3>
+                <p>Un bloque en miniatura con muchos interruptorcitos para placas electrónicas. Se operan con un desarmador para configurar códigos de seguridad.</p>
             </div>
         </div>
     </div>
@@ -323,8 +401,6 @@
 
         // Animar palancas (rotate)
         // Pole 1 center: 100, 125
-        // Top contact: 160, 75 (angle is roughly -30deg)
-        // Bot contact: 160, 175 (angle is roughly +30deg)
         if(!s1) {
             pole1.style.transform = 'rotate(0deg)'; // Apunta arriba (por el svg original)
         } else {
@@ -332,8 +408,6 @@
         }
 
         // Pole 2 center: 500, 125
-        // Top contact: 440, 75
-        // Bot contact: 440, 175
         if(!s2) {
             pole2.style.transform = 'rotate(0deg)';
         } else {

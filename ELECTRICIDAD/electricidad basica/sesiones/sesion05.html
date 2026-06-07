@@ -158,6 +158,131 @@
                 <div class="formula">
                     I₃ = 24 V / 12 Ω = 2 A
                 </div>
+
+                <h3>Simulador de Circuito en Paralelo</h3>
+                <p>Experimenta cambiando el voltaje y las resistencias. Observa cómo el voltaje es igual en todas las ramas, pero la corriente se divide en "ríos" dependiendo de la resistencia:</p>
+                
+                <div class="didactic-example" style="text-align: center;">
+                    <!-- SVG Circuito Paralelo -->
+                    <svg viewBox="0 0 500 250" width="100%" max-width="500px" style="margin: 10px auto; background: #0f172a; border-radius: 8px; padding: 10px;">
+                        <!-- Cables Principales -->
+                        <path d="M 50 150 L 50 50 L 400 50" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        <path d="M 50 170 L 50 200 L 400 200" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        
+                        <!-- Rama 1 -->
+                        <path d="M 150 50 L 150 200" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        <g transform="translate(140, 95)">
+                            <rect x="0" y="0" width="20" height="40" fill="#0f172a"/> <!-- Borra línea de fondo -->
+                            <path d="M 10 0 L 0 10 L 20 20 L 0 30 L 10 40" fill="none" stroke="#f87171" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="35" y="25" fill="#f87171" font-size="12" text-anchor="start">R1</text>
+                            <text x="35" y="40" fill="#f87171" font-size="12" font-family="monospace" text-anchor="start" id="svg-i1">0A</text>
+                        </g>
+
+                        <!-- Rama 2 -->
+                        <path d="M 275 50 L 275 200" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        <g transform="translate(265, 95)">
+                            <rect x="0" y="0" width="20" height="40" fill="#0f172a"/>
+                            <path d="M 10 0 L 0 10 L 20 20 L 0 30 L 10 40" fill="none" stroke="#34d399" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="35" y="25" fill="#34d399" font-size="12" text-anchor="start">R2</text>
+                            <text x="35" y="40" fill="#34d399" font-size="12" font-family="monospace" text-anchor="start" id="svg-i2">0A</text>
+                        </g>
+                        
+                        <!-- Rama 3 -->
+                        <path d="M 400 50 L 400 200" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        <g transform="translate(390, 95)">
+                            <rect x="0" y="0" width="20" height="40" fill="#0f172a"/>
+                            <path d="M 10 0 L 0 10 L 20 20 L 0 30 L 10 40" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="35" y="25" fill="#a78bfa" font-size="12" text-anchor="start">R3</text>
+                            <text x="35" y="40" fill="#a78bfa" font-size="12" font-family="monospace" text-anchor="start" id="svg-i3">0A</text>
+                        </g>
+
+                        <!-- Fuente de Poder (Batería) -->
+                        <g transform="translate(30, 150)">
+                            <rect x="0" y="0" width="40" height="20" fill="#facc15" rx="3"/>
+                            <text x="20" y="14" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">DC</text>
+                            <text x="60" y="14" fill="#facc15" font-size="14" font-family="monospace" id="svg-vtotal">12V</text>
+                        </g>
+
+                        <!-- Animaciones de corriente por ramas -->
+                        <circle cx="0" cy="0" r="3" fill="#facc15">
+                            <animateMotion path="M 50 140 L 50 50 L 150 50 L 150 200 L 50 200 L 50 160" dur="3s" repeatCount="indefinite" id="anim-r1"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="3" fill="#facc15">
+                            <animateMotion path="M 50 140 L 50 50 L 275 50 L 275 200 L 50 200 L 50 160" dur="4s" repeatCount="indefinite" id="anim-r2"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="3" fill="#facc15">
+                            <animateMotion path="M 50 140 L 50 50 L 400 50 L 400 200 L 50 200 L 50 160" dur="5s" repeatCount="indefinite" id="anim-r3"/>
+                        </circle>
+                    </svg>
+
+                    <!-- Formulario de Calculadora -->
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 15px;">
+                        <div>
+                            <label style="color:#facc15; font-weight:bold;">Voltaje (V)</label><br>
+                            <input type="number" id="inputVoltage" value="12" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:90px;">
+                        </div>
+                        <div>
+                            <label style="color:#f87171; font-weight:bold;">R1 (Ω)</label><br>
+                            <input type="number" id="resistance1" value="4" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:90px;">
+                        </div>
+                        <div>
+                            <label style="color:#34d399; font-weight:bold;">R2 (Ω)</label><br>
+                            <input type="number" id="resistance2" value="6" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:90px;">
+                        </div>
+                        <div>
+                            <label style="color:#a78bfa; font-weight:bold;">R3 (Ω) (Opcional)</label><br>
+                            <input type="number" id="resistance3" value="12" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:90px;">
+                        </div>
+                        <button class="btn" onclick="calculateParallelCircuit()" style="height: 40px; margin-top:15px;">Simular</button>
+                    </div>
+
+                    <div id="results" style="margin-top: 20px; background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; text-align: left; border-left: 4px solid var(--primary-color);">
+                        <em>Presiona "Simular" para ver los resultados...</em>
+                    </div>
+                </div>
+
+                <script>
+                    function updateSvgSimulation(vtotal, i1, i2, i3) {
+                        document.getElementById('svg-vtotal').textContent = vtotal.toFixed(1) + 'V';
+                        document.getElementById('svg-i1').textContent = i1.toFixed(2) + 'A';
+                        document.getElementById('svg-i2').textContent = i2.toFixed(2) + 'A';
+                        document.getElementById('svg-i3').textContent = i3.toFixed(2) + 'A';
+                        
+                        // Velocidades inversamente proporcionales a la corriente (Más corriente = Animación más rápida)
+                        let speed1 = i1 > 0 ? Math.max(0.5, 4 / i1) : 0;
+                        let speed2 = i2 > 0 ? Math.max(0.5, 4 / i2) : 0;
+                        let speed3 = i3 > 0 ? Math.max(0.5, 4 / i3) : 0;
+                        
+                        // Si es 0, ocultar animación o poner muy lento. Aquí solo lo escondemos.
+                        document.getElementById('anim-r1').setAttribute('dur', speed1 > 0 ? speed1 + 's' : '1000s');
+                        document.getElementById('anim-r2').setAttribute('dur', speed2 > 0 ? speed2 + 's' : '1000s');
+                        document.getElementById('anim-r3').setAttribute('dur', speed3 > 0 ? speed3 + 's' : '1000s');
+                        
+                        document.getElementById('anim-r1').parentNode.style.opacity = i1 > 0 ? 1 : 0;
+                        document.getElementById('anim-r2').parentNode.style.opacity = i2 > 0 ? 1 : 0;
+                        document.getElementById('anim-r3').parentNode.style.opacity = i3 > 0 ? 1 : 0;
+                    }
+
+                    // Monkey patch the existing function to update SVG
+                    const originalCalc = calculateParallelCircuit;
+                    calculateParallelCircuit = function() {
+                        originalCalc();
+                        
+                        const v = parseFloat(document.getElementById('inputVoltage').value);
+                        const r1 = parseFloat(document.getElementById('resistance1').value);
+                        const r2 = parseFloat(document.getElementById('resistance2').value);
+                        const r3 = parseFloat(document.getElementById('resistance3').value) || 0;
+                        
+                        const i1 = r1 > 0 ? v / r1 : 0;
+                        const i2 = r2 > 0 ? v / r2 : 0;
+                        const i3 = r3 > 0 ? v / r3 : 0;
+                        
+                        updateSvgSimulation(v, i1, i2, i3);
+                    }
+                    
+                    // Simulamos al inicio
+                    setTimeout(calculateParallelCircuit, 500);
+                </script>
             </div>
 
             <!-- Práctica -->

@@ -20,6 +20,21 @@
             border-radius: 8px;
             padding: 1.5rem;
             box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .norm-svg-box {
+            width: 100%;
+            height: 160px;
+            margin-bottom: 1rem;
+            background: var(--bg-main);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
         }
 
         .norm-card h3 {
@@ -171,7 +186,26 @@
         
         <div class="norm-grid">
             <div class="norm-card">
-                <h3><i class="fas fa-book"></i> NOM-001-SEDE (México) / NEC (USA)</h3>
+                <div class="norm-svg-box">
+                    <svg viewBox="0 0 200 150" width="100%" height="100%">
+                        <!-- Wall and Floor -->
+                        <rect x="0" y="0" width="200" height="130" fill="#f1f5f9"/>
+                        <rect x="0" y="130" width="200" height="20" fill="#cbd5e1"/>
+                        <line x1="0" y1="130" x2="200" y2="130" stroke="#94a3b8" stroke-width="2"/>
+                        <!-- Outlets -->
+                        <rect x="40" y="80" width="15" height="25" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+                        <rect x="140" y="80" width="15" height="25" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+                        <!-- 30cm Height Measurement -->
+                        <path d="M 30 130 L 30 105" fill="none" stroke="#ef4444" stroke-width="2"/>
+                        <path d="M 25 130 L 35 130 M 25 105 L 35 105" stroke="#ef4444" stroke-width="2"/>
+                        <text x="5" y="120" fill="#ef4444" font-size="10" font-weight="bold">30cm</text>
+                        <!-- 1.8m Distance Measurement -->
+                        <path d="M 55 90 L 140 90" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,2"/>
+                        <path d="M 55 85 L 55 95 M 140 85 L 140 95" stroke="#3b82f6" stroke-width="2"/>
+                        <text x="85" y="85" fill="#3b82f6" font-size="12" font-weight="bold">1.8m Max</text>
+                    </svg>
+                </div>
+                <h3><i class="fas fa-book"></i> NOM-001-SEDE / NEC</h3>
                 <ul>
                     <li><strong>Altura Mínima:</strong> Los tomacorrientes deben estar al menos a 30 cm del piso terminado para evitar daños por trapeado o pequeñas inundaciones.</li>
                     <li><strong>Distancia:</strong> En una sala, ningún punto de la pared debe estar a más de 1.8 metros de un tomacorriente (para evitar el uso de peligrosas extensiones).</li>
@@ -179,7 +213,31 @@
             </div>
             
             <div class="norm-card">
-                <h3><i class="fas fa-bath"></i> Áreas Húmedas (Regla del GFCI)</h3>
+                <div class="norm-svg-box">
+                    <svg viewBox="0 0 200 150" width="100%" height="100%">
+                        <!-- Bathroom tiles background -->
+                        <pattern id="tiles" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <rect width="20" height="20" fill="#e0f2fe" stroke="#bae6fd" stroke-width="1"/>
+                        </pattern>
+                        <rect width="200" height="150" fill="url(#tiles)"/>
+                        <!-- Sink -->
+                        <path d="M 120 120 Q 150 150 180 120 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+                        <rect x="145" y="100" width="10" height="20" fill="#cbd5e1"/>
+                        <path d="M 140 100 Q 150 90 160 100" fill="none" stroke="#cbd5e1" stroke-width="4"/>
+                        <!-- Splashing water -->
+                        <path d="M 145 110 Q 120 90 110 110" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="2,2"/>
+                        <circle cx="115" cy="100" r="2" fill="#38bdf8"/>
+                        <circle cx="105" cy="115" r="2" fill="#38bdf8"/>
+                        <!-- GFCI Outlet -->
+                        <rect x="40" y="50" width="30" height="50" rx="3" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+                        <rect x="50" y="70" width="10" height="4" fill="#ef4444"/> <!-- Test -->
+                        <rect x="50" y="76" width="10" height="4" fill="#10b981"/> <!-- Reset -->
+                        <!-- Shield over GFCI -->
+                        <path d="M 55 35 L 75 45 L 75 65 Q 55 95 35 65 L 35 45 Z" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2"/>
+                        <path d="M 50 60 L 55 65 L 65 55" fill="none" stroke="#10b981" stroke-width="3"/>
+                    </svg>
+                </div>
+                <h3><i class="fas fa-bath"></i> Áreas Húmedas (GFCI)</h3>
                 <ul>
                     <li>Cocinas, baños, garajes y exteriores <strong>OBLIGATORIAMENTE</strong> deben llevar un tomacorriente tipo GFCI (con botones Test/Reset).</li>
                     <li>Si cae agua en el aparato, el GFCI corta la luz en milisegundos, salvando la vida del usuario.</li>

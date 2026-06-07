@@ -21,12 +21,33 @@
             text-align: center;
             box-shadow: var(--shadow-soft);
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .map-card i {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
+        .map-svg-box {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 1rem;
+            background: var(--bg-main);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .map-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.1rem;
+        }
+
+        .map-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
         }
 
         .map-arrow {
@@ -148,25 +169,90 @@
         
         <div class="map-grid">
             <div class="map-card">
-                <i class="fas fa-industry"></i>
+                <div class="map-svg-box">
+                    <svg viewBox="0 0 150 150" width="100%" height="100%">
+                        <!-- Power Plant -->
+                        <path d="M 20 120 L 130 120 L 130 60 L 90 60 L 90 80 L 50 80 L 50 100 L 20 100 Z" fill="#64748b" stroke="#334155" stroke-width="2"/>
+                        <!-- Chimneys -->
+                        <path d="M 100 60 L 100 20 L 120 20 L 120 60" fill="#475569"/>
+                        <path d="M 60 80 L 60 40 L 80 40 L 80 80" fill="#475569"/>
+                        <!-- Smoke -->
+                        <circle cx="110" cy="10" r="8" fill="#cbd5e1" opacity="0.6"/>
+                        <circle cx="120" cy="5" r="10" fill="#cbd5e1" opacity="0.4"/>
+                        <circle cx="70" cy="30" r="8" fill="#cbd5e1" opacity="0.6"/>
+                        <circle cx="60" cy="25" r="10" fill="#cbd5e1" opacity="0.4"/>
+                        <!-- Lightning -->
+                        <path d="M 75 90 L 65 105 L 75 105 L 70 115" fill="none" stroke="#f1c40f" stroke-width="3"/>
+                    </svg>
+                </div>
                 <h3>1. Generación</h3>
                 <p>Imanes gigantes girando crean electricidad (Inducción Magnética).</p>
                 <div class="map-arrow"><i class="fas fa-chevron-right"></i></div>
             </div>
             <div class="map-card">
-                <i class="fas fa-bolt"></i>
+                <div class="map-svg-box">
+                    <svg viewBox="0 0 150 150" width="100%" height="100%">
+                        <!-- Transmission Tower -->
+                        <path d="M 75 20 L 50 130 M 75 20 L 100 130" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M 65 50 L 85 50 M 60 80 L 90 80 M 55 110 L 95 110" stroke="#94a3b8" stroke-width="2"/>
+                        <!-- Cross arms -->
+                        <path d="M 30 40 L 120 40 M 40 70 L 110 70" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+                        <!-- Insulators -->
+                        <circle cx="30" cy="45" r="3" fill="#ef4444"/>
+                        <circle cx="120" cy="45" r="3" fill="#ef4444"/>
+                        <circle cx="40" cy="75" r="3" fill="#ef4444"/>
+                        <circle cx="110" cy="75" r="3" fill="#ef4444"/>
+                        <!-- Wires -->
+                        <path d="M 0 55 Q 30 50 30 45" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                        <path d="M 30 45 Q 75 60 120 45" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                        <path d="M 120 45 Q 135 50 150 55" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                    </svg>
+                </div>
                 <h3>2. Transmisión</h3>
-                <p>Transformadores Elevadores suben a 400,000V para viajar kilómetros sin perderse en calor (Efecto Joule).</p>
+                <p>Transformadores Elevadores suben a 400,000V para viajar kilómetros sin perderse en calor.</p>
                 <div class="map-arrow"><i class="fas fa-chevron-right"></i></div>
             </div>
             <div class="map-card">
-                <i class="fas fa-box"></i>
+                <div class="map-svg-box">
+                    <svg viewBox="0 0 150 150" width="100%" height="100%">
+                        <!-- Wooden Pole -->
+                        <rect x="70" y="20" width="10" height="110" fill="#8b5a2b"/>
+                        <!-- Crossarm -->
+                        <rect x="50" y="30" width="50" height="8" fill="#8b5a2b"/>
+                        <!-- Transformer (Can) -->
+                        <rect x="80" y="50" width="25" height="35" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+                        <rect x="85" y="45" width="15" height="5" fill="#475569"/>
+                        <!-- Wires Primary -->
+                        <path d="M 0 25 Q 50 40 100 25 M 50 25 Q 100 40 150 25" fill="none" stroke="#64748b" stroke-width="2"/>
+                        <line x1="90" y1="35" x2="90" y2="45" stroke="#ef4444" stroke-width="2"/>
+                        <!-- Wires Secondary (to house) -->
+                        <path d="M 80 70 Q 115 90 150 80" fill="none" stroke="#10b981" stroke-width="2"/>
+                        <path d="M 80 80 Q 115 100 150 90" fill="none" stroke="#10b981" stroke-width="2"/>
+                    </svg>
+                </div>
                 <h3>3. Distribución</h3>
                 <p>Transformadores en postes (Reductores) bajan el voltaje a 120V seguros para la casa.</p>
                 <div class="map-arrow"><i class="fas fa-chevron-right"></i></div>
             </div>
             <div class="map-card">
-                <i class="fas fa-home"></i>
+                <div class="map-svg-box">
+                    <svg viewBox="0 0 150 150" width="100%" height="100%">
+                        <!-- House -->
+                        <path d="M 30 70 L 75 30 L 120 70 L 120 120 L 30 120 Z" fill="#e2e8f0" stroke="#64748b" stroke-width="3"/>
+                        <path d="M 20 70 L 75 20 L 130 70" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
+                        <!-- Door -->
+                        <rect x="60" y="80" width="30" height="40" fill="#8b5a2b"/>
+                        <circle cx="85" cy="100" r="2" fill="#f1c40f"/>
+                        <!-- Windows glowing -->
+                        <rect x="35" y="80" width="20" height="20" fill="#f1c40f" stroke="#334155" stroke-width="2"/>
+                        <rect x="95" y="80" width="20" height="20" fill="#f1c40f" stroke="#334155" stroke-width="2"/>
+                        <line x1="45" y1="80" x2="45" y2="100" stroke="#334155" stroke-width="2"/>
+                        <line x1="35" y1="90" x2="55" y2="90" stroke="#334155" stroke-width="2"/>
+                        <!-- Incoming power lines -->
+                        <path d="M 0 50 Q 15 60 30 65" fill="none" stroke="#10b981" stroke-width="2"/>
+                        <path d="M 0 60 Q 15 70 30 75" fill="none" stroke="#10b981" stroke-width="2"/>
+                    </svg>
+                </div>
                 <h3>4. Consumo</h3>
                 <p>El Centro de Carga divide la corriente en paralelo, protegiéndola con Pastillas Termomagnéticas.</p>
             </div>

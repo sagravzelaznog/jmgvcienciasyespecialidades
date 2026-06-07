@@ -178,6 +178,146 @@
                 <div class="success-box">
                     <strong>Verificación:</strong> V₁ + V₂₃ + V₄ = 4.8 + 4.8 + 14.4 = 24 V ✓
                 </div>
+
+                <h3>Simulador de Circuito Mixto</h3>
+                <p>Observa cómo la corriente total pasa por R₁ y R₄, pero se divide al llegar al nodo paralelo (R₂ y R₃):</p>
+                
+                <div class="didactic-example" style="text-align: center;">
+                    <!-- SVG Circuito Mixto -->
+                    <svg viewBox="0 0 600 250" width="100%" max-width="600px" style="margin: 10px auto; background: #0f172a; border-radius: 8px; padding: 10px;">
+                        <!-- Cables Principales -->
+                        <path d="M 50 150 L 50 50 L 200 50" fill="none" stroke="#38bdf8" stroke-width="4"/> <!-- Hasta nodo A -->
+                        <path d="M 350 50 L 550 50 L 550 150" fill="none" stroke="#38bdf8" stroke-width="4"/> <!-- Desde nodo B hasta R4 -->
+                        <path d="M 550 170 L 550 200 L 50 200 L 50 170" fill="none" stroke="#38bdf8" stroke-width="4"/> <!-- Retorno -->
+                        
+                        <!-- Rama Superior Paralelo -->
+                        <path d="M 200 50 L 200 20 L 350 20 L 350 50" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        <!-- Rama Inferior Paralelo -->
+                        <path d="M 200 50 L 200 80 L 350 80 L 350 50" fill="none" stroke="#38bdf8" stroke-width="4"/>
+
+                        <!-- Fuente de Poder (Batería) -->
+                        <g transform="translate(30, 150)">
+                            <rect x="0" y="0" width="40" height="20" fill="#facc15" rx="3"/>
+                            <text x="20" y="14" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">DC</text>
+                            <text x="60" y="14" fill="#facc15" font-size="14" font-family="monospace" id="svg-vtotal">24V</text>
+                        </g>
+
+                        <!-- Resistencia 1 (Serie Entrada) -->
+                        <g transform="translate(100, 40)">
+                            <rect x="0" y="0" width="40" height="20" fill="#0f172a"/>
+                            <path d="M 0 10 L 5 0 L 15 20 L 25 0 L 35 20 L 40 10" fill="none" stroke="#f87171" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="20" y="-5" fill="#f87171" font-size="12" text-anchor="middle">R1</text>
+                        </g>
+
+                        <!-- Resistencia 2 (Paralelo Superior) -->
+                        <g transform="translate(250, 10)">
+                            <rect x="0" y="0" width="40" height="20" fill="#0f172a"/>
+                            <path d="M 0 10 L 5 0 L 15 20 L 25 0 L 35 20 L 40 10" fill="none" stroke="#34d399" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="20" y="-5" fill="#34d399" font-size="12" text-anchor="middle">R2</text>
+                        </g>
+
+                        <!-- Resistencia 3 (Paralelo Inferior) -->
+                        <g transform="translate(250, 70)">
+                            <rect x="0" y="0" width="40" height="20" fill="#0f172a"/>
+                            <path d="M 0 10 L 5 0 L 15 20 L 25 0 L 35 20 L 40 10" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="20" y="35" fill="#a78bfa" font-size="12" text-anchor="middle">R3</text>
+                        </g>
+
+                        <!-- Resistencia 4 (Serie Salida) -->
+                        <g transform="translate(420, 40)">
+                            <rect x="0" y="0" width="40" height="20" fill="#0f172a"/>
+                            <path d="M 0 10 L 5 0 L 15 20 L 25 0 L 35 20 L 40 10" fill="none" stroke="#fb923c" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="20" y="-5" fill="#fb923c" font-size="12" text-anchor="middle">R4</text>
+                        </g>
+
+                        <!-- Etiquetas de Voltaje y Corriente en SVG -->
+                        <text x="120" y="80" fill="#f87171" font-size="12" font-family="monospace" text-anchor="middle" id="svg-v1">V1: 0V</text>
+                        <text x="270" y="55" fill="#e2e8f0" font-size="12" font-family="monospace" text-anchor="middle" id="svg-v23">V23: 0V</text>
+                        <text x="440" y="80" fill="#fb923c" font-size="12" font-family="monospace" text-anchor="middle" id="svg-v4">V4: 0V</text>
+
+                        <!-- Animaciones de corriente (Ramas Superior e Inferior) -->
+                        <circle cx="0" cy="0" r="3" fill="#facc15">
+                            <animateMotion path="M 50 140 L 50 50 L 200 50 L 200 20 L 350 20 L 350 50 L 550 50 L 550 200 L 50 200 L 50 160" dur="4s" repeatCount="indefinite" id="anim-sup"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="3" fill="#facc15">
+                            <animateMotion path="M 50 140 L 50 50 L 200 50 L 200 80 L 350 80 L 350 50 L 550 50 L 550 200 L 50 200 L 50 160" dur="4s" repeatCount="indefinite" id="anim-inf"/>
+                        </circle>
+                    </svg>
+
+                    <!-- Formulario de Calculadora -->
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 15px;">
+                        <div>
+                            <label style="color:#facc15; font-weight:bold; font-size:0.8rem;">Voltaje (V)</label><br>
+                            <input type="number" id="inputVoltage" value="24" style="padding: 6px; border-radius:4px; border:1px solid #ccc; width:70px;">
+                        </div>
+                        <div>
+                            <label style="color:#f87171; font-weight:bold; font-size:0.8rem;">R1 (Serie)</label><br>
+                            <input type="number" id="r1" value="2" style="padding: 6px; border-radius:4px; border:1px solid #ccc; width:70px;">
+                        </div>
+                        <div>
+                            <label style="color:#34d399; font-weight:bold; font-size:0.8rem;">R2 (Paralelo)</label><br>
+                            <input type="number" id="r2" value="4" style="padding: 6px; border-radius:4px; border:1px solid #ccc; width:70px;">
+                        </div>
+                        <div>
+                            <label style="color:#a78bfa; font-weight:bold; font-size:0.8rem;">R3 (Paralelo)</label><br>
+                            <input type="number" id="r3" value="4" style="padding: 6px; border-radius:4px; border:1px solid #ccc; width:70px;">
+                        </div>
+                        <div>
+                            <label style="color:#fb923c; font-weight:bold; font-size:0.8rem;">R4 (Serie)</label><br>
+                            <input type="number" id="r4" value="6" style="padding: 6px; border-radius:4px; border:1px solid #ccc; width:70px;">
+                        </div>
+                        <button class="btn" onclick="calculateMixedCircuit()" style="height: 35px; margin-top:15px; font-size: 0.9rem;">Simular</button>
+                    </div>
+
+                    <div id="results" style="margin-top: 20px; background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; text-align: left; border-left: 4px solid var(--primary-color);">
+                        <em>Presiona "Simular" para ver los resultados...</em>
+                    </div>
+                </div>
+
+                <script>
+                    function updateSvgSimulation(vtotal, v1, v23, v4, i2, i3) {
+                        document.getElementById('svg-vtotal').textContent = vtotal.toFixed(1) + 'V';
+                        document.getElementById('svg-v1').textContent = 'V1: ' + v1.toFixed(1) + 'V';
+                        document.getElementById('svg-v23').textContent = 'V23: ' + v23.toFixed(1) + 'V';
+                        document.getElementById('svg-v4').textContent = 'V4: ' + v4.toFixed(1) + 'V';
+                        
+                        let speedSup = i2 > 0 ? Math.max(1, 4 / i2) : 1000;
+                        let speedInf = i3 > 0 ? Math.max(1, 4 / i3) : 1000;
+                        
+                        document.getElementById('anim-sup').setAttribute('dur', speedSup + 's');
+                        document.getElementById('anim-inf').setAttribute('dur', speedInf + 's');
+                        
+                        document.getElementById('anim-sup').style.opacity = i2 > 0 ? 1 : 0;
+                        document.getElementById('anim-inf').style.opacity = i3 > 0 ? 1 : 0;
+                    }
+
+                    // Monkey patch
+                    const originalCalc = calculateMixedCircuit;
+                    calculateMixedCircuit = function() {
+                        originalCalc();
+                        
+                        const v = parseFloat(document.getElementById('inputVoltage').value);
+                        const r1 = parseFloat(document.getElementById('r1').value);
+                        const r2 = parseFloat(document.getElementById('r2').value);
+                        const r3 = parseFloat(document.getElementById('r3').value);
+                        const r4 = parseFloat(document.getElementById('r4').value);
+                        
+                        const r23 = (r2 * r3) / (r2 + r3);
+                        const rt = r1 + r23 + r4;
+                        const it = v / rt;
+                        
+                        const v1 = it * r1;
+                        const v23 = it * r23;
+                        const v4 = it * r4;
+                        const i2 = v23 / r2;
+                        const i3 = v23 / r3;
+                        
+                        updateSvgSimulation(v, v1, v23, v4, i2, i3);
+                    }
+                    
+                    // Inicializar simulación
+                    setTimeout(calculateMixedCircuit, 500);
+                </script>
             </div>
 
             <!-- Práctica -->

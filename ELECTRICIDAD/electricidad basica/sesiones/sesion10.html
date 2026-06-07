@@ -156,6 +156,173 @@
                     <li><strong>Restaurar:</strong> Botón RESET debe restaurar funcionamiento</li>
                 </ol>
 
+                <h3>Simulador Interactivo: Cableado de GFCI</h3>
+                <p>Haz clic en los cables para conectarlos a los tornillos correctos en el receptáculo GFCI. Recuerda: <strong>Línea (LINE)</strong> es la energía entrante, y <strong>Carga (LOAD)</strong> protege a otras tomas en cadena. El color dorado es para Fase (Negro), plateado para Neutro (Blanco) y verde para Tierra.</p>
+
+                <div class="didactic-example" style="text-align: center; position: relative;">
+                    <svg viewBox="0 0 600 350" width="100%" max-width="600px" style="margin: 10px auto; background: #0f172a; border-radius: 8px; padding: 10px;">
+                        
+                        <!-- Panel Posterior del GFCI -->
+                        <rect x="220" y="50" width="160" height="250" rx="15" fill="#e2e8f0" stroke="#94a3b8" stroke-width="4"/>
+                        <rect x="250" y="20" width="100" height="30" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2"/>
+                        <rect x="250" y="300" width="100" height="30" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2"/>
+                        <text x="300" y="100" fill="#64748b" font-size="24" font-weight="bold" text-anchor="middle">GFCI</text>
+                        
+                        <!-- Separador LINE/LOAD -->
+                        <line x1="220" y1="175" x2="380" y2="175" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="300" y="140" fill="#ef4444" font-size="16" font-weight="bold" text-anchor="middle">LINE</text>
+                        <text x="300" y="210" fill="#3b82f6" font-size="16" font-weight="bold" text-anchor="middle">LOAD</text>
+
+                        <!-- Tornillos GFCI (Destinos) -->
+                        <!-- LINE: Fase (Dorado/Negro), Neutro (Plateado/Blanco) -->
+                        <circle cx="220" cy="120" r="12" fill="#d4d4d8" stroke="#71717a" stroke-width="3" id="screw-line-neutral"/> <!-- Plateado izq -->
+                        <circle cx="380" cy="120" r="12" fill="#fde047" stroke="#ca8a04" stroke-width="3" id="screw-line-hot"/> <!-- Dorado der -->
+                        
+                        <!-- LOAD: Fase (Dorado/Negro), Neutro (Plateado/Blanco) -->
+                        <circle cx="220" cy="230" r="12" fill="#d4d4d8" stroke="#71717a" stroke-width="3" id="screw-load-neutral"/> <!-- Plateado izq -->
+                        <circle cx="380" cy="230" r="12" fill="#fde047" stroke="#ca8a04" stroke-width="3" id="screw-load-hot"/> <!-- Dorado der -->
+
+                        <!-- Tornillo Tierra (Verde) -->
+                        <circle cx="250" cy="280" r="12" fill="#4ade80" stroke="#166534" stroke-width="3" id="screw-ground"/>
+
+                        <!-- Puntos de Origen de los Cables (Lado izquierdo y derecho) -->
+                        <g id="wires-source">
+                            <!-- Cables desde el Panel (Alimentación) -->
+                            <text x="80" y="50" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">Desde Panel (Energía)</text>
+                            
+                            <!-- Botones para conectar -->
+                            <g cursor="pointer" onclick="connectWire('panel-neutral')">
+                                <circle cx="80" cy="90" r="15" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+                                <text x="80" y="130" fill="#f8fafc" font-size="12" text-anchor="middle">Neutro</text>
+                            </g>
+                            <g cursor="pointer" onclick="connectWire('panel-hot')">
+                                <circle cx="80" cy="160" r="15" fill="#000" stroke="#ef4444" stroke-width="2"/>
+                                <text x="80" y="200" fill="#ef4444" font-size="12" text-anchor="middle">Fase</text>
+                            </g>
+                            <g cursor="pointer" onclick="connectWire('panel-ground')">
+                                <circle cx="80" cy="230" r="15" fill="#22c55e" stroke="#166534" stroke-width="2"/>
+                                <text x="80" y="270" fill="#22c55e" font-size="12" text-anchor="middle">Tierra</text>
+                            </g>
+
+                            <!-- Cables hacia Toma Adicional (Carga) -->
+                            <text x="520" y="50" fill="#fff" font-size="14" font-weight="bold" text-anchor="middle">Hacia Toma Normal</text>
+                            
+                            <g cursor="pointer" onclick="connectWire('out-neutral')">
+                                <circle cx="520" cy="90" r="15" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+                                <text x="520" y="130" fill="#f8fafc" font-size="12" text-anchor="middle">Neutro</text>
+                            </g>
+                            <g cursor="pointer" onclick="connectWire('out-hot')">
+                                <circle cx="520" cy="160" r="15" fill="#000" stroke="#ef4444" stroke-width="2"/>
+                                <text x="520" y="200" fill="#ef4444" font-size="12" text-anchor="middle">Fase</text>
+                            </g>
+                        </g>
+
+                        <!-- Paths dinámicos para los cables conectados -->
+                        <!-- Los paths inicialmente no tienen la D (o están ocultos) -->
+                        <path id="wire-path-panel-neutral" d="" fill="none" stroke="#f8fafc" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path id="wire-path-panel-hot" d="" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path id="wire-path-panel-ground" d="" fill="none" stroke="#22c55e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path id="wire-path-out-neutral" d="" fill="none" stroke="#f8fafc" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path id="wire-path-out-hot" d="" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    </svg>
+
+                    <div id="gfci-message" style="margin-top: 15px; font-weight:bold; font-size:1rem; color:var(--primary-color); min-height: 40px;">
+                        Selecciona un cable haciendo clic en su círculo de origen.
+                    </div>
+                    <button class="btn" onclick="resetGfci()" style="padding: 5px 15px; font-size: 0.9rem;">Reiniciar Simulación</button>
+                    
+                    <script>
+                        let activeWire = null;
+                        const connections = {}; // { wireId: targetId }
+                        
+                        // Coordenadas de los orígenes
+                        const origins = {
+                            'panel-neutral': {x: 80, y: 90, color: '#f8fafc', name: 'Neutro desde Panel'},
+                            'panel-hot': {x: 80, y: 160, color: '#000', name: 'Fase desde Panel'},
+                            'panel-ground': {x: 80, y: 230, color: '#22c55e', name: 'Tierra desde Panel'},
+                            'out-neutral': {x: 520, y: 90, color: '#f8fafc', name: 'Neutro hacia Toma'},
+                            'out-hot': {x: 520, y: 160, color: '#000', name: 'Fase hacia Toma'}
+                        };
+
+                        // Coordenadas de los tornillos (destinos)
+                        const destinations = {
+                            'screw-line-neutral': {x: 220, y: 120, validFor: ['panel-neutral']},
+                            'screw-line-hot': {x: 380, y: 120, validFor: ['panel-hot']},
+                            'screw-load-neutral': {x: 220, y: 230, validFor: ['out-neutral']},
+                            'screw-load-hot': {x: 380, y: 230, validFor: ['out-hot']},
+                            'screw-ground': {x: 250, y: 280, validFor: ['panel-ground']}
+                        };
+
+                        function connectWire(wireId) {
+                            activeWire = wireId;
+                            document.getElementById('gfci-message').textContent = `Conectando ${origins[wireId].name}. Haz clic en el tornillo correcto.`;
+                            document.getElementById('gfci-message').style.color = '#38bdf8';
+                        }
+
+                        function attemptConnection(destId) {
+                            if (!activeWire) return;
+                            
+                            const validOrigins = destinations[destId].validFor;
+                            if (validOrigins.includes(activeWire)) {
+                                // Conexión Correcta
+                                document.getElementById('gfci-message').textContent = '¡Conexión correcta! ✓';
+                                document.getElementById('gfci-message').style.color = '#4ade80';
+                                
+                                drawWire(activeWire, destId);
+                                connections[activeWire] = destId;
+                                activeWire = null;
+
+                                checkCompletion();
+                            } else {
+                                // Error
+                                document.getElementById('gfci-message').textContent = '❌ Conexión incorrecta. Revisa el color del tornillo (Dorado=Fase, Plateado=Neutro) y si es LINE o LOAD.';
+                                document.getElementById('gfci-message').style.color = '#ef4444';
+                                activeWire = null;
+                            }
+                        }
+
+                        function drawWire(wireId, destId) {
+                            const o = origins[wireId];
+                            const d = destinations[destId];
+                            const path = document.getElementById(`wire-path-${wireId}`);
+                            
+                            // Dibuja una curva de bezier simple
+                            const dStr = `M ${o.x} ${o.y} C ${o.x + (d.x - o.x)/2} ${o.y}, ${o.x + (d.x - o.x)/2} ${d.y}, ${d.x} ${d.y}`;
+                            path.setAttribute('d', dStr);
+                        }
+
+                        function resetGfci() {
+                            activeWire = null;
+                            for (let wire in origins) {
+                                document.getElementById(`wire-path-${wire}`).setAttribute('d', '');
+                                delete connections[wire];
+                            }
+                            document.getElementById('gfci-message').textContent = 'Selecciona un cable haciendo clic en su círculo de origen.';
+                            document.getElementById('gfci-message').style.color = 'var(--primary-color)';
+                        }
+
+                        function checkCompletion() {
+                            if (Object.keys(connections).length === 5) {
+                                document.getElementById('gfci-message').innerHTML = '<strong>¡Excelente! 🎉</strong> Has conectado correctamente el receptáculo GFCI. Protegiendo la toma actual y la toma en cadena.';
+                                document.getElementById('gfci-message').style.color = '#facc15';
+                            }
+                        }
+
+                        // Agregar eventos de click a los tornillos al cargar
+                        setTimeout(() => {
+                            for (let destId in destinations) {
+                                const el = document.getElementById(destId);
+                                if(el) {
+                                    el.style.cursor = 'pointer';
+                                    el.onclick = () => attemptConnection(destId);
+                                }
+                            }
+                        }, 500);
+
+                    </script>
+                </div>
+
                 <div class="danger-box">
                     <strong>⚠️ CRÍTICO - Seguridad en Tomas:</strong>
                     <ul>

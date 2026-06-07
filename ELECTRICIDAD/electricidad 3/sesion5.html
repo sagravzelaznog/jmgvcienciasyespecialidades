@@ -33,6 +33,7 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .sim-btn {
@@ -109,7 +110,7 @@
 
         .grid-causas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -122,9 +123,23 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border-bottom: 4px solid var(--primary-color);
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .causa-card:hover { transform: translateY(-5px); }
-        .causa-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .causa-svg-box {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 1rem;
+            background: var(--bg-main);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
     </style>
 </head>
 <body>
@@ -147,15 +162,51 @@
         <p>Un fusible es intencionalmente <strong>el punto más débil</strong> de todo el circuito. Es un hilo de metal muy fino (usualmente zinc o estaño) encapsulado en vidrio o cerámica. Su trabajo es permitir el paso de la corriente normal, pero si la corriente sube a niveles peligrosos, este hilo se calienta tanto que <strong>se funde (se derrite)</strong>, cortando físicamente el cable y deteniendo la electricidad antes de que la casa se incendie.</p>
         
         <div class="grid-causas">
-            <div class="causa-card">
-                <i class="fas fa-plug" style="color: #f39c12;"></i>
-                <h3>Sobrecarga</h3>
-                <p>Ocurre cuando conectas <strong>demasiados aparatos</strong> en el mismo enchufe. La corriente sube poco a poco. El fusible se va calentando lentamente hasta que, minutos después, se derrite y hace "clic".</p>
+            <div class="causa-card" style="border-bottom-color: #f39c12;">
+                <div class="causa-svg-box">
+                    <svg viewBox="0 0 200 150" width="100%" height="100%">
+                        <!-- Regleta / Power Strip -->
+                        <rect x="20" y="50" width="160" height="40" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+                        <circle cx="50" cy="70" r="10" fill="#1e293b"/>
+                        <circle cx="100" cy="70" r="10" fill="#1e293b"/>
+                        <circle cx="150" cy="70" r="10" fill="#1e293b"/>
+                        <!-- Plugs inserted -->
+                        <!-- Plug 1 -->
+                        <path d="M 45 10 L 55 10 L 55 55 L 45 55 Z" fill="#334155"/>
+                        <path d="M 48 0 L 48 10 M 52 0 L 52 10" stroke="#94a3b8" stroke-width="2"/>
+                        <!-- Plug 2 -->
+                        <path d="M 95 10 L 105 10 L 105 55 L 95 55 Z" fill="#334155"/>
+                        <path d="M 98 0 L 98 10 M 102 0 L 102 10" stroke="#94a3b8" stroke-width="2"/>
+                        <!-- Plug 3 -->
+                        <path d="M 145 10 L 155 10 L 155 55 L 145 55 Z" fill="#334155"/>
+                        <path d="M 148 0 L 148 10 M 152 0 L 152 10" stroke="#94a3b8" stroke-width="2"/>
+                        <!-- Heat waves/Overload indication -->
+                        <path d="M 30 110 Q 50 130 70 110 T 110 110 T 150 110 T 180 110" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="8,4" opacity="0.8"/>
+                        <path d="M 20 125 Q 50 145 70 125 T 110 125 T 150 125 T 190 125" fill="none" stroke="#ef4444" stroke-width="4" stroke-dasharray="8,4" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h3 style="color: #f39c12;">Sobrecarga</h3>
+                <p>Ocurre cuando conectas <strong>demasiados aparatos</strong> en el mismo enchufe. La corriente sube poco a poco. El fusible se va calentando lentamente hasta que se derrite.</p>
             </div>
-            <div class="causa-card">
-                <i class="fas fa-bolt" style="color: #e74c3c;"></i>
-                <h3>Cortocircuito</h3>
-                <p>Ocurre cuando el cable de FASE toca directamente al NEUTRO o la TIERRA. La corriente sube a niveles monstruosos (miles de amperios) en <strong>milisegundos</strong>. El fusible explota instantáneamente para evitar un incendio.</p>
+            
+            <div class="causa-card" style="border-bottom-color: #e74c3c;">
+                <div class="causa-svg-box">
+                    <svg viewBox="0 0 200 150" width="100%" height="100%">
+                        <!-- Wire 1 (Fase) -->
+                        <path d="M 20 20 Q 80 80 100 75" fill="none" stroke="#ef4444" stroke-width="12" stroke-linecap="round"/>
+                        <!-- Wire 2 (Neutro) -->
+                        <path d="M 180 130 Q 120 70 100 75" fill="none" stroke="#3b82f6" stroke-width="12" stroke-linecap="round"/>
+                        <!-- Copper core touching -->
+                        <circle cx="100" cy="75" r="8" fill="#f59e0b"/>
+                        <!-- Explosion spark -->
+                        <path d="M 100 40 L 110 65 L 130 65 L 115 80 L 125 105 L 100 90 L 75 105 L 85 80 L 70 65 L 90 65 Z" fill="#fef08a" stroke="#f59e0b" stroke-width="2"/>
+                        <!-- Shockwaves -->
+                        <circle cx="100" cy="75" r="30" fill="none" stroke="#ef4444" stroke-width="3" opacity="0.5" stroke-dasharray="10, 5"/>
+                        <circle cx="100" cy="75" r="45" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.3" stroke-dasharray="10, 10"/>
+                    </svg>
+                </div>
+                <h3 style="color: #e74c3c;">Cortocircuito</h3>
+                <p>Ocurre cuando el cable de FASE toca directamente al NEUTRO. La corriente sube a miles de amperios en <strong>milisegundos</strong>. El fusible explota instantáneamente.</p>
             </div>
         </div>
 

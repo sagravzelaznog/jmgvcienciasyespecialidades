@@ -21,12 +21,28 @@
             text-align: center;
             box-shadow: var(--shadow-soft);
             border-bottom: 4px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .control-card i {
-            font-size: 3rem;
-            color: var(--primary-color);
+        .control-svg-box {
+            width: 100%;
+            height: 150px;
             margin-bottom: 1rem;
+            background: var(--bg-main);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .control-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
         }
 
         .control-card ul {
@@ -34,6 +50,7 @@
             font-size: 0.9rem;
             color: var(--text-muted);
             padding-left: 1.5rem;
+            width: 100%;
         }
 
         /* VFD Simulator */
@@ -157,7 +174,24 @@
         
         <div class="control-grid">
             <div class="control-card">
-                <i class="fas fa-wave-square"></i>
+                <div class="control-svg-box">
+                    <svg viewBox="0 0 150 150" width="100%" height="100%">
+                        <!-- VFD Body -->
+                        <rect x="35" y="15" width="80" height="120" rx="5" fill="#334155" stroke="#1e293b" stroke-width="2"/>
+                        <!-- Screen -->
+                        <rect x="45" y="25" width="60" height="25" rx="2" fill="#22c55e"/>
+                        <text x="75" y="42" fill="white" font-size="12" text-anchor="middle" font-family="Courier New, monospace" font-weight="bold">30.0 Hz</text>
+                        <!-- Knob -->
+                        <circle cx="75" cy="75" r="15" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+                        <path d="M 75 75 L 65 65" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+                        <!-- Buttons -->
+                        <circle cx="55" cy="115" r="5" fill="#ef4444"/>
+                        <circle cx="75" cy="115" r="5" fill="#3b82f6"/>
+                        <circle cx="95" cy="115" r="5" fill="#10b981"/>
+                        <!-- Modulated Wave background -->
+                        <path d="M 10 75 Q 20 60 30 75 T 50 75 T 70 75 T 90 75 T 110 75 T 130 75 T 150 75" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.3" id="sine-wave"/>
+                    </svg>
+                </div>
                 <h3>Variador de Frecuencia (VFD)</h3>
                 <p>El rey del control. Modifica la frecuencia (Hz) de la corriente alterna.</p>
                 <ul>
@@ -169,7 +203,21 @@
             </div>
             
             <div class="control-card">
-                <i class="fas fa-tachometer-alt"></i>
+                <div class="control-svg-box">
+                    <svg viewBox="0 0 150 150" width="100%" height="100%">
+                        <!-- Soft Starter Body -->
+                        <rect x="35" y="25" width="80" height="100" rx="5" fill="#475569" stroke="#1e293b" stroke-width="2"/>
+                        <rect x="45" y="35" width="60" height="15" fill="#1e293b"/>
+                        <circle cx="75" cy="100" r="12" fill="#cbd5e1"/>
+                        <path d="M 75 100 L 75 90" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Voltage Ramp Graph inside screen -->
+                        <rect x="50" y="55" width="50" height="30" fill="#1e293b"/>
+                        <!-- Axes -->
+                        <path d="M 52 57 L 52 83 L 98 83" fill="none" stroke="#64748b" stroke-width="1"/>
+                        <!-- Ramp Line -->
+                        <path d="M 52 83 L 80 60 L 98 60" fill="none" stroke="#22c55e" stroke-width="2"/>
+                    </svg>
+                </div>
                 <h3>Arrancador Suave (Soft Starter)</h3>
                 <p>Una alternativa más económica si solo te importa el momento de encendido.</p>
                 <ul>
