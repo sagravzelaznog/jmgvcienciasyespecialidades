@@ -3,414 +3,361 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 15: Integración de Conceptos I | Aplicación Práctica</title>
+    <title>Sesión 15: Integración Residencial - El Cuadro de Cargas</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .concept-map {
-            background-color: #f0f7ff;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
-            border: 2px solid #3498db;
-        }
-        
-        .integration-card {
-            border: 2px solid #2ecc71;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-            background-color: #f0fdf4;
-            transition: all 0.3s ease;
-        }
-        
-        .integration-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
-        }
-        
-        .practical-challenge {
-            background-color: #fef9e7;
-            border-left: 4px solid #f1c40f;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .concept-connections {
+        .map-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
-        
-        .connection {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .connection:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .connection h4 {
-            color: #2c3e50;
-            margin-top: 0;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-        }
-        
-        .interactive-diagram {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+
+        .map-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 1.5rem;
             text-align: center;
-            border: 1px dashed #7f8c8d;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+
+        .map-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .map-arrow {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .map-arrow {
+                right: 50%;
+                bottom: -25px;
+                top: auto;
+                transform: translateX(50%) rotate(90deg);
+            }
+        }
+
+        /* Load Calculator */
+        .load-calc {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .calc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .calc-table th, .calc-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .calc-table th {
+            background: #1a252f;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .calc-table input {
+            width: 80px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #7f8c8d;
+            background: #34495e;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .result-panel {
+            background: #1a252f;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #2ecc71;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .result-box {
+            text-align: center;
+        }
+
+        .result-val {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2ecc71;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .breaker-recommend {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            animation: pulseWarning 2s infinite alternate;
+        }
+
+        @keyframes pulseWarning {
+            from { box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); }
+            to { box-shadow: 0 0 20px rgba(231, 76, 60, 1); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sesión 15: Integración de Conceptos I</h1>
-            <p>Conexión de principios eléctricos fundamentales</p>
-        </div>
-    </header>
 
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Integración: La Casa Completa</h1>
+        <p class="sesion-subtitle">Sesión 15 - Módulo 8: Diseñando el Sistema Residencial</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-home"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Unir todas las piezas del rompecabezas. Usaremos la Ley de Ohm, los Transformadores y las Normas para calcular el "Cuadro de Cargas" de una vivienda real y elegir el Breaker Principal correcto.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>El Viaje de la Energía</h2>
+        <p>A lo largo del curso hemos visto componentes aislados. Así es como se conectan todos para encender tu televisor:</p>
         
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Integrar y aplicar los conceptos fundamentales de electricidad vistos en sesiones anteriores para resolver problemas complejos y comprender sistemas eléctricos completos.</p>
+        <div class="map-grid">
+            <div class="map-card">
+                <i class="fas fa-industry"></i>
+                <h3>1. Generación</h3>
+                <p>Imanes gigantes girando crean electricidad (Inducción Magnética).</p>
+                <div class="map-arrow"><i class="fas fa-chevron-right"></i></div>
             </div>
-
-            <div class="theory">
-                <h2>Mapa conceptual integrador</h2>
-                
-                <div class="concept-map">
-                    <h3>Conexión entre conceptos clave</h3>
-                    <div class="concept-connections">
-                        <div class="connection">
-                            <h4>Ley de Ohm y Potencia</h4>
-                            <p>V = I×R</p>
-                            <p>P = V×I</p>
-                            <p>→ Base para todos los cálculos</p>
-                        </div>
-                        <div class="connection">
-                            <h4>Circuitos en Serie/Paralelo</h4>
-                            <p>Resistencia equivalente</p>
-                            <p>División de corriente y voltaje</p>
-                            <p>→ Aplicación de leyes de Kirchhoff</p>
-                        </div>
-                        <div class="connection">
-                            <h4>Magnetismo</h4>
-                            <p>Campos magnéticos</p>
-                            <p>Inducción electromagnética</p>
-                            <p>→ Fundamentos de motores y generadores</p>
-                        </div>
-                        <div class="connection">
-                            <h4>Transformadores</h4>
-                            <p>Relación de vueltas</p>
-                            <p>Pérdidas y eficiencia</p>
-                            <p>→ Distribución de energía</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="integration-card">
-                    <h3>¿Cómo se relacionan estos conceptos en la vida real?</h3>
-                    <p>Imagina un sistema de suministro eléctrico completo:</p>
-                    <ol>
-                        <li>La energía se genera en una planta (inducción electromagnética)</li>
-                        <li>Se eleva el voltaje para transmisión (transformadores)</li>
-                        <li>Se distribuye a través de la red (circuitos en paralelo)</li>
-                        <li>Se reduce el voltaje para uso doméstico (más transformadores)</li>
-                        <li>Finalmente alimenta dispositivos que convierten la energía (ley de Ohm y potencia)</li>
-                    </ol>
-                </div>
+            <div class="map-card">
+                <i class="fas fa-bolt"></i>
+                <h3>2. Transmisión</h3>
+                <p>Transformadores Elevadores suben a 400,000V para viajar kilómetros sin perderse en calor (Efecto Joule).</p>
+                <div class="map-arrow"><i class="fas fa-chevron-right"></i></div>
             </div>
-
-            <div class="visual-example">
-                <h2>Analogía: El sistema circulatorio eléctrico</h2>
-                <div class="analogy">
-                    <p>Compara el sistema eléctrico con el sistema circulatorio humano:</p>
-                    <div class="interactive-diagram">
-                        <p>[Diagrama interactivo: Comparación entre sistema circulatorio y circuito eléctrico]</p>
-                        <div class="comparison-container">
-                            <div class="comparison-item">
-                                <h4>Sistema Circulatorio</h4>
-                                <p>Corazón → Fuente de voltaje</p>
-                                <p>Vasos sanguíneos → Cables</p>
-                                <p>Sangre → Electrones</p>
-                                <p>Válvulas → Interruptores</p>
-                                <p>Órganos → Dispositivos eléctricos</p>
-                            </div>
-                            <div class="comparison-item">
-                                <h4>Sistema Eléctrico</h4>
-                                <p>Fuente de poder → Corazón</p>
-                                <p>Cables → Vasos sanguíneos</p>
-                                <p>Electrones → Glóbulos rojos</p>
-                                <p>Interruptores → Válvulas</p>
-                                <p>Dispositivos → Órganos</p>
-                            </div>
-                        </>
-                    </div>
-                </div>
+            <div class="map-card">
+                <i class="fas fa-box"></i>
+                <h3>3. Distribución</h3>
+                <p>Transformadores en postes (Reductores) bajan el voltaje a 120V seguros para la casa.</p>
+                <div class="map-arrow"><i class="fas fa-chevron-right"></i></div>
             </div>
-
-            <div class="practical-activity">
-                <h2>Desafío práctico integrador</h2>
-                
-                <div class="practical-challenge">
-                    <h3>Diseño de un sistema de energía residencial</h3>
-                    <p><strong>Objetivo:</strong> Diseñar el sistema eléctrico básico para una casa pequeña, integrando todos los conceptos vistos.</p>
-                    
-                    <h4>Requisitos:</h4>
-                    <ul>
-                        <li>4 habitaciones con 2 tomas de corriente cada una</li>
-                        <li>Sala/comedor con 6 tomas</li>
-                        <li>Cocina con 8 tomas (incluyendo tomas de 220V)</li>
-                        <li>2 baños con 1 toma cada uno</li>
-                        <li>Área de lavado con 2 tomas</li>
-                        <li>Iluminación: 12 focos LED de 9W</li>
-                        <li>Electrodomésticos principales: Refrigerador, microondas, TV, computadora</li>
-                    </ul>
-                    
-                    <h4>Actividades:</h4>
-                    <ol>
-                        <li><strong>Diagrama unifilar:</strong> Crear el diagrama del sistema eléctrico</li>
-                        <li><strong>Cálculo de cargas:</strong> Determinar la corriente total y por circuito</li>
-                        <li><strong>Selección de conductores:</strong> Basado en la corriente y caída de tensión</li>
-                        <li><strong>Protecciones:</strong> Especificar interruptores termomagnéticos</li>
-                        <li><strong>Tablero principal:</strong> Diseñar la distribución del tablero</li>
-                    </ol>
-                    
-                    <div class="interactive-diagram">
-                        <h4>Herramienta de diseño interactivo</h4>
-                        <p>[Espacio para herramienta de diseño de circuitos residenciales]</p>
-                        <p><em>Nota: Esta herramienta permitiría arrastrar y conectar componentes para crear el diagrama.</em></p>
-                    </div>
-                </div>
-                
-                <h3>Guía paso a paso:</h3>
-                <div class="measurement-steps">
-                    <h4>1. Cálculo de cargas</h4>
-                    <table class="measurement-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Circuito</th>
-                                <th scope="col">Potencia (W)</th>
-                                <th scope="col">Voltaje (V)</th>
-                                <th scope="col">Corriente (A)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <label for="potencia-iluminacion">Iluminación</label>
-                                </th>
-                                <td>
-                                    <input type="number" 
-                                           id="potencia-iluminacion" 
-                                           value="108" 
-                                           onchange="calcularCorriente('iluminacion')"
-                                           aria-label="Potencia de iluminación en vatios"
-                                           title="Ingrese la potencia de iluminación en vatios">
-                                </td>
-                                <td>120</td>
-                                <td id="corriente-iluminacion">0.9</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <label for="potencia-contactos">Contactos habitaciones</label>
-                                </th>
-                                <td>
-                                    <input type="number" 
-                                           id="potencia-contactos" 
-                                           value="1500" 
-                                           onchange="calcularCorriente('contactos')"
-                                           aria-label="Potencia de contactos en vatios"
-                                           title="Ingrese la potencia de los contactos en vatios">
-                                </td>
-                                <td>120</td>
-                                <td id="corriente-contactos">12.5</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <label for="potencia-cocina">Cocina</label>
-                                </th>
-                                <td>
-                                    <input type="number" 
-                                           id="potencia-cocina" 
-                                           value="5000" 
-                                           onchange="calcularCorriente('cocina')"
-                                           aria-label="Potencia de cocina en vatios"
-                                           title="Ingrese la potencia de la cocina en vatios">
-                                </td>
-                                <td>220</td>
-                                <td id="corriente-cocina">22.7</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn" onclick="calcularTotal()">Calcular corriente total</button>
-                    <p id="resultado-total"></p>
-                </div>
+            <div class="map-card">
+                <i class="fas fa-home"></i>
+                <h3>4. Consumo</h3>
+                <p>El Centro de Carga divide la corriente en paralelo, protegiéndola con Pastillas Termomagnéticas.</p>
             </div>
-
-            <div class="case-study">
-                <h2>Estudio de caso: Análisis de falla</h2>
-                <div class="case-content">
-                    <p><strong>Escenario:</strong> Una casa experimenta constantes apagones en el circuito de iluminación. Algunas luces parpadean y los focos se queman con frecuencia.</p>
-                    
-                    <div class="case-tasks">
-                        <p><strong>Datos:</strong></p>
-                        <ul>
-                            <li>El circuito tiene 10 focos LED de 9W</li>
-                            <li>La instalación tiene aproximadamente 15 años</li>
-                            <li>Recientemente se agregaron 4 luces adicionales</li>
-                            <li>El interruptor automático es de 10A</li>
-                            <li>Se midió 105V en las tomas (cuando deberían ser 120V)</li>
-                        </ul>
-                        
-                        <p><strong>Tareas:</strong></p>
-                        <ol>
-                            <li>Identificar posibles causas del problema</li>
-                            <li>Proponer un plan de diagnóstico</li>
-                            <li>Sugerir soluciones</li>
-                            <li>Calcular la corriente real del circuito</li>
-                        </ol>
-                    </div>
-
-                    <div class="solucion">
-                        <button class="btn" onclick="toggleSolucion()">Mostrar solución</button>
-                        <div id="solucion" class="hidden-solution">
-                            <h4>Análisis y solución:</h4>
-                            <ol>
-                                <li><strong>Causas probables:</strong>
-                                    <ul>
-                                        <li>Sobrecarga del circuito</li>
-                                        <li>Conexión floja en algún punto</li>
-                                        <li>Corrosión en los contactos</li>
-                                        <li>Caída de tensión excesiva</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Plan de diagnóstico:</strong>
-                                    <ol>
-                                        <li>Medir corriente en diferentes puntos</li>
-                                        <li>Verificar conexiones en cajas de paso</li>
-                                        <li>Inspeccionar estado de los empalmes</li>
-                                        <li>Medir resistencia de los conductores</li>
-                                    </ol>
-                                </li>
-                                <li><strong>Soluciones recomendadas:</strong>
-                                    <ul>
-                                        <li>Dividir el circuito en dos</li>
-                                        <li>Revisar y apretar todas las conexiones</li>
-                                        <li>Considerar actualizar el cableado si es necesario</li>
-                                        <li>Verificar la calidad de la tierra física</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Cálculos:</strong>
-                                    <p>Corriente total = (10 focos × 9W) / 105V = 0.86A</p>
-                                    <p>La corriente está muy por debajo del límite del interruptor (10A), lo que sugiere que el problema no es sobrecarga sino pérdidas en las conexiones.</p>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>Considerando el rápido avance de la tecnología y la creciente demanda de energía, ¿cómo podrías rediseñar el sistema eléctrico de una vivienda para que sea más eficiente, sostenible y preparado para las necesidades futuras? Considera aspectos como energías renovables, domótica y vehículos eléctricos.</p>
-                <textarea placeholder="Escribe tus reflexiones aquí..."></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos visuales sugeridos</h2>
-                <div class="resource-list">
-                    <div class="resource">
-                        <h3>Simulador de instalaciones eléctricas</h3>
-                        <p>Herramienta interactiva para diseñar y probar instalaciones eléctricas residenciales.</p>
-                        <p><strong>Formatos:</strong> Web, compatible con móviles</p>
-                    </div>
-                    <div class="resource">
-                        <h3>Guía de códigos eléctricos</h3>
-                        <p>Manual interactivo con los estándares de instalación eléctrica.</p>
-                        <p><strong>Formatos:</strong> PDF con enlaces interactivos</p>
-                    </div>
-                    <div class="resource">
-                        <h3>Modelos 3D de instalaciones</h3>
-                        <p>Vista en 3D de diferentes tipos de instalaciones eléctricas.</p>
-                        <p><strong>Formatos:</strong> STL, compatible con realidad aumentada</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="session-navigation">
-            <a href="sesion14.html" class="btn">← Sesión anterior</a>
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion16.html" class="btn">Próxima sesión →</a>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+    <div class="practica-section">
+        <h2>Simulador: Cuadro de Cargas Residencial</h2>
+        <p>Estás diseñando la electricidad para una casa nueva. Ingresa la cantidad de focos y contactos que el cliente pidió. El simulador aplicará la Ley de Ohm (I = P/V) y el Factor de Demanda (Nadie enciende todo al mismo tiempo) para recomendar el Interruptor Principal.</p>
 
-    <script>
-        function toggleSolucion() {
-            var solucion = document.getElementById('solucion');
-            solucion.classList.toggle('hidden-solution');
-            event.target.textContent = solucion.classList.contains('hidden-solution') ? 
-                'Mostrar solución' : 'Ocultar solución';
-        }
+        <div class="load-calc">
+            <table class="calc-table">
+                <thead>
+                    <tr>
+                        <th>Circuito</th>
+                        <th>Cantidad</th>
+                        <th>Watts Estimados (c/u)</th>
+                        <th>Voltaje (V)</th>
+                        <th>Amperes (A)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Focos LED (Iluminación)</td>
+                        <td><input type="number" id="qty-luces" value="15" min="0" oninput="calcLoad()"></td>
+                        <td>15 W</td>
+                        <td>120 V</td>
+                        <td id="amp-luces">0.0 A</td>
+                    </tr>
+                    <tr>
+                        <td>Contactos Uso General</td>
+                        <td><input type="number" id="qty-tomas" value="20" min="0" oninput="calcLoad()"></td>
+                        <td>180 W (Norma)</td>
+                        <td>120 V</td>
+                        <td id="amp-tomas">0.0 A</td>
+                    </tr>
+                    <tr>
+                        <td>Aires Acondicionados (Minisplit)</td>
+                        <td><input type="number" id="qty-ac" value="2" min="0" oninput="calcLoad()"></td>
+                        <td>1500 W</td>
+                        <td>220 V</td>
+                        <td id="amp-ac">0.0 A</td>
+                    </tr>
+                    <tr>
+                        <td>Bomba de Agua (1 HP)</td>
+                        <td><input type="number" id="qty-bomba" value="1" min="0" oninput="calcLoad()"></td>
+                        <td>746 W</td>
+                        <td>120 V</td>
+                        <td id="amp-bomba">0.0 A</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        function calcularCorriente(circuito) {
-            const potencia = parseFloat(document.getElementById(`potencia-${circuito}`).value);
-            const voltaje = (circuito === 'cocina') ? 220 : 120;
-            const corriente = (potencia / voltaje).toFixed(2);
-            document.getElementById(`corriente-${circuito}`).textContent = corriente;
-        }
+            <div class="result-panel">
+                <div class="result-box">
+                    <div style="font-size:0.8rem; color:#bdc3c7;">Corriente Total Instalada (100% encendido)</div>
+                    <div class="result-val" id="total-amp" style="color:white;">0.0 A</div>
+                </div>
+                
+                <div class="result-box">
+                    <div style="font-size:0.8rem; color:#bdc3c7;">Carga Calculada (Factor Demanda 70%)</div>
+                    <div class="result-val" id="demand-amp">0.0 A</div>
+                </div>
 
-        function calcularTotal() {
-            const corrientes = ['iluminacion', 'contactos', 'cocina'];
-            let total = 0;
-            
-            corrientes.forEach(circuito => {
-                const corriente = parseFloat(document.getElementById(`corriente-${circuito}`).textContent);
-                total += corriente;
-            });
-            
-            document.getElementById('resultado-total').innerHTML = 
-                `<strong>Corriente total calculada:</strong> ${total.toFixed(2)}A<br>
-                 <strong>Factor de demanda (80%):</strong> ${(total * 0.8).toFixed(2)}A`;
-        }
+                <div class="result-box" style="text-align:right;">
+                    <div style="font-size:0.8rem; color:#bdc3c7; margin-bottom:5px;">Interruptor Principal Recomendado</div>
+                    <div class="breaker-recommend" id="breaker-size">2x 30A</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "En el cuadro de cargas, la Norma (NOM/NEC) nos obliga a calcular cada tomacorriente de 'uso general' como si consumiera 180 Watts. ¿Por qué se hace esto?",
+                "options": [
+                    "Porque todos los celulares consumen 180 Watts exactos al cargarse.",
+                    "Es un margen de seguridad estandarizado para estimar la carga, ya que no sabemos qué aparato conectará el cliente en el futuro.",
+                    "Porque a 180 Watts el cable de cobre no se oxida."
+                ],
+                "correctIndex": 1,
+                "explanation": "El electricista no puede adivinar si el cliente enchufará una lámpara de 10W o una plancha de 1000W. El estándar asume un promedio de 180W (1.5 Amperes a 120V) por contacto para asegurar que el cableado general soporte el uso diario."
+            },
+            {
+                "question": "¿Qué es el 'Factor de Demanda' en el diseño eléctrico residencial?",
+                "options": [
+                    "El precio que cobra la CFE por la electricidad de demanda.",
+                    "El reconocimiento matemático de que es casi imposible que una familia encienda TODOS los focos, teles, licuadoras y aires acondicionados al mismo tiempo exacto.",
+                    "Un factor que obliga a instalar cables más delgados para ahorrar dinero."
+                ],
+                "correctIndex": 1,
+                "explanation": "Si sumas la capacidad máxima de todos los aparatos de una casa, podrías necesitar un interruptor gigante de 100 Amperes. Pero el Factor de Demanda (ej. 70%) asume que solo un porcentaje se usa simultáneamente, permitiéndote usar un servicio normal de 60A de forma segura."
+            },
+            {
+                "question": "¿Por qué los aparatos de alto consumo (como Aires Acondicionados) se conectan a 220V en lugar de 120V?",
+                "options": [
+                    "Para que giren más rápido.",
+                    "Porque según la Ley de Ohm (P=V*I), si duplicas el voltaje (220V), el amperaje se reduce a la mitad para la misma potencia. Menos amperaje significa que puedes usar cables más delgados y baratos.",
+                    "Es falso, a 220V gastan el doble de electricidad en el recibo."
+                ],
+                "correctIndex": 1,
+                "explanation": "Exacto. Un aire de 2400W a 120V usaría 20 Amperes (requiere cable grueso Calibre 12). A 240V usa solo 10 Amperes (cable Calibre 14 es suficiente). El consumo (Watts) es el mismo, el ahorro está en la instalación de cobre."
+            },
+            {
+                "question": "Si sumando la carga con el Factor de Demanda obtienes 42 Amperes, ¿qué pastilla termomagnética principal (Breaker Main) debes instalar?",
+                "options": [
+                    "Una de 40 Amperes.",
+                    "Una de 50 Amperes.",
+                    "Dos pastillas de 20 Amperes."
+                ],
+                "correctIndex": 1,
+                "explanation": "Nunca instales un breaker por DEBAJO de tu carga calculada, porque se botará constantemente. Siempre vas al siguiente tamaño comercial superior (en este caso, 50A) para tener margen operativo."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion14.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion16.html" class="nav-btn next">Siguiente Sesión (Proyecto Final) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function calcLoad() {
+        const qL = parseInt(document.getElementById('qty-luces').value) || 0;
+        const qT = parseInt(document.getElementById('qty-tomas').value) || 0;
+        const qAC = parseInt(document.getElementById('qty-ac').value) || 0;
+        const qB = parseInt(document.getElementById('qty-bomba').value) || 0;
+
+        // I = P / V
+        const ampL = (qL * 15) / 120;
+        const ampT = (qT * 180) / 120;
+        const ampAC = (qAC * 1500) / 220;
+        const ampB = (qB * 746) / 120;
+
+        document.getElementById('amp-luces').textContent = ampL.toFixed(1) + " A";
+        document.getElementById('amp-tomas').textContent = ampT.toFixed(1) + " A";
+        document.getElementById('amp-ac').textContent = ampAC.toFixed(1) + " A";
+        document.getElementById('amp-bomba').textContent = ampB.toFixed(1) + " A";
+
+        // Let's assume a 220V split-phase panel. We balance loads, but for simplicity, we'll sum max leg amp equivalent.
+        // Simplified calculation for teaching purposes:
+        const totalAmps120 = ampL + ampT + ampB;
+        // Divide 120V loads roughly between two legs
+        const leg120 = totalAmps120 / 2;
+        // 220V loads hit both legs directly
+        const totalLegAmps = leg120 + ampAC; 
+
+        document.getElementById('total-amp').textContent = (totalLegAmps * 2).toFixed(1) + " A"; // Total raw
         
-        // Calcular corrientes iniciales
-        window.onload = function() {
-            ['iluminacion', 'contactos', 'cocina'].forEach(calcularCorriente);
-        };
-    </script>
+        // Demand Factor = 70%
+        const demandAmps = totalLegAmps * 0.70;
+        document.getElementById('demand-amp').textContent = demandAmps.toFixed(1) + " A (por fase)";
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+        // Breaker selection
+        let breaker = 30;
+        if(demandAmps > 24) breaker = 40;
+        if(demandAmps > 32) breaker = 50;
+        if(demandAmps > 40) breaker = 60;
+        if(demandAmps > 48) breaker = 100;
+        if(demandAmps > 80) breaker = 150;
+
+        document.getElementById('breaker-size').textContent = "Bipolar 2x " + breaker + " A";
+    }
+
+    calcLoad();
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion15');
+          window.markLessonCompleted('electricidad3', 'sesion15');
       }
   });
 </script>
