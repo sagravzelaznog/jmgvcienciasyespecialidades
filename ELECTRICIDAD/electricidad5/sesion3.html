@@ -3,301 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 3: Radiación Solar y Orientación de Paneles</title>
+    <title>Sesión 3: Radiación y Orientación - Apuntando al Cielo</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary-color);
             padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3 {
+            border-radius: 5px;
             color: #2c3e50;
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+
+        /* Tilt Simulator */
+        .tilt-sim {
+            background: #111;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .back-button:hover {
-            background-color: #2980b9;
+
+        .sky-view {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            background: linear-gradient(180deg, #3498db 0%, #ecf0f1 100%);
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #34495e;
+            border-bottom: none;
         }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+
+        .ground {
+            width: 100%;
+            max-width: 500px;
+            height: 40px;
+            background: #27ae60;
+            border-radius: 0 0 10px 10px;
+            border: 2px solid #34495e;
+            border-top: none;
+            position: relative;
         }
-        .activity {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
+
+        .sun {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #f1c40f;
+            border-radius: 50%;
+            box-shadow: 0 0 40px #f1c40f;
+            transition: all 1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .activity h4 {
-            margin-top: 0;
-            color: #2c3e50;
+
+        .sun i {
+            color: #d35400;
+            font-size: 2rem;
         }
-        .practical-exercise {
-            background-color: #fff8e1;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #ffa000;
+
+        .sun-ray {
+            position: absolute;
+            width: 2px;
+            height: 200px;
+            background: rgba(241, 196, 15, 0.5);
+            transform-origin: top center;
+            transition: all 1s ease-in-out;
         }
-        .practical-exercise h4 {
-            color: #e65100;
-            margin-top: 0;
+
+        .panel-mount {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 50px;
+            background: #7f8c8d;
         }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
+
+        .panel {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            width: 100px;
+            height: 10px;
+            background: #2c3e50;
+            border-top: 4px solid #3498db;
+            transform-origin: center center;
+            transition: transform 0.3s;
         }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
+
+        .controls-panel {
+            width: 100%;
+            max-width: 500px;
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 10px;
             margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-group label {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .control-group select, .control-group input {
+            padding: 10px;
             border-radius: 5px;
-            border-left: 3px solid #27ae60;
+            border: 1px solid #7f8c8d;
+            background: #34495e;
+            color: white;
+            font-size: 1rem;
         }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .image-container {
+
+        .eff-display {
+            grid-column: span 2;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
             text-align: center;
-            margin: 20px 0;
+            font-size: 1.2rem;
         }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
+
+        .eff-val {
+            font-size: 2.5rem;
+            font-weight: bold;
+            font-family: monospace;
+            transition: color 0.3s;
         }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
+            .concept-grid { grid-template-columns: 1fr; }
+            .controls-panel { grid-template-columns: 1fr; }
+            .eff-display { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
+
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Radiación y Orientación</h1>
+        <p class="sesion-subtitle">Sesión 3 - Módulo 1: Apuntando al Cielo</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-compass"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Un panel de la más alta calidad es inútil si está mal orientado. Aprenderás a encontrar el ángulo perfecto de inclinación dependiendo de tu latitud geográfica y la época del año para maximizar la producción de energía.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>¿Potencia o Energía? Irradiancia vs Irradiación</h2>
+        <p>A menudo la gente confunde estos dos términos vitales al leer el clima solar:</p>
         
-        <h1>Sesión 3: Radiación Solar y Orientación de Paneles</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Comprender los conceptos fundamentales de la radiación solar, determinar los ángulos óptimos de inclinación para paneles solares y aprender a utilizar herramientas de medición solar para maximizar la eficiencia de los sistemas fotovoltaicos.</p>
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h3>Irradiancia (W/m²)</h3>
+                <p>Es la <strong>Potencia Instantánea</strong>. Es como el velocímetro de un auto. Te dice qué tan fuerte está pegando el sol en este preciso segundo. Al mediodía suele llegar a los 1000 W/m² (condición de prueba estándar).</p>
+            </div>
+            <div class="concept-card">
+                <h3 style="color:#d35400;">Irradiación (kWh/m²)</h3>
+                <p>Es la <strong>Energía Acumulada</strong>. Es como el odómetro del auto (distancia total). Te dice cuánta energía solar cayó sobre tu techo a lo largo de <em>todo el día</em>. Esto es lo que realmente te interesa para calcular cuántas horas de sol tienes.</p>
+            </div>
         </div>
 
-        <h2>1. Conceptos de radiación solar</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="activity">
-            <h4>Actividad: Análisis de la radiación solar</h4>
-            
-            <p><strong>Conceptos clave:</strong></p>
-            <ul>
-                <li><strong>Radiación solar:</strong> Energía emitida por el Sol que llega a la Tierra.</li>
-                <li><strong>Irradiancia:</strong> Potencia de la radiación solar por unidad de área (W/m²).</li>
-                <li><strong>Irradiación:</strong> Energía solar recibida por unidad de área en un período (kWh/m²/día).</li>
-                <li><strong>Componentes de la radiación:</strong>
-                    <ul>
-                        <li>Radiación directa: Rayos que llegan directamente del sol.</li>
-                        <li>Radiación difusa: Dispersada por la atmósfera.</li>
-                        <li>Radiación reflejada: Rebota en superficies cercanas.</li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="https://cdn.daa.net/images/energia-solar/Espectro-solar.jpg" alt="Espectro de radiación solar">
-                <p><em>Espectro de radiación solar (Fuente: cdn.daa.net)</em></p>
-            </div>
-            
-            <p class="time">Tiempo estimado: 15 minutos</p>
-        </div>
-
-        <h2>2. Ángulos óptimos de inclinación</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="activity">
-            <h4>Actividad: Cálculo de ángulos</h4>
-            
-            <p><strong>Fórmula para ángulo de inclinación óptimo anual:</strong></p>
-            <div class="formula-display">
-                Ángulo de inclinación ≈ Latitud del lugar
-            </>
-            
-            <p><strong>Ajustes estacionales:</strong></p>
-            <ul>
-                <li><strong>Verano:</strong> Latitud - 15°</li>
-                <li><strong>Invierno:</strong> Latitud + 15°</li>
-                <li><strong>Primavera/Otoño:</strong> Latitud</li>
-            </ul>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio práctico:</h4>
-                <p>Calcular los ángulos óptimos para diferentes ciudades:</p>
-                <table class="data-table">
-                    <tr>
-                        <th>Ciudad</th>
-                        <th>Latitud</th>
-                        <th>Inclinación anual</th>
-                        <th>Verano</th>
-                        <th>Invierno</th>
-                    </tr>
-                    <tr>
-                        <td>Ciudad de México</td>
-                        <td>19.4° N</td>
-                        <td>19°</td>
-                        <td>4°</td>
-                        <td>34°</td>
-                    </tr>
-                    <tr>
-                        <td>Monterrey</td>
-                        <td>25.7° N</td>
-                        <td>26°</td>
-                        <td>11°</td>
-                        <td>41°</td>
-                    </tr>
-                    <tr>
-                        <td>Mérida</td>
-                        <td>20.9° N</td>
-                        <td>21°</td>
-                        <td>6°</td>
-                        <td>36°</td>
-                    </tr>
-                </>
-                
-                <p><strong>Actividad:</strong> Calcular los ángulos para tu ciudad.</p>
-            </div>
-            
-            <p class="time">Tiempo estimado: 15 minutos</p>
-        </div>
-
-        <h2>3. Uso de herramientas de medición solar</h2>
-        <p><strong>Duración:</strong> 10 minutos</p>
-        
-        <div class="activity">
-            <h4>Actividad: Instrumentos de medición</h4>
-            
-            <p><strong>Herramientas comunes:</strong></p>
-            <ol>
-                <li><strong>Pirheliómetro:</strong> Mide la radiación solar directa.</li>
-                <li><strong>Piranómetro:</strong> Mide la radiación solar global.</li>
-                <li><strong>Brújula solar:</strong> Determina el acimut solar.</li>
-                <li><strong>Inclinómetro:</strong> Mide ángulos de inclinación.</li>
-                <li><strong>Apps solares:</strong> Sun Seeker, Solar Surveyor, etc.</li>
-            </ol>
-            
-            <div class="practical-exercise">
-                <h4>Demostración: Uso de una brújula solar</h4>
-                <ol>
-                    <li>Ubicar el norte magnético con la brújula.</li>
-                    <li>Aplicar la declinación magnética local.</li>
-                    <li>Determinar el acimut solar para diferentes horas del día.</li>
-                </ol>
-            </div>
-            
-            <p class="time">Tiempo estimado: 10 minutos</p>
-        </div>
-
-        <h2>4. Cálculo de sombras y orientación óptima</h2>
-        <p><strong>Duración:</strong> 5 minutos</p>
-        
-        <div class="activity">
-            <h4>Actividad: Cálculo de sombras</h4>
-            
-            <p><strong>Fórmula para calcular la longitud de la sombra:</strong></p>
-            <div class="formula-display">
-                Longitud de sombra = Altura del objeto / tan(Altura solar)
-            </div>
-            
-            <p>Donde la altura solar se calcula como:</p>
-            <div class="formula-display">
-                Altura solar = 90° - |Latitud - Declinación solar|
-            </div>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio práctico:</h4>
-                <p>Calcular la sombra que proyectará un poste de 2m de altura el 21 de junio al mediodía solar en la Ciudad de México (19.4° N).</p>
-                <p><strong>Datos:</strong></p>
-                <ul>
-                    <li>Declinación solar el 21 de junio: +23.45°</li>
-                    <li>Altura solar = 90° - |19.4° - 23.45°| = 85.95°</li>
-                    <li>Longitud de sombra = 2m / tan(85.95°) ≈ 0.14m</li>
-                </ul>
-            </div>
-            
-            <div class="image-container">
-                <img src="https://th.bing.com/th/id/R.0bc40882b00837edc3b071f76fd531e4?rik=6ikadLhjVeYUng&pid=ImgRaw&r=0&sres=1&sresct=1" alt="Trayectoria solar">
-                <p><em>Trayectoria solar en diferentes épocas del año</em></p>
-            </div>
-            
-            <p class="time">Tiempo estimado: 10 minutos</p>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
-            <p><strong>Ejercicio de aplicación:</strong> Resolución de problemas de cálculo de sombras y ángulos óptimos.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los diferentes tipos de paneles solares disponibles en el mercado y sus características técnicas.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion2.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion4.html" class="back-button next-button">Siguiente sesión →</a>
+        <div class="danger-box">
+            <h3><i class="fas fa-ruler-combined"></i> La Regla de Oro de la Inclinación</h3>
+            <p>Para atrapar la mayor cantidad de luz a lo largo del año, tu panel debe estar inclinado a un ángulo casi idéntico a la <strong>Latitud</strong> de tu ciudad (Ej. Monterrey: 25°, CDMX: 19°).</p>
+            <p><strong>Orientación:</strong> En el hemisferio Norte (como México), los paneles SIEMPRE deben apuntar hacia el <strong>SUR geográfico</strong>.</p>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Inclinación Solar</h2>
+        <p>Selecciona la estación del año (el Sol sube mucho en Verano y baja en Invierno). Luego, mueve el deslizador para inclinar el panel solar. El objetivo es que los rayos del sol golpeen el panel a <strong>exactamente 90° (perpendicular)</strong> para alcanzar el 100% de eficiencia.</p>
+
+        <div class="tilt-sim">
+            
+            <div class="sky-view">
+                <!-- Sun starts centered top -->
+                <div class="sun" id="sun-obj" style="top: 20px; left: 220px;">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <!-- Sun ray hitting the panel center -->
+                <div class="sun-ray" id="sun-ray" style="top: 50px; left: 250px; transform: rotate(0deg);"></div>
+                
+                <div class="panel-mount"></div>
+                <div class="panel" id="panel-obj" style="transform: translate(-50%, 0) rotate(0deg);"></div>
+            </div>
+            <div class="ground"></div>
+
+            <div class="controls-panel">
+                <div class="control-group">
+                    <label>Estación del Año (Posición del Sol)</label>
+                    <select id="sel-season" onchange="updateSim()">
+                        <option value="summer">Verano (Sol muy Alto)</option>
+                        <option value="spring">Equinoccio (Sol Medio)</option>
+                        <option value="winter">Invierno (Sol muy Bajo)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>Inclinación del Panel: <span id="val-tilt" style="color:var(--accent-color);">0°</span></label>
+                    <input type="range" id="slider-tilt" min="0" max="90" value="0" oninput="updateSim()">
+                </div>
+
+                <div class="eff-display">
+                    Eficacia de Captación (Incidencia)<br>
+                    <span class="eff-val" id="out-eff">100%</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Vives en el hemisferio Norte (ej. México, España). ¿Hacia qué punto cardinal deben apuntar siempre tus paneles solares para captar la mayor cantidad de luz durante el día?",
+                "options": [
+                    "Hacia el Norte.",
+                    "Hacia el Sur.",
+                    "Hacia el Este, por donde sale el sol."
+                ],
+                "correctIndex": 1,
+                "explanation": "En el hemisferio Norte, el sol recorre el cielo con una inclinación hacia el Sur. Si apuntas tus paneles al Norte, estarán dándole la espalda al sol casi todo el día."
+            },
+            {
+                "question": "¿Cuál es la regla general más básica para decidir el ángulo de inclinación de tus paneles si los vas a dejar fijos todo el año?",
+                "options": [
+                    "Inclinarlos a 45 grados sin importar dónde vivas.",
+                    "La inclinación debe ser igual a la Latitud geográfica del lugar.",
+                    "Dejarlos totalmente planos (0 grados)."
+                ],
+                "correctIndex": 1,
+                "explanation": "Correcto. Si estás en una ciudad con Latitud 20° Norte, tus paneles deben estar inclinados a 20°. Si estás en un país muy al norte con Latitud 50°, los paneles deben estar casi verticales a 50°."
+            },
+            {
+                "question": "Llega el Invierno. ¿El Sol viaja más alto o más bajo en el horizonte en comparación con el Verano?",
+                "options": [
+                    "Más bajo en el horizonte.",
+                    "Más alto en el cielo.",
+                    "Viaja exactamente a la misma altura todo el año."
+                ],
+                "correctIndex": 0,
+                "explanation": "En Invierno, el sol hace un arco mucho más bajo (cerca del horizonte). Por eso, si quisieras optimizar tus paneles solo para el invierno, tendrías que levantarlos (inclinarlos más) para que queden de frente al sol bajo."
+            },
+            {
+                "question": "Al leer el clima, ves que la 'Irradiación' fue de 5.5 kWh/m²/día. ¿Qué significa esto?",
+                "options": [
+                    "Es la temperatura máxima que alcanzó el panel.",
+                    "Es la cantidad total acumulada de energía solar que golpeó cada metro cuadrado de techo a lo largo de todo el día.",
+                    "Es la fuerza instantánea del sol a las 12:00 PM."
+                ],
+                "correctIndex": 1,
+                "explanation": "La Irradiación (kWh) es energía acumulada (como un balde llenándose de agua a lo largo del día). Este número te indica cuántas 'Horas Sol Pico' efectivas tienes para cargar tus baterías."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion2.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion4.html" class="nav-btn next">Siguiente Sesión (Paneles Solares) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function updateSim() {
+        const season = document.getElementById('sel-season').value;
+        const panelTilt = parseInt(document.getElementById('slider-tilt').value);
+        
+        document.getElementById('val-tilt').textContent = panelTilt + "°";
+        
+        // Define Sun Angles (0 is directly overhead/zenith, 90 is horizon)
+        // Note: For visual simplicity, we'll map 0 to top-center of div, 
+        // and positive angles to the right.
+        let sunAngleFromOverhead = 0; // Summer: almost overhead
+        if(season === 'spring') sunAngleFromOverhead = 25; // Equinox
+        if(season === 'winter') sunAngleFromOverhead = 55; // Winter: low on horizon
+        
+        // Visual positioning of Sun
+        const sun = document.getElementById('sun-obj');
+        const ray = document.getElementById('sun-ray');
+        const panel = document.getElementById('panel-obj');
+        
+        // Math for drawing
+        // Panel origin is center bottom 50px up. Left: 250px, Top: 250px (in sky coords)
+        const panelX = 250;
+        const panelY = 250;
+        
+        // Move sun in an arc (Radius ~ 180px)
+        const r = 180;
+        // Convert sun angle to radians (0 is straight up, so we subtract from 90 to get standard polar)
+        const sunRad = (90 - sunAngleFromOverhead) * Math.PI / 180;
+        
+        const sunX = panelX - (Math.cos(sunRad) * r);
+        const sunY = panelY - (Math.sin(sunRad) * r);
+        
+        // Adjust sun div position (subtracting half width/height)
+        sun.style.left = (sunX - 30) + 'px';
+        sun.style.top = (sunY - 30) + 'px';
+        
+        // Ray rotation to point at panel
+        ray.style.left = sunX + 'px';
+        ray.style.top = (sunY + 30) + 'px';
+        // Ray length
+        const rayLen = r - 30; // distance from sun edge to panel center
+        ray.style.height = rayLen + 'px';
+        // Ray rotation angle
+        ray.style.transform = `rotate(${sunAngleFromOverhead}deg)`;
+        
+        // Panel rotation (negative because CSS rotation goes clockwise, and we want 0 to be flat, positive to tilt left facing sun)
+        panel.style.transform = `translate(-50%, 0) rotate(-${panelTilt}deg)`;
+        
+        // --- Calculate Efficiency ---
+        // Efficiency is 100% when the panel normal points exactly at the sun.
+        // Panel tilt 0 means normal is pointing straight up (0 deg from zenith).
+        // If sun is at 25 deg from zenith, panel needs to be tilted 25 deg to match.
+        // Incidence angle = |sunAngleFromOverhead - panelTilt|
+        const incidenceAngle = Math.abs(sunAngleFromOverhead - panelTilt);
+        
+        // Efficiency follows cosine of incidence angle
+        const eff = Math.cos(incidenceAngle * Math.PI / 180) * 100;
+        
+        const effDisp = document.getElementById('out-eff');
+        effDisp.textContent = eff.toFixed(1) + "%";
+        
+        if(eff > 95) {
+            effDisp.style.color = "#2ecc71"; // Green
+        } else if (eff > 75) {
+            effDisp.style.color = "#f1c40f"; // Yellow
+        } else {
+            effDisp.style.color = "#e74c3c"; // Red
+        }
+    }
+    
+    // Initial call
+    updateSim();
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion3');
+          window.markLessonCompleted('electricidad5', 'sesion3');
       }
   });
 </script>
