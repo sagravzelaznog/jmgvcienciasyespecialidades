@@ -3,409 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 12: Introducción a la Ley de Ohm</title>
+    <title>Sesión 12: Circuitos Serie y Paralelo - Conceptos Básicos</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .formula-box {
-            background-color: #f0f8ff;
-            border-left: 4px solid #4a90e2;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+        .circuit-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+            justify-content: center;
         }
-        
-        .formula {
-            font-size: 1.5em;
-            text-align: center;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
+        .circuit-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
         }
-        
-        .analogy {
-            background-color: #fff8e1;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .practice-box {
-            background-color: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .reflection {
-            background-color: #f3e5f5;
-            border-left: 4px solid #9c27b0;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+        .circuit-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--box-info-bg);
+            padding-bottom: 0.5rem;
         }
         
         .interactive-ohm {
             width: 100%;
             max-width: 500px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
+            margin: 2rem auto;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            background-color: #f9f9f9;
+            background-color: var(--bg-main);
+            box-shadow: var(--shadow-soft);
         }
         
-        .slider-container {
-            margin: 15px 0;
-        }
+        .slider-container { margin: 15px 0; }
+        .slider-container label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .slider { width: 100%; cursor: pointer; }
         
-        .slider-container label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .circuit-svg {
-            width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
-            display: block;
-        }
-        
-        /* Formula display styles */
         .formula-display {
             margin: 20px 0;
             text-align: center;
+            font-size: 1.5rem;
+            padding: 1rem;
+            background: var(--box-info-bg);
+            border-radius: 8px;
+            font-weight: bold;
+            color: var(--primary-color);
         }
-        
-        /* Button container styles */
-        .button-container {
-            text-align: center;
-        }
-        
-        /* Navigation container */
-        .nav-container {
-            text-align: center;
-            margin-top: 30px;
+        .button-container { text-align: center; }
+        .button-container button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="home-link">← Volver al índice</a>
-    
-    <div class="header">
-        <h1>Sesión 12: Introducción a la Ley de Ohm</h1>
-        <p>Comprendiendo la relación entre voltaje, corriente y resistencia</p>
+
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Circuitos Serie y Paralelo</h1>
+        <p class="sesion-subtitle">Sesión 12 - Módulo 3: Las Dos Formas de Conectar el Mundo</p>
     </div>
 
-    <div class="section">
-        <h2>Objetivo Específico</h2>
-        <p>Comprender y aplicar la Ley de Ohm para analizar circuitos eléctricos simples, calculando voltaje, corriente o resistencia cuando se conocen dos de estos valores.</p>
-        
-        <svg class="circuit-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Batería -->
-            <rect x="50" y="80" width="40" height="40" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
-            <rect x="55" y="85" width="10" height="30" fill="#4caf50"/>
-            <rect x="75" y="85" width="10" height="30" fill="#f44336"/>
-            
-            <!-- Cable positivo -->
-            <line x1="90" y1="100" x2="150" y2="100" stroke="#333" stroke-width="3"/>
-            
-            <!-- Resistencia -->
-            <rect x="150" y="80" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
-            <rect x="170" y="80" width="20" height="40" fill="#8b4513"/>
-            
-            <!-- Cable negativo -->
-            <line x1="210" y1="100" x2="270" y2="100" stroke="#333" stroke-width="3"/>
-            
-            <!-- Amperímetro -->
-            <circle cx="270" cy="100" r="20" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
-            <text x="270" y="105" text-anchor="middle" font-size="14">A</text>
-            
-            <!-- Regreso a la batería -->
-            <line x1="290" y1="100" x2="350" y2="100" stroke="#333" stroke-width="3"/>
-            <line x1="350" y1="100" x2="350" y2="140" stroke="#333" stroke-width="3"/>
-            <line x1="50" y1="140" x2="350" y2="140" stroke="#333" stroke-width="3"/>
-            <line x1="50" y1="100" x2="50" y2="140" stroke="#333" stroke-width="3"/>
-            
-            <!-- Voltímetro -->
-            <rect x="120" y="30" width="120" height="30" fill="#f5f5f5" stroke="#333" stroke-width="1" rx="3"/>
-            <line x1="150" y1="60" x2="150" y2="80" stroke="#333" stroke-width="2"/>
-            <line x1="210" y1="60" x2="210" y2="80" stroke="#333" stroke-width="2"/>
-            <text x="180" y="50" text-anchor="middle" font-size="14">V</text>
-            
-            <!-- Etiquetas -->
-            <text x="70" y="70" text-anchor="middle" font-size="12">Batería</text>
-            <text x="180" y="70" text-anchor="middle" font-size="12">Resistencia</text>
-            <text x="270" y="80" text-anchor="middle" font-size="12">Amperímetro</text>
-        </svg>
+    <div class="info-box">
+        <strong><i class="fas fa-bullseye"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrir por qué si se quema un foco de Navidad toda la serie se apaga, pero si se quema el foco de tu cuarto, el resto de la casa sigue teniendo luz.</p>
     </div>
 
-    <div class="section">
-        <h2>Contenido Teórico</h2>
-        
-        <p>La Ley de Ohm establece la relación matemática entre tres magnitudes fundamentales en los circuitos eléctricos:</p>
-        
-        <div class="formula-box">
-            <div class="formula">V = I × R</div>
-            <p>Donde:</p>
-            <ul>
-                <li><strong>V</strong> = Voltaje (en voltios, V)</li>
-                <li><strong>I</strong> = Corriente (en amperios, A)</li>
-                <li><strong>R</strong> = Resistencia (en ohmios, Ω)</li>
-            </ul>
-        </div>
-        
-        <p>Esta fórmula nos permite calcular cualquiera de estas magnitudes si conocemos las otras dos. Por ejemplo:</p>
-        <ul>
-            <li>Para calcular el voltaje: <strong>V = I × R</strong></li>
-            <li>Para calcular la corriente: <strong>I = V / R</strong></li>
-            <li>Para calcular la resistencia: <strong>R = V / I</strong></li>
-        </ul>
-    </div>
+    <div class="teoria-section">
+        <h2>Un Camino o Múltiples Caminos</h2>
+        <p>Cuando conectas varios componentes (como focos o resistencias) a una batería, tienes dos formas principales de hacerlo. Estas dos formas determinan cómo se comportará la Corriente y el Voltaje.</p>
 
-    <div class="section">
-        <h2>Analogía del Agua</h2>
-        
-        <div class="analogy">
-            <p>Imagina que la corriente eléctrica es como el flujo de agua en una tubería:</p>
-            
-            <svg width="100%" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
-                <!-- Tubería -->
-                <rect x="50" y="50" width="300" height="20" fill="#8d6e63" rx="5"/>
+        <div class="circuit-comparison">
+            <!-- Circuito en Serie -->
+            <div class="circuit-card">
+                <h3><i class="fas fa-link"></i> Circuito en Serie</h3>
+                <p>Están conectados uno detrás del otro, como vagones de tren. Los electrones <strong>solo tienen un camino</strong> para viajar.</p>
                 
-                <!-- Agua -->
-                <rect x="50" y="50" width="300" height="20" fill="#4fc3f7" fill-opacity="0.5"/>
+                <div class="svg-container">
+                    <svg width="100%" height="150" viewBox="0 0 300 150">
+                        <rect width="100%" height="100%" fill="transparent"/>
+                        <!-- Bateria -->
+                        <rect x="20" y="60" width="20" height="30" fill="#f1c40f" stroke="#d35400" stroke-width="1"/>
+                        <rect x="25" y="55" width="10" height="5" fill="#7f8c8d"/>
+                        <!-- Cables -->
+                        <line x1="30" y1="55" x2="30" y2="30" stroke="currentColor" stroke-width="3"/>
+                        <line x1="30" y1="30" x2="270" y2="30" stroke="currentColor" stroke-width="3"/>
+                        <line x1="30" y1="90" x2="30" y2="120" stroke="currentColor" stroke-width="3"/>
+                        <line x1="30" y1="120" x2="270" y2="120" stroke="currentColor" stroke-width="3"/>
+                        <line x1="270" y1="30" x2="270" y2="120" stroke="currentColor" stroke-width="3"/>
+                        <!-- Focos (Resistencias) -->
+                        <circle cx="100" cy="30" r="15" fill="#f1c40f" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="200" cy="30" r="15" fill="#f1c40f" stroke="currentColor" stroke-width="2"/>
+                        <!-- Flechas -->
+                        <path d="M 60 30 L 70 30" stroke="red" stroke-width="3" marker-end="url(#arrowRed)"/>
+                    </svg>
+                </div>
+                <ul>
+                    <li><strong>Falla crítica:</strong> Si un foco se quema (se rompe el cable), el circuito se abre y <strong>todo</strong> se apaga.</li>
+                    <li><strong>Corriente:</strong> Es la misma en todo el circuito (nadie se puede desviar).</li>
+                    <li><strong>Voltaje:</strong> Se reparte entre los focos (brillan menos).</li>
+                </ul>
+            </div>
+
+            <!-- Circuito en Paralelo -->
+            <div class="circuit-card">
+                <h3><i class="fas fa-bars"></i> Circuito en Paralelo</h3>
+                <p>Están conectados formando ramas independientes, como los carriles de una autopista. Hay <strong>múltiples caminos</strong>.</p>
                 
-                <!-- Flechas de flujo -->
-                <polygon points="70,40 80,60 90,40" fill="#1976d2"/>
-                <polygon points="110,40 120,60 130,40" fill="#1976d2"/>
-                <polygon points="150,40 160,60 170,40" fill="#1976d2"/>
-                <polygon points="190,40 200,60 210,40" fill="#1976d2"/>
-                <polygon points="230,40 240,60 250,40" fill="#1976d2"/>
-                <polygon points="270,40 280,60 290,40" fill="#1976d2"/>
-                <polygon points="310,40 320,60 330,40" fill="#1976d2"/>
-                
-                <!-- Restricción (resistencia) -->
-                <rect x="220" y="30" width="20" height="60" fill="#795548" rx="3"/>
-                
-                <!-- Etiquetas -->
-                <text x="80" y="30" text-anchor="middle" font-size="12">Presión (Voltaje)</text>
-                <text x="230" y="25" text-anchor="middle" font-size="12">Válvula (Resistencia)</text>
-                <text x="340" y="30" text-anchor="middle" font-size="12">Flujo (Corriente)</text>
-            </svg>
-            
-            <ul>
-                <li><strong>Voltaje (V):</strong> Es como la presión del agua en la tubería.</li>
-                <li><strong>Corriente (I):</strong> Es como la cantidad de agua que fluye por la tubería.</li>
-                <li><strong>Resistencia (R):</strong> Es como una válvula que restringe el flujo de agua.</li>
-            </ul>
-            
-            <p>Si aumentas la presión (voltaje) o abres más la válvula (disminuyes la resistencia), fluirá más agua (corriente).</p>
+                <div class="svg-container">
+                    <svg width="100%" height="150" viewBox="0 0 300 150">
+                        <rect width="100%" height="100%" fill="transparent"/>
+                        <!-- Bateria -->
+                        <rect x="20" y="60" width="20" height="30" fill="#f1c40f" stroke="#d35400" stroke-width="1"/>
+                        <rect x="25" y="55" width="10" height="5" fill="#7f8c8d"/>
+                        <!-- Cables Principales -->
+                        <line x1="30" y1="55" x2="30" y2="30" stroke="currentColor" stroke-width="3"/>
+                        <line x1="30" y1="30" x2="220" y2="30" stroke="currentColor" stroke-width="3"/>
+                        <line x1="30" y1="90" x2="30" y2="120" stroke="currentColor" stroke-width="3"/>
+                        <line x1="30" y1="120" x2="220" y2="120" stroke="currentColor" stroke-width="3"/>
+                        <!-- Ramas (Focos) -->
+                        <line x1="120" y1="30" x2="120" y2="120" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="120" cy="75" r="15" fill="#f1c40f" stroke="currentColor" stroke-width="2"/>
+                        
+                        <line x1="220" y1="30" x2="220" y2="120" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="220" cy="75" r="15" fill="#f1c40f" stroke="currentColor" stroke-width="2"/>
+                        <!-- Flechas -->
+                        <path d="M 60 30 L 70 30" stroke="red" stroke-width="3" marker-end="url(#arrowRed)"/>
+                        <path d="M 120 45 L 120 55" stroke="red" stroke-width="3" marker-end="url(#arrowRed)"/>
+                        <path d="M 220 45 L 220 55" stroke="red" stroke-width="3" marker-end="url(#arrowRed)"/>
+                        
+                        <defs>
+                            <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="red"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                <ul>
+                    <li><strong>Alta fiabilidad:</strong> Si un foco se quema, los demás siguen encendidos porque tienen su propio camino hacia la batería.</li>
+                    <li><strong>Corriente:</strong> Se divide en cada rama.</li>
+                    <li><strong>Voltaje:</strong> Es el mismo para todos (brillan al máximo). ¡Así se cablean las casas!</li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Actividad Práctica</h2>
+    <!-- Simulador de Ley de Ohm -->
+    <div class="practica-section">
+        <h2>Simulador Dinámico: Ley de Ohm</h2>
+        <p>La Ley de Ohm (<strong>V = I × R</strong>) domina ambos circuitos. Ajusta los valores para ver cómo una mayor resistencia frena la corriente, o cómo un mayor voltaje empuja más fuerte.</p>
         
-        <div class="practice-box">
-            <h3>Simulador de la Ley de Ohm</h3>
-            
-            <p>Ajusta los siguientes valores y observa cómo cambian los demás:</p>
-            
-            <div class="interactive-ohm">
-                <div class="slider-container">
-                    <label for="voltage">Voltaje (V): <span id="voltage-value">12</span> V</label>
-                    <input type="range" id="voltage" min="1" max="24" value="12" class="slider">
-                </div>
-                
-                <div class="slider-container">
-                    <label for="current">Corriente (I): <span id="current-value">2</span> A</label>
-                    <input type="range" id="current" min="0.1" max="10" step="0.1" value="2" class="slider">
-                </div>
-                
-                <div class="slider-container">
-                    <label for="resistance">Resistencia (R): <span id="resistance-value">6</span> Ω</label>
-                    <input type="range" id="resistance" min="1" max="100" value="6" class="slider">
-                </div>
-                
-                <div class="formula-display">
-                    V = I × R<br>
-                    <span id="formula-values">12V = 2A × 6Ω</span>
-                </div>
-                
-                <div class="button-container">
-                    <button onclick="resetSimulator()">Reiniciar</button>
-                </div>
+        <div class="interactive-ohm">
+            <div class="slider-container">
+                <label for="voltage">Voltaje de la Batería (V): <span id="voltage-value">12</span> Voltios</label>
+                <input type="range" id="voltage" min="1" max="24" value="12" class="slider">
             </div>
             
-            <h4>Ejercicio:</h4>
-            <ol>
-                <li>Si una batería de 9V está conectada a una resistencia de 3Ω, ¿cuánta corriente circulará por el circuito?</li>
-                <li>¿Qué resistencia se necesita para limitar la corriente a 0.5A con una batería de 6V?</li>
-                <li>Si por una resistencia de 10Ω circulan 0.3A, ¿cuál es el voltaje en sus extremos?</li>
-            </ol>
+            <div class="slider-container">
+                <label for="resistance">Resistencia del Foco (R): <span id="resistance-value">6</span> Ohmios</label>
+                <input type="range" id="resistance" min="1" max="100" value="6" class="slider">
+            </div>
+            
+            <div class="slider-container">
+                <label for="current">Corriente Resultante (I): <span id="current-value">2</span> Amperios</label>
+                <input type="range" id="current" min="0.1" max="24" step="0.1" value="2" class="slider" disabled style="opacity: 0.6; cursor: not-allowed;">
+                <small><em>La corriente es el resultado de la presión (Voltaje) dividida por el freno (Resistencia).</em></small>
+            </div>
+            
+            <div class="formula-display">
+                I = V ÷ R<br>
+                <span id="formula-values" style="font-size: 0.8em;">2.0 A = 12 V ÷ 6 Ω</span>
+            </div>
+            
+            <div class="button-container">
+                <button onclick="resetSimulator()">Reiniciar Valores</button>
+            </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Pregunta de Reflexión</h2>
-        
-        <div class="reflection">
-            <p>Imagina que tienes un circuito con una batería de 12V y dos resistencias en serie: una de 4Ω y otra de 8Ω.</p>
-            
-            <svg width="100%" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
-                <!-- Batería -->
-                <rect x="20" y="50" width="40" height="20" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
-                <rect x="25" y="55" width="5" height="10" fill="#4caf50"/>
-                <rect x="50" y="55" width="5" height="10" fill="#f44336"/>
-                
-                <!-- Circuito -->
-                <line x1="60" y1="60" x2="100" y2="60" stroke="#333" stroke-width="2"/>
-                
-                <!-- Resistencia 1 -->
-                <rect x="100" y="40" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
-                <rect x="120" y="40" width="20" height="40" fill="#8b4513"/>
-                <text x="130" y="95" text-anchor="middle" font-size="12">4Ω</text>
-                
-                <line x1="160" y1="60" x2="200" y2="60" stroke="#333" stroke-width="2"/>
-                
-                <!-- Resistencia 2 -->
-                <rect x="200" y="40" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
-                <rect x="220" y="40" width="20" height="40" fill="#8b4513"/>
-                <text x="230" y="95" text-anchor="middle" font-size="12">8Ω</text>
-                
-                <line x1="260" y1="60" x2="300" y2="60" stroke="#333" stroke-width="2"/>
-                <line x1="300" y1="60" x2="300" y2="100" stroke="#333" stroke-width="2"/>
-                <line x1="60" y1="100" x2="300" y2="100" stroke="#333" stroke-width="2"/>
-                <line x1="60" y1="60" x2="60" y2="100" stroke="#333" stroke-width="2"/>
-                
-                <!-- Voltaje -->
-                <text x="40" y="40" text-anchor="middle" font-size="14">12V</text>
-            </svg>
-            
-            <ol>
-                <li>¿Cuál es la resistencia total del circuito?</li>
-                <li>¿Qué corriente circulará por el circuito?</li>
-                <li>¿Cuál será la caída de voltaje en cada resistencia?</li>
-                <li>¿Qué sucedería si una de las resistencias se desconecta?</li>
-            </ol>
-            
-            <p>Reflexiona sobre cómo se relaciona esto con lo que aprendiste en la sesión anterior sobre resistencias en serie.</p>
-        </div>
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿En qué tipo de circuito los electrones tienen un solo camino posible para viajar?",
+                "options": [
+                    "Circuito Abierto.",
+                    "Circuito en Serie.",
+                    "Circuito en Paralelo.",
+                    "Cortocircuito."
+                ],
+                "correctIndex": 1,
+                "explanation": "En Serie, todos los componentes están 'en fila'. Si la fila se rompe en cualquier punto, los electrones no pueden avanzar."
+            },
+            {
+                "question": "En tu casa, si se quema el foco de la cocina, la tele de la sala sigue encendida. ¿Qué tipo de circuito es este?",
+                "options": [
+                    "Circuito en Serie.",
+                    "Circuito en Paralelo.",
+                    "Circuito Inverso.",
+                    "Circuito Cero."
+                ],
+                "correctIndex": 1,
+                "explanation": "Toda la instalación eléctrica residencial se hace en Paralelo. Así, cada electrodoméstico tiene su propio camino directo al voltaje principal."
+            },
+            {
+                "question": "Usando el simulador de la Ley de Ohm: Si mantienes la batería en 12V pero aumentas la Resistencia al máximo, ¿Qué le pasa a la Corriente?",
+                "options": [
+                    "Se vuelve negativa.",
+                    "Aumenta hasta quemar el cable.",
+                    "Disminuye, porque hay mucho más 'freno' al paso de electrones.",
+                    "La corriente no cambia."
+                ],
+                "correctIndex": 2,
+                "explanation": "I = V/R. Si divides el mismo voltaje entre un número más grande (más ohmios), el resultado (los Amperios) será menor."
+            },
+            {
+                "question": "¿Qué pasa con el voltaje (presión) en un Circuito en Serie que tiene 3 focos idénticos?",
+                "options": [
+                    "Los focos se roban el voltaje del vecino.",
+                    "Todos reciben el voltaje total de la batería.",
+                    "El voltaje se reparte entre los 3, así que cada uno recibe 1/3 del voltaje total y brillan menos.",
+                    "El voltaje explota el primer foco."
+                ],
+                "correctIndex": 2,
+                "explanation": "En serie, el voltaje se divide entre las cargas. En paralelo, todos reciben el voltaje completo."
+            }
+        ]
+        </script>
     </div>
 
-    <div class="section">
-        <h2>Resumen y Próximos Pasos</h2>
-        
-        <p>En esta sesión has aprendido:</p>
-        <ul>
-            <li>La relación matemática entre voltaje, corriente y resistencia según la Ley de Ohm</li>
-            <li>Cómo calcular cualquiera de estas magnitudes cuando conoces las otras dos</li>
-            <li>La analogía del agua para entender los conceptos de voltaje, corriente y resistencia</li>
-            <li>Cómo analizar circuitos simples con múltiples resistencias</li>
-        </ul>
-        
-        <p>En la próxima sesión, exploraremos cómo se comportan las resistencias cuando se conectan en serie y en paralelo, y cómo esto afecta a la resistencia total del circuito.</p>
-        
-        <div class="nav-container">
-            <a href="index.html" class="button">Volver al Índice</a>
-        </div>
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion11.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion13.html" class="nav-btn next">Siguiente Sesión (El Protoboard) <i class="fas fa-arrow-right"></i></a>
     </div>
 
-    <script>
-        // Variables para el simulador
-        let voltage = 12;
-        let current = 2;
-        let resistance = 6;
-        
-        // Elementos del DOM
-        const voltageSlider = document.getElementById('voltage');
-        const currentSlider = document.getElementById('current');
-        const resistanceSlider = document.getElementById('resistance');
-        const voltageValue = document.getElementById('voltage-value');
-        const currentValue = document.getElementById('current-value');
-        const resistanceValue = document.getElementById('resistance-value');
-        const formulaValues = document.getElementById('formula-values');
-        
-        // Inicializar el simulador
-        function initSimulator() {
-            updateValues();
-            
-            // Event listeners para los controles deslizantes
-            voltageSlider.addEventListener('input', updateFromVoltage);
-            currentSlider.addEventListener('input', updateFromCurrent);
-            resistanceSlider.addEventListener('input', updateFromResistance);
-        }
-        
-        // Actualizar valores cuando cambia el voltaje
-        function updateFromVoltage() {
-            voltage = parseFloat(voltageSlider.value);
-            current = voltage / resistance;
-            updateSliders();
-            updateValues();
-        }
-        
-        // Actualizar valores cuando cambia la corriente
-        function updateFromCurrent() {
-            current = parseFloat(currentSlider.value);
-            resistance = voltage / current;
-            updateSliders();
-            updateValues();
-        }
-        
-        // Actualizar valores cuando cambia la resistencia
-        function updateFromResistance() {
-            resistance = parseFloat(resistanceSlider.value);
-            current = voltage / resistance;
-            updateSliders();
-            updateValues();
-        }
-        
-        // Actualizar los controles deslizantes
-        function updateSliders() {
-            voltageSlider.value = voltage;
-            currentSlider.value = current.toFixed(1);
-            resistanceSlider.value = resistance;
-        }
-        
-        // Actualizar los valores mostrados
-        function updateValues() {
-            voltageValue.textContent = voltage;
-            currentValue.textContent = current.toFixed(1);
-            resistanceValue.textContent = resistance;
-            formulaValues.textContent = `${voltage}V = ${current.toFixed(1)}A × ${resistance}Ω`;
-        }
-        
-        // Reiniciar el simulador
-        function resetSimulator() {
-            voltage = 12;
-            current = 2;
-            resistance = 6;
-            
-            voltageSlider.value = voltage;
-            currentSlider.value = current;
-            resistanceSlider.value = resistance;
-            
-            updateValues();
-        }
-        
-        // Inicializar el simulador cuando el documento esté listo
-        document.addEventListener('DOMContentLoaded', initSimulator);
-    </script>
-    <footer>
-        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+</main>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    let voltage = 12;
+    let resistance = 6;
+    
+    const voltageSlider = document.getElementById('voltage');
+    const resistanceSlider = document.getElementById('resistance');
+    const currentSlider = document.getElementById('current');
+    
+    function updateSimulator() {
+        voltage = parseFloat(voltageSlider.value);
+        resistance = parseFloat(resistanceSlider.value);
+        
+        // I = V / R
+        let current = voltage / resistance;
+        
+        document.getElementById('voltage-value').textContent = voltage;
+        document.getElementById('resistance-value').textContent = resistance;
+        document.getElementById('current-value').textContent = current.toFixed(2);
+        
+        currentSlider.value = current.toFixed(2);
+        
+        document.getElementById('formula-values').textContent = `${current.toFixed(2)} A = ${voltage} V ÷ ${resistance} Ω`;
+    }
+    
+    voltageSlider.addEventListener('input', updateSimulator);
+    resistanceSlider.addEventListener('input', updateSimulator);
+    
+    function resetSimulator() {
+        voltageSlider.value = 12;
+        resistanceSlider.value = 6;
+        updateSimulator();
+    }
+    
+    // Iniciar con valores por defecto
+    updateSimulator();
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion12');
+          window.markLessonCompleted('electricidad1', 'sesion12');
       }
   });
 </script>
