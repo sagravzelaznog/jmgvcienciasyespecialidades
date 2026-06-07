@@ -3,75 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programa Educativo: Conceptos Básicos de Electricidad</title>
+    <title>Infografía del Curso: Electricidad 1</title>
     <!-- Framework Universal -->
     <link rel="stylesheet" href="../../global-lesson.css">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos específicos para este Índice respetando variables del Framework */
-        .course-banner {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: var(--shadow-soft);
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-        }
-        
-        .module-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .session-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-decoration: none;
-            color: var(--text-main);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .session-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-soft);
-            border-color: var(--primary-color);
-            background-color: var(--box-info-bg);
-        }
-
-        .session-card h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .session-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 0;
-            flex-grow: 1;
-        }
-        
-        .module-header {
-            background-color: var(--bg-nav);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            margin-top: 2rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--text-heading);
-            border-left: 4px solid var(--text-muted);
-        }
-
         .btn-hub {
             display: inline-block;
             margin-bottom: 2rem;
@@ -84,214 +21,322 @@
             color: var(--primary-color);
         }
 
-        /* Banner Interactivo */
-        .banner-container {
+        /* --- ROADMAP INFOGRÁFICO (CIRCUITO) --- */
+        .roadmap-container {
             position: relative;
-            width: 100%;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid var(--border-color);
-        }
-        
-        .banner-container .course-banner {
-            width: 100%;
-            display: block;
-            margin: 0;
-            border: none;
-            box-shadow: none;
-            border-radius: 0;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem 0;
         }
 
-        .banner-overlay {
+        /* La "cables" centrales */
+        .roadmap-container::before {
+            content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color), var(--warning-color), var(--danger-color));
+            transform: translateX(-50%);
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .roadmap-node {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6));
-            gap: 1rem;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            width: 100%;
+            margin-bottom: 3rem;
+            position: relative;
         }
 
-        .banner-container:hover .banner-overlay {
-            opacity: 1;
+        /* Alternar izquierda y derecha */
+        .roadmap-node:nth-child(odd) {
+            flex-direction: row-reverse;
         }
 
-        .glass-btn {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
+        .roadmap-content {
+            width: 45%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            position: relative;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
-            border-color: rgba(56, 189, 248, 0.8);
-            color: #e0f2fe;
+            text-decoration: none;
+            color: var(--text-main);
+            display: block;
         }
         
-        .overlay-title {
+        .roadmap-content:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+            z-index: 10;
+        }
+
+        /* Triangulito apuntando a la línea central */
+        .roadmap-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            transform: translateY(-50%);
+        }
+        .roadmap-node:nth-child(even) .roadmap-content::before {
+            right: -10px;
+            border-left: 10px solid var(--bg-card);
+        }
+        .roadmap-node:nth-child(odd) .roadmap-content::before {
+            left: -10px;
+            border-right: 10px solid var(--bg-card);
+        }
+        /* Para que el triangulito tome el color del borde al hacer hover no es fácil con CSS puro, 
+           así que lo dejamos del color del fondo (bg-card) */
+
+        /* El ícono central en la línea */
+        .roadmap-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--bg-main);
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            z-index: 5;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-node:hover .roadmap-icon {
+            background: var(--primary-color);
             color: white;
-            font-size: 2rem;
-            font-weight: 800;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            margin-bottom: 1rem;
-            text-align: center;
+            box-shadow: 0 0 20px var(--primary-color);
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        /* Estilos de texto dentro de la tarjeta */
+        .module-badge {
+            display: inline-block;
+            background: rgba(2, 132, 199, 0.1);
+            color: var(--primary-color);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .roadmap-content h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            color: var(--text-heading);
+        }
+
+        .roadmap-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        /* Responsividad: En celulares se vuelve una lista vertical simple */
+        @media (max-width: 768px) {
+            .roadmap-container::before {
+                left: 20px; /* Mover línea a la izquierda */
+            }
+            .roadmap-node, .roadmap-node:nth-child(odd) {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 60px; /* Dejar espacio para la línea y el icono */
+            }
+            .roadmap-content {
+                width: 100%;
+            }
+            .roadmap-icon {
+                left: 20px;
+            }
+            .roadmap-content::before {
+                display: none; /* Ocultar triangulitos en móvil */
+            }
         }
     </style>
 </head>
 <body>
 
-<main class="page-container">
-    <a href="../index.html" class="btn-hub">← Volver al Centro de Comando (Electricidad)</a>
+<main class="page-container" style="max-width: 1000px;">
+    <a href="../index.html" class="btn-hub"><i class="fas fa-arrow-left"></i> Volver al Centro de Comando</a>
 
-    <div class="banner-container">
-        <img src="assets/img/elec1_banner.png" alt="Banner del Curso de Electricidad" class="course-banner">
-        <div class="banner-overlay">
-            <div class="overlay-title">Explora la Energía</div>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                <a href="sesion1.html" class="glass-btn"><i class="fas fa-bolt"></i> ¿Qué es la electricidad?</a>
-                <a href="sesion6.html" class="glass-btn"><i class="fas fa-plug"></i> Entender el Voltaje</a>
-                <a href="sesion12.html" class="glass-btn"><i class="fas fa-calculator"></i> Ley de Ohm</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="header">
-        <h1>Conceptos Básicos de Electricidad</h1>
-        <p class="sesion-subtitle">Programa Educativo Interactivo y Didáctico</p>
+    <div class="header" style="border: none; margin-bottom: 0; padding-bottom: 0;">
+        <h1>Mapa de Conocimiento: Electricidad 1</h1>
+        <p class="sesion-subtitle">Tu camino paso a paso desde los fundamentos hasta convertirte en un experto.</p>
     </div>
     
-    <div class="module">
-        <div class="module-header">Módulo 1: Introducción a la Electricidad</div>
-        <div class="module-grid">
-            <a href="sesion1.html" class="session-card">
-                <h3>Sesión 1: ¿Qué es la electricidad?</h3>
-                <p>Explorando la electricidad en nuestra vida diaria</p>
-            </a>
-            <a href="sesion2.html" class="session-card">
-                <h3>Sesión 2: Electricidad Estática</h3>
-                <p>Fenómenos y ejemplos cotidianos</p>
-            </a>
-            <a href="sesion3.html" class="session-card">
-                <h3>Sesión 3: Electricidad Dinámica</h3>
-                <p>El flujo de electrones en acción</p>
+    <!-- INFOGRAFÍA INTERACTIVA -->
+    <div class="roadmap-container">
+        
+        <!-- MÓDULO 1 -->
+        <div class="roadmap-node">
+            <div class="roadmap-icon"><i class="fas fa-bolt"></i></div>
+            <a href="sesion1.html" class="roadmap-content">
+                <div class="module-badge">Módulo 1</div>
+                <h3>S1: ¿Qué es la electricidad?</h3>
+                <p>Explorando la electricidad en nuestra vida diaria y la analogía del agua.</p>
             </a>
         </div>
-    </div>
-
-    <div class="module">
-        <div class="module-header">Módulo 2: Fundamentos de la Carga Eléctrica</div>
-        <div class="module-grid">
-            <a href="sesion4.html" class="session-card">
-                <h3>Sesión 4: Concepto de Carga Eléctrica</h3>
-                <p>Tipos y propiedades fundamentales</p>
-            </a>
-            <a href="sesion5.html" class="session-card">
-                <h3>Sesión 5: Experimentos con Cargas</h3>
-                <p>Actividades prácticas de identificación</p>
+        <div class="roadmap-node">
+            <div class="roadmap-icon"><i class="fas fa-magic"></i></div>
+            <a href="sesion2.html" class="roadmap-content">
+                <div class="module-badge">Módulo 1</div>
+                <h3>S2: Electricidad Estática</h3>
+                <p>Fenómenos cotidianos, frotamiento y el experimento de los globos.</p>
             </a>
         </div>
-    </div>
-
-    <div class="module">
-        <div class="module-header">Módulo 3: Voltaje y Diferencia de Potencial</div>
-        <div class="module-grid">
-            <a href="sesion6.html" class="session-card">
-                <h3>Sesión 6: Entendiendo el Voltaje</h3>
-                <p>Analogías y conceptos básicos</p>
-            </a>
-            <a href="sesion7.html" class="session-card">
-                <h3>Sesión 7: Medición de Voltaje</h3>
-                <p>Uso del multímetro y ejercicios</p>
+        <div class="roadmap-node">
+            <div class="roadmap-icon"><i class="fas fa-water"></i></div>
+            <a href="sesion3.html" class="roadmap-content">
+                <div class="module-badge">Módulo 1</div>
+                <h3>S3: Electricidad Dinámica</h3>
+                <p>El flujo continuo de electrones y sus aplicaciones reales.</p>
             </a>
         </div>
-    </div>
 
-    <div class="module">
-        <div class="module-header">Módulo 4: Corriente Eléctrica</div>
-        <div class="module-grid">
-            <a href="sesion8.html" class="session-card">
-                <h3>Sesión 8: Concepto de Corriente Eléctrica</h3>
-                <p>Definición y unidades de medida</p>
-            </a>
-            <a href="sesion9.html" class="session-card">
-                <h3>Sesión 9: Tipos de Corriente</h3>
-                <p>Corriente continua vs. corriente alterna</p>
+        <!-- MÓDULO 2 -->
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--accent-color); color: var(--accent-color);"><i class="fas fa-plus-minus"></i></div>
+            <a href="sesion4.html" class="roadmap-content" style="border-left-color: var(--accent-color);">
+                <div class="module-badge" style="background: rgba(16,185,129,0.1); color: var(--accent-color);">Módulo 2</div>
+                <h3>S4: Carga Eléctrica</h3>
+                <p>Protones, electrones y la ley fundamental de atracción y repulsión.</p>
             </a>
         </div>
-    </div>
-
-    <div class="module">
-        <div class="module-header">Módulo 5: Resistencia Eléctrica</div>
-        <div class="module-grid">
-            <a href="sesion10.html" class="session-card">
-                <h3>Sesión 10: Fundamentos de la Resistencia</h3>
-                <p>Concepto y factores que la afectan</p>
-            </a>
-            <a href="sesion11.html" class="session-card">
-                <h3>Sesión 11: Código de Colores</h3>
-                <p>Identificación de resistencias</p>
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--accent-color); color: var(--accent-color);"><i class="fas fa-flask"></i></div>
+            <a href="sesion5.html" class="roadmap-content" style="border-left-color: var(--accent-color);">
+                <div class="module-badge" style="background: rgba(16,185,129,0.1); color: var(--accent-color);">Módulo 2</div>
+                <h3>S5: Experimentos con Cargas</h3>
+                <p>Prácticas de laboratorio para observar campos eléctricos.</p>
             </a>
         </div>
-    </div>
 
-    <div class="module">
-        <div class="module-header">Módulo 6: Ley de Ohm</div>
-        <div class="module-grid">
-            <a href="sesion12.html" class="session-card">
-                <h3>Sesión 12: Introducción a la Ley de Ohm</h3>
-                <p>Explicación paso a paso</p>
-            </a>
-            <a href="sesion13.html" class="session-card">
-                <h3>Sesión 13: Ejercicios Prácticos</h3>
-                <p>Aplicación con valores reales</p>
+        <!-- MÓDULO 3 -->
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--warning-color); color: var(--warning-color);"><i class="fas fa-battery-full"></i></div>
+            <a href="sesion6.html" class="roadmap-content" style="border-left-color: var(--warning-color);">
+                <div class="module-badge" style="background: rgba(245,158,11,0.1); color: var(--warning-color);">Módulo 3</div>
+                <h3>S6: Entendiendo el Voltaje</h3>
+                <p>La "presión" eléctrica, diferencia de potencial y fuentes de poder.</p>
             </a>
         </div>
-    </div>
-
-    <div class="module">
-        <div class="module-header">Módulo 7: Potencia y Energía Eléctrica</div>
-        <div class="module-grid">
-            <a href="sesion14.html" class="session-card">
-                <h3>Sesión 14: Potencia Eléctrica</h3>
-                <p>Cálculos y aplicaciones</p>
-            </a>
-            <a href="sesion15.html" class="session-card">
-                <h3>Sesión 15: Electrodomésticos</h3>
-                <p>Análisis de consumo energético</p>
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--warning-color); color: var(--warning-color);"><i class="fas fa-tachometer-alt"></i></div>
+            <a href="sesion7.html" class="roadmap-content" style="border-left-color: var(--warning-color);">
+                <div class="module-badge" style="background: rgba(245,158,11,0.1); color: var(--warning-color);">Módulo 3</div>
+                <h3>S7: Medición de Voltaje</h3>
+                <p>Aprende a usar el multímetro de forma segura y precisa.</p>
             </a>
         </div>
-    </div>
 
-    <div class="module">
-        <div class="module-header">Módulo 8: Integración y Repaso</div>
-        <div class="module-grid">
-            <a href="sesion16.html" class="session-card" style="border-left-color: var(--accent-color);">
-                <h3 style="color: var(--accent-color);">Sesión 16: Proyecto Final</h3>
-                <p>Aplicación integral de los conceptos aprendidos</p>
+        <!-- MÓDULO 4 -->
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--danger-color); color: var(--danger-color);"><i class="fas fa-running"></i></div>
+            <a href="sesion8.html" class="roadmap-content" style="border-left-color: var(--danger-color);">
+                <div class="module-badge" style="background: rgba(239,68,68,0.1); color: var(--danger-color);">Módulo 4</div>
+                <h3>S8: Corriente Eléctrica (Amperaje)</h3>
+                <p>La cantidad de electrones fluyendo por segundo.</p>
             </a>
         </div>
-    </div>
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--danger-color); color: var(--danger-color);"><i class="fas fa-wave-square"></i></div>
+            <a href="sesion9.html" class="roadmap-content" style="border-left-color: var(--danger-color);">
+                <div class="module-badge" style="background: rgba(239,68,68,0.1); color: var(--danger-color);">Módulo 4</div>
+                <h3>S9: Tipos de Corriente (AC/DC)</h3>
+                <p>La guerra de las corrientes: Continua vs Alterna.</p>
+            </a>
+        </div>
 
-    <div class="info-box">
+        <!-- MÓDULO 5 -->
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--purple-color); color: var(--purple-color);"><i class="fas fa-shield-alt"></i></div>
+            <a href="sesion10.html" class="roadmap-content" style="border-left-color: var(--purple-color);">
+                <div class="module-badge" style="background: rgba(139,92,246,0.1); color: var(--purple-color);">Módulo 5</div>
+                <h3>S10: Resistencia Eléctrica</h3>
+                <p>La oposición al flujo y cómo los materiales reaccionan.</p>
+            </a>
+        </div>
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--purple-color); color: var(--purple-color);"><i class="fas fa-palette"></i></div>
+            <a href="sesion11.html" class="roadmap-content" style="border-left-color: var(--purple-color);">
+                <div class="module-badge" style="background: rgba(139,92,246,0.1); color: var(--purple-color);">Módulo 5</div>
+                <h3>S11: Código de Colores</h3>
+                <p>Lectura de bandas en resistores de carbón.</p>
+            </a>
+        </div>
+
+        <!-- MÓDULO 6 -->
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--primary-color); color: var(--primary-color);"><i class="fas fa-balance-scale"></i></div>
+            <a href="sesion12.html" class="roadmap-content" style="border-left-color: var(--primary-color);">
+                <div class="module-badge">Módulo 6</div>
+                <h3>S12: Ley de Ohm</h3>
+                <p>El triángulo sagrado: V = I × R.</p>
+            </a>
+        </div>
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--primary-color); color: var(--primary-color);"><i class="fas fa-pen-nib"></i></div>
+            <a href="sesion13.html" class="roadmap-content" style="border-left-color: var(--primary-color);">
+                <div class="module-badge">Módulo 6</div>
+                <h3>S13: Práctica de Ley de Ohm</h3>
+                <p>Ejercicios matemáticos para afianzar el conocimiento.</p>
+            </a>
+        </div>
+
+        <!-- MÓDULO 7 -->
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--accent-color); color: var(--accent-color);"><i class="fas fa-lightbulb"></i></div>
+            <a href="sesion14.html" class="roadmap-content" style="border-left-color: var(--accent-color);">
+                <div class="module-badge" style="background: rgba(16,185,129,0.1); color: var(--accent-color);">Módulo 7</div>
+                <h3>S14: Potencia Eléctrica</h3>
+                <p>Watts, caballos de fuerza y cómo se mide el trabajo.</p>
+            </a>
+        </div>
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="border-color: var(--accent-color); color: var(--accent-color);"><i class="fas fa-home"></i></div>
+            <a href="sesion15.html" class="roadmap-content" style="border-left-color: var(--accent-color);">
+                <div class="module-badge" style="background: rgba(16,185,129,0.1); color: var(--accent-color);">Módulo 7</div>
+                <h3>S15: Consumo en Casa</h3>
+                <p>Análisis de facturas y electrodomésticos.</p>
+            </a>
+        </div>
+
+        <!-- MÓDULO 8 -->
+        <div class="roadmap-node">
+            <div class="roadmap-icon" style="background: var(--warning-color); color: white; border-color: var(--warning-color);"><i class="fas fa-trophy"></i></div>
+            <a href="sesion16.html" class="roadmap-content" style="border: 2px solid var(--warning-color); background: rgba(245,158,11,0.05);">
+                <div class="module-badge" style="background: var(--warning-color); color: white;">Módulo Final</div>
+                <h3>S16: Proyecto Final</h3>
+                <p>Certificación de conocimientos y examen práctico.</p>
+            </a>
+        </div>
+
+    </div> <!-- Fin Roadmap -->
+
+    <div class="info-box" style="text-align: center;">
+        <i class="fas fa-book fa-2x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
         <h3>Recursos Adicionales</h3>
         <p>Material de apoyo para dominar la materia.</p>
         <a href="ley de coulomb.html" class="btn">Estudiar la Ley de Coulomb</a>
