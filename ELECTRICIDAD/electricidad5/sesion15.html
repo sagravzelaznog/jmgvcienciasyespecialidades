@@ -3,500 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 15: Almacenamiento de Energía y Sistemas Híbridos</title>
+    <title>Sesión 15: Proyecto II - Implementación Híbrida</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+        .hybrid-intro {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: #2c3e50;
+            padding: 2rem;
+            border-radius: 15px;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-soft);
         }
-        .back-button:hover {
-            background-color: #2980b9;
+        .hybrid-intro i { font-size: 5rem; color: #f39c12; }
+
+        /* Simulator: BOM Generator */
+        .bom-container {
+            background: #fdfefe;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
+
+        .bom-header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .bom-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: #ecf0f1;
             padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
-        .storage-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .safety-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        .safety-box h4 {
-            color: #c62828;
-            margin-top: 0;
-        }
-        .specs-table {
+
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .form-group label { font-weight: bold; color: #34495e; }
+        .form-group select, .form-group input { padding: 8px; border: 1px solid #bdc3c7; border-radius: 4px; }
+
+        .bom-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
+            margin-bottom: 20px;
         }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #e8f5e9;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #2e7d32;
-        }
-        .practical-exercise h4 {
-            color: #1b5e20;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
+
+        .bom-table th { background: #34495e; color: white; padding: 10px; text-align: left; }
+        .bom-table td { padding: 10px; border-bottom: 1px solid #ecf0f1; }
+        
+        .bom-total {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: bold;
             color: #27ae60;
-            margin-top: 0;
-        }
-        .tip-box {
-            background-color: #fff8e1;
-            border-left: 3px solid #ffa000;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .warning-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .note-box {
-            background-color: #e3f2fd;
-            border-left: 3px solid #1976d2;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-        .battery-comparison {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-        .battery-type {
-            width: 48%;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            background: #e8f8f5;
             padding: 15px;
-            margin-bottom: 15px;
-            background-color: #f9f9f9;
+            border-radius: 5px;
         }
-        .pros-cons {
-            display: flex;
-            margin-top: 10px;
+
+        .generate-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background 0.3s;
         }
-        .pros, .cons {
-            width: 48%;
-            padding: 0 10px;
-        }
-        .pros {
-            color: #2e7d32;
-            border-right: 1px solid #ddd;
-        }
-        .cons {
-            color: #c62828;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .battery-type {
-                width: 100%;
-            }
-            .specs-table {
-                font-size: 0.9em;
-            }
-        }
+        .generate-btn:hover { background: #d35400; }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 15: Almacenamiento de Energía y Sistemas Híbridos</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Explorar las tecnologías de almacenamiento de energía para sistemas fotovoltaicos, comprender los principios de los sistemas híbridos, analizar casos de uso prácticos y aprender a dimensionar sistemas de almacenamiento para diferentes aplicaciones.</p>
-        </div>
 
-        <h2>1. Fundamentos del almacenamiento de energía</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="storage-box">
-            <h4>1.1 Necesidad de almacenamiento en sistemas fotovoltaicos</h4>
-            
-            <ul>
-                <li><strong>Desfase temporal:</strong> La energía se produce de día pero a menudo se necesita de noche</li>
-                <li><strong>Estabilización de red:</strong> Compensación de fluctuaciones en la generación</li>
-                <li><strong>Backup energético:</strong> Suministro durante cortes de red</li>
-                <li><strong>Optimización del autoconsumo:</strong> Aumentar el porcentaje de energía solar autoconsumida</li>
-                <li><strong>Servicios auxiliares:</strong> Control de frecuencia, reserva rodante</li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="https://www.pv-magazine-mexico.com/wp-content/uploads/sites/10/2019/03/Sistemas-de-Almacenamiento.png" alt="Conceptos básicos de almacenamiento de energía" class="img-small">
-                <p><em>Funciones clave del almacenamiento de energía en sistemas fotovoltaicos</em></p>
-            </div>
-            
-            <h4>1.2 Parámetros clave de los sistemas de almacenamiento</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Descripción</th>
-                    <th>Unidades típicas</th>
-                </tr>
-                <tr>
-                    <td>Capacidad</td>
-                    <td>Cantidad de energía que puede almacenar</td>
-                    <td>kWh</td>
-                </tr>
-                <tr>
-                    <td>Potencia</td>
-                    <td>Rapidez con la que puede cargar/descargar</td>
-                    <td>kW</td>
-                </tr>
-                <tr>
-                    <td>Profundidad de descarga (DoD)</td>
-                    <td>Porcentaje de la capacidad que puede usarse</td>
-                    <td>%</td>
-                </tr>
-                <tr>
-                    <td>Eficiencia ida/vuelta</td>
-                    <td>Energía que se puede recuperar respecto a la almacenada</td>
-                    <td>%</td>
-                </tr>
-                <tr>
-                    <td>Ciclos de vida</td>
-                    <td>Número de ciclos de carga/descarga antes de degradarse</td>
-                    <td>Cantidad</td>
-                </tr>
-                <tr>
-                    <td>Autodescarga</td>
-                    <td>Pérdida de energía cuando no se usa</td>
-                    <td>%/mes</td>
-                </tr>
-            </table>
-        </div>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
 
-        <h2>2. Tecnologías de almacenamiento</h2>
-        <p><strong>Duración:</strong> 30 minutos</p>
-        
-        <div class="storage-box">
-            <h4>2.1 Baterías de iones de litio</h4>
-            
-            <div class="battery-comparison">
-                <div class="battery-type">
-                    <h5>Fosfato de Hierro y Litio (LiFePO4)</h5>
-                    <p><strong>Ventajas:</strong></p>
-                    <ul>
-                        <li>Alta seguridad y estabilidad térmica</li>
-                        <li>Larga vida útil (2000-7000 ciclos)</li>
-                        <li>Buena potencia tanto para carga como descarga</li>
-                        <li>Bajo mantenimiento</li>
-                    </ul>
-                    <p><strong>Desventajas:</strong></p>
-                    <ul>
-                        <li>Mayor costo inicial</li>
-                        <li>Menor densidad energética que otras químicas de litio</li>
-                    </ul>
-                    <p><strong>Aplicaciones:</strong> Residencial, comercial, sistemas fuera de red</p>
-                </div>
-                
-                <div class="battery-type">
-                    <h5>Níquel Manganeso Cobalto (NMC)</h5>
-                    <p><strong>Ventajas:</strong></p>
-                    <ul>
-                        <li>Alta densidad energética</li>
-                        <li>Buen rendimiento en un amplio rango de temperaturas</li>
-                        <li>Alta eficiencia</li>
-                    </ul>
-                    <p><strong>Desventajas:</strong></p>
-                    <ul>
-                        <li>Mayor riesgo térmico que LiFePO4</li>
-                        <li>Vida útil ligeramente menor</li>
-                        <li>Uso de cobalto (aspectos éticos y de suministro)</li>
-                    </ul>
-                    <p><strong>Aplicaciones:</strong> Vehículos eléctricos, almacenamiento a gran escala</p>
-                </div>
-            </div>
-            
-            <h4>2.2 Otras tecnologías de almacenamiento</h4>
-            
-            <div class="battery-comparison">
-                <div class="battery-type">
-                    <h5>Baterías de plomo-ácido</h5>
-                    <p><strong>Ventajas:</strong></p>
-                    <ul>
-                        <li>Costo inicial más bajo</li>
-                        <li>Tecnología madura y ampliamente disponible</li>
-                    </ul>
-                    <p><strong>Desventajas:</strong></p>
-                    <ul>
-                        <li>Menor vida útil (300-1500 ciclos)</li>
-                        <li>Mayor mantenimiento</li>
-                        <li>Baja profundidad de descarga recomendada (50%)</li>
-                        <li>Contiene plomo y ácido (impacto ambiental)</li>
-                    </ul>
-                </div>
-                
-                <div class="battery-type">
-                    <h5>Almacenamiento térmico y otras tecnologías</h5>
-                    <ul>
-                        <li><strong>Bombeo hidroeléctrico:</strong> Gran escala, alta capacidad</li>
-                        <li>Almacenamiento por aire comprimido (CAES)</li>
-                        <li>Volantes de inercia: Alta potencia por corta duración</li>
-                        <li>Supercapacitores: Alta potencia, baja energía</li>
-                        <li>Hidrógeno verde: Almacenamiento estacional</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Para aplicaciones residenciales, las baterías de litio (especialmente LiFePO4) ofrecen el mejor equilibrio entre costo, vida útil y rendimiento, a pesar de su mayor inversión inicial.</p>
-            </div>
-        </div>
+    <div class="sesion-header">
+        <h1 class="sesion-title">Proyecto Práctico II: Implementación (BOM)</h1>
+        <p class="sesion-subtitle">Sesión 15 - Módulo 5: Del Plano a las Compras</p>
+    </div>
 
-        <h2>3. Sistemas híbridos</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="storage-box">
-            <h4>3.1 Configuraciones de sistemas híbridos</h4>
-            
-            <p><strong>a) Solar + Almacenamiento + Red:</strong></p>
-            <ul>
-                <li>Permite autoconsumo, respaldo y servicios a la red</li>
-                <li>Puede participar en programas de medición neta o servicios auxiliares</li>
-                <li>Configuración más común en aplicaciones residenciales y comerciales</li>
-            </ul>
-            
-            <p><strong>b) Solar + Almacenamiento + Generador:</strong></p>
-            <ul>
-                <li>Común en zonas aisladas sin conexión a red</li>
-                <li>El generador funciona como respaldo cuando hay poca radiación solar</li>
-                <li>Puede reducir significativamente el consumo de combustible</li>
-            </ul>
-            
-            <p><strong>c) Solar + Eólica + Almacenamiento:</strong></p>
-            <ul>
-                <li>Complementariedad entre recursos solares y eólicos</li>
-                <li>Mayor factor de capacidad del sistema</li>
-                <li>Común en microrredes y sistemas aislados</li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="https://i0.wp.com/solar.dragoncontractors.com/wp-content/uploads/2022/09/hibrido-03-3-scaled.jpg" alt="Diagrama de sistema híbrido" class="img-small">
-                <p><em>Ejemplo de configuración de un sistema híbrido con acoplamiento CA</em></p>
-            </div>
-            
-            <h4>3.2 Control y gestión de sistemas híbridos</h4>
-            
-            <p><strong>Estrategias de control:</strong></p>
-            <ul>
-                <li><strong>Control basado en reglas:</strong> Priorización de fuentes según condiciones predefinidas</li>
-                <li><strong>Control predictivo:</strong> Uso de pronósticos de generación y consumo</li>
-                <li><strong>Control óptimo:</strong> Minimización de costos o maximización de beneficios</li>
-            </ul>
-            
-            <p><strong>Software de gestión de energía (EMS):</strong></p>
-            <ul>
-                <li>Monitoreo en tiempo real de generación, consumo y almacenamiento</li>
-                <li>Optimización del flujo de energía entre fuentes</li>
-                <li>Participación en mercados de energía (en sistemas a gran escala)</li>
-                <li>Análisis de datos y generación de informes</li>
-            </ul>
-        </div>
+    <div class="info-box">
+        <strong><i class="fas fa-shopping-cart"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Un instalador profesional no va a la ferretería a ver "qué encuentra". Debe armar un BOM (Bill of Materials o Lista de Materiales) exacto. Hoy diseñaremos el presupuesto para un <strong>Sistema Híbrido</strong> (Lo mejor de los dos mundos: CFE + Baterías de Litio).</p>
+    </div>
 
-        <h2>4. Dimensionamiento de sistemas de almacenamiento</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>4.1 Metodología de dimensionamiento</h4>
-            
-            <p><strong>Paso 1: Análisis de carga</strong></p>
-            <ul>
-                <li>Identificar cargas críticas y su perfil de consumo</li>
-                <li>Estimar el consumo diario (kWh/día)</li>
-                <li>Determinar la potencia máxima simultánea (kW)</li>
-            </ul>
-            
-            <p><strong>Paso 2: Definir la autonomía requerida</strong></p>
-            <ul>
-                <li>Horas de respaldo deseadas (ej. 1 noche, 24 horas, varios días)</li>
-                <li>Considerar días de autonomía para sistemas aislados (3-5 días típicos)</li>
-            </ul>
-            
-            <p><strong>Paso 3: Calcular la capacidad de almacenamiento</strong></p>
-            <p>Capacidad (kWh) = Consumo diario (kWh/día) × Días de autonomía × Factor de seguridad (1.2-1.5) / Profundidad de descarga (DoD)</p>
-            
-            <p><strong>Paso 4: Determinar la potencia del inversor/cargador</strong></p>
-            <p>Potencia (kW) = Potencia máxima simultánea (kW) × Factor de simultaneidad (0.7-1.0) × Factor de seguridad (1.1-1.2)</p>
-            
-            <div class="example">
-                <h5>Ejemplo práctico:</h5>
-                <p><strong>Vivienda con:</strong></p>
-                <ul>
-                    <li>Consumo diario: 15 kWh</li>
-                    <li>Potencia máxima: 5 kW</li>
-                    <li>Autonomía deseada: 1 día (noche completa)</li>
-                    <li>Batería LiFePO4 con DoD del 90%</li>
-                </ul>
-                
-                <p><strong>Cálculo de capacidad:</strong></p>
-                <p>15 kWh × 1 día × 1.2 / 0.9 = 20 kWh</p>
-                
-                <p><strong>Cálculo de potencia:</strong></p>
-                <p>5 kW × 0.8 × 1.1 = 4.4 kW</p>
-                
-                <p><strong>Solución:</strong> Sistema de 20 kWh de capacidad y 4.4 kW de potencia continua</p>
-            </div>
-        </div>
-
-        <h2>5. Casos de estudio y aplicaciones prácticas</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="storage-box">
-            <h4>5.1 Aplicaciones residenciales</h4>
-            
-            <p><strong>Autoconsumo con respaldo:</strong></p>
-            <ul>
-                <li>Reducción de factura eléctrica mediante desplazamiento de carga</li>
-                <li>Suministro durante cortes de energía</li>
-                <li>Participación en programas de respuesta a la demanda</li>
-            </ul>
-            
-            <p><strong>Ejemplo real:</strong> Vivienda en California con 8 kWp solar + 13.5 kWh Powerwall</p>
-            <ul>
-                <li>Ahorro anual: $1,800</li>
-                <li>Autonomía: 24 horas para cargas esenciales</li>
-                <li>Retorno de inversión: 7-10 años</li>
-            </ul>
-            
-            <h4>5.2 Aplicaciones comerciales e industriales</h4>
-            
-            <p><strong>Recorte de demanda:</strong></p>
-            <ul>
-                <li>Reducción de cargos por demanda máxima</li>
-                <li>Almacenamiento de energía durante periodos de baja demanda</li>
-                <li>Descarga durante periodos pico para reducir costos</li>
-            </ul>
-            
-            <p><strong>Ejemplo real:</strong> Supermercado con 200 kWp solar + 500 kWh almacenamiento</p>
-            <ul>
-                <li>Reducción de factura eléctrica en 40%</li>
-                <li>Retorno de inversión: 5-7 años</li>
-                <li>Reducción de huella de carbono</li>
-            </ul>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en discusiones sobre casos de estudio.</p>
-            <p><strong>Ejercicio práctico:</strong> Dimensionamiento de un sistema de almacenamiento para un caso real.</p>
-            <p><strong>Cuestionario:</strong> Preguntas sobre tecnologías de almacenamiento y sistemas híbridos.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Preparar una presentación sobre un proyecto fotovoltaico completo que incluya análisis de viabilidad, diseño, instalación y mantenimiento, aplicando todos los conceptos aprendidos en el curso.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion14.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion16.html" class="back-button next-button">Siguiente sesión →</a>
+    <div class="hybrid-intro">
+        <i class="fas fa-network-wired"></i>
+        <div>
+            <h2 style="margin-top:0; border:none;">¿Qué es un Sistema Híbrido?</h2>
+            <p>Imagina que tienes a la CFE conectada para venderle energía de día (On-Grid), pero además tienes una <strong>Batería de Litio</strong> en tu casa. Si se va la luz en toda la colonia, tu Inversor Híbrido se desconecta de la calle (Anti-Isla) e inmediatamente toma energía de tu batería para mantener tu refrigerador y wifi encendidos. Es la solución suprema (y la más cara).</p>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="teoria-section">
+        <h2>La Selección de Tecnología</h2>
+        <p>A la hora de armar el presupuesto (BOM), la decisión más crítica es el tipo de batería:</p>
+        <ul>
+            <li><strong>Plomo-Ácido (Ciclo Profundo):</strong> Baratas hoy, carísimas mañana. Duran 3 a 5 años. No puedes descargarlas más allá del 50% o se arruinan.</li>
+            <li><strong>Litio (LiFePO4 - Fosfato de Hierro y Litio):</strong> La inversión inteligente. Cuestan el triple inicialmente, pero duran hasta 15 años y puedes descargarlas al 90% sin dañarlas. Además, no emiten gases tóxicos en la casa.</li>
+        </ul>
+    </div>
+
+    <div class="practica-section">
+        <h2>Simulador: Generador de BOM (Lista de Materiales)</h2>
+        <p>Configura las necesidades del cliente y presiona generar. El simulador creará la lista de materiales exacta con precios aproximados en el mercado actual para tu cotización.</p>
+
+        <div class="bom-container">
+            <div class="bom-header">
+                <h3><i class="fas fa-file-invoice-dollar"></i> Cotizador Solar Pro v2.0</h3>
+            </div>
+
+            <div class="bom-controls">
+                <div class="form-group">
+                    <label>Tamaño del Sistema (Paneles)</label>
+                    <select id="sel-size">
+                        <option value="4">Pequeño (4 Paneles - 2kW)</option>
+                        <option value="8">Mediano (8 Paneles - 4kW)</option>
+                        <option value="16">Grande (16 Paneles - 8kW)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de Inversor</label>
+                    <select id="sel-inv">
+                        <option value="ongrid">Interconectado a Red (Económico)</option>
+                        <option value="hybrid">Híbrido (Respaldo en Apagones)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tecnología de Batería</label>
+                    <select id="sel-batt">
+                        <option value="none">Sin Batería</option>
+                        <option value="plomo">Plomo Ácido AGM (Económica)</option>
+                        <option value="litio">Litio LiFePO4 (Premium)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="generate-btn" onclick="generateBOM()"><i class="fas fa-cogs"></i> Generar Lista de Materiales (BOM)</button>
+
+            <div id="bom-result" style="display:none; margin-top:30px;">
+                <table class="bom-table">
+                    <thead>
+                        <tr>
+                            <th>Cant.</th>
+                            <th>Descripción del Material</th>
+                            <th>Precio Unit.</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bom-tbody">
+                        <!-- Llenado por JS -->
+                    </tbody>
+                </table>
+                <div class="bom-total">
+                    Total Estimado (Material): $<span id="bom-total-val">0</span> MXN
+                </div>
+                <p style="text-align:right; font-size:0.8rem; color:#7f8c8d;">*No incluye mano de obra ni trámites CFE.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Un cliente te pide un sistema HÍBRIDO pero quiere ponerle las baterías de plomo de su coche para ahorrar. ¿Qué le indicas?",
+                "options": [
+                    "Que es una excelente idea para reducir el BOM.",
+                    "Que las baterías de coche son 'de arranque' (dan mucha corriente unos segundos y se dañan si se descargan). Los sistemas solares requieren baterías de 'Ciclo Profundo' (Plomo AGM o Litio) diseñadas para descargarse lentamente todos los días.",
+                    "Que sí, pero necesita comprar 20 baterías de coche."
+                ],
+                "correctIndex": 1,
+                "explanation": "Poner una batería automotriz en un sistema solar es destruirla en 2 semanas. Las placas internas son delgadas para dar un 'chispazo' al motor, no para sostener el consumo de una casa durante 10 horas."
+            },
+            {
+                "question": "Al diseñar tu BOM (Lista de Materiales), ¿qué componente es EXCLUSIVO de un sistema interconectado y NO se compraría para una cabaña aislada (Off-Grid)?",
+                "options": [
+                    "Paneles Solares.",
+                    "Cable Fotovoltaico.",
+                    "El Medidor Bidireccional de CFE."
+                ],
+                "correctIndex": 2,
+                "explanation": "El Medidor Bidireccional es propiedad de la CFE y es el componente que contabiliza cuánta energía inyectas a la red y cuánta extraes. En una cabaña en medio del bosque (aislada) no hay red de CFE, por lo tanto, no hay medidor."
+            },
+            {
+                "question": "Si el cliente elige un inversor 'Interconectado a Red' (On-Grid) en lugar de uno 'Híbrido', ¿qué le pasará a su casa si hay un apagón en la ciudad a pleno mediodía?",
+                "options": [
+                    "Su casa seguirá teniendo luz porque hace sol.",
+                    "Se quedará sin luz. El inversor On-Grid activará la protección Anti-Isla y se apagará por seguridad, al no tener baterías de respaldo.",
+                    "Sus paneles se quemarán."
+                ],
+                "correctIndex": 1,
+                "explanation": "Esta es la mayor confusión de los clientes. Creen que por tener paneles son inmunes a los apagones. Si quieren luz durante apagones, en el BOM debes presupuestar forzosamente un Inversor HÍBRIDO y Baterías."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion14.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion16.html" class="nav-btn next">Siguiente Sesión (Puesta en Marcha) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function generateBOM() {
+        const size = parseInt(document.getElementById('sel-size').value);
+        const inv = document.getElementById('sel-inv').value;
+        const batt = document.getElementById('sel-batt').value;
+
+        // Validation logic to mimic reality
+        if (inv === 'ongrid' && batt !== 'none') {
+            alert("AVISO DE INGENIERÍA: Un inversor 'Interconectado (On-Grid)' tradicional no acepta baterías. El simulador lo cambiará automáticamente a Inversor Híbrido.");
+            document.getElementById('sel-inv').value = 'hybrid';
+        }
+        if (inv === 'hybrid' && batt === 'none') {
+            alert("AVISO DE INGENIERÍA: Comprar un inversor Híbrido sin ponerle baterías es un desperdicio de dinero. El simulador añadirá baterías de Litio por defecto.");
+            document.getElementById('sel-batt').value = 'litio';
+        }
+
+        const f_inv = document.getElementById('sel-inv').value;
+        const f_batt = document.getElementById('sel-batt').value;
+
+        let items = [];
+        let total = 0;
+
+        // 1. Paneles (aprox $2500 MXN c/u de 500W)
+        let panelSub = size * 2500;
+        items.push(`<tr><td>${size}</td><td>Panel Solar Monocristalino 500W</td><td>$2,500</td><td>$${panelSub.toLocaleString()}</td></tr>`);
+        total += panelSub;
+
+        // 2. Inversor
+        let invName = f_inv === 'hybrid' ? `Inversor Híbrido ${size/2}kW` : `Inversor On-Grid ${size/2}kW`;
+        let invPrice = f_inv === 'hybrid' ? (size/2)*7000 : (size/2)*4000;
+        items.push(`<tr><td>1</td><td>${invName}</td><td>$${invPrice.toLocaleString()}</td><td>$${invPrice.toLocaleString()}</td></tr>`);
+        total += invPrice;
+
+        // 3. Estructura Aluminio (aprox $500 por panel)
+        let estSub = size * 500;
+        items.push(`<tr><td>${size/2}</td><td>Kit Rieles Aluminio Anodizado (Para 2 paneles)</td><td>$1,000</td><td>$${estSub.toLocaleString()}</td></tr>`);
+        total += estSub;
+
+        // 4. Baterías
+        if(f_batt === 'litio') {
+            let cant = size === 4 ? 1 : (size === 8 ? 2 : 4);
+            let batPrice = 30000; // 5kWh litio
+            let batSub = cant * batPrice;
+            items.push(`<tr><td>${cant}</td><td>Batería Litio LiFePO4 5kWh (Ciclo Profundo 6000 ciclos)</td><td>$30,000</td><td>$${batSub.toLocaleString()}</td></tr>`);
+            total += batSub;
+        } else if(f_batt === 'plomo') {
+            let cant = size === 4 ? 4 : (size === 8 ? 8 : 16);
+            let batPrice = 5000; // 2.4kWh plomo
+            let batSub = cant * batPrice;
+            items.push(`<tr><td>${cant}</td><td>Batería Plomo-Ácido AGM 12V 200Ah (Ciclo Profundo)</td><td>$5,000</td><td>$${batSub.toLocaleString()}</td></tr>`);
+            total += batSub;
+        }
+
+        // 5. BOS (Balance of System) - Cables, MC4, Protecciones
+        let bosSub = size * 800; // aprox 800 por panel
+        items.push(`<tr><td>1</td><td>Kit BOS (Cable PV 10AWG, Conectores MC4, Pastillas DC/AC, Tierra)</td><td>$${bosSub.toLocaleString()}</td><td>$${bosSub.toLocaleString()}</td></tr>`);
+        total += bosSub;
+
+        document.getElementById('bom-tbody').innerHTML = items.join("");
+        document.getElementById('bom-total-val').textContent = total.toLocaleString();
+        document.getElementById('bom-result').style.display = 'block';
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion15');
+          window.markLessonCompleted('electricidad5', 'sesion15');
       }
   });
 </script>
