@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomía Humana: El Cráneo - Visión Anterior y Orbital</title>
+    <style>
+        :root {
+            /* Paleta de colores extraída de la imagen para consistencia visual */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --header-bg: #2c3e50;
+            --header-text: #ecf0f1;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            
+            /* Colores específicos de los huesos (aproximados de la imagen) */
+            --bone-frontal: #6082B6; /* Azul */
+            --bone-parietal: #E6C229; /* Amarillo */
+            --bone-temporal: #D35400; /* Naranja rojizo */
+            --bone-esfenoides: #27AE60; /* Verde oscuro/medio */
+            --bone-etmoides: #1E8449; /* Verde más profundo */
+            --bone-nasal: #8E44AD; /* Morado */
+            --bone-cigomatico: #E67E22; /* Naranja fuerte */
+            --bone-maxilar: #A9DFBF; /* Verde claro */
+            --bone-mandibula: #D7BDE2; /* Beige/Rosado pálido */
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .intro-text {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+        }
+
+        /* Layout Principal */
+        .anatomy-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        @media (min-width: 992px) {
+            .anatomy-section {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+        }
+
+        .image-container {
+            position: sticky;
+            top: 2rem;
+            text-align: center;
+            border-right: 1px solid #eee;
+            padding-right: 1rem;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .info-container h2 {
+            border-bottom: 3px solid var(--header-bg);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        /* Estilos para los detalles interactivos (Acordeones) */
+        details {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-color: #bbb;
+        }
+
+        summary {
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            background-color: #f9f9f9;
+            user-select: none;
+            position: relative;
+            padding-left: 2.5rem; /* Espacio para el indicador de color */
+        }
+
+        summary::before {
+            content: '';
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #ccc; /* Color por defecto */
+            border: 2px solid #fff;
+            box-shadow: 0 0 3px rgba(0,0,0,0.3);
+        }
+
+        summary:hover {
+            background-color: #f0f0f0;
+        }
+
+        details .content {
+            padding: 1rem 1.5rem;
+            background-color: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        /* Asignación de colores a las secciones */
+        .frontal summary::before { background-color: var(--bone-frontal); }
+        .parietal summary::before { background-color: var(--bone-parietal); }
+        .temporal summary::before { background-color: var(--bone-temporal); }
+        .esfenoides summary::before { background-color: var(--bone-esfenoides); }
+        .etmoides summary::before { background-color: var(--bone-etmoides); }
+        .nasal summary::before { background-color: var(--bone-nasal); }
+        .cigomatico summary::before { background-color: var(--bone-cigomatico); }
+        .maxilar summary::before { background-color: var(--bone-maxilar); }
+        .mandibula summary::before { background-color: var(--bone-mandibula); }
+        
+        .bone-list {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        
+        .bone-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background: var(--header-bg);
+            color: var(--header-text);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Atlas Anatómico Interactivo: El Cráneo Humano</h1>
+        <p>Análisis detallado de la visión anterior y la estructura orbital.</p>
+    </header>
+
+    <main>
+        <section class="intro-text">
+            <h2>Guía de Estudio Andragógica</h2>
+            <p>Bienvenido a este módulo de estudio avanzado del cráneo humano. Hemos diseñado esta página pensando en el aprendizaje adulto. El cráneo no es un solo hueso, sino un rompecabezas complejo de elementos fusionados que protegen el cerebro (neurocráneo) y forman la estructura facial (viscerocráneo).</p>
+            <p>Utilice la imagen codificada por colores a la izquierda como referencia visual. A la derecha, encontrará paneles interactivos que desglosan cada estructura. Haga clic en los nombres de los huesos para expandir la información detallada sobre sus características y puntos de referencia anatómicos clave mostrados en el diagrama.</p>
+        </section>
+
+        <section class="anatomy-section">
+            <div class="image-container">
+                <img src="image_0.png" alt="Diagrama del Cráneo Humano - Visión Anterior y Órbita Derecha" id="mainImage">
+                <p style="font-size: 0.9rem; color: #666;">*Los colores en el texto coinciden con los huesos en el diagrama.</p>
+            </div>
+
+            <div class="info-container">
+                <h2>1. Estructura General (Visión Anterior)</h2>
+                <p>Esta vista frontal revela la relación entre los huesos protectores superiores y los huesos faciales inferiores. Observe cómo se ensamblan a través de suturas (articulaciones inmóviles).</p>
+                
+                <h3>Neurocráneo (Bóveda Craneal)</h3>
+                <details class="frontal">
+                    <summary>Hueso Frontal (Azul)</summary>
+                    <div class="content">
+                        <p>Forma la frente y la parte superior de las cuencas oculares. Es un hueso impar, central y simétrico.</p>
+                        <ul class="bone-list">
+                            <li><strong>Glabela:</strong> El área lisa y ligeramente prominente entre las cejas, justo encima de la nariz.</li>
+                            <li><strong>Escotadura/Agujero supraorbitaria:</strong> Pequeña muesca o agujero en el borde superior de la órbita por donde pasan nervios y vasos sanguíneos hacia la frente.</li>
+                            <li><strong>Cara orbitaria:</strong> La superficie inferior que forma el techo de la cavidad ocular.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="parietal">
+                    <summary>Hueso Parietal (Amarillo)</summary>
+                    <div class="content">
+                        <p>Son dos huesos pares que forman la mayor parte de las paredes laterales y el techo del cráneo. Se unen al hueso frontal mediante la sutura coronal.</p>
+                    </div>
+                </details>
+
+                <details class="temporal">
+                    <summary>Hueso Temporal (Naranja/Rojizo)</summary>
+                    <div class="content">
+                        <p>Hueso par situado en los laterales inferiores del cráneo. Es complejo y alberga las estructuras del oído. En esta vista anterior, su visibilidad es limitada a las secciones laterales detrás del cigomático y esfenoides.</p>
+                    </div>
+                </details>
+
+                <details class="esfenoides">
+                    <summary>Hueso Esfenoides (Verde Medio)</summary>
+                    <div class="content">
+                        <p>Un hueso crucial en forma de mariposa o murciélago situado en la base del cráneo, detrás de los ojos. Conecta el neurocráneo con el esqueleto facial.</p>
+                        <ul class="bone-list">
+                            <li><strong>Visibilidad:</strong> En la vista anterior, se aprecia formando la pared posterior de la órbita (ver sección de órbita) y pequeñas porciones laterales (alas mayores).</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <h3>Viscerocráneo (Esqueleto Facial)</h3>
+
+                <details class="nasal">
+                    <summary>Huesos Nasales y Estructuras Internas (Morado/Varios)</summary>
+                    <div class="content">
+                        <p>Forman el "puente" de la nariz y las estructuras internas de la cavidad nasal.</p>
+                        <ul class="bone-list">
+                            <li><strong>Hueso Nasal (Morado):</strong> Dos huesos pequeños que forman el puente superior de la nariz.</li>
+                            <li><strong>Vómer:</strong> Hueso delgado y plano que forma la parte posteroinferior del tabique nasal (la pared que divide las fosas nasales).</li>
+                            <li><strong>Cornete (Concha) nasal inferior:</strong> Hueso independiente dentro de la cavidad nasal que ayuda a turbular y humidificar el aire.</li>
+                            <li><strong>Hueso Etmoides (Verde Oscuro en nariz/órbita):</strong> Visible en la parte superior del tabique nasal y la pared medial de la órbita.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="cigomatico">
+                    <summary>Hueso Cigomático (Naranja)</summary>
+                    <div class="content">
+                        <p>Conocido popularmente como el "pómulo". Forma la prominencia de la mejilla y parte de la pared lateral y suelo de la órbita.</p>
+                        <ul class="bone-list">
+                            <li><strong>Apófisis frontal:</strong> Se extiende hacia arriba para articularse con el hueso frontal.</li>
+                            <li><strong>Cara orbitaria:</strong> Superficie que contribuye a la cuenca del ojo.</li>
+                            <li><strong>Agujero cigomaticofacial:</strong> Pequeño orificio en la cara anterior para el paso de nervios.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="maxilar">
+                    <summary>Maxilar (Verde Claro)</summary>
+                    <div class="content">
+                        <p>El hueso principal de la mandíbula superior. Aloja los dientes superiores y forma parte del suelo de la órbita, las paredes laterales y el suelo de la cavidad nasal.</p>
+                        <ul class="bone-list">
+                            <li><strong>Apófisis cigomática:</strong> Se une al hueso cigomático.</li>
+                            <li><strong>Cara orbitaria:</strong> Forma la mayor parte del suelo de la órbita ocular.</li>
+                            <li><strong>Agujero infraorbitario:</strong> Orificio importante debajo de la órbita por donde pasa el nervio infraorbitario (sensibilidad de la mejilla, labio superior).</li>
+                            <li><strong>Apófisis alveolar:</strong> El borde inferior que contiene los alvéolos dentarios (huecos para los dientes).</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="mandibula">
+                    <summary>Mandíbula (Beige/Rosado)</summary>
+                    <div class="content">
+                        <p>El único hueso móvil del cráneo (mandíbula inferior). Es el hueso facial más grande y fuerte.</p>
+                        <ul class="bone-list">
+                            <li><strong>Cuerpo:</strong> La parte horizontal principal en forma de herradura.</li>
+                            <li><strong>Rama:</strong> La parte vertical posterior que se articula con el cráneo.</li>
+                            <li><strong>Agujero mentoniano:</strong> Orificio en el cuerpo por donde emergen nervios y vasos para el mentón y labio inferior.</li>
+                            <li><strong>Protuberancia mentoniana:</strong> La prominencia ósea que forma la barbilla.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section class="anatomy-section">
+            <div class="info-container" style="grid-column: 1 / -1;">
+                 <h2>2. Análisis Detallado: La Órbita Derecha</h2>
+                 <p>La órbita no es un simple agujero; es una cavidad cónica compleja formada por 7 huesos diferentes, diseñada para proteger el globo ocular y permitir el paso de nervios craneales críticos. La imagen inferior del diagrama hace un zoom en esta área.</p>
+            </div>
+
+            <div class="image-container" style="border-right: none; border-left: 1px solid #eee; order: 2;">
+                <img src="image_0.png" alt="Detalle Órbita Derecha" style="object-fit: cover; object-position: bottom; max-height: 400px;">
+                 <p style="font-size: 0.9rem; color: #666;">*Enfoque en la sección inferior del diagrama.</p>
+            </div>
+            
+            <div class="info-container" style="order: 1;">
+                 <h3>Composición Ósea y Fisuras Clave</h3>
+                 <p>Observe cómo los diferentes colores convergen en la cuenca del ojo.</p>
+
+                <details class="esfenoides">
+                    <summary>El Esfenoides en la Órbita (Verde Medio)</summary>
+                    <div class="content">
+                        <p>Forma la pared posterior profunda de la órbita. Es fundamental porque contiene las principales vías de comunicación con el cerebro.</p>
+                        <ul class="bone-list">
+                            <li><strong>Conducto (agujero) óptico:</strong> El pasaje redondo superior por donde pasa el Nervio Óptico (II par craneal) responsable de la visión.</li>
+                            <li><strong>Fisura orbitaria superior:</strong> Una hendidura grande entre las alas mayor y menor del esfenoides. Por aquí pasan múltiples nervios que controlan el movimiento del ojo (pares craneales III, IV, VI) y la sensibilidad (V1).</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="frontal">
+                    <summary>Techo de la Órbita (Hueso Frontal - Azul)</summary>
+                    <div class="content">
+                        <p>La cara orbitaria del hueso frontal forma el techo liso de la cavidad.</p>
+                    </div>
+                </details>
+
+                 <details class="etmoides">
+                    <summary>Pared Medial (Hueso Etmoides - Verde Oscuro)</summary>
+                    <div class="content">
+                        <p>La <strong>lámina orbitaria del hueso etmoides</strong> es extremadamente delgada (fácil de fracturar) y forma la mayor parte de la pared interna (medial), separando el ojo de las cavidades nasales. Muestra los pequeños agujeros etmoidales anterior y posterior.</p>
+                    </div>
+                </details>
+
+                <details class="cigomatico">
+                    <summary>Pared Lateral y Suelo (Hueso Cigomático - Naranja)</summary>
+                    <div class="content">
+                        <p>Forma la parte externa fuerte de la órbita y contribuye a la parte anterior del suelo.</p>
+                    </div>
+                </details>
+
+                <details class="maxilar">
+                    <summary>Suelo de la Órbita (Maxilar - Verde Claro)</summary>
+                    <div class="content">
+                        <p>Forma la mayor parte del suelo. Es importante notar el <strong>surco infraorbitario</strong>, que se convierte en canal y finalmente emerge en la cara como el agujero infraorbitario.</p>
+                        <ul>
+                            <li><strong>Fisura orbitaria inferior:</strong> Una hendidura entre el maxilar, cigomático y esfenoides, en el suelo posterior de la órbita.</li>
+                        </ul>
+                    </div>
+                </details>
+                 <details>
+                    <summary>Huesos Pequeños: Lagrimal y Palatino</summary>
+                    <div class="content">
+                        <ul>
+                            <li><strong>Hueso Lagrimal (Celeste claro):</strong> Situado en la pared medial anterior. Contiene la <strong>fosa del saco lagrimal</strong>, parte del sistema de drenaje de lágrimas.</li>
+                            <li><strong>Hueso Palatino (Pequeña área verde):</strong> Una pequeña <strong>apófisis orbitaria</strong> del hueso palatino contribuye con una parte minúscula en el suelo posterior de la órbita (apenas visible en el vértice).</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Diseñado con principios de Andragogía y Tecnología Web Moderna para la enseñanza de la Anatomía Humana.</p>
+        <p>© Cátedra de Anatomía Digital.</p>
+    </footer>
+
+    <script>
+        // Script simple para mejorar la UX: cerrar otros detalles cuando se abre uno
+        // Esto ayuda a mantener la página limpia y enfocada (principio andragógico de reducir la carga cognitiva).
+        const detailsElements = document.querySelectorAll('details');
+
+        detailsElements.forEach(detail => {
+            detail.addEventListener('click', function() {
+                if (!this.open) { // Si se está abriendo
+                    detailsElements.forEach(otherDetail => {
+                        if (otherDetail !== this && otherDetail.open) {
+                            otherDetail.removeAttribute('open');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

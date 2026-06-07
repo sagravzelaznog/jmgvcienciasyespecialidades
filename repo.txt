@@ -1,0 +1,28 @@
+INSTRUCCIONES PARA PUBLICAR "CIENCIAS Y ESPECIALIDADES"
+
+Paso 1: Crear el repositorio en GitHub
+1. Entra a tu cuenta de GitHub (https://github.com/).
+2. Haz clic en el botón "+" arriba a la derecha y selecciona "New repository".
+3. Ponle un nombre, por ejemplo: `portal-ciencias`.
+4. Déjalo como "Public" y NO marques la casilla de "Add a README file".
+5. Haz clic en "Create repository".
+
+Paso 2: Subir tu código a GitHub
+1. Abre tu terminal (Símbolo del sistema o PowerShell).
+2. Asegúrate de estar en la ruta de "Ciencias y Especialidades".
+3. Ya he preparado tu código, solo debes vincularlo a tu nuevo repositorio copiando las últimas tres líneas que GitHub te muestra en su página bajo la sección "…or push an existing repository from the command line".
+
+Suelen verse así:
+git remote add origin https://github.com/tu-usuario/portal-ciencias.git
+git branch -M main
+git push -u origin main
+
+Paso 3: Publicar en Netlify
+1. Ve a Netlify (https://app.netlify.com/).
+2. Haz clic en "Add new site" -> "Import an existing project".
+3. Selecciona GitHub y busca tu repositorio `portal-ciencias`.
+4. IMPORTANTE: En "Build command" escribe: `node build.js`
+5. IMPORTANTE: En "Publish directory" déjalo en blanco o pon `/` o `.`
+6. Dale a "Deploy site".
+
+¡Y listo! Tu nuevo portal estará en vivo.

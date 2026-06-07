@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Interactivo de 30 Días de Tai Chi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Earth (Stone, Taupe, Muted Teal) -->
+    <!-- Application Structure Plan: A task-oriented dashboard. Key interactions are duration filters (7/15/30 min) that dynamically update daily task cards, a clickable progress tracker, and collapsible weekly sections. This structure was chosen to personalize the plan for the user, reduce information overload compared to a static table, and add motivational elements for better engagement with the instructional content. -->
+    <!-- Visualization & Content Choices: 1. Plan Structure (Report Info) -> Goal: Organize/Inform -> Viz: Interactive Cards in Accordion -> Interaction: Filter buttons update card content -> Justification: Simplifies user view to their chosen time commitment. 2. Time Commitment (Derived Info) -> Goal: Compare -> Viz: Grouped Bar Chart (Chart.js) -> Interaction: Highlights series based on filter selection -> Justification: Visually reinforces the weekly time investment. 3. Quick Guide (Report Info) -> Goal: Inform -> Viz: Illustrated list of key forms (Image Generation API) -> Interaction: Image generation on load -> Justification: Provides necessary visual guidance for the forms, generated on demand. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .duration-button.active {
+            background-color: #0d9488;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .progress-dot {
+            transition: all 0.3s ease;
+        }
+        .progress-dot.completed {
+            background-color: #0d9488;
+            color: white;
+            transform: scale(1.1);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            max-height: 2000px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            background-color: #f0fdfa; /* Teal-50 */
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <div class="container mx-auto max-w-5xl p-4 sm:p-6 md:p-8">
+
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-teal-800 mb-2">Plan Interactivo de 30 Días de Tai Chi</h1>
+            <p class="text-stone-600 max-w-3xl mx-auto">Tu guía personal para aprender los fundamentos del Taijiquan. Selecciona la duración de tu práctica diaria para adaptar el plan a tu ritmo y sigue tu progreso día a día.</p>
+        </header>
+
+        <main>
+            <section id="controls" class="mb-8 p-4 bg-white rounded-lg shadow-sm">
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <label class="font-semibold text-stone-700">Elige tu sesión diaria:</label>
+                    <div id="duration-filters" class="flex flex-wrap justify-center gap-3">
+                        <button data-duration="7" class="duration-button px-4 py-2 bg-stone-200 text-stone-700 rounded-full font-medium hover:bg-teal-600 hover:text-white transition-colors duration-300">7 Minutos</button>
+                        <button data-duration="15" class="duration-button px-4 py-2 bg-stone-200 text-stone-700 rounded-full font-medium hover:bg-teal-600 hover:text-white transition-colors duration-300">15 Minutos</button>
+                        <button data-duration="30" class="duration-button px-4 py-2 bg-stone-200 text-stone-700 rounded-full font-medium hover:bg-teal-600 hover:text-white transition-colors duration-300">30 Minutos</button>
+                        <button data-duration="all" class="duration-button active px-4 py-2 bg-stone-200 text-stone-700 rounded-full font-medium hover:bg-teal-600 hover:text-white transition-colors duration-300">Ver Todo</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="progress-tracker" class="mb-8 text-center p-4 bg-white rounded-lg shadow-sm">
+                 <h2 class="text-xl font-bold text-teal-800 mb-4">Tu Progreso de 30 Días</h2>
+                 <p class="text-stone-600 mb-4">Haz clic en un día para marcarlo como completado. ¡La constancia es la clave!</p>
+                <div id="progress-dots-container" class="flex flex-wrap justify-center gap-2">
+                </div>
+            </section>
+
+            <section id="chart-section" class="mb-8 p-4 bg-white rounded-lg shadow-sm">
+                <h2 class="text-xl font-bold text-center text-teal-800 mb-2">Compromiso de Tiempo Semanal</h2>
+                <p class="text-stone-600 text-center mb-4">Esta gráfica muestra los minutos totales de práctica por semana según la duración de la sesión que elijas. Te ayuda a visualizar cómo tu dedicación diaria se acumula con el tiempo.</p>
+                <div class="chart-container">
+                    <canvas id="timeCommitmentChart"></canvas>
+                </div>
+            </section>
+            
+            <div id="plan-container" class="space-y-6">
+            </div>
+
+            <section id="forms-guide" class="mt-12 p-6 bg-white rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold text-teal-800 mb-6 text-center">Guía Rápida de Formas</h2>
+                <div class="space-y-6 text-stone-700">
+                    <div class="flex flex-col md:flex-row items-center gap-4 p-4 border-b border-stone-100">
+                        <div class="w-full md:w-1/3 image-container h-48" id="image-comienzo">
+                            Cargando imagen de **Comienzo (Wu Ji)**...
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <h3 class="font-semibold text-xl text-teal-700 mb-1">1. Comienzo / Forma Inicial (Commencement)</h3>
+                            <p>Levantar los brazos hasta la altura de los hombros mientras inhalas y bajas las muñecas mientras exhalas, terminando en la postura Wu Ji.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center gap-4 p-4 border-b border-stone-100">
+                        <div class="w-full md:w-1/3 image-container h-48" id="image-separar">
+                            Cargando imagen de **Separar la Crin del Caballo Salvaje**...
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <h3 class="font-semibold text-xl text-teal-700 mb-1">2. Separar la Crin del Caballo Salvaje (Parting the Wild Horse's Mane)</h3>
+                            <p>Un paso elegante hacia un lado con el giro de la cintura, separando las manos, una palma hacia arriba y otra hacia abajo.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center gap-4 p-4">
+                        <div class="w-full md:w-1/3 image-container h-48" id="image-grulla">
+                            Cargando imagen de **Grulla Blanca Extiende sus Alas**...
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <h3 class="font-semibold text-xl text-teal-700 mb-1">3. Grulla Blanca Extiende sus Alas (White Crane Spreads Wings)</h3>
+                            <p>Un movimiento que requiere equilibrio, donde una mano sube alto y la otra baja, mientras el peso se centra en una pierna.</p>
+                        </div>
+                    </div>
+                    <p class="text-center pt-4 text-sm text-stone-500 italic">Recuerda: Busca videos instructivos para estas formas específicas para asegurar la técnica correcta.</p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 py-4 border-t border-stone-200">
+            <p class="text-sm text-stone-500">Creado para una práctica consciente y progresiva del Tai Chi.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const planData = [
+            {
+                week: 1,
+                title: "Fundamentos (La Postura y la Respiración)",
+                intro: "En la Semana 1, nos centraremos en los pilares del Tai Chi: la postura correcta y la respiración profunda. El objetivo es construir una base sólida de calma y alineación corporal.",
+                days: [
+                    { day: "1-2", topic: "Postura Wu Ji (Preparación)", tasks: { 7: "2 min de pie (Wu Ji). 5 min de respiración abdominal.", 15: "5 min de calentamiento suave. 10 min de postura Wu Ji.", 30: "5 min de calentamiento. 15 min de Wu Ji (con enfoque en relajar articulaciones). 10 min de respiración profunda." } },
+                    { day: "3-4", topic: "Respiración y Enraizamiento", tasks: { 7: "7 min: Practicar la respiración abdominal en Wu Ji.", 15: "5 min de Wu Ji. 10 min: Visualizar el peso bajando a los pies ('enraizamiento').", 30: "5 min de calentamiento. 10 min de Wu Ji. 15 min: Ejercicios de masaje corporal suave y estiramiento." } },
+                    { day: "5-7", topic: "Postura del Jinete (Mabu) y Equilibrio", tasks: { 7: "2 min de Wu Ji. 5 min de práctica de la Postura del Jinete (Mabu) o un paso lateral.", 15: "5 min de Mabu. 10 min: Practicar el cambio de peso lento de un pie al otro.", 30: "5 min de calentamiento. 10 min de Wu Ji. 15 min: Ejercicios de equilibrio simple (levantar una rodilla)." } },
+                ]
+            },
+            {
+                week: 2,
+                title: "Mecánica del Movimiento (Drills Básicos)",
+                intro: "Esta semana, el enfoque se desplaza al movimiento. Aprenderás a transferir el peso de manera fluida y a coordinar tus brazos con la respiración, preparando el cuerpo para las formas.",
+                days: [
+                    { day: "8-10", topic: "Transferencia de Peso", tasks: { 7: "7 min: Practicar la transferencia de peso lenta de 70% a 30% de un lado a otro.", 15: "5 min de Wu Ji. 10 min: Transferencia de peso combinada con la apertura de brazos.", 30: "5 min de calentamiento. 5 min de Wu Ji. 20 min: Practicar transferencia de peso en diferentes direcciones (adelante y atrás)." } },
+                    { day: "11-12", topic: "'Abrir y Cerrar' (El Movimiento de Qi)", tasks: { 7: "7 min: Practicar el movimiento de brazos como si se inflara un globo.", 15: "5 min de transferencia de peso. 10 min: 'Abrir y Cerrar' de brazos, coordinando con la respiración.", 30: "5 min de calentamiento. 25 min: 'Abrir y Cerrar' en postura alta y postura baja." } },
+                    { day: "13-14", topic: "Comienzo (Starting Form) - Parte 1", tasks: { 7: "7 min: Aprender y repetir solo el levantamiento de brazos de la forma inicial (Comienzo).", 15: "5 min de Wu Ji y respiración. 10 min: Repetir el movimiento completo de Comienzo (subir, bajar, recoger).", 30: "5 min de calentamiento. 25 min: Descomponer el Comienzo: enfoque en pies y manos por separado, luego juntos." } },
+                ]
+            },
+            {
+                week: 3,
+                title: "Primeras Formas (La Mini-Secuencia)",
+                intro: "¡Es hora de enlazar los movimientos! Durante la Semana 3, aprenderás las primeras formas de una secuencia corta, enfocándote en las transiciones suaves entre cada una.",
+                days: [
+                    { day: "15-17", topic: "Forma 2: Separar la Crin (Parte 1)", tasks: { 7: "7 min: Repetir el 'Comienzo' y el primer lado de 'Separar la Crin' lentamente.", 15: "5 min de repaso de Comienzo. 10 min: Aprender el paso y movimiento de manos de 'Separar la Crin' (un lado).", 30: "5 min de calentamiento. 25 min: Practicar 'Separar la Crin' en ambos lados, enfocándose en la rotación de la cintura." } },
+                    { day: "18-20", topic: "Forma 3: Grulla Blanca Extiende sus Alas", tasks: { 7: "7 min: Practicar la transición de 'Separar la Crin' a 'Grulla Blanca'.", 15: "5 min de Wu Ji. 10 min: Aprender la postura final y el equilibrio de 'Grulla Blanca'.", 30: "5 min de calentamiento. 25 min: Repetir la mini-secuencia: Comienzo > Separar la Crin > Grulla Blanca." } },
+                    { day: "21-22", topic: "Transiciones Suaves", tasks: { 7: "7 min: Enfocarse solo en el cambio de una forma a la siguiente, sin detenerse.", 15: "15 min: Repetir la mini-secuencia 3 veces. La clave es la fluidez.", 30: "30 min: La mini-secuencia completa. Practicar en espejo y luego con los ojos cerrados para sentir el movimiento." } },
+                ]
+            },
+            {
+                week: 4,
+                title: "Integración y Flujo (El Arte de la Consistencia)",
+                intro: "En la última semana, el objetivo es integrar todo lo aprendido. Practicarás la secuencia completa para desarrollar fluidez, conexión mente-cuerpo y una profunda relajación en movimiento.",
+                days: [
+                    { day: "23-25", topic: "Conexión Mente-Cuerpo (Yi)", tasks: { 7: "7 min: Realizar la mini-secuencia 2 veces. Pensar en la intención y no solo en la técnica.", 15: "15 min: Realizar la mini-secuencia 4 veces. Sentir el Qi (energía) en tus manos y brazos.", 30: "5 min de calentamiento. 25 min: Realizar la mini-secuencia 5-6 veces. Revisar los principios de Tai Chi (cabeza erguida, hombros relajados)." } },
+                    { day: "26-28", topic: "La Relajación (Sung)", tasks: { 7: "7 min: Hacer la mini-secuencia lo más lento y relajado posible, ignorando errores.", 15: "15 min: Repasar la postura Wu Ji (5 min) y hacer la mini-secuencia (10 min). Buscar la máxima relajación (Sung).", 30: "5 min de estiramiento. 25 min: Práctica libre: Repetir la secuencia y luego caminar de forma muy lenta y consciente." } },
+                    { day: "29-30", topic: "Rutina Completa y Cierre", tasks: { 7: "7 min: La Prueba de 7 Minutos: Haz la mini-secuencia completa de forma fluida. ¡Felicidades!", 15: "15 min: Haz 20 min de práctica libre de la secuencia. Termina con una reverencia consciente.", 30: "30 min: Realiza el plan completo (calentamiento, práctica de forma, meditación final). Piensa en qué quieres aprender a continuación." } },
+                ]
+            }
+        ];
+
+        const planContainer = document.getElementById('plan-container');
+        const durationFilters = document.getElementById('duration-filters');
+        const progressContainer = document.getElementById('progress-dots-container');
+        let chart;
+
+        function renderProgressTracker() {
+            for (let i = 1; i <= 30; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('progress-dot', 'w-8', 'h-8', 'rounded-full', 'bg-stone-200', 'flex', 'items-center', 'justify-center', 'font-semibold', 'text-stone-500', 'cursor-pointer', 'shadow-sm');
+                dot.textContent = i;
+                dot.dataset.day = i;
+                progressContainer.appendChild(dot);
+            }
+            progressContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('progress-dot')) {
+                    e.target.classList.toggle('completed');
+                }
+            });
+        }
+
+        function renderPlan() {
+            planContainer.innerHTML = '';
+            planData.forEach((week, index) => {
+                const weekElement = document.createElement('div');
+                weekElement.classList.add('bg-white', 'rounded-lg', 'shadow-sm', 'overflow-hidden');
+                
+                const weekHeader = document.createElement('div');
+                weekHeader.classList.add('p-4', 'cursor-pointer', 'bg-teal-50', 'hover:bg-teal-100', 'transition-colors', 'flex', 'justify-between', 'items-center');
+                weekHeader.innerHTML = `
+                    <div>
+                        <h3 class="text-lg font-bold text-teal-800">Semana ${week.week}: ${week.title}</h3>
+                    </div>
+                    <span class="text-teal-600 font-bold text-2xl transform transition-transform duration-300">${index === 0 ? '−' : '+'}</span>
+                `;
+                
+                const weekContent = document.createElement('div');
+                weekContent.classList.add('accordion-content', 'p-4', 'border-t', 'border-teal-100');
+                if (index === 0) {
+                    weekContent.classList.add('open');
+                }
+                weekContent.innerHTML = `<p class="mb-6 text-stone-600 italic">${week.intro}</p>`;
+                
+                const daysGrid = document.createElement('div');
+                daysGrid.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'gap-4');
+
+                week.days.forEach(day => {
+                    const dayCard = document.createElement('div');
+                    dayCard.classList.add('day-card', 'border', 'border-stone-200', 'rounded-lg', 'p-4', 'flex', 'flex-col');
+                    dayCard.innerHTML = `
+                        <p class="font-bold text-stone-500">Día(s) ${day.day}</p>
+                        <h4 class="font-semibold text-teal-700 text-lg mb-3">${day.topic}</h4>
+                        <div class="task-content space-y-3 text-sm">
+                            <div data-duration-content="7">
+                                <span class="font-bold text-teal-600">7 Min:</span>
+                                <span class="text-stone-600">${day.tasks[7]}</span>
+                            </div>
+                            <div data-duration-content="15">
+                                <span class="font-bold text-teal-600">15 Min:</span>
+                                <span class="text-stone-600">${day.tasks[15]}</span>
+                            </div>
+                            <div data-duration-content="30">
+                                <span class="font-bold text-teal-600">30 Min:</span>
+                                <span class="text-stone-600">${day.tasks[30]}</span>
+                            </div>
+                        </div>
+                    `;
+                    daysGrid.appendChild(dayCard);
+                });
+                
+                weekContent.appendChild(daysGrid);
+                weekElement.appendChild(weekHeader);
+                weekElement.appendChild(weekContent);
+                planContainer.appendChild(weekElement);
+
+                weekHeader.addEventListener('click', () => {
+                    const icon = weekHeader.querySelector('span');
+                    const content = weekHeader.nextElementSibling;
+                    const isOpen = content.classList.contains('open');
+
+                    document.querySelectorAll('.accordion-content').forEach(el => {
+                        el.classList.remove('open');
+                        el.previousElementSibling.querySelector('span').textContent = '+';
+                    });
+
+                    if (!isOpen) {
+                        content.classList.add('open');
+                        icon.textContent = '−';
+                    }
+                });
+            });
+        }
+
+        function filterPlan(duration) {
+            const dayCards = document.querySelectorAll('.day-card');
+            dayCards.forEach(card => {
+                const contents = card.querySelectorAll('[data-duration-content]');
+                contents.forEach(content => {
+                    if (duration === 'all' || content.dataset.durationContent === duration) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+            updateChartHighlight(duration);
+        }
+        
+        durationFilters.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const duration = e.target.dataset.duration;
+                
+                document.querySelectorAll('.duration-button').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+
+                filterPlan(duration);
+            }
+        });
+
+        function createChart() {
+            const ctx = document.getElementById('timeCommitmentChart').getContext('2d');
+            const chartData = {
+                labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+                datasets: [
+                    { label: '7 Min/Día', data: [49, 49, 56, 56], backgroundColor: 'rgba(14, 116, 144, 0.2)', borderColor: 'rgb(14, 116, 144)', borderWidth: 2, barPercentage: 0.6, categoryPercentage: 0.8 },
+                    { label: '15 Min/Día', data: [105, 105, 120, 120], backgroundColor: 'rgba(8, 145, 178, 0.4)', borderColor: 'rgb(8, 145, 178)', borderWidth: 2, barPercentage: 0.6, categoryPercentage: 0.8 },
+                    { label: '30 Min/Día', data: [210, 210, 240, 240], backgroundColor: 'rgba(6, 182, 212, 0.6)', borderColor: 'rgb(6, 182, 212)', borderWidth: 2, barPercentage: 0.6, categoryPercentage: 0.8 },
+                ]
+            };
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.parsed.y} minutos`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Minutos Totales de Práctica' }
+                        },
+                            x: {
+                            title: { display: true, text: 'Semanas del Plan' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChartHighlight(duration) {
+            const datasets = chart.data.datasets;
+            const alpha = 0.2;
+            const fullAlpha = 0.7;
+
+            if (duration === '7') {
+                datasets[0].backgroundColor = `rgba(14, 116, 144, ${fullAlpha})`;
+                datasets[1].backgroundColor = `rgba(8, 145, 178, ${alpha})`;
+                datasets[2].backgroundColor = `rgba(6, 182, 212, ${alpha})`;
+            } else if (duration === '15') {
+                datasets[0].backgroundColor = `rgba(14, 116, 144, ${alpha})`;
+                datasets[1].backgroundColor = `rgba(8, 145, 178, ${fullAlpha})`;
+                datasets[2].backgroundColor = `rgba(6, 182, 212, ${alpha})`;
+            } else if (duration === '30') {
+                datasets[0].backgroundColor = `rgba(14, 116, 144, ${alpha})`;
+                datasets[1].backgroundColor = `rgba(8, 145, 178, ${alpha})`;
+                datasets[2].backgroundColor = `rgba(6, 182, 212, ${fullAlpha})`;
+            } else {
+                datasets[0].backgroundColor = `rgba(14, 116, 144, 0.5)`;
+                datasets[1].backgroundColor = `rgba(8, 145, 178, 0.5)`;
+                datasets[2].backgroundColor = `rgba(6, 182, 212, 0.6)`;
+            }
+            chart.update();
+        }
+
+        // --- FUNCIONES DE GENERACIÓN DE IMÁGENES ---
+
+        async function generateImage(prompt, containerId, maxRetries = 5) {
+            const container = document.getElementById(containerId);
+            const apiKey = ""; // Canvas will provide this key at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
+            const payload = { 
+                instances: { prompt: prompt }, 
+                parameters: { "sampleCount": 1 } 
+            };
+
+            for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                         if (response.status === 429 && attempt < maxRetries - 1) {
+                            const delay = Math.pow(2, attempt) * 1000;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            continue;
+                        } else {
+                            throw new Error(`Error HTTP: ${response.status}`);
+                        }
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
+                        const base64Data = result.predictions[0].bytesBase64Encoded;
+                        const imageUrl = `data:image/png;base64,${base64Data}`;
+                        
+                        container.innerHTML = `<img src="${imageUrl}" alt="Ilustración de Tai Chi: ${prompt.substring(0, 50)}">`;
+                        return;
+                    } else {
+                        throw new Error("Respuesta de API incompleta o sin imagen.");
+                    }
+                } catch (error) {
+                    container.innerHTML = `<p class="text-sm text-red-600 p-2">Error al cargar la imagen. ${error.message}</p>`;
+                }
+            }
+        }
+
+        function loadTaiChiImages() {
+            // 1. Comienzo / Forma Inicial (Wu Ji Stance)
+            generateImage(
+                "Persona ejecutando la postura Wu Ji de Tai Chi. El cuerpo está relajado y erguido, los pies paralelos a la altura de los hombros, las manos cuelgan naturalmente a los lados. Fondo minimalista y sereno.",
+                "image-comienzo"
+            );
+
+            // 2. Separar la Crin del Caballo Salvaje
+            generateImage(
+                "Persona ejecutando Separar la Crin del Caballo Salvaje de Tai Chi, en paso de arco, un brazo levantado al frente con la palma hacia arriba y el otro brazo bajado y extendido. Estilo de arte chino tradicional, fondo sereno.",
+                "image-separar"
+            );
+
+            // 3. Grulla Blanca Extiende sus Alas
+            generateImage(
+                "Persona ejecutando Grulla Blanca Extiende sus Alas de Tai Chi, con el peso en una pierna, los brazos extendidos en diagonal, uno arriba y otro abajo, simulando alas. Postura de equilibrio. Fondo de jardín zen minimalista.",
+                "image-grulla"
+            );
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPlan();
+            renderProgressTracker();
+            createChart();
+            filterPlan('all');
+            loadTaiChiImages();
+        });
+    </script>
+</body>
+</html>
