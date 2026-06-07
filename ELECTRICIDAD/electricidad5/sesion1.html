@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 1: Introducción Fotovoltaica - El Poder del Sol</title>
+    <title>Sesión 1: Intro a la Energía Solar</title>
     <link rel="stylesheet" href="../../global-lesson.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,199 +11,90 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin: 20px 0;
+            margin: 2rem 0;
         }
 
         @media (max-width: 768px) {
             .pros-cons-grid { grid-template-columns: 1fr; }
         }
 
-        .pro-card {
-            background: rgba(46, 204, 113, 0.1);
-            border-left: 4px solid #2ecc71;
-            padding: 15px;
-            border-radius: 0 10px 10px 0;
+        .pros-card {
+            background: #f0fdf4;
+            border-left: 5px solid #2ecc71;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-soft);
         }
 
-        .con-card {
-            background: rgba(231, 76, 60, 0.1);
-            border-left: 4px solid #e74c3c;
-            padding: 15px;
-            border-radius: 0 10px 10px 0;
+        .cons-card {
+            background: #fef2f2;
+            border-left: 5px solid #e74c3c;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-soft);
         }
 
-        /* Photovoltaic Simulator */
-        .pv-sim {
-            background: #2c3e50;
+        /* Interactive Diagram */
+        .solar-diagram {
+            background: #1a252f;
             border-radius: 15px;
             padding: 2rem;
             margin: 2rem 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: white;
+            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .svg-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
             position: relative;
-            overflow: hidden;
         }
 
-        .sun-controls {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 2rem;
-            z-index: 2;
-        }
-
-        .sun-btn {
-            background: #f1c40f;
-            color: #d35400;
+        .component-btn {
+            position: absolute;
+            background: var(--accent-color);
+            color: #111;
             border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
             font-weight: bold;
-            font-size: 1.1rem;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
-            transition: all 0.2s;
+            box-shadow: 0 0 10px rgba(241, 196, 15, 0.8);
+            transition: transform 0.3s;
+            animation: pulseBtn 2s infinite;
         }
 
-        .sun-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(241, 196, 15, 0.8);
+        .component-btn:hover {
+            transform: scale(1.2);
         }
 
-        .sun-btn:active {
-            transform: scale(0.95);
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(241, 196, 15, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
         }
 
-        .cell-container {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            z-index: 1;
-        }
+        /* Positions */
+        #btn-panel { top: 20%; left: 30%; }
+        #btn-controller { top: 50%; left: 50%; }
+        #btn-battery { bottom: 10%; left: 40%; }
+        #btn-inverter { top: 50%; left: 70%; }
+        #btn-grid { top: 20%; right: 10%; }
 
-        .n-layer {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: linear-gradient(180deg, #3498db, #2980b9);
-            border-radius: 5px 5px 0 0;
-            border: 2px solid #2c3e50;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px black;
-        }
-
-        .p-layer {
-            position: absolute;
-            top: 90px;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            background: linear-gradient(180deg, #e74c3c, #c0392b);
-            border-radius: 0 0 5px 5px;
-            border: 2px solid #2c3e50;
-            border-top: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px black;
-        }
-
-        .wire-top {
-            position: absolute;
-            top: 10px;
-            left: 150px;
-            width: 2px;
-            height: 40px;
-            background: #bdc3c7;
-        }
-
-        .wire-loop {
-            position: absolute;
-            top: 10px;
-            left: 150px;
-            width: 180px;
-            height: 120px;
-            border: 4px solid #bdc3c7;
-            border-left: none;
-            border-bottom: none;
-            border-radius: 0 10px 0 0;
-            z-index: 0;
-        }
-        
-        .wire-loop-bottom {
-            position: absolute;
-            top: 130px;
-            left: 150px;
-            width: 180px;
-            height: 20px;
-            border: 4px solid #bdc3c7;
-            border-left: none;
-            border-top: none;
-            border-radius: 0 0 10px 0;
-            z-index: 0;
-        }
-
-        .lightbulb {
-            position: absolute;
-            top: 50px;
-            left: 310px;
-            font-size: 3rem;
-            color: #7f8c8d;
-            transition: color 0.2s, text-shadow 0.2s;
+        .info-panel {
             background: #2c3e50;
-            z-index: 2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            min-height: 100px;
+            border-top: 3px solid var(--primary-color);
+            text-align: left;
         }
 
-        .lightbulb.on {
-            color: #f1c40f;
-            text-shadow: 0 0 20px #f1c40f, 0 0 40px #f1c40f;
-        }
-
-        .photon {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #f1c40f;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #f1c40f;
-            top: -20px;
-            opacity: 0;
-        }
-
-        .electron {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #fff;
-            opacity: 0;
-            z-index: 3;
-        }
-
-        @keyframes photonDrop {
-            0% { top: -50px; opacity: 1; }
-            80% { opacity: 1; }
-            100% { top: 60px; opacity: 0; }
-        }
-
-        @keyframes electronFlow {
-            0% { top: 60px; left: 150px; opacity: 1; }
-            20% { top: 10px; left: 150px; opacity: 1; }
-            50% { top: 10px; left: 325px; opacity: 1; }
-            80% { top: 140px; left: 325px; opacity: 1; }
-            95% { top: 140px; left: 150px; opacity: 1; }
-            100% { top: 120px; left: 150px; opacity: 0; }
-        }
+        .info-panel h3 { color: var(--accent-color); margin-top: 0; }
     </style>
 </head>
 <body>
@@ -213,72 +104,87 @@
 
     <div class="sesion-header">
         <h1 class="sesion-title">Introducción a la Energía Solar</h1>
-        <p class="sesion-subtitle">Sesión 1 - Módulo 1: Capturando Estrellas</p>
+        <p class="sesion-subtitle">Sesión 1 - Módulo 1: Capturando la luz de las estrellas</p>
     </div>
 
     <div class="info-box">
         <strong><i class="fas fa-sun"></i> Objetivo de Aprendizaje:</strong>
-        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrirás el "milagro" de la física cuántica que hace posible convertir la luz pura directamente en electricidad, y conocerás los componentes básicos que hacen funcionar una casa con energía solar.</p>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Entenderás cómo funciona el "Efecto Fotovoltaico" y conocerás las piezas fundamentales que hacen posible transformar la luz del Sol en electricidad para tu hogar.</p>
     </div>
 
     <div class="teoria-section">
-        <h2>El Efecto Fotovoltaico</h2>
-        <p>A diferencia de los generadores de la CFE que usan enormes imanes girando (inducción magnética), los paneles solares <strong>no tienen piezas móviles</strong>. Son completamente silenciosos.</p>
-        <p>Están hechos de <strong>Silicio</strong> (como los microchips). El panel se divide en dos capas microscópicas: una con exceso de electrones libres (Capa N) y otra a la que le "faltan" electrones (Capa P). Cuando las partículas de luz (Fotones) golpean la Capa N con suficiente fuerza, "golpean" a los electrones y los empujan fuera del silicio. ¡Si les ponemos un cable, esos electrones viajarán formando una corriente eléctrica antes de regresar a la Capa P!</p>
+        <h2>¿Qué es la Energía Fotovoltaica?</h2>
+        <p>A diferencia de calentar agua con el Sol (energía solar térmica), la energía fotovoltaica es magia cuántica: utiliza materiales semiconductores (como el Silicio) que, al ser golpeados por partículas de luz (fotones), liberan electrones creando una corriente eléctrica instantánea.</p>
+
+        <div class="pros-cons-grid">
+            <div class="pros-card">
+                <h3 style="color:#27ae60; margin-top:0;"><i class="fas fa-check-circle"></i> Ventajas (La Luz)</h3>
+                <ul>
+                    <li>El Sol es gratis y no se apagará pronto.</li>
+                    <li>Cero ruido y cero emisiones locales.</li>
+                    <li>Mantenimiento casi nulo (¡no tienen piezas móviles!).</li>
+                    <li>Modular: Puedes empezar con un panel y luego agregar diez.</li>
+                </ul>
+            </div>
+            
+            <div class="cons-card">
+                <h3 style="color:#c0392b; margin-top:0;"><i class="fas fa-times-circle"></i> Desventajas (La Sombra)</h3>
+                <ul>
+                    <li>Inversión inicial elevada.</li>
+                    <li>Dependencia total del clima y las nubes.</li>
+                    <li>No funciona de noche (requiere baterías costosas).</li>
+                    <li>Eficiencia física limitada (la mayoría solo captura el 20% de la luz).</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="practica-section">
-        <h2>Simulador: Creando Electricidad con Luz</h2>
-        <p>Haz clic en el botón para simular la llegada de fotones (luz solar). Observa cómo impactan la Capa N de Silicio, liberando electrones que viajan por el cable, encienden el foco, y completan el circuito regresando a la Capa P.</p>
+        <h2>Diagrama del Sistema Solar</h2>
+        <p>Toca (o haz clic) en los números sobre el diagrama para descubrir qué hace cada componente crítico de una instalación.</p>
 
-        <div class="pv-sim">
-            <div class="sun-controls">
-                <button class="sun-btn" onclick="firePhotons()"><i class="fas fa-sun"></i> Irradiar Sol</button>
-            </div>
-            
-            <div class="cell-container" id="cell-container">
-                <div class="wire-loop"></div>
-                <div class="wire-loop-bottom"></div>
-                
-                <i class="fas fa-lightbulb lightbulb" id="sim-bulb"></i>
-                
-                <div class="n-layer">Capa N (Silicio dopado con Fósforo)</div>
-                <div class="p-layer">Capa P (Silicio dopado con Boro)</div>
-            </div>
-        </div>
-    </div>
+        <div class="solar-diagram">
+            <div class="svg-container">
+                <!-- SVG Simulado de una casa con paneles solares, baterías y red eléctrica -->
+                <svg viewBox="0 0 800 400" width="100%" height="100%" style="background:#34495e; border-radius:10px;">
+                    <!-- Casa -->
+                    <path d="M 200 200 L 400 100 L 600 200 L 600 380 L 200 380 Z" fill="#95a5a6"/>
+                    <path d="M 180 200 L 400 90 L 620 200" fill="none" stroke="#7f8c8d" stroke-width="20"/>
+                    
+                    <!-- Panel Solar -->
+                    <rect x="250" y="120" width="120" height="60" transform="rotate(25 250 120)" fill="#2980b9" stroke="#fff" stroke-width="2"/>
+                    <line x1="280" y1="180" x2="280" y2="280" stroke="#f1c40f" stroke-width="4"/> <!-- Cable DC -->
 
-    <div class="teoria-section">
-        <h2>Pros y Contras del Sol</h2>
-        <div class="pros-cons-grid">
-            <div class="pro-card">
-                <h3 style="color:#27ae60; margin-top:0;"><i class="fas fa-thumbs-up"></i> Ventajas</h3>
-                <ul>
-                    <li><strong>Renovable y Limpia:</strong> Cero emisiones de CO2 al operar.</li>
-                    <li><strong>Sin ruido:</strong> No hay motores ni partes móviles.</li>
-                    <li><strong>Mantenimiento mínimo:</strong> Solo requieren limpieza ocasional.</li>
-                    <li><strong>Independencia:</strong> Te liberas (total o parcialmente) de la compañía eléctrica.</li>
-                </ul>
+                    <!-- Controlador de Carga -->
+                    <rect x="350" y="250" width="60" height="40" fill="#e67e22" rx="5"/>
+                    <text x="380" y="275" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">CTRL</text>
+                    
+                    <!-- Batería -->
+                    <rect x="300" y="320" width="80" height="50" fill="#8e44ad" rx="5"/>
+                    <line x1="380" y1="290" x2="340" y2="320" stroke="#f1c40f" stroke-width="4"/> <!-- Cable Bateria -->
+
+                    <!-- Inversor -->
+                    <rect x="450" y="250" width="80" height="60" fill="#27ae60" rx="5"/>
+                    <text x="490" y="285" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">INVERSOR</text>
+                    <line x1="410" y1="270" x2="450" y2="270" stroke="#f1c40f" stroke-width="4"/> <!-- Cable DC Inversor -->
+
+                    <!-- Red (CFE) -->
+                    <line x1="600" y1="280" x2="700" y2="280" stroke="#e74c3c" stroke-width="4"/> <!-- Cable AC -->
+                    <rect x="700" y="200" width="20" height="180" fill="#7f8c8d"/> <!-- Poste -->
+                    <line x1="680" y1="210" x2="720" y2="210" stroke="#bdc3c7" stroke-width="4"/>
+                </svg>
+
+                <button class="component-btn" id="btn-panel" onclick="showInfo('panel')">1</button>
+                <button class="component-btn" id="btn-controller" onclick="showInfo('controller')">2</button>
+                <button class="component-btn" id="btn-battery" onclick="showInfo('battery')">3</button>
+                <button class="component-btn" id="btn-inverter" onclick="showInfo('inverter')">4</button>
+                <button class="component-btn" id="btn-grid" onclick="showInfo('grid')">5</button>
             </div>
-            <div class="con-card">
-                <h3 style="color:#c0392b; margin-top:0;"><i class="fas fa-thumbs-down"></i> Desventajas</h3>
-                <ul>
-                    <li><strong>Intermitencia:</strong> No hay sol de noche ni en días muy nublados.</li>
-                    <li><strong>Costo Inicial:</strong> Comprar equipos y baterías de golpe es caro.</li>
-                    <li><strong>Espacio:</strong> Un panel grande solo genera ~500W. Necesitas techos amplios.</li>
-                    <li><strong>Eficiencia:</strong> El panel comercial solo convierte el ~20% de la luz en electricidad; el resto se pierde como calor.</li>
-                </ul>
+
+            <div class="info-panel" id="desc-box">
+                <h3 style="color:#bdc3c7;"><i class="fas fa-hand-pointer"></i> Selecciona un número</h3>
+                <p>Haz clic en los puntos del diagrama para ver la descripción de cada componente.</p>
             </div>
-        </div>
-        
-        <div class="danger-box">
-            <h3>Los 4 Componentes Clave de un Sistema Aislado</h3>
-            <ol>
-                <li><strong>Paneles Solares:</strong> Capturan el sol y generan Corriente Continua (CC).</li>
-                <li><strong>Controlador de Carga:</strong> El "cerebro". Regula la energía para no quemar las baterías.</li>
-                <li><strong>Banco de Baterías:</strong> Almacena la energía para usarla en la noche.</li>
-                <li><strong>Inversor:</strong> Transforma la CC de la batería en Corriente Alterna (CA) a 120V para tus electrodomésticos.</li>
-            </ol>
         </div>
     </div>
 
@@ -288,44 +194,44 @@
         <script type="application/json">
         [
             {
-                "question": "¿Qué ocurre físicamente dentro de un panel solar para generar electricidad?",
+                "question": "A diferencia de un boiler solar que calienta agua, los paneles fotovoltaicos utilizan el 'Efecto Fotovoltaico'. ¿Qué tipo de electricidad producen originalmente cuando los golpea el Sol?",
                 "options": [
-                    "El calor del sol hierve un líquido interno que empuja un micro-motor.",
-                    "Los fotones de luz golpean el silicio, liberando electrones que viajan por un cable.",
-                    "El panel absorbe los electrones que flotan en la atmósfera."
+                    "Corriente Alterna (CA).",
+                    "Corriente Continua (CC).",
+                    "Ambas al mismo tiempo."
                 ],
                 "correctIndex": 1,
-                "explanation": "Este es el Efecto Fotovoltaico. Albert Einstein ganó su premio Nobel por explicar matemáticamente cómo los fotones (partículas de luz) pueden golpear y liberar electrones de ciertos materiales semiconductores."
+                "explanation": "Los paneles producen Corriente Continua (CC o DC), igual que la de una pila o batería. Por eso siempre necesitan un Inversor para convertirla a Corriente Alterna (CA), que es lo que usan los enchufes de tu casa."
             },
             {
-                "question": "¿Cuál es la principal debilidad técnica de la energía solar en la actualidad?",
+                "question": "¿Cuál es la función principal de un 'Inversor' en un sistema solar residencial?",
                 "options": [
-                    "Es demasiado ruidosa.",
-                    "La intermitencia (depende del clima y no funciona de noche).",
-                    "Contamina más que el petróleo mientras funciona."
+                    "Almacenar la energía para usarla de noche.",
+                    "Convertir la Corriente Continua de los paneles a Corriente Alterna para los electrodomésticos.",
+                    "Evitar que la batería explote por sobrecarga."
                 ],
                 "correctIndex": 1,
-                "explanation": "El sol no brilla 24/7. Esta intermitencia es el mayor reto de la energía solar, obligándonos a depender de costosas baterías o a mantenernos conectados a la red eléctrica (CFE) como respaldo durante la noche."
+                "explanation": "El Inversor es el 'traductor' del sistema. Toma la electricidad cruda (DC) de los paneles o baterías y la transforma en la onda sinusoidal perfecta (AC a 120V o 220V) que requiere tu televisor o refrigerador."
             },
             {
-                "question": "Si vives en una cabaña aislada en la montaña y compras paneles solares, ¿qué otro equipo es ABSOLUTAMENTE obligatorio para que tengas luz en la noche?",
+                "question": "Tienes un sistema solar 'Conectado a la Red' (Interconectado). Llega la noche y no hay sol. ¿Qué pasa con tu casa?",
                 "options": [
-                    "Un transformador trifásico.",
-                    "Un banco de Baterías y un Controlador de Carga.",
-                    "Un medidor bidireccional de CFE."
+                    "Se apaga la luz porque el sistema no tiene baterías.",
+                    "El sistema automáticamente jala electricidad de la red de CFE para que no te quedes a oscuras.",
+                    "Los paneles solares generan electricidad con la luz de la luna."
                 ],
                 "correctIndex": 1,
-                "explanation": "En sistemas 'Off-Grid' (fuera de la red), si no tienes baterías, cuando el sol se pone te quedas a oscuras inmediatamente. El controlador de carga es necesario para que los paneles no sobrecarguen y destruyan esas baterías."
+                "explanation": "En un sistema interconectado, la red eléctrica de la calle funciona como tu 'batería infinita'. De día le inyectas energía y de noche la recuperas. No necesitas baterías físicas en tu casa."
             },
             {
-                "question": "¿De qué material están hechos principalmente los paneles solares comerciales?",
+                "question": "Una de las desventajas de los paneles solares comerciales actuales es su 'Eficiencia'. ¿Qué significa que un panel tenga un 20% de eficiencia?",
                 "options": [
-                    "Plástico reciclado.",
-                    "Cobre puro.",
-                    "Silicio."
+                    "Que solo funciona el 20% del día.",
+                    "Que solo capta el 20% de los rayos de luz y el 80% de la luz solar simplemente rebota o se convierte en calor inútil.",
+                    "Que se dañan en un 20% después de 5 años."
                 ],
-                "correctIndex": 2,
-                "explanation": "El Silicio (el mismo material con el que se hacen los chips de computadora) es el semiconductor estrella de la industria fotovoltaica gracias a su capacidad para liberar electrones cuando es dopado químicamente (Capa P y Capa N)."
+                "correctIndex": 1,
+                "explanation": "La tecnología de Silicio no es perfecta. De cada 100 'rayos de luz' que golpean el panel, solo logra convertir unos 20 en electricidad utilizable. ¡Por eso necesitamos paneles muy grandes para generar suficiente energía!"
             }
         ]
         </script>
@@ -340,52 +246,45 @@
 </main>
 
 <footer class="footer">
-    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5</em>. TODOS LOS DERECHOS RESERVADOS.</p>
 </footer>
 
 <script>
-    function firePhotons() {
-        const container = document.getElementById('cell-container');
-        const bulb = document.getElementById('sim-bulb');
-        
-        // Create 3 photons
-        for(let i=0; i<3; i++) {
-            setTimeout(() => {
-                // Photon
-                const photon = document.createElement('div');
-                photon.className = 'photon';
-                photon.style.left = (80 + (i*40)) + 'px';
-                photon.style.animation = 'photonDrop 0.5s ease-in forwards';
-                container.appendChild(photon);
-
-                // When photon hits (approx 400ms)
-                setTimeout(() => {
-                    photon.remove();
-                    
-                    // Electron
-                    const electron = document.createElement('div');
-                    electron.className = 'electron';
-                    electron.style.animation = 'electronFlow 1.5s linear forwards';
-                    container.appendChild(electron);
-                    
-                    // Bulb effect when electron passes (approx 700ms into electron flow)
-                    setTimeout(() => {
-                        bulb.classList.add('on');
-                    }, 700);
-
-                    // Remove electron and turn off bulb
-                    setTimeout(() => {
-                        electron.remove();
-                        // Only turn off if no other electrons are flowing
-                        if(container.querySelectorAll('.electron').length === 0) {
-                            bulb.classList.remove('on');
-                        }
-                    }, 1500);
-
-                }, 400);
-
-            }, i * 300); // Stagger photons
+    const infos = {
+        'panel': {
+            title: "1. Panel Fotovoltaico",
+            text: "El corazón del sistema. Captura los fotones del sol y excita electrones en sus celdas de silicio para generar electricidad en formato de Corriente Continua (CC)."
+        },
+        'controller': {
+            title: "2. Controlador de Carga",
+            text: "El 'policía de tránsito'. Regula el voltaje y amperaje que baja de los paneles para que las baterías se carguen de forma segura sin sobrecalentarse o explotar."
+        },
+        'battery': {
+            title: "3. Banco de Baterías",
+            text: "El almacén. Guarda la electricidad generada durante el día en forma química para poder usarla durante la noche o en días muy nublados. (Solo necesario en sistemas 'Aislados')."
+        },
+        'inverter': {
+            title: "4. Inversor de Corriente",
+            text: "El 'traductor'. Toma la Corriente Continua (CC) de las baterías o paneles y la convierte en Corriente Alterna (CA a 120V) para que puedas conectar tus electrodomésticos normales."
+        },
+        'grid': {
+            title: "5. Red Eléctrica (CFE)",
+            text: "En sistemas 'Interconectados', el excedente de energía solar que no usas se inyecta a los cables de la calle para venderlo o guardarlo como saldo a favor en tu medidor bidireccional."
         }
+    };
+
+    function showInfo(id) {
+        const box = document.getElementById('desc-box');
+        box.innerHTML = `<h3>${infos[id].title}</h3><p>${infos[id].text}</p>`;
+        
+        // Reset colors
+        document.querySelectorAll('.component-btn').forEach(b => b.style.background = "var(--accent-color)");
+        document.querySelectorAll('.component-btn').forEach(b => b.style.color = "#111");
+        
+        // Highlight active
+        const btn = document.getElementById('btn-' + id);
+        btn.style.background = "#e74c3c";
+        btn.style.color = "white";
     }
 </script>
 
@@ -399,7 +298,6 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          // IMPORTANT: The subject must match what we put in index.html (electricidad5)
           window.markLessonCompleted('electricidad5', 'sesion1');
       }
   });

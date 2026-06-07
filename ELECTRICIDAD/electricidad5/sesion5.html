@@ -3,381 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 5: Baterías - Almacenando el Sol</title>
-    <link rel="stylesheet" href="../../global-lesson.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sesión 5: Componentes II - Baterías</title>
     <style>
-        .battery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .battery-type {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .battery-type h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #fff8e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffa000;
+        }
+        .practical-exercise h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .image-container {
+            text-align: center;
             margin: 20px 0;
         }
-
-        .battery-card {
-            background: var(--bg-card);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-soft);
-            position: relative;
-            overflow: hidden;
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
         }
-
-        .battery-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 5px;
-        }
-        .card-plomo::before { background: #7f8c8d; }
-        .card-litio::before { background: #3498db; }
-
-        .battery-card h3 { margin-top: 0; }
-
-        /* Battery Simulator */
-        .batt-sim {
-            background: #2c3e50;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .controls-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 2rem;
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .sim-btn {
-            background: #34495e;
-            color: white;
-            border: 2px solid transparent;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .sim-btn.active {
-            background: var(--primary-color);
-            border-color: #fff;
-            box-shadow: 0 0 15px var(--primary-color);
-        }
-
-        .battery-visual {
-            width: 150px;
-            height: 250px;
-            border: 5px solid #bdc3c7;
-            border-radius: 10px;
-            position: relative;
-            background: #1a252f;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-        }
-
-        .battery-cap {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 10px;
-            background: #bdc3c7;
-            border-radius: 5px 5px 0 0;
-        }
-
-        .battery-level {
-            width: 100%;
-            height: 100%; /* controlled by JS */
-            background: #2ecc71;
-            transition: height 0.5s, background 0.5s;
-            border-radius: 0 0 5px 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #111;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        .slider-group {
-            width: 100%;
-            max-width: 400px;
-            background: #34495e;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .slider-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #bdc3c7;
-        }
-
-        .slider-group input { width: 100%; }
-
-        .health-dashboard {
-            width: 100%;
-            max-width: 400px;
-            background: rgba(0,0,0,0.3);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid #7f8c8d;
-        }
-
-        .health-val {
-            font-size: 2.5rem;
-            font-family: monospace;
-            font-weight: bold;
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
-
-<main class="page-container">
-    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
-
-    <div class="sesion-header">
-        <h1 class="sesion-title">Baterías (Almacenaje)</h1>
-        <p class="sesion-subtitle">Sesión 5 - Módulo 2: Almacenando el Sol</p>
-    </div>
-
-    <div class="info-box">
-        <strong><i class="fas fa-battery-full"></i> Objetivo de Aprendizaje:</strong>
-        <p style="margin-bottom: 0; margin-top: 0.5rem;">Comprender las dos químicas principales que dominan el mundo solar (Plomo-Ácido y Litio), qué es la Profundidad de Descarga (DoD) y por qué vaciar tu batería a cero es la forma más rápida de destruirla.</p>
-    </div>
-
-    <div class="teoria-section">
-        <h2>La Guerra Química: Plomo vs Litio</h2>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
         
-        <div class="battery-grid">
-            <div class="battery-card card-plomo">
-                <h3 style="color:#7f8c8d;"><i class="fas fa-car-battery"></i> Plomo-Ácido (Gel/AGM)</h3>
-                <p>La tecnología clásica, pesada y confiable.</p>
-                <ul>
-                    <li><strong>Costo Inicial:</strong> Muy Económico.</li>
-                    <li><strong>Peso:</strong> Extremadamente pesadas.</li>
-                    <li><strong>El Talón de Aquiles:</strong> NO puedes descargarlas más del 50%. Si es una batería de 100Ah, solo puedes usar 50Ah. Si la vacías, el plomo se sulfata y muere.</li>
-                    <li><strong>Vida Útil:</strong> 3 a 5 años (si las cuidas).</li>
-                </ul>
-            </div>
-            <div class="battery-card card-litio">
-                <h3 style="color:#3498db;"><i class="fas fa-battery-three-quarters"></i> Iones de Litio (LiFePO4)</h3>
-                <p>El estándar moderno usado en autos eléctricos y celulares.</p>
-                <ul>
-                    <li><strong>Costo Inicial:</strong> Alto (pero rentable a largo plazo).</li>
-                    <li><strong>Peso:</strong> Muy ligeras y compactas.</li>
-                    <li><strong>El Súper Poder:</strong> Puedes descargarlas hasta el 80% o 90% (DoD) sin dañarlas gravemente.</li>
-                    <li><strong>Vida Útil:</strong> 10 a 15 años (miles de ciclos).</li>
-                </ul>
-            </div>
+        <h1>Sesión 5: Componentes II - Baterías</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Conocer los diferentes tipos de baterías utilizadas en sistemas fotovoltaicos, comprender sus características técnicas, capacidades, ciclos de vida, y aprender los esquemas de conexión adecuados para su implementación en sistemas solares.</p>
         </div>
 
-        <div class="danger-box">
-            <h3><i class="fas fa-skull-crossbones"></i> ¿Qué es el DoD (Depth of Discharge)?</h3>
-            <p>Es la <strong>Profundidad de Descarga</strong>. Imagina que tu batería es un vaso de agua. El DoD te dice cuánto le tomaste al vaso antes de volverlo a llenar (Cargar).<br>
-            A las baterías <strong>odian</strong> quedarse vacías. Cada vez que bajas una batería de Plomo a 0% de carga (100% DoD), le quitas meses de vida útil permanentemente.</p>
+        <h2>1. Tipos de baterías para sistemas solares</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="battery-type">
+            <h4>1.1 Baterías de Plomo-Ácido (Ácido-Plomo)</h4>
+            <div class="image-container">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.ysHfFjzZwxk0dJj6QvoxZwHaFA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Batería de Plomo-Ácido" class="img-small">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Tecnología madura y ampliamente utilizada</li>
+                <li>Bajo costo inicial</li>
+                <li>Alta corriente de arranque</li>
+                <li>Requiere mantenimiento (nivel de electrolito)</li>
+                <li>Vida útil: 3-5 años</li>
+                <li>Profundidad de descarga recomendada: 50%</li>
+            </ul>
+            
+            <p><strong>Variantes:</strong></p>
+            <ul>
+                <li><strong>Líquidas (inundadas):</strong> Requieren mantenimiento de agua destilada</li>
+                <li><strong>VRLA (Valve Regulated Lead Acid):</strong> Selladas, sin mantenimiento</li>
+                <li><strong>AGM (Absorbed Glass Mat):</strong> Electrolito inmovilizado en fibra de vidrio</li>
+                <li><strong>Gel:</strong> Electrolito en forma de gel, mayor vida útil</li>
+            </ul>
         </div>
-    </div>
 
-    <div class="practica-section">
-        <h2>Simulador de Daño por Descarga (Ciclos de Vida)</h2>
-        <p>Selecciona un tipo de Batería. Mueve el deslizador para extraerle energía (aumentar el DoD). Observa cómo cae drásticamente su Esperanza de Vida (Ciclos) si eres abusivo y la vacías demasiado profundo.</p>
+        <div class="battery-type">
+            <h4>1.2 Baterías de Iones de Litio (Li-ion)</h4>
+            <div class="image-container">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.y7Urg8duiPNAby8ttBfuZgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Batería de Iones de Litio" class="img-small">
 
-        <div class="batt-sim">
-            <div class="controls-row">
-                <button class="sim-btn active" id="btn-plomo" onclick="setChem('plomo')">Batería Plomo-Ácido (AGM)</button>
-                <button class="sim-btn" id="btn-litio" onclick="setChem('litio')">Batería de Litio (LiFePO4)</button>
             </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Alta densidad energética</li>
+                <li>Larga vida útil (5,000-7,000 ciclos al 80% DoD)</li>
+                <li>Alta eficiencia (95-98%)</li>
+                <li>Sin mantenimiento</li>
+                <li>Mayor profundidad de descarga (80-90%)</li>
+                <li>Menor peso y tamaño que las de plomo-ácido</li>
+                <li>Mayor costo inicial</li>
+            </ul>
+            
+            <p><strong>Variantes:</strong></p>
+            <ul>
+                <li><strong>LiFePO4 (Fosfato de Hierro y Litio):</strong> Mayor seguridad y vida útil</li>
+                <li><strong>NMC (Níquel Manganeso Cobalto):</strong> Mayor densidad energética</li>
+            </ul>
+        </div>
 
-            <div class="battery-visual">
-                <div class="battery-cap"></div>
-                <div class="battery-level" id="batt-level">100%</div>
-            </div>
+        <div class="battery-type">
+            <h4>1.3 Baterías de Níquel-Cadmio (Ni-Cd)</h4>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Alta resistencia a temperaturas extremas</li>
+                <li>Larga vida útil (2,000-3,500 ciclos)</li>
+                <li>Alta resistencia a sobrecargas</li>
+                <li>Efecto memoria</li>
+                <li>Alto costo</li>
+                <li>Impacto ambiental por el cadmio</li>
+            </ul>
+        </div>
 
-            <div class="slider-group">
-                <label>Uso de Energía (Profundidad de Descarga - DoD): <span id="val-dod" style="color:#e74c3c;">0%</span></label>
-                <input type="range" id="slider-dod" min="0" max="100" value="0" oninput="updateBatt()">
-                <p style="font-size:0.8rem; margin-top:5px; margin-bottom:0;">Mueve a la derecha para gastar batería en la noche.</p>
-            </div>
-
-            <div class="health-dashboard">
-                <div style="color:#bdc3c7; font-size:0.9rem; text-transform:uppercase; margin-bottom:5px;">Esperanza de Vida Estimada</div>
-                <div class="health-val" id="out-cycles" style="color:#2ecc71;">-- Ciclos</div>
-                <div style="font-size:0.9rem; color:#95a5a6; margin-top:5px;" id="out-years">(-- Años)</div>
+        <h2>2. Capacidad y ciclo de vida</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="battery-type">
+            <h4>2.1 Capacidad de las baterías</h4>
+            
+            <p><strong>Capacidad nominal (C<sub>n</sub>):</strong> Cantidad de energía que puede almacenar una batería, medida en Amperios-hora (Ah).</p>
+            
+            <p><strong>Factores que afectan la capacidad:</strong></p>
+            <ul>
+                <li><strong>Tasa de descarga (C-rate):</strong> A mayor tasa de descarga, menor capacidad disponible</li>
+                <li><strong>Temperatura:</strong> La capacidad disminuye con bajas temperaturas</li>
+                <li><strong>Edad de la batería:</strong> La capacidad disminuye con el tiempo y los ciclos</li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio: Cálculo de capacidad necesaria</h4>
+                <p>Calcular la capacidad de batería necesaria para un consumo diario de 2,400Wh con 2 días de autonomía, considerando una profundidad de descarga máxima del 50% y una tensión del sistema de 24V.</p>
+                
+                <p><strong>Fórmula:</strong></p>
+                <p>Capacidad (Ah) = (Consumo diario × Días de autonomía) / (Tensión × Profundidad de descarga)</p>
+                
+                <p><strong>Solución:</strong></p>
+                <p>Capacidad = (2,400Wh × 2) / (24V × 0.5) = 400Ah</p>
             </div>
             
-            <p id="chem-warning" style="margin-top: 15px; color: #f1c40f; text-align: center; height:20px; font-weight:bold;"></p>
+            <h4>2.2 Ciclo de vida</h4>
+            
+            <p>El ciclo de vida de una batería se refiere al número de ciclos completos de carga/descarga que puede soportar antes de que su capacidad disminuya por debajo del 80% de su capacidad nominal.</p>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Tipo de Batería</th>
+                    <th>Ciclos al 50% DoD</th>
+                    <th>Ciclos al 80% DoD</th>
+                    <th>Vida útil (años)</th>
+                </tr>
+                <tr>
+                    <td>Plomo-Ácido Inundada</td>
+                    <td>500-1,200</td>
+                    <td>200-500</td>
+                    <td>3-5</td>
+                </tr>
+                <tr>
+                    <td>AGM</td>
+                    <td>600-1,200</td>
+                    <td>300-600</td>
+                    <td>4-7</td>
+                </tr>
+                <tr>
+                    <td>Gel</td>
+                    <td>800-1,500</td>
+                    <td>500-1,000</td>
+                    <td>5-8</td>
+                </tr>
+                <tr>
+                    <td>LiFePO4</td>
+                    <td>3,000-7,000</td>
+                    <td>2,000-5,000</td>
+                    <td>8-15</td>
+                </tr>
+            </table>
+            
+            <p><strong>Factores que afectan el ciclo de vida:</strong></p>
+            <ul>
+                <li>Profundidad de descarga (DoD)</li>
+                <li>Temperatura de operación</li>
+                <li>Sobrecarga y sobredescarga</li>
+                <li>Corriente de carga/descarga</li>
+                <li>Mantenimiento (en baterías que lo requieran)</li>
+            </ul>
+        </div>
+
+        <h2>3. Esquemas de conexión</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="battery-type">
+            <h4>3.1 Conexión en Serie</h4>
+            <div class="image-container">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.nObsGCwEfLv-GAumLdWnswHaDo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Conexión en serie" class="img-medium">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Se conecta el positivo de una batería con el negativo de la siguiente</li>
+                <li>El voltaje total es la suma de los voltajes individuales</li>
+                <li>La capacidad total es igual a la de una sola batería</li>
+                <li>Fórmula: V<sub>total</sub> = V<sub>1</sub> + V<sub>2</sub> + ... + V<sub>n</sub></li>
+                <li>C<sub>total</sub> = C<sub>individual</sub></li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio:</h4>
+                <p>Calcular el voltaje y capacidad totales al conectar 4 baterías de 12V y 100Ah en serie.</p>
+                <p><strong>Solución:</strong></p>
+                <p>V<sub>total</sub> = 12V + 12V + 12V + 12V = 48V</p>
+                <p>C<sub>total</sub> = 100Ah</p>
+            </div>
+            
+            <h4>3.2 Conexión en Paralelo</h4>
+            <div class="image-container">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.0scw9h_SkNbcReqXNTSsZgHaDn?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Conexión en paralelo" class="img-medium">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Se conectan todos los positivos juntos y todos los negativos juntos</li>
+                <li>El voltaje total es igual al de una sola batería</li>
+                <li>La capacidad total es la suma de las capacidades individuales</li>
+                <li>Fórmula: C<sub>total</sub> = C<sub>1</sub> + C<sub>2</sub> + ... + C<sub>n</sub></li>
+                <li>V<sub>total</sub> = V<sub>individual</sub></li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio:</h4>
+                <p>Calcular el voltaje y capacidad totales al conectar 4 baterías de 12V y 100Ah en paralelo.</p>
+                <p><strong>Solución:</strong></p>
+                <p>V<sub>total</sub> = 12V</p>
+                <p>C<sub>total</sub> = 100Ah + 100Ah + 100Ah + 100Ah = 400Ah</p>
+            </div>
+            
+            <h4>3.3 Conexión Serie-Paralelo</h4>
+            <p>Combinación de ambas configuraciones para lograr el voltaje y capacidad deseados.</p>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio:</h4>
+                <p>Se necesitan 24V y 400Ah usando baterías de 12V y 100Ah. Diseñar el arreglo.</p>
+                <p><strong>Solución:</strong></p>
+                <ol>
+                    <li>Conectar 2 baterías en serie para obtener 24V y 100Ah</li>
+                    <li>Repetir el paso anterior para tener 4 conjuntos idénticos</li>
+                    <li>Conectar los 4 conjuntos en paralelo para mantener 24V y sumar capacidades</li>
+                    <li>Resultado: 24V y 400Ah</li>
+                </ol>
+                <p>Total de baterías: 8 (2 en serie × 4 ramas en paralelo)</p>
+            </div>
+        </div>
+
+        <h2>4. Medición de parámetros en baterías</h2>
+        <p><strong>Duración:</strong> 10 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>Práctica: Medición de parámetros en baterías</h4>
+            
+            <p><strong>Materiales necesarios:</strong></p>
+            <ul>
+                <li>Batería de 12V</li>
+                <li>Multímetro digital</li>
+                <li>Hidrómetro (para baterías de plomo-ácido inundadas)</li>
+                <li>Carga resistiva (bombilla de 12V)</li>
+                <li>Cables de conexión</li>
+            </ul>
+            
+            <p><strong>Procedimiento:</strong></p>
+            
+            <h5>4.1 Medición de voltaje en circuito abierto</h5>
+            <ol>
+                <li>Desconectar la batería del sistema</li>
+                <li>Configurar el multímetro en escala de voltaje DC (20V)</li>
+                <li>Conectar las puntas del multímetro a los bornes de la batería (rojo a positivo, negro a negativo)</li>
+                <li>Registrar el voltaje</li>
+                <li>Comparar con la tabla de estado de carga (SoC)</li>
+            </ol>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Voltaje (12V)</th>
+                    <th>Estado de Carga</th>
+                </tr>
+                <tr>
+                    <td>12.7V</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>12.5V</td>
+                    <td>75%</td>
+                </tr>
+                <tr>
+                    <td>12.3V</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>12.1V</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>11.9V</td>
+                    <td>0% (descargada)</td>
+                </tr>
+            </table>
+            
+            <h5>4.2 Medición de densidad del electrolito (solo baterías inundadas)</h5>
+            <ol>
+                <li>Usar el hidrómetro para extraer líquido de cada celda</li>
+                <li>Leer la densidad específica</li>
+                <li>Registrar los valores</li>
+                <li>Comparar con la tabla de referencia</li>
+            </ol>
+            
+            <h5>4.3 Prueba de carga</h5>
+            <ol>
+                <li>Conectar una carga conocida (ej. bombilla de 12V/55W)</li>
+                <li>Medir el voltaje bajo carga</li>
+                <li>Si el voltaje cae por debajo de 10.5V (para 12V), la batería está en mal estado</li>
+            </ol>
+            
+            <p><strong>Tabla de resultados:</strong></p>
+            <table class="specs-table">
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Valor medido</th>
+                    <th>Valor esperado</th>
+                    <th>Estado</th>
+                </tr>
+                <tr>
+                    <td>Voltaje en circuito abierto</td>
+                    <td></td>
+                    <td>12.6-12.8V (cargada)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Densidad del electrolito (si aplica)</td>
+                    <td></td>
+                    <td>1.265-1.280 (cargada)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Voltaje bajo carga</td>
+                    <td></td>
+                    <td>>10.5V (para 12V)</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
+            <p><strong>Ejercicio de aplicación:</strong> Diseño de un banco de baterías para un sistema específico.</p>
+            <p><strong>Informe de laboratorio:</strong> Entrega de la tabla de resultados con las mediciones realizadas.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los diferentes tipos de controladores de carga para sistemas fotovoltaicos y sus características principales.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion4.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion6.html" class="back-button next-button">Siguiente sesión →</a>
         </div>
     </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
 
-    <!-- QUIZ INTERACTIVO -->
-    <div class="quiz-container">
-        <!-- El Motor de Quizzes leerá este JSON -->
-        <script type="application/json">
-        [
-            {
-                "question": "Tienes un sistema solar con Baterías de PLOMO-ÁCIDO convencionales. ¿Hasta qué porcentaje es lo MÁXIMO recomendado que deberías descargarla para no acortar drásticamente su vida útil?",
-                "options": [
-                    "Se pueden descargar al 0% sin problema.",
-                    "No descargar más allá del 50%.",
-                    "No descargar más allá del 80%."
-                ],
-                "correctIndex": 1,
-                "explanation": "La regla de oro del Plomo-Ácido es nunca cruzar el 50% de Profundidad de Descarga (DoD). Si tienes 100Ah, calcula que solo tienes 50Ah utilizables."
-            },
-            {
-                "question": "¿Cuál es una ventaja principal de las baterías de Iones de Litio (LiFePO4) frente a las de Plomo-Ácido?",
-                "options": [
-                    "Son más baratas de comprar inicialmente.",
-                    "Soportan descargas mucho más profundas (hasta 80-90%) y tienen miles de ciclos de vida.",
-                    "Pesando 10 veces más, dan más estabilidad al piso."
-                ],
-                "correctIndex": 1,
-                "explanation": "El Litio revolucionó el mercado porque, aunque es más caro al inicio, permite usar casi toda la capacidad de la batería y dura hasta 4 veces más que el Plomo."
-            },
-            {
-                "question": "En el contexto de las baterías solares, ¿qué significa 'Ciclo de Vida'?",
-                "options": [
-                    "El tiempo que tarda el panel en cargar la batería.",
-                    "La cantidad de veces que la batería puede ser descargada y vuelta a cargar antes de que pierda eficiencia o muera.",
-                    "El tiempo que tarda el ácido en evaporarse."
-                ],
-                "correctIndex": 1,
-                "explanation": "Un ciclo es una carga y descarga. Cuando una batería promete '3000 ciclos', significa que si la descargas y la cargas una vez al día, te durará aproximadamente 3000 días (unos 8 años)."
-            },
-            {
-                "question": "Si una batería dice tener una capacidad de 100 Ah (Amperes-hora) a 12V. ¿Cuánta Energía total teórica almacena en Watts-hora (Wh)?",
-                "options": [
-                    "100 Wh",
-                    "1200 Wh",
-                    "112 Wh"
-                ],
-                "correctIndex": 1,
-                "explanation": "Recuerda la Ley de Watt: Potencia = Voltaje x Corriente. Energía (Wh) = Voltios (12V) x Amperes-hora (100Ah) = 1200 Watts-hora."
-            }
-        ]
-        </script>
-    </div>
-
-    <!-- Navegación Inferior -->
-    <div class="sesion-navigation">
-        <a href="sesion4.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
-        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
-        <a href="sesion6.html" class="nav-btn next">Siguiente Sesión (Controladores) <i class="fas fa-arrow-right"></i></a>
-    </div>
-
-</main>
-
-<footer class="footer">
-    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-</footer>
-
-<script>
-    let currentChem = 'plomo';
-
-    function setChem(chem) {
-        currentChem = chem;
-        document.getElementById('btn-plomo').classList.remove('active');
-        document.getElementById('btn-litio').classList.remove('active');
-        document.getElementById(`btn-${chem}`).classList.add('active');
-        updateBatt();
-    }
-
-    function updateBatt() {
-        const dod = parseInt(document.getElementById('slider-dod').value);
-        const charge = 100 - dod;
-        
-        document.getElementById('val-dod').textContent = dod + "%";
-        
-        // Update visual battery level
-        const levelDiv = document.getElementById('batt-level');
-        levelDiv.style.height = charge + "%";
-        levelDiv.textContent = charge + "%";
-        
-        let cycles = 0;
-        const cyclesOut = document.getElementById('out-cycles');
-        const yearsOut = document.getElementById('out-years');
-        const warning = document.getElementById('chem-warning');
-
-        // Color coding the battery fluid based on charge
-        if(charge > 60) levelDiv.style.background = "#2ecc71"; // Green
-        else if (charge > 30) levelDiv.style.background = "#f1c40f"; // Yellow
-        else levelDiv.style.background = "#e74c3c"; // Red
-
-        if(currentChem === 'plomo') {
-            // Lead-Acid Curve (approx)
-            // 20% DoD = 1200 cycles
-            // 50% DoD = 500 cycles
-            // 80% DoD = 200 cycles
-            // 100% DoD = <50 cycles (dead)
-            if(dod <= 20) cycles = 1200 - (dod * 10);
-            else if (dod <= 50) cycles = 1000 - ((dod-20) * 16);
-            else if (dod <= 80) cycles = 500 - ((dod-50) * 10);
-            else cycles = 200 - ((dod-80) * 7.5);
-            
-            if(dod > 50) {
-                cyclesOut.style.color = "#e74c3c";
-                warning.textContent = "¡PELIGRO! Las baterías de plomo sufren daño irreversible pasando el 50% de DoD.";
-            } else {
-                cyclesOut.style.color = "#2ecc71";
-                warning.textContent = "";
-            }
-        } else {
-            // Lithium Curve (approx)
-            // 20% DoD = 6000 cycles
-            // 80% DoD = 3000 cycles
-            // 100% DoD = 2000 cycles
-            if(dod <= 20) cycles = 6000;
-            else if (dod <= 80) cycles = 6000 - ((dod-20) * 50);
-            else cycles = 3000 - ((dod-80) * 50);
-
-            if(dod > 90) {
-                cyclesOut.style.color = "#f1c40f";
-                warning.textContent = "No es ideal llegar al 100% de descarga, pero el Litio lo soporta decentemente.";
-            } else {
-                cyclesOut.style.color = "#3498db";
-                warning.textContent = "";
-            }
-        }
-
-        cycles = Math.max(0, Math.round(cycles));
-        cyclesOut.textContent = cycles + " Ciclos";
-        
-        // 1 cycle per day approx
-        const years = (cycles / 365).toFixed(1);
-        yearsOut.textContent = `(~${years} Años estimando 1 ciclo diario)`;
-    }
-    
-    // Init
-    updateBatt();
-</script>
-
-<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
+<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
-<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad5', 'sesion5');
+          window.markLessonCompleted('electricidad', 'sesion5');
       }
   });
 </script>

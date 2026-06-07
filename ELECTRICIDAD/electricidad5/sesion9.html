@@ -3,364 +3,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 9: Instalación - Conquistando el Techo</title>
-    <link rel="stylesheet" href="../../global-lesson.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sesión 9: Diseño de Sistemas Fotovoltaicos II - Dimensionamiento</title>
     <style>
-        .concept-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .concept-card {
-            background: #f8f9fa;
-            border-left: 5px solid var(--primary-color);
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
             padding: 20px;
-            border-radius: 5px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
             color: #2c3e50;
         }
-
-        /* Wind Simulator */
-        .wind-sim {
-            background: #1a252f;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .roof-scene {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(180deg, #3498db 0%, #ecf0f1 100%);
-            position: relative;
-            border-radius: 10px;
-            border: 2px solid #34495e;
-            overflow: hidden;
-        }
-
-        .roof-base {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background: #7f8c8d;
-            border-top: 5px solid #e74c3c;
-        }
-
-        .panel-structure {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 120px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-origin: bottom right;
-        }
-
-        .panel-surface {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 140px;
-            height: 8px;
-            background: #2980b9;
-            border: 2px solid #ecf0f1;
-            transform-origin: top right;
-            transform: rotate(-30deg);
-        }
-
-        .leg-back {
-            position: absolute;
-            bottom: 0;
-            left: 20px;
-            width: 6px;
-            height: 80px;
-            background: #bdc3c7;
-        }
-
-        .leg-front {
-            position: absolute;
-            bottom: 0;
-            right: 20px;
-            width: 6px;
-            height: 20px;
-            background: #bdc3c7;
-        }
-
-        .wind-lines {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 200%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0;
-            background-image: 
-                linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
-            background-size: 200px 2px;
-            background-repeat: repeat;
-        }
-
-        .controls-panel {
-            width: 100%;
-            max-width: 600px;
-            background: rgba(0,0,0,0.5);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            z-index: 10;
-        }
-
-        .control-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #bdc3c7;
-            font-weight: bold;
-        }
-
-        .control-group input[type="range"] {
-            width: 100%;
-        }
-
-        .status-box {
-            grid-column: span 2;
+        h1 {
             text-align: center;
-            padding: 15px;
-            background: #27ae60;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
             color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
+            text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: background-color 0.3s;
         }
-
-        @keyframes blowWind {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50%); }
+        .back-button:hover {
+            background-color: #2980b9;
         }
-
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .calculation-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #fff8e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffa000;
+        }
+        .practical-exercise h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .formula-box {
+            background-color: #f0f7ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .formula {
+            font-weight: bold;
+            color: #0066cc;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        .note-box {
+            background-color: #fffde7;
+            border-left: 3px solid #ffd600;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .tip-box {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .step-box {
+            background-color: #f3e5f5;
+            border-left: 3px solid #9c27b0;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .step-box h4 {
+            color: #7b1fa2;
+            margin-top: 0;
+        }
         @media (max-width: 768px) {
-            .controls-panel { grid-template-columns: 1fr; }
-            .status-box { grid-column: span 1; }
+            .container {
+                padding: 15px;
+            }
+            .specs-table {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
 <body>
-
-<main class="page-container">
-    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
-
-    <div class="sesion-header">
-        <h1 class="sesion-title">Instalación Física</h1>
-        <p class="sesion-subtitle">Sesión 9 - Módulo 3: Conquistando el Techo</p>
-    </div>
-
-    <div class="info-box">
-        <strong><i class="fas fa-hard-hat"></i> Objetivo de Aprendizaje:</strong>
-        <p style="margin-bottom: 0; margin-top: 0.5rem;">De nada sirve un cálculo perfecto si el primer ventarrón arranca tus paneles y los estrella contra el auto del vecino. Aprenderás sobre estructuras de aluminio, anclajes estructurales y cómo vencer al temido "Efecto Vela".</p>
-    </div>
-
-    <div class="teoria-section">
-        <h2>La Estructura: Los Huesos del Sistema</h2>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
         
-        <div class="concept-grid">
-            <div class="concept-card">
-                <h3>El Riel de Aluminio Anodizado</h3>
-                <p>NUNCA instales paneles directamente sobre el techo con madera o hierro común. Se pudren o se oxidan. Usamos rieles de aluminio anodizado con tornillería de <strong>Acero Inoxidable</strong>. Resisten la lluvia, el sol y duran más de 25 años.</p>
-            </div>
-            <div class="concept-card">
-                <h3>Impermeabilización (Sellado)</h3>
-                <p>Al perforar una losa de concreto para meter un taquete expansivo, estás creando una potencial gotera. Debes usar <strong>sellador de poliuretano</strong> (no silicón barato) en cada perforación antes y después de meter el tornillo.</p>
-            </div>
-        </div>
-
-        <div class="danger-box">
-            <h3><i class="fas fa-wind"></i> El Peligro Oculto: El Efecto Vela</h3>
-            <p>Un panel solar inclinado es, literalmente, el ala de un avión. Cuando el viento sopla fuerte por debajo de los paneles, genera <strong>Sustentación</strong> (una fuerza brutal hacia arriba). Si no anclas la estructura a las vigas o trabes principales del techo, el viento arrancará el bloque de concreto completo.</p>
-        </div>
-    </div>
-
-    <div class="practica-section">
-        <h2>Simulador Estructural: Efecto Vela</h2>
-        <p>Ajusta el número de anclajes expansivos (taquetes) que usarás para fijar la estructura al techo. Luego, desliza el control de viento para simular una tormenta. ¡Descubre si tu instalación sobrevive al huracán!</p>
-
-        <div class="wind-sim">
-            
-            <div class="roof-scene">
-                <div class="wind-lines" id="wind-anim"></div>
-                <div class="panel-structure" id="panel-struct">
-                    <div class="leg-back"></div>
-                    <div class="leg-front"></div>
-                    <div class="panel-surface"></div>
-                </div>
-                <div class="roof-base">
-                    <div style="text-align:center; padding-top:15px; font-weight:bold; color:white;">Losa de Concreto</div>
-                </div>
-            </div>
-
-            <div class="controls-panel">
-                <div class="control-group">
-                    <label>Calidad del Anclaje (Taquetes)</label>
-                    <select id="inp-anchors" style="width:100%; padding:10px; background:#111; color:white; border:1px solid #7f8c8d; border-radius:5px;" onchange="testWind()">
-                        <option value="weak">Pobre (Solo pegado con silicón)</option>
-                        <option value="medium" selected>Medio (Taquetes cortos de plástico)</option>
-                        <option value="strong">Profesional (Taquete Expansivo de Acero / Químico)</option>
-                    </select>
-                </div>
-
-                <div class="control-group">
-                    <label>Fuerza del Viento: <span id="val-wind" style="color:#e74c3c;">0 km/h</span></label>
-                    <input type="range" id="inp-wind" min="0" max="150" value="0" oninput="testWind()">
-                </div>
-
-                <div class="status-box" id="status-box">
-                    Todo seguro. Sin viento.
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- QUIZ INTERACTIVO -->
-    <div class="quiz-container">
-        <!-- El Motor de Quizzes leerá este JSON -->
-        <script type="application/json">
-        [
-            {
-                "question": "¿Por qué es un error fatal usar estructuras de herrería (hierro dulce) pintado para montar paneles solares?",
-                "options": [
-                    "Porque son muy caras.",
-                    "Porque interfieren con el magnetismo del panel.",
-                    "Porque se oxidarán rápidamente a la intemperie, manchando el techo y debilitando el soporte hasta colapsar."
-                ],
-                "correctIndex": 2,
-                "explanation": "Los paneles duran 25 años. La estructura también debe durar 25 años sin mantenimiento. Por eso se usa Aluminio Anodizado y tornillos de Acero Inoxidable, que son inmunes al óxido."
-            },
-            {
-                "question": "¿Qué material debes inyectar en las perforaciones del techo para evitar que tu cliente te llame furioso por una gotera en la primera lluvia?",
-                "options": [
-                    "Silicón transparente para ventanas.",
-                    "Sellador de Poliuretano o sellador asfáltico especializado.",
-                    "Yeso blanco."
-                ],
-                "correctIndex": 1,
-                "explanation": "El Poliuretano es estructural, se expande, resiste el sol (rayos UV) y sella permanentemente. El silicón barato se seca y se cuartea en 6 meses expuesto al sol."
-            },
-            {
-                "question": "¿Qué es el 'Efecto Vela' en una instalación solar?",
-                "options": [
-                    "Cuando el panel refleja la luz como un espejo.",
-                    "Cuando el viento choca contra la cara trasera inclinada del panel, generando una fuerza aerodinámica que intenta arrancarlo hacia arriba.",
-                    "Un efecto visual que hace que los paneles parezcan barcos a lo lejos."
-                ],
-                "correctIndex": 1,
-                "explanation": "Cualquier cosa inclinada frente al viento actúa como un ala. Un panel de 2 metros cuadrados puede generar cientos de kilos de fuerza de elevación ('Sustentación') en un día de mucho viento."
-            }
-        ]
-        </script>
-    </div>
-
-    <!-- Navegación Inferior -->
-    <div class="sesion-navigation">
-        <a href="sesion8.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
-        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
-        <a href="sesion10.html" class="nav-btn next">Siguiente Sesión (Conexiones) <i class="fas fa-arrow-right"></i></a>
-    </div>
-
-</main>
-
-<footer class="footer">
-    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-</footer>
-
-<script>
-    let isBroken = false;
-
-    function testWind() {
-        if(isBroken) return; // Wait until they reset wind to 0 or change anchor
-
-        const wind = parseInt(document.getElementById('inp-wind').value);
-        const anchor = document.getElementById('inp-anchors').value;
-        const panel = document.getElementById('panel-struct');
-        const windAnim = document.getElementById('wind-anim');
-        const statusBox = document.getElementById('status-box');
+        <h1>Sesión 9: Diseño de Sistemas Fotovoltaicos II - Dimensionamiento</h1>
         
-        document.getElementById('val-wind').textContent = wind + " km/h";
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Aprender a dimensionar correctamente los componentes principales de un sistema fotovoltaico: paneles solares, baterías, controladores de carga e inversores, considerando las pérdidas del sistema y los días de autonomía necesarios.</p>
+        </div>
 
-        // Handle wind animation
-        if(wind > 10) {
-            windAnim.style.opacity = wind / 150;
-            windAnim.style.animation = `blowWind ${200 / wind}s linear infinite`;
-        } else {
-            windAnim.style.opacity = 0;
-            windAnim.style.animation = 'none';
-        }
-
-        // Handle structural limits
-        let breakPoint = 150;
-        if(anchor === 'weak') breakPoint = 40;
-        if(anchor === 'medium') breakPoint = 90;
-        if(anchor === 'strong') breakPoint = 200; // Unbreakable in this sim
-
-        if(wind > breakPoint) {
-            // BROKEN!
-            isBroken = true;
-            panel.style.transform = "translateX(300px) translateY(-100px) rotate(45deg) scale(0.5)";
-            panel.style.opacity = "0";
+        <h2>1. Cálculo del número de paneles solares</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="step-box">
+            <h4>1.1 Fórmula básica para el cálculo de paneles</h4>
             
-            statusBox.style.background = "#e74c3c";
-            statusBox.innerHTML = "<i class='fas fa-times-circle'></i> ¡CATÁSTROFE! El Efecto Vela arrancó el panel. Baja el viento a 0 para reiniciar.";
-        } else {
-            // Shaking effect based on wind
-            if(wind > 20) {
-                const shake = (wind / breakPoint) * 5; // degrees of wobble
-                panel.style.transform = `translateX(-50%) rotate(${Math.random() * shake - (shake/2)}deg)`;
-                
-                statusBox.style.background = "#f39c12";
-                statusBox.innerHTML = "<i class='fas fa-exclamation-triangle'></i> Viento fuerte. Estructura vibrando...";
-            } else {
-                panel.style.transform = "translateX(-50%) rotate(0deg)";
-                statusBox.style.background = "#27ae60";
-                statusBox.innerHTML = "<i class='fas fa-check-circle'></i> Todo seguro. Estructura estable.";
-            }
-        }
+            <div class="formula-box">
+                <p class="formula">N° Paneles = (Energía diaria necesaria) / (HSP × η × Potencia pico del panel)</p>
+            </div>
+            
+            <p>Donde:</p>
+            <ul>
+                <li><strong>Energía diaria necesaria:</strong> Consumo diario ajustado (Wh/día)</li>
+                <li><strong>HSP (Horas Sol Pico):</strong> Horas equivalentes de sol pico en la ubicación (h/día)</li>
+                <li><strong>η (Eficiencia del sistema):</strong> Generalmente 0.7-0.85 (70-85%)</li>
+                <li><strong>Potencia pico del panel:</strong> Potencia en condiciones estándar (Wp)</li>
+            </ul>
+            
+            <div class="note-box">
+                <p><strong>Nota:</strong> El resultado siempre se redondea al entero superior para garantizar que se cubra la demanda.</p>
+            </div>
+        </div>
+        
+        <div class="calculation-box">
+            <h4>1.2 Ejemplo práctico</h4>
+            
+            <p><strong>Datos:</strong></p>
+            <ul>
+                <li>Consumo diario: 5,000 Wh/día</li>
+                <li>HSP en la ubicación: 4.5 h/día</li>
+                <li>Eficiencia del sistema: 0.8</li>
+                <li>Panel solar: 330 Wp</li>
+            </ul>
+            
+            <p><strong>Cálculo:</strong></p>
+            <p>N° Paneles = 5,000 Wh/día / (4.5 h/día × 0.8 × 330 Wp) = 4.21</p>
+            <p>Redondeando al entero superior: <strong>5 paneles</strong></p>
+            
+            <div class="tip-box">
+                <p><strong>Consejo:</strong> Siempre es recomendable redondear al siguiente número entero para garantizar que se cubra la demanda, especialmente en meses con menor radiación solar.</p>
+            </div>
+            
+            <h4>1.3 Configuración de los paneles (serie/paralelo)</h4>
+            
+            <p>Dependiendo del voltaje del sistema y las características de los paneles, se pueden conectar en serie, paralelo o una combinación de ambos.</p>
+            
+            <div class="warning-box">
+                <p><strong>Importante:</strong> Al conectar paneles en serie, el voltaje se suma mientras que la corriente se mantiene constante. En paralelo, la corriente se suma y el voltaje se mantiene constante.</p>
+            </div>
+            
+            <p><strong>Ejemplo de configuración:</strong></p>
+            <ul>
+                <li>Sistema de 24V</li>
+                <li>Paneles de 36Vmp, 9.17 Imp, 330Wp</li>
+                <li>5 paneles disponibles</li>
+            </ul>
+            
+            <p>Opción 1: 1 cadena de 2 paneles en serie (72V) + 1 cadena de 3 paneles en serie (108V) → No recomendable por desbalanceo</p>
+            <p>Opción 2: 5 paneles en paralelo (36V, 45.85A) → Requiere cables muy gruesos</p>
+            <p>Opción 3: Usar un controlador MPPT de 150V y conectar los 5 paneles en serie (180V) → Mejor opción</p>
+            
+            <div class="note-box">
+                <p><strong>Nota:</strong> Siempre verificar que el voltaje de circuito abierto (Voc) de la cadena no supere la entrada máxima del controlador, especialmente a bajas temperaturas.</p>
+            </div>
+        </div>
 
-        // Reset logic
-        if(isBroken && wind === 0) {
-            isBroken = false;
-            panel.style.opacity = "1";
-            panel.style.transform = "translateX(-50%) rotate(0deg)";
-            statusBox.style.background = "#27ae60";
-            statusBox.innerHTML = "<i class='fas fa-check-circle'></i> Todo seguro. Estructura estable.";
-        }
-    }
-</script>
+        <h2>2. Dimensionamiento de baterías</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="step-box">
+            <h4>2.1 Cálculo de la capacidad de baterías</h4>
+            
+            <div class="formula-box">
+                <p class="formula">Capacidad (Wh) = (Energía diaria × Días de autonomía) / (Profundidad de descarga × η inversor)</p>
+            </div>
+            
+            <p>O en Amperios-hora (Ah):</p>
+            <div class="formula-box">
+                <p class="formula">Capacidad (Ah) = (Energía diaria × Días de autonomía) / (Voltaje del sistema × Profundidad de descarga × η inversor)</p>
+            </div>
+            
+            <p>Donde:</p>
+            <ul>
+                <li><strong>Días de autonomía:</strong> Generalmente 2-5 días (depende de la confiabilidad requerida)</li>
+                <li><strong>Profundidad de descarga (DoD):</strong> 0.5 para baterías de plomo-ácido, 0.8-0.9 para Li-ion</li>
+                <li><strong>η inversor:</strong> Eficiencia del inversor (típicamente 0.9-0.95)</li>
+            </ul>
+        </div>
+        
+        <div class="calculation-box">
+            <h4>2.2 Ejemplo práctico</h4>
+            
+            <p><strong>Datos:</strong></p>
+            <ul>
+                <li>Consumo diario: 5,000 Wh/día</li>
+                <li>Días de autonomía: 3 días</li>
+                <li>Profundidad de descarga: 50% (0.5)</li>
+                <li>Eficiencia del inversor: 90% (0.9)</li>
+                <li>Voltaje del sistema: 48V</li>
+            </ul>
+            
+            <p><strong>Cálculo de capacidad en Wh:</strong></p>
+            <p>Capacidad = (5,000 Wh/día × 3 días) / (0.5 × 0.9) = 33,333 Wh</p>
+            
+            <p><strong>Cálculo de capacidad en Ah:</strong></p>
+            <p>Capacidad = 33,333 Wh / 48V = 694 Ah @ 48V</p>
+            
+            <h4>2.3 Configuración de las baterías</h4>
+            
+            <p>Dependiendo de las baterías disponibles, se pueden conectar en serie, paralelo o una combinación de ambos para alcanzar el voltaje y capacidad deseados.</p>
+            
+            <p><strong>Ejemplo:</strong></p>
+            <ul>
+                <li>Baterías de 12V, 200Ah</li>
+                <li>Necesitamos 48V y 694Ah</li>
+            </ul>
+            
+            <p><strong>Conexión en serie (para aumentar el voltaje):</strong></p>
+            <p>4 baterías de 12V en serie = 48V, 200Ah</p>
+            
+            <p><strong>Conexión en paralelo (para aumentar la capacidad):</strong></p>
+            <p>4 baterías en serie × 4 ramas en paralelo = 16 baterías totales (48V, 800Ah)</p>
+            
+            <div class="warning-box">
+                <p><strong>Importante:</strong> Al conectar baterías en paralelo, es recomendable no exceder 3-4 ramas en paralelo para evitar desequilibrios en la carga/descarga.</p>
+            </div>
+            
+            <h4>2.4 Consideraciones adicionales</h4>
+            
+            <ul>
+                <li><strong>Temperatura:</strong> Las baterías de plomo-ácido pierden capacidad a bajas temperaturas (corregir con factor de 1.1-1.3)</li>
+                <li><strong>Ciclo de vida:</strong> A mayor profundidad de descarga, menor vida útil de la batería</li>
+                <li><strong>Mantenimiento:</strong> Las baterías inundadas requieren mantenimiento periódico</li>
+                <li><strong>Ventilación:</strong> Especialmente importante para baterías de plomo-ácido que liberan hidrógeno</li>
+            </ul>
+        </div>
 
-<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
+        <h2>3. Selección del controlador de carga</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="step-box">
+            <h4>3.1 Cálculo de la corriente del controlador</h4>
+            
+            <div class="formula-box">
+                <p class="formula">Corriente del controlador = (Potencia pico del campo FV) / Voltaje del sistema</p>
+            </div>
+            
+            <p>Para el ejemplo anterior con 5 paneles de 330W en un sistema de 48V:</p>
+            <p>Potencia pico total = 5 × 330W = 1,650W</p>
+            <p>Corriente = 1,650W / 48V = 34.4A</p>
+            
+            <p><strong>Selección:</strong> Elegir un controlador con al menos un 25% más de capacidad: 34.4A × 1.25 = 43A → Un controlador de 45-50A sería adecuado.</p>
+            
+            <h4>3.2 Consideraciones PWM(pulse width modulation) vs MPPT(maximum power point tracking)</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Característica</th>
+                    <th>PWM <h6>(Modulación de ancho de pulso)</h6></th>
+                    <th>MPPT <h6>(Seguimiento del punto de máxima potencia)</h6></th>
+                </tr>
+                <tr>
+                    <td>Eficiencia</td>
+                    <td>70-80%</td>
+                    <td>93-97%</td>
+                </tr>
+                <tr>
+                    <td>Costo</td>
+                    <td>Bajo</td>
+                    <td>Alto</td>
+                </tr>
+                <tr>
+                    <td>Recomendación de uso</td>
+                    <td>Sistemas pequeños (&lt;200W), cuando Vpanel ≈ Vbatería</td>
+                    <td>Sistemas medianos/grandes, cuando Vpanel > Vbatería</td>
+                </tr>
+                <tr>
+                    <td>Flexibilidad</td>
+                    <td>Baja</td>
+                    <td>Alta (permite más paneles en serie)</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>4. Ejercicio práctico completo</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>Ejercicio: Diseño de un sistema para una vivienda rural</h4>
+            
+            <p><strong>Requerimientos:</strong></p>
+            <ul>
+                <li>Ubicación: Zona rural con 5.2 HSP</li>
+                <li>Consumo diario: 8,500 Wh/día</li>
+                <li>Días de autonomía: 4 días</li>
+                <li>Profundidad de descarga: 50%</li>
+                <li>Voltaje del sistema: 48V</li>
+                <li>Eficiencia del sistema: 80%</li>
+                <li>Panel disponible: 400W, Vmp=40V, Imp=10A, Voc=48V</li>
+                <li>Baterías disponibles: 12V, 250Ah</li>
+            </ul>
+            
+            <p><strong>Se pide:</strong></p>
+            <ol>
+                <li>Calcular el número de paneles necesarios</li>
+                <li>Determinar la configuración de los paneles (serie/paralelo)</li>
+                <li>Calcular la capacidad necesaria de baterías</li>
+                <li>Determinar la configuración del banco de baterías</li>
+                <li>Seleccionar el controlador de carga adecuado</li>
+            </ol>
+            
+            <div class="note-box">
+                <p><strong>Nota:</strong> Los estudiantes trabajarán en grupos para resolver el ejercicio, aplicando las fórmulas y conceptos aprendidos.</p>
+            </div>
+            
+            <p><strong>Solución guiada:</strong></p>
+            
+            <p><strong>1. Cálculo del número de paneles:</strong></p>
+            <p>N° Paneles = 8,500 Wh/día / (5.2 h/día × 0.8 × 400W) = 5.1 → <strong>6 paneles</strong></p>
+            
+            <p><strong>2. Configuración de los paneles:</strong></p>
+            <p>Opción 1: 3 ramas en paralelo de 2 paneles en serie (96Vmp, 30A) → Requiere controlador MPPT de 150V</p>
+            <p>Opción 2: 2 ramas en paralelo de 3 paneles en serie (144Vmp, 20A) → Mejor para minimizar pérdidas</p>
+            
+            <p><strong>3. Cálculo de capacidad de baterías:</strong></p>
+            <p>Capacidad = (8,500 Wh/día × 4 días) / (0.5 × 0.9) = 75,556 Wh</p>
+            <p>Capacidad en Ah = 75,556 Wh / 48V = 1,574 Ah @ 48V</p>
+            
+            <p><strong>4. Configuración del banco de baterías:</strong></p>
+            <p>4 baterías de 12V en serie = 48V, 250Ah</p>
+            <p>Número de ramas en paralelo = 1,574 Ah / 250 Ah = 6.3 → <strong>7 ramas</strong></p>
+            <p>Total baterías = 4 × 7 = <strong>28 baterías</strong> (configuración 4s7p)</p>
+            
+            <p><strong>5. Selección del controlador de carga:</strong></p>
+            <p>Potencia pico = 6 × 400W = 2,400W</p>
+            <p>Corriente = 2,400W / 48V = 50A</p>
+            <p>Con 25% de margen: 50A × 1.25 = 62.5A → <strong>Controlador MPPT de 70A</strong></p>
+            
+            <div class="warning-box">
+                <p><strong>Observación:</strong> Este es un sistema grande que podría beneficiarse de un rediseño con baterías de mayor capacidad o un voltaje de sistema más alto para reducir el número de ramas en paralelo.</p>
+            </div>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos y discusiones.</p>
+            <p><strong>Ejercicio de aplicación:</strong> Resolución correcta del ejercicio de dimensionamiento completo.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Diseñar un sistema fotovoltaico para su propia vivienda o un caso de estudio proporcionado, incluyendo todos los cálculos y justificaciones de selección de componentes.</p>
+            <p><strong>Material de apoyo:</strong> Se proporcionará una hoja de cálculo con las fórmulas para facilitar los cálculos de diseño.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion8.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion10.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+
+<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
-<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad5', 'sesion9');
+          window.markLessonCompleted('electricidad', 'sesion9');
       }
   });
 </script>

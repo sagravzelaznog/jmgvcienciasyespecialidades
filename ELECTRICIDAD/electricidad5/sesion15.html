@@ -3,386 +3,500 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 15: Proyecto Práctico II - Implementación</title>
-    <link rel="stylesheet" href="../../global-lesson.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sesión 15: Almacenamiento de Energía y Sistemas Híbridos</title>
     <style>
-        .concept-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .concept-card {
-            background: #f8f9fa;
-            border-left: 5px solid var(--primary-color);
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
             padding: 20px;
-            border-radius: 5px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
             color: #2c3e50;
         }
-
-        /* Wiring Simulator */
-        .wiring-sim {
-            background: #1a252f;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
         }
-
-        .canvas-area {
-            width: 100%;
-            max-width: 700px;
-            height: 400px;
-            background: #2c3e50;
-            border: 2px solid #7f8c8d;
-            border-radius: 10px;
-            position: relative;
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
             margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        /* Components */
-        .component {
-            position: absolute;
-            background: #34495e;
-            border: 2px solid #ecf0f1;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            width: 120px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transition: transform 0.2s;
-            z-index: 10;
-        }
-
-        .component:hover { transform: scale(1.05); }
-        .component i { font-size: 2.5rem; margin-bottom: 5px; }
-        .component .title { font-size: 0.8rem; font-weight: bold; }
-
-        /* Terminals */
-        .terminal {
-            width: 15px;
-            height: 15px;
-            background: #f1c40f;
-            border-radius: 50%;
-            position: absolute;
-            border: 2px solid white;
-            z-index: 15;
-            transition: background 0.3s;
-        }
-        .terminal:hover { background: #e74c3c; transform: scale(1.2); }
-        .terminal.active { background: #2ecc71; box-shadow: 0 0 10px #2ecc71; }
-
-        /* Lines (Wires) */
-        svg.wires {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        line.wire {
-            stroke: #e74c3c;
-            stroke-width: 4;
-            stroke-dasharray: 10;
-            animation: dash 1s linear infinite;
-        }
-
-        @keyframes dash {
-            to { stroke-dashoffset: -20; }
-        }
-
-        /* Component Positions */
-        #comp-panels { top: 20px; left: 20px; border-color: #3498db; }
-        #comp-inverter { top: 150px; left: 250px; border-color: #f1c40f; }
-        #comp-breaker { top: 150px; right: 20px; border-color: #e67e22; }
-        #comp-meter { bottom: 20px; right: 20px; border-color: #2ecc71; }
-
-        /* Terminals config */
-        #term-p-out { bottom: -8px; left: 50%; transform: translateX(-50%); }
-        #term-i-in { top: -8px; left: 20px; }
-        #term-i-out { right: -8px; top: 50%; transform: translateY(-50%); }
-        #term-b-in { left: -8px; top: 50%; transform: translateY(-50%); }
-        #term-b-out { bottom: -8px; left: 50%; transform: translateX(-50%); }
-        #term-m-in { top: -8px; left: 50%; transform: translateX(-50%); }
-
-        .status-msg {
-            width: 100%;
-            max-width: 700px;
-            padding: 15px;
-            background: #34495e;
-            text-align: center;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
             border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1rem;
+            transition: background-color 0.3s;
         }
-
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .storage-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .safety-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .safety-box h4 {
+            color: #c62828;
+            margin-top: 0;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #2e7d32;
+        }
+        .practical-exercise h4 {
+            color: #1b5e20;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffa000;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .note-box {
+            background-color: #e3f2fd;
+            border-left: 3px solid #1976d2;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .battery-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .battery-type {
+            width: 48%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .pros-cons {
+            display: flex;
+            margin-top: 10px;
+        }
+        .pros, .cons {
+            width: 48%;
+            padding: 0 10px;
+        }
+        .pros {
+            color: #2e7d32;
+            border-right: 1px solid #ddd;
+        }
+        .cons {
+            color: #c62828;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .battery-type {
+                width: 100%;
+            }
+            .specs-table {
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
-
-<main class="page-container">
-    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
-
-    <div class="sesion-header">
-        <h1 class="sesion-title">Proyecto Práctico II: Implementación</h1>
-        <p class="sesion-subtitle">Sesión 15 - Módulo 5: Uniendo las Piezas</p>
-    </div>
-
-    <div class="info-box">
-        <strong><i class="fas fa-network-wired"></i> Objetivo de Aprendizaje:</strong>
-        <p style="margin-bottom: 0; margin-top: 0.5rem;">Ya tenemos el diseño en papel. Ahora toca el trabajo duro: Cablear todo el sistema. Si cruzas un cable de Corriente Continua (Paneles) con uno de Corriente Alterna (Casa), explotará el inversor. Aprende la ruta correcta de la energía.</p>
-    </div>
-
-    <div class="teoria-section">
-        <h2>La Ruta de la Energía (On-Grid)</h2>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
         
-        <div class="concept-grid">
-            <div class="concept-card">
-                <h3>1. Generación (Paneles a Inversor)</h3>
-                <p>La energía baja del techo en forma de <strong>Corriente Continua (CC)</strong> a alto voltaje (ej. 400V). Este cableado es sumamente peligroso y va directo a las terminales de entrada "DC IN" del Inversor.</p>
-            </div>
-            <div class="concept-card">
-                <h3>2. Conversión e Inyección (Inversor a Centro de Carga)</h3>
-                <p>El Inversor transforma la CC en <strong>Corriente Alterna (CA) a 120V/240V</strong>, idéntica a la de CFE. De ahí, sale por "AC OUT" y se conecta a una pastilla térmica (Breaker) dedicada en el Centro de Carga principal de tu casa.</p>
-            </div>
-            <div class="concept-card">
-                <h3>3. Medición y Red (Centro de Carga a Medidor)</h3>
-                <p>La energía primero alimenta los focos y teles de tu casa. Si sobra, viaja desde tu Centro de Carga hacia la calle, pasando por el <strong>Medidor Bidireccional</strong> de CFE, el cual la registra a tu favor.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="practica-section">
-        <h2>Simulador de Cableado Maestro</h2>
-        <p>Conecta los componentes en el orden correcto. Haz clic en una terminal (punto amarillo) y luego en la terminal de destino. Debes crear el camino desde el Techo hasta la Calle.</p>
-
-        <div class="wiring-sim">
-            
-            <div class="canvas-area" id="canvas">
-                <svg class="wires" id="svg-wires"></svg>
-
-                <div class="component" id="comp-panels">
-                    <i class="fas fa-solar-panel" style="color:#3498db;"></i>
-                    <div class="title">Paneles (Techo)</div>
-                    <div class="terminal" id="term-p-out" onclick="selectTerminal('term-p-out', 'comp-panels')"></div>
-                </div>
-
-                <div class="component" id="comp-inverter">
-                    <i class="fas fa-hdd" style="color:#f1c40f;"></i>
-                    <div class="title">Inversor</div>
-                    <div class="terminal" id="term-i-in" onclick="selectTerminal('term-i-in', 'comp-inverter')"></div>
-                    <div class="terminal" id="term-i-out" onclick="selectTerminal('term-i-out', 'comp-inverter')"></div>
-                </div>
-
-                <div class="component" id="comp-breaker">
-                    <i class="fas fa-charging-station" style="color:#e67e22;"></i>
-                    <div class="title">Centro Carga</div>
-                    <div class="terminal" id="term-b-in" onclick="selectTerminal('term-b-in', 'comp-breaker')"></div>
-                    <div class="terminal" id="term-b-out" onclick="selectTerminal('term-b-out', 'comp-breaker')"></div>
-                </div>
-
-                <div class="component" id="comp-meter">
-                    <i class="fas fa-tachometer-alt" style="color:#2ecc71;"></i>
-                    <div class="title">Medidor CFE</div>
-                    <div class="terminal" id="term-m-in" onclick="selectTerminal('term-m-in', 'comp-meter')"></div>
-                </div>
-            </div>
-
-            <div class="status-msg" id="sim-status">
-                Esperando conexiones... (Faltan 3 cables)
-            </div>
-
-            <button onclick="resetSim()" style="margin-top:15px; background:transparent; border:none; color:#bdc3c7; cursor:pointer; text-decoration:underline;">
-                Cortar Cables (Reiniciar)
-            </button>
-
-        </div>
-    </div>
-
-    <!-- QUIZ INTERACTIVO -->
-    <div class="quiz-container">
-        <!-- El Motor de Quizzes leerá este JSON -->
-        <script type="application/json">
-        [
-            {
-                "question": "¿A dónde se conecta la salida de Corriente Alterna (AC OUT) del Inversor Solar en una casa?",
-                "options": [
-                    "Directo al poste de la calle.",
-                    "A una pastilla térmica (breaker) dedicada dentro del Centro de Carga principal de la casa.",
-                    "A una batería de litio."
-                ],
-                "correctIndex": 1,
-                "explanation": "El inversor inyecta su energía directamente en el centro de carga de tu casa. De esta forma, la energía alimenta primero a tus aparatos (ruta más corta) y solo el sobrante viaja hacia el medidor y la calle."
-            },
-            {
-                "question": "Si conectas accidentalmente los cables del Panel Solar (Corriente Continua) en la salida AC OUT del inversor, ¿Qué pasa?",
-                "options": [
-                    "El inversor no enciende y marca un error.",
-                    "Los paneles se calientan un poco.",
-                    "El inversor sufre un daño catastrófico inmediato (explosión de componentes internos)."
-                ],
-                "correctIndex": 2,
-                "explanation": "Cruzar circuitos de Corriente Continua con etapas de Corriente Alterna es el error más costoso que puedes cometer. Los componentes internos de CA no están diseñados para bloquear los altos voltajes constantes de la CC."
-            },
-            {
-                "question": "¿Quién instala físicamente el Medidor Bidireccional al final del proyecto?",
-                "options": [
-                    "El instalador solar (tú).",
-                    "El técnico de la compañía eléctrica (CFE en México).",
-                    "El dueño de la casa."
-                ],
-                "correctIndex": 1,
-                "explanation": "El medidor es propiedad de la compañía eléctrica. El instalador solar deja todo listo y mete el trámite. Luego, CFE envía a sus técnicos a retirar el medidor viejo y colocar el Bidireccional."
-            }
-        ]
-        </script>
-    </div>
-
-    <!-- Navegación Inferior -->
-    <div class="sesion-navigation">
-        <a href="sesion14.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
-        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
-        <a href="sesion16.html" class="nav-btn next">Siguiente Sesión (Puesta en Marcha) <i class="fas fa-arrow-right"></i></a>
-    </div>
-
-</main>
-
-<footer class="footer">
-    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-</footer>
-
-<script>
-    let selectedTerminal = null;
-    let connections = [];
-    
-    // Valid connection pairs
-    const validPairs = [
-        ['term-p-out', 'term-i-in'],
-        ['term-i-out', 'term-b-in'],
-        ['term-b-out', 'term-m-in']
-    ];
-
-    const svg = document.getElementById('svg-wires');
-    const statusMsg = document.getElementById('sim-status');
-
-    function selectTerminal(id, compId) {
-        const el = document.getElementById(id);
+        <h1>Sesión 15: Almacenamiento de Energía y Sistemas Híbridos</h1>
         
-        if(!selectedTerminal) {
-            // First click
-            selectedTerminal = el;
-            el.classList.add('active');
-            statusMsg.textContent = "Terminal seleccionada. Ahora haz clic en el destino.";
-            statusMsg.style.background = "#3498db";
-        } else {
-            // Second click
-            if(selectedTerminal.id === id) {
-                // Cancel
-                selectedTerminal.classList.remove('active');
-                selectedTerminal = null;
-                updateStatus();
-                return;
-            }
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Explorar las tecnologías de almacenamiento de energía para sistemas fotovoltaicos, comprender los principios de los sistemas híbridos, analizar casos de uso prácticos y aprender a dimensionar sistemas de almacenamiento para diferentes aplicaciones.</p>
+        </div>
 
-            // Check if connection is valid
-            const pair1 = [selectedTerminal.id, id];
-            const pair2 = [id, selectedTerminal.id];
+        <h2>1. Fundamentos del almacenamiento de energía</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="storage-box">
+            <h4>1.1 Necesidad de almacenamiento en sistemas fotovoltaicos</h4>
             
-            let isValid = validPairs.some(p => 
-                (p[0] === pair1[0] && p[1] === pair1[1]) || 
-                (p[0] === pair2[0] && p[1] === pair2[1])
-            );
+            <ul>
+                <li><strong>Desfase temporal:</strong> La energía se produce de día pero a menudo se necesita de noche</li>
+                <li><strong>Estabilización de red:</strong> Compensación de fluctuaciones en la generación</li>
+                <li><strong>Backup energético:</strong> Suministro durante cortes de red</li>
+                <li><strong>Optimización del autoconsumo:</strong> Aumentar el porcentaje de energía solar autoconsumida</li>
+                <li><strong>Servicios auxiliares:</strong> Control de frecuencia, reserva rodante</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://www.pv-magazine-mexico.com/wp-content/uploads/sites/10/2019/03/Sistemas-de-Almacenamiento.png" alt="Conceptos básicos de almacenamiento de energía" class="img-small">
+                <p><em>Funciones clave del almacenamiento de energía en sistemas fotovoltaicos</em></p>
+            </div>
+            
+            <h4>1.2 Parámetros clave de los sistemas de almacenamiento</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Descripción</th>
+                    <th>Unidades típicas</th>
+                </tr>
+                <tr>
+                    <td>Capacidad</td>
+                    <td>Cantidad de energía que puede almacenar</td>
+                    <td>kWh</td>
+                </tr>
+                <tr>
+                    <td>Potencia</td>
+                    <td>Rapidez con la que puede cargar/descargar</td>
+                    <td>kW</td>
+                </tr>
+                <tr>
+                    <td>Profundidad de descarga (DoD)</td>
+                    <td>Porcentaje de la capacidad que puede usarse</td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Eficiencia ida/vuelta</td>
+                    <td>Energía que se puede recuperar respecto a la almacenada</td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Ciclos de vida</td>
+                    <td>Número de ciclos de carga/descarga antes de degradarse</td>
+                    <td>Cantidad</td>
+                </tr>
+                <tr>
+                    <td>Autodescarga</td>
+                    <td>Pérdida de energía cuando no se usa</td>
+                    <td>%/mes</td>
+                </tr>
+            </table>
+        </div>
 
-            if(isValid) {
-                // Check if already connected
-                let already = connections.some(p => 
-                    (p[0] === pair1[0] && p[1] === pair1[1]) || 
-                    (p[0] === pair2[0] && p[1] === pair2[1])
-                );
+        <h2>2. Tecnologías de almacenamiento</h2>
+        <p><strong>Duración:</strong> 30 minutos</p>
+        
+        <div class="storage-box">
+            <h4>2.1 Baterías de iones de litio</h4>
+            
+            <div class="battery-comparison">
+                <div class="battery-type">
+                    <h5>Fosfato de Hierro y Litio (LiFePO4)</h5>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Alta seguridad y estabilidad térmica</li>
+                        <li>Larga vida útil (2000-7000 ciclos)</li>
+                        <li>Buena potencia tanto para carga como descarga</li>
+                        <li>Bajo mantenimiento</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul>
+                        <li>Mayor costo inicial</li>
+                        <li>Menor densidad energética que otras químicas de litio</li>
+                    </ul>
+                    <p><strong>Aplicaciones:</strong> Residencial, comercial, sistemas fuera de red</p>
+                </div>
                 
-                if(!already) {
-                    connections.push(pair1);
-                    drawLine(selectedTerminal, el);
-                    selectedTerminal.classList.remove('active');
-                    selectedTerminal = null;
-                    updateStatus();
-                }
-            } else {
-                // Wrong connection!
-                statusMsg.innerHTML = '<i class="fas fa-bomb"></i> ¡EXPLOSIÓN! Conexión incorrecta. Cortocircuito grave. Reinicia.';
-                statusMsg.style.background = "#e74c3c";
-                selectedTerminal.classList.remove('active');
-                selectedTerminal = null;
-            }
-        }
-    }
-
-    function drawLine(t1, t2) {
-        // Calculate center of terminals relative to SVG
-        const r1 = t1.getBoundingClientRect();
-        const r2 = t2.getBoundingClientRect();
-        const svgRect = svg.getBoundingClientRect();
-
-        const x1 = r1.left + (r1.width/2) - svgRect.left;
-        const y1 = r1.top + (r1.height/2) - svgRect.top;
-        const x2 = r2.left + (r2.width/2) - svgRect.left;
-        const y2 = r2.top + (r2.height/2) - svgRect.top;
-
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('x1', x1);
-        line.setAttribute('y1', y1);
-        line.setAttribute('x2', x2);
-        line.setAttribute('y2', y2);
-        line.setAttribute('class', 'wire');
-        svg.appendChild(line);
-    }
-
-    function updateStatus() {
-        const remaining = 3 - connections.length;
-        if(remaining > 0) {
-            statusMsg.textContent = `Esperando conexiones... (Faltan ${remaining} cables)`;
-            statusMsg.style.background = "#34495e";
-        } else {
-            statusMsg.innerHTML = '<i class="fas fa-check-circle"></i> ¡INSTALACIÓN EXITOSA! Toda la ruta de energía está correcta. Listo para la CFE.';
-            statusMsg.style.background = "#2ecc71";
+                <div class="battery-type">
+                    <h5>Níquel Manganeso Cobalto (NMC)</h5>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Alta densidad energética</li>
+                        <li>Buen rendimiento en un amplio rango de temperaturas</li>
+                        <li>Alta eficiencia</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul>
+                        <li>Mayor riesgo térmico que LiFePO4</li>
+                        <li>Vida útil ligeramente menor</li>
+                        <li>Uso de cobalto (aspectos éticos y de suministro)</li>
+                    </ul>
+                    <p><strong>Aplicaciones:</strong> Vehículos eléctricos, almacenamiento a gran escala</p>
+                </div>
+            </div>
             
-            // Turn wires green
-            document.querySelectorAll('.wire').forEach(w => {
-                w.style.stroke = "#2ecc71";
-            });
-        }
-    }
+            <h4>2.2 Otras tecnologías de almacenamiento</h4>
+            
+            <div class="battery-comparison">
+                <div class="battery-type">
+                    <h5>Baterías de plomo-ácido</h5>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Costo inicial más bajo</li>
+                        <li>Tecnología madura y ampliamente disponible</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul>
+                        <li>Menor vida útil (300-1500 ciclos)</li>
+                        <li>Mayor mantenimiento</li>
+                        <li>Baja profundidad de descarga recomendada (50%)</li>
+                        <li>Contiene plomo y ácido (impacto ambiental)</li>
+                    </ul>
+                </div>
+                
+                <div class="battery-type">
+                    <h5>Almacenamiento térmico y otras tecnologías</h5>
+                    <ul>
+                        <li><strong>Bombeo hidroeléctrico:</strong> Gran escala, alta capacidad</li>
+                        <li>Almacenamiento por aire comprimido (CAES)</li>
+                        <li>Volantes de inercia: Alta potencia por corta duración</li>
+                        <li>Supercapacitores: Alta potencia, baja energía</li>
+                        <li>Hidrógeno verde: Almacenamiento estacional</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <p><strong>Consejo:</strong> Para aplicaciones residenciales, las baterías de litio (especialmente LiFePO4) ofrecen el mejor equilibrio entre costo, vida útil y rendimiento, a pesar de su mayor inversión inicial.</p>
+            </div>
+        </div>
 
-    function resetSim() {
-        connections = [];
-        if(selectedTerminal) selectedTerminal.classList.remove('active');
-        selectedTerminal = null;
-        svg.innerHTML = '';
-        updateStatus();
-    }
-</script>
+        <h2>3. Sistemas híbridos</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="storage-box">
+            <h4>3.1 Configuraciones de sistemas híbridos</h4>
+            
+            <p><strong>a) Solar + Almacenamiento + Red:</strong></p>
+            <ul>
+                <li>Permite autoconsumo, respaldo y servicios a la red</li>
+                <li>Puede participar en programas de medición neta o servicios auxiliares</li>
+                <li>Configuración más común en aplicaciones residenciales y comerciales</li>
+            </ul>
+            
+            <p><strong>b) Solar + Almacenamiento + Generador:</strong></p>
+            <ul>
+                <li>Común en zonas aisladas sin conexión a red</li>
+                <li>El generador funciona como respaldo cuando hay poca radiación solar</li>
+                <li>Puede reducir significativamente el consumo de combustible</li>
+            </ul>
+            
+            <p><strong>c) Solar + Eólica + Almacenamiento:</strong></p>
+            <ul>
+                <li>Complementariedad entre recursos solares y eólicos</li>
+                <li>Mayor factor de capacidad del sistema</li>
+                <li>Común en microrredes y sistemas aislados</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://i0.wp.com/solar.dragoncontractors.com/wp-content/uploads/2022/09/hibrido-03-3-scaled.jpg" alt="Diagrama de sistema híbrido" class="img-small">
+                <p><em>Ejemplo de configuración de un sistema híbrido con acoplamiento CA</em></p>
+            </div>
+            
+            <h4>3.2 Control y gestión de sistemas híbridos</h4>
+            
+            <p><strong>Estrategias de control:</strong></p>
+            <ul>
+                <li><strong>Control basado en reglas:</strong> Priorización de fuentes según condiciones predefinidas</li>
+                <li><strong>Control predictivo:</strong> Uso de pronósticos de generación y consumo</li>
+                <li><strong>Control óptimo:</strong> Minimización de costos o maximización de beneficios</li>
+            </ul>
+            
+            <p><strong>Software de gestión de energía (EMS):</strong></p>
+            <ul>
+                <li>Monitoreo en tiempo real de generación, consumo y almacenamiento</li>
+                <li>Optimización del flujo de energía entre fuentes</li>
+                <li>Participación en mercados de energía (en sistemas a gran escala)</li>
+                <li>Análisis de datos y generación de informes</li>
+            </ul>
+        </div>
 
-<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
+        <h2>4. Dimensionamiento de sistemas de almacenamiento</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>4.1 Metodología de dimensionamiento</h4>
+            
+            <p><strong>Paso 1: Análisis de carga</strong></p>
+            <ul>
+                <li>Identificar cargas críticas y su perfil de consumo</li>
+                <li>Estimar el consumo diario (kWh/día)</li>
+                <li>Determinar la potencia máxima simultánea (kW)</li>
+            </ul>
+            
+            <p><strong>Paso 2: Definir la autonomía requerida</strong></p>
+            <ul>
+                <li>Horas de respaldo deseadas (ej. 1 noche, 24 horas, varios días)</li>
+                <li>Considerar días de autonomía para sistemas aislados (3-5 días típicos)</li>
+            </ul>
+            
+            <p><strong>Paso 3: Calcular la capacidad de almacenamiento</strong></p>
+            <p>Capacidad (kWh) = Consumo diario (kWh/día) × Días de autonomía × Factor de seguridad (1.2-1.5) / Profundidad de descarga (DoD)</p>
+            
+            <p><strong>Paso 4: Determinar la potencia del inversor/cargador</strong></p>
+            <p>Potencia (kW) = Potencia máxima simultánea (kW) × Factor de simultaneidad (0.7-1.0) × Factor de seguridad (1.1-1.2)</p>
+            
+            <div class="example">
+                <h5>Ejemplo práctico:</h5>
+                <p><strong>Vivienda con:</strong></p>
+                <ul>
+                    <li>Consumo diario: 15 kWh</li>
+                    <li>Potencia máxima: 5 kW</li>
+                    <li>Autonomía deseada: 1 día (noche completa)</li>
+                    <li>Batería LiFePO4 con DoD del 90%</li>
+                </ul>
+                
+                <p><strong>Cálculo de capacidad:</strong></p>
+                <p>15 kWh × 1 día × 1.2 / 0.9 = 20 kWh</p>
+                
+                <p><strong>Cálculo de potencia:</strong></p>
+                <p>5 kW × 0.8 × 1.1 = 4.4 kW</p>
+                
+                <p><strong>Solución:</strong> Sistema de 20 kWh de capacidad y 4.4 kW de potencia continua</p>
+            </div>
+        </div>
+
+        <h2>5. Casos de estudio y aplicaciones prácticas</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="storage-box">
+            <h4>5.1 Aplicaciones residenciales</h4>
+            
+            <p><strong>Autoconsumo con respaldo:</strong></p>
+            <ul>
+                <li>Reducción de factura eléctrica mediante desplazamiento de carga</li>
+                <li>Suministro durante cortes de energía</li>
+                <li>Participación en programas de respuesta a la demanda</li>
+            </ul>
+            
+            <p><strong>Ejemplo real:</strong> Vivienda en California con 8 kWp solar + 13.5 kWh Powerwall</p>
+            <ul>
+                <li>Ahorro anual: $1,800</li>
+                <li>Autonomía: 24 horas para cargas esenciales</li>
+                <li>Retorno de inversión: 7-10 años</li>
+            </ul>
+            
+            <h4>5.2 Aplicaciones comerciales e industriales</h4>
+            
+            <p><strong>Recorte de demanda:</strong></p>
+            <ul>
+                <li>Reducción de cargos por demanda máxima</li>
+                <li>Almacenamiento de energía durante periodos de baja demanda</li>
+                <li>Descarga durante periodos pico para reducir costos</li>
+            </ul>
+            
+            <p><strong>Ejemplo real:</strong> Supermercado con 200 kWp solar + 500 kWh almacenamiento</p>
+            <ul>
+                <li>Reducción de factura eléctrica en 40%</li>
+                <li>Retorno de inversión: 5-7 años</li>
+                <li>Reducción de huella de carbono</li>
+            </ul>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en discusiones sobre casos de estudio.</p>
+            <p><strong>Ejercicio práctico:</strong> Dimensionamiento de un sistema de almacenamiento para un caso real.</p>
+            <p><strong>Cuestionario:</strong> Preguntas sobre tecnologías de almacenamiento y sistemas híbridos.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Preparar una presentación sobre un proyecto fotovoltaico completo que incluya análisis de viabilidad, diseño, instalación y mantenimiento, aplicando todos los conceptos aprendidos en el curso.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion14.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion16.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+
+<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
-<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad5', 'sesion15');
+          window.markLessonCompleted('electricidad', 'sesion15');
       }
   });
 </script>
