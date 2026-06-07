@@ -1,544 +1,326 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 11: Instalación de Sistemas Fotovoltaicos II - Cableado y Conexiones</title>
+    <title>Sesión 11: Sistemas Conectados a Red - El Medidor Mágico</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary-color);
             padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
+            border-radius: 5px;
             color: #2c3e50;
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+
+        /* Bidirectional Meter Simulator */
+        .grid-sim {
+            background: #1a252f;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .meter-container {
+            width: 250px;
+            height: 250px;
+            background: #bdc3c7;
+            border-radius: 50%;
+            border: 15px solid #7f8c8d;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        .meter-disc {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ecf0f1 0deg 90deg, 
+                #e74c3c 90deg 180deg, 
+                #ecf0f1 180deg 270deg, 
+                #3498db 270deg 360deg
+            );
+            transition: transform 0.1s linear;
+        }
+
+        .meter-glass {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 50%);
+        }
+
+        .meter-display {
+            position: absolute;
+            bottom: -30px;
+            background: #111;
+            color: #2ecc71;
+            font-family: monospace;
+            padding: 10px 20px;
+            font-size: 1.5rem;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            border: 2px solid #2ecc71;
         }
-        .back-button:hover {
-            background-color: #2980b9;
-        }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        .safety-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        .safety-box h4 {
-            color: #c62828;
-            margin-top: 0;
-        }
-        .wiring-step {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .specs-table {
+
+        .sim-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
+            max-width: 600px;
         }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #fff8e1;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #ffa000;
-        }
-        .practical-exercise h4 {
-            color: #e65100;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .tip-box {
-            background-color: #e3f2fd;
-            border-left: 3px solid #1976d2;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .note-box {
-            background-color: #fffde7;
-            border-left: 3px solid #ffd600;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .image-container {
+
+        .control-panel {
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 10px;
             text-align: center;
-            margin: 20px 0;
         }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-        .code-box {
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
-            font-family: 'Courier New', monospace;
+
+        .control-panel h4 { margin: 0 0 15px 0; color: #bdc3c7; }
+
+        input[type="range"] {
+            width: 100%;
             margin: 10px 0;
-            overflow-x: auto;
         }
+
+        .val-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f1c40f;
+            font-family: monospace;
+        }
+
+        .status-msg {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .specs-table {
-                font-size: 0.9em;
-            }
+            .sim-controls { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 11: Instalación de Sistemas Fotovoltaicos II - Cableado y Conexiones</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Aprender las técnicas adecuadas para el tendido de cables, conexiones eléctricas seguras, instalación de protecciones y puesta en marcha de sistemas fotovoltaicos, siguiendo los estándares y normativas de seguridad eléctrica.</p>
-        </div>
 
-        <h2>1. Seguridad en el cableado eléctrico</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Sistemas Conectados a Red (On-Grid)</h1>
+        <p class="sesion-subtitle">Sesión 11 - Módulo 3: El Medidor Mágico</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-city"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrirás el sistema más popular del mundo: Interconexión a Red. Aquí no usamos baterías costosas. Usamos la red eléctrica de la ciudad (CFE) como nuestra batería infinita, inyectando la energía que nos sobra y haciendo girar el medidor hacia atrás.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>¿Cómo funciona la Interconexión (Net Metering)?</h2>
         
-        <div class="safety-box">
-            <h4>1.1 Medidas de seguridad eléctrica</h4>
-            
-            <p>Antes de comenzar cualquier trabajo de cableado, es fundamental seguir estas medidas de seguridad:</p>
-            
-            <ul>
-                <li><strong>Desconexión de fuentes de energía:</strong> Asegurarse de que todos los circuitos estén desconectados</li>
-                <li><strong>Uso de herramientas aisladas:</strong> Todas las herramientas deben tener mangos aislados</li>
-                <li><strong>Equipo de protección personal (EPP):</strong> Guantes aislantes, gafas de seguridad y calzado dieléctrico</li>
-                <li><strong>Condiciones climáticas:</strong> No trabajar en condiciones de humedad o lluvia</li>
-                <li><strong>Señalización:</strong> Colocar letreros de advertencia en áreas de trabajo</li>
-                <li><strong>Compañero de trabajo:</strong> Idealmente, trabajar en parejas cuando se realizan conexiones eléctricas</li>
-            </ul>
-            
-            <div class="warning-box">
-                <h4>¡Importante!</h4>
-                <p>Los sistemas fotovoltaicos generan electricidad de corriente continua (CC) que puede ser especialmente peligrosa. Los arcos eléctricos en sistemas de CC pueden ser más difíciles de apagar que los de CA.</p>
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h3>El Inversor Sincronizado</h3>
+                <p>En este sistema, el Inversor es un genio matemático. En milisegundos, analiza la onda de voltaje de la calle y crea una onda <strong>idéntica</strong> para empujar la energía solar directo a los cables de tu casa. Si se va la luz en la calle, el inversor se apaga por seguridad (Modo Anti-Isla).</p>
+            </div>
+            <div class="concept-card">
+                <h3>El Medidor Bidireccional</h3>
+                <p>La compañía eléctrica te cambia tu medidor normal por uno Bidireccional. Este cuenta la energía que consumes de noche (hacia adelante) y la que te sobra de día (hacia atrás). Al final del bimestre, solo pagas la diferencia (Neto).</p>
             </div>
         </div>
 
-        <h2>2. Selección y tendido de cables</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="wiring-step">
-            <h4>2.1 Tipos de cables para instalaciones fotovoltaicas</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Tipo de cable</th>
-                    <th>Características</th>
-                    <th>Aplicación típica</th>
-                </tr>
-                <tr>
-                    <td>Solar PV1-F</td>
-                    <td>Doble aislamiento, resistente a UV, -40°C a 90°C</td>
-                    <td>Exterior, entre paneles y regulador</td>
-                </tr>
-                <tr>
-                    <td>RHW-2 o USE-2</td>
-                    <td>Resistente al calor y humedad, 90°C en seco/húmedo</td>
-                    <td>Enterrado directo o en tubería</td>
-                </tr>
-                <tr>
-                    <td>THWN-2</td>
-                    <td>Termoplástico, resistente al agua y calor, 90°C</td>
-                    <td>Interior en tubería conduit</td>
-                </tr>
-                <tr>
-                    <td>THHN</td>
-                    <td>Nylon termoplástico, 90°C en seco</td>
-                    <td>Interior en áreas secas</td>
-                </tr>
-            </table>
-            
-            <h4>2.2 Cálculo del calibre de los cables</h4>
-            
-            <p>Para determinar el calibre adecuado de los cables, se deben considerar tres factores principales:</p>
-            
-            <ol>
-                <li><strong>Corriente máxima del circuito (A):</strong> Corriente de cortocircuito (Isc) × 1.25</li>
-                <li><strong>Longitud del cable (m):</strong> Distancia de ida y vuelta (×2)</li>
-                <li><strong>Caída de tensión permitida:</strong> Máximo 3% para CC, 2% para CA</li>
-            </ol>
-            
-            <div class="formula-box">
-                <h5>Fórmula para cálculo de sección del cable:</h5>
-                <p class="formula">S = (2 × ρ × L × I) / (ΔV × V)</p>
-                <p>Donde:</p>
-                <ul>
-                    <li>S = Sección del cable (mm²)</li>
-                    <li>ρ = Resistividad del cobre (0.0172 Ω·mm²/m)</li>
-                    <li>L = Longitud del cable (m)</li>
-                    <li>I = Corriente (A)</li>
-                    <li>ΔV = Caída de tensión permitida (V)</li>
-                    <li>V = Tensión del sistema (V)</li>
-                </ul>
-            </div>
-            
-            <div class="practical-exercise">
-                <h5>Ejemplo práctico:</h5>
-                <p>Calcular la sección necesaria para un cable de 15 metros que transporta 8A en un sistema de 24V con una caída de tensión máxima del 3%:</p>
-                
-                <p>ΔV = 24V × 0.03 = 0.72V</p>
-                <p>S = (2 × 0.0172 × 15m × 8A) / (0.72V) = 5.73 mm²</p>
-                <p>El calibre comercial inmediatamente superior es 6 mm² (AWG 10)</p>
-            </div>
-            
-            <h4>2.3 Técnicas de tendido de cables</h4>
-            
-            <ul>
-                <li><strong>Exterior:</strong> Usar canaletas UV, tuberías conduit o bandejas portacables</li>
-                <li>Enterrado: Utilizar cables tipo USE-2 o en tuberías rígidas a 60cm de profundidad</li>
-                <li>Techos: Fijar con abrazaderas cada 50cm, evitar bordes cortantes</li>
-                <li>Paredes: Pasar por tuberías conduit o registros</li>
-            </ul>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Dejar un 10% adicional de cable en las conexiones para permitir futuras modificaciones o reparaciones.</p>
-            </div>
-        </div>
-
-        <h2>3. Conexiones eléctricas seguras</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="wiring-step">
-            <h4>3.1 Tipos de conexiones</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Tipo</th>
-                    <th>Ventajas</th>
-                    <th>Desventajas</th>
-                    <th>Aplicación</th>
-                </tr>
-                <tr>
-                    <td>Conectores MC4</td>
-                    <td>Fácil instalación, estanco, seguro</td>
-                    <td>Costo adicional</td>
-                    <td>Conexión entre paneles, cadenas</td>
-                </tr>
-                <tr>
-                    <td>Bornes de presión</td>
-                    <td>Buena conexión, fácil de instalar</td>
-                    <td>Puede aflojarse con el tiempo</td>
-                    <td>Reguladores, inversores</td>
-                </tr>
-                <tr>
-                    <td>Terminales y orejetas</td>
-                    <td>Conexión segura, profesional</td>
-                    <td>Requiere herramienta especial</td>
-                    <td>Baterías, puestas a tierra</td>
-                </tr>
-                <tr>
-                    <td>Soldadura</td>
-                    <td>Conexión permanente, baja resistencia</td>
-                    <td>Difícil de deshacer, requiere habilidad</td>
-                    <td>Reparaciones, electrónica</td>
-                </tr>
-            </table>
-            
-            <h4>3.2 Procedimiento para conexiones seguras</h4>
-            
-            <ol>
-                <li><strong>Preparación del cable:</strong>
-                    <ul>
-                        <li>Pelar el aislante sin dañar los conductores</li>
-                        <li>Retirar la longitud adecuada (generalmente 10-12mm)</li>
-                        <li>Torcer ligeramente los hilos si son flexibles</li>
-                    </ul>
-                </li>
-                <li><strong>Conexión:</strong>
-                    <ul>
-                        <li>Insertar completamente el cable en el conector</li>
-                        <li>Asegurar que no queden hilos sueltos</li>
-                        <li>Apretar firmemente los tornillos o pestillos</li>
-                    </ul>
-                </li>
-                <li><strong>Protección:</strong>
-                    <ul>
-                        <li>Cubrir con cinta aislante o termorretráctil si es necesario</li>
-                        <li>Proteger de la intemperie si está al aire libre</li>
-                        <li>Asegurar el cable para evitar tensiones en la conexión</li>
-                    </ul>
-                </li>
-            </ol>
-            
-            <div class="image-container">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.WSyt03e14ttYnMx76ajFHwHaHa" alt="Conexiones MC4 para paneles solares" class="img-small">
-                <p><em>Conectores MC4 para paneles solares</em></p>
-            </div>
-            
-            <h4>3.3 Uso de conectores MC4</h4>
-            
-            <p>Los conectores MC4 son el estándar en la industria fotovoltaica. Pasos para su instalación:</p>
-            
-            <ol>
-                <li>Retirar 10-12mm de aislante del cable</li>
-                <li>Insertar el cable en el terminal del conector</li>
-                <li>Crimpar con la herramienta adecuada</li>
-                <li>Insertar el terminal en el cuerpo del conector hasta que haga clic</li>
-                <li>Para desconectar, presionar la pestaña con el destornillador plano</li>
-            </ol>
-            
-            <div class="note-box">
-                <p><strong>Nota:</strong> Siempre verifica la polaridad antes de conectar los paneles. Usa códigos de colores (rojo para positivo, negro para negativo) y verifica con un multímetro si es necesario.</p>
-            </div>
-        </div>
-
-        <h2>4. Protecciones eléctricas</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="wiring-step">
-            <h4>4.1 Tipos de protecciones</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Protección</th>
-                    <th>Función</th>
-                    <th>Ubicación típica</th>
-                </tr>
-                <tr>
-                    <td>Diodos de bloqueo</td>
-                    <td>Evitan corrientes inversas</td>
-                    <td>En cajas de conexión de paneles</td>
-                </tr>
-                <tr>
-                    <td>Fusibles CC</td>
-                    <td>Protegen contra sobrecorrientes</td>
-                    <td>Entre paneles y regulador</td>
-                </tr>
-                <tr>
-                    <td>Interruptores CC</td>
-                    <td>Desconexión manual</td>
-                    <td>Antes del regulador</td>
-                </tr>
-                <tr>
-                    <td>Protector contra sobretensiones</td>
-                    <td>Protege contra rayos y picos</td>
-                    <td>Entrada del regulador</td>
-                </tr>
-                <tr>
-                    <td>Interruptor diferencial</td>
-                    <td>Protección contra contactos indirectos</td>
-                    <td>Salida CA del inversor</td>
-                </tr>
-                <tr>
-                    <td>Puesta a tierra</td>
-                    <td>Protección contra descargas</td>
-                    <td>Estructuras metálicas, caja del inversor</td>
-                </tr>
-            </table>
-            
-            <h4>4.2 Diagrama unifilar típico</h4>
-            
-            <div class="image-container">
-                <img src="https://thumb.bibliocad.com/images/content/00130000/3000/133618.jpg" alt="Diagrama unifilar de un sistema fotovoltaico con protecciones" class="img-small">
-                <p><em>Diagrama unifilar de un sistema fotovoltaico con protecciones</em></p>
-            </div>
-            
-            <h4>4.3 Puesta a tierra</h4>
-            
-            <p>Componentes que deben conectarse a tierra:</p>
-            <ul>
-                <li>Estructuras de montaje de paneles</li>
-                <li>Cajas de conexiones</li>
-                <li>Inversores y equipos eléctricos</li>
-                <li>Varillas de protección contra rayos</li>
-            </ul>
-            
-            <p>Requisitos de la puesta a tierra:</p>
-            <ul>
-                <li>Resistencia a tierra menor a 25Ω (idealmente <10Ω)</li>
-                <li>Varilla de cobre de 1.5-2m de largo, mínimo 15mm de diámetro</li>
-                <li>Conductor de cobre desnudo de 16mm² mínimo</li>
-                <li>Conexiones exentermitas o soldadas</li>
-            </ul>
-        </div>
-
-        <h2>5. Pruebas y puesta en marcha</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>5.1 Lista de verificación previa a la puesta en marcha</h4>
-            
-            <ol>
-                <li><strong>Verificación mecánica:</strong>
-                    <ul>
-                        <li>Todos los paneles correctamente fijados</li>
-                        <li>Cables asegurados y protegidos</li>
-                        <li>Ventilación adecuada para equipos</li>
-                    </ul>
-                </li>
-                <li><strong>Verificación eléctrica:</strong>
-                    <ul>
-                        <li>Polaridad correcta en todas las conexiones</li>
-                        <li>Ausencia de cortocircuitos</li>
-                        <li>Resistencia de aislamiento >1MΩ</li>
-                    </ul>
-                </li>
-                <li><strong>Verificación de protecciones:</strong>
-                    <ul>
-                        <li>Fusibles del calibre correcto instalados</li>
-                        <li>Interruptores en posición de apagado</li>
-                        <li>Conexiones de puesta a tierra realizadas</li>
-                    </ul>
-                </li>
-            </ol>
-            
-            <h4>5.2 Procedimiento de encendido</h4>
-            
-            <ol>
-                <li>Conectar primero las baterías al regulador (si es sistema aislado)</li>
-                <li>Conectar los paneles al regulador</li>
-                <li>Encender el regulador</li>
-                <li>Encender el inversor (si lo hay)</li>
-                <li>Conectar las cargas</li>
-            </ol>
-            
-            <h4>5.3 Mediciones de verificación</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Valor esperado</th>
-                    <th>Método de medición</th>
-                </tr>
-                <tr>
-                    <td>Tensión circuito abierto (Voc)</td>
-                    <td>Valor nominal ±5%</td>
-                    <td>Multímetro en VDC, sin carga</td>
-                </tr>
-                <tr>
-                    <td>Corriente de cortocircuito (Isc)</td>
-                    <td>Valor nominal ±10%</td>
-                    <td>Pinza amperimétrica en cortocircuito</td>
-                </tr>
-                <tr>
-                    <td>Tensión de batería</td>
-                    <td>12.6-14.4V (12V)<br>25.2-28.8V (24V)</td>
-                    <td>Multímetro en bornes de la batería</td>
-                </tr>
-                <tr>
-                    <td>Tensión de salida CA</td>
-                    <td>110-120V o 220-240V ±10%</td>
-                    <td>Multímetro en salida del inversor</td>
-                </tr>
-                <tr>
-                    <td>Frecuencia CA</td>
-                    <td>50/60Hz ±0.5Hz</td>
-                    <td>Multímetro con función de frecuencia</td>
-                </tr>
-            </table>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Documenta todas las mediciones en un informe de puesta en servicio para futuras referencias y mantenimiento.</p>
-            </div>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos y discusiones.</p>
-            <p><strong>Ejercicio práctico:</strong> Realización de conexiones seguras y mediciones eléctricas.</p>
-            <p><strong>Cuestionario:</strong> Responder preguntas sobre selección de cables y protecciones.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre mantenimiento preventivo y correctivo de sistemas fotovoltaicos, incluyendo procedimientos de limpieza de paneles y verificación de conexiones.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion10.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion12.html" class="back-button next-button">Siguiente sesión →</a>
+        <div class="danger-box">
+            <h3><i class="fas fa-ban"></i> Protección Anti-Isla (Obligatorio)</h3>
+            <p>Si hay un apagón en tu colonia porque un técnico está reparando un transformador, <strong>tus paneles solares deben apagarse automáticamente</strong>. Si tu Inversor On-Grid siguiera inyectando energía a la calle, podrías electrocutar al técnico. Todos los inversores aprobados traen esta protección.</p>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Medidor Bidireccional</h2>
+        <p>Ajusta cuánto sol hace (Producción Solar) y cuántos aparatos tienes prendidos (Consumo de la Casa). Observa cómo reacciona el disco del medidor. <em>¡Intenta hacerlo girar hacia atrás!</em></p>
+
+        <div class="grid-sim">
+            
+            <div class="meter-container">
+                <div class="meter-disc" id="sim-disc"></div>
+                <div class="meter-glass"></div>
+                <div class="meter-display" id="sim-display">Neto: 0 W</div>
+            </div>
+
+            <div class="status-msg" id="sim-status" style="background:#7f8c8d;">
+                Equilibrio Perfecto. No consumes ni inyectas.
+            </div>
+
+            <div class="sim-controls">
+                
+                <div class="control-panel">
+                    <h4><i class="fas fa-sun" style="color:#f1c40f;"></i> Producción Solar</h4>
+                    <input type="range" id="inp-solar" min="0" max="5000" step="100" value="2000">
+                    <div class="val-display" id="val-solar" style="color:#f1c40f;">2000 W</div>
+                </div>
+
+                <div class="control-panel">
+                    <h4><i class="fas fa-home" style="color:#3498db;"></i> Consumo Casa</h4>
+                    <input type="range" id="inp-home" min="0" max="5000" step="100" value="2000">
+                    <div class="val-display" id="val-home" style="color:#3498db;">2000 W</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Qué le sucede a tu sistema conectado a la red (On-Grid) cuando hay un apagón en la ciudad y tu casa se queda sin luz?",
+                "options": [
+                    "Sigue funcionando y tienes luz gratis porque hay sol.",
+                    "Se apaga automáticamente mediante la protección Anti-Isla.",
+                    "Se encienden las baterías de emergencia."
+                ],
+                "correctIndex": 1,
+                "explanation": "Por ley (y seguridad física del personal de la compañía eléctrica), los inversores On-Grid DEBEN apagarse en milisegundos si detectan que la red principal cayó. Si no lo hicieran, inyectarían tu energía solar a la calle y electrocutarían al técnico que repara el poste."
+            },
+            {
+                "question": "Son las 12:00 PM. Tus paneles generan 3000 Watts. Tienes encendidos aparatos que consumen 1000 Watts. ¿Qué pasa con los 2000 Watts que sobran?",
+                "options": [
+                    "Se pierden en forma de calor.",
+                    "Se guardan en las baterías.",
+                    "Se inyectan a la red pública (calle) y el medidor bidireccional los registra a tu favor."
+                ],
+                "correctIndex": 2,
+                "explanation": "El sistema On-Grid no desperdicia nada. Lo que no usas en tu casa, fluye hacia la calle. Tu vecino lo consume, y tu medidor gira hacia atrás generándote 'saldo a favor' para la noche."
+            },
+            {
+                "question": "¿Por qué la mayoría de los hogares urbanos prefieren un sistema On-Grid en lugar de uno Aislado (con baterías)?",
+                "options": [
+                    "Porque las baterías contaminan mucho.",
+                    "Porque es un 50% o 60% más barato al no requerir la compra y mantenimiento del banco de baterías.",
+                    "Porque los inversores On-Grid son más bonitos."
+                ],
+                "correctIndex": 1,
+                "explanation": "Las baterías son la parte más cara, pesada y de menor vida útil de un sistema solar. Usar la red eléctrica de CFE como tu 'batería infinita' hace que la instalación sea mucho más económica y rentable a corto plazo."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion10.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion12.html" class="nav-btn next">Siguiente Sesión (Mantenimiento) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    let rotation = 0;
+    let netPower = 0;
+
+    const solarInp = document.getElementById('inp-solar');
+    const homeInp = document.getElementById('inp-home');
+    const solarVal = document.getElementById('val-solar');
+    const homeVal = document.getElementById('val-home');
+    const statusMsg = document.getElementById('sim-status');
+    const netDisplay = document.getElementById('sim-display');
+    const disc = document.getElementById('sim-disc');
+
+    function updateSim() {
+        const solar = parseInt(solarInp.value);
+        const home = parseInt(homeInp.value);
+        
+        solarVal.textContent = solar + " W";
+        homeVal.textContent = home + " W";
+
+        netPower = home - solar; // Positive = Buying from grid, Negative = Selling to grid
+
+        if(netPower > 0) {
+            netDisplay.textContent = "Compra: " + netPower + " W";
+            netDisplay.style.color = "#e74c3c";
+            netDisplay.style.borderColor = "#e74c3c";
+            statusMsg.textContent = "Consumiendo de la Red. El medidor cobra.";
+            statusMsg.style.background = "#e74c3c";
+        } else if(netPower < 0) {
+            netDisplay.textContent = "Inyecta: " + Math.abs(netPower) + " W";
+            netDisplay.style.color = "#2ecc71";
+            netDisplay.style.borderColor = "#2ecc71";
+            statusMsg.textContent = "Inyectando a la Red. ¡Saldo a favor!";
+            statusMsg.style.background = "#2ecc71";
+        } else {
+            netDisplay.textContent = "Neto: 0 W";
+            netDisplay.style.color = "#bdc3c7";
+            netDisplay.style.borderColor = "#bdc3c7";
+            statusMsg.textContent = "Equilibrio. El sol cubre exactamente la casa.";
+            statusMsg.style.background = "#7f8c8d";
+        }
+    }
+
+    solarInp.addEventListener('input', updateSim);
+    homeInp.addEventListener('input', updateSim);
+
+    // Animation Loop
+    function animateMeter() {
+        // netPower range is roughly -5000 to +5000
+        // We want speed proportional to netPower. 
+        // 5000W = fast rotation
+        const speed = (netPower / 5000) * 15; // Max 15 degrees per frame
+        
+        rotation += speed;
+        disc.style.transform = `rotate(${rotation}deg)`;
+        
+        requestAnimationFrame(animateMeter);
+    }
+
+    updateSim();
+    animateMeter();
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion11');
+          window.markLessonCompleted('electricidad5', 'sesion11');
       }
   });
 </script>
