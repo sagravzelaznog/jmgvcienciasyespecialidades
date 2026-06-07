@@ -3,385 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 14: Conceptos de Potencia Eléctrica</title>
+    <title>Sesión 14: Potencia Eléctrica - Conceptos Básicos</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos específicos para esta sesión */
         .power-formula {
-            font-family: 'Courier New', monospace;
-            background-color: #f8f9fa;
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 10px 0;
-            border-left: 4px solid #e74c3c;
-        }
-        
-        .example-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .exercise {
-            background-color: #f0f8ff;
-            border-left: 4px solid #2980b9;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .exercise-solution {
-            background-color: #f0f8f0;
-            border-left: 4px solid #27ae60;
-            padding: 10px 15px;
-            margin: 10px 0;
-            border-radius: 0 5px 5px 0;
-            display: none;
-        }
-        
-        .show-solution {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 10px 0;
+            font-size: 1.5rem;
+            text-align: center;
+            background-color: var(--box-info-bg);
+            padding: 1rem;
+            border-radius: 8px;
             font-weight: bold;
+            color: var(--primary-color);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary-color);
         }
         
-        .show-solution:hover {
-            background-color: #219653;
+        .appliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
         .appliance-card {
-            background: white;
+            background: var(--bg-card);
             border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .appliance-card:hover {
+            transform: translateY(-5px);
         }
         
         .appliance-icon {
-            font-size: 2em;
-            margin-right: 15px;
-            color: #3498db;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
         
-        .appliance-details {
-            flex-grow: 1;
+        .appliance-card h4 { margin-top: 0; color: var(--text-color); }
+        .power-consumption { font-size: 1.2rem; font-weight: bold; color: #e74c3c; }
+        
+        .meter-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
         }
         
-        .power-consumption {
-            font-weight: bold;
-            color: #e74c3c;
+        .exercise-box {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow-soft);
         }
+        .exercise-box h4 { margin-top: 0; color: var(--primary-color); border-bottom: 2px solid var(--box-info-bg); padding-bottom: 0.5rem; }
     </style>
 </head>
 <body>
-    <a href="index.html" class="home-link">← Volver al índice</a>
-    
-    <div class="header">
-        <h1>Sesión 14: Conceptos de Potencia Eléctrica</h1>
-        <p>Entendiendo y calculando la potencia en circuitos eléctricos</p>
+
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Potencia Eléctrica</h1>
+        <p class="sesion-subtitle">Sesión 14 - Módulo 4: El trabajo real de los electrones</p>
     </div>
 
-    <div class="section">
-        <h2>Objetivo Específico</h2>
-        <p>Comprender el concepto de potencia eléctrica, sus unidades de medida y cómo calcularla en diferentes situaciones, aplicando los conocimientos previos de voltaje, corriente y resistencia.</p>
-        
-        <svg width="100%" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Fondo del medidor de potencia -->
-            <rect x="50" y="50" width="500" height="100" rx="10" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
-            
-            <!-- Escala del medidor -->
-            <line x1="100" y1="130" x2="500" y2="130" stroke="#333" stroke-width="2"/>
-            
-            <!-- Marcas de la escala -->
-            <line x1="100" y1="125" x2="100" y2="135" stroke="#333" stroke-width="2"/>
-            <line x1="200" y1="125" x2="200" y2="135" stroke="#333" stroke-width="2"/>
-            <line x1="300" y1="125" x2="300" y2="135" stroke="#333" stroke-width="2"/>
-            <line x1="400" y1="125" x2="400" y2="135" stroke="#333" stroke-width="2"/>
-            <line x1="500" y1="125" x2="500" y2="135" stroke="#333" stroke-width="2"/>
-            
-            <!-- Etiquetas de la escala -->
-            <text x="90" y="120" font-size="12" text-anchor="end">0W</text>
-            <text x="190" y="120" font-size="12" text-anchor="middle">250W</text>
-            <text x="290" y="120" font-size="12" text-anchor="middle">500W</text>
-            <text x="390" y="120" font-size="12" text-anchor="middle">750W</text>
-            <text x="490" y="120" font-size="12" text-anchor="start">1000W</text>
-            
-            <!-- Aguja del medidor -->
-            <line x1="300" y1="130" x2="400" y2="80" stroke="#e74c3c" stroke-width="3" stroke-linecap="round" transform="rotate(0, 300, 130)" id="powerNeedle">
-                <animate attributeName="transform" attributeType="XML" type="rotate" from="-60 300 130" to="60 300 130" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.1 0.8 0.2 1; 0.1 0.8 0.2 1"/>
-            </line>
-            
-            <!-- Círculo central de la aguja -->
-            <circle cx="300" cy="130" r="5" fill="#e74c3c"/>
-            
-            <!-- Display digital -->
-            <rect x="200" y="60" width="200" height="40" rx="5" fill="#333"/>
-            <text x="300" y="85" font-family="Courier New, monospace" font-size="24" fill="#27ae60" text-anchor="middle">
-                <tspan id="powerValue">650</tspan> W
-            </text>
-            
-            <!-- Título -->
-            <text x="300" y="40" font-size="16" font-weight="bold" text-anchor="middle">MEDIDOR DE POTENCIA</text>
-        </svg>
+    <div class="info-box">
+        <strong><i class="fas fa-bullseye"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Entender qué significan realmente los "Watts" que lees en las bombillas y cargadores. Aprenderás por qué un microondas gira el medidor de la luz de tu casa tan rápido.</p>
     </div>
 
-    <div class="section">
-        <h2>¿Qué es la Potencia Eléctrica?</h2>
+    <div class="teoria-section">
+        <h2>La Fuerza Bruta: Los Vatios (Watts)</h2>
+        <p>Hasta ahora hemos hablado de la presión (Voltaje) y del flujo (Corriente). Pero, ¿qué pasa cuando juntas ambas cosas? Obtienes <strong>Potencia</strong>. Es la cantidad de energía bruta que un aparato puede gastar o transformar (en luz, calor o movimiento) en un segundo.</p>
         
-        <p>La potencia eléctrica es la cantidad de energía eléctrica que un dispositivo consume o produce por unidad de tiempo. Se mide en <strong>vatios (W)</strong> en honor al ingeniero escocés James Watt.</p>
-        
-        <div class="power-formula">
-            Potencia (P) = Voltaje (V) × Corriente (I)
-        </div>
-        
-        <p>Donde:</p>
-        <ul>
-            <li><strong>P</strong> = Potencia en vatios (W)</li>
-            <li><strong>V</strong> = Voltaje en voltios (V)</li>
-            <li><strong>I</strong> = Corriente en amperios (A)</li>
-        </ul>
-        
-        <div class="example-box">
-            <h4>Analogía del Agua</h4>
-            <p>Imagina que la corriente eléctrica es como el flujo de agua en una tubería. El voltaje sería la presión del agua, y la corriente sería la cantidad de agua que fluye. La potencia sería entonces la cantidad de trabajo que puede realizar el agua, como hacer girar una rueda hidráulica.</p>
-            
-            <svg width="100%" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-                <!-- Depósito de agua -->
-                <rect x="50" y="50" width="100" height="150" fill="#d4f1f9" stroke="#333" stroke-width="2"/>
-                <rect x="50" y="150" width="100" height="50" fill="#89cff0" stroke="#333" stroke-width="2"/>
+        <div class="meter-container">
+            <svg width="100%" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Fondo del medidor -->
+                <rect x="50" y="50" width="500" height="100" rx="10" fill="var(--bg-main)" stroke="var(--border-color)" stroke-width="2"/>
                 
-                <!-- Tubería -->
-                <rect x="150" y="170" width="200" height="20" fill="#8b4513"/>
+                <!-- Escala del medidor -->
+                <line x1="100" y1="130" x2="500" y2="130" stroke="currentColor" stroke-width="2"/>
+                <line x1="100" y1="125" x2="100" y2="135" stroke="currentColor" stroke-width="2"/>
+                <line x1="200" y1="125" x2="200" y2="135" stroke="currentColor" stroke-width="2"/>
+                <line x1="300" y1="125" x2="300" y2="135" stroke="currentColor" stroke-width="2"/>
+                <line x1="400" y1="125" x2="400" y2="135" stroke="currentColor" stroke-width="2"/>
+                <line x1="500" y1="125" x2="500" y2="135" stroke="currentColor" stroke-width="2"/>
                 
-                <!-- Rueda hidráulica -->
-                <circle cx="300" cy="180" r="40" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
-                <line x1="300" y1="140" x2="300" y2="220" stroke="#8b4513" stroke-width="4"/>
-                <line x1="260" y1="180" x2="340" y2="180" stroke="#8b4513" stroke-width="4"/>
-                <line x1="280" y1="155" x2="320" y2="205" stroke="#8b4513" stroke-width="4"/>
-                <line x1="280" y1="205" x2="320" y2="155" stroke="#8b4513" stroke-width="4"/>
+                <text x="90" y="120" font-size="12" fill="currentColor" text-anchor="end">0W</text>
+                <text x="190" y="120" font-size="12" fill="currentColor" text-anchor="middle">250W</text>
+                <text x="290" y="120" font-size="12" fill="currentColor" text-anchor="middle">500W</text>
+                <text x="390" y="120" font-size="12" fill="currentColor" text-anchor="middle">750W</text>
+                <text x="490" y="120" font-size="12" fill="currentColor" text-anchor="start">1000W</text>
                 
-                <!-- Etiquetas -->
-                <text x="100" y="40" font-size="14" text-anchor="middle">Voltaje (Presión)</text>
-                <text x="250" y="140" font-size="14" text-anchor="middle">Corriente (Flujo)</text>
-                <text x="300" y="100" font-size="14" text-anchor="middle">Potencia (Trabajo)</text>
-                
-                <!-- Flecha de presión -->
-                <line x1="100" y1="60" x2="100" y2="90" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead)">
-                    <animate attributeName="y2" values="90;70;90" dur="2s" repeatCount="indefinite"/>
+                <!-- Aguja animada -->
+                <line x1="300" y1="130" x2="400" y2="80" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" transform="rotate(0, 300, 130)" id="powerNeedle">
+                    <animate attributeName="transform" attributeType="XML" type="rotate" from="-60 300 130" to="60 300 130" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
                 </line>
+                <circle cx="300" cy="130" r="6" fill="#e74c3c"/>
                 
-                <!-- Definición de la punta de flecha -->
-                <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
-                    </marker>
-                </defs>
+                <!-- Display digital -->
+                <rect x="220" y="65" width="160" height="35" rx="5" fill="#222"/>
+                <text x="300" y="88" font-family="monospace" font-size="22" fill="#00ff00" text-anchor="middle">
+                    <tspan id="powerValue">0</tspan> W
+                </text>
+                
+                <!-- Título -->
+                <text x="300" y="40" font-size="16" font-weight="bold" fill="currentColor" text-anchor="middle">MEDIDOR DE CONSUMO</text>
             </svg>
+            <p style="text-align: center; margin-top: 10px; font-size: 0.9rem;"><em>El contador de luz de tu casa mide esto todo el tiempo.</em></p>
+        </div>
+
+        <div class="tip">
+            💡 <strong>La Analogía Definitiva:</strong> Imagina una manguera de bomberos. El <strong>Voltaje</strong> es cuánta presión tiene la bomba. La <strong>Corriente</strong> es qué tan ancha es la manguera. La <strong>Potencia (Watts)</strong> es la fuerza con la que el agua golpea el fuego. Puedes tener mucha presión en un hilito de agua (Poca potencia), o poca presión en un tubo gigante (Poca potencia). ¡Para apagar un gran incendio necesitas ambas cosas altas (Mucha potencia)!
         </div>
     </div>
 
-    <div class="section">
-        <h2>Fórmulas de Potencia</h2>
-        
-        <p>Además de la fórmula básica, podemos expresar la potencia en términos de resistencia usando la Ley de Ohm:</p>
-        
-        <div class="power-formula">
-            P = V × I = I² × R = V² / R
+    <div class="phase-block">
+        <div class="phase-header">
+            <span>La Fórmula: P = V × I</span>
+            <span><i class="fas fa-calculator"></i></span>
         </div>
-        
-        <p>Donde <strong>R</strong> es la resistencia en ohmios (Ω).</p>
-        
-        <div class="example-box">
-            <h4>Ejemplo Práctico</h4>
-            <p>Un foco incandescente tiene una resistencia de 240Ω y funciona a 120V. ¿Cuál es su potencia?</p>
+        <div class="phase-content">
+            <p>James Watt (el creador del motor a vapor) da nombre a esta unidad. Para saber los Watts que consume un aparato, solo multiplica el voltaje al que está conectado por los amperios que absorbe.</p>
             
-            <p><strong>Solución:</strong></p>
-            <p>Usando la fórmula P = V² / R:</p>
-            <p>P = (120V)² / 240Ω = 14400 / 240 = 60W</p>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Consumo de Energía Eléctrica</h2>
-        
-        <p>La energía eléctrica consumida por un dispositivo depende de su potencia y del tiempo que esté en funcionamiento. Se calcula como:</p>
-        
-        <div class="power-formula">
-            Energía (E) = Potencia (P) × Tiempo (t)
-        </div>
-        
-        <p>Donde:</p>
-        <ul>
-            <li><strong>E</strong> = Energía en vatios-hora (Wh) o kilovatios-hora (kWh)</li>
-            <li><strong>P</strong> = Potencia en vatios (W) o kilovatios (kW)</li>
-            <li><strong>t</strong> = Tiempo en horas (h)</li>
-        </ul>
-        
-        <div class="appliance-card">
-            <div class="appliance-icon">💡</div>
-            <div class="appliance-details">
-                <h4>Bombilla LED</h4>
-                <p>Potencia: <span class="power-consumption">10W</span></p>
-                <p>Uso diario: 5 horas</p>
-                <p>Consumo diario: 50Wh (0.05kWh)</p>
+            <div class="power-formula">
+                Potencia (Watts) = Voltios (V) × Amperios (A)
             </div>
-        </div>
-        
-        <div class="appliance-card">
-            <div class="appliance-icon">❄️</div>
-            <div class="appliance-details">
-                <h4>Refrigerador</h4>
-                <p>Potencia: <span class="power-consumption">200W</span> (promedio con ciclo de encendido/apagado)</p>
-                <p>Uso diario: 24 horas (funcionando aproximadamente 8h)</p>
-                <p>Consumo diario: 1.6kWh</p>
+            
+            <div class="appliance-grid">
+                <div class="appliance-card">
+                    <div class="appliance-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h4>Cargador de Celular</h4>
+                    <p>Voltaje: 5V<br>Corriente: 2A</p>
+                    <p class="power-consumption">Potencia: 10 W</p>
+                </div>
+                <div class="appliance-card">
+                    <div class="appliance-icon"><i class="fas fa-tv"></i></div>
+                    <h4>Televisión LED</h4>
+                    <p>Voltaje: 120V<br>Corriente: 0.5A</p>
+                    <p class="power-consumption">Potencia: 60 W</p>
+                </div>
+                <div class="appliance-card">
+                    <div class="appliance-icon"><i class="fas fa-fire-alt"></i></div>
+                    <h4>Secadora de Pelo</h4>
+                    <p>Voltaje: 120V<br>Corriente: 15A</p>
+                    <p class="power-consumption">Potencia: 1,800 W</p>
+                </div>
             </div>
+            <p><em>*Nota cómo los aparatos que generan CALOR (secadoras, planchas, microondas) son los que más Watts consumen.</em></p>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Ejercicios Prácticos</h2>
+    <div class="practica-section">
+        <h2>Práctica: Analizando Recibos de Luz</h2>
+        <p>Tu recibo de luz no te cobra por "Voltios" ni por "Amperios". Te cobra por <strong>Kilovatios-hora (kWh)</strong>. Es decir, cuántos miles de Watts gastaste multiplicados por las horas que los tuviste encendidos.</p>
         
-        <div class="exercise">
-            <h4>Ejercicio 1: Cálculo de Potencia</h4>
-            <p>Un calentador eléctrico funciona a 120V y consume 10A de corriente. ¿Cuál es su potencia?</p>
-            
-            <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
-            
-            <div id="sol1" class="exercise-solution">
-                <p><strong>Datos:</strong></p>
-                <ul>
-                    <li>V = 120V</li>
-                    <li>I = 10A</li>
-                    <li>P = ?</li>
-                </ul>
-                <p><strong>Fórmula:</strong> P = V × I</p>
-                <p><strong>Solución:</strong> P = 120V × 10A = 1200W</p>
-                <p><strong>Respuesta:</strong> El calentador tiene una potencia de 1200 vatios (1.2 kW).</p>
-            </div>
+        <div class="exercise-box">
+            <h4><i class="fas fa-tasks"></i> Caso de Estudio: El Foco Olvidado</h4>
+            <p>Si dejas encendido un viejo foco incandescente de 100 Watts durante 10 horas, consumiste 1000 Watts-hora, lo cual es exactamente <strong>1 kWh</strong>. Si la compañía eléctrica te cobra $2 pesos por cada kWh, ese foco te costó $2 pesos en esa noche.</p>
+            <p>Si cambiaste ese foco por uno LED moderno que solo usa 10 Watts, en esas mismas 10 horas consumiste 100 Watts-hora (0.1 kWh). Te costó solo $0.20 centavos.</p>
         </div>
         
-        <div class="exercise">
-            <h4>Ejercicio 2: Cálculo de Consumo de Energía</h4>
-            <p>Una televisión de 150W está encendida 4 horas al día. ¿Cuánta energía consume en un mes (30 días)?</p>
-            
-            <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
-            
-            <div id="sol2" class="exercise-solution">
-                <p><strong>Datos:</strong></p>
-                <ul>
-                    <li>P = 150W = 0.15kW</li>
-                    <li>t = 4 horas/día</li>
-                    <li>Días = 30</li>
-                    <li>E = ?</li>
-                </ul>
-                <p><strong>Fórmula:</strong> E = P × t × días</p>
-                <p><strong>Solución:</strong> E = 0.15kW × 4h/día × 30 días = 18kWh</p>
-                <p><strong>Respuesta:</strong> La televisión consume 18 kilovatios-hora en un mes.</p>
-            </div>
-        </div>
-        
-        <div class="exercise">
-            <h4>Ejercicio 3: Cálculo de Corriente</h4>
-            <p>Un secador de pelo tiene una potencia de 1800W y funciona a 120V. ¿Qué corriente consume?</p>
-            
-            <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
-            
-            <div id="sol3" class="exercise-solution">
-                <p><strong>Datos:</strong></p>
-                <ul>
-                    <li>P = 1800W</li>
-                    <li>V = 120V</li>
-                    <li>I = ?</li>
-                </ul>
-                <p><strong>Fórmula:</strong> P = V × I → I = P / V</p>
-                <p><strong>Solución:</strong> I = 1800W / 120V = 15A</p>
-                <p><strong>Respuesta:</strong> El secador consume 15 amperios de corriente.</p>
-            </div>
+        <div class="danger-box">
+            <h3><i class="fas fa-bolt"></i> Peligro de Sobrecarga</h3>
+            <p>Las extensiones eléctricas (regletas) dicen "Máximo 15 Amperios". Si conectas una TV (0.5A) y un ventilador (1A), estás seguro. Pero si conectas una Secadora (15A) y un Microondas (10A) en la misma regleta... ¡Estás jalando 25 Amperios! La extensión se derretirá y causará un incendio. <strong>Nunca conectes generadores de calor en la misma regleta.</strong></p>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Preguntas de Reflexión</h2>
-        
-        <div class="reflection">
-            <ol>
-                <li>¿Por qué es importante conocer la potencia de los electrodomésticos al diseñar un circuito eléctrico en casa?</li>
-                <li>¿Cómo afecta el tiempo de uso al consumo de energía de un dispositivo eléctrico?</li>
-                <li>¿Qué ventajas tienen los dispositivos de bajo consumo (como los focos LED) frente a los tradicionales?</li>
-                <li>Si un aparato tiene una potencia mayor, ¿significa que es más eficiente? Explica tu respuesta.</li>
-                <li>¿Cómo se relaciona el concepto de potencia con la facturación de energía eléctrica en tu hogar?</li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Resumen y Próximos Pasos</h2>
-        
-        <p>En esta sesión has aprendido:</p>
-        <ul>
-            <li>El concepto de potencia eléctrica y sus unidades de medida</li>
-            <li>Las diferentes fórmulas para calcular la potencia en circuitos eléctricos</li>
-            <li>Cómo calcular el consumo de energía de los electrodomésticos</li>
-            <li>La importancia de la eficiencia energética</li>
-        </ul>
-        
-        
-        <div class="nav-container">
-            <a href="index.html" class="button">Volver al Índice</a>
-        </div>
-    </div>
-
-    <script>
-        // Función para mostrar/ocultar soluciones
-        function toggleSolution(id) {
-            const solution = document.getElementById(id);
-            if (solution.style.display === 'block') {
-                solution.style.display = 'none';
-            } else {
-                solution.style.display = 'block';
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Qué unidad se utiliza para medir la Potencia Eléctrica?",
+                "options": [
+                    "Voltios (V)",
+                    "Amperios (A)",
+                    "Ohmios (Ω)",
+                    "Vatios o Watts (W)"
+                ],
+                "correctIndex": 3,
+                "explanation": "La potencia es la combinación de presión (V) y flujo (A), y se mide en Watts."
+            },
+            {
+                "question": "Si tienes una secadora de pelo que consume 10 Amperios y está conectada al enchufe de tu casa (120 Voltios). ¿Cuál es su Potencia?",
+                "options": [
+                    "12 Watts",
+                    "120 Watts",
+                    "1200 Watts",
+                    "No se puede calcular"
+                ],
+                "correctIndex": 2,
+                "explanation": "P = V × I. Al multiplicar 120V por 10A obtenemos 1200W de potencia bruta."
+            },
+            {
+                "question": "¿Por qué las compañías eléctricas te cobran en Kilovatios-hora (kWh)?",
+                "options": [
+                    "Porque suena más profesional.",
+                    "Porque te cobran la Potencia (Watts) multiplicada por el Tiempo (Horas) que la usaste.",
+                    "Porque así se mide el voltaje en los postes de luz.",
+                    "Para cobrar más caro."
+                ],
+                "correctIndex": 1,
+                "explanation": "No pagas solo por tener aparatos potentes, pagas por el tiempo que los dejas encendidos gastando energía."
+            },
+            {
+                "question": "¿Qué tipo de electrodomésticos consumen la mayor cantidad de Watts en una casa?",
+                "options": [
+                    "Los que emiten luz (pantallas, focos LED).",
+                    "Los que producen sonido (bocinas, radios).",
+                    "Los que generan calor o frío extremo (planchas, microondas, aires acondicionados).",
+                    "Los cargadores de celular."
+                ],
+                "correctIndex": 2,
+                "explanation": "Cualquier aparato que contenga una 'resistencia térmica' para calentar o enfriar requiere una cantidad masiva de energía para forzar a los electrones a generar calor."
             }
-        }
-        
-        // Actualización dinámica del valor en el medidor SVG
-        document.addEventListener('DOMContentLoaded', function() {
-            const powerValues = [150, 350, 650, 850, 550, 300];
-            let currentIndex = 0;
-            const powerValueElement = document.getElementById('powerValue');
-            
-            setInterval(function() {
-                currentIndex = (currentIndex + 1) % powerValues.length;
-                powerValueElement.textContent = powerValues[currentIndex];
-                
-                // Actualizar posición de la aguja (de -60° a 60° para 0-1000W)
-                const angle = -60 + (120 * powerValues[currentIndex] / 1000);
-                document.getElementById('powerNeedle').setAttribute('transform', `rotate(${angle}, 300, 130)`);
-            }, 2000);
-        });
-    </script>
-    <footer>
-        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+        ]
+        </script>
+    </div>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion13.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion15.html" class="nav-btn next">Siguiente Sesión (Leyes de Kirchhoff) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    // Script para el medidor de Potencia animado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Rango de 0 a 1000 Watts simulados
+        const powerValues = [120, 450, 850, 210, 600, 950, 30]; 
+        let currentIndex = 0;
+        const powerValueElement = document.getElementById('powerValue');
+        const needleElement = document.getElementById('powerNeedle');
+        
+        setInterval(function() {
+            currentIndex = (currentIndex + 1) % powerValues.length;
+            const currentWatts = powerValues[currentIndex];
+            powerValueElement.textContent = currentWatts;
+            
+            // Ángulo de la aguja: 0W = -60deg, 1000W = 60deg. Rango total = 120deg.
+            const angle = -60 + ((currentWatts / 1000) * 120);
+            needleElement.setAttribute('transform', `rotate(${angle}, 300, 130)`);
+        }, 3000);
+    });
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion14');
+          window.markLessonCompleted('electricidad1', 'sesion14');
       }
   });
 </script>
