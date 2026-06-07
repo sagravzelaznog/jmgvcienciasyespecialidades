@@ -3,445 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 9: Diseño de Sistemas Fotovoltaicos II - Dimensionamiento</title>
+    <title>Sesión 9: Diseño de Sistemas II - Dimensionamiento</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+        .formula-card {
+            background: #2c3e50;
+            border-left: 5px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            box-shadow: var(--shadow-soft);
         }
-        .back-button:hover {
-            background-color: #2980b9;
+
+        .formula-card h3 { color: var(--accent-color); margin-top: 0; }
+        .formula-text { font-family: 'Courier New', Courier, monospace; font-size: 1.2rem; margin: 10px 0; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; text-align: center; }
+
+        /* Simulator */
+        .simulator-box {
+            background: #1a252f;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        .calculation-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .specs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #fff8e1;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #ffa000;
-        }
-        .practical-exercise h4 {
-            color: #e65100;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .formula-box {
-            background-color: #f0f7ff;
-            border: 1px solid #b3d9ff;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-        }
-        .formula {
-            font-weight: bold;
-            color: #0066cc;
-            text-align: center;
-            margin: 10px 0;
-            font-size: 1.1em;
-        }
-        .note-box {
-            background-color: #fffde7;
-            border-left: 3px solid #ffd600;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .warning-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .tip-box {
-            background-color: #e8f5e9;
-            border-left: 3px solid #4caf50;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .step-box {
-            background-color: #f3e5f5;
-            border-left: 3px solid #9c27b0;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .step-box h4 {
-            color: #7b1fa2;
-            margin-top: 0;
-        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .specs-table {
-                font-size: 0.9em;
-            }
+            .simulator-box { grid-template-columns: 1fr; }
         }
+
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; color: #bdc3c7; margin-bottom: 5px; font-weight: bold; }
+        .sim-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #34495e;
+            background: #2c3e50;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .sim-slider { width: 100%; margin-top: 10px; }
+
+        .result-panel {
+            background: #2c3e50;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 2px solid #3498db;
+        }
+
+        .res-item {
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .res-item i { font-size: 2.5rem; margin-bottom: 10px; }
+        .res-value { font-size: 2rem; font-family: 'Courier New', Courier, monospace; font-weight: bold; }
+        .res-label { font-size: 0.9rem; color: #bdc3c7; text-transform: uppercase; }
+
+        .panel-res i { color: #f1c40f; }
+        .panel-res .res-value { color: #f1c40f; }
+        
+        .bat-res i { color: #2ecc71; }
+        .bat-res .res-value { color: #2ecc71; }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 9: Diseño de Sistemas Fotovoltaicos II - Dimensionamiento</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Aprender a dimensionar correctamente los componentes principales de un sistema fotovoltaico: paneles solares, baterías, controladores de carga e inversores, considerando las pérdidas del sistema y los días de autonomía necesarios.</p>
+
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Diseño de Sistemas II: Dimensionamiento</h1>
+        <p class="sesion-subtitle">Sesión 9 - Módulo 3: Armando el rompecabezas</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-drafting-compass"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Ya sabes cuánta energía consume la casa (Sesión 8). Ahora usarás ese dato para calcular matemáticamente cuántos Paneles Solares necesitas para atrapar esa energía, y qué tamaño de Banco de Baterías requieres para guardarla.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>Paso 1: ¿Cuántos Paneles? (Las Horas Sol Pico)</h2>
+        <p>No podemos asumir que el sol brilla con fuerza 12 horas al día. Las "Horas Sol Pico" (HSP) son el promedio matemático de horas de radiación útil en tu ciudad (Ej. Monterrey tiene ~4.5 HSP; Sonora tiene ~6.0 HSP).</p>
+
+        <div class="formula-card">
+            <h3>Fórmula de Paneles</h3>
+            <div class="formula-text">
+                N° Paneles = Consumo Diario / (HSP × Potencia del Panel)
+            </div>
+            <p style="font-size:0.9rem; color:#bdc3c7;">*Siempre se redondea hacia arriba. Si te da 4.2 paneles, debes instalar 5 paneles.</p>
         </div>
 
-        <h2>1. Cálculo del número de paneles solares</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="step-box">
-            <h4>1.1 Fórmula básica para el cálculo de paneles</h4>
-            
-            <div class="formula-box">
-                <p class="formula">N° Paneles = (Energía diaria necesaria) / (HSP × η × Potencia pico del panel)</p>
-            </div>
-            
-            <p>Donde:</p>
-            <ul>
-                <li><strong>Energía diaria necesaria:</strong> Consumo diario ajustado (Wh/día)</li>
-                <li><strong>HSP (Horas Sol Pico):</strong> Horas equivalentes de sol pico en la ubicación (h/día)</li>
-                <li><strong>η (Eficiencia del sistema):</strong> Generalmente 0.7-0.85 (70-85%)</li>
-                <li><strong>Potencia pico del panel:</strong> Potencia en condiciones estándar (Wp)</li>
-            </ul>
-            
-            <div class="note-box">
-                <p><strong>Nota:</strong> El resultado siempre se redondea al entero superior para garantizar que se cubra la demanda.</p>
-            </div>
-        </div>
-        
-        <div class="calculation-box">
-            <h4>1.2 Ejemplo práctico</h4>
-            
-            <p><strong>Datos:</strong></p>
-            <ul>
-                <li>Consumo diario: 5,000 Wh/día</li>
-                <li>HSP en la ubicación: 4.5 h/día</li>
-                <li>Eficiencia del sistema: 0.8</li>
-                <li>Panel solar: 330 Wp</li>
-            </ul>
-            
-            <p><strong>Cálculo:</strong></p>
-            <p>N° Paneles = 5,000 Wh/día / (4.5 h/día × 0.8 × 330 Wp) = 4.21</p>
-            <p>Redondeando al entero superior: <strong>5 paneles</strong></p>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Siempre es recomendable redondear al siguiente número entero para garantizar que se cubra la demanda, especialmente en meses con menor radiación solar.</p>
-            </div>
-            
-            <h4>1.3 Configuración de los paneles (serie/paralelo)</h4>
-            
-            <p>Dependiendo del voltaje del sistema y las características de los paneles, se pueden conectar en serie, paralelo o una combinación de ambos.</p>
-            
-            <div class="warning-box">
-                <p><strong>Importante:</strong> Al conectar paneles en serie, el voltaje se suma mientras que la corriente se mantiene constante. En paralelo, la corriente se suma y el voltaje se mantiene constante.</p>
-            </div>
-            
-            <p><strong>Ejemplo de configuración:</strong></p>
-            <ul>
-                <li>Sistema de 24V</li>
-                <li>Paneles de 36Vmp, 9.17 Imp, 330Wp</li>
-                <li>5 paneles disponibles</li>
-            </ul>
-            
-            <p>Opción 1: 1 cadena de 2 paneles en serie (72V) + 1 cadena de 3 paneles en serie (108V) → No recomendable por desbalanceo</p>
-            <p>Opción 2: 5 paneles en paralelo (36V, 45.85A) → Requiere cables muy gruesos</p>
-            <p>Opción 3: Usar un controlador MPPT de 150V y conectar los 5 paneles en serie (180V) → Mejor opción</p>
-            
-            <div class="note-box">
-                <p><strong>Nota:</strong> Siempre verificar que el voltaje de circuito abierto (Voc) de la cadena no supere la entrada máxima del controlador, especialmente a bajas temperaturas.</p>
-            </div>
-        </div>
+        <h2>Paso 2: ¿Cuántas Baterías? (La Autonomía y el DoD)</h2>
+        <p>¿Qué pasa si llueve durante 2 días seguidos? Necesitas un banco de baterías más grande para sobrevivir esos "Días de Autonomía". Además, recuerda la regla de la Sesión 5: Si usas Plomo-Ácido, nunca debes pasar del 50% de Profundidad de Descarga (DoD).</p>
 
-        <h2>2. Dimensionamiento de baterías</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="step-box">
-            <h4>2.1 Cálculo de la capacidad de baterías</h4>
-            
-            <div class="formula-box">
-                <p class="formula">Capacidad (Wh) = (Energía diaria × Días de autonomía) / (Profundidad de descarga × η inversor)</p>
+        <div class="formula-card">
+            <h3>Fórmula de Baterías (Capacidad Total en Wh)</h3>
+            <div class="formula-text">
+                Capacidad (Wh) = (Consumo Diario × Días de Autonomía) / DoD
             </div>
-            
-            <p>O en Amperios-hora (Ah):</p>
-            <div class="formula-box">
-                <p class="formula">Capacidad (Ah) = (Energía diaria × Días de autonomía) / (Voltaje del sistema × Profundidad de descarga × η inversor)</p>
-            </div>
-            
-            <p>Donde:</p>
-            <ul>
-                <li><strong>Días de autonomía:</strong> Generalmente 2-5 días (depende de la confiabilidad requerida)</li>
-                <li><strong>Profundidad de descarga (DoD):</strong> 0.5 para baterías de plomo-ácido, 0.8-0.9 para Li-ion</li>
-                <li><strong>η inversor:</strong> Eficiencia del inversor (típicamente 0.9-0.95)</li>
-            </ul>
-        </div>
-        
-        <div class="calculation-box">
-            <h4>2.2 Ejemplo práctico</h4>
-            
-            <p><strong>Datos:</strong></p>
-            <ul>
-                <li>Consumo diario: 5,000 Wh/día</li>
-                <li>Días de autonomía: 3 días</li>
-                <li>Profundidad de descarga: 50% (0.5)</li>
-                <li>Eficiencia del inversor: 90% (0.9)</li>
-                <li>Voltaje del sistema: 48V</li>
-            </ul>
-            
-            <p><strong>Cálculo de capacidad en Wh:</strong></p>
-            <p>Capacidad = (5,000 Wh/día × 3 días) / (0.5 × 0.9) = 33,333 Wh</p>
-            
-            <p><strong>Cálculo de capacidad en Ah:</strong></p>
-            <p>Capacidad = 33,333 Wh / 48V = 694 Ah @ 48V</p>
-            
-            <h4>2.3 Configuración de las baterías</h4>
-            
-            <p>Dependiendo de las baterías disponibles, se pueden conectar en serie, paralelo o una combinación de ambos para alcanzar el voltaje y capacidad deseados.</p>
-            
-            <p><strong>Ejemplo:</strong></p>
-            <ul>
-                <li>Baterías de 12V, 200Ah</li>
-                <li>Necesitamos 48V y 694Ah</li>
-            </ul>
-            
-            <p><strong>Conexión en serie (para aumentar el voltaje):</strong></p>
-            <p>4 baterías de 12V en serie = 48V, 200Ah</p>
-            
-            <p><strong>Conexión en paralelo (para aumentar la capacidad):</strong></p>
-            <p>4 baterías en serie × 4 ramas en paralelo = 16 baterías totales (48V, 800Ah)</p>
-            
-            <div class="warning-box">
-                <p><strong>Importante:</strong> Al conectar baterías en paralelo, es recomendable no exceder 3-4 ramas en paralelo para evitar desequilibrios en la carga/descarga.</p>
-            </div>
-            
-            <h4>2.4 Consideraciones adicionales</h4>
-            
-            <ul>
-                <li><strong>Temperatura:</strong> Las baterías de plomo-ácido pierden capacidad a bajas temperaturas (corregir con factor de 1.1-1.3)</li>
-                <li><strong>Ciclo de vida:</strong> A mayor profundidad de descarga, menor vida útil de la batería</li>
-                <li><strong>Mantenimiento:</strong> Las baterías inundadas requieren mantenimiento periódico</li>
-                <li><strong>Ventilación:</strong> Especialmente importante para baterías de plomo-ácido que liberan hidrógeno</li>
-            </ul>
-        </div>
-
-        <h2>3. Selección del controlador de carga</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="step-box">
-            <h4>3.1 Cálculo de la corriente del controlador</h4>
-            
-            <div class="formula-box">
-                <p class="formula">Corriente del controlador = (Potencia pico del campo FV) / Voltaje del sistema</p>
-            </div>
-            
-            <p>Para el ejemplo anterior con 5 paneles de 330W en un sistema de 48V:</p>
-            <p>Potencia pico total = 5 × 330W = 1,650W</p>
-            <p>Corriente = 1,650W / 48V = 34.4A</p>
-            
-            <p><strong>Selección:</strong> Elegir un controlador con al menos un 25% más de capacidad: 34.4A × 1.25 = 43A → Un controlador de 45-50A sería adecuado.</p>
-            
-            <h4>3.2 Consideraciones PWM(pulse width modulation) vs MPPT(maximum power point tracking)</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Característica</th>
-                    <th>PWM <h6>(Modulación de ancho de pulso)</h6></th>
-                    <th>MPPT <h6>(Seguimiento del punto de máxima potencia)</h6></th>
-                </tr>
-                <tr>
-                    <td>Eficiencia</td>
-                    <td>70-80%</td>
-                    <td>93-97%</td>
-                </tr>
-                <tr>
-                    <td>Costo</td>
-                    <td>Bajo</td>
-                    <td>Alto</td>
-                </tr>
-                <tr>
-                    <td>Recomendación de uso</td>
-                    <td>Sistemas pequeños (&lt;200W), cuando Vpanel ≈ Vbatería</td>
-                    <td>Sistemas medianos/grandes, cuando Vpanel > Vbatería</td>
-                </tr>
-                <tr>
-                    <td>Flexibilidad</td>
-                    <td>Baja</td>
-                    <td>Alta (permite más paneles en serie)</td>
-                </tr>
-            </table>
-        </div>
-
-        <h2>4. Ejercicio práctico completo</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>Ejercicio: Diseño de un sistema para una vivienda rural</h4>
-            
-            <p><strong>Requerimientos:</strong></p>
-            <ul>
-                <li>Ubicación: Zona rural con 5.2 HSP</li>
-                <li>Consumo diario: 8,500 Wh/día</li>
-                <li>Días de autonomía: 4 días</li>
-                <li>Profundidad de descarga: 50%</li>
-                <li>Voltaje del sistema: 48V</li>
-                <li>Eficiencia del sistema: 80%</li>
-                <li>Panel disponible: 400W, Vmp=40V, Imp=10A, Voc=48V</li>
-                <li>Baterías disponibles: 12V, 250Ah</li>
-            </ul>
-            
-            <p><strong>Se pide:</strong></p>
-            <ol>
-                <li>Calcular el número de paneles necesarios</li>
-                <li>Determinar la configuración de los paneles (serie/paralelo)</li>
-                <li>Calcular la capacidad necesaria de baterías</li>
-                <li>Determinar la configuración del banco de baterías</li>
-                <li>Seleccionar el controlador de carga adecuado</li>
-            </ol>
-            
-            <div class="note-box">
-                <p><strong>Nota:</strong> Los estudiantes trabajarán en grupos para resolver el ejercicio, aplicando las fórmulas y conceptos aprendidos.</p>
-            </div>
-            
-            <p><strong>Solución guiada:</strong></p>
-            
-            <p><strong>1. Cálculo del número de paneles:</strong></p>
-            <p>N° Paneles = 8,500 Wh/día / (5.2 h/día × 0.8 × 400W) = 5.1 → <strong>6 paneles</strong></p>
-            
-            <p><strong>2. Configuración de los paneles:</strong></p>
-            <p>Opción 1: 3 ramas en paralelo de 2 paneles en serie (96Vmp, 30A) → Requiere controlador MPPT de 150V</p>
-            <p>Opción 2: 2 ramas en paralelo de 3 paneles en serie (144Vmp, 20A) → Mejor para minimizar pérdidas</p>
-            
-            <p><strong>3. Cálculo de capacidad de baterías:</strong></p>
-            <p>Capacidad = (8,500 Wh/día × 4 días) / (0.5 × 0.9) = 75,556 Wh</p>
-            <p>Capacidad en Ah = 75,556 Wh / 48V = 1,574 Ah @ 48V</p>
-            
-            <p><strong>4. Configuración del banco de baterías:</strong></p>
-            <p>4 baterías de 12V en serie = 48V, 250Ah</p>
-            <p>Número de ramas en paralelo = 1,574 Ah / 250 Ah = 6.3 → <strong>7 ramas</strong></p>
-            <p>Total baterías = 4 × 7 = <strong>28 baterías</strong> (configuración 4s7p)</p>
-            
-            <p><strong>5. Selección del controlador de carga:</strong></p>
-            <p>Potencia pico = 6 × 400W = 2,400W</p>
-            <p>Corriente = 2,400W / 48V = 50A</p>
-            <p>Con 25% de margen: 50A × 1.25 = 62.5A → <strong>Controlador MPPT de 70A</strong></p>
-            
-            <div class="warning-box">
-                <p><strong>Observación:</strong> Este es un sistema grande que podría beneficiarse de un rediseño con baterías de mayor capacidad o un voltaje de sistema más alto para reducir el número de ramas en paralelo.</p>
-            </div>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos y discusiones.</p>
-            <p><strong>Ejercicio de aplicación:</strong> Resolución correcta del ejercicio de dimensionamiento completo.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Diseñar un sistema fotovoltaico para su propia vivienda o un caso de estudio proporcionado, incluyendo todos los cálculos y justificaciones de selección de componentes.</p>
-            <p><strong>Material de apoyo:</strong> Se proporcionará una hoja de cálculo con las fórmulas para facilitar los cálculos de diseño.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion8.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion10.html" class="back-button next-button">Siguiente sesión →</a>
+            <p style="font-size:0.9rem; color:#bdc3c7;">*DoD: 0.5 para Plomo, 0.8 para Litio. Para sacar los Ah, divides la Capacidad(Wh) entre los Volts del sistema (12V, 24V o 48V).</p>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Cotización y Dimensionamiento</h2>
+        <p>Imagina que estás frente a un cliente. Ingresa la energía real que calculaste en su cuadro de cargas, ajusta la geografía (HSP) y pregúntale cuántos días de lluvia quiere soportar sin usar un generador de gasolina. El sistema calculará el equipo necesario.</p>
+
+        <div class="simulator-box">
+            <!-- Controles -->
+            <div>
+                <div class="input-group">
+                    <label>Consumo Real Diario (Wh/día)</label>
+                    <input type="number" class="sim-input" id="sim-consumo" value="3000" oninput="calcSys()">
+                    <small style="color:#7f8c8d;">*Ya debe incluir el 20% de factor de seguridad.</small>
+                </div>
+
+                <div class="input-group">
+                    <label>Horas Sol Pico (HSP) de la Ciudad: <span id="val-hsp" style="color:#f1c40f;">5.0</span> hrs</label>
+                    <input type="range" class="sim-slider" id="sim-hsp" min="3" max="7" step="0.1" value="5" oninput="calcSys()">
+                </div>
+
+                <div class="input-group">
+                    <label>Potencia del Panel Comercial (W):</label>
+                    <select class="sim-input" id="sim-panelw" onchange="calcSys()">
+                        <option value="250">250 W</option>
+                        <option value="330" selected>330 W</option>
+                        <option value="450">450 W</option>
+                        <option value="550">550 W</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Días de Autonomía (Sin Sol): <span id="val-dias" style="color:#2ecc71;">2</span> Días</label>
+                    <input type="range" class="sim-slider" id="sim-dias" min="1" max="5" step="1" value="2" oninput="calcSys()">
+                </div>
+
+                <div class="input-group">
+                    <label>Tecnología de Batería (DoD):</label>
+                    <select class="sim-input" id="sim-bat" onchange="calcSys()">
+                        <option value="0.5">Plomo-Ácido / AGM / Gel (Descarga Máx 50%)</option>
+                        <option value="0.8">Litio LiFePO4 (Descarga Máx 80%)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Resultados -->
+            <div class="result-panel">
+                <div class="res-item panel-res">
+                    <i class="fas fa-solar-panel"></i>
+                    <div class="res-label">Cantidad de Paneles Necesarios</div>
+                    <div class="res-value" id="res-paneles">--</div>
+                    <div style="font-size:0.8rem; color:#bdc3c7; margin-top:5px;" id="res-paneles-detail"></div>
+                </div>
+
+                <div class="res-item bat-res">
+                    <i class="fas fa-car-battery"></i>
+                    <div class="res-label">Capacidad del Banco de Baterías</div>
+                    <div class="res-value" id="res-bat">-- Wh</div>
+                    <div style="font-size:0.8rem; color:#bdc3c7; margin-top:5px;" id="res-bat-detail"></div>
+                </div>
+
+                <div class="res-item" style="border: 1px solid #e74c3c; background: rgba(231, 76, 60, 0.1);">
+                    <i class="fas fa-microchip" style="color:#e74c3c;"></i>
+                    <div class="res-label">Controlador de Carga Sugerido</div>
+                    <div class="res-value" id="res-ctrl" style="color:#e74c3c;">-- A</div>
+                    <div style="font-size:0.8rem; color:#bdc3c7; margin-top:5px;">(Basado en sistema a 24V con MPPT)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Al aplicar la fórmula de cantidad de paneles, el resultado te da 3.1 paneles. ¿Cuántos paneles deberías comprar e instalar?",
+                "options": [
+                    "3 paneles (se redondea hacia abajo).",
+                    "4 paneles (siempre se redondea al entero superior).",
+                    "3 paneles y usar un panel pequeño de juguete."
+                ],
+                "correctIndex": 1,
+                "explanation": "En energía solar, un decimal significa que te faltará energía. SIEMPRE debes redondear al entero superior para asegurar que el sistema cubra la demanda."
+            },
+            {
+                "question": "Tienes un cliente en una zona nublada y requiere que su casa funcione 3 Días completos aunque haya tormenta y nada de sol. ¿Qué variable de la fórmula de baterías debes modificar?",
+                "options": [
+                    "Las Horas Sol Pico (HSP).",
+                    "La Profundidad de Descarga (DoD).",
+                    "Los 'Días de Autonomía' (Multiplicar el consumo diario x 3)."
+                ],
+                "correctIndex": 2,
+                "explanation": "Los Días de Autonomía determinan el tamaño 'bruto' del tanque de reserva. Si la casa gasta 2000Wh diarios y quiere 3 días de autonomía, requieres 6000Wh en reserva (antes de aplicar el DoD)."
+            },
+            {
+                "question": "Para el mismo banco de baterías, calculas la capacidad necesaria y decides usar baterías de Plomo (DoD 0.5). ¿Qué le pasaría al banco si en lugar de Plomo, el cliente acepta pagar Litio (DoD 0.8)?",
+                "options": [
+                    "El banco de baterías necesario sería mucho más pequeño (casi la mitad), porque el Litio se puede exprimir más sin dañarse.",
+                    "El banco sería del mismo tamaño, solo cambia el peso.",
+                    "El banco tendría que ser más grande porque el Litio es más débil."
+                ],
+                "correctIndex": 0,
+                "explanation": "El DoD (Depth of Discharge) dicta cuánta energía de la batería es 'inútil'. En Plomo, la mitad es intocable (DoD 0.5). En Litio, casi toda la energía es aprovechable (DoD 0.8), por lo que requieres comprar menos Ah en total."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion8.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion10.html" class="nav-btn next">Siguiente Sesión (Conexiones) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function calcSys() {
+        const consumo = parseFloat(document.getElementById('sim-consumo').value) || 0;
+        
+        const hsp = parseFloat(document.getElementById('sim-hsp').value);
+        document.getElementById('val-hsp').textContent = hsp.toFixed(1);
+        
+        const panelW = parseFloat(document.getElementById('sim-panelw').value);
+        
+        const dias = parseFloat(document.getElementById('sim-dias').value);
+        document.getElementById('val-dias').textContent = dias;
+        
+        const dod = parseFloat(document.getElementById('sim-bat').value);
+
+        // 1. Paneles
+        const energiaPorPanel = panelW * hsp;
+        const panelesRaw = consumo / energiaPorPanel;
+        const panelesFinal = Math.ceil(panelesRaw);
+
+        document.getElementById('res-paneles').textContent = panelesFinal + " Paneles";
+        document.getElementById('res-paneles-detail').textContent = `(Cálculo exacto: ${panelesRaw.toFixed(2)}) de ${panelW}W`;
+
+        // 2. Baterías (Wh Total)
+        const capTotalWh = (consumo * dias) / dod;
+        document.getElementById('res-bat').textContent = Math.round(capTotalWh).toLocaleString() + " Wh";
+        
+        // Asumiendo sistema a 24V para mostrar Ah
+        const ah24 = capTotalWh / 24;
+        document.getElementById('res-bat-detail').textContent = `Equivalente a ${Math.round(ah24).toLocaleString()} Ah en un sistema de 24V`;
+
+        // 3. Controlador (Amperaje bruto estimado a 24V)
+        // Max Watts in = panelesFinal * panelW
+        const totalWIn = panelesFinal * panelW;
+        const ctrlA = totalWIn / 24; // P = V*I -> I = P/V
+        const safeCtrlA = ctrlA * 1.25; // 25% safety
+
+        document.getElementById('res-ctrl').textContent = Math.ceil(safeCtrlA) + " Amperes";
+    }
+
+    // Init
+    calcSys();
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion9');
+          window.markLessonCompleted('electricidad5', 'sesion9');
       }
   });
 </script>
