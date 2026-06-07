@@ -1,421 +1,360 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 13: Normativas y Estándares en Sistemas Fotovoltaicos</title>
+    <title>Sesión 13: Seguridad - Regresar a Casa</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary-color);
             padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
+            border-radius: 5px;
             color: #2c3e50;
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+
+        /* Safety Simulator */
+        .safety-sim {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .back-button:hover {
-            background-color: #2980b9;
-        }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        .regulation-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .safety-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        .safety-box h4 {
-            color: #c62828;
-            margin-top: 0;
-        }
-        .specs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #e8f5e9;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #2e7d32;
-        }
-        .practical-exercise h4 {
-            color: #1b5e20;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .tip-box {
-            background-color: #fff8e1;
-            border-left: 3px solid #ffa000;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .warning-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .note-box {
-            background-color: #e3f2fd;
-            border-left: 3px solid #1976d2;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-        .checklist-item {
-            margin: 10px 0;
-            padding-left: 25px;
+
+        .avatar-container {
+            width: 200px;
+            height: 350px;
+            background: #34495e;
+            border-radius: 10px;
             position: relative;
+            margin-bottom: 20px;
+            border: 2px solid #bdc3c7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
-        .checklist-item:before {
-            content: "✓";
+
+        .base-avatar {
+            font-size: 8rem;
+            color: #bdc3c7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Gear Overlays */
+        .gear {
             position: absolute;
-            left: 0;
-            color: #27ae60;
+            font-size: 2rem;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 2;
+        }
+
+        #gear-helmet { top: 30px; color: #f1c40f; font-size: 4rem; }
+        #gear-harness { top: 120px; color: #e74c3c; font-size: 5rem; }
+        #gear-gloves { top: 160px; right: 30px; color: #2ecc71; font-size: 3rem; }
+        #gear-boots { bottom: 20px; color: #8e44ad; font-size: 3rem; }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .gear-btn {
+            background: #1a252f;
+            color: white;
+            border: 2px solid #7f8c8d;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
             font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
         }
-        .legal-text {
-            font-size: 0.85em;
-            line-height: 1.5;
-            color: #555;
+
+        .gear-btn.equipped {
+            background: #27ae60;
+            border-color: #2ecc71;
         }
+
+        .status-panel {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            background: #e67e22;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .action-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .action-btn:hover { background: #c0392b; }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .specs-table {
-                font-size: 0.9em;
-            }
+            .controls-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 13: Normativas y Estándares en Sistemas Fotovoltaicos</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Conocer y comprender las normativas, estándares y códigos aplicables a los sistemas fotovoltaicos, incluyendo regulaciones locales e internacionales, requisitos de interconexión a red, aspectos legales y procedimientos de inspección, para garantizar instalaciones seguras, eficientes y conformes a la ley.</p>
-        </div>
 
-        <h2>1. Marco normativo internacional</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="regulation-box">
-            <h4>1.1 Organismos reguladores internacionales</h4>
-            
-            <ul>
-                <li><strong>IEC (Comisión Electrotécnica Internacional):</strong> Estándares de componentes y sistemas</li>
-                <li><strong>IEEE (Instituto de Ingenieros Eléctricos y Electrónicos):</strong> Normas para interconexión y seguridad</li>
-                <li><strong>UL (Underwriters Laboratories):</strong> Certificación de seguridad de equipos</li>
-                <li><strong>ISO (Organización Internacional de Normalización):</strong> Estándares de gestión de calidad y ambiental</li>
-                <li><strong>CEI (Comisión Electrotécnica Internacional):</strong> Normas internacionales de componentes eléctricos</li>
-            </ul>
-            
-            <h4>1.2 Normas técnicas internacionales clave</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Norma</th>
-                    <th>Descripción</th>
-                    <th>Aplicación</th>
-                </tr>
-                <tr>
-                    <td>IEC 61215</td>
-                    <td>Módulos fotovoltaicos de silicio cristalino</td>
-                    <td>Calificación de diseño y aprobación de tipo</td>
-                </tr>
-                <tr>
-                    <td>IEC 61730</td>
-                    <td>Calificación de seguridad para módulos fotovoltaicos</td>
-                    <td>Requisitos de construcción y pruebas de seguridad</td>
-                </tr>
-                <tr>
-                    <td>IEC 62109</td>
-                    <td>Seguridad de convertidores de potencia</td>
-                    <td>Inversores y controladores de carga</td>
-                </tr>
-                <tr>
-                    <td>IEC 62446</td>
-                    <td>Sistemas fotovoltaicos conectados a red</td>
-                    <td>Requisitos de documentación, pruebas e inspección</td>
-                </tr>
-                <tr>
-                    <td>IEC 60364-7-712</td>
-                    <td>Instalaciones eléctricas de baja tensión</td>
-                    <td>Requisitos para sistemas de suministro de energía</td>
-                </tr>
-            </table>
-        </div>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
 
-        <h2>2. Regulaciones nacionales y locales</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
+    <div class="sesion-header">
+        <h1 class="sesion-title">Seguridad en Instalaciones</h1>
+        <p class="sesion-subtitle">Sesión 13 - Módulo 4: Regresar a Casa a Salvo</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-hard-hat"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Instalar paneles solares es uno de los trabajos más peligrosos porque combina dos riesgos mortales: <strong>Electricidad de Alto Voltaje</strong> y <strong>Trabajo en Alturas</strong>. Hoy aprenderás que ninguna instalación vale tu vida.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>Las 3 Reglas de Oro Solares</h2>
         
-        <div class="regulation-box">
-            <h4>2.1 Marco regulatorio en México</h4>
-            
-            <p><strong>Organismos reguladores:</strong></p>
-            <ul>
-                <li><strong>CRE (Comisión Reguladora de Energía):</strong> Regula la generación de energía</li>
-                <li><strong>SENER (Secretaría de Energía):</strong> Políticas energéticas</li>
-                <li><strong>CFE (Comisión Federal de Electricidad):</strong> Interconexión a la red</li>
-                <li><strong>PROFECO:</strong> Protección al consumidor</li>
-                <li><strong>STPS:</strong> Seguridad en instalaciones</li>
-            </ul>
-            
-            <h4>2.2 Normatividad aplicable</h4>
-            
-            <p><strong>Normas Oficiales Mexicanas (NOM):</strong></p>
-            <ul>
-                <li><strong>NOM-001-SEDE-2012:</strong> Instalaciones eléctricas</li>
-                <li><strong>NOM-029-ENER-2017:</strong> Eficiencia energética en edificaciones</li>
-                <li><strong>NOM-030-ENER-2016:</strong> Eficiencia energética en alumbrado público</li>
-                <li><strong>NOM-058-SCFI-2015:</strong> Especificaciones para módulos fotovoltaicos</li>
-            </ul>
-            
-            <div class="note-box">
-                <p><strong>Nota:</strong> Las regulaciones pueden variar por estado y municipio. Siempre verifica las normativas locales específicas.</p>
+        <div class="concept-grid">
+            <div class="concept-card" style="border-color:#e74c3c;">
+                <h3><i class="fas fa-bolt" style="color:#e74c3c;"></i> 1. El Sol No Tiene Apagador</h3>
+                <p>A diferencia de la red de CFE, no puedes "bajar el switch" del sol. En cuanto la luz toca un panel, los conectores MC4 tienen energía viva. Si tocas el positivo y el negativo de un arreglo de 10 paneles, recibirás una descarga de <strong>400 Voltios de Corriente Continua (CC)</strong>. Es letal. Usa siempre guantes dieléctricos.</p>
             </div>
-            
-            <h4>2.3 Procedimientos de interconexión</h4>
-            
-            <ol>
-                <li><strong>Solicitud de interconexión:</strong> Documentación requerida</li>
-                <li><strong>Análisis técnico:</strong> Capacidad de la red</li>
-                <li><strong>Contrato de interconexión:</strong> Derechos y obligaciones</li>
-                <li><strong>Medición neta:</strong> Esquemas de facturación</li>
-                <li><strong>Inspecciones:</strong> Requisitos de seguridad</li>
-            </ol>
-        </div>
-
-        <h2>3. Aspectos legales y contractuales</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="regulation-box">
-            <h4>3.1 Contratos y permisos</h4>
-            
-            <p><strong>Documentación requerida:</strong></p>
-            <ul>
-                <li>Licencia de instalador eléctrico</li>
-                <li>Permisos de construcción</li>
-                <li>Contrato de interconexión</li>
-                <li>Pólizas de seguro</li>
-                <li>Garantías de equipo</li>
-            </ul>
-            
-            <h4>3.2 Responsabilidades legales</h4>
-            
-            <ul>
-                <li><strong>Responsabilidad civil:</strong> Daños a terceros</li>
-                <li><strong>Garantías:</strong> Cobertura de equipos y mano de obra</li>
-                <li><strong>Seguros:</strong> Cobertura contra riesgos</li>
-                <li><strong>Impuestos:</strong> Tratamiento fiscal de la energía generada</li>
-            </ul>
-            
-            <div class="warning-box">
-                <h4>¡Importante!</h4>
-                <p>El incumplimiento de las normativas puede resultar en multas, descalificación de garantías, desconexión del sistema o responsabilidades legales en caso de accidentes.</p>
+            <div class="concept-card" style="border-color:#f39c12;">
+                <h3><i class="fas fa-people-carry" style="color:#f39c12;"></i> 2. La Gravedad No Perdona</h3>
+                <p>Trabajar a 6 metros de altura cargando un panel de cristal de 25 kg en un techo inclinado es una receta para el desastre. La norma oficial (NOM-009-STPS) exige el uso de <strong>Arnés de Cuerpo Completo</strong> y línea de vida para cualquier trabajo a más de 1.8 metros de altura.</p>
             </div>
-        </div>
-
-        <h2>4. Seguridad y protección</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="safety-box">
-            <h4>4.1 Normas de seguridad eléctrica</h4>
-            
-            <ul>
-                <li><strong>Protecciones contra sobrecorriente:</strong> Fusibles y disyuntores</li>
-                <li><strong>Protecciones contra sobretensión:</strong> Supresores de picos</li>
-                <li><strong>Sistemas de puesta a tierra:</strong> Requisitos y mediciones</li>
-                <li><strong>Distancias de seguridad:</strong> Separaciones mínimas</li>
-                <li><strong>Protección contra arcos eléctricos:</strong> Equipos de protección personal</li>
-            </ul>
-            
-            <h4>4.2 Protección contra incendios</h4>
-            
-            <ul>
-                <li>Distancias de seguridad para techos combustibles</li>
-                <li>Rutas de escape y acceso para bomberos</li>
-                <li>Señalización de sistemas fotovoltaicos</li>
-                <li>Procedimientos de emergencia</li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="https://solarama.mx/blog/wp-content/uploads/2022/10/protecciones-electricas-para-sistemas-fotovoltaicos-para-CD.jpg" alt="Medidas de seguridad en instalaciones fotovoltaicas" class="img-small">
-                <p><em>Elementos de seguridad en instalaciones fotovoltaicas</em></p>
+            <div class="concept-card" style="border-color:#2ecc71;">
+                <h3><i class="fas fa-lock" style="color:#2ecc71;"></i> 3. Procedimiento LOTO</h3>
+                <p><strong>Lockout/Tagout (Candado y Etiqueta).</strong> Cuando estés conectando el inversor abajo, alguien podría subir el switch por accidente. Pon un candado físico en la caja de pastillas térmicas con una etiqueta que diga "Peligro: Técnico Trabajando". La llave del candado debe estar en TU bolsillo.</p>
             </div>
-        </div>
-
-        <h2>5. Inspección y certificación</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>5.1 Proceso de inspección</h4>
-            
-            <ol>
-                <li><strong>Inspección visual:</strong> Verificación de componentes y conexiones</li>
-                <li><strong>Pruebas eléctricas:</strong> Continuidad, aislamiento, puesta a tierra</li>
-                <li><strong>Pruebas de funcionamiento:</strong> Rendimiento del sistema</li>
-                <li><strong>Revisión documental:</strong> Manuales, garantías, cálculos</li>
-                <li><strong>Entrega de certificado de cumplimiento</strong></li>
-            </ol>
-            
-            <h4>5.2 Lista de verificación de inspección</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Elemento</th>
-                    <th>Verificación</th>
-                    <th>Cumple</th>
-                </tr>
-                <tr>
-                    <td>Documentación completa</td>
-                    <td>Planos, manuales, garantías</td>
-                    <td>□</td>
-                </tr>
-                <tr>
-                    <td>Instalación mecánica</td>
-                    <td>Sujeción, orientación, inclinación</td>
-                    <td>□</td>
-                </tr>
-                <tr>
-                    <td>Instalación eléctrica</td>
-                    <td>Cableado, protecciones, conexiones</td>
-                    <td>□</td>
-                </tr>
-                <tr>
-                    <td>Puesta a tierra</td>
-                    <td>Resistencia < 25Ω</td>
-                    <td>□</td>
-                </tr>
-                <tr>
-                    <td>Señalización</td>
-                    <td>Advertencias e identificaciones</td>
-                    <td>□</td>
-                </tr>
-                <tr>
-                    <td>Pruebas de funcionamiento</td>
-                    <td>Rendimiento según especificaciones</td>
-                    <td>□</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en discusiones sobre normativas.</p>
-            <p><strong>Ejercicio práctico:</strong> Análisis de un caso de estudio de cumplimiento normativo.</p>
-            <p><strong>Cuestionario:</strong> Preguntas sobre normativas y estándares clave.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre herramientas de monitoreo y análisis de rendimiento de sistemas fotovoltaicos, incluyendo tecnologías de IoT y plataformas de gestión de energía.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion12.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion14.html" class="back-button next-button">Siguiente sesión →</a>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Vestimenta EPP</h2>
+        <p>Prepara a tu técnico antes de mandarlo al techo a conectar 12 paneles en serie. Selecciona el Equipo de Protección Personal (EPP) necesario. Si olvidas algo crucial e inicias el trabajo, sufrirás las consecuencias.</p>
+
+        <div class="safety-sim">
+            
+            <div class="avatar-container">
+                <i class="fas fa-male base-avatar" id="avatar-base"></i>
+                <i class="fas fa-hard-hat gear" id="gear-helmet"></i>
+                <i class="fas fa-tshirt gear" id="gear-harness"></i>
+                <i class="fas fa-mitten gear" id="gear-gloves"></i>
+                <i class="fas fa-shoe-prints gear" id="gear-boots"></i>
+            </div>
+
+            <div class="controls-grid">
+                <button class="gear-btn" id="btn-helmet" onclick="toggleGear('helmet')">
+                    <i class="fas fa-hard-hat"></i> Casco Dieléctrico
+                </button>
+                <button class="gear-btn" id="btn-gloves" onclick="toggleGear('gloves')">
+                    <i class="fas fa-mitten"></i> Guantes Dieléctricos
+                </button>
+                <button class="gear-btn" id="btn-harness" onclick="toggleGear('harness')">
+                    <i class="fas fa-user-astronaut"></i> Arnés y Línea de Vida
+                </button>
+                <button class="gear-btn" id="btn-boots" onclick="toggleGear('boots')">
+                    <i class="fas fa-shoe-prints"></i> Botas con Puntera Plástica
+                </button>
+            </div>
+
+            <div class="status-panel" id="sim-status">
+                Técnico en ropa de calle. Selecciona el equipo antes de subir.
+            </div>
+
+            <button class="action-btn" onclick="iniciarTrabajo()">
+                <i class="fas fa-step-forward"></i> Subir al Techo y Conectar
+            </button>
+            
+            <button onclick="resetSim()" style="margin-top:15px; background:transparent; border:none; color:#bdc3c7; cursor:pointer; text-decoration:underline;">
+                Reiniciar Simulador
+            </button>
+
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Por qué las botas del instalador solar NO deben tener puntera de acero (casquillo metálico)?",
+                "options": [
+                    "Porque son muy pesadas para subir al techo.",
+                    "Porque si un cable vivo cae sobre la bota, el metal conducirá la electricidad directo al pie.",
+                    "Porque el metal raya los paneles solares."
+                ],
+                "correctIndex": 1,
+                "explanation": "Los electricistas e instaladores solares deben usar botas 'Dieléctricas', las cuales usan punteras de policarbonato o plástico duro. El acero en los pies te convierte en un pararrayos."
+            },
+            {
+                "question": "¿Qué voltaje te puede dar una cadena (string) de 10 paneles solares residenciales a mediodía?",
+                "options": [
+                    "12 Voltios, igual que una batería de auto.",
+                    "120 Voltios, igual que un enchufe de casa.",
+                    "Entre 350 y 450 Voltios de Corriente Continua (CC)."
+                ],
+                "correctIndex": 2,
+                "explanation": "Al conectar paneles en serie, el voltaje se suma. 10 paneles de 40V cada uno generan 400V. La corriente continua a ese voltaje provoca contracción muscular involuntaria, impidiendo que sueltes el cable."
+            },
+            {
+                "question": "¿Qué significa el procedimiento LOTO (Lockout/Tagout)?",
+                "options": [
+                    "Apagar la luz y avisarle a gritos a la familia que vas a trabajar.",
+                    "Poner un candado físico en la pastilla térmica y una etiqueta de advertencia para evitar que alguien encienda el sistema mientras trabajas.",
+                    "Bloquear el inversor con una contraseña Wi-Fi."
+                ],
+                "correctIndex": 1,
+                "explanation": "El LOTO salva vidas. Asegura físicamente que ninguna persona ajena a la instalación pueda reconectar la energía mientras tú tienes las manos desnudas en los cables de abajo."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion12.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion14.html" class="nav-btn next">Siguiente Sesión (Proyecto Práctico I) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    let gear = {
+        helmet: false,
+        gloves: false,
+        harness: false,
+        boots: false
+    };
+
+    function toggleGear(type) {
+        gear[type] = !gear[type];
+        
+        const btn = document.getElementById(`btn-${type}`);
+        const icon = document.getElementById(`gear-${type}`);
+        
+        if(gear[type]) {
+            btn.classList.add('equipped');
+            icon.style.opacity = "1";
+        } else {
+            btn.classList.remove('equipped');
+            icon.style.opacity = "0";
+        }
+    }
+
+    function iniciarTrabajo() {
+        const avatar = document.getElementById('avatar-base');
+        const status = document.getElementById('sim-status');
+        
+        // Check win/lose conditions
+        if(!gear.harness && !gear.gloves) {
+            status.textContent = "¡TRAGEDIA MULTIPLE! Te resbalaste, intentaste agarrarte de un cable pelado, recibiste 400V y caíste 6 metros. Llama a la ambulancia.";
+            status.style.background = "#c0392b";
+            status.style.color = "white";
+            avatar.className = "fas fa-skull-crossbones base-avatar";
+            avatar.style.color = "#e74c3c";
+            avatar.style.transform = "rotate(90deg)";
+        }
+        else if(!gear.harness) {
+            status.textContent = "¡CAÍDA! El viento te empujó y resbalaste del techo. Caíste al suelo por no usar la línea de vida.";
+            status.style.background = "#e74c3c";
+            status.style.color = "white";
+            avatar.className = "fas fa-user-injured base-avatar";
+            avatar.style.transform = "rotate(90deg) translateY(50px)";
+        }
+        else if(!gear.gloves) {
+            status.textContent = "¡DESCARGA! Tocaste el MC4 expuesto a pleno sol. 400V recorrieron tu brazo. El arnés te salvó de caer, pero sufres quemaduras.";
+            status.style.background = "#f39c12";
+            status.style.color = "white";
+            avatar.className = "fas fa-bolt base-avatar";
+            avatar.style.color = "#f1c40f";
+        }
+        else if(!gear.boots || !gear.helmet) {
+            status.textContent = "Sobreviviste sin heridas graves, pero un inspector de la STPS te multó por no usar el casco o calzado adecuado.";
+            status.style.background = "#3498db";
+            status.style.color = "white";
+            avatar.className = "fas fa-male base-avatar";
+        }
+        else {
+            status.textContent = "¡TRABAJO PROFESIONAL! Cumpliste con la NOM-009. Instalación exitosa y regresaste a cenar a casa con tu familia.";
+            status.style.background = "#2ecc71";
+            status.style.color = "white";
+            avatar.className = "fas fa-user-shield base-avatar";
+            avatar.style.color = "#2ecc71";
+        }
+    }
+
+    function resetSim() {
+        gear = { helmet: false, gloves: false, harness: false, boots: false };
+        
+        ['helmet', 'gloves', 'harness', 'boots'].forEach(type => {
+            document.getElementById(`btn-${type}`).classList.remove('equipped');
+            document.getElementById(`gear-${type}`).style.opacity = "0";
+        });
+
+        const avatar = document.getElementById('avatar-base');
+        avatar.className = "fas fa-male base-avatar";
+        avatar.style.color = "#bdc3c7";
+        avatar.style.transform = "none";
+
+        const status = document.getElementById('sim-status');
+        status.textContent = "Técnico en ropa de calle. Selecciona el equipo antes de subir.";
+        status.style.background = "#e67e22";
+        status.style.color = "white";
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion13');
+          window.markLessonCompleted('electricidad5', 'sesion13');
       }
   });
 </script>
