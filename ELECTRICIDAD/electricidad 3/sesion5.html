@@ -3,412 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 5: Fusibles y Protecciones I | Componentes Eléctricos Básicos</title>
+    <title>Sesión 5: Fusibles - Los Guardianes Sacrificables</title>
     <link rel="stylesheet" href="../../global-lesson.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Sesión 5: Fusibles y Protecciones I</h1>
-            <p>Principios de protección eléctrica y seguridad</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
-        
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Al finalizar esta sesión, los estudiantes podrán identificar diferentes tipos de fusibles, comprender su funcionamiento y aplicar principios básicos de protección eléctrica en circuitos simples.</p>
-            </div>
-
-            <div class="theory">
-                <h2>Contenido teórico</h2>
-                
-                <div class="concept-box">
-                    <h3>¿Qué es un fusible?</h3>
-                    <p>Dispositivo de seguridad que protege los circuitos eléctricos al fundirse y abrir el circuito cuando la corriente supera un valor determinado.</p>
-                    
-                    <div class="fuse-types">
-                        <div class="fuse-type">
-                            <h4>Tipos principales:</h4>
-                            <ul>
-                                <li><strong>Cartucho:</strong> Cilíndricos de vidrio o cerámica</li>
-                                <li><strong>Automotrices:</strong> Paleta o cuchilla</li>
-                                <li><strong>Renovables:</strong> Tipo tapón roscado</li>
-                                <li><strong>De caja:</strong> Para altas corrientes</li>
-                            </ul>
-                        </div>
-                        <div class="fuse-type">
-                            <h4>Características clave:</h4>
-                            <ul>
-                                <li>Corriente nominal (ej: 5A, 10A, 15A)</li>
-                                <li>Voltaje de trabajo</li>
-                                <li>Capacidad de ruptura</li>
-                                <li>Velocidad de respuesta</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="concept-box">
-                    <h3>¿Por qué se queman los fusibles?</h3>
-                    <div class="cause-grid">
-                        <div class="cause">
-                            <div class="cause-icon">⚡</div>
-                            <h4>Sobrecarga</h4>
-                            <p>Demasiados dispositivos conectados simultáneamente</p>
-                        </div>
-                        <div class="cause">
-                            <div class="cause-icon">🔌</div>
-                            <h4>Cortocircuito</h4>
-                            <p>Contacto directo entre fase y neutro</p>
-                        </div>
-                        <div class="cause">
-                            <div class="cause-icon">🔧</div>
-                            <h4>Falla en el equipo</h4>
-                            <p>Componente defectuoso causando fuga de corriente</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="visual-example">
-                <h2>Analogía práctica</h2>
-                <div class="analogy">
-                    <p>Imagina que el fusible es como un guardián de un puente (tu circuito eléctrico):</p>
-                    <ul>
-                        <li>Cuando el tráfico (corriente) es normal, el guardián deja pasar a todos</li>
-                        <li>Si viene una multitud muy grande (sobrecorriente), el guardián cierra el puente para evitar daños</li>
-                        <li>Una vez que el peligro pasa, el guardián (fusible) debe ser reemplazado para que el tráfico pueda continuar</li>
-                    </ul>
-                </div>
-                <div class="svg-container">
-                    <p><strong>Recurso interactivo:</strong> <a href="#" target="_blank">Simulador de fallas y protecciones</a></p>
-                </div>
-            </div>
-
-            <div class="practical-activity">
-                <h2>Actividad práctica: Identificación y reemplazo</h2>
-                <p><strong>Materiales necesarios:</strong> Multímetro, diferentes tipos de fusibles (quemados y en buen estado), portalámparas, bombillas, cables, batería de 9V</p>
-                
-                <div class="activity-steps">
-                    <h3>Parte 1: Identificación de fusibles</h3>
-                    <ol>
-                        <li>Examina los diferentes fusibles proporcionados</li>
-                        <li>Usa el multímetro en modo continuidad para probarlos</li>
-                        <li>Completa la tabla de identificación</li>
-                    </ol>
-
-                    <div class="activity-table">
-                        <table>
-                            <tr>
-                                <th>Tipo de Fusible</th>
-                                <th>Valor nominal</th>
-                                <th>Estado (Bueno/Quemado)</th>
-                                <th>Uso típico</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" class="fuse-input" placeholder="Ej: Cartucho de vidrio"></td>
-                                <td><input type="text" class="fuse-input" placeholder="Ej: 5A"></td>
-                                <td>
-                                    <select class="fuse-select" aria-label="Estado del fusible">
-                                        <option value="">Selecciona</option>
-                                        <option value="bueno">Bueno</option>
-                                        <option value="quemado">Quemado</option>
-                                    </select>
-                                </td>
-                                <td><input type="text" class="fuse-input" placeholder="Ej: Electrónica"></td>
-                            </tr>
-                            <!-- Más filas según sea necesario -->
-                        </table>
-                        <button class="btn btn-small" id="agregar-fila">+ Agregar fusible</button>
-                    </div>
-
-                    <h3>Parte 2: Circuito protegido</h3>
-                    <p>Construye un circuito simple con una bombilla y un fusible. Intenta provocar una sobrecarga y observa cómo actúa la protección.</p>
-                    <div class="circuit-diagram">
-                        [Diagrama de circuito con fusible]
-                        <div class="circuit-tips">
-                            <h4>Consejos:</h4>
-                            <ul>
-                                <li>Usa un fusible con valor ligeramente mayor que la corriente normal del circuito</li>
-                                <li>Nunca reemplaces un fusible por uno de mayor amperaje</li>
-                                <li>Investiga la causa de la falla antes de reemplazar un fusible</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="safety">
-                <h2>Normas de seguridad</h2>
-                <div class="safety-grid">
-                    <div class="safety-card do">
-                        <h4>✅ Qué SÍ hacer</h4>
-                        <ul>
-                            <li>Desconectar la alimentación antes de reemplazar fusibles</li>
-                            <li>Usar el tipo y valor correcto de fusible</li>
-                            <li>Investigar la causa de la falla</li>
-                        </ul>
-                    </div>
-                    <div class="safety-card dont">
-                        <h4>❌ Qué NO hacer</h4>
-                        <ul>
-                            <li>Puentear un fusible con alambre o papel aluminio</li>
-                            <li>Usar fusibles con valores mayores a los recomendados</li>
-                            <li>Tocar fusibles con las manos mojadas</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>Imagina que estás diseñando el sistema eléctrico de una casa. ¿Qué factores considerarías para determinar la capacidad adecuada de los fusibles en diferentes circuitos? ¿Por qué es peligroso usar un fusible de mayor capacidad de la necesaria?</p>
-                <textarea rows="4" placeholder="Escribe tu reflexión aquí..." aria-label="Reflexión sobre diseño de protecciones"></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos adicionales</h2>
-                <ul>
-                    <li><a href="#" target="_blank">Guía de selección de fusibles (PDF)</a></li>
-                    <li><a href="#" target="_blank">Simulador de fallas eléctricas</a></li>
-                    <li><a href="#" target="_blank">Video: Cómo probar fusibles con multímetro</a></li>
-                </ul>
-            </div>
-
-            <div class="gamification">
-                <h2>Reto: Detective de fallas</h2>
-                <p><strong>Escenario:</strong> Tienes un circuito que sigue quemando fusibles. Tu misión es encontrar la causa.</p>
-                <p><strong>Pistas:</strong></p>
-                <ul>
-                    <li>El fusible se quema inmediatamente al conectarlo</li>
-                    <li>El circuito tiene varios dispositivos conectados</li>
-                    <li>Alguien estuvo haciendo modificaciones recientemente</li>
-                </ul>
-                <p><strong>Tu tarea:</strong> Describe tu proceso de diagnóstico paso a paso y cómo solucionarías el problema.</p>
-                <button class="btn" id="enviar-solucion">Enviar solución</button>
-            </div>
-        </section>
-
-        <div class="session-navigation">
-            <a href="sesion4.html" class="btn">← Sesión anterior</a>
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion6.html" class="btn">Siguiente sesión →</a>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
-
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos específicos para esta sesión */
-        .fuse-types {
+        .fuse-sim {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+        }
+
+        .circuit-fuse {
+            width: 100%;
+            height: 200px;
+            background: #2c3e50;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px inset #1a252f;
+        }
+
+        .control-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sim-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.1s, filter 0.2s;
+        }
+        .sim-btn:active {
+            transform: scale(0.95);
+        }
+        .sim-btn:hover {
+            filter: brightness(1.2);
+        }
+
+        .btn-normal { background: #2ecc71; }
+        .btn-overload { background: #f39c12; }
+        .btn-short { background: #e74c3c; }
+        .btn-reset { background: #3498db; }
+
+        /* SVG Animation Classes */
+        .wire {
+            stroke: #7f8c8d;
+            stroke-width: 6;
+            fill: none;
+            transition: stroke 0.3s;
+        }
+        .wire.live {
+            stroke: #e67e22;
+        }
+        .wire.danger {
+            stroke: #e74c3c;
+            animation: pulse-danger 0.5s infinite;
+        }
+
+        .fuse-wire {
+            stroke: #bdc3c7;
+            stroke-width: 3;
+            transition: stroke 0.3s;
+        }
+        .fuse-wire.live { stroke: #f1c40f; }
+        .fuse-wire.overload { stroke: #e67e22; animation: pulse-heat 0.5s infinite; }
+        .fuse-wire.blown { stroke: transparent; }
+
+        .spark {
+            fill: #f1c40f;
+            opacity: 0;
+            transform-origin: center;
+        }
+        .spark.explode {
+            animation: explode-spark 0.3s ease-out forwards;
+        }
+
+        @keyframes pulse-danger {
+            0% { stroke-width: 6; }
+            50% { stroke-width: 8; stroke: #c0392b; }
+            100% { stroke-width: 6; }
+        }
+
+        @keyframes pulse-heat {
+            0% { stroke: #f1c40f; stroke-width: 3; }
+            50% { stroke: #e74c3c; stroke-width: 5; }
+            100% { stroke: #f1c40f; stroke-width: 3; }
+        }
+
+        @keyframes explode-spark {
+            0% { opacity: 1; transform: scale(0.1); }
+            50% { opacity: 1; transform: scale(3); fill: #e74c3c; }
+            100% { opacity: 0; transform: scale(5); fill: #fff; }
+        }
+
+        .grid-causas {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
-            margin: 1rem 0;
+            margin: 2rem 0;
         }
         
-        .fuse-type {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--secondary-color);
-        }
-        
-        .cause-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .cause {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .cause:hover {
-            transform: translateY(-5px);
-        }
-        
-        .cause-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .cause h4 {
-            margin: 0.5rem 0;
-            color: var(--primary-color);
-        }
-        
-        .fuse-input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .fuse-select {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background: white;
-        }
-        
-        .circuit-diagram {
-            background: #f5f7fa;
+        .causa-card {
+            background: var(--bg-card);
             border-radius: 8px;
             padding: 1.5rem;
-            margin: 1.5rem 0;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border: 2px dashed #ccc;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--primary-color);
+            transition: transform 0.3s;
         }
-        
-        .circuit-tips {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: #e3f2fd;
-            border-radius: 6px;
-            width: 100%;
-        }
-        
-        .circuit-tips h4 {
-            margin-top: 0;
-            color: #0d47a1;
-        }
-        
-        .safety-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .safety-card {
-            padding: 1.2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .safety-card.do {
-            border-top: 4px solid #4caf50;
-        }
-        
-        .safety-card.dont {
-            border-top: 4px solid #f44336;
-        }
-        
-        .safety-card h4 {
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .safety-card ul {
-            margin: 0.8rem 0 0 0;
-            padding-left: 1.2rem;
-        }
-        
-        .btn-small {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            .fuse-types, .cause-grid, .safety-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .circuit-diagram {
-                padding: 1rem;
-            }
-        }
-        
-        /* Animaciones */
-        @keyframes fuseBlow {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; color: #ff5252; }
-            100% { opacity: 1; }
-        }
-        
-        .fuse-blow {
-            animation: fuseBlow 0.5s ease-in-out;
-        }
+        .causa-card:hover { transform: translateY(-5px); }
+        .causa-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Agregar nueva fila a la tabla de fusibles
-            const agregarFilaBtn = document.getElementById('agregar-fila');
-            if (agregarFilaBtn) {
-                agregarFilaBtn.addEventListener('click', function() {
-                    const tabla = document.querySelector('.activity-table table');
-                    const newRow = document.createElement('tr');
-                    newRow.innerHTML = `
-                        <td><input type="text" class="fuse-input" placeholder="Ej: Cartucho de vidrio"></td>
-                        <td><input type="text" class="fuse-input" placeholder="Ej: 5A"></td>
-                        <td>
-                            <select class="fuse-select" aria-label="Estado del fusible">
-                                <option value="">Selecciona</option>
-                                <option value="bueno">Bueno</option>
-                                <option value="quemado">Quemado</option>
-                            </select>
-                        </td>
-                        <td><input type="text" class="fuse-input" placeholder="Ej: Electrónica"></td>
-                    `;
-                    tabla.querySelector('tbody').appendChild(newRow);
-                });
-            }
-            
-            // Efecto visual al simular fusible quemado
-            const simularFusibleBtn = document.querySelector('.circuit-diagram');
-            if (simularFusibleBtn) {
-                simularFusibleBtn.addEventListener('click', function() {
-                    this.classList.add('fuse-blow');
-                    setTimeout(() => {
-                        this.classList.remove('fuse-blow');
-                        alert('¡Fusible quemado! El circuito se ha protegido contra la sobrecarga.');
-                    }, 500);
-                });
-            }
-            
-            // Manejo del envío de solución
-            const enviarSolucionBtn = document.getElementById('enviar-solucion');
-            if (enviarSolucionBtn) {
-                enviarSolucionBtn.addEventListener('click', function() {
-                    alert('¡Gracias por tu solución! Un instructor la revisará y te dará retroalimentación.');
-                });
-            }
-        });
-    </script>
+</head>
+<body>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Protecciones Eléctricas I: Fusibles</h1>
+        <p class="sesion-subtitle">Sesión 5 - Módulo 3: La Línea de Defensa</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-shield-alt"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Aprenderás cómo los fusibles sacrifican su vida para salvar la tuya y la de tus equipos. Comprenderás la diferencia letal entre una "Sobrecarga" y un "Cortocircuito".</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>El Soldado Kamikaze de la Electricidad</h2>
+        <p>Un fusible es intencionalmente <strong>el punto más débil</strong> de todo el circuito. Es un hilo de metal muy fino (usualmente zinc o estaño) encapsulado en vidrio o cerámica. Su trabajo es permitir el paso de la corriente normal, pero si la corriente sube a niveles peligrosos, este hilo se calienta tanto que <strong>se funde (se derrite)</strong>, cortando físicamente el cable y deteniendo la electricidad antes de que la casa se incendie.</p>
+        
+        <div class="grid-causas">
+            <div class="causa-card">
+                <i class="fas fa-plug" style="color: #f39c12;"></i>
+                <h3>Sobrecarga</h3>
+                <p>Ocurre cuando conectas <strong>demasiados aparatos</strong> en el mismo enchufe. La corriente sube poco a poco. El fusible se va calentando lentamente hasta que, minutos después, se derrite y hace "clic".</p>
+            </div>
+            <div class="causa-card">
+                <i class="fas fa-bolt" style="color: #e74c3c;"></i>
+                <h3>Cortocircuito</h3>
+                <p>Ocurre cuando el cable de FASE toca directamente al NEUTRO o la TIERRA. La corriente sube a niveles monstruosos (miles de amperios) en <strong>milisegundos</strong>. El fusible explota instantáneamente para evitar un incendio.</p>
+            </div>
+        </div>
+
+        <div class="danger-box">
+            <h3><i class="fas fa-skull-crossbones"></i> El Peor Error de un Electricista</h3>
+            <p>Si un fusible se quema, es porque <strong>hizo su trabajo y te salvó de un incendio</strong>. Jamás reemplaces un fusible quemado por un alambre grueso de cobre, un pedazo de papel aluminio o un fusible de mayor amperaje. Si lo haces, acabas de remover tu única protección: la próxima vez, en lugar de fundirse el fusible, se derretirán los cables de la pared y la casa arderá en llamas.</p>
+        </div>
+    </div>
+
+    <div class="practica-section">
+        <h2>Simulador de Estrés: Quema el Fusible</h2>
+        <p>Observa el cartucho de vidrio en el centro. Controla la cantidad de corriente que fluye. Intenta sobrecargarlo lentamente, o provoca un corto directo.</p>
+        
+        <div class="fuse-sim">
+            
+            <div class="control-btns">
+                <button class="sim-btn btn-normal" onclick="setMode('normal')">Flujo Normal</button>
+                <button class="sim-btn btn-overload" onclick="setMode('overload')">Sobrecarga (Añadir aparatos)</button>
+                <button class="sim-btn btn-short" onclick="setMode('short')">¡Provocar Cortocircuito!</button>
+                <button class="sim-btn btn-reset" onclick="setMode('reset')">Reemplazar Fusible</button>
+            </div>
+
+            <div class="circuit-fuse">
+                <svg viewBox="0 0 600 200" style="width: 100%; height: 100%;">
+                    <!-- Cables principales -->
+                    <line x1="0" y1="100" x2="200" y2="100" class="wire" id="wire-left" />
+                    <line x1="400" y1="100" x2="600" y2="100" class="wire" id="wire-right" />
+                    
+                    <!-- Capsulas de metal del fusible -->
+                    <rect x="200" y="70" width="40" height="60" fill="#95a5a6" rx="5" />
+                    <rect x="360" y="70" width="40" height="60" fill="#95a5a6" rx="5" />
+                    
+                    <!-- Cristal del fusible -->
+                    <rect x="240" y="75" width="120" height="50" fill="rgba(173, 216, 230, 0.2)" stroke="#bdc3c7" />
+                    
+                    <!-- Hilo del fusible (el héroe) -->
+                    <line x1="240" y1="100" x2="360" y2="100" class="fuse-wire" id="the-fuse" />
+                    
+                    <!-- Chispa de explosión -->
+                    <path d="M300,80 L310,95 L325,90 L315,100 L330,110 L310,105 L300,120 L290,105 L270,110 L285,100 L275,90 L290,95 Z" class="spark" id="the-spark" />
+
+                    <!-- Estado del sistema -->
+                    <text x="300" y="170" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle" id="status-text">Fusible Nuevo (Apagado)</text>
+                    <text x="300" y="190" fill="#f39c12" font-family="Arial" font-size="14" text-anchor="middle" id="amp-text">Corriente: 0A (Límite: 15A)</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Cuál es la función principal de un fusible en una instalación eléctrica?",
+                "options": [
+                    "Aumentar el voltaje para que los aparatos funcionen mejor.",
+                    "Ahorrar energía eléctrica.",
+                    "Ser el punto más débil y fundirse intencionalmente para abrir el circuito y proteger los cables de un incendio por exceso de corriente.",
+                    "Evitar que la gente se electrocute al tocar un cable."
+                ],
+                "correctIndex": 2,
+                "explanation": "El fusible protege la instalación (los cables en la pared). No te protege de choques eléctricos (eso lo hace el disyuntor diferencial), sino que evita que la casa se incendie por cables derretidos."
+            },
+            {
+                "question": "Un fusible de 10A se fundió en tu casa. Vas a la ferretería pero solo tienen de 30A. ¿Qué deberías hacer?",
+                "options": [
+                    "Poner el de 30A, así no se volverá a quemar nunca.",
+                    "Puentearlo con alambre grueso mientras consigues el de 10A.",
+                    "Esperar y buscar el de 10A en otra tienda, e investigar por qué se quemó el original.",
+                    "Poner papel aluminio en el portafusibles."
+                ],
+                "correctIndex": 2,
+                "explanation": "¡Nunca pongas un fusible de mayor amperaje! El circuito fue diseñado para soportar máximo 10A. Si pones uno de 30A, los cables de tu pared se derretirán antes de que el fusible se entere."
+            },
+            {
+                "question": "Conectas la licuadora, el microondas, la tostadora y la freidora de aire en el mismo enchufe. Minutos después, se va la luz. ¿Qué fenómeno ocurrió?",
+                "options": [
+                    "Cortocircuito.",
+                    "Sobrecarga.",
+                    "Fuga a tierra.",
+                    "Falla de la compañía eléctrica."
+                ],
+                "correctIndex": 1,
+                "explanation": "Es una Sobrecarga clásica. Cada aparato jala corriente. Al sumar todas, sobrepasaste la capacidad nominal del fusible, el cual se calentó hasta derretirse de forma segura."
+            },
+            {
+                "question": "¿Qué ocurre dentro de los cables durante un 'Cortocircuito' directo (Fase toca Neutro)?",
+                "options": [
+                    "La corriente baja a cero inmediatamente.",
+                    "La resistencia del circuito se vuelve casi cero, causando que miles de amperios intenten fluir al mismo tiempo, creando una explosión térmica.",
+                    "El voltaje sube a 1000V.",
+                    "Los electrones se detienen y esperan."
+                ],
+                "correctIndex": 1,
+                "explanation": "Por Ley de Ohm (I = V/R), si la Resistencia (R) de repente es 0 por un cruce de cables, la Corriente (I) tiende al infinito. Esto es una explosión destructiva."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion4.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion6.html" class="nav-btn next">Siguiente Sesión (Protecciones II) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    // Logica Simulador Fusible
+    let isBlown = false;
+    let overloadTimer = null;
+
+    function setMode(mode) {
+        const wireL = document.getElementById('wire-left');
+        const wireR = document.getElementById('wire-right');
+        const fuse = document.getElementById('the-fuse');
+        const spark = document.getElementById('the-spark');
+        const status = document.getElementById('status-text');
+        const amp = document.getElementById('amp-text');
+
+        // Limpiar animaciones previas
+        clearTimeout(overloadTimer);
+        spark.classList.remove('explode');
+
+        if (mode === 'reset') {
+            isBlown = false;
+            fuse.classList.remove('blown', 'overload', 'live');
+            wireL.classList.remove('live', 'danger');
+            wireR.classList.remove('live', 'danger');
+            status.textContent = "Fusible Nuevo (Apagado)";
+            status.setAttribute('fill', 'white');
+            amp.textContent = "Corriente: 0A (Límite: 15A)";
+            amp.setAttribute('fill', '#f39c12');
+            return;
+        }
+
+        if (isBlown) {
+            alert("El fusible está quemado. Necesitas reemplazarlo primero.");
+            return;
+        }
+
+        if (mode === 'normal') {
+            fuse.classList.remove('overload');
+            fuse.classList.add('live');
+            wireL.classList.add('live');
+            wireR.classList.add('live');
+            status.textContent = "Flujo Normal. Todo seguro.";
+            status.setAttribute('fill', '#2ecc71');
+            amp.textContent = "Corriente: 8A (Límite: 15A)";
+            amp.setAttribute('fill', '#2ecc71');
+        } 
+        else if (mode === 'overload') {
+            fuse.classList.add('overload');
+            wireL.classList.add('danger');
+            wireR.classList.add('danger');
+            status.textContent = "¡SOBRECARGA! El hilo se está calentando...";
+            status.setAttribute('fill', '#e67e22');
+            amp.textContent = "Corriente: 20A (¡Excede el Límite de 15A!)";
+            amp.setAttribute('fill', '#e67e22');
+
+            // Simular fundición lenta (3 segundos)
+            overloadTimer = setTimeout(() => {
+                blowFuse("¡El fusible se fundió por calor prolongado!");
+            }, 3000);
+        }
+        else if (mode === 'short') {
+            // Cortocircuito instantaneo
+            fuse.classList.add('overload');
+            wireL.classList.add('danger');
+            wireR.classList.add('danger');
+            status.textContent = "¡CORTOCIRCUITO!";
+            status.setAttribute('fill', '#e74c3c');
+            amp.textContent = "Corriente: ¡5000A! (¡CORTO DIRECTO!)";
+            amp.setAttribute('fill', '#e74c3c');
+
+            // Fundición instantanea (0.2s)
+            setTimeout(() => {
+                blowFuse("¡EXPLOSIÓN! El fusible te salvó de un incendio.");
+            }, 200);
+        }
+    }
+
+    function blowFuse(msg) {
+        const wireL = document.getElementById('wire-left');
+        const wireR = document.getElementById('wire-right');
+        const fuse = document.getElementById('the-fuse');
+        const spark = document.getElementById('the-spark');
+        const status = document.getElementById('status-text');
+        const amp = document.getElementById('amp-text');
+
+        isBlown = true;
+        
+        // Animacion explosion
+        spark.classList.add('explode');
+        
+        // Desconectar cables
+        fuse.classList.remove('overload', 'live');
+        fuse.classList.add('blown'); // Desaparece el hilo
+        
+        wireL.classList.remove('live', 'danger'); // Apaga cables
+        wireR.classList.remove('live', 'danger');
+
+        status.textContent = msg;
+        status.setAttribute('fill', '#e74c3c');
+        amp.textContent = "Corriente: 0A (Circuito Abierto)";
+        amp.setAttribute('fill', '#95a5a6');
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion5');
+          window.markLessonCompleted('electricidad3', 'sesion5');
       }
   });
 </script>
