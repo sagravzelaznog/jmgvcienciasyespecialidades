@@ -14,39 +14,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const courses = [
         {
             folder: "ECOLOGICA",
+            id: "ecologica",
             name: "Ecología",
             desc: "Estudio de los ecosistemas, sustentabilidad y medio ambiente.",
-            icon: "fa-leaf"
+            icon: "fa-leaf",
+            totalLessons: 5
         },
         {
             folder: "ELECTRICIDAD",
+            id: "electricidad",
             name: "Electricidad",
             desc: "Fundamentos eléctricos, circuitos y aplicaciones prácticas.",
-            icon: "fa-bolt"
+            icon: "fa-bolt",
+            totalLessons: 6
         },
         {
             folder: "anatomia humana",
+            id: "anatomia",
             name: "Anatomía Humana",
             desc: "Exploración del cuerpo humano, sistemas y órganos.",
-            icon: "fa-person"
+            icon: "fa-person",
+            totalLessons: 5
         },
         {
             folder: "componentes del aire",
+            id: "componentes_aire",
             name: "Componentes del Aire",
             desc: "Química atmosférica y propiedades de los gases.",
-            icon: "fa-wind"
+            icon: "fa-wind",
+            totalLessons: 4
         },
         {
             folder: "tai-chi",
+            id: "taichi",
             name: "Tai-Chi",
             desc: "Disciplina, movimiento y equilibrio mental y físico.",
-            icon: "fa-yin-yang"
+            icon: "fa-yin-yang",
+            totalLessons: 10
         },
         {
             folder: "temaselectosfisica2",
+            id: "fisica2",
             name: "Temas Selectos de Física II",
             desc: "Conceptos avanzados, mecánica, termodinámica y óptica.",
-            icon: "fa-atom"
+            icon: "fa-atom",
+            totalLessons: 12
         }
     ];
 
@@ -60,14 +72,27 @@ document.addEventListener('DOMContentLoaded', () => {
         appId: "1:851856735092:web:04290714cb63e4244c4a21"
     };
 
+    let db = null;
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
+    db = firebase.firestore();
 
     // Escuchar el estado de autenticación en tiempo real
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            showDashboard();
+            // Obtener el progreso del usuario desde Firestore
+            let progressData = {};
+            try {
+                const doc = await db.collection('user_progress').doc(user.uid).get();
+                if (doc.exists) {
+                    progressData = doc.data();
+                }
+            } catch (err) {
+                console.warn("No se pudo cargar el progreso: ", err);
+            }
+            
+            showDashboard(progressData);
             // Mostrar correo del usuario en el header
             const h2 = document.querySelector('.dashboard-header h2');
             h2.textContent = `Mis Especialidades (${user.email})`;
@@ -146,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Función para mostrar dashboard y renderizar cursos
-    function showDashboard() {
+    function showDashboard(progressData = {}) {
         loginScreen.classList.remove('active-screen');
         loginScreen.classList.add('hidden-screen');
         
@@ -156,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dashboardScreen.classList.remove('hidden-screen');
             dashboardScreen.classList.add('active-screen');
             
-            renderCourses();
+            renderCourses(progressData);
         }, 300); // Esperar que termine la animación
     }
 
@@ -174,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Función para renderizar las tarjetas de los cursos
-    function renderCourses() {
+    function renderCourses(progressData) {
         coursesContainer.innerHTML = '';
         
         courses.forEach((course, index) => {
@@ -186,11 +211,26 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.animation = `fadeUp 0.5s ease-out ${index * 0.1}s forwards`;
             card.style.opacity = '0';
             
+            // Calcular progreso
+            const completedLessons = progressData[course.id] ? progressData[course.id].length : 0;
+            const progressPercent = Math.min(100, Math.round((completedLessons / course.totalLessons) * 100));
+
             card.innerHTML = `
                 <div class="course-icon">
                     <i class="fa-solid ${course.icon}"></i>
                 </div>
                 <h3>${course.name}</h3>
+                
+                <div class="course-progress">
+                    <div class="progress-header">
+                        <span>Progreso</span>
+                        <span>${progressPercent}%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: ${progressPercent}%"></div>
+                    </div>
+                </div>
+
                 <p>${course.desc}</p>
                 <div class="course-action">
                     Entrar al módulo <i class="fa-solid fa-arrow-right"></i>
