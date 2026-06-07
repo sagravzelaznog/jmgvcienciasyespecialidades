@@ -3,361 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 10: Tomas y Enchufes II | Instalaciones Eléctricas Avanzadas</title>
+    <title>Sesión 10: Tomas y Enchufes II - Diagnóstico y Normativa</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .hidden-solution {
+        .norm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .norm-card {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .norm-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Troubleshooting Simulator */
+        .ts-sim {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .outlet-container {
+            width: 150px;
+            height: 200px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+        }
+
+        .receptacle {
+            width: 80px;
+            height: 60px;
+            border: 2px solid #bdc3c7;
+            border-radius: 30px;
+            position: relative;
+            background: white;
+        }
+
+        /* Standard NEMA face */
+        .receptacle::before {
+            content: ''; position: absolute; top: 15px; left: 15px; width: 6px; height: 15px; background: #333;
+        }
+        .receptacle::after {
+            content: ''; position: absolute; top: 15px; right: 15px; width: 6px; height: 20px; background: #333;
+        }
+        .ground-pin {
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: #333; border-radius: 50%;
+        }
+
+        /* Visual Effects for Symptoms */
+        .effect-sparks {
+            position: absolute; top: -10px; right: -10px; color: #f1c40f; font-size: 2rem;
+            animation: sparkAnim 0.5s infinite alternate;
             display: none;
         }
-        
-        .standards-comparison {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+        @keyframes sparkAnim { from { transform: scale(0.8); opacity: 0.5; } to { transform: scale(1.2); opacity: 1; } }
+
+        .effect-burn {
+            position: absolute; top: 0; right: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(0,0,0,0.8) 0%, transparent 50%);
+            border-radius: 30px;
+            display: none;
         }
-        .standard-card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
+
+        .effect-loose {
+            position: absolute; bottom: -20px; right: -30px; width: 50px; height: 6px;
+            background: #111; transform: rotate(30deg);
+            display: none;
+            box-shadow: 0 0 5px red;
         }
-        .troubleshooting-table {
+
+        .ts-controls {
             width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        .troubleshooting-table th, .troubleshooting-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        .troubleshooting-table th {
-            background-color: #f2f2f2;
-        }
-        .troubleshooting-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .interactive-diagram {
-            background-color: #f5f5f5;
-            padding: 20px;
+
+        .diag-btn {
+            background: #34495e;
+            color: white;
+            border: 2px solid transparent;
+            padding: 10px 15px;
             border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
         }
-        .safety-checklist {
-            background-color: #e8f4f8;
+        .diag-btn:hover { background: #2c3e50; border-color: var(--accent-color); }
+        .diag-btn.active { background: var(--accent-color); color: #111; }
+
+        .solution-box {
+            background: rgba(255,255,255,0.1);
             padding: 15px;
-            border-left: 4px solid #3498db;
-            margin: 15px 0;
+            border-radius: 8px;
+            min-height: 80px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
         }
-        .safety-checklist h4 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        .safety-checklist ul {
-            padding-left: 20px;
+
+        .scenario-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f1c40f;
+            text-align: center;
+            margin-bottom: 1rem;
+            min-height: 30px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sesión 10: Tomas y Enchufes II</h1>
-            <p>Instalación y mantenimiento avanzado de sistemas de conexión</p>
-        </div>
-    </header>
 
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Tomas y Enchufes II: Diagnóstico</h1>
+        <p class="sesion-subtitle">Sesión 10 - Módulo 5: Normativas y Solución de Fallas</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-stethoscope"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Convertirte en un "Doctor Eléctrico". Aprenderás a identificar visualmente por qué falla un tomacorriente, los peligros ocultos y las normativas que todo profesional debe respetar.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>La Ley de la Electricidad (Normativas)</h2>
+        <p>En electricidad no puedes "improvisar". Existen reglas escritas con sangre para evitar incendios y electrocuciones. Todo electricista profesional debe conocerlas:</p>
         
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Al finalizar esta sesión, los estudiantes serán capaces de instalar, mantener y solucionar problemas en diferentes tipos de tomas y enchufes, aplicando estándares de seguridad y normativas vigentes.</p>
-            </div>
-
-            <div class="theory">
-                <h2>Contenido teórico</h2>
-                
-                <div class="concept-box">
-                    <h3>Normativas y estándares internacionales</h3>
-                    <div class="standards-comparison">
-                        <div class="standard-card">
-                            <h4>NOM-001-SEDE</h4>
-                            <p>Norma Oficial Mexicana para instalaciones eléctricas</p>
-                            <ul>
-                                <li>Altura mínima de tomas: 30 cm</li>
-                                <li>Separación de circuitos</li>
-                                <li>Capacidad de corriente</li>
-                            </ul>
-                        </div>
-                        <div class="standard-card">
-                            <h4>NEC (NFPA 70)</h4>
-                            <p>National Electrical Code (EE.UU.)</p>
-                            <ul>
-                                <li>Requisitos GFCI/AFCI</li>
-                                <li>Circuitos de cocina y baño</li>
-                                <li>Protección contra sobretensiones</li>
-                            </ul>
-                        </div>
-                        <div class="standard-card">
-                            <h4>IEC 60309</h4>
-                            <p>Estándar internacional para conectores industriales</p>
-                            <ul>
-                                <li>Códigos de color</li>
-                                <li>Grados de protección IP</li>
-                                <li>Uso en entornos especiales</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="concept-box">
-                    <h3>Instalación profesional de tomacorrientes</h3>
-                    <div class="installation-steps">
-                        <h4>Procedimiento paso a paso:</h4>
-                        <ol>
-                            <li><strong>Planificación del circuito</strong>
-                                <ul>
-                                    <li>Cálculo de carga eléctrica</li>
-                                    <li>Selección del calibre de cable adecuado</li>
-                                    <li>Ubicación estratégica de tomas</li>
-                                </ul>
-                            </li>
-                            <li><strong>Preparación de la instalación</strong>
-                                <ul>
-                                    <li>Corte de energía en el circuito</li>
-                                    <li>Marcado de puntos de instalación</li>
-                                    <li>Preparación de cajas eléctricas</li>
-                                </ul>
-                            </li>
-                            <li><strong>Conexión eléctrica</strong>
-                                <ul>
-                                    <li>Identificación de conductores</li>
-                                    <li>Técnicas de conexión seguras</li>
-                                    <li>Uso de terminales adecuados</li>
-                                </ul>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <div class="visual-example">
-                <h2>Ejemplo visual: Circuito de tomacorrientes</h2>
-                <div class="interactive-diagram">
-                    <p>[Diagrama interactivo de un circuito de tomacorrientes - Se recomienda usar un SVG que muestre la conexión en serie y paralelo de tomas en un circuito residencial típico]</p>
-                    <div class="circuit-legend">
-                        <p><strong>Leyenda:</strong></p>
-                        <ul>
-                            <li>Línea roja: Fase (caliente)</li>
-                            <li>Línea negra: Neutro</li>
-                            <li>Línea verde: Tierra</li>
-                            <li>Círculos: Puntos de conexión</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="practical-activity">
-                <h2>Actividad práctica: Instalación de un circuito de tomacorrientes</h2>
-                
-                <div class="safety-checklist">
-                    <h4>Lista de verificación de seguridad</h4>
-                    <ul>
-                        <li>❏ Verificar que la energía esté desconectada</li>
-                        <li>❏ Usar herramientas aisladas</li>
-                        <li>❏ Utilizar equipo de protección personal</li>
-                        <li>❏ Trabajar en un área seca</li>
-                        <li>❏ Tener a mano un extintor Clase C</li>
-                    </ul>
-                </div>
-
-                <h3>Materiales necesarios:</h3>
+        <div class="norm-grid">
+            <div class="norm-card">
+                <h3><i class="fas fa-book"></i> NOM-001-SEDE (México) / NEC (USA)</h3>
                 <ul>
-                    <li>Caja de conexiones</li>
-                    <li>Toma de corriente</li>
-                    <li>Cable calibre 12 AWG</li>
-                    <li>Destornillador de electricista</li>
-                    <li>Pelacables</li>
-                    <li>Pinzas de corte</li>
-                    <li>Multímetro</li>
-                    <li>Guantes aislantes</li>
+                    <li><strong>Altura Mínima:</strong> Los tomacorrientes deben estar al menos a 30 cm del piso terminado para evitar daños por trapeado o pequeñas inundaciones.</li>
+                    <li><strong>Distancia:</strong> En una sala, ningún punto de la pared debe estar a más de 1.8 metros de un tomacorriente (para evitar el uso de peligrosas extensiones).</li>
                 </ul>
-
-                <h3>Procedimiento:</h3>
-                <ol>
-                    <li><strong>Preparación</strong>
-                        <ul>
-                            <li>Desconectar la energía en el interruptor principal</li>
-                            <li>Verificar ausencia de tensión con el multímetro</li>
-                            <li>Preparar los cables pelando aproximadamente 1.5 cm de aislante</li>
-                        </ul>
-                    </li>
-                    <li><strong>Instalación</strong>
-                        <ul>
-                            <li>Conectar los cables al tomacorrientes según el código de colores</li>
-                            <li>Asegurar firmemente las conexiones</li>
-                            <li>Colocar cuidadosamente los cables en la caja</li>
-                            <li>Fijar el tomacorrientes a la caja</li>
-                        </ul>
-                    </li>
-                    <li><strong>Pruebas</strong>
-                        <ul>
-                            <li>Verificar continuidad</li>
-                            <li>Comprobar ausencia de cortocircuitos</li>
-                            <li>Realizar prueba de polaridad</li>
-                        </ul>
-                    </li>
-                </ol>
-
-                <div class="troubleshooting">
-                    <h3>Solución de problemas comunes</h3>
-                    <table class="troubleshooting-table">
-                        <tr>
-                            <th>Problema</th>
-                            <th>Causa probable</th>
-                            <th>Solución</th>
-                        </tr>
-                        <tr>
-                            <td>El tomacorrientes no funciona</td>
-                            <td>Fusible quemado, interruptor abierto o cable suelto</td>
-                            <td>Verificar fusibles, interruptores y conexiones</td>
-                        </tr>
-                        <tr>
-                            <td>Calor excesivo</td>
-                            <td>Conexión floja o sobrecarga</td>
-                            <td>Apretar conexiones o reducir carga</td>
-                        </tr>
-                        <tr>
-                            <td>Chispas al conectar</td>
-                            <td>Cortocircuito o sobrecarga</td>
-                            <td>Desconectar y revisar el circuito</td>
-                        </tr>
-                        <tr>
-                            <td>Olor a quemado</td>
-                            <td>Sobrecarga o cortocircuito</td>
-                            <td>Desconectar inmediatamente y revisar</td>
-                        </tr>
-                    </table>
-                </div>
             </div>
-
-            <div class="case-study">
-                <h2>Estudio de caso: Modernización de instalación eléctrica comercial</h2>
-                <div class="case-content">
-                    <p><strong>Escenario:</strong> Una pequeña empresa necesita actualizar su instalación eléctrica para cumplir con normativas y soportar equipos modernos. La instalación actual tiene más de 20 años y presenta problemas de sobrecarga.</p>
-                    
-                    <div class="case-tasks">
-                        <p><strong>Tareas:</strong></p>
-                        <ol>
-                            <li>Realizar un diagnóstico de la instalación actual</li>
-                            <li>Identificar deficiencias y riesgos</li>
-                            <li>Proponer un plan de modernización</li>
-                            <li>Calcular costos estimados</li>
-                            <li>Elaborar un cronograma de trabajo</li>
-                        </ol>
-                    </div>
-
-                    <div class="solucion">
-                        <button class="btn" onclick="toggleSolucion()">Mostrar solución</button>
-                        <div id="solucion" class="hidden-solution">
-                            <h4>Solución propuesta:</h4>
-                            <ol>
-                                <li><strong>Diagnóstico:</strong>
-                                    <ul>
-                                        <li>Circuitos sobrecargados</li>
-                                        <li>Falta de puesta a tierra adecuada</li>
-                                        <li>Tomas y enchufes desgastados</li>
-                                        <li>Ausencia de protecciones contra sobretensiones</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Propuesta de modernización:</strong>
-                                    <ul>
-                                        <li>Instalación de nuevo tablero eléctrico</li>
-                                        <li>Circuitos dedicados para equipos críticos</li>
-                                        <li>Actualización de cableado a estándares actuales</li>
-                                        <li>Instalación de protecciones contra sobretensiones</li>
-                                        <li>Implementación de sistema de puesta a tierra</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Presupuesto estimado:</strong> $8,000 - $12,000 MXN</li>
-                                <li><strong>Tiempo estimado:</strong> 5-7 días hábiles</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="norm-card">
+                <h3><i class="fas fa-bath"></i> Áreas Húmedas (Regla del GFCI)</h3>
+                <ul>
+                    <li>Cocinas, baños, garajes y exteriores <strong>OBLIGATORIAMENTE</strong> deben llevar un tomacorriente tipo GFCI (con botones Test/Reset).</li>
+                    <li>Si cae agua en el aparato, el GFCI corta la luz en milisegundos, salvando la vida del usuario.</li>
+                </ul>
             </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>Considerando el avance tecnológico actual, ¿cómo crees que evolucionarán los sistemas de conexión eléctrica en los próximos 10 años para hacer frente a las demandas de eficiencia energética y conectividad inteligente?</p>
-                <textarea placeholder="Escribe tus reflexiones aquí..."></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos visuales sugeridos</h2>
-                <div class="resource-list">
-                    <div class="resource">
-                        <h3>Simulador de circuitos eléctricos</h3>
-                        <p>Herramienta interactiva para diseñar y probar circuitos de tomacorrientes antes de la instalación física.</p>
-                        <p><strong>Formato:</strong> Aplicación web compatible con dispositivos móviles</p>
-                    </div>
-                    <div class="resource">
-                        <h3>Guía de códigos de colores</h3>
-                        <p>Infografía comparativa de códigos de colores según diferentes estándares internacionales.</p>
-                        <p><strong>Formato:</strong> PDF descargable y versión impresa A3</p>
-                    </div>
-                    <div class="resource">
-                        <h3>VR de instalación segura</h3>
-                        <p>Experiencia de realidad virtual para practicar instalaciones en entornos controlados.</p>
-                        <p><strong>Plataforma:</strong> Compatible con Oculus Quest y HTC Vive</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="session-navigation">
-            <a href="sesion9.html" class="btn">← Sesión anterior</a>
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion11.html" class="btn">Próxima sesión →</a>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+    <div class="practica-section">
+        <h2>Simulador de Diagnóstico (Troubleshooting)</h2>
+        <p>Un cliente te llama porque su tomacorriente "hace cosas raras". Observa el síntoma en el enchufe interactivo y elige el diagnóstico correcto.</p>
 
-    <script>
-        function toggleSolucion() {
-            var solucion = document.getElementById('solucion');
-            solucion.classList.toggle('hidden-solution');
-            event.target.textContent = solucion.classList.contains('hidden-solution') ? 
-                'Mostrar solución' : 'Ocultar solución';
+        <div class="ts-sim">
+            
+            <div class="scenario-text" id="scenario-desc">Haz clic en "Siguiente Caso" para empezar la guardia.</div>
+
+            <div class="outlet-container">
+                <!-- Top Receptacle -->
+                <div class="receptacle">
+                    <div class="ground-pin"></div>
+                    <i class="fas fa-bolt effect-sparks" id="sparks"></i>
+                    <div class="effect-burn" id="burn"></div>
+                    <div class="effect-loose" id="loose"></div>
+                </div>
+                <!-- Bottom Receptacle -->
+                <div class="receptacle">
+                    <div class="ground-pin"></div>
+                </div>
+            </div>
+
+            <div class="ts-controls">
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <button class="nav-btn" onclick="nextScenario()">Generar Siguiente Caso <i class="fas fa-random"></i></button>
+                </div>
+
+                <div class="btn-group">
+                    <button class="diag-btn" onclick="checkDiag(0)">Sobrecarga (Exceso de Amperes)</button>
+                    <button class="diag-btn" onclick="checkDiag(1)">Falso Contacto (Tornillo flojo)</button>
+                    <button class="diag-btn" onclick="checkDiag(2)">Cortocircuito Interno</button>
+                    <button class="diag-btn" onclick="checkDiag(3)">Desgaste Mecánico (Clavijas flojas)</button>
+                </div>
+
+                <div class="solution-box" id="solution-box">
+                    Esperando tu diagnóstico...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Llegas a una casa y notas que el plástico del tomacorriente está derretido y negro alrededor de la ranura de la Fase. ¿Cuál es la causa más probable?",
+                "options": [
+                    "Le cayó agua de lluvia.",
+                    "Un 'falso contacto' (el enchufe del aparato quedaba flojo), generando arcos eléctricos que produjeron calor extremo constante.",
+                    "El voltaje de la CFE subió a 220V de repente.",
+                    "El tomacorriente es de mala calidad."
+                ],
+                "correctIndex": 1,
+                "explanation": "El falso contacto es el enemigo silencioso. Cuando las clavijas bailan adentro o el tornillo está flojo, la corriente tiene que 'brincar' por el aire (arco eléctrico), generando temperaturas de hasta 2000°C que derriten el plástico."
+            },
+            {
+                "question": "Según la NOM / NEC, ¿por qué está prohibido usar cables de extensión permanentemente clavados a la pared en lugar de instalar un tomacorriente nuevo?",
+                "options": [
+                    "Porque se ve feo estéticamente.",
+                    "Porque las extensiones están diseñadas para uso temporal. Su aislamiento delgado se degrada rápido al estar fijo o bajo alfombras, provocando incendios.",
+                    "Porque gastan más electricidad.",
+                    "No está prohibido, es una práctica común permitida."
+                ],
+                "correctIndex": 1,
+                "explanation": "Las extensiones son temporales. El tráfico peatonal, las grapas metálicas y la retención de calor bajo alfombras derriten su aislamiento, causando cortos e incendios."
+            },
+            {
+                "question": "¿En qué lugares de una vivienda es obligatorio (por norma) instalar tomacorrientes GFCI (Interruptor de Falla a Tierra)?",
+                "options": [
+                    "En los dormitorios y la sala.",
+                    "En los techos para las lámparas.",
+                    "Cerca de fuentes de agua: baños, cocinas, exteriores y garajes.",
+                    "En el medidor principal."
+                ],
+                "correctIndex": 2,
+                "explanation": "El GFCI mide si la corriente que sale por la fase regresa exactamente igual por el neutro. Si falta un poco (porque se está yendo por tu cuerpo hacia el agua), corta el circuito en 1/40 de segundo."
+            },
+            {
+                "question": "Conectas la licuadora y ves chispazos azules violentos al momento de meter la clavija, además de un chasquido fuerte. ¿Qué ocurre?",
+                "options": [
+                    "El tomacorriente tiene los cables invertidos.",
+                    "Hay un cortocircuito en el enchufe.",
+                    "Conectaste la licuadora mientras su interruptor estaba en posición de 'ENCENDIDO'. La chispa es el arco de corriente cerrando el circuito al instante.",
+                    "Es normal en todas las licuadoras."
+                ],
+                "correctIndex": 2,
+                "explanation": "Regla de oro: Siempre apaga el aparato ANTES de enchufarlo o desenchufarlo. Hacerlo bajo carga crea chispas que desgastan y pican los metales del tomacorriente."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion9.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion11.html" class="nav-btn next">Siguiente Sesión (Motores I) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    // Troubleshooting Simulator
+    const scenarios = [
+        {
+            desc: "Síntoma: El plástico alrededor de una ranura está negro y deformado. Huele a quemado.",
+            effect: "burn",
+            correctDiag: 1, // Falso Contacto
+            solution: "✅ ¡Correcto! Falso Contacto. Las clavijas flojas generaron arcos eléctricos. SOLUCIÓN: Reemplazar el tomacorriente completo."
+        },
+        {
+            desc: "Síntoma: Al conectar el aparato, salen chispas fuertes continuamente desde adentro de la pared y hay un ruido de chicharra (Zzzz).",
+            effect: "sparks",
+            correctDiag: 1, // Falso contacto o corto parcial, here we'll map to tornillo flojo/falso contacto
+            solution: "✅ ¡Correcto! Tornillo interno flojo. El alambre se está zafando. SOLUCIÓN: Cortar corriente, abrir y re-apretar tornillos (o usar el gancho 'J' correcto)."
+        },
+        {
+            desc: "Síntoma: Conectas el aparato y el enchufe se cae solo al piso por su propio peso. No se sostiene en la pared.",
+            effect: "loose",
+            correctDiag: 3, // Desgaste Mecánico
+            solution: "✅ ¡Correcto! Desgaste Mecánico de los contactos internos de bronce. Ha perdido tensión. SOLUCIÓN: Reemplazar el tomacorriente inmediatamente, es un peligro de incendio."
+        },
+        {
+            desc: "Síntoma: Al conectar el horno, el tomacorriente se pone muy caliente al tacto, pero el plástico aún no se derrite.",
+            effect: "none",
+            correctDiag: 0, // Sobrecarga
+            solution: "✅ ¡Correcto! Sobrecarga. Le estás exigiendo demasiados Amperes a un circuito diseñado para menos. SOLUCIÓN: Mover el aparato a otro circuito o instalar una línea dedicada."
         }
+    ];
 
-        // Función para simular prueba de continuidad
-        function testContinuity() {
-            alert('Coloca las puntas del multímetro en los terminales para verificar continuidad. Deberías escuchar un pitido si hay continuidad.');
+    let currentScenario = -1;
+
+    function resetEffects() {
+        document.getElementById('sparks').style.display = 'none';
+        document.getElementById('burn').style.display = 'none';
+        document.getElementById('loose').style.display = 'none';
+        
+        document.querySelectorAll('.diag-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.style.backgroundColor = '';
+        });
+        
+        document.getElementById('solution-box').innerHTML = "Esperando tu diagnóstico...";
+        document.getElementById('solution-box').style.color = 'white';
+    }
+
+    function nextScenario() {
+        resetEffects();
+        currentScenario = (currentScenario + 1) % scenarios.length;
+        
+        document.getElementById('scenario-desc').textContent = scenarios[currentScenario].desc;
+        
+        // Apply visual effect
+        const effect = scenarios[currentScenario].effect;
+        if(effect === 'sparks') document.getElementById('sparks').style.display = 'block';
+        if(effect === 'burn') document.getElementById('burn').style.display = 'block';
+        if(effect === 'loose') document.getElementById('loose').style.display = 'block';
+    }
+
+    function checkDiag(index) {
+        if(currentScenario === -1) return;
+
+        // Reset btns
+        document.querySelectorAll('.diag-btn').forEach(btn => btn.classList.remove('active'));
+        const btns = document.querySelectorAll('.diag-btn');
+        btns[index].classList.add('active');
+
+        const sbox = document.getElementById('solution-box');
+
+        if(index === scenarios[currentScenario].correctDiag) {
+            sbox.innerHTML = scenarios[currentScenario].solution;
+            sbox.style.color = "#2ecc71";
+            btns[index].style.backgroundColor = "#2ecc71";
+        } else {
+            sbox.innerHTML = "❌ Diagnóstico incorrecto. Sigue observando los síntomas o revisa la teoría.";
+            sbox.style.color = "#e74c3c";
+            btns[index].style.backgroundColor = "#e74c3c";
         }
+    }
+</script>
 
-        // Función para simular prueba de tensión
-        function testVoltage() {
-            alert('Conecta el multímetro en modo voltímetro CA. Deberías ver aproximadamente 127V entre fase y neutro.');
-        }
-    </script>
-
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion10');
+          window.markLessonCompleted('electricidad3', 'sesion10');
       }
   });
 </script>
