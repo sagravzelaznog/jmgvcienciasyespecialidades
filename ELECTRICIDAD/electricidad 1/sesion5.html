@@ -3,356 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 5: Experimentos con Cargas</title>
+    <title>Sesión 5: Experimentos con Cargas - Conceptos Básicos</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos específicos para esta sesión */
-        .experiment-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .experiment-step {
-            flex: 1;
-            min-width: 250px;
-            background-color: #f0f8ff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+        /* Estilos específicos para la Sesión 5 */
         .materials-list {
-            background-color: #fff8e1;
-            padding: 10px 15px 10px 35px;
-            border-radius: 5px;
-            margin: 15px 0;
-            position: relative;
+            background-color: var(--box-info-bg);
+            border-left: 4px solid var(--box-info-border);
+            padding: 1.2rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
-        .materials-list:before {
-            content: "🧪";
-            position: absolute;
-            left: 10px;
+        .materials-list h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .materials-list ul {
+            margin-bottom: 0;
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="home-link">← Volver al índice</a>
-    
-    <div class="header">
-        <h1>Sesión 5: Experimentos con Cargas</h1>
-        <p>Demostraciones prácticas de los principios de la electricidad estática</p>
+
+<main class="page-container">
+    <!-- Navegación Superior -->
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <!-- Encabezado de la Sesión -->
+    <div class="sesion-header">
+        <h1 class="sesion-title">Experimentos con Cargas</h1>
+        <p class="sesion-subtitle">Sesión 5 - Módulo 2: Fundamentos de la Carga Eléctrica</p>
     </div>
 
-    <div class="section">
-        <h2>Objetivo Específico</h2>
-        <p>Realizar experimentos prácticos para observar y comprender los fenómenos de atracción y repulsión de cargas eléctricas, aplicando los conceptos teóricos vistos en sesiones anteriores.</p>
+    <!-- Objetivo -->
+    <div class="info-box">
+        <strong><i class="fas fa-flask"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Demostrar físicamente los principios teóricos vistos en las sesiones anteriores. Aprenderás a transferir electrones de forma deliberada y observar con tus propios ojos cómo interactúan las fuerzas invisibles del universo.</p>
+    </div>
+
+    <!-- Contenido Teórico Breve -->
+    <div class="teoria-section">
+        <h2>De la Teoría a la Práctica</h2>
+        <p>Ya sabemos que los átomos pueden ganar o perder electrones (creando un desequilibrio llamado carga estática). También sabemos que <strong>cargas iguales se repelen y opuestas se atraen</strong>. Hoy, dejaremos de imaginarlo y empezaremos a verlo.</p>
         
-        <div class="svg-container">
-            <svg width="100%" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#f0f8ff"/>
-                <!-- Globo cargado -->
-                <circle cx="150" cy="100" r="50" fill="#ff9999" stroke="#cc6666" stroke-width="2"/>
-                <path d="M150 150 Q165 170 180 150 Q195 130 180 110 Q165 90 150 90 Q135 90 120 110 Q105 130 120 150 Q135 170 150 150" fill="#ff9999" stroke="#cc6666" stroke-width="2"/>
-                <text x="150" y="105" font-size="14" text-anchor="middle" fill="#333">- - - -</text>
-                
-                <!-- Flecha de frotamiento -->
-                <path d="M200 100 L250 100" stroke="#666" stroke-width="2" stroke-dasharray="5,5"/>
-                <path d="M240 95 L250 100 L240 105 Z" fill="#666"/>
-                
-                <!-- Pelo cargado -->
-                <rect x="350" y="80" width="10" height="80" fill="#996633"/>
-                <path d="M350 80 Q360 70 370 80 T390 70 T410 80 T430 70 T450 80" fill="none" stroke="#333" stroke-width="2"/>
-                
-                <!-- Flecha de atracción -->
-                <path d="M300 130 L340 120" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead)">
-                    <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
-                </path>
-                
-                <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
-                    </marker>
-                </defs>
-                
-                <text x="400" y="50" font-size="14" text-anchor="middle" font-weight="bold">Frotar con un paño</text>
-                <text x="400" y="70" font-size="12" text-anchor="middle">(Transferencia de electrones)</text>
-            </svg>
+        <div class="didactic-example">
+            <span class="didactic-title"><i class="fas fa-hand-paper"></i> El Efecto Triboeléctrico</span>
+            <p>La palabra "Triboeléctrico" viene del griego <em>tribein</em>, que significa "frotar". Al frotar dos materiales diferentes, se obligan a estar en contacto tan cercano que un material le "roba" electrones al otro. ¡Estás literalmente arrancando partículas subatómicas con tus manos!</p>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Contenido Teórico</h2>
-        <p>La electricidad estática es el fenómeno de acumulación de cargas eléctricas en un material. Cuando dos materiales diferentes entran en contacto y luego se separan, pueden transferirse electrones de un material a otro, creando un desequilibrio de cargas. Este desequilibrio es lo que provoca los efectos de atracción o repulsión que observamos en los experimentos de electricidad estática.</p>
-        
-        <div class="svg-container">
-            <svg width="100%" height="150" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#f0f8ff"/>
-                
-                <!-- Átomo 1 (Neutro) -->
-                <circle cx="100" cy="75" r="40" fill="none" stroke="#3498db" stroke-width="2"/>
-                <circle cx="100" cy="75" r="5" fill="#e74c3c"/>
-                <circle cx="90" cy="65" r="3" fill="#3498db" class="electron"/>
-                <circle cx="110" cy="85" r="3" fill="#3498db" class="electron"/>
-                <circle cx="95" cy="90" r="3" fill="#3498db" class="electron"/>
-                <text x="100" y="130" font-size="12" text-anchor="middle">Átomo neutro</text>
-                
-                <!-- Flecha -->
-                <path d="M180 75 L230 75" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
-                
-                <!-- Átomo 2 (Cargado) -->
-                <circle cx="320" cy="75" r="40" fill="none" stroke="#e74c3c" stroke-width="2"/>
-                <circle cx="320" cy="75" r="5" fill="#e74c3c"/>
-                <circle cx="310" cy="65" r="3" fill="#e74c3c" class="electron"/>
-                <text x="320" y="130" font-size="12" text-anchor="middle">Átomo cargado positivamente</text>
-                <text x="320" y="145" font-size="10" text-anchor="middle">(Perdió electrones)</text>
-                
-                <defs>
-                    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
-                    </marker>
-                </defs>
-                
-                <style>
-                    .electron {
-                        animation: spin 4s linear infinite;
-                        transform-origin: center;
-                    }
-                    @keyframes spin {
-                        from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
-                        to { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
-                    }
-                </style>
-            </svg>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Experimento 1: El Globo Mágico</h2>
+    <!-- Bloque 2: Experimento 1 - Globos que se Repelen -->
+    <div class="practica-section">
+        <h2>Experimento 1: La Fuerza de Repulsión</h2>
         
         <div class="materials-list">
-            <p><strong>Materiales necesarios:</strong></p>
+            <h4><i class="fas fa-box-open"></i> Materiales Necesarios:</h4>
             <ul>
-                <li>1 globo</li>
-                <li>Un trozo de tela de lana o tu cabello</li>
-                <li>Pequeños trozos de papel</li>
+                <li>2 globos inflados.</li>
+                <li>2 trozos de hilo de 30 cm.</li>
+                <li>Un trozo de tela de lana (o tu propio cabello seco).</li>
             </ul>
         </div>
         
-        <div class="experiment-container">
-            <div class="experiment-step">
-                <h3>Paso 1</h3>
-                <p>Infla el globo y haz un nudo.</p>
-                <svg width="100%" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="100" cy="50" r="30" fill="#ff9999" stroke="#cc6666" stroke-width="2"/>
-                    <path d="M100 80 Q115 100 130 80 Q145 60 130 40 Q115 20 100 40 Q85 20 70 40 Q55 60 70 80 Q85 100 100 80" fill="#ff9999" stroke="#cc6666" stroke-width="2"/>
-                </svg>
-            </div>
+        <div class="actividad">
+            <h3><i class="fas fa-vial"></i> Procedimiento</h3>
+            <ol>
+                <li>Infla los dos globos y ata un hilo a cada uno.</li>
+                <li>Sostén los hilos para que los globos cuelguen juntos, tocándose suavemente.</li>
+                <li>Frota <strong>ambos</strong> globos vigorosamente con la tela de lana (o en tu cabeza) por 30 segundos cada uno.</li>
+                <li>Vuelve a sostener los hilos para que cuelguen libremente.</li>
+                <li><strong>¡Observa!</strong> Verás que ahora una fuerza invisible los empuja, impidiendo que se toquen, como si hubiese una barrera de energía entre ellos.</li>
+            </ol>
             
-            <div class="experiment-step">
-                <h3>Paso 2</h3>
-                <p>Frota el globo contra tu cabello o la tela de lana durante 30 segundos.</p>
-                <svg width="100%" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="20" y="40" width="160" height="20" rx="5" fill="#d2b48c"/>
-                    <circle cx="140" cy="50" r="20" fill="#ff9999" stroke="#cc6666" stroke-width="2"/>
-                    <path d="M140 70 Q145 80 150 70" fill="none" stroke="#cc6666" stroke-width="2"/>
-                    <path d="M140 30 Q145 20 150 30" fill="none" stroke="#cc6666" stroke-width="2"/>
-                </svg>
+            <div class="image-overlay-container" style="display: block; width: 100%; max-width: 600px; margin-top: 1.5rem;">
+                <img src="assets/img/two_balloons_repel.png" alt="Dos globos suspendidos por hilos repeliéndose entre sí con campos de energía azul">
+                <div class="overlay-label" style="top: 20%; left: 30%; background: rgba(2, 132, 199, 0.9);">Globo Cargado (-)</div>
+                <div class="overlay-label" style="top: 20%; left: 70%; background: rgba(2, 132, 199, 0.9);">Globo Cargado (-)</div>
+                <div class="overlay-label" style="top: 60%; left: 50%; background: rgba(139, 92, 246, 0.9);">Campo de Repulsión Invisible</div>
             </div>
-            
-            <div class="experiment-step">
-                <h3>Paso 3</h3>
-                <p>Acerca el globo a los trozos de papel y observa qué sucede.</p>
-                <svg width="100%" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="150" cy="50" r="25" fill="#ff9999" stroke="#cc6666" stroke-width="2">
-                        <animate attributeName="cx" values="150;130;150" dur="3s" repeatCount="indefinite"/>
-                    </circle>
-                    <path d="M150 75 Q155 85 160 75" fill="none" stroke="#cc6666" stroke-width="2">
-                        <animate attributeName="d" values="M150 75 Q155 85 160 75; M150 75 Q157 90 165 75; M150 75 Q155 85 160 75" dur="3s" repeatCount="indefinite"/>
-                    </path>
-                    <rect x="50" y="40" width="10" height="20" rx="2" fill="#8B4513">
-                        <animate attributeName="x" values="50;60;50" dur="2s" repeatCount="indefinite"/>
-                    </rect>
-                    <rect x="70" y="45" width="10" height="20" rx="2" fill="#8B4513">
-                        <animate attributeName="x" values="70;75;70" dur="1.5s" repeatCount="indefinite"/>
-                    </rect>
-                    <rect x="90" y="42" width="10" height="20" rx="2" fill="#8B4513">
-                        <animate attributeName="x" values="90;95;90" dur="2.5s" repeatCount="indefinite"/>
-                    </rect>
-                </svg>
+
+            <div class="tip" style="margin-top: 1.5rem;">
+                <strong>¿Qué pasó realmente?</strong> Al frotar ambos globos con el mismo material (tu cabello), ambos se robaron electrones, por lo que ambos adquirieron la <strong>misma carga negativa</strong>. Y como dicta la Ley Universal: ¡cargas iguales se repelen!
             </div>
-        </div>
-        
-        <div class="tip">
-            💡 <strong>¿Qué está pasando?</strong> Al frotar el globo, le estás quitando electrones a tu cabello o a la tela, cargándolo negativamente. Los trozos de papel son neutros, pero las cargas negativas del globo repelen los electrones en el papel, creando una carga positiva en la superficie más cercana al globo. Esto causa la atracción.
         </div>
     </div>
 
-    <div class="section">
-        <h2>Experimento 2: Los Globos que se Rechazan</h2>
-        
-        <div class="materials-list">
-            <p><strong>Materiales necesarios:</strong></p>
-            <ul>
-                <li>2 globos</li>
-                <li>2 trozos de hilo de 30 cm cada uno</li>
-                <li>Cinta adhesiva</li>
-                <li>Una regla</li>
-            </ul>
+    <!-- Bloque 3: El Enemigo de la Estática -->
+    <div class="phase-block">
+        <div class="phase-header">
+            <span>El Impacto del Clima en la Electricidad</span>
+            <span><i class="fas fa-cloud-showers-heavy"></i></span>
         </div>
-        
-        <div class="experiment-container">
-            <div class="experiment-step">
-                <h3>Paso 1</h3>
-                <p>Infla los dos globos y átalos con los hilos.</p>
-                <svg width="100%" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="50" y1="30" x2="50" y2="90" stroke="#8B4513" stroke-width="2"/>
-                    <circle cx="50" cy="30" r="25" fill="#ff9999" stroke="#cc6666" stroke-width="2"/>
-                    <line x1="150" y1="30" x2="150" y2="90" stroke="#8B4513" stroke-width="2"/>
-                    <circle cx="150" cy="30" r="25" fill="#9999ff" stroke="#6666cc" stroke-width="2"/>
-                </svg>
+        <div class="phase-content">
+            <p>Si intentas hacer estos experimentos del globo en un día muy lluvioso o húmedo, probablemente te frustres porque no funcionarán bien.</p>
+
+            <div class="image-overlay-container" style="display: block; width: 100%; max-width: 600px; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                <img src="assets/img/humidity_static.png" alt="Comparativa visual: Día seco vs Día húmedo afectando la carga estática">
+                <div class="overlay-label" style="top: 15%; left: 25%; background: rgba(245, 158, 11, 0.9);">Clima Seco: Mantiene la Carga</div>
+                <div class="overlay-label" style="top: 15%; left: 75%; background: rgba(2, 132, 199, 0.9);">Clima Húmedo: Roba la Carga</div>
             </div>
             
-            <div class="experiment-step">
-                <h3>Paso 2</h3>
-                <p>Cuelga los globos a unos 20 cm de distancia.</p>
-                <svg width="100%" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="50" y1="30" x2="50" y2="90" stroke="#8B4513" stroke-width="2"/>
-                    <circle cx="50" cy="30" r="20" fill="#ff9999" stroke="#cc6666" stroke-width="2"/>
-                    <line x1="150" y1="30" x2="150" y2="90" stroke="#8B4513" stroke-width="2"/>
-                    <circle cx="150" cy="30" r="20" fill="#9999ff" stroke="#6666cc" stroke-width="2"/>
-                    <line x1="70" y1="30" x2="130" y2="30" stroke="#aaa" stroke-width="1" stroke-dasharray="5,5"/>
-                    <text x="100" y="25" font-size="10" text-anchor="middle">20 cm</text>
-                </svg>
-            </div>
-            
-            <div class="experiment-step">
-                <h3>Paso 3</h3>
-                <p>Frota ambos globos con el mismo material y obsérvalos.</p>
-                <svg width="100%" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="30" y1="30" x2="30" y2="90" stroke="#8B4513" stroke-width="2"/>
-                    <circle cx="30" cy="30" r="20" fill="#ff9999" stroke="#cc6666" stroke-width="2">
-                        <animate attributeName="cx" values="30;50;30" dur="4s" repeatCount="indefinite"/>
-                    </circle>
-                    <line x1="170" y1="30" x2="170" y2="90" stroke="#8B4513" stroke-width="2"/>
-                    <circle cx="170" cy="30" r="20" fill="#ff9999" stroke="#cc6666" stroke-width="2">
-                        <animate attributeName="cx" values="170;150;170" dur="4s" repeatCount="indefinite"/>
-                    </circle>
-                    <path d="M50 30 L150 30" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5">
-                        <animate attributeName="d" values="M50 30 L150 30; M70 30 L130 30; M50 30 L150 30" dur="4s" repeatCount="indefinite"/>
-                    </path>
-                    <text x="100" y="25" font-size="10" text-anchor="middle" fill="#e74c3c">¡Se repelen!</text>
-                </svg>
-            </div>
-        </div>
-        
-        <div class="tip">
-            💡 <strong>Explicación:</strong> Al frotar ambos globos con el mismo material, ambos adquieren el mismo tipo de carga (generalmente negativa). Como cargas iguales se repelen, los globos intentarán alejarse el uno del otro. Este es un ejemplo de la ley de cargas: "cargas iguales se repelen, cargas opuestas se atraen".
+            <p><strong>La Humedad es un Conductor:</strong> El agua (especialmente el vapor de agua en el aire) conduce electricidad. En un día húmedo, el aire está lleno de pequeñas moléculas de agua. Estas moléculas actúan como pequeñas vías de escape que le "roban" rápidamente los electrones extra al globo, disipando la carga hacia el aire antes de que puedas hacer tu experimento.</p>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Pregunta de Reflexión</h2>
-        <div class="activity">
-            <p>Imagina que realizas el experimento del globo en un día muy húmedo. ¿Crees que los resultados serían los mismos? ¿Por qué o por qué no?</p>
-            
-            <div class="svg-container svg-container-center">
-                <svg width="80%" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100%" height="100%" fill="#f0f8ff"/>
-                    
-                    <!-- Día seco -->
-                    <rect x="20" y="20" width="160" height="110" rx="5" fill="white" stroke="#3498db" stroke-width="2"/>
-                    <circle cx="100" cy="60" r="30" fill="#ffcc00"/>
-                    <text x="100" y="120" font-size="12" text-anchor="middle">Día seco</text>
-                    <circle cx="100" cy="60" r="25" fill="#ffeb3b">
-                        <animate attributeName="r" values="25;28;25" dur="3s" repeatCount="indefinite"/>
-                    </circle>
-                    
-                    <!-- Flecha -->
-                    <path d="M200 75 L240 75" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
-                    
-                    <!-- Día húmedo -->
-                    <rect x="260" y="20" width="160" height="110" rx="5" fill="white" stroke="#3498db" stroke-width="2"/>
-                    <circle cx="340" cy="60" r="30" fill="#90caf9"/>
-                    <path d="M325 45 Q340 30 355 45" fill="none" stroke="#2196f3" stroke-width="2"/>
-                    <path d="M330 50 Q340 40 350 50" fill="none" stroke="#2196f3" stroke-width="2"/>
-                    <path d="M325 55 Q340 70 355 55" fill="none" stroke="#2196f3" stroke-width="2"/>
-                    <text x="340" y="120" font-size="12" text-anchor="middle">Día húmedo</text>
-                    
-                    <defs>
-                        <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                            <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
-                        </marker>
-                    </defs>
-                </svg>
-            </>
-            
-            <p><strong>Respuesta sugerida:</strong> En un día húmedo, los experimentos de electricidad estática podrían no funcionar tan bien. La humedad en el aire permite que las cargas se muevan más fácilmente, lo que hace que cualquier carga estática se disipe rápidamente en el aire húmedo en lugar de acumularse en los objetos. Por eso, los globos podrían no mantener su carga por mucho tiempo y los efectos de atracción o repulsión serían menos notorios o podrían no ocurrir.</p>
-        </div>
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Qué significa el término 'Efecto Triboeléctrico'?",
+                "options": [
+                    "El efecto de la electricidad en tribus antiguas.",
+                    "La transferencia de carga eléctrica que ocurre por frotamiento de dos materiales.",
+                    "El efecto de tres baterías conectadas juntas.",
+                    "La creación de agua a partir de electricidad."
+                ],
+                "correctIndex": 1,
+                "explanation": "Triboeléctrico viene de la palabra griega para frotar. La fricción acerca los átomos tanto que los electrones saltan de uno al otro."
+            },
+            {
+                "question": "En el experimento de los dos globos, ¿por qué los globos flotan separados sin tocarse?",
+                "options": [
+                    "Porque el viento en la habitación los separa.",
+                    "Porque uno es positivo y el otro es negativo, y se odian.",
+                    "Porque al frotarlos con lo mismo adquirieron la MISMA carga (negativa), y las cargas iguales se repelen.",
+                    "Porque los hilos son magnéticos."
+                ],
+                "correctIndex": 2,
+                "explanation": "Ambos globos robaron electrones del cabello. Al estar ambos súper negativos, crean un campo de repulsión entre ellos."
+            },
+            {
+                "question": "Si froto fuertemente un globo en mi cabello, ¿qué le pasará a mi cabello?",
+                "options": [
+                    "Se pondrá azul.",
+                    "Adquirirá carga positiva (porque perdió electrones que se llevó el globo), haciendo que los pelos se repelan entre sí y se pongan de punta.",
+                    "No le pasa absolutamente nada.",
+                    "Se vuelve más pesado."
+                ],
+                "correctIndex": 1,
+                "explanation": "Como el globo robó electrones, tu cabello quedó con déficit de electrones (carga positiva). Al tener todos tus pelos carga positiva, ¡se repelen entre sí y se paran!"
+            },
+            {
+                "question": "¿Por qué es muy difícil hacer experimentos de electricidad estática en días lluviosos?",
+                "options": [
+                    "Porque el globo se enfría demasiado.",
+                    "Porque la humedad en el aire (agua) absorbe y disipa rápidamente las cargas acumuladas.",
+                    "Porque la lluvia cancela la gravedad.",
+                    "Porque el aire denso empuja los electrones al suelo."
+                ],
+                "correctIndex": 1,
+                "explanation": "El agua en el aire es un conductor débil, pero suficiente para 'robarse' lentamente la estática del globo, arruinando el experimento."
+            },
+            {
+                "question": "Conclusión Práctica: ¿Cuál de las siguientes afirmaciones es CORRECTA?",
+                "options": [
+                    "No puedes alterar la carga de un objeto frotándolo.",
+                    "Si juntas un globo negativo con otro globo negativo, se pegarán.",
+                    "La acumulación de cargas mediante fricción es una forma de generar corriente eléctrica constante (dinámica).",
+                    "La electricidad estática requiere un desequilibrio de electrones causado por la transferencia física de partículas."
+                ],
+                "correctIndex": 3,
+                "explanation": "Exacto. La estática es la acumulación temporal de electrones (desequilibrio) logrado al arrancar partículas físicamente."
+            }
+        ]
+        </script>
     </div>
 
-    <div class="section">
-        <h2>Conclusión</h2>
-        <p>A través de estos experimentos, hemos podido observar directamente los principios de la electricidad estática. Hemos visto cómo las cargas se pueden transferir por frotamiento, cómo cargas iguales se repelen y cargas opuestas se atraen, y cómo el ambiente puede afectar estos fenómenos. Estos conceptos son fundamentales para entender muchos aspectos de la electricidad que veremos en sesiones futuras.</p>
-        
-        <div class="svg-container">
-            <svg width="100%" height="100" viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#f0f8ff"/>
-                
-                <!-- Carga positiva -->
-                <circle cx="100" cy="50" r="30" fill="none" stroke="#e74c3c" stroke-width="2"/>
-                <text x="100" y="55" font-size="24" text-anchor="middle" fill="#e74c3c">+</text>
-                
-                <!-- Flecha de repulsión -->
-                <path d="M130 50 L170 50" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowRight)">
-                    <animate attributeName="d" values="M130 50 L170 50; M140 50 L180 50; M130 50 L170 50" dur="2s" repeatCount="indefinite"/>
-                </path>
-                
-                <!-- Carga negativa -->
-                <circle cx="200" cy="50" r="30" fill="none" stroke="#3498db" stroke-width="2"/>
-                <text x="200" y="55" font-size="24" text-anchor="middle" fill="#3498db">-</text>
-                
-                <!-- Signo igual -->
-                <text x="300" y="55" font-size="30" text-anchor="middle">=</text>
-                
-                <!-- Flecha de atracción -->
-                <path d="M350 50 L430 50" stroke="#2ecc71" stroke-width="2" marker-end="url(#arrowRight)">
-                    <animate attributeName="d" values="M350 50 L430 50; M360 50 L440 50; M350 50 L430 50" dur="2s" repeatCount="indefinite"/>
-                </path>
-                
-                <!-- Cargas opuestas -->
-                <circle cx="500" cy="50" r="30" fill="none" stroke="#e74c3c" stroke-width="2"/>
-                <text x="500" y="55" font-size="24" text-anchor="middle" fill="#e74c3c">+</text>
-                <circle cx="570" cy="50" r="30" fill="none" stroke="#3498db" stroke-width="2"/>
-                <text x="570" y="55" font-size="24" text-anchor="middle" fill="#3498db">-</text>
-                
-                <defs>
-                    <marker id="arrowRight" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" fill="#2ecc71"/>
-                    </marker>
-                </defs>
-            </svg>
-        </div>
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion4.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion6.html" class="nav-btn next">Siguiente Sesión (Ley de Coulomb) <i class="fas fa-arrow-right"></i></a>
     </div>
 
-    <div class="navigation-footer">
-        <a href="sesion4.html" class="home-link">← Sesión Anterior</a>
-        <span class="nav-separator">|</span>
-        <a href="index.html" class="home-link">Volver al Índice</a>
-    </div>
-    <footer>
-        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+</main>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion5');
+          window.markLessonCompleted('electricidad1', 'sesion5');
       }
   });
 </script>
