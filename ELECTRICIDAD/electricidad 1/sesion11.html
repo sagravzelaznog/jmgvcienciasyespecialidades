@@ -3,136 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 11: Código de Colores de Resistencias</title>
+    <title>Sesión 11: Código de Colores - Conceptos Básicos</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .color-chart {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 10px;
             margin: 20px 0;
         }
         .color-box {
             text-align: center;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 15px 10px;
+            border-radius: 8px;
             color: white;
             font-weight: bold;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-soft);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s;
+        }
+        .color-box:hover {
+            transform: scale(1.05);
         }
         
         /* Color box variants */
         .color-box.black { background-color: #000000; }
-        .color-box.brown { background-color: #8b4513; color: white; }
-        .color-box.red { background-color: #ff0000; color: white; }
-        .color-box.orange { background-color: #ffa500; color: black; }
-        .color-box.yellow { background-color: #ffff00; color: black; }
-        .color-box.green { background-color: #008000; color: white; }
-        .color-box.blue { background-color: #0000ff; color: white; }
-        .color-box.violet { background-color: #800080; color: white; }
-        .color-box.gray { background-color: #808080; color: white; }
-        .color-box.white { background-color: #ffffff; color: black; border: 1px solid #ccc; }
-        .color-box.gold { background-color: #ffd700; color: black; }
-        .color-box.silver { background-color: #c0c0c0; color: black; }
+        .color-box.brown { background-color: #8b4513; }
+        .color-box.red { background-color: #ff0000; }
+        .color-box.orange { background-color: #ffa500; color: black; text-shadow: none; border-color: rgba(0,0,0,0.1); }
+        .color-box.yellow { background-color: #ffff00; color: black; text-shadow: none; border-color: rgba(0,0,0,0.1); }
+        .color-box.green { background-color: #008000; }
+        .color-box.blue { background-color: #0000ff; }
+        .color-box.violet { background-color: #800080; }
+        .color-box.gray { background-color: #808080; }
+        .color-box.white { background-color: #ffffff; color: black; text-shadow: none; border: 2px solid #ccc; }
+        .color-box.gold { background-color: #ffd700; color: black; text-shadow: none; }
+        .color-box.silver { background-color: #c0c0c0; color: black; text-shadow: none; }
         
-        /* Tolerance specific styles */
         .tolerance-chart { margin-top: 30px; }
-        .tolerance-box { margin-bottom: 10px; }
-        .resistor-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .resistor {
-            display: inline-block;
-            position: relative;
-            margin: 20px 0;
-        }
-        .band {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: 15px;
-            border: 1px solid #333;
-        }
+        
         .practice-area {
-            background-color: #f0f8ff;
-            padding: 15px;
+            background-color: var(--bg-card);
+            padding: 2rem;
             border-radius: 10px;
             margin: 20px 0;
-        }
-        .band-selector {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin: 15px 0;
-        }
-        .band-option {
-            width: 30px;
-            height: 60px;
-            border: 1px solid #ccc;
-            cursor: pointer;
-        }
-        .value-display {
-            text-align: center;
-            font-size: 1.5em;
-            margin: 20px 0;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
         }
         
-        /* Estilos para la resistencia interactiva */
         .interactive-resistor {
             position: relative;
             width: 250px;
             height: 80px;
             margin: 0 auto;
         }
-        
         .resistor-terminal {
             position: absolute;
-            top: 25px;
+            top: 35px;
             width: 30px;
             height: 10px;
             background-color: #a9a9a9;
         }
-        
-        .resistor-left-terminal {
-            left: 0;
-        }
-        
-        .resistor-right-terminal {
-            right: 0;
-        }
-        
+        .resistor-left-terminal { left: 0; }
+        .resistor-right-terminal { right: 0; }
         .resistor-body {
             position: absolute;
             left: 30px;
-            top: 10px;
+            top: 15px;
             width: 190px;
-            height: 60px;
-            background-color: #d2b48c;
-            border-radius: 5px;
-            border: 1px solid #8b4513;
+            height: 50px;
+            background-color: #e8d0a9;
+            border-radius: 8px;
+            border: 2px solid #b89a6c;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
         }
-        
         .resistor-band {
             position: absolute;
             top: 0;
-            width: 20px;
+            width: 18px;
             height: 100%;
         }
-        
-        /* Posiciones de las bandas */
+        /* Posiciones */
         .band-pos-1 { left: 30px; }
         .band-pos-2 { left: 60px; }
         .band-pos-3 { left: 90px; }
         .band-pos-4 { left: 150px; }
         
-        /* Ancho especial para la banda de tolerancia */
-        .tolerance-band { width: 10px; }
-        
-        /* Colores de las bandas */
         .band-black { background-color: #000000; }
         .band-brown { background-color: #8b4513; }
         .band-red { background-color: #ff0000; }
@@ -146,557 +104,319 @@
         .band-gold { background-color: #ffd700; }
         .band-silver { background-color: #c0c0c0; }
         
-        /* Button container styles */
-        .button-container {
+        .band-selector {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .band-option {
+            width: 35px;
+            height: 45px;
+            border-radius: 4px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+        }
+        .band-option:hover { transform: scale(1.1); border-color: var(--primary-color); }
+        .value-display {
             text-align: center;
-            margin-top: 20px;
+            font-size: 1.8em;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--box-info-bg);
+            border-radius: 8px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .button-container { text-align: center; margin-top: 20px; }
+        .button-container button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="home-link">← Volver al índice</a>
-    
-    <div class="header">
-        <h1>Sesión 11: Código de Colores de Resistencias</h1>
-        <p>Aprendiendo a leer el valor de las resistencias a través de sus bandas de colores</p>
+
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Código de Colores</h1>
+        <p class="sesion-subtitle">Sesión 11 - Módulo 3: Leyendo Resistencias</p>
     </div>
 
-    <div class="section">
-        <h2>Objetivo Específico</h2>
-        <p>Identificar y calcular el valor de resistencias eléctricas mediante el código de colores estándar, incluyendo su valor óhmico, tolerancia y coeficiente de temperatura cuando esté disponible.</p>
-        
-        <div class="resistor-container">
-            <svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
-                <!-- Cuerpo de la resistencia -->
-                <rect x="50" y="40" width="200" height="30" rx="5" fill="#d2b48c" stroke="#8b4513" stroke-width="2"/>
-                
-                <!-- Bandas de colores -->
-                <rect x="80" y="40" width="15" height="30" fill="#8b4513" stroke="#333" stroke-width="1"/>
-                <rect x="105" y="40" width="15" height="30" fill="#000000" stroke="#333" stroke-width="1"/>
-                <rect x="130" y="40" width="15" height="30" fill="#ff0000" stroke="#333" stroke-width="1"/>
-                <rect x="175" y="40" width="10" height="30" fill="#c0c0c0" stroke="#333" stroke-width="1"/>
-                
-                <!-- Terminales -->
-                <rect x="30" y="45" width="20" height="20" fill="#a9a9a9"/>
-                <rect x="250" y="45" width="20" height="20" fill="#a9a9a9"/>
-                
-                <!-- Flechas y etiquetas -->
-                <line x1="60" y1="20" x2="80" y2="20" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
-                <text x="70" y="15" font-size="10" text-anchor="middle">1° Banda</text>
-                
-                <line x1="112.5" y1="10" x2="112.5" y2="30" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
-                <text x="112.5" y="5" font-size="10" text-anchor="middle">2° Banda</text>
-                
-                <line x1="137.5" y1="20" x2="157.5" y2="20" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
-                <text x="147.5" y="15" font-size="10" text-anchor="middle">3° Banda</text>
-                
-                <line x1="180" y1="20" x2="200" y2="20" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
-                <text x="190" y="15" font-size="10" text-anchor="middle">Tolerancia</text>
-                
-                <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
-                    </marker>
-                </defs>
-            </svg>
-        </div>
+    <div class="info-box">
+        <strong><i class="fas fa-bullseye"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrir el lenguaje secreto de la electrónica. Las resistencias son demasiado pequeñas para imprimirles números, así que usan anillos de colores para indicar su valor en Ohmios.</p>
     </div>
 
-    <div class="section">
-        <h2>Tabla de Código de Colores</h2>
-        
+    <div class="teoria-section">
+        <h2>El Lenguaje de los Colores</h2>
+        <p>Al igual que un semáforo nos dice si avanzar o detenernos, las bandas de colores en el cuerpo de una resistencia nos dicen exactamente cuántos Ohmios de "freno" aplicará al circuito.</p>
+
         <div class="color-chart">
-            <!-- Primera fila: Números -->
-            <div class="color-box black">
-                <div>Negro</div>
-                <div>0</div>
-                <div>×10⁰</div>
-            </div>
-            <div class="color-box brown">
-                <div>Marrón</div>
-                <div>1</div>
-                <div>×10¹</div>
-            </div>
-            <div class="color-box red">
-                <div>Rojo</div>
-                <div>2</div>
-                <div>×10²</div>
-            </div>
-            <div class="color-box orange">
-                <div>Naranja</div>
-                <div>3</div>
-                <div>×10³</div>
-            </div>
-            <div class="color-box yellow">
-                <div>Amarillo</div>
-                <div>4</div>
-                <div>×10⁴</div>
-            </div>
-            <div class="color-box green">
-                <div>Verde</div>
-                <div>5</div>
-                <div>×10⁵</div>
-            </div>
-            <div class="color-box blue">
-                <div>Azul</div>
-                <div>6</div>
-                <div>×10⁶</div>
-            </div>
-            <div class="color-box violet">
-                <div>Violeta</div>
-                <div>7</div>
-                <div>×10⁷</div>
-            </div>
-            <div class="color-box gray">
-                <div>Gris</div>
-                <div>8</div>
-                <div>×10⁸</div>
-            </div>
-            <div class="color-box white">
-                <div>Blanco</div>
-                <div>9</div>
-                <div>×10⁹</div>
-            </div>
+            <!-- Números -->
+            <div class="color-box black"><div>Negro</div><div>0</div><div>×1</div></div>
+            <div class="color-box brown"><div>Marrón</div><div>1</div><div>×10</div></div>
+            <div class="color-box red"><div>Rojo</div><div>2</div><div>×100</div></div>
+            <div class="color-box orange"><div>Naranja</div><div>3</div><div>×1k</div></div>
+            <div class="color-box yellow"><div>Amarillo</div><div>4</div><div>×10k</div></div>
+            <div class="color-box green"><div>Verde</div><div>5</div><div>×100k</div></div>
+            <div class="color-box blue"><div>Azul</div><div>6</div><div>×1M</div></div>
+            <div class="color-box violet"><div>Violeta</div><div>7</div><div>×10M</div></div>
+            <div class="color-box gray"><div>Gris</div><div>8</div><div>-</div></div>
+            <div class="color-box white"><div>Blanco</div><div>9</div><div>-</div></div>
         </div>
-        
-        <div class="color-chart tolerance-chart">
-            <!-- Segunda fila: Tolerancia -->
-            <div class="color-box silver">
-                <div>Plata</div>
-                <div>±10%</div>
-            </div>
-            <div class="color-box gold">
-                <div>Oro</div>
-                <div>±5%</div>
-            </div>
-            <div class="color-box brown">
-                <div>Marrón</div>
-                <div>±1%</div>
-            </div>
-            <div class="color-box red">
-                <div>Rojo</div>
-                <div>±2%</div>
-            </div>
-            <div class="color-box green">
-                <div>Verde</div>
-                <div>±0.5%</div>
-            </div>
-            <div class="color-box blue">
-                <div>Azul</div>
-                <div>±0.25%</div>
-            </div>
-            <div class="color-box violet">
-                <div>Violeta</div>
-                <div>±0.1%</div>
-            </div>
-        </div>
-        
+
         <div class="tip">
-            💡 <strong>Consejo:</strong> Para recordar el orden de los colores, usa la siguiente regla mnemotécnica: 
-            "<strong>N</strong>egro <strong>M</strong>arrón <strong>R</strong>ojo <strong>N</strong>aranja <strong>A</strong>marillo <strong>V</strong>erde <strong>A</strong>zul <strong>V</strong>ioleta <strong>G</strong>ris <strong>B</strong>lanco"
+            💡 <strong>Regla Mnemotécnica:</strong> Para aprender el orden de los colores (0 al 9), recuerda la frase: 
+            <br><em>"<strong>N</strong>o <strong>M</strong>e <strong>R</strong>obaron <strong>N</strong>ada <strong>A</strong>yer, <strong>V</strong>ino <strong>A</strong>lguien <strong>V</strong>olando, <strong>G</strong>ritó <strong>B</strong>obo."</em>
+            <br>(Negro, Marrón, Rojo, Naranja, Amarillo, Verde, Azul, Violeta, Gris, Blanco).
         </div>
     </div>
 
-    <div class="section">
-        <h2>Cómo Leer una Resistencia</h2>
-        
-        <div class="step-by-step">
-            <h3>Resistencias de 4 bandas (las más comunes)</h3>
-            <ol>
-                <li><strong>Primera banda:</strong> Primer dígito del valor</li>
-                <li><strong>Segunda banda:</strong> Segundo dígito del valor</li>
-                <li><strong>Tercera banda:</strong> Multiplicador (potencia de 10)</li>
-                <li><strong>Cuarta banda:</strong> Tolerancia (precisión)</li>
-            </ol>
+    <div class="phase-block">
+        <div class="phase-header">
+            <span>¿Cómo leerlas? (4 Bandas)</span>
+            <span><i class="fas fa-glasses"></i></span>
+        </div>
+        <div class="phase-content">
+            <p>La mayoría de resistencias tienen 4 bandas. Las dos primeras son los <strong>dígitos</strong>. La tercera es el <strong>multiplicador</strong> (cuántos ceros agregar). La cuarta (separada un poco más lejos) es la <strong>Tolerancia</strong> (margen de error de fábrica, oro es ±5%, plata ±10%).</p>
             
-            <div class="example">
-                <h4>Ejemplo: Marrón-Negro-Rojo-Dorado</h4>
-                <div class="resistor-container">
-                    <svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="30" y="30" width="140" height="25" rx="3" fill="#d2b48c" stroke="#8b4513" stroke-width="1"/>
-                        <rect x="50" y="30" width="15" height="25" fill="#8b4513"/>
-                        <rect x="70" y="30" width="15" height="25" fill="#000000"/>
-                        <rect x="90" y="30" width="15" height="25" fill="#ff0000"/>
-                        <rect x="120" y="30" width="10" height="25" fill="#ffd700"/>
-                        
-                        <!-- Líneas de guía -->
-                        <line x1="57.5" y1="60" x2="57.5" y2="55" stroke="#333" stroke-width="1"/>
-                        <line x1="77.5" y1="60" x2="77.5" y2="55" stroke="#333" stroke-width="1"/>
-                        <line x1="97.5" y1="60" x2="97.5" y2="55" stroke="#333" stroke-width="1"/>
-                        <line x1="125" y1="60" x2="125" y2="55" stroke="#333" stroke-width="1"/>
-                        
-                        <!-- Números -->
-                        <text x="57.5" y="75" font-size="10" text-anchor="middle">1</text>
-                        <text x="77.5" y="75" font-size="10" text-anchor="middle">0</text>
-                        <text x="97.5" y="75" font-size="10" text-anchor="middle">×10²</text>
-                        <text x="125" y="75" font-size="10" text-anchor="middle">±5%</text>
-                        
-                        <!-- Resultado -->
-                        <text x="100" y="100" font-size="14" text-anchor="middle" font-weight="bold">10 × 10² Ω = 1,000 Ω (1kΩ) ±5%</text>
-                    </svg>
-                </div>
+            <div class="svg-container" style="text-align: center;">
+                <svg width="250" height="120" viewBox="0 0 250 120" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="50" y="30" width="140" height="30" rx="5" fill="#e8d0a9" stroke="#b89a6c" stroke-width="2"/>
+                    <rect x="70" y="30" width="12" height="30" fill="#8b4513"/> <!-- Marron: 1 -->
+                    <rect x="90" y="30" width="12" height="30" fill="#000000"/> <!-- Negro: 0 -->
+                    <rect x="110" y="30" width="12" height="30" fill="#ff0000"/> <!-- Rojo: x100 -->
+                    <rect x="150" y="30" width="10" height="30" fill="#ffd700"/> <!-- Oro: 5% -->
+                    <!-- Terminales -->
+                    <rect x="20" y="42" width="30" height="6" fill="#a9a9a9"/>
+                    <rect x="190" y="42" width="30" height="6" fill="#a9a9a9"/>
+                    
+                    <text x="76" y="80" font-size="12" fill="currentColor" text-anchor="middle">1</text>
+                    <text x="96" y="80" font-size="12" fill="currentColor" text-anchor="middle">0</text>
+                    <text x="116" y="80" font-size="12" fill="currentColor" text-anchor="middle">00</text>
+                    
+                    <text x="120" y="110" font-size="16" fill="var(--primary-color)" text-anchor="middle" font-weight="bold">= 1,000 Ω (1 kΩ)</text>
+                </svg>
             </div>
-            
-            <h3>Resistencias de 5 bandas (mayor precisión)</h3>
-            <ol>
-                <li><strong>Primera banda:</strong> Primer dígito del valor</li>
-                <li><strong>Segunda banda:</strong> Segundo dígito del valor</li>
-                <li><strong>Tercera banda:</strong> Tercer dígito del valor</li>
-                <li><strong>Cuarta banda:</strong> Multiplicador (potencia de 10)</li>
-                <li><strong>Quinta banda:</strong> Tolerancia</li>
-            </ol>
-            
-            <div class="example">
-                <h4>Ejemplo: Amarillo-Violeta-Negro-Rojo-Marrón</h4>
-                <div class="resistor-container">
-                    <svg width="250" height="80" viewBox="0 0 250 80" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="20" y="30" width="210" height="25" rx="3" fill="#d2b48c" stroke="#8b4513" stroke-width="1"/>
-                        <rect x="40" y="30" width="15" height="25" fill="#ffff00"/>
-                        <rect x="65" y="30" width="15" height="25" fill="#800080"/>
-                        <rect x="90" y="30" width="15" height="25" fill="#000000"/>
-                        <rect x="115" y="30" width="15" height="25" fill="#ff0000"/>
-                        <rect x="160" y="30" width="10" height="25" fill="#8b4513"/>
-                        
-                        <!-- Líneas de guía -->
-                        <line x1="47.5" y1="60" x2="47.5" y2="55" stroke="#333" stroke-width="1"/>
-                        <line x1="72.5" y1="60" x2="72.5" y2="55" stroke="#333" stroke-width="1"/>
-                        <line x1="97.5" y1="60" x2="97.5" y2="55" stroke="#333" stroke-width="1"/>
-                        <line x1="122.5" y1="60" x2="122.5" y2="55" stroke="#333" stroke-width="1"/>
-                        <line x1="165" y1="60" x2="165" y2="55" stroke="#333" stroke-width="1"/>
-                        
-                        <!-- Números -->
-                        <text x="47.5" y="75" font-size="10" text-anchor="middle">4</text>
-                        <text x="72.5" y="75" font-size="10" text-anchor="middle">7</text>
-                        <text x="97.5" y="75" font-size="10" text-anchor="middle">0</text>
-                        <text x="122.5" y="75" font-size="10" text-anchor="middle">×10²</text>
-                        <text x="165" y="75" font-size="10" text-anchor="middle">±1%</text>
-                        
-                        <!-- Resultado -->
-                        <text x="125" y="100" font-size="14" text-anchor="middle" font-weight="bold">470 × 10² Ω = 47,000 Ω (47kΩ) ±1%</text>
-                    </svg>
-                </div>
-            </div>
+            <p style="text-align: center; margin-top: 0;">Marrón (1), Negro (0), Rojo (Agrega 2 ceros). El resultado es 1,000 Ohmios.</p>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Práctica Interactiva</h2>
+    <!-- Simulador Interactivo -->
+    <div class="practica-section">
+        <h2>Simulador: Crea tu Resistencia</h2>
         
         <div class="practice-area">
-            <h3>Selecciona los colores para ver el valor de la resistencia:</h3>
+            <h3 id="instruction-text" style="text-align: center; color: var(--text-color);">Selecciona el color para la PRIMERA banda (Dígito 1):</h3>
             
-            <div class="resistor-container">
-                <div class="interactive-resistor">
-                    <!-- Terminal izquierda -->
-                    <div class="resistor-terminal resistor-left-terminal"></div>
-                    
-                    <!-- Cuerpo de la resistencia -->
-                    <div class="resistor-body">
-                        <!-- Bandas de colores (se actualizarán con JavaScript) -->
-                        <div id="band1" class="resistor-band band-pos-1 band-brown"></div>
-                        <div id="band2" class="resistor-band band-pos-2 band-black"></div>
-                        <div id="band3" class="resistor-band band-pos-3 band-red"></div>
-                        <div id="band4" class="resistor-band band-pos-4 band-gold tolerance-band"></div>
-                    </div>
-                    
-                    <!-- Terminal derecha -->
-                    <div class="resistor-terminal resistor-right-terminal"></div>
+            <div class="interactive-resistor">
+                <div class="resistor-terminal resistor-left-terminal"></div>
+                <div class="resistor-body">
+                    <div id="band1" class="resistor-band band-pos-1 band-brown"></div>
+                    <div id="band2" class="resistor-band band-pos-2 band-black"></div>
+                    <div id="band3" class="resistor-band band-pos-3 band-red"></div>
+                    <div id="band4" class="resistor-band band-pos-4 band-gold"></div>
                 </div>
+                <div class="resistor-terminal resistor-right-terminal"></div>
             </div>
             
             <div class="value-display" id="resistanceValue">
-                Valor: 1,000 Ω ±5%
+                1,000 Ω ±5%
             </div>
             
             <div class="band-selector">
-                <div class="band-option band-black" onclick="selectBand(1, 'black', 0, 'Negro')"></div>
-                <div class="band-option band-brown" onclick="selectBand(1, 'brown', 1, 'Marrón')"></div>
-                <div class="band-option band-red" onclick="selectBand(1, 'red', 2, 'Rojo')"></div>
-                <div class="band-option band-orange" onclick="selectBand(1, 'orange', 3, 'Naranja')"></div>
-                <div class="band-option band-yellow" onclick="selectBand(1, 'yellow', 4, 'Amarillo')"></div>
-                <div class="band-option band-green" onclick="selectBand(1, 'green', 5, 'Verde')"></div>
-                <div class="band-option band-blue" onclick="selectBand(1, 'blue', 6, 'Azul')"></div>
-                <div class="band-option band-violet" onclick="selectBand(1, 'violet', 7, 'Violeta')"></div>
-                <div class="band-option band-gray" onclick="selectBand(1, 'gray', 8, 'Gris')"></div>
-                <div class="band-option band-white" onclick="selectBand(1, 'white', 9, 'Blanco')"></div>
+                <div class="band-option band-black" onclick="selectColor('black', 0)"></div>
+                <div class="band-option band-brown" onclick="selectColor('brown', 1)"></div>
+                <div class="band-option band-red" onclick="selectColor('red', 2)"></div>
+                <div class="band-option band-orange" onclick="selectColor('orange', 3)"></div>
+                <div class="band-option band-yellow" onclick="selectColor('yellow', 4)"></div>
+                <div class="band-option band-green" onclick="selectColor('green', 5)"></div>
+                <div class="band-option band-blue" onclick="selectColor('blue', 6)"></div>
+                <div class="band-option band-violet" onclick="selectColor('violet', 7)"></div>
+                <div class="band-option band-gray" onclick="selectColor('gray', 8)"></div>
+                <div class="band-option band-white" onclick="selectColor('white', 9)"></div>
+                <div class="band-option band-gold" style="display:none;" id="opt-gold" onclick="selectTolerance('gold', 5)"></div>
+                <div class="band-option band-silver" style="display:none;" id="opt-silver" onclick="selectTolerance('silver', 10)"></div>
             </div>
-            
-            <p>Selecciona el color para la primera banda</p>
             
             <div class="button-container">
-                <button onclick="resetBands()">Reiniciar</button>
+                <button onclick="resetSimulator()"><i class="fas fa-undo"></i> Reiniciar Simulador</button>
             </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Actividad para Realizar en Casa</h2>
-        
-        <div class="activity">
-            <h3>Búsqueda del Tesoro de Resistencias</h3>
-            
-            <p><strong>Materiales necesarios:</strong></p>
-            <ul>
-                <li>Resistencias de diferentes valores (pueden ser de aparatos electrónicos viejos)</li>
-                <li>Lupa (opcional)</li>
-                <li>Tabla de códigos de colores</li>
-                <li>Multímetro (opcional, para verificar)</li>
-            </ul>
-            
-            <h4>Procedimiento:</h4>
-            <ol>
-                <li>Reúne al menos 5 resistencias diferentes</li>
-                <li>Identifica las bandas de colores en cada una</li>
-                <li>Usa la tabla de códigos para determinar su valor</li>
-                <li>Si tienes un multímetro, mide la resistencia real y compárala</li>
-                <li>Registra tus hallazgos en la siguiente tabla:</li>
-            </ol>
-            
-            <table class="data-table">
-                <tr>
-                    <th>Resistencia</th>
-                    <th>Colores</th>
-                    <th>Valor Calculado</th>
-                    <th>Valor Medido (opcional)</th>
-                    <th>¿Coincide?</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>❓</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>❓</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>❓</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>❓</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>__________</td>
-                    <td>❓</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Pregunta de Reflexión</h2>
-        <div class="activity">
-            <p>¿Por qué crees que es importante el código de colores en las resistencias? ¿Qué pasaría si todas las resistencias fueran del mismo color?</p>
-            
-            <div class="svg-container">
-                <svg width="100%" height="150" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100%" height="100%" fill="#f8f9fa"/>
-                    
-                    <!-- Resistencias sin colores -->
-                    <rect x="50" y="50" width="100" height="20" fill="#d2b48c" rx="3"/>
-                    <rect x="200" y="50" width="100" height="20" fill="#d2b48c" rx="3"/>
-                    <rect x="350" y="50" width="100" height="20" fill="#d2b48c" rx="3"/>
-                    
-                    <!-- Signo de interrogación -->
-                    <text x="100" y="65" font-size="14" text-anchor="middle" font-weight="bold">?</text>
-                    <text x="250" y="65" font-size="14" text-anchor="middle" font-weight="bold">?</text>
-                    <text x="400" y="65" font-size="14" text-anchor="middle" font-weight="bold">?</text>
-                    
-                    <!-- Pregunta -->
-                    <text x="250" y="120" font-size="14" text-anchor="middle">¿Cómo sabrías cuál es cuál?</text>
-                </svg>
-            </div>
-            
-            <p><strong>Respuesta sugerida:</strong> El código de colores es esencial para identificar rápidamente el valor de las resistencias sin necesidad de equipos de medición. Si todas las resistencias fueran del mismo color, sería imposible distinguirlas visualmente, lo que dificultaría enormemente el diseño, reparación y mantenimiento de circuitos electrónicos. Los técnicos tendrían que medir cada resistencia individualmente con un multímetro, lo que consumiría mucho tiempo y aumentaría la posibilidad de errores en los circuitos.</p>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Conclusión</h2>
-        <p>El código de colores de las resistencias es un sistema estandarizado que permite identificar rápidamente el valor, tolerancia y en algunos casos el coeficiente de temperatura de una resistencia. Aprender a leer este código es una habilidad fundamental para cualquiera que trabaje con electrónica. Con práctica, podrás identificar el valor de una resistencia con solo echar un vistazo a sus bandas de colores.</p>
-        
-        <div class="tip">
-            💡 <strong>Dato curioso:</strong> Las resistencias de precisión tienen una quinta banda que indica el coeficiente de temperatura, que nos dice cuánto variará el valor de la resistencia con los cambios de temperatura.
-        </div>
-        
-        <div class="resistor-container">
-            <svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
-                <rect x="30" y="50" width="240" height="30" rx="3" fill="#d2b48c" stroke="#8b4513" stroke-width="1"/>
-                
-                <!-- 5 bandas -->
-                <rect x="50" y="50" width="15" height="30" fill="#8b4513"/>
-                <rect x="75" y="50" width="15" height="30" fill="#000000"/>
-                <rect x="100" y="50" width="15" height="30" fill="#0000ff"/>
-                <rect x="125" y="50" width="15" height="30" fill="#ff0000"/>
-                <rect x="170" y="50" width="10" height="30" fill="#8b4513"/>
-                
-                <!-- Terminales -->
-                <rect x="10" y="55" width="20" height="20" fill="#a9a9a9"/>
-                <rect x="270" y="55" width="20" height="20" fill="#a9a9a9"/>
-                
-                <!-- Etiquetas -->
-                <text x="57.5" y="45" font-size="10" text-anchor="middle">1</text>
-                <text x="82.5" y="45" font-size="10" text-anchor="middle">0</text>
-                <text x="107.5" y="45" font-size="10" text-anchor="middle">6</text>
-                <text x="132.5" y="45" font-size="10" text-anchor="middle">×10²</text>
-                <text x="175" y="45" font-size="10" text-anchor="middle">±1%</text>
-                
-                <!-- Resultado -->
-                <text x="150" y="100" font-size="14" text-anchor="middle" font-weight="bold">106 × 10² Ω = 10,600 Ω (10.6kΩ) ±1%</text>
-            </svg>
-        </div>
-    </div>
-
-    <div class="navigation-footer">
-        <a href="sesion10.html" class="home-link">← Sesión Anterior</a>
-        <span class="nav-separator">|</span>
-        <a href="index.html" class="home-link">Volver al Índice</a>
-    </div>
-
-    <script>
-        // Variables para almacenar los valores de las bandas
-        let currentBand = 1;
-        const bandValues = [null, null, null, null];
-        
-        // Función para seleccionar un color de banda
-        function selectBand(band, color, value, name) {
-            // Obtener el elemento de la banda
-            const bandElement = document.getElementById('band' + band);
-            
-            // Eliminar todas las clases de color existentes
-            const colorClasses = ['band-black', 'band-brown', 'band-red', 'band-orange', 'band-yellow', 
-                                'band-green', 'band-blue', 'band-violet', 'band-gray', 'band-white', 
-                                'band-gold', 'band-silver'];
-            bandElement.classList.remove(...colorClasses);
-            
-            // Agregar la nueva clase de color
-            bandElement.classList.add('band-' + color);
-            
-            // Actualizar el valor de la resistencia
-            updateResistanceValue();
-            
-            // Si no es la última banda, mover a la siguiente
-            if (band < 4) {
-                // Actualizar el texto debajo del selector
-                const bandNames = ['primera', 'segunda', 'tercera', 'cuarta'];
-                document.querySelector('.band-selector + p').textContent = 
-                    `Selecciona el color para la ${bandNames[band]} banda`;
-                
-                // Cambiar a la siguiente banda
-                currentBand = band + 1;
-            } else {
-                document.querySelector('.practice-area p').textContent = '¡Resistencia completa! Selecciona "Reiniciar" para comenzar de nuevo.';
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <script type="application/json">
+        [
+            {
+                "question": "¿Por qué las resistencias usan bandas de colores en lugar de tener su valor escrito con números?",
+                "options": [
+                    "Porque los colores son más atractivos visualmente.",
+                    "Porque son componentes cilíndricos y diminutos; los números serían imposibles de leer si la resistencia queda soldada boca abajo.",
+                    "Para ocultar su valor a personas no autorizadas.",
+                    "Para que los daltónicos no puedan construir circuitos."
+                ],
+                "correctIndex": 1,
+                "explanation": "Al ser bandas que dan la vuelta a todo el cilindro, puedes leer el valor sin importar en qué ángulo quedó soldado el componente en la placa."
+            },
+            {
+                "question": "¿Qué valor representa el color ROJO en el código estándar?",
+                "options": [
+                    "0",
+                    "1",
+                    "2",
+                    "3"
+                ],
+                "correctIndex": 2,
+                "explanation": "El rojo es el número 2 (Negro=0, Marrón=1, Rojo=2)."
+            },
+            {
+                "question": "Tienes una resistencia con los colores: Amarillo(4), Violeta(7), Rojo(2 ceros). ¿Cuál es su valor?",
+                "options": [
+                    "472 Ω",
+                    "4,700 Ω",
+                    "47,000 Ω",
+                    "4.7 Ω"
+                ],
+                "correctIndex": 1,
+                "explanation": "El 4 y el 7 se unen para formar '47'. La tercera banda (Rojo=2) indica que debes agregar dos ceros. 47 + 00 = 4700 Ohmios (4.7kΩ)."
+            },
+            {
+                "question": "¿Qué indica la CUARTA banda, que suele ser dorada o plateada?",
+                "options": [
+                    "La temperatura máxima que soporta.",
+                    "El fabricante.",
+                    "La Tolerancia (el margen de error de fábrica respecto a su valor exacto).",
+                    "El amperaje."
+                ],
+                "correctIndex": 2,
+                "explanation": "Las resistencias no son perfectas. Una banda dorada significa que su valor real puede variar en un ±5% del valor que indican sus colores."
+            },
+            {
+                "question": "Si la tercera banda de una resistencia es NEGRA (0), ¿Cuántos ceros le agregas al valor final?",
+                "options": [
+                    "Un cero.",
+                    "Ningún cero (no agregas nada).",
+                    "Diez ceros.",
+                    "La resistencia vale 0 Ohmios."
+                ],
+                "correctIndex": 1,
+                "explanation": "El negro es 0. En la banda multiplicadora, significa agregar 0 ceros (o multiplicar por 10^0 que es 1). Si tienes Marrón(1)-Negro(0)-Negro(0 ceros) = 10 Ohmios."
             }
+        ]
+        </script>
+    </div>
+
+    <div class="sesion-navigation">
+        <a href="sesion10.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion12.html" class="nav-btn next">Siguiente Sesión (Circuitos Serie y Paralelo) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    let currentStep = 1;
+    let vals = [1, 0, 2]; // Marron, Negro, Rojo
+    let tol = 5; // Dorado
+
+    function updateColorsUI(bandIndex, cssColor) {
+        let el = document.getElementById('band' + bandIndex);
+        el.className = 'resistor-band band-pos-' + bandIndex + ' band-' + cssColor;
+    }
+
+    function selectColor(colorName, numValue) {
+        if(currentStep === 1) {
+            vals[0] = numValue;
+            updateColorsUI(1, colorName);
+            document.getElementById('instruction-text').textContent = 'Selecciona el color para la SEGUNDA banda (Dígito 2):';
+            currentStep = 2;
+        } else if(currentStep === 2) {
+            vals[1] = numValue;
+            updateColorsUI(2, colorName);
+            document.getElementById('instruction-text').textContent = 'Selecciona el color para la TERCERA banda (Multiplicador):';
+            currentStep = 3;
+        } else if(currentStep === 3) {
+            vals[2] = numValue;
+            updateColorsUI(3, colorName);
             
-            // Calcular y mostrar el valor de la resistencia
-            updateResistanceValue();
+            // Ocultar colores normales, mostrar oro y plata
+            document.querySelectorAll('.band-option:not(#opt-gold):not(#opt-silver)').forEach(e => e.style.display = 'none');
+            document.getElementById('opt-gold').style.display = 'block';
+            document.getElementById('opt-silver').style.display = 'block';
+            
+            document.getElementById('instruction-text').textContent = 'Selecciona la CUARTA banda (Tolerancia, oro o plata):';
+            currentStep = 4;
         }
-        
-        // Función para actualizar el valor de la resistencia mostrado
-        function updateResistanceValue() {
-            if (bandValues[0] === null || bandValues[1] === null || bandValues[2] === null) {
-                return; // No hay suficientes bandas seleccionadas
-            }
-            
-            // Calcular el valor
-            const firstDigit = bandValues[0] ? bandValues[0].value : 0;
-            const secondDigit = bandValues[1] ? bandValues[1].value : 0;
-            const multiplier = bandValues[2] ? Math.pow(10, bandValues[2].value) : 1;
-            
-            let tolerance = '±20%';
-            if (bandValues[3]) {
-                // Asignar tolerancia basada en el color de la cuarta banda
-                switch(bandValues[3].name) {
-                    case 'Oro': tolerance = '±5%'; break;
-                    case 'Plata': tolerance = '±10%'; break;
-                    case 'Marrón': tolerance = '±1%'; break;
-                    case 'Rojo': tolerance = '±2%'; break;
-                    case 'Verde': tolerance = '±0.5%'; break;
-                    case 'Azul': tolerance = '±0.25%'; break;
-                    case 'Violeta': tolerance = '±0.1%'; break;
-                    default: tolerance = '±20%';
-                }
-            }
-            
-            const resistanceValue = (firstDigit * 10 + secondDigit) * multiplier;
-            let displayValue = '';
-            
-            // Formatear el valor según la magnitud
-            if (resistanceValue >= 1000000) {
-                displayValue = `${resistanceValue / 1000000} MΩ ${tolerance}`;
-            } else if (resistanceValue >= 1000) {
-                displayValue = `${resistanceValue / 1000} kΩ ${tolerance}`;
-            } else {
-                displayValue = `${resistanceValue} Ω ${tolerance}`;
-            }
-            
-            document.getElementById('resistanceValue').textContent = `Valor: ${displayValue}`;
-        }
-        
-        // Función para reiniciar las bandas
-        function resetBands() {
-            // Restablecer los colores de las bandas
-            const band1 = document.getElementById('band1');
-            const band2 = document.getElementById('band2');
-            const band3 = document.getElementById('band3');
-            const band4 = document.getElementById('band4');
-            
-            // Eliminar todas las clases de color existentes
-            const colorClasses = ['band-black', 'band-brown', 'band-red', 'band-orange', 'band-yellow', 
-                                'band-green', 'band-blue', 'band-violet', 'band-gray', 'band-white', 
-                                'band-gold', 'band-silver'];
-            
-            band1.classList.remove(...colorClasses);
-            band2.classList.remove(...colorClasses);
-            band3.classList.remove(...colorClasses);
-            band4.classList.remove(...colorClasses);
-            
-            // Establecer los colores por defecto
-            band1.classList.add('band-brown');
-            band2.classList.add('band-black');
-            band3.classList.add('band-red');
-            band4.classList.add('band-gold');
-            
-            // Restablecer el texto
-            document.querySelector('.band-selector + p').textContent = 'Selecciona el color para la primera banda';
-            
-            // Volver a la primera banda
-            currentBand = 1;
-            
-            // Actualizar el valor mostrado
-            document.getElementById('resistanceValue').textContent = 'Valor: 1,000 Ω ±5%';
-        }
-    </script>
-    <footer>
-        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+        calculateValue();
+    }
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    function selectTolerance(colorName, tolValue) {
+        if(currentStep === 4) {
+            tol = tolValue;
+            updateColorsUI(4, colorName);
+            document.getElementById('instruction-text').textContent = '¡Resistencia Completa! Presiona Reiniciar para otra.';
+            currentStep = 5;
+            calculateValue();
+        }
+    }
+
+    function calculateValue() {
+        let baseValue = (vals[0] * 10) + vals[1];
+        let multiplier = Math.pow(10, vals[2]);
+        let total = baseValue * multiplier;
+        
+        let textVal = total.toLocaleString();
+        if(total >= 1000000) textVal = (total/1000000) + ' M';
+        else if(total >= 1000) textVal = (total/1000) + ' k';
+        
+        document.getElementById('resistanceValue').innerHTML = `${textVal}Ω &plusmn;${tol}%`;
+    }
+
+    function resetSimulator() {
+        currentStep = 1;
+        vals = [1, 0, 2];
+        tol = 5;
+        updateColorsUI(1, 'brown');
+        updateColorsUI(2, 'black');
+        updateColorsUI(3, 'red');
+        updateColorsUI(4, 'gold');
+        
+        document.querySelectorAll('.band-option').forEach(e => e.style.display = 'block');
+        document.getElementById('opt-gold').style.display = 'none';
+        document.getElementById('opt-silver').style.display = 'none';
+        
+        document.getElementById('instruction-text').textContent = 'Selecciona el color para la PRIMERA banda (Dígito 1):';
+        calculateValue();
+    }
+</script>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion11');
+          window.markLessonCompleted('electricidad1', 'sesion11');
       }
   });
 </script>
