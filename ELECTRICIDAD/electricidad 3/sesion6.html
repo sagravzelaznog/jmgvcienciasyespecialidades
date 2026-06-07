@@ -3,440 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 6: Fusibles y Protecciones II | Componentes Eléctricos Básicos</title>
+    <title>Sesión 6: Protecciones II - La Tecnología Salva Vidas</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .breaker-sim {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .breaker-panel {
+            width: 250px;
+            height: 350px;
+            background: #e0e0e0;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 5px 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .breaker-switch {
+            width: 60px;
+            height: 80px;
+            background: #2c3e50;
+            border-radius: 5px;
+            margin-top: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.2), 0 5px 5px rgba(0,0,0,0.5);
+            transform-origin: bottom center;
+        }
+
+        .breaker-switch.on {
+            transform: perspective(200px) rotateX(30deg);
+            background: #2ecc71;
+        }
+
+        .breaker-switch.off {
+            transform: perspective(200px) rotateX(-30deg);
+            background: #e74c3c;
+        }
+
+        .breaker-label {
+            margin-top: 40px;
+            font-family: monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: white;
+            padding: 5px 15px;
+            border: 1px solid #999;
+            border-radius: 3px;
+        }
+
+        .sim-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+        }
+
+        .btn-sim {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+        .btn-sim:active { transform: scale(0.95); }
+        .btn-thermal { background: #f39c12; }
+        .btn-magnetic { background: #c0392b; }
+        .btn-reset { background: #3498db; }
+
+        .trip-indicator {
+            position: absolute;
+            bottom: 20px;
+            width: 80%;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            border-radius: 3px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .trip-indicator.visible { opacity: 1; }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .protection-card {
+            background: var(--bg-main);
+            border-top: 5px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-soft);
+        }
+        .protection-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Shake animation for magnetic trip */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-5px); }
+            40% { transform: translateX(5px); }
+            60% { transform: translateX(-5px); }
+            80% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+        .shaking { animation: shake 0.3s ease-in-out; }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sesión 6: Fusibles y Protecciones II</h1>
-            <p>Protecciones avanzadas y diseño de circuitos seguros</p>
+
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Protecciones Avanzadas</h1>
+        <p class="sesion-subtitle">Sesión 6 - Módulo 3: Más Allá de los Fusibles</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-microchip"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrirás cómo funcionan los Interruptores Termomagnéticos (Breakers) y los Diferenciales (GFCI), las maravillas de la ingeniería que protegen tu casa y tu vida sin tener que comprar repuestos.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>La Evolución de la Seguridad</h2>
+        <p>Los fusibles son geniales, pero tienen un problema: <strong>se mueren</strong>. Cada vez que hay una falla, tienes que ir a la tienda a comprar otro. Además, los fusibles protegen los CABLES, no a las PERSONAS. Aquí es donde entra la tecnología moderna.</p>
+        
+        <div class="card-grid">
+            <div class="protection-card">
+                <h3><i class="fas fa-toggle-on"></i> Disyuntor Termomagnético (Breaker)</h3>
+                <p>Es un interruptor automático que hace el mismo trabajo que un fusible, pero <strong>se puede resetear</strong>. Tiene dos mecanismos de disparo dentro de la misma caja:</p>
+                <ul>
+                    <li><strong>Disparo Térmico:</strong> Una lámina bimetálica que se calienta y se dobla lentamente durante una sobrecarga, "botando" la palanca.</li>
+                    <li><strong>Disparo Magnético:</strong> Una bobina electromagnética que crea un campo magnético masivo durante un cortocircuito, jalando un gatillo que "bota" la palanca instantáneamente.</li>
+                </ul>
+            </div>
+            
+            <div class="protection-card" style="border-top-color: var(--danger-color);">
+                <h3 style="color: var(--danger-color);"><i class="fas fa-heartbeat"></i> Interruptor Diferencial (GFCI)</h3>
+                <p><strong>¡El salvavidas humano!</strong> Este dispositivo monitorea que la corriente que entra por la Fase sea EXACTAMENTE igual a la que sale por el Neutro. Si faltan aunque sea 30 miliamperios (0.03A), significa que esa corriente se está fugando a través del cuerpo de una persona. El diferencial corta la luz en 30 milisegundos, salvándote de una electrocución letal.</p>
+            </div>
         </div>
-    </header>
+    </div>
 
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
-        
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Al finalizar esta sesión, los estudiantes podrán seleccionar el dispositivo de protección adecuado para diferentes aplicaciones, comprender el funcionamiento de los disyuntores y aplicar principios avanzados de protección eléctrica.</p>
-            </div>
+    <div class="practica-section">
+        <h2>Simulador de Disyuntor (Breaker)</h2>
+        <p>Experimenta con nuestro Breaker virtual. Enciéndelo, y luego simula las dos fallas principales para ver cómo reaccionan los diferentes mecanismos internos.</p>
 
-            <div class="theory">
-                <h2>Contenido teórico</h2>
+        <div class="breaker-sim">
+            <div class="breaker-panel" id="breaker-box">
+                <div style="font-weight: bold; color: #555;">20 AMPERIOS</div>
+                <div class="breaker-switch off" id="breaker-switch" onclick="manualToggle()"></div>
+                <div class="breaker-label">ON / OFF</div>
                 
-                <div class="concept-box">
-                    <h3>Dispositivos de protección avanzados</h3>
-                    <div class="protection-grid">
-                        <div class="protection-device">
-                            <h4>Disyuntores termomagnéticos</h4>
-                            <p>Protegen contra sobrecargas (térmico) y cortocircuitos (magnético). Se pueden resetear después de activarse.</p>
-                            <div class="device-symbol">[Símbolo disyuntor]</div>
-                        </div>
-                        <div class="protection-device">
-                            <h4>Interruptores Diferenciales</h4>
-                            <p>Detectan fugas de corriente a tierra, protegiendo contra descargas eléctricas.</p>
-                            <div class="device-symbol">[Símbolo diferencial]</div>
-                        </div>
-                        <div class="protection-device">
-                            <h4>Varistores (MOV)</h4>
-                            <p>Protegen contra sobretensiones transitorias, como las causadas por rayos.</p>
-                            <div class="device-symbol">[Símbolo varistor]</div>
-                        </div>
-                        <div class="protection-device">
-                            <h4>PTCs</h4>
-                            <p>Resistencias variables con la temperatura, usadas como fusibles auto-reseteables.</p>
-                            <div class="device-symbol">[Símbolo PTC]</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="concept-box">
-                    <h3>Selección de protecciones</h3>
-                    <div class="selection-guide">
-                        <div class="selection-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Identificar la corriente nominal</h4>
-                                <p>Calcular la corriente máxima esperada en el circuito</p>
-                            </div>
-                        </div>
-                        <div class="selection-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>Considerar el tipo de carga</h4>
-                                <p>Motores, iluminación, electrónica, etc. tienen diferentes características de arranque</p>
-                            </div>
-                        </div>
-                        <div class="selection-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Evaluar condiciones ambientales</h4>
-                                <p>Temperatura, humedad y otros factores que afectan el rendimiento</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="trip-indicator" id="trip-msg" style="background: #e74c3c; color: white;">
+                    DISPARO MAGNÉTICO
                 </div>
             </div>
 
-            <div class="visual-example">
-                <h2>Analogía práctica</h2>
-                <div class="analogy">
-                    <p>Imagina el sistema de protección eléctrica como un equipo de bomberos:</p>
-                    <ul>
-                        <li><strong>Fusibles:</strong> Como extintores que se consumen al usarse</li>
-                        <li><strong>Disyuntores:</strong> Como rociadores que se pueden resetear</li>
-                        <li><strong>Diferenciales:</strong> Como detectores de humo que avisan de peligros ocultos</li>
-                        <li><strong>Varistores:</strong> Como pararrayos que desvían las amenazas</li>
-                    </ul>
-                </div>
-                <div class="svg-container">
-                    <p><strong>Recurso interactivo:</strong> <a href="#" target="_blank">Simulador de selección de protecciones</a></p>
+            <div class="sim-controls">
+                <button class="btn-sim btn-thermal" onclick="simulateThermal()">Sobrecarga Lenta (Térmico)</button>
+                <button class="btn-sim btn-magnetic" onclick="simulateMagnetic()">Cortocircuito (Magnético)</button>
+                <div style="text-align: center; margin-top: 10px; color: var(--text-muted); font-size: 0.9rem;">
+                    Haz clic en la palanca negra del Breaker para resetearlo/encenderlo manualmente.
                 </div>
             </div>
-
-            <div class="practical-activity">
-                <h2>Actividad práctica: Diseño de protección</h2>
-                <p><strong>Materiales necesarios:</strong> Tablero de prácticas, diferentes dispositivos de protección, cables, multímetro, fuentes de alimentación</p>
-                
-                <div class="activity-scenario">
-                    <h3>Escenario: Instalación de taller</h3>
-                    <p>Debes proteger un taller que tiene:</p>
-                    <ul>
-                        <li>3 máquinas herramientas (15A cada una)</li>
-                        <li>Iluminación general (5A)</li>
-                        <li>Enchufes varios (20A en total)</li>
-                        <li>Sistema de climatización (25A)</li>
-                    </ul>
-                    
-                    <div class="protection-design">
-                        <h4>Tu diseño debe incluir:</h4>
-                        <div class="design-requirements">
-                            <div class="requirement">
-                                <input type="checkbox" id="req1">
-                                <label for="req1">Protección general</label>
-                            </div>
-                            <div class="requirement">
-                                <input type="checkbox" id="req2">
-                                <label for="req2">Protección por circuitos</label>
-                            </div>
-                            <div class="requirement">
-                                <input type="checkbox" id="req3">
-                                <label for="req3">Protección diferencial</label>
-                            </div>
-                            <div class="requirement">
-                                <input type="checkbox" id="req4">
-                                <label for="req4">Protección contra sobretensiones</label>
-                            </div>
-                        </div>
-                        
-                        <div class="design-area">
-                            <h4>Diseña tu esquema de protección:</h4>
-                            <div class="design-canvas" contenteditable="true">
-                                [Haz clic aquí para dibujar tu diseño]
-                            </div>
-                            <button class="btn btn-small" id="guardar-diseno">Guardar diseño</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="case-study">
-                <h2>Estudio de caso: Análisis de falla</h2>
-                <div class="case-content">
-                    <p><strong>Situación:</strong> En una fábrica, los fusibles del área de producción se queman frecuentemente, causando paradas costosas.</p>
-                    <p><strong>Datos:</strong></p>
-                    <ul>
-                        <li>Fusibles de 30A</li>
-                        <li>Corriente normal: 25A</li>
-                        <li>Máquinas con motores de inducción</li>
-                        <li>Variaciones de voltaje en la red</li>
-                    </ul>
-                    
-                    <div class="case-questions">
-                        <h4>Preguntas para análisis:</h4>
-                        <ol>
-                            <li>¿Qué factores podrían estar causando los fusibles quemados?</li>
-                            <li>¿Qué tipo de protección sería más adecuada para este caso?</li>
-                            <li>¿Qué mediciones recomendarías realizar?</li>
-                        </ol>
-                        <textarea placeholder="Escribe tu análisis..."></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>¿Cómo cambiaría tu enfoque de protección si estuvieras diseñando un sistema para una instalación médica crítica versus una aplicación industrial? Considera factores como confiabilidad, velocidad de respuesta y mantenimiento.</p>
-                <textarea rows="4" placeholder="Escribe tu reflexión aquí..." aria-label="Reflexión sobre diseño de protecciones"></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos adicionales</h2>
-                <ul>
-                    <li><a href="#" target="_blank">Guía de códigos eléctricos (NOM-001-SEDE)</a></li>
-                    <li><a href="#" target="_blank">Calculadora de selección de protecciones</a></li>
-                    <li><a href="#" target="_blank">Video: Pruebas de operación de disyuntores</a></li>
-                </ul>
-            </div>
-
-            <div class="gamification">
-                <h2>Reto: El ingeniero de protección</h2>
-                <p><strong>Misión:</strong> Diseña el sistema de protección para un edificio de departamentos con:</p>
-                <ul>
-                    <li>10 departamentos (cada uno con cocina, baño y sala/recámara)</li>
-                    <li>Áreas comunes con ascensores y bombas de agua</li>
-                    <li>Estacionamiento con cargadores para autos eléctricos</li>
-                </ul>
-                <p><strong>Entrega:</strong> Diagrama unifilar con todas las protecciones necesarias</p>
-                <p><strong>Puntos:</strong></p>
-                <ul>
-                    <li>30 puntos por diseño completo</li>
-                    <li>20 puntos por eficiencia en la selección</li>
-                    <li>10 puntos por consideración de mantenimiento</li>
-                </ul>
-                <button class="btn" id="subir-proyecto">Subir proyecto</button>
-            </div>
-        </section>
-
-        <div class="session-navigation">
-            <a href="sesion5.html" class="btn">← Sesión anterior</a>
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion7.html" class="btn">Siguiente sesión →</a>
         </div>
-    </main>
 
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+        <div class="danger-box">
+            <h3><i class="fas fa-bolt"></i> Varistores (MOV): El Escudo contra Rayos</h3>
+            <p>¿Qué pasa si un rayo cae cerca de tu casa y manda 10,000 Voltios por los cables? El breaker es muy lento para detenerlo. Ahí usamos <strong>Varistores</strong>, componentes que normalmente son aislantes, pero si el voltaje sube de golpe, se vuelven conductores instantáneamente y desvían toda la furia del rayo hacia la TIERRA física, salvando tu televisión y computadora.</p>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
-    <style>
-        /* Estilos específicos para esta sesión */
-        .protection-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .protection-device {
-            background: white;
-            border-radius: 8px;
-            padding: 1.2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .protection-device:hover {
-            transform: translateY(-5px);
-        }
-        
-        .device-symbol {
-            height: 60px;
-            background: #f5f7fa;
-            border: 2px dashed #ccc;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1rem 0;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .selection-guide {
-            margin: 1.5rem 0;
-        }
-        
-        .selection-step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.2rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .selection-step:hover {
-            background: #f1f8ff;
-            transform: translateX(5px);
-        }
-        
-        .step-number {
-            background: var(--secondary-color);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            flex-shrink: 0;
-            font-weight: bold;
-        }
-        
-        .step-content h4 {
-            margin: 0 0 0.3rem 0;
-            color: var(--primary-color);
-        }
-        
-        .step-content p {
-            margin: 0;
-            color: #555;
-        }
-        
-        .design-requirements {
-            background: #f5f7fa;
-            padding: 1rem;
-            border-radius: 6px;
-            margin: 1rem 0;
-        }
-        
-        .requirement {
-            margin: 0.5rem 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .requirement input[type="checkbox"] {
-            margin-right: 0.8rem;
-        }
-        
-        .design-area {
-            margin-top: 1.5rem;
-        }
-        
-        .design-canvas {
-            min-height: 200px;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            background: white;
-            color: #999;
-        }
-        
-        .case-study {
-            background: #fff8f0;
-            border-left: 4px solid #ff9800;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .case-questions {
-            margin-top: 1.5rem;
-        }
-        
-        .case-questions ol {
-            padding-left: 1.5rem;
-        }
-        
-        .case-questions li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .case-questions textarea {
-            width: 100%;
-            min-height: 100px;
-            margin-top: 1rem;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        @media (max-width: 768px) {
-            .protection-grid {
-                grid-template-columns: 1fr;
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Por qué un Disyuntor Termomagnético (Breaker) tiene dos palabras ('Termo' y 'Magnético') en su nombre?",
+                "options": [
+                    "Porque funciona con calor y con imanes de refrigerador.",
+                    "Porque tiene dos sistemas: uno térmico (bimetal) que responde a sobrecargas lentas, y uno magnético (bobina) que reacciona instantáneamente a cortocircuitos.",
+                    "Es solo un nombre comercial para venderlo más caro."
+                ],
+                "correctIndex": 1,
+                "explanation": "El sistema térmico es lento (tarda minutos en doblarse por el calor de una sobrecarga). El sistema magnético es violento y rápido (reacciona en milisegundos ante el pico masivo de un cortocircuito)."
+            },
+            {
+                "question": "Estás secándote el pelo en el baño, el secador cae al lavamanos lleno de agua y sufres una descarga eléctrica. ¿Qué dispositivo debió haber 'botado' para salvar tu vida?",
+                "options": [
+                    "El Breaker Termomagnético de 20 Amperios.",
+                    "Un Fusible de caja.",
+                    "El Interruptor Diferencial (GFCI).",
+                    "El Varistor de la televisión."
+                ],
+                "correctIndex": 2,
+                "explanation": "El Breaker de 20A NO va a botar porque un cuerpo humano recibiendo 0.5 Amperios se muere, pero al Breaker le parece muy poca corriente (el límite es 20A). El Diferencial detecta esa fuga minúscula de 0.5A hacia tu cuerpo y corta la luz inmediatamente."
+            },
+            {
+                "question": "Después de un cortocircuito que 'bota' un Breaker Termomagnético, ¿qué debes hacer para restablecer la luz?",
+                "options": [
+                    "Tirar el Breaker a la basura y comprar uno nuevo.",
+                    "Ponerle cinta adhesiva para que la palanca no vuelva a botar.",
+                    "Solucionar el problema en el circuito y simplemente volver a subir la palanca del Breaker a 'ON'.",
+                    "Esperar a que se enfríe 3 días."
+                ],
+                "correctIndex": 2,
+                "explanation": "La gran ventaja del Breaker sobre el fusible es que es un interruptor reseteable. Una vez corregido el corto (por ejemplo, quitando el cable pelado), solo subes la palanca y listo."
+            },
+            {
+                "question": "¿Para qué sirve un Varistor (MOV) en las regletas multicontacto (supresores de picos)?",
+                "options": [
+                    "Para ahorrar luz.",
+                    "Para desviar picos de alto voltaje (sobretensiones o rayos) hacia la Tierra física antes de que frían tu computadora.",
+                    "Para evitar cortocircuitos.",
+                    "Para proteger contra electrocuciones humanas."
+                ],
+                "correctIndex": 1,
+                "explanation": "El Varistor es la defensa contra voltajes extremos. Si vienen 120V normales, no hace nada. Si vienen 500V por un relámpago en la red, el varistor se 'abre' y manda ese voltaje extra directo al cable verde de Tierra."
             }
-            
-            .selection-step {
-                flex-direction: column;
-            }
-            
-            .step-number {
-                margin-bottom: 0.8rem;
-            }
-        }
-        
-        /* Animaciones */
-        @keyframes highlight {
-            0% { background-color: #fffde7; }
-            50% { background-color: #fff9c4; }
-            100% { background-color: #fffde7; }
-        }
-        
-        .design-canvas:focus {
-            animation: highlight 2s ease-in-out;
-            outline: none;
-            color: #333;
-        }
-    </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Interacción para el área de diseño
-            const designCanvas = document.querySelector('.design-canvas');
-            if (designCanvas) {
-                designCanvas.addEventListener('click', function() {
-                    if (this.textContent.trim() === '[Haz clic aquí para dibujar tu diseño]') {
-                        this.textContent = '';
-                    }
-                });
-                
-                designCanvas.addEventListener('blur', function() {
-                    if (this.textContent.trim() === '') {
-                        this.textContent = '[Haz clic aquí para dibujar tu diseño]';
-                    }
-                });
-            }
-            
-            // Manejo del botón de guardar diseño
-            const guardarBtn = document.getElementById('guardar-diseno');
-            if (guardarBtn) {
-                guardarBtn.addEventListener('click', function() {
-                    alert('Diseño guardado. Recuerda anotar tus cálculos y consideraciones.');
-                });
-            }
-            
-            // Manejo del envío del proyecto
-            const subirProyectoBtn = document.getElementById('subir-proyecto');
-            if (subirProyectoBtn) {
-                subirProyectoBtn.addEventListener('click', function() {
-                    alert('¡Proyecto enviado para revisión! Recibirás retroalimentación pronto.');
-                });
-            }
-            
-            // Simulación de selección de requisitos
-            const requirements = document.querySelectorAll('.requirement input[type="checkbox"]');
-            requirements.forEach(req => {
-                req.addEventListener('change', function() {
-                    const label = this.nextElementSibling;
-                    if (this.checked) {
-                        label.style.textDecoration = 'line-through';
-                        label.style.color = '#4caf50';
-                    } else {
-                        label.style.textDecoration = 'none';
-                        label.style.color = 'inherit';
-                    }
-                });
-            });
-        });
-    </script>
+        ]
+        </script>
+    </div>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion5.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion7.html" class="nav-btn next">Siguiente Sesión (Sistemas Iluminación) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    // Lógica del Simulador de Breaker
+    const switchEl = document.getElementById('breaker-switch');
+    const boxEl = document.getElementById('breaker-box');
+    const tripMsg = document.getElementById('trip-msg');
+    let isTripped = true;
+
+    function manualToggle() {
+        if (isTripped) {
+            // Reset to ON
+            switchEl.className = 'breaker-switch on';
+            isTripped = false;
+            tripMsg.classList.remove('visible');
+        } else {
+            // Manual Turn OFF
+            switchEl.className = 'breaker-switch off';
+            isTripped = true;
+        }
+    }
+
+    function simulateThermal() {
+        if(isTripped) return alert("El breaker ya está disparado o apagado. Enciéndelo primero.");
+        
+        // Simular calentamiento de bimetal
+        switchEl.style.background = "#f1c40f"; // Yellowish warning
+        
+        setTimeout(() => {
+            if(isTripped) return;
+            switchEl.style.background = "#e67e22"; // Orange hot
+            
+            setTimeout(() => {
+                if(isTripped) return;
+                // Trip!
+                trip('DISPARO TÉRMICO (Por Calor)', '#f39c12');
+            }, 1000);
+        }, 1000);
+    }
+
+    function simulateMagnetic() {
+        if(isTripped) return alert("El breaker ya está disparado o apagado. Enciéndelo primero.");
+        
+        // Disparo violento inmediato
+        boxEl.classList.add('shaking');
+        setTimeout(() => boxEl.classList.remove('shaking'), 300);
+        
+        trip('DISPARO MAGNÉTICO (Corto!)', '#c0392b');
+    }
+
+    function trip(msg, color) {
+        isTripped = true;
+        switchEl.className = 'breaker-switch off';
+        switchEl.style.background = '#e74c3c'; // Reset to red
+        
+        tripMsg.textContent = msg;
+        tripMsg.style.background = color;
+        tripMsg.classList.add('visible');
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion6');
+          window.markLessonCompleted('electricidad3', 'sesion6');
       }
   });
 </script>
