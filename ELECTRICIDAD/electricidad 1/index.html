@@ -4,199 +4,222 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programa Educativo: Conceptos Básicos de Electricidad</title>
+    <!-- Framework Universal -->
     <link rel="stylesheet" href="../../global-lesson.css">
     <style>
-        /* Estilos específicos para la página de índice */
-        .session {
-            background-color: white;
+        /* Estilos específicos para este Índice respetando variables del Framework */
+        .course-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .session-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-left: 4px solid var(--primary-color);
         }
-        .session:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        .session-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-soft);
+            border-color: var(--primary-color);
+            background-color: var(--box-info-bg);
         }
-        .session h3 {
-            color: #16a085;
+
+        .session-card h3 {
+            color: var(--primary-color);
             margin-top: 0;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
-        .module {
-            margin-bottom: 40px;
-        }
-        .module-title {
-            background-color: #2c3e50;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-top: 40px;
-        }
-        .coming-soon {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
+
+        .session-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            flex-grow: 1;
         }
         
-        /* Estilos para el título principal */
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        .module-header {
+            background-color: var(--bg-nav);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-heading);
+            border-left: 4px solid var(--text-muted);
         }
-        
-        /* Estilos para los títulos de módulo */
-        h2 {
-            color: #2980b9;
-            margin-top: 30px;
-            border-left: 4px solid #3498db;
-            padding-left: 10px;
+
+        .btn-hub {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .btn-hub:hover {
+            color: var(--primary-color);
         }
     </style>
 </head>
 <body>
-    <h1>Programa Educativo: Conceptos Básicos de Electricidad</h1>
+
+<main class="page-container">
+    <a href="../index.html" class="btn-hub">← Volver al Centro de Comando (Electricidad)</a>
+
+    <img src="assets/img/elec1_banner.png" alt="Banner del Curso de Electricidad" class="course-banner">
+
+    <div class="header">
+        <h1>Conceptos Básicos de Electricidad</h1>
+        <p class="sesion-subtitle">Programa Educativo Interactivo y Didáctico</p>
+    </div>
     
     <div class="module">
-        <h2 class="module-title">Módulo 1: Introducción a la Electricidad</h2>
-        
-        <div class="session">
-            <h3>Sesión 1: ¿Qué es la electricidad?</h3>
-            <p>Explorando la electricidad en nuestra vida diaria</p>
-            <a href="sesion1.html">Ver detalles de la sesión</a>
-        </div>
-        
-        <div class="session">
-            <h3>Sesión 2: Electricidad Estática</h3>
-            <p>Fenómenos y ejemplos cotidianos</p>
-            <a href="sesion2.html">Ver detalles de la sesión</a>
-        </div>
-        
-        <div class="session">
-            <h3>Sesión 3: Electricidad Dinámica</h3>
-            <p>El flujo de electrones en acción</p>
-            <a href="sesion3.html">Ver detalles de la sesión</a>
+        <div class="module-header">Módulo 1: Introducción a la Electricidad</div>
+        <div class="module-grid">
+            <a href="sesion1.html" class="session-card">
+                <h3>Sesión 1: ¿Qué es la electricidad?</h3>
+                <p>Explorando la electricidad en nuestra vida diaria</p>
+            </a>
+            <a href="sesion2.html" class="session-card">
+                <h3>Sesión 2: Electricidad Estática</h3>
+                <p>Fenómenos y ejemplos cotidianos</p>
+            </a>
+            <a href="sesion3.html" class="session-card">
+                <h3>Sesión 3: Electricidad Dinámica</h3>
+                <p>El flujo de electrones en acción</p>
+            </a>
         </div>
     </div>
 
     <div class="module">
-        <h2 class="module-title">Módulo 2: Fundamentos de la Carga Eléctrica</h2>
-        
-        <div class="session">
-            <h3>Sesión 4: Concepto de Carga Eléctrica</h3>
-            <p>Tipos y propiedades fundamentales</p>
-            <a href="sesion4.html">Ver detalles de la sesión</a>
-        </div>
-        
-        <div class="session">
-            <h3>Sesión 5: Experimentos con Cargas</h3>
-            <p>Actividades prácticas de identificación</p>
-            <a href="sesion5.html">Ver detalles de la sesión</a>
+        <div class="module-header">Módulo 2: Fundamentos de la Carga Eléctrica</div>
+        <div class="module-grid">
+            <a href="sesion4.html" class="session-card">
+                <h3>Sesión 4: Concepto de Carga Eléctrica</h3>
+                <p>Tipos y propiedades fundamentales</p>
+            </a>
+            <a href="sesion5.html" class="session-card">
+                <h3>Sesión 5: Experimentos con Cargas</h3>
+                <p>Actividades prácticas de identificación</p>
+            </a>
         </div>
     </div>
 
     <div class="module">
-        <h2 class="module-title">Módulo 3: Voltaje y Diferencia de Potencial</h2>
-        
-        <div class="session">
-            <h3>Sesión 6: Entendiendo el Voltaje</h3>
-            <p>Analogías y conceptos básicos</p>
-            <a href="sesion6.html">Ver detalles de la sesión</a>
-        </div>
-        
-        <div class="session">
-            <h3>Sesión 7: Medición de Voltaje</h3>
-            <p>Uso del multímetro y ejercicios</p>
-            <a href="sesion7.html">Ver detalles de la sesión</a>
+        <div class="module-header">Módulo 3: Voltaje y Diferencia de Potencial</div>
+        <div class="module-grid">
+            <a href="sesion6.html" class="session-card">
+                <h3>Sesión 6: Entendiendo el Voltaje</h3>
+                <p>Analogías y conceptos básicos</p>
+            </a>
+            <a href="sesion7.html" class="session-card">
+                <h3>Sesión 7: Medición de Voltaje</h3>
+                <p>Uso del multímetro y ejercicios</p>
+            </a>
         </div>
     </div>
 
     <div class="module">
-        <h2 class="module-title">Módulo 4: Corriente Eléctrica</h2>
-        
-        <div class="session">
-            <h3>Sesión 8: Concepto de Corriente Eléctrica</h3>
-            <p>Definición y unidades de medida</p>
-            <a href="sesion8.html">Ver detalles de la sesión</a>
-        </div>
-        
-        <div class="session">
-            <h3>Sesión 9: Tipos de Corriente</h3>
-            <p>Corriente continua vs. corriente alterna</p>
-            <a href="sesion9.html">Ver detalles de la sesión</a>
+        <div class="module-header">Módulo 4: Corriente Eléctrica</div>
+        <div class="module-grid">
+            <a href="sesion8.html" class="session-card">
+                <h3>Sesión 8: Concepto de Corriente Eléctrica</h3>
+                <p>Definición y unidades de medida</p>
+            </a>
+            <a href="sesion9.html" class="session-card">
+                <h3>Sesión 9: Tipos de Corriente</h3>
+                <p>Corriente continua vs. corriente alterna</p>
+            </a>
         </div>
     </div>
 
     <div class="module">
-        <h2 class="module-title">Módulo 5: Resistencia Eléctrica</h2>
-        
-        <div class="session">
-            <h3>Sesión 10: Fundamentos de la Resistencia</h3>
-            <p>Concepto y factores que la afectan</p>
-            <a href="sesion10.html">Ver detalles de la sesión</a>
-        </div>
-        
-        <div class="session">
-            <h3>Sesión 11: Código de Colores</h3>
-            <p>Identificación de resistencias</p>
-            <a href="sesion11.html">Ver detalles de la sesión</a>
+        <div class="module-header">Módulo 5: Resistencia Eléctrica</div>
+        <div class="module-grid">
+            <a href="sesion10.html" class="session-card">
+                <h3>Sesión 10: Fundamentos de la Resistencia</h3>
+                <p>Concepto y factores que la afectan</p>
+            </a>
+            <a href="sesion11.html" class="session-card">
+                <h3>Sesión 11: Código de Colores</h3>
+                <p>Identificación de resistencias</p>
+            </a>
         </div>
     </div>
 
     <div class="module">
-        <h2 class="module-title">Módulo 6: Ley de Ohm</h2>
-        
-        <div class="session">
-            <h3>Sesión 12: Introducción a la Ley de Ohm</h3>
-            <p>Explicación paso a paso</p>
-            <a href="sesion12.html">Ver detalles de la sesión</a>
-        </div>
-        
-        <div class="session">
-            <h3>Sesión 13: Ejercicios Prácticos</h3>
-            <p>Aplicación con valores reales</p>
-            <a href="sesion13.html">Ver detalles de la sesión</a>
+        <div class="module-header">Módulo 6: Ley de Ohm</div>
+        <div class="module-grid">
+            <a href="sesion12.html" class="session-card">
+                <h3>Sesión 12: Introducción a la Ley de Ohm</h3>
+                <p>Explicación paso a paso</p>
+            </a>
+            <a href="sesion13.html" class="session-card">
+                <h3>Sesión 13: Ejercicios Prácticos</h3>
+                <p>Aplicación con valores reales</p>
+            </a>
         </div>
     </div>
 
     <div class="module">
-        <h2 class="module-title">Módulo 7: Potencia y Energía Eléctrica</h2>
-        
-        <div class="session">
-            <h3>Sesión 14: Conceptos de Potencia Eléctrica</h3>
-            <p>Cálculos y aplicaciones</p>
-            <a href="sesion14.html">Ver detalles de la sesión</a>
-        </div>
-        
-        <div class="session">
-            <h3>Sesión 15: Consumo en Electrodomésticos</h3>
-            <p>Análisis de consumo energético</p>
-            <a href="sesion15.html">Ver detalles de la sesión</a>
+        <div class="module-header">Módulo 7: Potencia y Energía Eléctrica</div>
+        <div class="module-grid">
+            <a href="sesion14.html" class="session-card">
+                <h3>Sesión 14: Potencia Eléctrica</h3>
+                <p>Cálculos y aplicaciones</p>
+            </a>
+            <a href="sesion15.html" class="session-card">
+                <h3>Sesión 15: Electrodomésticos</h3>
+                <p>Análisis de consumo energético</p>
+            </a>
         </div>
     </div>
 
     <div class="module">
-        <h2 class="module-title">Módulo 8: Integración y Repaso</h2>
-        
-        <div class="session">
-            <h3>Sesión 16: Proyecto Final</h3>
-            <p>Aplicación integral de los conceptos aprendidos</p>
-            <a href="sesion16.html">Ver detalles de la sesión</a>
+        <div class="module-header">Módulo 8: Integración y Repaso</div>
+        <div class="module-grid">
+            <a href="sesion16.html" class="session-card" style="border-left-color: var(--accent-color);">
+                <h3 style="color: var(--accent-color);">Sesión 16: Proyecto Final</h3>
+                <p>Aplicación integral de los conceptos aprendidos</p>
+            </a>
         </div>
     </div>
 
-    <div class="additional-resources">
+    <div class="info-box">
         <h3>Recursos Adicionales</h3>
-        <p>Glosario de términos | Enlaces de interés | Bibliografía recomendada</p>
-        <a href="ley de coulomb.html">ley de coulomb</a>
-        <p class="coming-soon">(Estos enlaces estarán disponibles próximamente)</p>
+        <p>Material de apoyo para dominar la materia.</p>
+        <a href="ley de coulomb.html" class="btn">Estudiar la Ley de Coulomb</a>
     </div>
-    <footer>
-        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
 
 <!-- Firebase & Progress Tracker Inyectado Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
