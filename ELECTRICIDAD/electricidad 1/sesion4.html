@@ -3,310 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 4: Concepto de Carga Eléctrica - Conceptos Básicos de Electricidad</title>
+    <title>Sesión 4: Concepto de Carga Eléctrica - Conceptos Básicos</title>
     <link rel="stylesheet" href="../../global-lesson.css">
-    <style>
-        /* Estilos específicos para la sesión 4 */
-        .header {
-            background: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%);
-        }
-        .activity {
-            background-color: #f3e5f5;
-            border-left: 4px solid #7b1fa2;
-        }
-        h2 {
-            color: #7b1fa2;
-        }
-        .home-link {
-            background: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%);
-        }
-        .home-link:hover {
-            opacity: 0.9;
-        }
-        .tip {
-            background-color: #f3e5f5;
-            border-left: 4px solid #9c27b0;
-        }
-        .charge-positive {
-            fill: #f44336;
-            animation: pulse-positive 2s infinite;
-        }
-        .charge-negative {
-            fill: #2196f3;
-            animation: pulse-negative 2s infinite 0.5s;
-        }
-        @keyframes pulse-positive {
-            0% { r: 8; }
-            50% { r: 10; }
-            100% { r: 8; }
-        }
-        @keyframes pulse-negative {
-            0% { r: 8; }
-            50% { r: 10; }
-            100% { r: 8; }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <a href="index.html" class="home-link">← Volver al índice</a>
-    
-    <div class="header">
-        <h1>Concepto de Carga Eléctrica</h1>
-        <p>Sesión 4 - Módulo 2: Fundamentos de la Carga Eléctrica</p>
+
+<main class="page-container">
+    <!-- Navegación Superior -->
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <!-- Encabezado de la Sesión -->
+    <div class="sesion-header">
+        <h1 class="sesion-title">Concepto de Carga Eléctrica</h1>
+        <p class="sesion-subtitle">Sesión 4 - Módulo 2: Fundamentos de la Carga Eléctrica</p>
     </div>
 
-    <div class="section">
-        <h2>Objetivo específico</h2>
-        <p>Comprender el concepto de carga eléctrica, sus tipos y las leyes que rigen su comportamiento, identificando ejemplos en fenómenos cotidianos.</p>
+    <!-- Objetivo -->
+    <div class="info-box">
+        <strong><i class="fas fa-bullseye"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Comprender el concepto fundamental de "Carga Eléctrica", entender por qué las cosas se atraen o se repelen a nivel invisible, y ver la magia de la polarización en la vida real.</p>
+    </div>
+
+    <!-- Contenido Teórico (Bloque 1) -->
+    <div class="teoria-section">
+        <h2>La Ley Universal de las Cargas</h2>
+        <p>Todo en el universo está hecho de átomos, y esos átomos tienen partículas con una propiedad especial llamada <strong>Carga Eléctrica</strong>. Es como una etiqueta invisible que dicta cómo van a interactuar con otras partículas.</p>
         
-        <div class="svg-container">
-            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                <rect width="400" height="200" fill="#f9f2ff"/>
-                
-                <!-- Átomo con cargas -->
-                <circle cx="200" cy="100" r="40" fill="none" stroke="#9c27b0" stroke-width="2"/>
-                <circle cx="200" cy="100" r="10" fill="#9c27b0"/>
-                
-                <!-- Cargas positivas (protones) -->
-                <circle class="charge-positive" cx="170" cy="70" r="8"/>
-                <circle class="charge-positive" cx="230" cy="130" r="8"/>
-                
-                <!-- Cargas negativas (electrones) -->
-                <circle class="charge-negative" cx="230" cy="70" r="8"/>
-                <circle class="charge-negative" cx="170" cy="130" r="8"/>
-                
-                <!-- Leyenda -->
-                <circle cx="100" cy="40" r="8" fill="#f44336"/>
-                <text x="115" y="45" font-size="14">Carga positiva (+)</text>
-                
-                <circle cx="100" cy="70" r="8" fill="#2196f3"/>
-                <text x="115" y="75" font-size="14">Carga negativa (-)</text>
-                
-                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Átomo con Cargas Eléctricas</text>
-            </svg>
+        <div class="didactic-example">
+            <span class="didactic-title"><i class="fas fa-magnet"></i> La Regla de Oro del Electromagnetismo</span>
+            <p>Solo existen dos tipos de cargas en todo el universo:</p>
+            <ul>
+                <li><strong>Carga Positiva (+)</strong>: La tienen los Protones en el centro del átomo.</li>
+                <li><strong>Carga Negativa (-)</strong>: La tienen los Electrones girando alrededor.</li>
+            </ul>
+            <p>El comportamiento de estas cargas sigue una regla de oro inquebrantable que gobierna toda la tecnología y química moderna: <strong>Las cargas opuestas se atraen violentamente, y las cargas iguales se rechazan.</strong></p>
         </div>
+
+        <!-- Infografía Generada por IA con Overlays en Español -->
+        <div class="image-overlay-container" style="display: block; width: 100%; max-width: 600px;">
+            <img src="assets/img/charge_attraction_repulsion.png" alt="Esferas de energía abstracta mostrando repulsión entre cargas iguales y atracción entre opuestas">
+            <div class="overlay-label" style="top: 25%; left: 30%; background: rgba(2, 132, 199, 0.9);">Carga Negativa (-)</div>
+            <div class="overlay-label" style="top: 25%; left: 70%; background: rgba(2, 132, 199, 0.9);">Carga Negativa (-)</div>
+            <div class="overlay-label" style="top: 50%; left: 50%; background: rgba(139, 92, 246, 0.9);">Fuerza de Repulsión</div>
+            <div class="overlay-label" style="top: 75%; left: 30%; background: rgba(239, 68, 68, 0.9);">Carga Positiva (+)</div>
+            <div class="overlay-label" style="top: 75%; left: 70%; background: rgba(2, 132, 199, 0.9);">Carga Negativa (-)</div>
+        </div>
+        <p class="fig-caption">Fig 1. Interacción de campos eléctricos. Arriba: Dos cargas negativas empujándose (repulsión). Abajo: Una carga positiva y una negativa atrayéndose magnéticamente.</p>
     </div>
 
-    <div class="section">
-        <h2>Contenido teórico</h2>
-        <p>La carga eléctrica es una propiedad física intrínseca de algunas partículas subatómicas que se manifiesta mediante fuerzas de atracción y repulsión. Existen dos tipos de cargas: positiva (protones) y negativa (electrones). Las cargas iguales se repelen y las cargas opuestas se atraen.</p>
-        
-        <div class="svg-container">
-            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                <rect width="400" height="200" fill="#f9f2ff"/>
-                
-                <!-- Cargas que se repelen -->
-                <circle cx="100" cy="100" r="25" fill="#f44336" fill-opacity="0.2" stroke="#f44336" stroke-width="2"/>
-                <text x="100" y="105" text-anchor="middle" fill="#f44336" font-weight="bold" font-size="20">+</text>
-                
-                <circle cx="200" cy="100" r="25" fill="#f44336" fill-opacity="0.2" stroke="#f44336" stroke-width="2">
-                    <animate attributeName="cx" values="200;220;200" dur="3s" repeatCount="indefinite"/>
-                </circle>
-                <text x="200" y="105" text-anchor="middle" fill="#f44336" font-weight="bold" font-size="20">+</text>
-                
-                <!-- Flechas de repulsión -->
-                <path d="M125 100 L145 100" stroke="#f44336" stroke-width="2" marker-end="url(#arrow-repel)">
-                    <animate attributeName="d" values="M125 100 L145 100; M135 100 L155 100; M125 100 L145 100" dur="3s" repeatCount="indefinite"/>
-                </path>
-                
-                <!-- Cargas que se atraen -->
-                <circle cx="300" cy="100" r="25" fill="#2196f3" fill-opacity="0.2" stroke="#2196f3" stroke-width="2">
-                    <animate attributeName="cx" values="300;280;300" dur="3s" repeatCount="indefinite"/>
-                </circle>
-                <text x="300" y="105" text-anchor="middle" fill="#2196f3" font-weight="bold" font-size="20">-</text>
-                
-                <circle cx="400" cy="100" r="25" fill="#f44336" fill-opacity="0.2" stroke="#f44336" stroke-width="2">
-                    <animate attributeName="cx" values="400;380;400" dur="3s" repeatCount="indefinite"/>
-                </circle>
-                <text x="400" y="105" text-anchor="middle" fill="#f44336" font-weight="bold" font-size="20">+</text>
-                
-                <!-- Flecha de atracción -->
-                <path d="M375 100 L355 100" stroke="#9c27b0" stroke-width="2" marker-end="url(#arrow-attract)">
-                    <animate attributeName="d" values="M375 100 L355 100; M385 100 L365 100; M375 100 L355 100" dur="3s" repeatCount="indefinite"/>
-                </path>
-                
-                <defs>
-                    <marker id="arrow-repel" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                        <path d="M0,0 L0,6 L9,3 z" fill="#f44336"/>
-                    </marker>
-                    <marker id="arrow-attract" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
-                        <path d="M9,0 L9,6 L0,3 z" fill="#9c27b0"/>
-                    </marker>
-                </defs>
-                
-                <text x="150" y="50" text-anchor="middle" font-weight="bold" font-size="14">Cargas iguales se repelen</text>
-                <text x="350" y="50" text-anchor="middle" font-weight="bold" font-size="14">Cargas opuestas se atraen</text>
-            </svg>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Ejemplo ilustrativo</h2>
-        <p>Imagina que las cargas eléctricas son como imanes. Los polos iguales de dos imanes se repelen (norte con norte o sur con sur), mientras que los polos opuestos se atraen (norte con sur). De manera similar, las cargas eléctricas del mismo signo se repelen, mientras que las de signo opuesto se atraen.</p>
-        
-        <div class="svg-container">
-            <svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                <rect width="400" height="250" fill="#f9f2ff"/>
-                
-                <!-- Imanes que se repelen -->
-                <rect x="50" y="80" width="80" height="30" rx="5" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="2"/>
-                <text x="90" y="100" text-anchor="middle" font-weight="bold" font-size="14">N</text>
-                <text x="90" y="140" text-anchor="middle" font-size="12">Norte con Norte</text>
-                
-                <rect x="50" y="130" width="80" height="30" rx="5" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="2">
-                    <animate attributeName="y" values="130;140;130" dur="3s" repeatCount="indefinite"/>
-                </rect>
-                <text x="90" y="150" text-anchor="middle" font-weight="bold" font-size="14">N</text>
-                
-                <!-- Flechas de repulsión -->
-                <path d="M90 110 L90 130" stroke="#f44336" stroke-width="2" marker-end="url(#arrow-down)">
-                    <animate attributeName="d" values="M90 110 L90 130; M90 115 L90 135; M90 110 L90 130" dur="3s" repeatCount="indefinite"/>
-                </path>
-                
-                <!-- Imanes que se atraen -->
-                <rect x="270" y="80" width="80" height="30" rx="5" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="2"/>
-                <text x="310" y="100" text-anchor="middle" font-weight="bold" font-size="14">N</text>
-                
-                <rect x="270" y="150" width="80" height="30" rx="5" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="2">
-                    <animate attributeName="y" values="150;140;150" dur="3s" repeatCount="indefinite"/>
-                </rect>
-                <text x="310" y="170" text-anchor="middle" font-weight="bold" font-size="14">S</text>
-                <text x="310" y="210" text-anchor="middle" font-size="12">Norte con Sur</text>
-                
-                <!-- Flecha de atracción -->
-                <path d="M310 110 L310 150" stroke="#4caf50" stroke-width="2" marker-end="url(#arrow-down)">
-                    <animate attributeName="d" values="M310 110 L310 150; M310 115 L310 155; M310 110 L310 150" dur="3s" repeatCount="indefinite"/>
-                </path>
-                
-                <defs>
-                    <marker id="arrow-down" markerWidth="10" markerHeight="10" refX="5" refY="9" orient="auto">
-                        <path d="M0,0 L10,5 L0,10 z" fill="#f44336"/>
-                    </marker>
-                </defs>
-                
-                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Analogía con Imanes</text>
-                <text x="90" y="180" text-anchor="middle" font-size="12">Se repelen</text>
-                <text x="310" y="180" text-anchor="middle" font-size="12">Se atraen</text>
-            </svg>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Actividad práctica</h2>
-        <div class="activity">
-            <h3>Experimento: Cargas en Acción</h3>
-            <p><strong>Materiales:</strong> Un globo, un trozo de tela de lana, pequeños trozos de papel.</p>
+    <!-- Bloque 2: Actividad Práctica -->
+    <div class="practica-section">
+        <h2>Doblando el Agua con Electricidad</h2>
+        <div class="actividad">
+            <h3><i class="fas fa-hand-sparkles"></i> Experimento: El Rayo Tractor</h3>
+            <p>Podemos usar la regla de oro de las cargas para hacer levitar cosas o incluso desviar la caída del agua. A este "truco de magia" la ciencia lo llama <strong>Polarización</strong>.</p>
+            <p><strong>Materiales:</strong> Un globo inflado y la llave del lavabo.</p>
             <ol>
-                <li>Infla el globo y haz un nudo.</li>
-                <li>Frota el globo con la tela de lana durante 30 segundos.</li>
-                <li>Acerca el globo a los trozos de papel y observa qué sucede.</li>
-                <li>Ahora acerca el globo a un chorro de agua delgado y observa.</li>
+                <li>Abre la llave del agua para que caiga un hilo de agua lo más delgado posible (sin que gotee).</li>
+                <li>Frota vigorosamente el globo contra tu cabello o ropa seca durante 15 segundos para robarle electrones (cargarlo negativamente).</li>
+                <li>Acerca el globo lentamente al hilo de agua, sin llegar a tocarlo.</li>
+                <li>¡Observa cómo el agua desafía la gravedad y se curva hacia el globo!</li>
             </ol>
             
-            <div class="svg-container">
-                <svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="400" height="250" fill="#f9f2ff"/>
-                    
-                    <!-- Globo -->
-                    <circle cx="200" cy="100" r="50" fill="#ffcdd2" stroke="#f44336" stroke-width="2"/>
-                    <path d="M200 150 L200 200" stroke="#f44336" stroke-width="2" stroke-dasharray="3,3"/>
-                    <rect x="195" y="200" width="10" height="20" rx="2" fill="#f44336"/>
-                    
-                    <!-- Cargas en el globo -->
-                    <circle cx="180" cy="90" r="4" fill="#2196f3">
-                        <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="210" cy="110" r="4" fill="#2196f3">
-                        <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="0.3s"/>
-                    </circle>
-                    
-                    <!-- Papeles siendo atraídos -->
-                    <rect x="270" y="150" width="20" height="10" rx="2" fill="#fff" stroke="#9e9e9e" stroke-width="1">
-                        <animate attributeName="y" values="150;140;150" dur="3s" repeatCount="indefinite"/>
-                        <animate attributeName="x" values="270;250;270" dur="3s" repeatCount="indefinite"/>
-                    </rect>
-                    
-                    <rect x="290" y="160" width="15" height="8" rx="2" fill="#fff" stroke="#9e9e9e" stroke-width="1">
-                        <animate attributeName="y" values="160;150;160" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
-                        <animate attributeName="x" values="290;260;290" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
-                    </rect>
-                    
-                    <!-- Agua desviándose -->
-                    <path d="M100 50 L100 100" stroke="#2196f3" stroke-width="3" fill="none"/>
-                    <path d="M100 100 Q110 120 90 130" stroke="#2196f3" stroke-width="3" fill="none">
-                        <animate attributeName="d" values="M100 100 Q110 120 90 130; M100 100 Q115 120 85 130; M100 100 Q110 120 90 130" dur="3s" repeatCount="indefinite"/>
-                    </path>
-                    
-                    <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Experimento de Carga por Frotamiento</text>
-                    <text x="100" y="40" text-anchor="middle" font-size="12">Agua</text>
-                    <text x="300" y="140" text-anchor="middle" font-size="12">Papel</text>
-                </svg>
+            <div class="image-overlay-container" style="display: block; width: 100%; max-width: 500px; margin-top: 1.5rem;">
+                <img src="assets/img/balloon_polarization.png" alt="Un globo rojo desviando un chorro de agua debido a la electricidad estática">
+                <div class="overlay-label" style="top: 50%; left: 75%; background: rgba(239, 68, 68, 0.9);">Globo Cargado (-)</div>
+                <div class="overlay-label" style="top: 80%; left: 35%; background: rgba(2, 132, 199, 0.9);">Agua Polarizada (+)</div>
+                <div class="overlay-label" style="top: 50%; left: 50%; background: rgba(139, 92, 246, 0.9);">Atracción Invisible</div>
             </div>
-            
-            <div class="tip">
-                <strong>¿Qué está pasando?</strong> Al frotar el globo con la lana, éste adquiere carga eléctrica estática. Esta carga puede atraer objetos pequeños y ligeros, como trozos de papel, o desviar un chorro de agua, demostrando las fuerzas eléctricas en acción.
+
+            <div class="tip" style="margin-top: 1.5rem;">
+                <strong>¿Qué pasó realmente?</strong> El agua es neutra, pero sus moléculas pueden girar. Al acercar el globo súper negativo (-), los electrones del agua huyen asustados al lado contrario, dejando expuesta su parte positiva (+). Como "positivo atrae negativo", el globo jala físicamente el agua hacia él. A esto se le llama inducir una carga por polarización.
             </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Pregunta de reflexión</h2>
-        <p>¿Por qué crees que los trozos de papel son atraídos por el globo cargado, incluso si el papel es neutro (sin carga neta)? ¿Cómo se relaciona esto con el concepto de polarización de cargas?</p>
-        
-        <div class="svg-container">
-            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                <rect width="400" height="200" fill="#f9f2ff"/>
-                
-                <!-- Globo cargado -->
-                <circle cx="100" cy="100" r="30" fill="#ffcdd2" stroke="#f44336" stroke-width="2"/>
-                <text x="100" y="105" text-anchor="middle" font-weight="bold" font-size="16">- - -</text>
-                
-                <!-- Papel polarizado -->
-                <rect x="200" y="80" width="100" height="40" rx="3" fill="#fff" stroke="#9e9e9e" stroke-width="1"/>
-                
-                <!-- Cargas en el papel -->
-                <circle cx="210" cy="90" r="4" fill="#f44336"/>
-                <circle cx="225" cy="90" r="4" fill="#f44336"/>
-                <circle cx="290" cy="90" r="4" fill="#2196f3"/>
-                <circle cx="275" cy="90" r="4" fill="#2196f3"/>
-                
-                <!-- Flechas explicativas -->
-                <path d="M130 100 L195 100" stroke="#9c27b0" stroke-width="2" stroke-dasharray="3,2"/>
-                <text x="160" y="95" text-anchor="middle" font-size="12">Atracción</text>
-                
-                <path d="M210 120 L210 150" stroke="#9c27b0" stroke-width="2" stroke-dasharray="3,2">
-                    <animate attributeName="y2" values="150;155;150" dur="2s" repeatCount="indefinite"/>
-                </path>
-                <text x="230" y="140" text-anchor="middle" font-size="10">Cargas positivas</text>
-                
-                <path d="M290 120 L290 150" stroke="#9c27b0" stroke-width="2" stroke-dasharray="3,2">
-                    <animate attributeName="y2" values="150;145;150" dur="2s" repeatCount="indefinite"/>
-                </path>
-                <text x="310" y="140" text-anchor="middle" font-size="10">Cargas negativas</text>
-                
-                <text x="250" y="50" text-anchor="middle" font-weight="bold" font-size="14">Polarización de Cargas</text>
-                <text x="250" y="70" text-anchor="middle" font-size="12">El campo eléctrico del globo separa las cargas en el papel</text>
-            </svg>
-        </div>
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Cuáles son los únicos dos tipos de carga eléctrica que existen en la naturaleza?",
+                "options": [
+                    "Neutrones y Fotones.",
+                    "Positiva y Negativa.",
+                    "Fuerte y Débil.",
+                    "Estática y Dinámica."
+                ],
+                "correctIndex": 1,
+                "explanation": "Toda la materia está compuesta de átomos con electrones (carga negativa) y protones (carga positiva)."
+            },
+            {
+                "question": "¿Qué ocurre cuando acercas dos objetos que tienen la MISMA carga (ej. los dos son negativos)?",
+                "options": [
+                    "Se atraen fuertemente.",
+                    "Se repelen o empujan entre sí.",
+                    "Se cancelan y desaparecen.",
+                    "No ocurre nada."
+                ],
+                "correctIndex": 1,
+                "explanation": "La regla universal es que cargas iguales se rechazan, mientras que cargas opuestas se atraen."
+            },
+            {
+                "question": "En el experimento del agua, ¿por qué frotamos el globo en el cabello primero?",
+                "options": [
+                    "Para calentarlo con fricción.",
+                    "Para limpiar la superficie del globo.",
+                    "Para robar electrones del cabello y dejar el globo con una carga neta negativa.",
+                    "Para que el agua pueda verlo mejor."
+                ],
+                "correctIndex": 2,
+                "explanation": "La fricción rompe enlaces débiles y arranca electrones del cabello, transfiriéndolos al globo."
+            },
+            {
+                "question": "¿Por qué el agua (que es neutra) se dobla hacia el globo negativo?",
+                "options": [
+                    "Por el viento creado por el globo.",
+                    "Por la gravedad de la tierra.",
+                    "Por el magnetismo de la tubería metálica.",
+                    "Por polarización: los electrones del agua son repelidos, dejando una cara positiva que es atraída por el globo."
+                ],
+                "correctIndex": 3,
+                "explanation": "Las moléculas de agua giran, alejando sus lados negativos del globo, lo que expone su cara positiva hacia el globo, creando una fuerza de atracción neta."
+            },
+            {
+                "question": "¿Qué partícula es la que realmente 'viaja' de un objeto a otro para cambiar su carga neta?",
+                "options": [
+                    "El Protón.",
+                    "El Electrón.",
+                    "El Núcleo completo.",
+                    "El Fotón de luz."
+                ],
+                "correctIndex": 1,
+                "explanation": "Los protones están encerrados profundamente en el núcleo atómico. Solo los electrones exteriores son lo suficientemente libres para viajar entre objetos al ser frotados."
+            }
+        ]
+        </script>
     </div>
 
-    <div class="navigation-footer">
-        <a href="index.html" class="home-link">← Volver al índice</a>
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion3.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion5.html" class="nav-btn next">Siguiente Sesión (Voltaje) <i class="fas fa-arrow-right"></i></a>
     </div>
-    <footer>
-        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion4');
+          window.markLessonCompleted('electricidad1', 'sesion4');
       }
   });
 </script>
