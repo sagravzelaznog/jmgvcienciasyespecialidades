@@ -3,370 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 12: Motores Eléctricos II | Control y Aplicaciones Avanzadas</title>
+    <title>Sesión 12: Motores II - Control y Variadores de Frecuencia</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .control-methods {
+        .control-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
+
         .control-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            transition: all 0.3s ease;
-        }
-        .control-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .troubleshooting-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        .troubleshooting-table th, 
-        .troubleshooting-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        .troubleshooting-table th {
-            background-color: #f2f2f2;
-        }
-        .troubleshooting-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .warning-note {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 15px 0;
-        }
-        .hidden-solution {
-            display: none;
-        }
-        .maintenance-checklist {
-            background-color: #e8f4f8;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-        .maintenance-checklist h4 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        .interactive-diagram {
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
             text-align: center;
+            box-shadow: var(--shadow-soft);
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .control-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .control-card ul {
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding-left: 1.5rem;
+        }
+
+        /* VFD Simulator */
+        .vfd-sim {
+            background: #1a252f;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .vfd-panel {
+            background: #34495e;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            border: 2px solid #7f8c8d;
+        }
+
+        .vfd-screen {
+            background: #27ae60;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2rem;
+            text-align: right;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .vfd-screen small {
+            font-size: 0.8rem;
+            display: block;
+            color: #e8f8f5;
+        }
+
+        .vfd-slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .motor-display {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+        .motor-body {
+            position: absolute;
+            top: 20px; left: 20px;
+            width: 160px; height: 160px;
+            background: #7f8c8d;
+            border-radius: 50%;
+            border: 10px solid #95a5a6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .motor-fan {
+            width: 120px; height: 120px;
+            background: repeating-conic-gradient(
+                from 0deg,
+                #34495e 0deg 30deg,
+                #2c3e50 30deg 60deg
+            );
+            border-radius: 50%;
+            border: 5px solid #2c3e50;
+        }
+
+        /* Animation class to be applied via JS */
+        .spinning {
+            animation: spin linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .metric-box {
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .metric-val {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f1c40f;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sesión 12: Motores Eléctricos II</h1>
-            <p>Control avanzado, mantenimiento y aplicaciones industriales</p>
-        </div>
-    </header>
 
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Motores Eléctricos II: Control Avanzado</h1>
+        <p class="sesion-subtitle">Sesión 12 - Módulo 6: Domando a la Bestia</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-microchip"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrirás cómo la electrónica moderna (VFDs y Arrancadores Suaves) nos permite controlar la velocidad de un motor industrial sin perder fuerza, ahorrando miles de dólares en energía eléctrica.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>¿Por qué controlar un motor?</h2>
+        <p>Un motor conectado directo a la corriente (Arranque Directo) sufre un <strong>golpe eléctrico y mecánico</strong> tremendo. Absorbe hasta 7 veces más corriente de la normal al arrancar y gira siempre a la misma velocidad máxima. Para procesos delicados (como embotelladoras o bombas de agua), esto es inaceptable.</p>
         
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Al finalizar esta sesión, los estudiantes podrán implementar sistemas de control para motores eléctricos, realizar mantenimiento preventivo y correctivo, y seleccionar el motor adecuado para aplicaciones industriales específicas.</p>
-            </div>
-
-            <div class="theory">
-                <h2>Contenido teórico</h2>
-                
-                <div class="concept-box">
-                    <h3>Sistemas de control para motores eléctricos</h3>
-                    <div class="control-methods">
-                        <div class="control-card">
-                            <h4>Control por Variador de Frecuencia (VFD)</h4>
-                            <ul>
-                                <li>Principio de funcionamiento</li>
-                                <li>Ventajas sobre métodos convencionales</li>
-                                <li>Aplicaciones típicas</li>
-                                <li>Parámetros de configuración clave</li>
-                            </ul>
-                        </div>
-                        <div class="control-card">
-                            <h4>Arrancadores Suaves</h4>
-                            <ul>
-                                <li>Reducción de corriente de arranque</li>
-                                <li>Tipos: Electrónicos y electromecánicos</li>
-                                <li>Configuración de rampas</li>
-                                <li>Protecciones incorporadas</li>
-                            </ul>
-                        </div>
-                        <div class="control-card">
-                            <h4>Control por PLC</h4>
-                            <ul>
-                                <li>Integración con automatización</li>
-                                <li>Programación de secuencias</li>
-                                <li>Monitoreo remoto</li>
-                                <li>Comunicación industrial</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="concept-box">
-                    <h3>Mantenimiento predictivo y preventivo</h3>
-                    <div class="maintenance-checklist">
-                        <h4>Checklist de mantenimiento</h4>
-                        <ul>
-                            <li>Análisis de vibraciones</li>
-                            <li>Termografía infrarroja</li>
-                            <li>Análisis de aceite (en motores con engranajes)</li>
-                            <li>Pruebas de aislamiento</li>
-                            <li>Medición de corriente y tensión</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="visual-example">
-                <h2>Analogía: El sistema de control como director de orquesta</h2>
-                <div class="analogy">
-                    <p>Imagina un sistema de control de motores como un director de orquesta:</p>
-                    <ul>
-                        <li><strong>Director (Controlador)</strong> → Decide cuándo y cómo debe actuar cada instrumento</li>
-                        <li><strong>Músicos (Motores)</strong> → Ejecutan las acciones según las indicaciones</li>
-                        <li><strong>Partituras (Programación)</strong> → Secuencia de operaciones a seguir</li>
-                        <li><strong>Afina tu oído (Sensores)</strong> → Retroalimentación para ajustar el rendimiento</li>
-                        <li><strong>Ensayo general (Pruebas)</strong> → Verificación del sistema antes de la operación real</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="practical-activity">
-                <h2>Actividad práctica: Implementación de control de motor</h2>
-                
-                <div class="warning-note">
-                    <h4>¡Importante! Medidas de seguridad</h4>
-                    <ul>
-                        <li>Desconectar siempre la alimentación antes de realizar conexiones</li>
-                        <li>Usar equipo de protección personal adecuado</li>
-                        <li>Verificar que el voltaje de alimentación coincida con las especificaciones</li>
-                        <li>Trabajar en áreas bien iluminadas y secas</li>
-                    </ul>
-                </div>
-
-                <h3>Materiales necesarios:</h3>
+        <div class="control-grid">
+            <div class="control-card">
+                <i class="fas fa-wave-square"></i>
+                <h3>Variador de Frecuencia (VFD)</h3>
+                <p>El rey del control. Modifica la frecuencia (Hz) de la corriente alterna.</p>
                 <ul>
-                    <li>Motor trifásico de inducción (0.5 - 1 HP)</li>
-                    <li>Variador de frecuencia (VFD)</li>
-                    <li>PLC básico (opcional)</li>
-                    <li>Multímetro digital</li>
-                    <li>Pinza amperimétrica</li>
-                    <li>Cables de conexión</li>
-                    <li>Interruptores y botones de control</li>
+                    <li>Si le bajas los Hz, el motor gira más lento.</li>
+                    <li>Mantiene el "Torque" (fuerza) intacto a bajas revoluciones.</li>
+                    <li>Permite arranques y paradas suaves.</li>
+                    <li>Ahorra hasta un 40% de energía en ventiladores.</li>
                 </ul>
-
-                <h3>Procedimiento:</h3>
-                <ol>
-                    <li><strong>Conexión básica del VFD</strong>
-                        <ul>
-                            <li>Identificar terminales de alimentación y salida al motor</li>
-                            <li>Realizar conexiones eléctricas seguras</li>
-                            <li>Configurar parámetros básicos (frecuencia, rampas, etc.)</li>
-                        </ul>
-                    </li>
-                    <li><strong>Pruebas de funcionamiento</strong>
-                        <ul>
-                            <li>Arranque/parada suave</li>
-                            <li>Control de velocidad</li>
-                            <li>Cambio de sentido de giro</li>
-                        </ul>
-                    </li>
-                    <li><strong>Mediciones y registro</strong>
-                        <ul>
-                            <li>Corriente en vacío y a plena carga</li>
-                            <li>Tensión de salida del VFD</li>
-                            <li>Temperatura del motor</li>
-                        </ul>
-                    </li>
-                </ol>
-
-                <div class="troubleshooting">
-                    <h3>Tabla de solución de problemas</h3>
-                    <table class="troubleshooting-table">
-                        <tr>
-                            <th>Problema</th>
-                            <th>Causa probable</th>
-                            <th>Solución</th>
-                        </tr>
-                        <tr>
-                            <td>Motor no arranca</td>
-                            <td>Falta de alimentación, protección activada</td>
-                            <td>Verificar alimentación, revisar protecciones</td>
-                        </tr>
-                        <tr>
-                            <td>Sobrecalentamiento</td>
-                            <td>Sobrecarga, ventilación insuficiente</td>
-                            <td>Reducir carga, limpiar rejillas de ventilación</td>
-                        </tr>
-                        <tr>
-                            <td>Ruidos anormales</td>
-                            <td>Rodamientos desgastados, desalineación</td>
-                            <td>Revisar rodamientos, alinear acoplamientos</td>
-                        </tr>
-                        <tr>
-                            <td>Vibración excesiva</td>
-                            <td>Desequilibrio, base floja</td>
-                            <td>Balancear rotor, apretar tornillos de fijación</td>
-                        </tr>
-                    </table>
-                </div>
             </div>
-
-            <div class="case-study">
-                <h2>Estudio de caso: Modernización de sistema de bombeo</h2>
-                <div class="case-content">
-                    <p><strong>Escenario:</strong> Una planta de tratamiento de agua necesita actualizar su sistema de bombeo. Actualmente utilizan arrancadores directos que causan picos de corriente y desgaste mecánico prematuro.</p>
-                    
-                    <div class="case-tasks">
-                        <p><strong>Tareas:</strong></p>
-                        <ol>
-                            <li>Analizar el sistema actual y sus problemas</li>
-                            <li>Proponer una solución con control de motores</li>
-                            <li>Calcular el ahorro energético esperado</li>
-                            <li>Elaborar un plan de implementación</li>
-                        </ol>
-                    </div>
-
-                    <div class="solucion">
-                        <button class="btn" onclick="toggleSolucion()">Mostrar solución</button>
-                        <div id="solucion" class="hidden-solution">
-                            <h4>Solución propuesta:</h4>
-                            <ol>
-                                <li><strong>Análisis del sistema actual:</strong>
-                                    <ul>
-                                        <li>Arrancadores directos causan picos de corriente</li>
-                                        <li>Consumo energético ineficiente</li>
-                                        <li>Alto mantenimiento por estrés mecánico</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Solución propuesta:</strong>
-                                    <ul>
-                                        <li>Instalación de variadores de frecuencia</li>
-                                        <li>Sistema de control por presión</li>
-                                        <li>Protecciones mejoradas</li>
-                                        <li>Monitoreo remoto</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Ahorro estimado:</strong>
-                                    <ul>
-                                        <li>Reducción de consumo energético: 25-40%</li>
-                                        <li>Menor mantenimiento: 30% de reducción</li>
-                                        <li>Mayor vida útil de los equipos</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Plan de implementación:</strong>
-                                    <ul>
-                                        <li>Fase 1: Análisis detallado (1 semana)</li>
-                                        <li>Fase 2: Instalación (2 semanas)</li>
-                                        <li>Fase 3: Puesta en marcha y pruebas (1 semana)</li>
-                                        <li>Fase 4: Capacitación y documentación (3 días)</li>
-                                    </ul>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>Considerando la tendencia hacia la Industria 4.0, ¿cómo podrían integrarse los sistemas de control de motores con tecnologías emergentes como IoT, inteligencia artificial y análisis de datos predictivos para crear fábricas más eficientes y sostenibles?</p>
-                <textarea placeholder="Escribe tus reflexiones aquí..."></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos visuales sugeridos</h2>
-                <div class="resource-list">
-                    <div class="resource">
-                        <h3>Simulador de VFD</h3>
-                        <p>Herramienta interactiva para configurar y probar diferentes parámetros de variadores de frecuencia.</p>
-                        <p><strong>Formato:</strong> Aplicación web responsive</p>
-                    </div>
-                    <div class="resource">
-                        <h3>Guía de mantenimiento predictivo</h3>
-                        <p>Infografía interactiva mostrando técnicas de mantenimiento predictivo con ejemplos prácticos.</p>
-                        <p><strong>Formatos:</strong> PDF interactivo, versión impresa A2</p>
-                    </div>
-                    <div class="resource">
-                        <h3>Modelos 3D de sistemas de control</h3>
-                        <p>Modelos descargables de gabinetes de control, VFDs y sistemas de automatización.</p>
-                        <p><strong>Formatos:</strong> STEP, STL (compatibles con CNC e impresión 3D)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="session-navigation">
-            <a href="sesion11.html" class="btn">← Sesión anterior</a>
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion13.html" class="btn">Próxima sesión →</a>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
-
-    <script>
-        function toggleSolucion() {
-            var solucion = document.getElementById('solucion');
-            solucion.classList.toggle('hidden-solution');
-            event.target.textContent = solucion.classList.contains('hidden-solution') ? 
-                'Mostrar solución' : 'Ocultar solución';
-        }
-
-        // Función para simular cálculo de ahorro energético
-        function calcularAhorro() {
-            const potencia = parseFloat(prompt('Ingrese la potencia del motor (HP):'));
-            const horas = parseFloat(prompt('Horas de operación diarias:'));
-            const costoKwh = parseFloat(prompt('Costo del kWh ($):'));
             
-            if (potencia && horas && costoKwh) {
-                const consumoAnual = potencia * 0.746 * horas * 365; // kWh/año
-                const ahorroMin = consumoAnual * 0.25; // 25% de ahorro mínimo
-                const ahorroMax = consumoAnual * 0.40; // 40% de ahorro máximo
-                const ahorroAnualMin = ahorroMin * costoKwh;
-                const ahorroAnualMax = ahorroMax * costoKwh;
-                
-                alert(`Ahorro energético estimado:\n` +
-                      `- Porcentaje: 25% a 40%\n` +
-                      `- Ahorro anual: $${ahorroAnualMin.toFixed(2)} - $${ahorroAnualMax.toFixed(2)}\n` +
-                      `- Retorno de inversión: 12-24 meses`);
-            } else {
-                alert('Por favor ingrese valores válidos');
-            }
-        }
-    </script>
+            <div class="control-card">
+                <i class="fas fa-tachometer-alt"></i>
+                <h3>Arrancador Suave (Soft Starter)</h3>
+                <p>Una alternativa más económica si solo te importa el momento de encendido.</p>
+                <ul>
+                    <li>Sube el voltaje poco a poco al arrancar.</li>
+                    <li>Evita que las bandas se rompan o que el agua golpee las tuberías (Golpe de Ariete).</li>
+                    <li>No controla la velocidad una vez que el motor ya arrancó.</li>
+                </ul>
+            </div>
+        </div>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+        <div class="danger-box">
+            <h3><i class="fas fa-exclamation-triangle"></i> El Problema del Enfriamiento</h3>
+            <p>Precaución: Cuando usas un VFD para hacer que un motor gire muy lento (ej. 10 Hz), su ventilador interno también girará muy lento. Si le exiges mucha fuerza a esa velocidad, el motor se quemará por falta de ventilación. En esos casos se requiere instalar un ventilador eléctrico independiente.</p>
+        </div>
+    </div>
+
+    <div class="practica-section">
+        <h2>Simulador de Variador de Frecuencia (VFD)</h2>
+        <p>Ajusta el potenciómetro deslizable en el panel de control. Observa cómo cambia la frecuencia en Hertz (Hz), lo que afecta directamente las RPM del motor y su consumo de corriente.</p>
+
+        <div class="vfd-sim">
+            
+            <!-- VFD Panel -->
+            <div class="vfd-panel">
+                <div class="vfd-screen">
+                    <small>FRECUENCIA OUT</small>
+                    <span id="hz-display">0.0</span> Hz
+                </div>
+                
+                <label style="font-weight: bold; font-size: 0.9rem;">AJUSTE DE VELOCIDAD</label>
+                <input type="range" class="vfd-slider" id="vfd-slider" min="0" max="60" step="1" value="0" oninput="updateVFD()">
+                
+                <div class="metric-box">
+                    <div style="font-size: 0.8rem;">Velocidad Motor (RPM)</div>
+                    <div class="metric-val" id="rpm-display">0</div>
+                </div>
+                
+                <div class="metric-box">
+                    <div style="font-size: 0.8rem;">Amperaje (Corriente)</div>
+                    <div class="metric-val" id="amp-display">0.0 A</div>
+                </div>
+            </div>
+
+            <!-- Motor Vis -->
+            <div class="motor-display">
+                <div class="motor-body">
+                    <div class="motor-fan spinning" id="motor-fan" style="animation-duration: 0s;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Cuál es la función principal de un Variador de Frecuencia (VFD)?",
+                "options": [
+                    "Aumentar el voltaje de la CFE.",
+                    "Controlar la velocidad (RPM) de un motor de corriente alterna modificando la frecuencia (Hz) de la energía que recibe.",
+                    "Convertir corriente alterna en corriente continua pura."
+                ],
+                "correctIndex": 1,
+                "explanation": "La velocidad de un motor de inducción depende de los Hertz (Hz) de la red eléctrica. El VFD toma la red de 60Hz, la rectifica, y genera una nueva onda donde tú decides si quieres mandarle 10Hz, 30Hz o 60Hz al motor."
+            },
+            {
+                "question": "Tienes una bomba de agua gigante. Si la enciendes de golpe (arranque directo), la tubería vibra violentamente y a veces se rompe por el 'golpe de ariete'. ¿Cuál es la solución más económica?",
+                "options": [
+                    "Comprar una bomba más pequeña.",
+                    "Instalar un Arrancador Suave (Soft Starter).",
+                    "Ponerle cinta industrial a las tuberías."
+                ],
+                "correctIndex": 1,
+                "explanation": "El Arrancador Suave incrementa el voltaje gradualmente durante unos segundos. Esto hace que el motor empiece a girar despacio y acelere suavemente hasta su velocidad máxima, protegiendo toda la mecánica."
+            },
+            {
+                "question": "¿Qué ocurre si uso un VFD para mantener un motor trabajando a muy baja velocidad (ej. 15 Hz) durante horas bajo carga pesada?",
+                "options": [
+                    "El motor se congela.",
+                    "El motor funcionará perfectamente ahorrando mucha energía.",
+                    "El motor se sobrecalentará y podría quemarse.",
+                    "El VFD explotará."
+                ],
+                "correctIndex": 2,
+                "explanation": "Los motores estándar enfrían sus bobinas usando un ventilador acoplado a su propio eje. Si el motor gira lento, el ventilador también gira lento y no arroja aire suficiente para enfriarlo."
+            },
+            {
+                "question": "Mantenimiento: Si un motor industrial presenta 'vibración excesiva', ¿cuál de las siguientes opciones NO es una causa mecánica probable?",
+                "options": [
+                    "Rodamientos (baleros) destruidos.",
+                    "Eje desalineado con la carga.",
+                    "Tornillo de la base flojo.",
+                    "Un fusible quemado en el panel eléctrico."
+                ],
+                "correctIndex": 3,
+                "explanation": "Un fusible quemado es una falla puramente eléctrica (el motor no arrancaría o perdería una fase). La vibración física mientras gira suele ser por rodamientos, desalineación o bases flojas."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion11.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion13.html" class="nav-btn next">Siguiente Sesión (Transformadores I) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function updateVFD() {
+        const hz = parseFloat(document.getElementById('vfd-slider').value);
+        
+        // Displays
+        document.getElementById('hz-display').textContent = hz.toFixed(1);
+        
+        // RPM calc: Approx Sync speed for a 4-pole motor: RPM = (120 * f) / p
+        // For 4 poles: 120 * hz / 4 = 30 * hz
+        const rpm = Math.round(30 * hz);
+        document.getElementById('rpm-display').textContent = rpm;
+
+        // Amps calc (Simulated curve: higher at high load, lower at zero. Simplification.)
+        // Let's assume full load is 10A at 60Hz. V/Hz is constant.
+        let current = 0;
+        if(hz > 0) {
+            // Base magnetization current + load current
+            current = 2.5 + (hz / 60) * 7.5; 
+        }
+        document.getElementById('amp-display').textContent = current.toFixed(1) + " A";
+
+        // Fan Animation
+        const fan = document.getElementById('motor-fan');
+        if(hz === 0) {
+            fan.style.animationDuration = '0s'; // stop
+        } else {
+            // 60Hz -> fast animation (0.1s), 10Hz -> slow (0.6s)
+            const animSpeed = 6 / hz; 
+            fan.style.animationDuration = animSpeed + 's';
+        }
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion12');
+          window.markLessonCompleted('electricidad3', 'sesion12');
       }
   });
 </script>
