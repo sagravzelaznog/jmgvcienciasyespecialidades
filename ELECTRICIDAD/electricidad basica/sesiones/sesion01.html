@@ -68,9 +68,55 @@
                     <strong>Definición técnica:</strong> La electricidad es el conjunto de fenómenos físicos relacionados con la presencia y flujo de cargas eléctricas, que incluye propiedades como la conductividad eléctrica, la carga eléctrica y los campos electromagnéticos.
                 </div>
 
-                <h3>Estructura Atómica</h3>
-                <p>Para entender la electricidad, debemos comprender la estructura del átomo:</p>
+                <h3>Estructura Atómica Interactiva</h3>
+                <p>Para entender la electricidad, debemos comprender la estructura del átomo. Interactúa con el modelo inferior para ver cómo el flujo de electrones libres crea corriente eléctrica.</p>
                 
+                <div class="didactic-example" style="text-align: center;">
+                    <span class="didactic-title">Simulador Atómico: Modelo de Cobre (Cu) Simplificado</span>
+                    <svg viewBox="0 0 400 400" width="100%" max-width="400px" style="background: #1e293b; border-radius: 50%; box-shadow: inset 0 0 30px rgba(0,0,0,0.5); margin: 20px auto;">
+                        <!-- Órbitas -->
+                        <circle cx="200" cy="200" r="60" fill="none" stroke="#334155" stroke-width="2" />
+                        <circle cx="200" cy="200" r="110" fill="none" stroke="#334155" stroke-width="2" />
+                        <circle cx="200" cy="200" r="160" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="10 5" />
+                        
+                        <!-- Núcleo (Protones y Neutrones) -->
+                        <g id="nucleus">
+                            <circle cx="195" cy="195" r="10" fill="#ef4444" />
+                            <circle cx="205" cy="205" r="10" fill="#ef4444" />
+                            <circle cx="195" cy="205" r="10" fill="#e2e8f0" />
+                            <circle cx="205" cy="195" r="10" fill="#e2e8f0" />
+                            <circle cx="200" cy="200" r="10" fill="#ef4444" />
+                        </g>
+
+                        <!-- Electrones girando -->
+                        <g>
+                            <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="4s" repeatCount="indefinite"/>
+                            <circle cx="200" cy="140" r="6" fill="#38bdf8" />
+                            <circle cx="200" cy="260" r="6" fill="#38bdf8" />
+                        </g>
+                        
+                        <g>
+                            <animateTransform attributeName="transform" type="rotate" from="360 200 200" to="0 200 200" dur="6s" repeatCount="indefinite"/>
+                            <circle cx="90" cy="200" r="6" fill="#38bdf8" />
+                            <circle cx="310" cy="200" r="6" fill="#38bdf8" />
+                            <circle cx="200" cy="90" r="6" fill="#38bdf8" />
+                            <circle cx="200" cy="310" r="6" fill="#38bdf8" />
+                        </g>
+
+                        <!-- Electrón de Valencia (Libre) -->
+                        <g id="free-electron">
+                            <animateTransform id="orbit-anim" attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="10s" repeatCount="indefinite"/>
+                            <circle cx="200" cy="40" r="8" fill="#facc15" filter="drop-shadow(0 0 5px #facc15)" />
+                            <text x="215" y="45" fill="#facc15" font-size="12" font-family="monospace">e- de valencia</text>
+                        </g>
+                    </svg>
+
+                    <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <button class="btn btn-small" onclick="document.getElementById('orbit-anim').setAttribute('dur', '2s')" style="background:#f59e0b;">⚡ Aplicar Voltaje</button>
+                        <button class="btn btn-small" onclick="document.getElementById('orbit-anim').setAttribute('dur', '10s')">🛑 Quitar Energía</button>
+                    </div>
+                </div>
+
                 <table>
                     <thead>
                         <tr>
@@ -82,19 +128,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Protón</td>
+                            <td><span style="color:#ef4444; font-weight:bold;">● Protón</span></td>
                             <td>+1 (positiva)</td>
                             <td>1.67 × 10⁻²⁷ kg</td>
                             <td>Núcleo</td>
                         </tr>
                         <tr>
-                            <td>Electrón</td>
+                            <td><span style="color:#38bdf8; font-weight:bold;">● Electrón</span></td>
                             <td>-1 (negativa)</td>
                             <td>9.11 × 10⁻³¹ kg</td>
                             <td>Órbita</td>
                         </tr>
                         <tr>
-                            <td>Neutrón</td>
+                            <td><span style="color:#94a3b8; font-weight:bold;">● Neutrón</span></td>
                             <td>0 (neutra)</td>
                             <td>1.67 × 10⁻²⁷ kg</td>
                             <td>Núcleo</td>
@@ -102,16 +148,8 @@
                     </tbody>
                 </table>
 
-                <h3>Comportamiento de los Electrones</h3>
-                <p>Los electrones se mueven alrededor del núcleo en niveles de energía específicos. Cuando un átomo recibe energía externa, los electrones pueden:</p>
-                <ul>
-                    <li><strong>Excitarse:</strong> Saltar a un nivel de energía superior</li>
-                    <li><strong>Liberarse:</strong> Escapar del átomo y moverse libremente</li>
-                    <li><strong>Recombinarse:</strong> Volver a su estado original</li>
-                </ul>
-
                 <div class="warning-box">
-                    <strong>Importante:</strong> El flujo de electrones libres es lo que constituye la corriente eléctrica en los conductores.
+                    <strong>Importante:</strong> Los electrones de la última capa (de valencia) son fáciles de "arrancar". El flujo de estos electrones libres es lo que constituye la <strong>corriente eléctrica</strong> en los conductores.
                 </div>
             </div>
 

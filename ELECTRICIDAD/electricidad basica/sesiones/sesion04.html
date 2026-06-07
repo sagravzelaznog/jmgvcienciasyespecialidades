@@ -150,6 +150,111 @@
                 <div class="success-box">
                     <strong>Verificación:</strong> V₁ + V₂ + V₃ = 12 V + 8 V + 4 V = 24 V ✓
                 </div>
+
+                <h3>Simulador de Circuito en Serie</h3>
+                <p>Experimenta cambiando el voltaje de la fuente y los valores de las resistencias. Observa cómo se divide el voltaje (Caída de Tensión) en cada componente:</p>
+                
+                <div class="didactic-example" style="text-align: center;">
+                    <!-- SVG Circuito Serie -->
+                    <svg viewBox="0 0 500 250" width="100%" max-width="500px" style="margin: 10px auto; background: #0f172a; border-radius: 8px; padding: 10px;">
+                        <!-- Cables -->
+                        <path d="M 50 150 L 50 50 L 150 50" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        <path d="M 210 50 L 290 50" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        <path d="M 350 50 L 450 50 L 450 150" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        <path d="M 450 170 L 450 200 L 50 200 L 50 170" fill="none" stroke="#38bdf8" stroke-width="4"/>
+                        
+                        <!-- Fuente de Poder (Batería) -->
+                        <g transform="translate(30, 150)">
+                            <rect x="0" y="0" width="40" height="20" fill="#facc15" rx="3"/>
+                            <text x="20" y="14" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">DC</text>
+                            <text x="60" y="14" fill="#facc15" font-size="14" font-family="monospace" id="svg-vtotal">12V</text>
+                        </g>
+
+                        <!-- Resistencia 1 -->
+                        <g transform="translate(150, 40)">
+                            <path d="M 0 10 L 10 0 L 20 20 L 30 0 L 40 20 L 50 0 L 60 10" fill="none" stroke="#f87171" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="30" y="-10" fill="#f87171" font-size="12" text-anchor="middle">R1</text>
+                            <text x="30" y="35" fill="#f87171" font-size="12" font-family="monospace" text-anchor="middle" id="svg-v1">0V</text>
+                        </g>
+
+                        <!-- Resistencia 2 -->
+                        <g transform="translate(290, 40)">
+                            <path d="M 0 10 L 10 0 L 20 20 L 30 0 L 40 20 L 50 0 L 60 10" fill="none" stroke="#34d399" stroke-width="4" stroke-linejoin="round"/>
+                            <text x="30" y="-10" fill="#34d399" font-size="12" text-anchor="middle">R2</text>
+                            <text x="30" y="35" fill="#34d399" font-size="12" font-family="monospace" text-anchor="middle" id="svg-v2">0V</text>
+                        </g>
+
+                        <!-- Animación de corriente (electrones) -->
+                        <circle cx="0" cy="0" r="4" fill="#facc15">
+                            <animateMotion path="M 50 140 L 50 50 L 450 50 L 450 200 L 50 200 L 50 160" dur="4s" repeatCount="indefinite" id="current-anim"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="4" fill="#facc15">
+                            <animateMotion path="M 50 140 L 50 50 L 450 50 L 450 200 L 50 200 L 50 160" dur="4s" begin="2s" repeatCount="indefinite" id="current-anim2"/>
+                        </circle>
+                    </svg>
+
+                    <!-- Formulario de Calculadora -->
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 15px;">
+                        <div>
+                            <label style="color:#facc15; font-weight:bold;">Voltaje Total (V)</label><br>
+                            <input type="number" id="inputVoltage" value="12" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:90px;">
+                        </div>
+                        <div>
+                            <label style="color:#f87171; font-weight:bold;">R1 (Ω)</label><br>
+                            <input type="number" id="resistance1" value="4" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:90px;">
+                        </div>
+                        <div>
+                            <label style="color:#34d399; font-weight:bold;">R2 (Ω)</label><br>
+                            <input type="number" id="resistance2" value="8" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:90px;">
+                        </div>
+                        <div>
+                            <label style="color:#94a3b8; font-weight:bold;">R3 (Ω) (Opcional)</label><br>
+                            <input type="number" id="resistance3" value="0" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:90px;">
+                        </div>
+                        <button class="btn" onclick="calculateSeriesCircuit()" style="height: 40px; margin-top:15px;">Simular</button>
+                    </div>
+
+                    <div id="results" style="margin-top: 20px; background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; text-align: left; border-left: 4px solid var(--primary-color);">
+                        <em>Presiona "Simular" para ver los resultados...</em>
+                    </div>
+                </div>
+
+                <script>
+                    function updateSvgSimulation(vtotal, v1, v2, itotal) {
+                        document.getElementById('svg-vtotal').textContent = vtotal.toFixed(1) + 'V';
+                        document.getElementById('svg-v1').textContent = v1.toFixed(1) + 'V';
+                        document.getElementById('svg-v2').textContent = v2.toFixed(1) + 'V';
+                        
+                        // Ajustar velocidad de la animación basada en la corriente
+                        // Más corriente = menor duración (más rápido)
+                        let speed = 4;
+                        if(itotal > 0) {
+                            speed = Math.max(0.5, 4 / itotal); // Límite de 0.5s para no marear
+                        }
+                        document.getElementById('current-anim').setAttribute('dur', speed + 's');
+                        document.getElementById('current-anim2').setAttribute('dur', speed + 's');
+                        document.getElementById('current-anim2').setAttribute('begin', (speed/2) + 's');
+                    }
+
+                    // Monkey patch the existing function to update SVG
+                    const originalCalc = calculateSeriesCircuit;
+                    calculateSeriesCircuit = function() {
+                        originalCalc();
+                        
+                        // Extraemos valores calculados para el SVG
+                        const v = parseFloat(document.getElementById('inputVoltage').value);
+                        const r1 = parseFloat(document.getElementById('resistance1').value);
+                        const r2 = parseFloat(document.getElementById('resistance2').value);
+                        const r3 = parseFloat(document.getElementById('resistance3').value) || 0;
+                        const rt = r1 + r2 + r3;
+                        const i = v / rt;
+                        
+                        updateSvgSimulation(v, i*r1, i*r2, i);
+                    }
+                    
+                    // Simulamos al inicio
+                    setTimeout(calculateSeriesCircuit, 500);
+                </script>
             </div>
 
             <!-- Práctica -->

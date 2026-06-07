@@ -92,14 +92,79 @@
                     R = V / I (para calcular resistencia)
                 </div>
 
-                <h3>El Triángulo de Ohm</h3>
-                <p>Una herramienta visual útil para recordar las fórmulas:</p>
+                <h3>El Triángulo Interactivo de Ohm</h3>
+                <p>Una herramienta visual útil para recordar las fórmulas. Haz clic en la variable que deseas calcular (V, I, o R) para ver su fórmula:</p>
                 
-                <div class="info-box">
-                    <strong>Método del triángulo:</strong> Cubre la variable que quieres calcular. Las dos restantes te muestran la operación a realizar.
-                    <br><br>
-                    <strong>Ejemplo:</strong> Para calcular I, cubre la I en el triángulo. Queda V sobre R, por lo tanto: I = V/R
+                <div class="didactic-example" style="text-align: center;">
+                    <svg viewBox="0 0 300 300" width="100%" max-width="300px" style="margin: 10px auto; cursor: pointer;">
+                        <!-- Triángulo Base -->
+                        <polygon points="150,20 280,250 20,250" fill="#1e293b" stroke="#38bdf8" stroke-width="4"/>
+                        <!-- Líneas divisorias -->
+                        <line x1="85" y1="135" x2="215" y2="135" stroke="#38bdf8" stroke-width="4"/>
+                        <line x1="150" y1="135" x2="150" y2="250" stroke="#38bdf8" stroke-width="4"/>
+                        
+                        <!-- Letras Interactivas -->
+                        <g onclick="showFormula('V')" style="transition: all 0.2s;">
+                            <rect x="110" y="50" width="80" height="80" fill="transparent"/>
+                            <text x="150" y="110" font-size="60" fill="#facc15" text-anchor="middle" font-weight="bold" id="txt-v">V</text>
+                        </g>
+                        <g onclick="showFormula('I')" style="transition: all 0.2s;">
+                            <rect x="40" y="150" width="100" height="80" fill="transparent"/>
+                            <text x="90" y="220" font-size="60" fill="#34d399" text-anchor="middle" font-weight="bold" id="txt-i">I</text>
+                        </g>
+                        <g onclick="showFormula('R')" style="transition: all 0.2s;">
+                            <rect x="160" y="150" width="100" height="80" fill="transparent"/>
+                            <text x="210" y="220" font-size="60" fill="#f87171" text-anchor="middle" font-weight="bold" id="txt-r">R</text>
+                        </g>
+                    </svg>
+
+                    <div id="ohm-formula-display" style="background: #0f172a; border-radius: 8px; padding: 15px; margin-top: 15px; border: 2px dashed #38bdf8;">
+                        <span style="font-size: 1.5rem; color: #cbd5e1; font-family: monospace;">Haz clic en una letra del triángulo</span>
+                    </div>
                 </div>
+
+                <h3>Calculadora Práctica</h3>
+                <p>Ingresa dos valores conocidos para calcular el tercero automáticamente:</p>
+                <div class="didactic-example" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; align-items: center;">
+                    <div>
+                        <label style="color:#facc15; font-weight:bold;">Voltaje (V)</label><br>
+                        <input type="number" id="voltage" placeholder="Ej. 120" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:100px;">
+                    </div>
+                    <div>
+                        <label style="color:#34d399; font-weight:bold;">Corriente (I)</label><br>
+                        <input type="number" id="current" placeholder="Ej. 10" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:100px;">
+                    </div>
+                    <div>
+                        <label style="color:#f87171; font-weight:bold;">Resistencia (R)</label><br>
+                        <input type="number" id="resistance" placeholder="Ej. 12" style="padding: 8px; border-radius:4px; border:1px solid #ccc; width:100px;">
+                    </div>
+                    <button class="btn" onclick="calculateOhm()" style="margin-top: 15px; height: 40px;">Calcular</button>
+                    <button class="btn" onclick="document.getElementById('voltage').value=''; document.getElementById('current').value=''; document.getElementById('resistance').value=''; document.getElementById('result').innerHTML='Resultado aquí';" style="margin-top: 15px; height: 40px; background:#ef4444;">Limpiar</button>
+                    <div id="result" style="width: 100%; text-align: center; margin-top: 10px; font-weight: bold; font-size: 1.2rem; color: var(--primary-color);">Resultado aquí</div>
+                </div>
+
+                <script>
+                    function showFormula(variable) {
+                        const display = document.getElementById('ohm-formula-display');
+                        const txtV = document.getElementById('txt-v');
+                        const txtI = document.getElementById('txt-i');
+                        const txtR = document.getElementById('txt-r');
+                        
+                        // Reset opacity
+                        txtV.style.opacity = 1; txtI.style.opacity = 1; txtR.style.opacity = 1;
+
+                        if(variable === 'V') {
+                            display.innerHTML = '<span style="color:#facc15; font-size:1.8rem; font-weight:bold;">V = I × R</span><br><span style="color:#cbd5e1;">(Voltaje = Corriente por Resistencia)</span>';
+                            txtV.style.opacity = 0.3; // "Cubres" la V
+                        } else if(variable === 'I') {
+                            display.innerHTML = '<span style="color:#34d399; font-size:1.8rem; font-weight:bold;">I = V / R</span><br><span style="color:#cbd5e1;">(Corriente = Voltaje entre Resistencia)</span>';
+                            txtI.style.opacity = 0.3; // "Cubres" la I
+                        } else if(variable === 'R') {
+                            display.innerHTML = '<span style="color:#f87171; font-size:1.8rem; font-weight:bold;">R = V / I</span><br><span style="color:#cbd5e1;">(Resistencia = Voltaje entre Corriente)</span>';
+                            txtR.style.opacity = 0.3; // "Cubres" la R
+                        }
+                    }
+                </script>
             </div>
 
             <!-- Potencia Eléctrica -->

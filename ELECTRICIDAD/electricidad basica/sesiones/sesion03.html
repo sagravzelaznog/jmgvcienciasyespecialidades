@@ -210,17 +210,111 @@
                     </tbody>
                 </table>
 
-                <h3>Ejemplo de Lectura</h3>
-                <p>Una resistencia con colores: <strong>Rojo - Rojo - Marrón - Dorado</strong></p>
-                <ul>
-                    <li>Primer rojo: 2</li>
-                    <li>Segundo rojo: 2</li>
-                    <li>Marrón: 10¹</li>
-                    <li>Dorado: ±5%</li>
-                </ul>
-                <div class="formula">
-                    Valor = 22 × 10¹ = 220 Ω ± 5%
+                <h3>Calculadora Interactiva de Resistencias</h3>
+                <p>Selecciona los colores de las bandas para calcular el valor de la resistencia automáticamente:</p>
+                
+                <div class="didactic-example" style="text-align: center;">
+                    <!-- SVG Resistor -->
+                    <svg viewBox="0 0 400 100" width="100%" max-width="400px" style="margin: 20px auto;">
+                        <!-- Cables -->
+                        <line x1="20" y1="50" x2="80" y2="50" stroke="#94a3b8" stroke-width="6"/>
+                        <line x1="320" y1="50" x2="380" y2="50" stroke="#94a3b8" stroke-width="6"/>
+                        
+                        <!-- Cuerpo Principal -->
+                        <rect x="80" y="20" width="240" height="60" rx="15" fill="#fcd34d" stroke="#b45309" stroke-width="2"/>
+                        
+                        <!-- Bandas de Color -->
+                        <rect id="band1" x="110" y="20" width="15" height="60" fill="#000000" />
+                        <rect id="band2" x="150" y="20" width="15" height="60" fill="#000000" />
+                        <rect id="band3" x="190" y="20" width="15" height="60" fill="#000000" />
+                        <rect id="band4" x="250" y="20" width="15" height="60" fill="#eab308" />
+                    </svg>
+
+                    <!-- Selectores -->
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <div>
+                            <label style="font-weight:bold; font-size:0.8rem;">Banda 1 (Dígito)</label><br>
+                            <select id="color1" onchange="calculateResistance()" style="padding: 5px; border-radius: 4px;">
+                                <option value="black" style="background:#000; color:#fff;">Negro</option>
+                                <option value="brown" style="background:#8b4513; color:#fff;">Marrón</option>
+                                <option value="red" style="background:#ff0000; color:#fff;" selected>Rojo</option>
+                                <option value="orange" style="background:#ffa500;">Naranja</option>
+                                <option value="yellow" style="background:#ffff00;">Amarillo</option>
+                                <option value="green" style="background:#008000; color:#fff;">Verde</option>
+                                <option value="blue" style="background:#0000ff; color:#fff;">Azul</option>
+                                <option value="violet" style="background:#ee82ee;">Violeta</option>
+                                <option value="gray" style="background:#808080; color:#fff;">Gris</option>
+                                <option value="white" style="background:#ffffff;">Blanco</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-weight:bold; font-size:0.8rem;">Banda 2 (Dígito)</label><br>
+                            <select id="color2" onchange="calculateResistance()" style="padding: 5px; border-radius: 4px;">
+                                <option value="black" style="background:#000; color:#fff;">Negro</option>
+                                <option value="brown" style="background:#8b4513; color:#fff;">Marrón</option>
+                                <option value="red" style="background:#ff0000; color:#fff;" selected>Rojo</option>
+                                <option value="orange" style="background:#ffa500;">Naranja</option>
+                                <option value="yellow" style="background:#ffff00;">Amarillo</option>
+                                <option value="green" style="background:#008000; color:#fff;">Verde</option>
+                                <option value="blue" style="background:#0000ff; color:#fff;">Azul</option>
+                                <option value="violet" style="background:#ee82ee;">Violeta</option>
+                                <option value="gray" style="background:#808080; color:#fff;">Gris</option>
+                                <option value="white" style="background:#ffffff;">Blanco</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-weight:bold; font-size:0.8rem;">Banda 3 (Multiplicador)</label><br>
+                            <select id="color3" onchange="calculateResistance()" style="padding: 5px; border-radius: 4px;">
+                                <option value="black" style="background:#000; color:#fff;">Negro (×1)</option>
+                                <option value="brown" style="background:#8b4513; color:#fff;" selected>Marrón (×10)</option>
+                                <option value="red" style="background:#ff0000; color:#fff;">Rojo (×100)</option>
+                                <option value="orange" style="background:#ffa500;">Naranja (×1k)</option>
+                                <option value="yellow" style="background:#ffff00;">Amarillo (×10k)</option>
+                                <option value="green" style="background:#008000; color:#fff;">Verde (×100k)</option>
+                                <option value="blue" style="background:#0000ff; color:#fff;">Azul (×1M)</option>
+                                <option value="gold" style="background:#ffd700;">Dorado (×0.1)</option>
+                                <option value="silver" style="background:#c0c0c0;">Plateado (×0.01)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-weight:bold; font-size:0.8rem;">Banda 4 (Tolerancia)</label><br>
+                            <select id="tolerance" onchange="calculateResistance()" style="padding: 5px; border-radius: 4px;">
+                                <option value="brown" style="background:#8b4513; color:#fff;">Marrón (±1%)</option>
+                                <option value="red" style="background:#ff0000; color:#fff;">Rojo (±2%)</option>
+                                <option value="gold" style="background:#ffd700;" selected>Dorado (±5%)</option>
+                                <option value="silver" style="background:#c0c0c0;">Plateado (±10%)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="resistanceResult" style="margin-top: 20px; font-size: 1.8rem; font-weight: bold; color: var(--primary-color);">
+                        Valor: 220 Ω ±5%
+                    </div>
                 </div>
+
+                <script>
+                    function updateBandColors() {
+                        const colors = {
+                            'black': '#000000', 'brown': '#8b4513', 'red': '#ff0000', 
+                            'orange': '#ffa500', 'yellow': '#ffff00', 'green': '#008000', 
+                            'blue': '#0000ff', 'violet': '#ee82ee', 'gray': '#808080', 
+                            'white': '#ffffff', 'gold': '#ffd700', 'silver': '#c0c0c0'
+                        };
+                        document.getElementById('band1').setAttribute('fill', colors[document.getElementById('color1').value]);
+                        document.getElementById('band2').setAttribute('fill', colors[document.getElementById('color2').value]);
+                        document.getElementById('band3').setAttribute('fill', colors[document.getElementById('color3').value]);
+                        document.getElementById('band4').setAttribute('fill', colors[document.getElementById('tolerance').value]);
+                    }
+
+                    // Monkey patch calculateResistance to also update colors
+                    const originalCalculate = calculateResistance;
+                    calculateResistance = function() {
+                        originalCalculate();
+                        updateBandColors();
+                    }
+                    // Initialization call
+                    setTimeout(updateBandColors, 100);
+                </script>
             </div>
 
             <!-- Capacitores -->
