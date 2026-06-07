@@ -58,6 +58,20 @@
             <p>¿Tienes dudas o quieres sugerir ejemplos para mejorar este módulo? ¡No dudes en editar este archivo o contactar al responsable del curso!</p>
         </footer>
     </main>
+
+<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="../env.js"></script>
+<script src="../progress-tracker.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      if (window.markLessonCompleted) {
+          window.markLessonCompleted('electricidad', 'modulo4');
+      }
+  });
+</script>
 </body>
 </html>
 

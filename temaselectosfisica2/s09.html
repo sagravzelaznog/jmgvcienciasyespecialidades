@@ -168,5 +168,19 @@
         &copy; JMGV-PTEL-2025. todos los derechos reservados
     </footer>
 
+
+<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="../env.js"></script>
+<script src="../progress-tracker.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      if (window.markLessonCompleted) {
+          window.markLessonCompleted('fisica2', 's09');
+      }
+  });
+</script>
 </body>
 </html>

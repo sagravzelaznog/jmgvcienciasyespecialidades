@@ -356,7 +356,21 @@
                         if (!html.includes('JMGV-PTEL-2025')) {
                             // Insertar el pie de página antes del cierre del body
                             const footer = '\n    <footer style="text-align: center; padding: 20px; background-color: #2c3e50; color: white; margin-top: 50px;">\n        &copy; JMGV-PTEL-2025. Todos los derechos reservados\n    </footer>\n';
-                            const updatedHtml = html.replace('</body>', footer + '\n</body>');
+                            const updatedHtml = html.replace('
+<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="../env.js"></script>
+<script src="../progress-tracker.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      if (window.markLessonCompleted) {
+          window.markLessonCompleted('fisica2', 'index');
+      }
+  });
+</script>
+</body>', footer + '\n</body>');
                             
                             // Guardar los cambios (esto requiere permisos del navegador)
                             const blob = new Blob([updatedHtml], { type: 'text/html' });
