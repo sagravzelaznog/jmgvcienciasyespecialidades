@@ -3,104 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programa Completo de Electricidad</title>
+    <title>Centro de Comando: Electricidad</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos Cyber-Electric -->
     <link rel="stylesheet" href="estilos-electricidad.css">
 </head>
 <body>
-    <nav class="nav-principal">
-        <span class="nav-titulo">Electricidad</span>
-        <div>
-            <a href="#programa" class="nav-link">Programa</a>
-            <a href="modulo1.html" class="nav-link">Módulo 1</a>
-            <a href="modulo2.html" class="nav-link">Módulo 2</a>
-            <a href="modulo3.html" class="nav-link">Módulo 3</a>
-            <a href="modulo4.html" class="nav-link">Módulo 4</a>
-            <a href="modulo5.html" class="nav-link">Módulo 5</a>
-            <a href="modulo6.html" class="nav-link">Módulo 6</a>
+    
+    <!-- Cyber Background Elements -->
+    <div class="cyber-grid"></div>
+    <div class="glow-orb top-left"></div>
+    <div class="glow-orb bottom-right"></div>
+
+    <nav class="top-nav">
+        <a href="../" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Volver al Portal de Ciencias</a>
+        <div class="status-indicator">
+            <span class="pulse"></span> SISTEMA EN LÍNEA
         </div>
     </nav>
-    <main class="main-principal">
-        <h1 id="programa">PROGRAMA COMPLETO DE ELECTRICIDAD</h1>
-        <ol>
-            <li><strong><a href="modulo1.html">Conceptos Básicos de Electricidad</a></strong>
-                <ol>
-                    <li>¿Qué es la electricidad?</li>
-                    <li>Ejemplos de percepción de electricidad</li>
-                    <li>Electricidad estática</li>
-                    <li>Electricidad dinámica</li>
-                </ol>
-            </li>
-            <li><strong><a href="modulo2.html">Circuitos Eléctricos y Componentes Básicos</a></strong>
-                <ol>
-                    <li>Tipos de circuitos (serie, paralelo, mixto)</li>
-                    <li>Elementos de un circuito</li>
-                    <li>Simbología eléctrica</li>
-                    <li>Interpretación de planos y esquemas</li>
-                    <li>Medición de magnitudes eléctricas</li>
-                </ol>
-            </li>
-            <li><strong><a href="modulo3.html">Instalaciones Eléctricas Residenciales</a></strong>
-                <ol>
-                    <li>Introducción a las instalaciones residenciales</li>
-                    <li>Componentes principales</li>
-                    <li>Planificación y diseño</li>
-                    <li>Montaje de circuitos</li>
-                    <li>Normas y seguridad</li>
-                    <li>Ejemplo paso a paso</li>
-                    <li>Actividades y ejemplos prácticos</li>
-                </ol>
-            </li>
-            <li><strong><a href="modulo4.html">Instalaciones Eléctricas Industriales y Automatización</a></strong>
-                <ol>
-                    <li>Introducción a las instalaciones industriales</li>
-                    <li>Componentes y dispositivos industriales</li>
-                    <li>Planificación y diseño</li>
-                    <li>Montaje de instalaciones</li>
-                    <li>Normas y seguridad</li>
-                    <li>Automatización y domótica</li>
-                    <li>Ejemplo paso a paso</li>
-                    <li>Actividades y ejemplos prácticos</li>
-                </ol>
-            </li>
-            <li><strong><a href="modulo5.html">Energías Renovables y Eficiencia</a></strong>
-                <ol>
-                    <li>Introducción a las energías renovables</li>
-                    <li>Tipos de energías renovables</li>
-                    <li>Aplicaciones prácticas</li>
-                    <li>Uso eficiente de la energía</li>
-                    <li>Ejemplo paso a paso</li>
-                    <li>Actividades y ejemplos prácticos</li>
-                </ol>
-            </li>
-            <li><strong><a href="modulo6.html">Seguridad, Normatividad y Aplicaciones</a></strong>
-                <ol>
-                    <li>Principios de seguridad eléctrica</li>
-                    <li>Normas y protocolos</li>
-                    <li>Actuación ante accidentes eléctricos</li>
-                    <li>Señalización y normativas</li>
-                    <li>Aplicaciones cotidianas</li>
-                    <li>Actividad final</li>
-                </ol>
-            </li>
-        </ol>
-        <p><em>Este programa puede adaptarse y profundizarse según el nivel educativo y los objetivos del curso.</em></p>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="cyber-badge">CÓDIGO: ELEC-001</div>
+            <h1>CENTRO DE COMANDO<br><span class="neon-text">ELECTRICIDAD</span></h1>
+            <p>Accede a todos los módulos, simuladores y recursos avanzados. Selecciona tu nivel de autorización.</p>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        
+        <!-- SECCIÓN 1: FUNDAMENTOS -->
+        <section class="module-section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-microchip"></i> Nivel 1: Fundamentos y Teoría</h2>
+                <div class="cyber-line"></div>
+            </div>
+            
+            <div class="card-grid">
+                <a href="que_es_la_electricidad.html" class="cyber-card highlight-card">
+                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="card-content">
+                        <h3>¿Qué es la Electricidad?</h3>
+                        <p>Introducción teórica y conceptos vitales.</p>
+                    </div>
+                </a>
+                
+                <a href="modulo1.html" class="cyber-card">
+                    <div class="card-number">01</div>
+                    <h3>Conceptos Básicos</h3>
+                    <p>Electricidad estática y dinámica.</p>
+                </a>
+                
+                <a href="modulo2.html" class="cyber-card">
+                    <div class="card-number">02</div>
+                    <h3>Circuitos y Componentes</h3>
+                    <p>Serie, paralelo, mixto y simbología.</p>
+                </a>
+
+                <a href="modulo3.html" class="cyber-card">
+                    <div class="card-number">03</div>
+                    <h3>Magnitudes Eléctricas</h3>
+                    <p>Voltaje, Corriente, Resistencia y Ley de Ohm.</p>
+                </a>
+
+                <a href="modulo4.html" class="cyber-card">
+                    <div class="card-number">04</div>
+                    <h3>Magnetismo y Electromagnetismo</h3>
+                    <p>Generación de corriente, motores y generadores.</p>
+                </a>
+
+                <a href="modulo5.html" class="cyber-card">
+                    <div class="card-number">05</div>
+                    <h3>Potencia y Energía</h3>
+                    <p>Medición, cálculo de consumo e instrumentos.</p>
+                </a>
+
+                <a href="modulo6.html" class="cyber-card">
+                    <div class="card-number">06</div>
+                    <h3>Seguridad y Normativas</h3>
+                    <p>Riesgos, protección y primeros auxilios.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: ESPECIALIDAD TÉCNICA -->
+        <section class="module-section mt-5">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-server"></i> Nivel 2: Especialidad Técnica</h2>
+                <div class="cyber-line"></div>
+            </div>
+            
+            <div class="card-grid">
+                <a href="electricidad 1/index.html" class="cyber-card feature-card">
+                    <div class="feature-bg"></div>
+                    <div class="card-icon"><i class="fa-solid fa-plug"></i></div>
+                    <div class="card-content">
+                        <h3>Especialidad: Electricidad 1</h3>
+                        <p>16 sesiones prácticas. Ley de Coulomb, circuitos y más.</p>
+                        <span class="btn-cyber">INICIAR MÓDULO</span>
+                    </div>
+                </a>
+
+                <a href="electricidad 3/index.html" class="cyber-card feature-card">
+                    <div class="feature-bg"></div>
+                    <div class="card-icon"><i class="fa-solid fa-charging-station"></i></div>
+                    <div class="card-content">
+                        <h3>Especialidad: Electricidad 3</h3>
+                        <p>16 sesiones avanzadas de análisis eléctrico.</p>
+                        <span class="btn-cyber">INICIAR MÓDULO</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: AVANZADO -->
+        <section class="module-section mt-5">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-satellite-dish"></i> Nivel 3: Certificación y Avanzado</h2>
+                <div class="cyber-line"></div>
+            </div>
+            
+            <div class="card-grid">
+                <a href="electricidad basica/index.html" class="cyber-card feature-card master-card">
+                    <div class="feature-bg"></div>
+                    <div class="card-icon"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div class="card-content">
+                        <h3>Electricidad Básica (Completo)</h3>
+                        <p>Curso integral con sesiones estructuradas.</p>
+                        <span class="btn-cyber">INICIAR MÓDULO</span>
+                    </div>
+                </a>
+
+                <a href="electricidad5/index.html" class="cyber-card feature-card master-card">
+                    <div class="feature-bg"></div>
+                    <div class="card-icon"><i class="fa-solid fa-industry"></i></div>
+                    <div class="card-content">
+                        <h3>Especialidad: Electricidad 5</h3>
+                        <p>Nivel maestro. Desempeño y eficiencia energética.</p>
+                        <span class="btn-cyber">INICIAR MÓDULO</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
     </main>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script src="../env.js"></script>
-<script src="../progress-tracker.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-      if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'index');
-      }
-  });
-</script>
+    <footer class="cyber-footer">
+        <p>Sistema JMGV - División de Especialidades | Acceso Concedido</p>
+    </footer>
+
 </body>
 </html>
-<!-- git remote add origin URL_DEL_REPOSITORIO
-git branch -M main
-git push -u origin main -->
