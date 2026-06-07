@@ -3,638 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 13: Ejercicios Prácticos de la Ley de Ohm</title>
+    <title>Sesión 13: El Protoboard - Conceptos Básicos</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .exercise {
-            background-color: #f5f9ff;
-            border-left: 4px solid #4a90e2;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .exercise h4 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        
-        .exercise-solution {
-            background-color: #f0f8f0;
-            border-left: 4px solid #4caf50;
-            padding: 10px 15px;
-            margin: 10px 0;
-            border-radius: 0 5px 5px 0;
-            display: none;
-        }
-        
-        .show-solution {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 5px 0;
-        }
-        
-        .show-solution:hover {
-            background-color: #45a049;
-        }
-        
-        .circuit-diagram {
+        .breadboard-container {
             width: 100%;
-            max-width: 300px;
-            margin: 15px auto;
-            display: block;
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .breadboard-svg {
+            width: 100%;
+            height: auto;
         }
         
-        .formula {
-            font-family: 'Courier New', monospace;
-            background-color: #f8f9fa;
-            padding: 5px 10px;
-            border-radius: 4px;
-            display: inline-block;
-            margin: 5px 0;
-        }
-        
-        .interactive-calculator {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
+        .connection-card {
+            background-color: var(--bg-card);
             border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
         }
         
-        .input-group {
-            margin: 10px 0;
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
+        /* Efectos para interactividad del SVG */
+        .bb-hole { cursor: pointer; transition: fill 0.2s; }
+        .bb-hole:hover { fill: #f39c12; }
+        .bb-bus-line { opacity: 0; transition: opacity 0.3s; }
+        
+        .rail-hover:hover .bb-bus-line { opacity: 1; stroke: #e74c3c; }
+        .rail-hover-blue:hover .bb-bus-line { opacity: 1; stroke: #3498db; }
+        .node-hover:hover .bb-bus-line { opacity: 1; stroke: #f1c40f; }
+        
+        .highlight-box {
+            text-align: center;
+            padding: 1rem;
+            background: var(--box-info-bg);
+            border-radius: 8px;
+            margin-top: 1rem;
             font-weight: bold;
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .result {
-            font-weight: bold;
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #e8f4f8;
-            border-radius: 4px;
-            display: none;
+            color: var(--primary-color);
+            min-height: 50px;
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="home-link">← Volver al índice</a>
-    
-    <div class="header">
-        <h1>Sesión 13: Ejercicios Prácticos de la Ley de Ohm</h1>
-        <p>Aplicando los conceptos de la Ley de Ohm en situaciones reales</p>
+
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">El Protoboard (Placa de Pruebas)</h1>
+        <p class="sesion-subtitle">Sesión 13 - Módulo 3: Construyendo sin soldar</p>
     </div>
 
-    <div class="section">
-        <h2>Objetivo Específico</h2>
-        <p>Resolver problemas prácticos aplicando la Ley de Ohm, desarrollando la capacidad de analizar circuitos eléctricos simples y calcular voltaje, corriente y resistencia en diferentes configuraciones.</p>
-        
-        <svg class="circuit-diagram" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
-            <!-- Batería -->
-            <rect x="50" y="60" width="40" height="30" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
-            <rect x="55" y="65" width="5" height="10" fill="#4caf50"/>
-            <rect x="80" y="65" width="5" height="10" fill="#f44336"/>
-            
-            <!-- Circuito -->
-            <line x1="90" y1="75" x2="130" y2="75" stroke="#333" stroke-width="2"/>
-            
-            <!-- Resistencia 1 -->
-            <rect x="130" y="60" width="60" height="30" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
-            <rect x="150" y="60" width="20" height="30" fill="#8b4513"/>
-            
-            <!-- Amperímetro -->
-            <circle cx="230" cy="75" r="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
-            <text x="230" y="80" text-anchor="middle" font-size="12">A</text>
-            
-            <!-- Voltímetro -->
-            <rect x="130" y="10" width="60" height="20" fill="#f5f5f5" stroke="#333" stroke-width="1" rx="2"/>
-            <text x="160" y="24" text-anchor="middle" font-size="12">V</text>
-            <line x1="150" y1="30" x2="150" y2="60" stroke="#333" stroke-width="1"/>
-            <line x1="170" y1="30" x2="170" y2="60" stroke="#333" stroke-width="1"/>
-            
-            <!-- Conexiones -->
-            <line x1="190" y1="75" x2="215" y2="75" stroke="#333" stroke-width="2"/>
-            <line x1="245" y1="75" x2="270" y2="75" stroke="#333" stroke-width="2"/>
-            <line x1="270" y1="75" x2="270" y2="120" stroke="#333" stroke-width="2"/>
-            <line x1="50" y1="120" x2="270" y2="120" stroke="#333" stroke-width="2"/>
-            <line x1="50" y1="75" x2="50" y2="120" stroke="#333" stroke-width="2"/>
-            
-            <!-- Etiquetas -->
-            <text x="70" y="50" text-anchor="middle" font-size="10">12V</text>
-            <text x="160" y="110" text-anchor="middle" font-size="10">R = 6Ω</text>
-        </svg>
+    <div class="info-box">
+        <strong><i class="fas fa-bullseye"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrir el lienzo del electrónico: El Protoboard. Entenderemos cómo están conectados sus agujeros por debajo para poder construir circuitos reales sin usar una sola gota de soldadura.</p>
     </div>
 
-    <div class="section">
-        <h2>Repaso Rápido</h2>
+    <div class="teoria-section">
+        <h2>El Lienzo Mágico</h2>
+        <p>Antes de soldar componentes permanentemente en una placa de circuito impreso (PCB), los ingenieros y estudiantes "ensayan" sus circuitos en un <strong>Protoboard</strong> (Breadboard en inglés). Es una tabla llena de agujeritos donde puedes meter y sacar cables o resistencias como si fueran piezas de Lego.</p>
         
-        <div class="formula-box">
-            <div class="formula">V = I × R</div>
-            <p>Donde:</p>
-            <ul>
-                <li><strong>V</strong> = Voltaje (en voltios, V)</li>
-                <li><strong>I</strong> = Corriente (en amperios, A)</li>
-                <li><strong>R</strong> = Resistencia (en ohmios, Ω)</li>
-            </ul>
-        </div>
-        
-        <p>Recuerda que puedes reorganizar la fórmula según lo que necesites calcular:</p>
-        <ul>
-            <li>Para calcular el voltaje: <span class="formula">V = I × R</span></li>
-            <li>Para calcular la corriente: <span class="formula">I = V / R</span></li>
-            <li>Para calcular la resistencia: <span class="formula">R = V / I</span></li>
-        </ul>
+        <p>El secreto del Protoboard no está arriba, sino <strong>adentro</strong>. Bajo el plástico blanco hay láminas de metal que conectan los agujeritos entre sí siguiendo un patrón muy específico.</p>
     </div>
 
-    <div class="section">
-        <h2>Ejercicios Prácticos</h2>
-        
-        <div class="exercise">
-            <h4>Ejercicio 1: Cálculo de Corriente</h4>
-            <p>Un circuito tiene una batería de 9V conectada a una resistencia de 3Ω. ¿Qué corriente circulará por el circuito?</p>
-            
-            <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
-            
-            <div id="sol1" class="exercise-solution">
-                <p><strong>Datos:</strong></p>
-                <ul>
-                    <li>Voltaje (V) = 9V</li>
-                    <li>Resistencia (R) = 3Ω</li>
-                    <li>Corriente (I) = ?</li>
-                </ul>
-                <p><strong>Fórmula:</strong> <span class="formula">I = V / R</span></p>
-                <p><strong>Solución:</strong> I = 9V / 3Ω = 3A</p>
-                <p><strong>Respuesta:</strong> Circularán 3 amperios por el circuito.</p>
-            </div>
+    <div class="phase-block">
+        <div class="phase-header">
+            <span>Anatomía del Protoboard</span>
+            <span><i class="fas fa-microchip"></i></span>
         </div>
-        
-        <div class="exercise">
-            <h4>Ejercicio 2: Cálculo de Resistencia</h4>
-            <p>Por un circuito circula una corriente de 0.5A cuando se le aplica un voltaje de 6V. ¿Cuál es el valor de la resistencia del circuito?</p>
+        <div class="phase-content">
+            <p>Pasa el ratón (o toca) sobre las diferentes zonas del protoboard animado abajo para ver cómo está conectado el metal por dentro.</p>
             
-            <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
-            
-            <div id="sol2" class="exercise-solution">
-                <p><strong>Datos:</strong></p>
-                <ul>
-                    <li>Voltaje (V) = 6V</li>
-                    <li>Corriente (I) = 0.5A</li>
-                    <li>Resistencia (R) = ?</li>
-                </ul>
-                <p><strong>Fórmula:</strong> <span class="formula">R = V / I</span></p>
-                <p><strong>Solución:</strong> R = 6V / 0.5A = 12Ω</p>
-                <p><strong>Respuesta:</strong> La resistencia del circuito es de 12 ohmios.</p>
-            </div>
-        </div>
-        
-        <div class="exercise">
-            <h4>Ejercicio 3: Cálculo de Voltaje</h4>
-            <p>Por una resistencia de 100Ω circula una corriente de 0.1A. ¿Qué voltaje hay entre sus extremos?</p>
-            
-            <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
-            
-            <div id="sol3" class="exercise-solution">
-                <p><strong>Datos:</strong></p>
-                <ul>
-                    <li>Resistencia (R) = 100Ω</li>
-                    <li>Corriente (I) = 0.1A</li>
-                    <li>Voltaje (V) = ?</li>
-                </ul>
-                <p><strong>Fórmula:</strong> <span class="formula">V = I × R</span></p>
-                <p><strong>Solución:</strong> V = 0.1A × 100Ω = 10V</p>
-                <p><strong>Respuesta:</strong> El voltaje entre los extremos de la resistencia es de 10 voltios.</p>
-            </div>
-        </div>
-    </div>
+            <div class="breadboard-container">
+                <svg class="breadboard-svg" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base -->
+                    <rect x="10" y="10" width="580" height="180" fill="#f5f5f5" rx="10" stroke="#ddd" stroke-width="2"/>
+                    
+                    <!-- Líneas rojas y azules -->
+                    <line x1="30" y1="20" x2="570" y2="20" stroke="#ff4d4d" stroke-width="2"/>
+                    <line x1="30" y1="50" x2="570" y2="50" stroke="#3498db" stroke-width="2"/>
+                    
+                    <line x1="30" y1="150" x2="570" y2="150" stroke="#ff4d4d" stroke-width="2"/>
+                    <line x1="30" y1="180" x2="570" y2="180" stroke="#3498db" stroke-width="2"/>
+                    
+                    <!-- Canaleta central -->
+                    <rect x="30" y="90" width="540" height="20" fill="#e0e0e0"/>
 
-    <div class="section">
-        <h2>Calculadora Interactiva</h2>
-        
-        <p>Usa esta calculadora para verificar tus respuestas o resolver otros problemas:</p>
-        
-        <div class="interactive-calculator">
-            <h4>Calculadora de la Ley de Ohm</h4>
-            
-            <div class="input-group">
-                <label for="calc-voltage">Voltaje (V):</label>
-                <input type="number" id="calc-voltage" placeholder="Dejar en blanco para calcular">
-            </div>
-            
-            <div class="input-group">
-                <label for="calc-current">Corriente (A):</label>
-                <input type="number" id="calc-current" placeholder="Dejar en blanco para calcular">
-            </div>
-            
-            <div class="input-group">
-                <label for="calc-resistance">Resistencia (Ω):</label>
-                <input type="number" id="calc-resistance" placeholder="Dejar en blanco para calcular">
-            </div>
-            
-            <button onclick="calculateOhm()" class="show-solution">Calcular</button>
-            
-            <div id="result" class="result"></div>
-        </div>
-    </div>
+                    <g id="interactive-board">
+                        <!-- Buses de alimentación Superior (Rieles Horizontales) -->
+                        <g class="rail-hover" onmouseover="showMsg('¡RIEL DE VOLTAJE POSITIVO (+)! Todos estos agujeros están conectados horizontalmente de extremo a extremo.')" onmouseout="clearMsg()">
+                            <rect x="25" y="25" width="550" height="10" fill="transparent" />
+                            <line class="bb-bus-line" x1="30" y1="30" x2="570" y2="30" stroke-width="8" stroke-linecap="round"/>
+                            <!-- Agujeros -->
+                            <!-- (Simulados con un pattern para no escribir 100 círculos) -->
+                            <pattern id="busHoles" x="30" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <circle cx="5" cy="5" r="3" fill="#333"/>
+                            </pattern>
+                            <rect x="30" y="25" width="540" height="10" fill="url(#busHoles)"/>
+                        </g>
 
-    <div class="section">
-        <h2>Problemas Avanzados</h2>
-        
-        <div class="exercise">
-            <h4>Problema 1: Circuito en Serie</h4>
-            <p>Un circuito tiene dos resistencias en serie: R₁ = 4Ω y R₂ = 6Ω. Si se conecta a una batería de 12V, calcula:</p>
-            <ol>
-                <li>La resistencia total del circuito</li>
-                <li>La corriente que circula por el circuito</li>
-                <li>La caída de voltaje en cada resistencia</li>
-            </ol>
-            
-            <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
-            
-            <div id="sol4" class="exercise-solution">
-                <p><strong>1. Resistencia total (R<sub>T</sub>):</strong></p>
-                <p class="formula">R<sub>T</sub> = R₁ + R₂ = 4Ω + 6Ω = 10Ω</p>
-                
-                <p><strong>2. Corriente total (I):</strong></p>
-                <p class="formula">I = V / R<sub>T</sub> = 12V / 10Ω = 1.2A</p>
-                
-                <p><strong>3. Caída de voltaje en cada resistencia:</strong></p>
-                <p class="formula">V₁ = I × R₁ = 1.2A × 4Ω = 4.8V</p>
-                <p class="formula">V₂ = I × R₂ = 1.2A × 6Ω = 7.2V</p>
-                <p class="formula">(Verificación: 4.8V + 7.2V = 12V ✓)</p>
+                        <g class="rail-hover-blue" onmouseover="showMsg('¡RIEL DE TIERRA/NEGATIVO (-)! Conectado horizontalmente. Aquí conectas el cable negro de la batería.')" onmouseout="clearMsg()">
+                            <rect x="25" y="35" width="550" height="10" fill="transparent" />
+                            <line class="bb-bus-line" x1="30" y1="40" x2="570" y2="40" stroke-width="8" stroke-linecap="round"/>
+                            <rect x="30" y="35" width="540" height="10" fill="url(#busHoles)"/>
+                        </g>
+                        
+                        <!-- Nodos Centrales (Rieles Verticales) -->
+                        <g class="node-hover" onmouseover="showMsg('¡PISTAS CENTRALES! Se conectan VERTICALMENTE en grupos de 5 agujeros. La canaleta gris del medio rompe la conexión.')" onmouseout="clearMsg()">
+                            <rect x="30" y="55" width="20" height="30" fill="transparent" />
+                            <line class="bb-bus-line" x1="35" y1="58" x2="35" y2="85" stroke-width="6" stroke-linecap="round"/>
+                            <circle cx="35" cy="60" r="3" fill="#333" class="bb-hole"/>
+                            <circle cx="35" cy="66" r="3" fill="#333" class="bb-hole"/>
+                            <circle cx="35" cy="72" r="3" fill="#333" class="bb-hole"/>
+                            <circle cx="35" cy="78" r="3" fill="#333" class="bb-hole"/>
+                            <circle cx="35" cy="84" r="3" fill="#333" class="bb-hole"/>
+                        </g>
+
+                        <g class="node-hover" onmouseover="showMsg('¡PISTAS CENTRALES! Fíjate cómo los 5 agujeritos de abajo son un camino independiente a los 5 de arriba.')" onmouseout="clearMsg()">
+                            <rect x="30" y="115" width="20" height="30" fill="transparent" />
+                            <line class="bb-bus-line" x1="35" y1="115" x2="35" y2="142" stroke-width="6" stroke-linecap="round"/>
+                            <circle cx="35" cy="115" r="3" fill="#333" class="bb-hole"/>
+                            <circle cx="35" cy="121" r="3" fill="#333" class="bb-hole"/>
+                            <circle cx="35" cy="127" r="3" fill="#333" class="bb-hole"/>
+                            <circle cx="35" cy="133" r="3" fill="#333" class="bb-hole"/>
+                            <circle cx="35" cy="139" r="3" fill="#333" class="bb-hole"/>
+                        </g>
+                        
+                        <!-- Resto de Nodos visuales para relleno -->
+                        <pattern id="nodeHolesTop" x="50" y="55" width="20" height="35" patternUnits="userSpaceOnUse">
+                            <circle cx="5" cy="5" r="3" fill="#333"/>
+                            <circle cx="5" cy="11" r="3" fill="#333"/>
+                            <circle cx="5" cy="17" r="3" fill="#333"/>
+                            <circle cx="5" cy="23" r="3" fill="#333"/>
+                            <circle cx="5" cy="29" r="3" fill="#333"/>
+                        </pattern>
+                        <rect x="50" y="55" width="520" height="35" fill="url(#nodeHolesTop)"/>
+
+                        <pattern id="nodeHolesBot" x="50" y="110" width="20" height="35" patternUnits="userSpaceOnUse">
+                            <circle cx="5" cy="5" r="3" fill="#333"/>
+                            <circle cx="5" cy="11" r="3" fill="#333"/>
+                            <circle cx="5" cy="17" r="3" fill="#333"/>
+                            <circle cx="5" cy="23" r="3" fill="#333"/>
+                            <circle cx="5" cy="29" r="3" fill="#333"/>
+                        </pattern>
+                        <rect x="50" y="110" width="520" height="35" fill="url(#nodeHolesBot)"/>
+                        
+                        <!-- Rieles Inferiores -->
+                        <g class="rail-hover" onmouseover="showMsg('Riel de voltaje inferior. Igual que el de arriba, pero recuerda que no están conectados entre sí a menos que pongas un cable de puente.')" onmouseout="clearMsg()">
+                            <rect x="25" y="155" width="550" height="10" fill="transparent" />
+                            <line class="bb-bus-line" x1="30" y1="160" x2="570" y2="160" stroke-width="8" stroke-linecap="round"/>
+                            <rect x="30" y="155" width="540" height="10" fill="url(#busHoles)"/>
+                        </g>
+                        <g class="rail-hover-blue" onmouseover="showMsg('Riel de tierra inferior.')" onmouseout="clearMsg()">
+                            <rect x="25" y="165" width="550" height="10" fill="transparent" />
+                            <line class="bb-bus-line" x1="30" y1="170" x2="570" y2="170" stroke-width="8" stroke-linecap="round"/>
+                            <rect x="30" y="165" width="540" height="10" fill="url(#busHoles)"/>
+                        </g>
+                    </g>
+                </svg>
+                <div id="board-msg" class="highlight-box">Pasa el ratón sobre los agujeros para ver las conexiones ocultas...</div>
             </div>
-        </div>
-        
-        <div class="exercise">
-            <h4>Problema 2: Potencia Eléctrica</h4>
-            <p>Una plancha eléctrica tiene una resistencia de 24Ω y funciona con 120V. Calcula:</p>
-            <ol>
-                <li>La corriente que consume</li>
-                <li>La potencia que disipa</li>
-                <li>La energía consumida si está encendida durante 2 horas</li>
-            </ol>
             
-            <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
-            
-            <div id="sol5" class="exercise-solution">
-                <p><strong>1. Corriente (I):</strong></p>
-                <p class="formula">I = V / R = 120V / 24Ω = 5A</p>
-                
-                <p><strong>2. Potencia (P):</strong></p>
-                <p class="formula">P = V × I = 120V × 5A = 600W</p>
-                <p class="formula">o también: P = I² × R = (5A)² × 24Ω = 600W</p>
-                
-                <p><strong>3. Energía consumida en 2 horas:</strong></p>
-                <p class="formula">E = P × t = 600W × 2h = 1200Wh = 1.2kWh</p>
+            <div class="interactive-grid">
+                <div class="connection-card">
+                    <h3>1. Rieles de Alimentación (Buses)</h3>
+                    <p>Ubicados en los extremos (líneas rojas y azules). El metal por dentro corre de forma <strong>HORIZONTAL</strong>. Se usan para distribuir el Voltaje (+ rojo) y la Tierra (- azul) a lo largo de toda la tabla.</p>
+                </div>
+                <div class="connection-card">
+                    <h3>2. Pistas de Componentes (Nodos)</h3>
+                    <p>En el centro de la tabla. El metal corre de forma <strong>VERTICAL</strong> en grupos de 5 agujeritos. Si conectas el terminal de una resistencia en el agujero 1, y un cable en el agujero 2 de esa misma columna, ¡estarán eléctricamente unidos!</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Resistencias en Paralelo</h2>
-        
-        <p>Cuando las resistencias se conectan en paralelo, el voltaje es el mismo en todas ellas, pero la corriente se divide entre las diferentes ramas. La resistencia total (R<sub>T</sub>) de resistencias en paralelo se calcula con:</p>
-        
-        <div class="formula-box">
-            <div class="formula">1/R<sub>T</sub> = 1/R₁ + 1/R₂ + 1/R₃ + ...</div>
-            <p>O para dos resistencias en paralelo:</p>
-            <div class="formula">R<sub>T</sub> = (R₁ × R₂) / (R₁ + R₂)</div>
+    <div class="practica-section">
+        <h2>Reglas de Oro del Protoboard</h2>
+        <div class="danger-box">
+            <h3><i class="fas fa-radiation"></i> Cuidado con los Cortocircuitos</h3>
+            <p>El error #1 de principiantes es conectar las dos patas de una resistencia (o LED) en la misma columna vertical de 5 agujeros. Como están conectados por abajo, la electricidad saltará directamente por el metal del protoboard en lugar de pasar por la resistencia, creando un cortocircuito.</p>
         </div>
         
-        <svg class="circuit-diagram" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Batería -->
-            <rect x="50" y="80" width="40" height="40" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
-            <rect x="55" y="85" width="5" height="10" fill="#4caf50"/>
-            <rect x="80" y="85" width="5" height="10" fill="#f44336"/>
-            
-            <!-- Circuito principal -->
-            <line x1="90" y1="100" x2="120" y2="100" stroke="#333" stroke-width="2"/>
-            
-            <!-- Nodo superior -->
-            <line x1="120" y1="60" x2="120" y2="140" stroke="#333" stroke-width="2"/>
-            
-            <!-- Rama superior con R1 -->
-            <line x1="120" y1="80" x2="150" y2="80" stroke="#333" stroke-width="2"/>
-            <rect x="150" y="60" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
-            <text x="180" y="85" text-anchor="middle" font-size="12">R₁ = 4Ω</text>
-            <line x1="210" y1="80" x2="240" y2="80" stroke="#333" stroke-width="2"/>
-            
-            <!-- Rama media con R2 -->
-            <line x1="120" y1="100" x2="150" y2="100" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
-            <rect x="150" y="80" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
-            <text x="180" y="105" text-anchor="middle" font-size="12">R₂ = 6Ω</text>
-            <line x1="210" y1="100" x2="240" y2="100" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
-            
-            <!-- Rama inferior con R3 -->
-            <line x1="120" y1="120" x2="150" y2="120" stroke="#333" stroke-width="2"/>
-            <rect x="150" y="100" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
-            <text x="180" y="125" text-anchor="middle" font-size="12">R₃ = 12Ω</text>
-            <line x1="210" y1="120" x2="240" y2="120" stroke="#333" stroke-width="2"/>
-            
-            <!-- Nodo inferior -->
-            <line x1="240" y1="80" x2="240" y2="120" stroke="#333" stroke-width="2"/>
-            
-            <!-- Retorno al circuito principal -->
-            <line x1="240" y1="100" x2="270" y2="100" stroke="#333" stroke-width="2"/>
-            
-            <!-- Amperímetro -->
-            <circle cx="290" cy="100" r="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
-            <text x="290" y="105" text-anchor="middle" font-size="12">A</text>
-            
-            <!-- Conexión de retorno -->
-            <line x1="305" y1="100" x2="330" y2="100" stroke="#333" stroke-width="2"/>
-            <line x1="330" y1="100" x2="330" y2="150" stroke="#333" stroke-width="2"/>
-            <line x1="50" y1="150" x2="330" y2="150" stroke="#333" stroke-width="2"/>
-            <line x1="50" y1="100" x2="50" y2="150" stroke="#333" stroke-width="2"/>
-            
-            <!-- Etiquetas -->
-            <text x="70" y="70" text-anchor="middle" font-size="10">12V</text>
-            <text x="180" y="40" text-anchor="middle" font-size="10">Circuito en Paralelo</text>
-        </svg>
-        
-        <h3>Ejercicios de Resistencias en Paralelo</h3>
-        
-        <div class="exercise">
-            <h4>Ejercicio 4: Dos Resistencias en Paralelo</h4>
-            <p>Se conectan dos resistencias en paralelo: R₁ = 4Ω y R₂ = 6Ω a una batería de 12V. Calcula:</p>
-            <ol>
-                <li>La resistencia equivalente del circuito</li>
-                <li>La corriente total que suministra la batería</li>
-                <li>La corriente que circula por cada resistencia</li>
-                <li>La potencia disipada por cada resistencia</li>
-            </ol>
-            
-            <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
-            
-            <div id="sol6" class="exercise-solution">
-                <p><strong>1. Resistencia equivalente (R<sub>T</sub>):</strong></p>
-                <p class="formula">1/R<sub>T</sub> = 1/R₁ + 1/R₂ = 1/4Ω + 1/6Ω = 3/12 + 2/12 = 5/12</p>
-                <p class="formula">R<sub>T</sub> = 12/5 Ω = 2.4Ω</p>
-                
-                <p><strong>2. Corriente total (I<sub>T</sub>):</strong></p>
-                <p class="formula">I<sub>T</sub> = V / R<sub>T</sub> = 12V / 2.4Ω = 5A</p>
-                
-                <p><strong>3. Corriente por cada resistencia:</strong></p>
-                <p class="formula">I₁ = V / R₁ = 12V / 4Ω = 3A</p>
-                <p class="formula">I₂ = V / R₂ = 12V / 6Ω = 2A</p>
-                <p class="formula">(Verificación: I₁ + I₂ = 3A + 2A = 5A = I<sub>T</sub> ✓)</p>
-                
-                <p><strong>4. Potencia disipada:</strong></p>
-                <p class="formula">P₁ = V × I₁ = 12V × 3A = 36W</p>
-                <p class="formula">P₂ = V × I₂ = 12V × 2A = 24W</p>
-                <p class="formula">P<sub>T</sub> = P₁ + P₂ = 36W + 24W = 60W</p>
-                <p class="formula">(Verificación: P<sub>T</sub> = V × I<sub>T</sub> = 12V × 5A = 60W ✓)</p>
-            </div>
-        </div>
-        
-        <div class="exercise">
-            <h4>Ejercicio 5: Tres Resistencias en Paralelo</h4>
-            <p>En el circuito mostrado en el diagrama, tenemos tres resistencias en paralelo: R₁ = 4Ω, R₂ = 6Ω y R₃ = 12Ω, conectadas a una batería de 12V. Calcula:</p>
-            <ol>
-                <li>La resistencia equivalente del circuito</li>
-                <li>La corriente total que suministra la batería</li>
-                <li>La corriente que circula por cada resistencia</li>
-                <li>La potencia total del circuito</li>
-            </ol>
-            
-            <button class="show-solution" onclick="toggleSolution('sol7')">Mostrar Solución</button>
-            
-            <div id="sol7" class="exercise-solution">
-                <p><strong>1. Resistencia equivalente (R<sub>T</sub>):</strong></p>
-                <p class="formula">1/R<sub>T</sub> = 1/R₁ + 1/R₂ + 1/R₃ = 1/4Ω + 1/6Ω + 1/12Ω</p>
-                <p class="formula">1/R<sub>T</sub> = 3/12 + 2/12 + 1/12 = 6/12 = 1/2</p>
-                <p class="formula">R<sub>T</sub> = 2Ω</p>
-                
-                <p><strong>2. Corriente total (I<sub>T</sub>):</strong></p>
-                <p class="formula">I<sub>T</sub> = V / R<sub>T</sub> = 12V / 2Ω = 6A</p>
-                
-                <p><strong>3. Corriente por cada resistencia:</strong></p>
-                <p class="formula">I₁ = V / R₁ = 12V / 4Ω = 3A</p>
-                <p class="formula">I₂ = V / R₂ = 12V / 6Ω = 2A</p>
-                <p class="formula">I₃ = V / R₃ = 12V / 12Ω = 1A</p>
-                <p class="formula">(Verificación: I₁ + I₂ + I₃ = 3A + 2A + 1A = 6A = I<sub>T</sub> ✓)</p>
-                
-                <p><strong>4. Potencia total del circuito:</strong></p>
-                <p class="formula">P<sub>T</sub> = V × I<sub>T</sub> = 12V × 6A = 72W</p>
-                <p class="formula">(Verificación: P₁ + P₂ + P₃ = (12V×3A) + (12V×2A) + (12V×1A) = 36W + 24W + 12W = 72W ✓)</p>
-            </div>
-        </div>
-        
-        <div class="exercise">
-            <h4>Ejercicio 6: Resistencias Iguales en Paralelo</h4>
-            <p>Se conectan cuatro resistencias de 100Ω en paralelo a una fuente de 10V. Calcula:</p>
-            <ol>
-                <li>La resistencia equivalente del circuito</li>
-                <li>La corriente total del circuito</li>
-                <li>La corriente que circula por cada resistencia</li>
-                <li>¿Qué sucede con la resistencia total si se añade una quinta resistencia igual en paralelo?</li>
-            </ol>
-            
-            <button class="show-solution" onclick="toggleSolution('sol8')">Mostrar Solución</button>
-            
-            <div id="sol8" class="exercise-solution">
-                <p><strong>1. Resistencia equivalente (R<sub>T</sub>):</strong></p>
-                <p>Para n resistencias iguales en paralelo: R<sub>T</sub> = R / n</p>
-                <p class="formula">R<sub>T</sub> = 100Ω / 4 = 25Ω</p>
-                
-                <p><strong>2. Corriente total (I<sub>T</sub>):</strong></p>
-                <p class="formula">I<sub>T</sub> = V / R<sub>T</sub> = 10V / 25Ω = 0.4A</p>
-                
-                <p><strong>3. Corriente por cada resistencia:</strong></p>
-                <p class="formula">I = V / R = 10V / 100Ω = 0.1A por cada resistencia</p>
-                <p class="formula">(Verificación: 4 × 0.1A = 0.4A = I<sub>T</sub> ✓)</p>
-                
-                <p><strong>4. Añadiendo una quinta resistencia:</strong></p>
-                <p class="formula">R<sub>T-nueva</sub> = 100Ω / 5 = 20Ω</p>
-                <p>La resistencia total disminuye al añadir más resistencias en paralelo. En general, cuantas más resistencias se conectan en paralelo, menor es la resistencia total del circuito.</p>
-            </div>
-        </div>
-        
-        <div class="interactive-calculator">
-            <h4>Calculadora de Resistencias en Paralelo</h4>
-            
-            <p>Ingresa los valores de las resistencias (deja en blanco las que no uses):</p>
-            
-            <div class="input-group">
-                <label for="r1">Resistencia 1 (Ω):</label>
-                <input type="number" id="r1" placeholder="Ω">
-            </div>
-            
-            <div class="input-group">
-                <label for="r2">Resistencia 2 (Ω):</label>
-                <input type="number" id="r2" placeholder="Ω">
-            </div>
-            
-            <div class="input-group">
-                <label for="r3">Resistencia 3 (Ω):</label>
-                <input type="number" id="r3" placeholder="Ω">
-            </div>
-            
-            <div class="input-group">
-                <label for="r4">Resistencia 4 (Ω):</label>
-                <input type="number" id="r4" placeholder="Ω">
-            </div>
-            
-            <button onclick="calculateParallel()" class="show-solution">Calcular Resistencia Equivalente</button>
-            
-            <div id="parallel-result" class="result"></div>
-        </div>
+        <p><strong>La Canaleta Central:</strong> Esa zanja en medio del protoboard no está de adorno. Separa eléctricamente la mitad superior de la inferior. Esto es vital para conectar Circuitos Integrados (los "chips" negros con patas de ciempiés), poniendo sus patas de un lado y del otro sin cortocircuitarlas.</p>
     </div>
 
-    <div class="section">
-        <h2>Preguntas de Reflexión</h2>
-        
-        <div class="reflection">
-            <ol>
-                <li>¿Qué sucede con la corriente en un circuito si mantenemos el voltaje constante pero aumentamos la resistencia?</li>
-                <li>¿Por qué los cables de conexión en los circuitos eléctricos ofrecen poca resistencia al paso de la corriente?</li>
-                <li>Si conectas dos resistencias idénticas en paralelo a una batería, ¿la resistencia total del circuito será mayor o menor que el valor de una sola resistencia? ¿Por qué?</li>
-                <li>¿Cómo se relaciona la Ley de Ohm con la seguridad al trabajar con circuitos eléctricos?</li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Resumen y Próximos Pasos</h2>
-        
-        <p>En esta sesión has practicado:</p>
-        <ul>
-            <li>Cálculo de corriente, voltaje y resistencia usando la Ley de Ohm</li>
-            <li>Resolución de problemas con circuitos en serie</li>
-            <li>Cálculo de potencia y energía eléctrica</li>
-            <li>Uso de herramientas interactivas para verificar tus soluciones</li>
-        </ul>
-        
-        
-        <div class="nav-container">
-            <a href="index.html" class="button">Volver al Índice</a>
-        </div>
-    </div>
-
-    <script>
-        // Función para calcular resistencias en paralelo
-        function calculateParallel() {
-            const resistances = [];
-            
-            // Obtener valores de las resistencias
-            for (let i = 1; i <= 4; i++) {
-                const r = parseFloat(document.getElementById(`r${i}`).value);
-                if (!isNaN(r) && r > 0) {
-                    resistances.push(r);
-                }
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Cómo están conectados por dentro los rieles principales de alimentación (las líneas con bordes rojo y azul) en el Protoboard?",
+                "options": [
+                    "Están conectados verticalmente en grupos de 5.",
+                    "No están conectados, son agujeros individuales.",
+                    "Están conectados horizontalmente de extremo a extremo.",
+                    "Están conectados en forma de cruz."
+                ],
+                "correctIndex": 2,
+                "explanation": "Los buses de alimentación corren horizontalmente para que puedas tomar voltaje o tierra desde cualquier punto de la placa con facilidad."
+            },
+            {
+                "question": "¿Qué función cumple la zanja (canaleta) gris en el centro del Protoboard?",
+                "options": [
+                    "Aislar eléctricamente los nodos superiores de los inferiores, ideal para insertar chips (circuitos integrados).",
+                    "Es un canal para que pase agua y enfríe el circuito.",
+                    "Sirve para conectar los dos rieles de alimentación.",
+                    "Es un defecto de fábrica."
+                ],
+                "correctIndex": 0,
+                "explanation": "Si pones un Chip sin canaleta, sus patas izquierda y derecha estarían en la misma línea vertical haciendo cortocircuito. La canaleta las separa."
+            },
+            {
+                "question": "Si insertas una de las patas de una resistencia en el agujero (a,1) y quieres conectarle un cable a esa pata... ¿En qué agujero deberías poner el cable?",
+                "options": [
+                    "En el (a,2) porque los agujeros horizontales se conectan.",
+                    "En cualquier agujero de la columna 1, por ejemplo el (b,1) o (c,1), ya que la pista metálica los une verticalmente.",
+                    "En el riel rojo de arriba.",
+                    "En el otro extremo del protoboard."
+                ],
+                "correctIndex": 1,
+                "explanation": "En el área central, las conexiones fluyen en columnas verticales. Todos los agujeros de la columna 1 (a, b, c, d, e) son el mismo punto eléctrico."
+            },
+            {
+                "question": "¿Qué sucede si conectas la PATA 1 de un LED en (a,5) y la PATA 2 del mismo LED en (e,5)?",
+                "options": [
+                    "El LED encenderá más brillante.",
+                    "El LED creará un cortocircuito porque ambas patas están en la misma línea metálica vertical, la corriente ignorará el LED y viajará por el metal.",
+                    "El LED funcionará perfectamente.",
+                    "El protoboard se recargará."
+                ],
+                "correctIndex": 1,
+                "explanation": "Nunca pongas los dos terminales de un mismo componente en la misma fila de 5. Se puentean a sí mismos y es un error letal."
             }
-            
-            const resultDiv = document.getElementById('parallel-result');
-            
-            if (resistances.length === 0) {
-                resultDiv.textContent = 'Ingresa al menos un valor de resistencia válido.';
-                resultDiv.style.display = 'block';
-                return;
-            }
-            
-            // Calcular la resistencia equivalente en paralelo
-            let inverseSum = 0;
-            for (const r of resistances) {
-                inverseSum += 1 / r;
-            }
-            
-            const equivalentResistance = 1 / inverseSum;
-            
-            // Mostrar el resultado con el proceso de cálculo
-            let calculationSteps = '1/R<sub>eq</sub> = ';
-            calculationSteps += resistances.map(r => `1/${r}Ω`).join(' + ');
-            calculationSteps += ` = ${inverseSum.toFixed(4)} Ω⁻¹`;
-            
-            resultDiv.innerHTML = `
-                <p>${calculationSteps}</p>
-                <p>R<sub>eq</sub> = 1 / (${inverseSum.toFixed(4)} Ω⁻¹) = <strong>${equivalentResistance.toFixed(4)} Ω</strong></p>
-                <p>La resistencia equivalente del circuito en paralelo es de <strong>${equivalentResistance.toFixed(4)} Ω</strong>.</p>
-            `;
-            resultDiv.style.display = 'block';
-        }
-        
-        // Función para mostrar/ocultar soluciones
-        function toggleSolution(id) {
-            const solution = document.getElementById(id);
-            if (solution.style.display === 'block') {
-                solution.style.display = 'none';
-            } else {
-                solution.style.display = 'block';
-            }
-        }
-        
-        // Función para la calculadora interactiva
-        function calculateOhm() {
-            const voltage = parseFloat(document.getElementById('calc-voltage').value);
-            const current = parseFloat(document.getElementById('calc-current').value);
-            const resistance = parseFloat(document.getElementById('calc-resistance').value);
-            const resultDiv = document.getElementById('result');
-            
-            // Contar cuántos valores se proporcionaron
-            const valuesProvided = [voltage, current, resistance].filter(x => !isNaN(x)).length;
-            
-            if (valuesProvided < 2) {
-                resultDiv.textContent = 'Por favor, ingresa al menos dos valores conocidos.';
-                resultDiv.style.display = 'block';
-                return;
-            }
-            
-            let result = '';
-            
-            // Calcular el valor faltante
-            if (isNaN(voltage) && !isNaN(current) && !isNaN(resistance)) {
-                const v = current * resistance;
-                result = `Voltaje (V) = ${v.toFixed(2)}V`;
-            } else if (!isNaN(voltage) && isNaN(current) && !isNaN(resistance)) {
-                const i = voltage / resistance;
-                result = `Corriente (I) = ${i.toFixed(4)}A`;
-            } else if (!isNaN(voltage) && !isNaN(current) && isNaN(resistance)) {
-                const r = voltage / current;
-                result = `Resistencia (R) = ${r.toFixed(2)}Ω`;
-            } else if (valuesProvided === 3) {
-                // Verificar si los valores son consistentes con la Ley de Ohm
-                if (Math.abs(voltage - (current * resistance)) < 0.01) {
-                    result = '¡Los valores son consistentes con la Ley de Ohm!';
-                } else {
-                    result = '¡Atención! Los valores no cumplen con la Ley de Ohm (V = I × R)';
-                }
-            } else {
-                result = 'Por favor, deja solo un campo en blanco para calcular.';
-            }
-            
-            resultDiv.textContent = result;
-            resultDiv.style.display = 'block';
-        }
-    </script>
-    <footer>
-        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+        ]
+        </script>
+    </div>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion12.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion14.html" class="nav-btn next">Siguiente Sesión (Uso del Multímetro pt2) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function showMsg(text) {
+        document.getElementById('board-msg').textContent = text;
+    }
+    function clearMsg() {
+        document.getElementById('board-msg').textContent = "Pasa el ratón sobre los agujeros para ver las conexiones ocultas...";
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion13');
+          window.markLessonCompleted('electricidad1', 'sesion13');
       }
   });
 </script>
