@@ -3,223 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 2: Clasificación Visual de Materiales | Componentes Eléctricos Básicos</title>
+    <title>Sesión 2: Clasificación de Materiales - Detective Eléctrico</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .classification-game {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+        }
+
+        .items-deck {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            min-height: 100px;
+        }
+
+        .item-card {
+            background: var(--bg-main);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            width: 100px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item-card:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .item-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .item-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .drop-zones {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .drop-zone {
+            flex: 1;
+            min-width: 250px;
+            min-height: 200px;
+            border: 3px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .drop-zone.conductor-zone {
+            background: rgba(231, 76, 60, 0.05); /* Rojo claro */
+        }
+        
+        .drop-zone.aislante-zone {
+            background: rgba(52, 152, 219, 0.05); /* Azul claro */
+        }
+
+        .drop-zone.drag-over {
+            transform: scale(1.02);
+        }
+
+        .drop-zone.conductor-zone.drag-over {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .drop-zone.aislante-zone.drag-over {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .zone-title {
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            pointer-events: none;
+        }
+
+        .conductor-title { color: #e74c3c; }
+        .aislante-title { color: #3498db; }
+
+        .score-board {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            color: var(--text-heading);
+        }
+
+        /* Utilidad para arrastrar */
+        .dragging {
+            opacity: 0.5;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sesión 2: Clasificación Visual de Materiales</h1>
-            <p>Identificando conductores y aislantes en la vida cotidiana</p>
-        </div>
-    </header>
 
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Clasificación de Materiales</h1>
+        <p class="sesion-subtitle">Sesión 2 - Módulo 1: El Ojo Clínico del Electricista</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-search"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Desarrollar la habilidad visual para predecir si un material desconocido es conductor o aislante, una habilidad crítica para evitar cortocircuitos o electrocuciones en el campo.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>Características Físicas (Sin usar Multímetro)</h2>
+        <p>Un buen electricista puede identificar el comportamiento eléctrico de un objeto con solo mirarlo o tocarlo. Existen pistas visuales universales.</p>
         
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Al finalizar esta sesión, los estudiantes podrán identificar visualmente materiales conductores y aislantes, aplicando criterios de clasificación en diversos contextos.</p>
+        <div class="phase-block" style="margin-top: 2rem;">
+            <div class="phase-header" style="background: #e74c3c; color: white;">
+                <span>Perfil del Conductor Típico</span>
+                <span><i class="fas fa-bolt"></i></span>
             </div>
-
-            <div class="theory">
-                <h2>Contenido teórico</h2>
-                <p>La clasificación visual de materiales se basa en propiedades observables que nos permiten predecir su conductividad eléctrica.</p>
-                
-                <div class="concept-box">
-                    <h3>Características de los conductores</h3>
-                    <ul>
-                        <li><strong>Apariencia:</strong> Metálica y brillante</li>
-                        <li><strong>Textura:</strong> Fría al tacto (buen conductor térmico)</li>
-                        <li><strong>Peso:</strong> Generalmente más pesados</li>
-                        <li><strong>Maleabilidad:</strong> Se pueden doblar sin romperse</li>
-                    </ul>
-                </div>
-
-                <div class="concept-box">
-                    <h3>Características de los aislantes</h3>
-                    <ul>
-                        <li><strong>Apariencia:</strong> Opacos o traslúcidos</li>
-                        <li><strong>Textura:</strong> Variable (madera, plástico, goma)</li>
-                        <li><strong>Peso:</strong> Generalmente más ligeros</li>
-                        <li><strong>Fragilidad:</strong> Algunos se rompen fácilmente</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="visual-example">
-                <h2>Ejemplo visual</h2>
-                <div class="analogy">
-                    <p>Imagina que los materiales conductores son como carreteras para los electrones, mientras que los aislantes son como barreras naturales:</p>
-                    <ul>
-                        <li>Los metales son como autopistas de varios carriles (alta conductividad)</li>
-                        <li>El grafito es como un camino de tierra (conductividad media)</li>
-                        <li>Los plásticos son como montañas infranqueables (aislantes)</li>
-                    </ul>
-                </div>
-                <div class="resource-grid">
-                    <div class="resource-item">
-                        <h3>Guía de Clasificación Visual</h3>
-                        <img src="assets/svg/sesion2/guia_clasificacion.svg" alt="Guía de clasificación visual de materiales" class="resource-img">
-                        <p>Compara las características visuales de conductores y aislantes.</p>
-                    </div>
-                    <div class="resource-item">
-                        <h3>Vista Microscópica</h3>
-                        <img src="assets/svg/sesion2/vista_microscopica.svg" alt="Vista microscópica de materiales" class="resource-img">
-                        <p>Observa las diferencias a nivel atómico entre conductores y aislantes.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="practical-activity">
-                <h2>Actividad práctica: El detective de materiales</h2>
-                <p><strong>Materiales necesarios:</strong> Lupa, imán, linterna, objetos cotidianos variados (monedas, lápices, clips, gomas, etc.)</p>
-                
-                <h3>Instrucciones:</h3>
-                <ol>
-                    <li>Observa cada objeto con atención usando la lupa</li>
-                    <li>Registra tus observaciones en la tabla</li>
-                    <li>Usa el imán para verificar propiedades magnéticas</li>
-                    <li>Clasifica cada material según tus observaciones</li>
-                </ol>
-
-                <div class="activity-table">
-                    <table>
-                        <tr>
-                            <th>Objeto</th>
-                            <th>Color</th>
-                            <th>Brillo</th>
-                            <th>¿Atrae imán?</th>
-                            <th>Predicción</th>
-                        </tr>
-                        <tr>
-                            <td>Moneda</td>
-                            <td><input type="text" id="moneda-color" aria-label="Color de la moneda"></td>
-                            <td>
-                                <select id="moneda-brillo" aria-label="Brillo de la moneda">
-                                    <option value="">Selecciona</option>
-                                    <option value="alto">Alto</option>
-                                    <option value="medio">Medio</option>
-                                    <option value="bajo">Bajo</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="moneda-iman" aria-label="Moneda atrae imán">
-                            </td>
-                            <td>
-                                <select id="moneda-prediccion" aria-label="Predicción para moneda">
-                                    <option value="">Selecciona</option>
-                                    <option value="conductor">Conductor</option>
-                                    <option value="aislante">Aislante</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Lápiz de madera</td>
-                            <td><input type="text" id="lapiz-color" aria-label="Color del lápiz"></td>
-                            <td>
-                                <select id="lapiz-brillo" aria-label="Brillo del lápiz">
-                                    <option value="">Selecciona</option>
-                                    <option value="alto">Alto</option>
-                                    <option value="medio">Medio</option>
-                                    <option value="bajo">Bajo</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="lapiz-iman" aria-label="Lápiz atrae imán">
-                            </td>
-                            <td>
-                                <select id="lapiz-prediccion" aria-label="Predicción para lápiz">
-                                    <option value="">Selecciona</option>
-                                    <option value="conductor">Conductor</option>
-                                    <option value="aislante">Aislante</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <!-- Más filas según sea necesario -->
-                    </table>
-                    <button class="btn" id="verificar-predicciones">Verificar predicciones</button>
-                </div>
-            </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>¿Qué características visuales te resultaron más útiles para predecir si un material es conductor o aislante? ¿Hubo alguna característica que te sorprendió?</p>
-                <textarea rows="4" placeholder="Escribe tu reflexión aquí..." aria-label="Reflexión sobre características visuales"></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos interactivos</h2>
-                <div class="resource-grid">
-                    <div class="resource-item">
-                        <h3>Juego: Cazatesoros Eléctrico</h3>
-                        <img src="assets/svg/sesion2/tablero_tesoro.svg" alt="Juego Cazatesoros Eléctrico" class="resource-img">
-                        <p>Encuentra los materiales conductores ocultos en el tablero. ¡Cada acierto suma puntos!</p>
-                        <a href="assets/svg/sesion2/tablero_tesoro.svg" target="_blank" rel="noopener noreferrer" class="btn-small">Jugar ahora</a>
-                    </div>
-                    <div class="simulator-placeholder">
-                        <h3>Simulador de Materiales</h3>
-                        <p>🔍 Explora cómo diferentes materiales afectan el flujo de corriente eléctrica.</p>
-                        <a href="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_es.html" target="_blank" rel="noopener noreferrer" class="btn-small">Abrir simulador</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="gamification">
-                <h2>Reto gamificado: El cazatesoros eléctrico</h2>
-                <p><strong>Misión:</strong> Encuentra en tu casa 3 objetos que contengan tanto materiales conductores como aislantes. Toma fotografías y explica la función de cada material en el objeto.</p>
-                <p><strong>Puntos:</strong></p>
+            <div class="phase-content" style="border-left-color: #e74c3c;">
                 <ul>
-                    <li>10 puntos por objeto correctamente identificado</li>
-                    <li>5 puntos adicionales por explicación detallada</li>
-                    <li>Bono de 15 puntos por encontrar un objeto inusual</li>
+                    <li><strong>Brillo Metálico:</strong> Reflejan la luz intensamente (oro, plata, cobre desnudo).</li>
+                    <li><strong>Fríos al tacto:</strong> Los buenos conductores eléctricos también son excelentes conductores térmicos. Roban el calor de tu mano rápidamente, por eso el metal se siente frío.</li>
+                    <li><strong>Maleabilidad:</strong> Se pueden doblar sin quebrarse fácilmente.</li>
                 </ul>
-                <button class="btn" id="subir-evidencia">Subir evidencia</button>
             </div>
-        </section>
-
-        <div class="session-navigation">
-            <a href="sesion1.html" class="btn">← Sesión anterior</a>
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion3.html" class="btn">Siguiente sesión →</a>
         </div>
-    </main>
 
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+        <div class="phase-block" style="margin-top: 2rem;">
+            <div class="phase-header" style="background: #3498db; color: white;">
+                <span>Perfil del Aislante Típico</span>
+                <span><i class="fas fa-shield-alt"></i></span>
+            </div>
+            <div class="phase-content" style="border-left-color: #3498db;">
+                <ul>
+                    <li><strong>Opacidad:</strong> Colores mate, sin brillo reflectante metálico (plásticos, goma, madera).</li>
+                    <li><strong>Cálidos o neutros al tacto:</strong> No roban el calor de tu mano tan rápido como el metal.</li>
+                    <li><strong>Fragilidad o Flexibilidad extrema:</strong> El vidrio se rompe; la goma se dobla infinitamente.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
-    <script>
-        // Código para la interacción de la tabla
-        document.addEventListener('DOMContentLoaded', function() {
-            const verificarBtn = document.getElementById('verificar-predicciones');
-            if (verificarBtn) {
-                verificarBtn.addEventListener('click', function() {
-                    alert('¡Buen trabajo! Revisa tus respuestas con tu instructor o compáralas con la guía de materiales.');
-                });
+    <div class="practica-section">
+        <h2>Mini-Juego: El Detective Eléctrico</h2>
+        <p>Acomoda los objetos del centro en la caja correspondiente. ¡Arrástralos con tu ratón o dedo! Un error causará un "chispazo", un acierto te dará puntos.</p>
+
+        <div class="classification-game">
+            
+            <div class="items-deck" id="items-deck">
+                <!-- Se llenará con JS -->
+            </div>
+
+            <div class="drop-zones">
+                <div class="drop-zone conductor-zone" id="zone-conductor" data-type="conductor">
+                    <div class="zone-title conductor-title"><i class="fas fa-bolt"></i> CONDUCTORES</div>
+                </div>
+                
+                <div class="drop-zone aislante-zone" id="zone-aislante" data-type="aislante">
+                    <div class="zone-title aislante-title"><i class="fas fa-hand-paper"></i> AISLANTES</div>
+                </div>
+            </div>
+
+            <div class="score-board">
+                Aciertos: <span id="score" style="color: #2ecc71;">0</span> / 6
+            </div>
+        </div>
+
+        <div class="danger-box">
+            <h3><i class="fas fa-question-circle"></i> La Excepción a la Regla: El Grafito</h3>
+            <p>La punta de tu lápiz (grafito) no brilla como metal ni está frío, pero ¡ES CONDUCTOR! El carbono en forma de grafito tiene electrones libres que viajan entre sus capas. ¡Nunca metas un lápiz en un enchufe!</p>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Por qué un trozo de cobre desnudo se siente más 'frío' al tacto que un trozo de plástico, si ambos están en la misma habitación?",
+                "options": [
+                    "Porque el cobre genera frío mágicamente.",
+                    "Porque el cobre es un excelente conductor térmico que roba rápidamente el calor de tu mano, dándote la sensación de frío.",
+                    "Porque el plástico absorbe la luz del sol.",
+                    "Porque el plástico tiene electricidad estática que lo calienta."
+                ],
+                "correctIndex": 1,
+                "explanation": "Los buenos conductores eléctricos suelen ser excelentes conductores térmicos. Al tocar metal, este absorbe rápidamente el calor de tu cuerpo."
+            },
+            {
+                "question": "Tienes un objeto brillante, amarillo y pesado. Es maleable. ¿Qué clasificación es más probable?",
+                "options": [
+                    "Aislante (Probablemente oro).",
+                    "Aislante (Probablemente plástico pintado).",
+                    "Conductor (Probablemente oro o latón).",
+                    "Semiconductor."
+                ],
+                "correctIndex": 2,
+                "explanation": "Brillo metálico, maleabilidad y peso son las firmas clásicas de los metales, que son conductores naturales."
+            },
+            {
+                "question": "¿Cuál de los siguientes objetos NO metálicos es un conductor peligroso en la vida cotidiana?",
+                "options": [
+                    "La goma de borrar.",
+                    "El grafito (punta de un lápiz).",
+                    "Una regla de plástico.",
+                    "Un vaso de vidrio seco."
+                ],
+                "correctIndex": 1,
+                "explanation": "El grafito, aunque es una forma de carbono, tiene una estructura cristalina que permite a los electrones fluir libremente, convirtiéndolo en un conductor."
+            },
+            {
+                "question": "En un poste de alta tensión, ¿por qué los cables no están recubiertos de plástico aislante como los de tu casa?",
+                "options": [
+                    "Porque el plástico es muy caro.",
+                    "Porque a esos niveles de voltaje (miles de voltios), el plástico se derretiría y de todos modos sería inútil. El mejor aislante que usan es mantenerlos muy separados en el AIRE.",
+                    "Porque quieren que los pájaros se electrocuten.",
+                    "Porque el cable es tan grueso que no necesita aislante."
+                ],
+                "correctIndex": 1,
+                "explanation": "En alta tensión, la cantidad de aislamiento necesario sería ridículamente pesada y costosa. Se utiliza el aire atmosférico como aislante natural, sosteniendo los cables con discos de cerámica o vidrio."
             }
+        ]
+        </script>
+    </div>
 
-            const subirBtn = document.getElementById('subir-evidencia');
-            if (subirBtn) {
-                subirBtn.addEventListener('click', function() {
-                    alert('Función de subir evidencia: Esta funcionalidad se implementará en una versión futura.');
-                });
-            }
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion1.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion3.html" class="nav-btn next">Siguiente Sesión (Interruptores) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    // Lógica del Mini-Juego Drag & Drop
+    const items = [
+        { id: 'item-1', name: 'Llave de Cobre', icon: 'fa-key', type: 'conductor', color: '#cd7f32' },
+        { id: 'item-2', name: 'Botella Plástico', icon: 'fa-bottle-water', type: 'aislante', color: '#3498db' },
+        { id: 'item-3', name: 'Clavo de Hierro', icon: 'fa-hammer', type: 'conductor', color: '#7f8c8d' },
+        { id: 'item-4', name: 'Lápiz (Grafito)', icon: 'fa-pencil-alt', type: 'conductor', color: '#2c3e50' },
+        { id: 'item-5', name: 'Guante de Goma', icon: 'fa-mitten', type: 'aislante', color: '#f1c40f' },
+        { id: 'item-6', name: 'Vaso de Vidrio', icon: 'fa-glass-water', type: 'aislante', color: '#95a5a6' }
+    ];
+
+    let score = 0;
+    const maxScore = items.length;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const deck = document.getElementById('items-deck');
+        const scoreSpan = document.getElementById('score');
+
+        // Randomizar items
+        items.sort(() => Math.random() - 0.5);
+
+        // Crear las tarjetas
+        items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            card.draggable = true;
+            card.id = item.id;
+            card.dataset.type = item.type;
+            
+            card.innerHTML = `
+                <i class="fas ${item.icon} item-icon" style="color: ${item.color};"></i>
+                <span class="item-name">${item.name}</span>
+            `;
+            
+            deck.appendChild(card);
+
+            // Drag Events para la tarjeta
+            card.addEventListener('dragstart', (e) => {
+                card.classList.add('dragging');
+                e.dataTransfer.setData('text/plain', item.id);
+            });
+
+            card.addEventListener('dragend', () => {
+                card.classList.remove('dragging');
+            });
         });
-    </script>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+        // Configurar Drop Zones
+        const zones = document.querySelectorAll('.drop-zone');
+        
+        zones.forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault(); // Necesario para permitir el drop
+                zone.classList.add('drag-over');
+            });
+
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('drag-over');
+            });
+
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('drag-over');
+                
+                const id = e.dataTransfer.getData('text/plain');
+                const draggedElement = document.getElementById(id);
+                
+                if (!draggedElement) return;
+
+                const expectedType = zone.dataset.type;
+                const actualType = draggedElement.dataset.type;
+
+                if (expectedType === actualType) {
+                    // Éxito
+                    zone.appendChild(draggedElement);
+                    draggedElement.draggable = false; // Ya no se puede mover
+                    draggedElement.style.cursor = 'default';
+                    draggedElement.style.boxShadow = '0 0 10px #2ecc71';
+                    draggedElement.style.borderColor = '#2ecc71';
+                    
+                    score++;
+                    scoreSpan.textContent = score;
+
+                    if(score === maxScore) {
+                        setTimeout(() => alert('¡Excelente! Tienes visión de Rayos X eléctrica.'), 300);
+                    }
+                } else {
+                    // Error - Visual Feedback
+                    draggedElement.style.borderColor = '#e74c3c';
+                    draggedElement.style.transform = 'translateX(-10px)';
+                    setTimeout(() => draggedElement.style.transform = 'translateX(10px)', 100);
+                    setTimeout(() => draggedElement.style.transform = 'translateX(0)', 200);
+                    setTimeout(() => draggedElement.style.borderColor = 'var(--border-color)', 500);
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion2');
+          window.markLessonCompleted('electricidad3', 'sesion2');
       }
   });
 </script>
