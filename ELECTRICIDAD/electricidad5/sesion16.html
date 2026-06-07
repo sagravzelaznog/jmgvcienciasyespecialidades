@@ -3,563 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 16: Proyecto Final Integrador</title>
+    <title>Sesión 16: Puesta en Marcha - El Latido Solar</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary-color);
             padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4, h5 {
+            border-radius: 5px;
             color: #2c3e50;
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+
+        /* Commissioning Simulator */
+        .comm-sim {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .back-button:hover {
-            background-color: #2980b9;
-        }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
+
+        .inverter-panel {
+            width: 300px;
+            background: #ecf0f1;
+            border-radius: 10px;
             padding: 20px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+            box-shadow: inset 0 -5px 15px rgba(0,0,0,0.2);
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .project-box {
-            background-color: #f9f9f9;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .presentation-box {
-            background-color: #fff8e1;
-            border-left: 3px solid #ffa000;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        .evaluation-box {
-            background-color: #f0f7f0;
-            border-left: 3px solid #27ae60;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        .specs-table {
+
+        .inv-screen {
             width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .step-box {
-            background-color: #e8f5e9;
-            padding: 15px;
-            margin: 15px 0;
+            height: 80px;
+            background: #7f8c8d; /* Off state */
+            border: 4px solid #bdc3c7;
             border-radius: 5px;
-            border-left: 3px solid #2e7d32;
-        }
-        .step-box h4 {
-            color: #1b5e20;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .checklist {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .checklist li {
-            padding: 8px 0 8px 30px;
-            position: relative;
-        }
-        .checklist li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #27ae60;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
-        }
-        .image-container {
+            font-size: 1.2rem;
             text-align: center;
-            margin: 20px 0;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
             padding: 5px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            transition: all 0.3s;
         }
-        .example-project {
-            background-color: #f5f5f5;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
+
+        .inv-screen.on { background: #3498db; color: white; }
+        .inv-screen.error { background: #e74c3c; color: white; }
+        .inv-screen.success { background: #2ecc71; color: white; }
+
+        .led-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #7f8c8d;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
         }
-        .rubric-table {
+
+        .switches-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
             width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
+            max-width: 600px;
         }
-        .rubric-table, .rubric-table th, .rubric-table td {
-            border: 1px solid #ddd;
-        }
-        .rubric-table th, .rubric-table td {
-            padding: 10px;
+
+        .switch-box {
+            background: #34495e;
+            border: 2px solid #95a5a6;
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .rubric-table th {
-            background-color: #f2f2f2;
+
+        .switch-box h4 { margin: 0 0 10px 0; font-size: 0.9rem; color: #ecf0f1; }
+
+        .breaker {
+            width: 40px;
+            height: 60px;
+            background: #2c3e50;
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
-        .rubric-table td:first-child {
-            text-align: left;
+
+        .breaker-toggle {
+            width: 100%;
+            height: 50%;
+            background: #e74c3c; /* OFF */
+            border-radius: 5px;
+            position: absolute;
+            bottom: 0;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
             font-weight: bold;
-            width: 30%;
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .specs-table, .rubric-table {
-                font-size: 0.9em;
-            }
+
+        .breaker.on .breaker-toggle {
+            bottom: 50%;
+            background: #2ecc71; /* ON */
         }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background: #2c3e50;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #f1c40f;
+            transition: width 1s linear;
+        }
+
+        .status-msg {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            background: #e67e22;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 16: Proyecto Final Integrador</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Integrar todos los conocimientos adquiridos durante el curso para desarrollar un proyecto fotovoltaico completo, desde el análisis inicial hasta la propuesta de implementación, aplicando criterios técnicos, económicos y ambientales para ofrecer una solución integral de energía solar.</p>
-        </div>
 
-        <h2>1. Presentación del proyecto final</h2>
-        <p><strong>Duración:</strong> 30 minutos</p>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Puesta en Marcha</h1>
+        <p class="sesion-subtitle">Sesión 16 - Módulo 5: El Encendido Final</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-power-off"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Todo está instalado y cableado. Pero no puedes simplemente subir todas las pastillas al mismo tiempo. El inversor es una computadora sensible que necesita "oler" la red eléctrica antes de inyectar energía solar. Aprenderás la secuencia exacta de encendido.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>La Secuencia de Vida</h2>
         
-        <div class="project-box">
-            <h4>1.1 Objetivos del proyecto</h4>
-            
-            <ul>
-                <li>Demostrar comprensión integral de los conceptos de energía solar fotovoltaica</li>
-                <li>Aplicar metodologías de diseño y cálculo aprendidas</li>
-                <li>Desarrollar habilidades de presentación y comunicación técnica</li>
-                <li>Fomentar el trabajo en equipo y la resolución de problemas</li>
-            </ul>
-            
-            <div class="presentation-box">
-                <h4>1.2 Formato de presentación</h4>
-                <p>Cada equipo presentará su proyecto en un máximo de 15 minutos, seguido de 5 minutos de preguntas. La presentación debe incluir:</p>
-                <ul>
-                    <li>Portada con título y nombres de los integrantes</li>
-                    <li>Introducción y objetivos</li>
-                    <li>Análisis de necesidades y requisitos</li>
-                    <li>Diseño técnico detallado</li>
-                    <li>Análisis económico y retorno de inversión</li>
-                    <li>Plan de implementación y mantenimiento</li>
-                    <li>Conclusiones y recomendaciones</li>
-                </ul>
+        <div class="concept-grid">
+            <div class="concept-card" style="border-color:#e67e22;">
+                <h3><i class="fas fa-plug" style="color:#e67e22;"></i> 1. Primero la Red (CA)</h3>
+                <p>El inversor primero debe encender su cerebro. Para eso, necesitas alimentar la <strong>Corriente Alterna (CA)</strong> desde el centro de carga de tu casa. Esto le dice al inversor: "Hay electricidad en la calle, estamos listos".</p>
             </div>
-        </div>
-
-        <h2>2. Estructura del proyecto</h2>
-        <p><strong>Duración:</strong> 40 minutos</p>
-        
-        <div class="step-box">
-            <h4>2.1 Análisis de necesidades</h4>
-            
-            <ul class="checklist">
-                <li>Descripción detallada del sitio y su ubicación</li>
-                <li>Análisis de radiación solar y condiciones ambientales</li>
-                <li>Inventario de cargas eléctricas existentes</li>
-                <li>Requisitos del cliente (presupuesto, objetivos, restricciones)</li>
-                <li>Regulaciones y normativas aplicables</li>
-            </ul>
-            
-            <div class="example-project">
-                <h5>Ejemplo:</h5>
-                <p><strong>Proyecto:</strong> Instalación fotovoltaica para vivienda familiar</p>
-                <p><strong>Ubicación:</strong> Ciudad de México</p>
-                <p><strong>Consumo actual:</strong> 350 kWh/mes</p>
-                <p><strong>Objetivos:</strong> Reducir factura eléctrica en 80%, tener respaldo durante cortes</p>
+            <div class="concept-card" style="border-color:#3498db;">
+                <h3><i class="fas fa-solar-panel" style="color:#3498db;"></i> 2. Luego el Sol (CC)</h3>
+                <p>Una vez que la pantalla del inversor encendió, ahora sí puedes accionar el interruptor de <strong>Corriente Continua (CC)</strong> que viene de los paneles. El voltaje de los paneles entrará al sistema.</p>
             </div>
-        </div>
-        
-        <div class="step-box">
-            <h4>2.2 Diseño técnico</h4>
-            
-            <ul class="checklist">
-                <li>Cálculo de generación solar potencial</li>
-                <li>Selección y dimensionamiento de componentes</li>
-                <li>Diseño del arreglo fotovoltaico</li>
-                <li>Diagramas unifilares y planos de instalación</li>
-                <li>Especificaciones técnicas detalladas</li>
-            </ul>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Componente</th>
-                    <th>Especificación</th>
-                    <th>Cantidad</th>
-                </tr>
-                <tr>
-                    <td>Paneles solares</td>
-                    <td>450W monocristalino, 21.5% eficiencia</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>Inversor híbrido</td>
-                    <td>5 kW, 48V, eficiencia 97%</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>Baterías</td>
-                    <td>LiFePO4 5.12kWh, 48V</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>Estructura</td>
-                    <td>Aluminio anodizado, ajustable 15-35°</td>
-                    <td>12 sets</td>
-                </tr>
-            </table>
-        </div>
-        
-        <div class="step-box">
-            <h4>2.3 Análisis económico</h4>
-            
-            <ul class="checklist">
-                <li>Costo total del proyecto (equipos, instalación, permisos)</li>
-                <li>Ahorros estimados en factura eléctrica</li>
-                <li>Cálculo de retorno de inversión (ROI)</li>
-                <li>Análisis de incentivos y financiamiento</li>
-                <li>Proyección de ahorro a 10-20 años</li>
-            </ul>
-            
-            <div class="example-project">
-                <h5>Ejemplo de análisis financiero:</h5>
-                <ul>
-                    <li><strong>Inversión inicial:</strong> $180,000 MXN</li>
-                    <li><strong>Ahorro anual:</strong> $24,000 MXN</li>
-                    <li><strong>Retorno de inversión (ROI):</strong> 7.5 años</li>
-                    <li><strong>Vida útil del sistema:</strong> 25+ años</li>
-                    <li><strong>Ahorro total estimado:</strong> $600,000 MXN (25 años)</li>
-                </ul>
+            <div class="concept-card" style="border-color:#f1c40f;">
+                <h3><i class="fas fa-hourglass-half" style="color:#f1c40f;"></i> 3. Los 5 Minutos de Norma</h3>
+                <p>El inversor no inyectará energía de inmediato. Por norma oficial de CFE, el inversor debe monitorear la red durante <strong>5 minutos</strong> para asegurarse de que el voltaje y la frecuencia sean estables. Solo después de esa cuenta regresiva, escucharás el famoso "Click" (Relé) y comenzará a generar.</p>
             </div>
-        </div>
-        
-        <div class="step-box">
-            <h4>2.4 Plan de implementación</h4>
-            
-            <ul class="checklist">
-                <li>Cronograma detallado de actividades</li>
-                <li>Lista de materiales y equipos</li>
-                <li>Plan de seguridad y gestión de riesgos</li>
-                <li>Procedimientos de instalación</li>
-                <li>Pruebas y puesta en marcha</li>
-            </ul>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Actividad</th>
-                    <th>Duración</th>
-                    <th>Responsable</th>
-                </tr>
-                <tr>
-                    <td>Estudio de sitio y diseño final</td>
-                    <td>3 días</td>
-                    <td>Equipo de diseño</td>
-                </tr>
-                <tr>
-                    <td>Adquisición de materiales</td>
-                    <td>5 días</td>
-                    <td>Compras</td>
-                </tr>
-                <tr>
-                    <td>Instalación de estructura</td>
-                    <td>2 días</td>
-                    <td>Equipo de instalación</td>
-                </tr>
-                <tr>
-                    <td>Instalación eléctrica</td>
-                    <td>2 días</td>
-                    <td>Equipo eléctrico</td>
-                </tr>
-                <tr>
-                    <td>Pruebas y puesta en marcha</td>
-                    <td>1 día</td>
-                    <td>Equipo técnico</td>
-                </tr>
-            </table>
-        </div>
-        
-        <div class="step-box">
-            <h4>2.5 Plan de mantenimiento</h4>
-            
-            <ul class="checklist">
-                <li>Rutinas de mantenimiento preventivo</li>
-                <li>Frecuencia de inspecciones</li>
-                <li>Procedimientos de limpieza</li>
-                <li>Mantenimiento correctivo</li>
-                <li>Registro de actividades</li>
-            </ul>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Incluir un manual de operación y mantenimiento para el cliente final con información sobre garantías, contactos de soporte y procedimientos básicos de resolución de problemas.</p>
-            </div>
-        </div>
-
-        <h2>3. Presentación de proyectos</h2>
-        <p><strong>Duración:</strong> 60 minutos</p>
-        
-        <div class="presentation-box">
-            <h4>3.1 Directrices para la presentación</h4>
-            
-            <p><strong>Estructura recomendada:</strong></p>
-            <ol>
-                <li><strong>Introducción (2 min)</strong>
-                    <ul>
-                        <li>Presentación del equipo</li>
-                        <li>Descripción del proyecto</li>
-                        <li>Objetivos</li>
-                    </ul>
-                </li>
-                <li><strong>Análisis de necesidades (3 min)</strong>
-                    <ul>
-                        <li>Datos del sitio</li>
-                        <li>Requisitos del cliente</li>
-                        <li>Restricciones y desafíos</li>
-                    </ul>
-                </li>
-                <li><strong>Diseño técnico (4 min)</strong>
-                    <ul>
-                        <li>Componentes seleccionados</li>
-                        <li>Cálculos y justificaciones</li>
-                        <li>Planos y diagramas</li>
-                    </ul>
-                </li>
-                <li><strong>Análisis económico (3 min)</strong>
-                    <ul>
-                        <li>Inversión requerida</li>
-                        <li>Ahorros proyectados</li>
-                        <li>Retorno de inversión</li>
-                    </ul>
-                </li>
-                <li><strong>Plan de implementación (2 min)</strong>
-                    <ul>
-                        <li>Cronograma</li>
-                        <li>Consideraciones de instalación</li>
-                        <li>Pruebas y puesta en marcha</li>
-                    </ul>
-                </li>
-                <li><strong>Conclusiones (1 min)</strong>
-                    <ul>
-                        <li>Beneficios del proyecto</li>
-                        <li>Lecciones aprendidas</li>
-                        <li>Recomendaciones</li>
-                    </ul>
-                </li>
-            </ol>
-            
-            <div class="tip-box">
-                <h5>Consejos para una presentación exitosa:</h5>
-                <ul>
-                    <li>Practicar varias veces para ajustar el tiempo</li>
-                    <li>Usar gráficos claros y legibles</li>
-                    <li>Evitar texto excesivo en las diapositivas</li>
-                    <li>Mantener contacto visual con la audiencia</li>
-                    <li>Prepararse para preguntas técnicas</li>
-                </ul>
-            </div>
-        </div>
-
-        <h2>4. Evaluación del proyecto</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="evaluation-box">
-            <h4>4.1 Rúbrica de evaluación</h4>
-            
-            <table class="rubric-table">
-                <tr>
-                    <th>Criterio</th>
-                    <th>Excelente (5)</th>
-                    <th>Bueno (4)</th>
-                    <th>Satisfactorio (3)</th>
-                    <th>Necesita mejorar (1-2)</th>
-                </tr>
-                <tr>
-                    <td>Calidad técnica del diseño</td>
-                    <td>Diseño óptimo, cálculos precisos, selección adecuada de componentes</td>
-                    <td>Buen diseño, pequeños errores en cálculos, selección apropiada</td>
-                    <td>Diseño básico, varios errores en cálculos, selección cuestionable</td>
-                    <td>Diseño inadecuado, errores graves, selección inapropiada</td>
-                </tr>
-                <tr>
-                    <td>Análisis económico</td>
-                    <td>Análisis completo, realista, con proyecciones claras</td>
-                    <td>Buen análisis, algunas suposiciones no justificadas</td>
-                    <td>Análisis básico, varias suposiciones cuestionables</td>
-                    <td>Análisis incompleto o poco realista</td>
-                </tr>
-                <tr>
-                    <td>Presentación</td>
-                    <td>Clara, organizada, profesional, dentro del tiempo</td>
-                    <td>Clara, bien organizada, pequeñas mejoras posibles</td>
-                    <td>Algo confusa, problemas de organización o tiempo</td>
-                    <td>Poco clara, desorganizada, excedió el tiempo</td>
-                </tr>
-                <tr>
-                    <td>Respuestas a preguntas</td>
-                    <td>Respuestas precisas y completas, demuestra dominio</td>
-                    <td>Buenas respuestas, algunos detalles faltantes</td>
-                    <td>Respuestas básicas, varias dudas sin resolver</td>
-                    <td>Incapacidad para responder preguntas clave</td>
-                </tr>
-                <tr>
-                    <td>Originalidad y creatividad</td>
-                    <td>Solución innovadora, enfoque creativo</td>
-                    <td>Algunos elementos creativos, solución estándar</td>
-                    <td>Solución convencional, poca innovación</td>
-                    <td>Falta de originalidad, solución genérica</td>
-                </tr>
-            </table>
-            
-            <h4>4.2 Autoevaluación y reflexión</h4>
-            
-            <p>Cada equipo deberá completar un breve informe reflexivo que incluya:</p>
-            <ul>
-                <li>Logros principales del proyecto</li>
-                <li>Desafíos enfrentados y cómo se superaron</li>
-                <li>Habilidades técnicas adquiridas</li>
-                <li>Habilidades blandas desarrolladas (trabajo en equipo, comunicación, etc.)</li>
-                <li>Áreas de mejora para futuros proyectos</li>
-            </ul>
-        </div>
-
-        <h2>5. Cierre del curso</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="project-box">
-            <h4>5.1 Repaso de conceptos clave</h4>
-            
-            <ul>
-                <li>Fundamentos de energía solar fotovoltaica</li>
-                <li>Diseño e instalación de sistemas</li>
-                <li>Componentes y su funcionamiento</li>
-                <li>Mantenimiento y monitoreo</li>
-                <li>Aspectos económicos y normativos</li>
-            </ul>
-            
-            <h4>5.2 Próximos pasos en su formación</h4>
-            
-            <ul>
-                <li>Certificaciones profesionales en energía solar</li>
-                <li>Cursos avanzados en diseño e instalación</li>
-                <li>Prácticas profesionales en el sector</li>
-                <li>Participación en proyectos reales</li>
-                <li>Mantenerse actualizado con las últimas tecnologías</li>
-            </ul>
-            
-            <div class="presentation-box">
-                <h4>5.3 Recursos adicionales</h4>
-                
-                <p><strong>Libros recomendados:</strong></p>
-                <ul>
-                    <li>"Solar Electricity Handbook" de Michael Boxwell</li>
-                    <li>"Photovoltaic Systems" de James P. Dunlop</li>
-                    <li>"Manual de Energía Solar Fotovoltaica" de PROGENSA</li>
-                </ul>
-                
-                <p><strong>Recursos en línea:</strong></p>
-                <ul>
-                    <li>Cursos en plataformas como Coursera, edX, Udemy</li>
-                    <li>Webinars y tutoriales de fabricantes</li>
-                    <li>Foros especializados como Solar Panel Talk</li>
-                </ul>
-                
-                <p><strong>Asociaciones profesionales:</strong></p>
-                <ul>
-                    <li>Asociación Mexicana de Energía Solar (ASOLMEX)</li>
-                    <li>Asociación Nacional de Energía Solar (ANES)</li>
-                    <li>International Solar Energy Society (ISES)</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="evaluation-box centered">
-            <h2>¡Felicidades por completar el curso de Energía Solar Fotovoltaica!</h2>
-            <p>Han adquirido conocimientos valiosos que los preparan para incursionar en el emocionante campo de las energías renovables.</p>
-            <p>Recuerden que el aprendizaje es un viaje continuo, y el sector de la energía solar está en constante evolución.</p>
-            <p>¡Les deseamos mucho éxito en sus futuros proyectos!</p>
-        </>
-
-        <div class="nav-buttons">
-            <a href="sesion15.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Volver al menú principal</a>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Commissioning</h2>
+        <p>Enciende el sistema solar. Tienes tres interruptores. Sigue la secuencia correcta de encendido. Si te equivocas, apaga todo y vuelve a intentar.</p>
+
+        <div class="comm-sim">
+            
+            <div class="inverter-panel">
+                <div class="inv-screen" id="sim-screen">OFF</div>
+                <div class="led-indicator" id="sim-led"></div>
+                
+                <div class="progress-bar-container" id="sim-progress-container">
+                    <div class="progress-bar" id="sim-progress"></div>
+                </div>
+            </div>
+
+            <div class="switches-container">
+                <div class="switch-box">
+                    <h4>1. Principal Casa</h4>
+                    <div class="breaker" id="sw-main" onclick="toggleSwitch('main')">
+                        <div class="breaker-toggle">OFF</div>
+                    </div>
+                </div>
+                <div class="switch-box">
+                    <h4>2. Pastilla CA (Inversor)</h4>
+                    <div class="breaker" id="sw-ac" onclick="toggleSwitch('ac')">
+                        <div class="breaker-toggle">OFF</div>
+                    </div>
+                </div>
+                <div class="switch-box">
+                    <h4>3. Interruptor CC (Paneles)</h4>
+                    <div class="breaker" id="sw-dc" onclick="toggleSwitch('dc')">
+                        <div class="breaker-toggle">OFF</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-msg" id="sim-status">
+                El sistema está totalmente apagado.
+            </div>
+            
+            <button onclick="resetSim()" style="margin-top:15px; background:transparent; border:none; color:#bdc3c7; cursor:pointer; text-decoration:underline;">
+                Apagar Todo y Reiniciar
+            </button>
+
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Cuál es el primer interruptor que debes encender al arrancar un sistema fotovoltaico conectado a la red?",
+                "options": [
+                    "El interruptor de los Paneles (Corriente Continua).",
+                    "El botón físico en la pantalla del Inversor.",
+                    "La pastilla térmica del Centro de Carga (Corriente Alterna)."
+                ],
+                "correctIndex": 2,
+                "explanation": "Siempre debes alimentar primero la Corriente Alterna. Esto permite que el procesador del inversor encienda, analice la red de CFE y esté preparado para recibir la alta potencia de los paneles."
+            },
+            {
+                "question": "Ya subiste todos los interruptores correctamente. La pantalla del inversor dice 'Waiting' (Esperando) y no produce energía. ¿Qué sucede?",
+                "options": [
+                    "Los paneles están rotos.",
+                    "Es normal. Por norma, el inversor debe analizar la estabilidad de la red eléctrica durante 5 minutos antes de inyectar energía.",
+                    "Te equivocaste en un cable."
+                ],
+                "correctIndex": 1,
+                "explanation": "El Código de Red exige que el inversor verifique que la CFE está estable a 60Hz y 120V/240V durante 5 minutos continuos (300 segundos). Si hay variaciones en ese tiempo, la cuenta se reinicia."
+            },
+            {
+                "question": "¿Qué pasa con tu Inversor On-Grid si hay un apagón en tu colonia (se va la luz de CFE)?",
+                "options": [
+                    "Tu casa sigue teniendo luz porque tienes paneles solares.",
+                    "El inversor se apaga instantáneamente por la función 'Anti-Isla' (Anti-Islanding) para no electrocutar a los técnicos de CFE que reparen los cables en la calle.",
+                    "El inversor manda el doble de energía."
+                ],
+                "correctIndex": 1,
+                "explanation": "Los inversores interactivos (On-Grid) NO son de respaldo. Tienen una protección de seguridad obligatoria llamada 'Anti-Isla'. Si detectan que la red pública se apagó, ellos se apagan en milisegundos para no inyectar voltaje a la calle muerta."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion15.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-flag-checkered"></i> Finalizar Curso</a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    let state = {
+        main: false,
+        ac: false,
+        dc: false
+    };
+
+    let syncingTimer = null;
+
+    const screen = document.getElementById('sim-screen');
+    const led = document.getElementById('sim-led');
+    const statusBox = document.getElementById('sim-status');
+    const progContainer = document.getElementById('sim-progress-container');
+    const progBar = document.getElementById('sim-progress');
+
+    function toggleSwitch(id) {
+        state[id] = !state[id];
+        
+        const el = document.getElementById(`sw-${id}`);
+        const toggle = el.querySelector('.breaker-toggle');
+        
+        if(state[id]) {
+            el.classList.add('on');
+            toggle.textContent = "ON";
+        } else {
+            el.classList.remove('on');
+            toggle.textContent = "OFF";
+        }
+
+        evaluateSystem();
+    }
+
+    function evaluateSystem() {
+        clearInterval(syncingTimer);
+        progContainer.style.display = "none";
+        progBar.style.width = "0%";
+        
+        // Error: DC on before AC
+        if(state.dc && (!state.ac || !state.main)) {
+            screen.className = "inv-screen error";
+            screen.textContent = "ERR: NO GRID";
+            led.style.background = "#e74c3c";
+            led.style.boxShadow = "0 0 10px #e74c3c";
+            statusBox.textContent = "¡ERROR! Encendiste la Corriente Continua de los paneles sin darle Corriente Alterna al Inversor. Apaga el DC inmediatamente.";
+            statusBox.style.background = "#e74c3c";
+            return;
+        }
+
+        // AC On, DC Off
+        if(state.main && state.ac && !state.dc) {
+            screen.className = "inv-screen on";
+            screen.textContent = "GRID OK. NO PV";
+            led.style.background = "#f1c40f";
+            led.style.boxShadow = "0 0 10px #f1c40f";
+            statusBox.textContent = "El inversor encendió correctamente con la red. Ahora sube el interruptor de los paneles (CC).";
+            statusBox.style.background = "#3498db";
+            return;
+        }
+
+        // Perfect Sequence
+        if(state.main && state.ac && state.dc) {
+            screen.className = "inv-screen on";
+            screen.textContent = "SYNCING...";
+            led.style.background = "#f1c40f";
+            led.style.boxShadow = "0 0 10px #f1c40f";
+            statusBox.textContent = "Secuencia correcta. El inversor está monitoreando la red por 5 minutos (Norma de CFE). Espera...";
+            statusBox.style.background = "#2ecc71";
+            
+            progContainer.style.display = "block";
+            
+            let w = 0;
+            syncingTimer = setInterval(() => {
+                w += 20; // 5 seconds simulated
+                progBar.style.width = w + "%";
+                
+                if(w >= 100) {
+                    clearInterval(syncingTimer);
+                    screen.className = "inv-screen success";
+                    screen.textContent = "PRODUCING 3.0kW";
+                    led.style.background = "#2ecc71";
+                    led.style.boxShadow = "0 0 10px #2ecc71";
+                    statusBox.textContent = "¡CLICK! El relé se cerró. ¡Estás inyectando energía solar a tu casa! ¡Felicidades, terminaste el curso!";
+                    statusBox.style.background = "#27ae60";
+                    
+                    // Confetti could go here!
+                }
+            }, 1000);
+            return;
+        }
+
+        // All Off
+        if(!state.main && !state.ac && !state.dc) {
+            screen.className = "inv-screen";
+            screen.textContent = "OFF";
+            led.style.background = "#7f8c8d";
+            led.style.boxShadow = "inset 0 0 5px rgba(0,0,0,0.5)";
+            statusBox.textContent = "El sistema está totalmente apagado.";
+            statusBox.style.background = "#e67e22";
+            return;
+        }
+        
+        // Partial states
+        if(state.main && !state.ac && !state.dc) {
+            screen.className = "inv-screen";
+            screen.textContent = "OFF";
+            statusBox.textContent = "Energía en la casa. El inversor sigue apagado.";
+            statusBox.style.background = "#34495e";
+        }
+    }
+
+    function resetSim() {
+        state = { main: false, ac: false, dc: false };
+        ['main', 'ac', 'dc'].forEach(id => {
+            const el = document.getElementById(`sw-${id}`);
+            el.classList.remove('on');
+            el.querySelector('.breaker-toggle').textContent = "OFF";
+        });
+        evaluateSystem();
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion16');
+          window.markLessonCompleted('electricidad5', 'sesion16');
       }
   });
 </script>
