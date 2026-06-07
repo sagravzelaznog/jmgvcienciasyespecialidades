@@ -3,412 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 4: Componentes I - Paneles Solares</title>
+    <title>Sesión 4: Paneles Solares - El Corazón del Sistema</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+        .panel-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
+
+        .panel-card {
+            background: var(--bg-card);
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s;
         }
-        h1, h2, h3 {
-            color: #2c3e50;
+
+        .panel-card:hover {
+            transform: translateY(-5px);
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
+
+        .panel-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
         }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+
+        /* Array Simulator */
+        .array-sim {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .sim-btn {
+            background: #34495e;
+            color: white;
+            border: 2px solid transparent;
+            padding: 10px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
         }
-        .back-button:hover {
-            background-color: #2980b9;
+
+        .sim-btn.active {
+            background: var(--primary-color);
+            border-color: #fff;
+            box-shadow: 0 0 15px var(--primary-color);
         }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+
+        .panels-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 40px;
+            border: 2px dashed #7f8c8d;
+            border-radius: 10px;
+            min-width: 80%;
         }
-        .panel-type {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .panel-type h4 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        .specs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #fff8e1;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #ffa000;
-        }
-        .practical-exercise h4 {
-            color: #e65100;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
+
+        .solar-panel {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(135deg, #1a252f 25%, #3498db 25%, #3498db 50%, #1a252f 50%, #1a252f 75%, #3498db 75%, #3498db 100%);
+            background-size: 20px 20px;
+            border: 3px solid #bdc3c7;
             border-radius: 4px;
-            padding: 5px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px black;
+            z-index: 2;
         }
+
+        /* Wiring styles */
+        .wire {
+            position: absolute;
+            background: #e74c3c; /* Default Red/Positive */
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .wire.neg { background: #34495e; }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .dash-card {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #7f8c8d;
+        }
+
+        .dash-card h4 {
+            margin: 0 0 10px 0;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .dash-card .val {
+            font-size: 2rem;
+            font-family: monospace;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .dash-card .val.yellow { color: #f1c40f; }
+        .dash-card .val.blue { color: #3498db; }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
+            .dashboard { grid-template-columns: 1fr; }
+            .panels-container { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 4: Componentes I - Paneles Solares</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Conocer los diferentes tipos de paneles solares, sus características técnicas, y aprender a realizar conexiones en serie y paralelo, así como a identificar y medir sus parámetros fundamentales.</p>
-        </div>
 
-        <h2>1. Tipos de paneles solares</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Paneles Solares</h1>
+        <p class="sesion-subtitle">Sesión 4 - Módulo 2: El Corazón del Sistema</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-solar-panel"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Aprender a diferenciar las tecnologías de paneles solares, entender sus etiquetas de especificaciones y dominar el arte de conectarlos entre sí (Arreglos) para alcanzar el voltaje o la corriente que tu sistema necesita.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>Tipos de Silicio: El ADN del Panel</h2>
         
-        <div class="panel-type">
-            <h4>1.1 Paneles Monocristalinos</h4>
-            <div class="image-container">
-                <img src="https://tse1.mm.bing.net/th/id/OIP.8jxkxi4-6WyUhNpjhsSRJwHaE5?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Panel Monocristalino" class="img-small">
-            </div>
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Fabricados con silicio de un solo cristal</li>
-                <li>Color negro uniforme</li>
-                <li>Mayor eficiencia (15-22%)</li>
-                <li>Vida útil más larga (25+ años)</li>
-                <li>Mejor rendimiento en condiciones de poca luz</li>
-                <li>Mayor costo</li>
-            </ul>
-        </div>
-
-        <div class="panel-type">
-            <h4>1.2 Paneles Policristalinos</h4>
-            <div class="image-container">
-                <img src="https://http2.mlstatic.com/panel-solar-fotovoltaico-iusa-250w-policristalino-D_NQ_NP_761257-MLM31217804294_062019-F.jpg" alt="Panel Policristalino" class="img-small">
-            </div>
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Fabricados con múltiples cristales de silicio</li>
-                <li>Color azulado con bordes visibles</li>
-                <li>Eficiencia media (13-16%)</li>
-                <li>Vida útil de aproximadamente 25 años</li>
-                <li>Mejor relación calidad-precio</li>
-            </ul>
-        </div>
-
-        <div class="panel-type">
-            <h4>1.3 Paneles de Capa Delgada (Thin-Film)</h4>
-            <div class="image-container">
-                <img src="https://www.genpower.es/wp-content/uploads/2022/10/de-capa-fina.jpeg" alt="Panel de Capa Delgada" class="img-small">
-            </div>
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Fabricados con capas delgadas de material fotovoltaico</li>
-                <li>Apariencia uniforme y flexible</li>
-                <li>Menor eficiencia (7-13%)</li>
-                <li>Menor costo de producción</li>
-                <li>Ligeros y flexibles</li>
-                <li>Mejor rendimiento en condiciones de calor</li>
-            </ul>
-        </div>
-
-        <h2>2. Características técnicas</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="panel-type">
-            <h4>Parámetros clave de un panel solar</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Símbolo</th>
-                    <th>Unidad</th>
-                    <th>Descripción</th>
-                </tr>
-                <tr>
-                    <td>Potencia pico</td>
-                    <td>P<sub>max</sub></td>
-                    <td>Wp</td>
-                    <td>Potencia máxima que puede generar el panel en condiciones estándar</td>
-                </tr>
-                <tr>
-                    <td>Tensión en circuito abierto</td>
-                    <td>V<sub>oc</sub></td>
-                    <td>V</td>
-                    <td>Voltaje cuando no hay carga conectada</td>
-                </tr>
-                <tr>
-                    <td>Corriente de cortocircuito</td>
-                    <td>I<sub>sc</sub></td>
-                    <td>A</td>
-                    <td>Corriente cuando los terminales están en cortocircuito</td>
-                </tr>
-                <tr>
-                    <td>Tensión en punto de máxima potencia</td>
-                    <td>V<sub>mp</sub></td>
-                    <td>V</td>
-                    <td>Voltaje en el punto de máxima potencia</td>
-                </tr>
-                <tr>
-                    <td>Corriente en punto de máxima potencia</td>
-                    <td>I<sub>mp</sub></td>
-                    <td>A</td>
-                    <td>Corriente en el punto de máxima potencia</td>
-                </tr>
-                <tr>
-                    <td>Eficiencia</td>
-                    <td>η</td>
-                    <td>%</td>
-                    <td>Porcentaje de energía solar que se convierte en electricidad</td>
-                </tr>
-                <tr>
-                    <td>Coeficiente de temperatura</td>
-                    <td>β</td>
-                    <td>%/°C</td>
-                    <td>Variación de potencia por grado de temperatura</td>
-                </tr>
-            </table>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio: Interpretación de hoja de datos</h4>
-                <p>Analizar la hoja de datos de un panel solar real y extraer los parámetros clave.</p>
-                <p><strong>Datos de ejemplo (panel de 300W):</strong></p>
+        <div class="panel-types-grid">
+            <div class="panel-card">
+                <h3>Monocristalino (Negro)</h3>
+                <p>Fabricados con un solo cristal puro de silicio. Tienen las celdas con las esquinas redondeadas o cortadas.</p>
                 <ul>
-                    <li>P<sub>max</sub> = 300W</li>
-                    <li>V<sub>oc</sub> = 40V</li>
-                    <li>I<sub>sc</sub> = 9.5A</li>
-                    <li>V<sub>mp</sub> = 32V</li>
-                    <li>I<sub>mp</sub> = 9.38A</li>
-                    <li>Eficiencia = 18.5%</li>
-                    <li>Coeficiente de temperatura = -0.35%/°C</li>
+                    <li><strong>Eficiencia:</strong> La más alta (hasta 22%).</li>
+                    <li><strong>Ventaja:</strong> Generan más energía en menos espacio de techo.</li>
+                    <li><strong>Precio:</strong> Los más caros.</li>
+                </ul>
+            </div>
+            <div class="panel-card">
+                <h3>Policristalino (Azul)</h3>
+                <p>Fabricados fundiendo fragmentos de silicio. Las celdas son perfectamente cuadradas y tienen un aspecto "escarchado".</p>
+                <ul>
+                    <li><strong>Eficiencia:</strong> Media (15-17%).</li>
+                    <li><strong>Ventaja:</strong> Excelente relación costo/beneficio si tienes mucho espacio en techo.</li>
+                    <li><strong>Precio:</strong> Económicos.</li>
                 </ul>
             </div>
         </div>
 
-        <h2>3. Conexiones serie y paralelo</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="panel-type">
-            <h4>3.1 Conexión en Serie</h4>
-            <div class="image-container">
-                <img src="https://www.prostarsolar.net/es/wp-content/uploads/2020/08/Como-Conectar-Paneles-Solares-En-Serie.jpg" alt="Conexión en serie" class="img-medium">
-            </div>
-            <p><strong>Características:</strong></p>
+        <div class="danger-box">
+            <h3><i class="fas fa-tag"></i> La Etiqueta de Especificaciones (La placa de datos)</h3>
+            <p>Todo panel tiene una pegatina detrás. Estos son los 3 valores sagrados que debes saber leer:</p>
             <ul>
-                <li>Se conecta el positivo de un panel con el negativo del siguiente</li>
-                <li>El voltaje total es la suma de los voltajes individuales</li>
-                <li>La corriente total es igual a la de un solo panel</li>
-                <li>Fórmula: V<sub>total</sub> = V<sub>1</sub> + V<sub>2</sub> + ... + V<sub>n</sub></li>
-                <li>I<sub>total</sub> = I<sub>panel</sub></li>
+                <li><strong>Pmax (Potencia Máxima):</strong> Los Watts totales del panel (ej. 500W).</li>
+                <li><strong>Voc (Voltaje de Circuito Abierto):</strong> El voltaje máximo absoluto cuando el panel NO está conectado a nada. <em>¡Cuidado, esto es lo que te da un choque eléctrico si tocas los cables sueltos!</em></li>
+                <li><strong>Isc (Corriente de Cortocircuito):</strong> Los Amperes máximos absolutos que circulan si unes el cable positivo con el negativo directamente.</li>
             </ul>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio:</h4>
-                <p>Calcular el voltaje y corriente totales al conectar 3 paneles de 12V y 8A en serie.</p>
-                <p><strong>Solución:</strong></p>
-                <p>V<sub>total</sub> = 12V + 12V + 12V = 36V</p>
-                <p>I<sub>total</sub> = 8A</p>
-            </div>
-        </div>
-
-        <div class="panel-type">
-            <h4>3.2 Conexión en Paralelo</h4>
-            <div class="image-container">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.XCTONCCd-OFKVicCtwE7UQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Conexión en paralelo" class="img-medium">
-            </div>
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Se conectan todos los positivos juntos y todos los negativos juntos</li>
-                <li>El voltaje total es igual al de un solo panel</li>
-                <li>La corriente total es la suma de las corrientes individuales</li>
-                <li>Fórmula: I<sub>total</sub> = I<sub>1</sub> + I<sub>2</sub> + ... + I<sub>n</sub></li>
-                <li>V<sub>total</sub> = V<sub>panel</sub></li>
-            </ul>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio:</h4>
-                <p>Calcular el voltaje y corriente totales al conectar 3 paneles de 12V y 8A en paralelo.</p>
-                <p><strong>Solución:</strong></p>
-                <p>V<sub>total</sub> = 12V</p>
-                <p>I<sub>total</sub> = 8A + 8A + 8A = 24A</p>
-            </div>
-        </div>
-
-        <h2>4. Identificación y medición de parámetros en paneles</h2>
-        <p><strong>Duración:</strong> 10 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>Práctica: Medición de parámetros</h4>
-            
-            <p><strong>Materiales necesarios:</strong></p>
-            <ul>
-                <li>Panel solar</li>
-                <li>Multímetro digital</li>
-                <li>Resistencia de carga</li>
-                <li>Cables de conexión</li>
-                <li>Fuente de luz (sol o lámpara potente)</li>
-            </ul>
-            
-            <p><strong>Procedimiento:</strong></p>
-            <ol>
-                <li><strong>Medir voltaje en circuito abierto (V<sub>oc</sub>):</strong>
-                    <ol>
-                        <li>Configurar el multímetro en escala de voltaje DC (20V o superior)</li>
-                        <li>Conectar las puntas del multímetro a los terminales del panel</li>
-                        <li>Exponer el panel a la luz y medir el voltaje</li>
-                    </ol>
-                </li>
-                <li><strong>Medir corriente de cortocircuito (I<sub>sc</sub>):</strong>
-                    <ol>
-                        <li>Configurar el multímetro en escala de amperaje DC (10A)</li>
-                        <li>Conectar el multímetro en serie con el panel (cortocircuito)</li>
-                        <li>Exponer el panel a la luz y medir la corriente</li>
-                    </ol>
-                </li>
-                <li><strong>Medir potencia máxima:</strong>
-                    <ol>
-                        <li>Conectar una resistencia variable en serie con el panel</li>
-                        <li>Medir voltaje y corriente para diferentes valores de resistencia</li>
-                        <li>Calcular la potencia (P = V × I) para cada medición</li>
-                        <li>Identificar el punto de máxima potencia</li>
-                    </ol>
-                </li>
-            </ol>
-            
-            <p><strong>Tabla de resultados:</strong></p>
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Valor nominal</th>
-                    <th>Valor medido</th>
-                    <th>% de diferencia</th>
-                </tr>
-                <tr>
-                    <td>V<sub>oc</sub> (V)</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>I<sub>sc</sub> (A)</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>P<sub>max</sub> (W)</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
-            <p><strong>Ejercicio de aplicación:</strong> Resolución de problemas de conexión de paneles.</p>
-            <p><strong>Informe de laboratorio:</strong> Entrega de la tabla de resultados con las mediciones realizadas.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los diferentes tipos de baterías utilizadas en sistemas fotovoltaicos y sus características principales.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion3.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion5.html" class="back-button next-button">Siguiente sesión →</a>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Arreglos (Conexiones)</h2>
+        <p>Tenemos 3 paneles idénticos. Cada uno genera <strong>20 Voltios</strong> y <strong>5 Amperes</strong>. (Lo que nos da 100 Watts por panel).</p>
+        <p>¿Qué pasa cuando los conectas entre sí? Prueba las conexiones en Serie y Paralelo, y observa cómo cambian el Voltaje y la Corriente total que llega a tu Inversor o Controlador.</p>
+
+        <div class="array-sim">
+            <div class="controls-row">
+                <button class="sim-btn active" id="btn-serie" onclick="setMode('serie')">Conexión SERIE</button>
+                <button class="sim-btn" id="btn-paralelo" onclick="setMode('paralelo')">Conexión PARALELO</button>
+            </div>
+
+            <div class="panels-container" id="panels-box">
+                <!-- Paneles -->
+                <div class="solar-panel" style="left: -100px;">Panel 1<br>20V, 5A</div>
+                <div class="solar-panel" style="left: 0;">Panel 2<br>20V, 5A</div>
+                <div class="solar-panel" style="left: 100px;">Panel 3<br>20V, 5A</div>
+                
+                <!-- Cables dinámicos se inyectarán por JS -->
+                <div id="wires-layer"></div>
+            </div>
+
+            <div class="dashboard">
+                <div class="dash-card">
+                    <h4>Voltaje Total (V)</h4>
+                    <div class="val yellow" id="out-v">60 V</div>
+                </div>
+                <div class="dash-card">
+                    <h4>Corriente Total (A)</h4>
+                    <div class="val blue" id="out-i">5 A</div>
+                </div>
+                <div class="dash-card">
+                    <h4>Potencia Total (W)</h4>
+                    <div class="val" id="out-p">300 W</div>
+                </div>
+            </div>
+            
+            <p id="mode-desc" style="margin-top: 20px; font-style: italic; color: #bdc3c7; text-align: center;">
+                <strong>Serie:</strong> Se suma el Voltaje. La corriente se queda igual. Útil para no usar cables tan gruesos en distancias largas.
+            </p>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Ves un panel solar que es completamente negro uniforme, sin manchas ni escarchado, y sus celdas tienen las esquinas cortadas o redondeadas. ¿De qué tipo es?",
+                "options": [
+                    "Policristalino.",
+                    "Monocristalino.",
+                    "Amorfo o Capa Delgada."
+                ],
+                "correctIndex": 1,
+                "explanation": "Los paneles Monocristalinos se fabrican a partir de un único cristal de silicio cilíndrico, lo que les da ese color negro puro y mayor eficiencia. Al cortar el cilindro en láminas cuadradas, las esquinas quedan redondeadas."
+            },
+            {
+                "question": "¿Qué parámetro de la etiqueta trasera (datasheet) debes usar para asegurarte de que tus paneles NO vayan a quemar la entrada de voltaje de tu Inversor en un día muy frío?",
+                "options": [
+                    "Voc (Voltaje de Circuito Abierto).",
+                    "Isc (Corriente de Cortocircuito).",
+                    "Pmax (Potencia Máxima)."
+                ],
+                "correctIndex": 0,
+                "explanation": "El Voc es el voltaje MÁXIMO que el panel puede entregar (cuando está desconectado o apenas arrancando por la mañana). Es el valor crucial para no quemar por sobrevoltaje los equipos a los que lo conectes."
+            },
+            {
+                "question": "Tienes 2 paneles de 24V y 10A cada uno. Si los conectas en PARALELO (Positivo con Positivo, Negativo con Negativo), ¿cuál será el resultado total?",
+                "options": [
+                    "48V y 20A.",
+                    "48V y 10A.",
+                    "24V y 20A."
+                ],
+                "correctIndex": 2,
+                "explanation": "En conexiones en Paralelo, el Voltaje (Fuerza) se mantiene igual (24V), pero la Corriente (Cantidad de flujo) se suma (10A + 10A = 20A)."
+            },
+            {
+                "question": "Tienes 3 paneles de 12V. Si necesitas un sistema de 36V para tu instalación, ¿cómo debes conectarlos?",
+                "options": [
+                    "Los 3 en Serie.",
+                    "Los 3 en Paralelo.",
+                    "Dos en serie y uno en paralelo."
+                ],
+                "correctIndex": 0,
+                "explanation": "En Serie (conectando el positivo de uno con el negativo del otro, como las pilas en un control remoto), los voltajes se suman. 12V + 12V + 12V = 36V."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion3.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion5.html" class="nav-btn next">Siguiente Sesión (Baterías) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function setMode(mode) {
+        // UI Tabs
+        document.getElementById('btn-serie').classList.remove('active');
+        document.getElementById('btn-paralelo').classList.remove('active');
+        document.getElementById(`btn-${mode}`).classList.add('active');
+        
+        const wiresLayer = document.getElementById('wires-layer');
+        wiresLayer.innerHTML = ''; // clear wires
+        
+        const outV = document.getElementById('out-v');
+        const outI = document.getElementById('out-i');
+        const outP = document.getElementById('out-p');
+        const desc = document.getElementById('mode-desc');
+
+        // Logic (Each panel: 20V, 5A)
+        if(mode === 'serie') {
+            outV.textContent = "60 V"; // 20+20+20
+            outI.textContent = "5 A";  // Stays same
+            outP.textContent = "300 W";
+            desc.innerHTML = "<strong>Serie:</strong> Se conecta el Positivo de un panel con el Negativo del siguiente. <strong>Se suma el Voltaje</strong>. La corriente se queda igual. Permite usar cables más delgados.";
+            
+            // Draw series wires using absolute positioning over the panels-container
+            // Panel positions: approx left=-100, 0, 100. Width=80px.
+            // P1 to P2
+            wiresLayer.innerHTML += `<div class="wire" style="top: 50px; left: 180px; width: 60px; height: 4px;"></div>`;
+            // P2 to P3
+            wiresLayer.innerHTML += `<div class="wire" style="top: 50px; left: 380px; width: 60px; height: 4px;"></div>`;
+            
+            // Output wires
+            wiresLayer.innerHTML += `<div class="wire neg" style="top: 150px; left: 100px; width: 40px; height: 4px; transform: rotate(90deg);"></div>`; // P1 Neg
+            wiresLayer.innerHTML += `<div class="wire" style="top: 150px; left: 460px; width: 40px; height: 4px; transform: rotate(90deg);"></div>`; // P3 Pos
+
+        } else {
+            outV.textContent = "20 V"; // Stays same
+            outI.textContent = "15 A"; // 5+5+5
+            outP.textContent = "300 W";
+            desc.innerHTML = "<strong>Paralelo:</strong> Se conectan todos los Positivos juntos y todos los Negativos juntos. <strong>Se suma la Corriente</strong>. El Voltaje se queda igual. Requiere cables mucho más gruesos para soportar los Amperes extra.";
+
+            // Draw parallel wires
+            // Top Main Wire (Positive/Red)
+            wiresLayer.innerHTML += `<div class="wire" style="top: 10px; left: 140px; width: 340px; height: 4px;"></div>`;
+            // Drops to panels (Pos)
+            wiresLayer.innerHTML += `<div class="wire" style="top: 10px; left: 140px; width: 4px; height: 30px;"></div>`;
+            wiresLayer.innerHTML += `<div class="wire" style="top: 10px; left: 310px; width: 4px; height: 30px;"></div>`;
+            wiresLayer.innerHTML += `<div class="wire" style="top: 10px; left: 476px; width: 4px; height: 30px;"></div>`;
+            
+            // Bottom Main Wire (Negative/Black)
+            wiresLayer.innerHTML += `<div class="wire neg" style="top: 180px; left: 140px; width: 340px; height: 4px;"></div>`;
+            // Drops to panels (Neg)
+            wiresLayer.innerHTML += `<div class="wire neg" style="top: 150px; left: 140px; width: 4px; height: 30px;"></div>`;
+            wiresLayer.innerHTML += `<div class="wire neg" style="top: 150px; left: 310px; width: 4px; height: 30px;"></div>`;
+            wiresLayer.innerHTML += `<div class="wire neg" style="top: 150px; left: 476px; width: 4px; height: 30px;"></div>`;
+        }
+    }
+    
+    // Initial draw
+    setTimeout(() => setMode('serie'), 100);
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion4');
+          window.markLessonCompleted('electricidad5', 'sesion4');
       }
   });
 </script>
