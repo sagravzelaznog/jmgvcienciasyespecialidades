@@ -1,528 +1,379 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 7: Componentes IV - Inversores</title>
+    <title>Sesión 7: Inversores - El Mago Eléctrico</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary-color);
             padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
+            border-radius: 5px;
             color: #2c3e50;
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+
+        /* Inverter Simulator */
+        .inv-sim {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .back-button:hover {
-            background-color: #2980b9;
-        }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        .inverter-type {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .specs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #fff8e1;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #ffa000;
-        }
-        .practical-exercise h4 {
-            color: #e65100;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        .comparison-table th, .comparison-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        .comparison-table th {
-            background-color: #f2f2f2;
-        }
-        .pros-cons {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
+            flex-direction: column;
+            align-items: center;
         }
-        .pros, .cons {
-            width: 48%;
-            padding: 10px;
+
+        .inverter-box {
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(135deg, #7f8c8d 0%, #34495e 100%);
+            border: 3px solid #bdc3c7;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .inv-screen {
+            background: #000;
+            color: #2ecc71;
+            font-family: monospace;
+            padding: 15px;
             border-radius: 5px;
+            font-size: 1.5rem;
+            margin: 10px 0;
+            border: 2px solid #27ae60;
         }
-        .pros {
-            background-color: #e8f5e9;
-            border-left: 3px solid #4caf50;
+
+        .inv-screen.overload {
+            color: #e74c3c;
+            border-color: #e74c3c;
+            animation: blink 0.5s infinite;
         }
-        .cons {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .pros-cons {
-                flex-direction: column;
-            }
-            .pros, .cons {
-                width: 100%;
-                margin-bottom: 10px;
-            }
+
+        .meter-bar {
+            width: 100%;
+            height: 20px;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .meter-fill {
+            height: 100%;
+            width: 0%;
+            background: #2ecc71;
+            transition: width 0.3s, background 0.3s;
+        }
+
+        .appliances {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .app-btn {
+            background: #1a252f;
+            border: 2px solid #7f8c8d;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-btn:hover { background: #34495e; }
+        .app-btn.on {
+            background: #2980b9;
+            border-color: #3498db;
+            box-shadow: 0 0 10px #3498db;
+        }
+
+        .app-btn i { font-size: 2rem; }
+        .app-btn .specs { font-size: 0.8rem; color: #bdc3c7; }
+
+        .wave-box {
+            background: #111;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-family: monospace;
+            color: #2ecc71;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 7: Componentes IV - Inversores</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Comprender los diferentes tipos de inversores utilizados en sistemas fotovoltaicos, sus características técnicas, diferencias entre sistemas conectados a red y aislados, y aprender a realizar pruebas básicas de funcionamiento.</p>
-        </div>
 
-        <h2>1. Tipos de inversores</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Inversores</h1>
+        <p class="sesion-subtitle">Sesión 7 - Módulo 2: El Mago Eléctrico</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-bolt"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Tus baterías hablan el idioma de la Corriente Continua (DC, 12V/24V), pero tu televisión y refrigerador hablan Corriente Alterna (AC, 120V/220V). El Inversor es el traductor. Aprenderás a elegir el correcto para no freír tus electrónicos ni apagar tu sistema por sobrecarga.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>La Forma del Agua (Ondas Eléctricas)</h2>
         
-        <div class="inverter-type">
-            <h3>1.1 Inversores de Onda Sinusoidal Pura</h3>
-            
-            <div class="image-container">
-                <img src="https://http2.mlstatic.com/D_NQ_NP_764991-CBT70659360931_072023-O.webp" alt="Inversor Onda Sinusoidal Pura" class="img-small">
-            </div>
-            
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Generan una onda senoidal perfecta</li>
-                <li>Compatibles con todo tipo de cargas</li>
-                <li>Mayor eficiencia energética</li>
-                <li>Menor ruido eléctrico</li>
-                <li>Mayor costo</li>
-            </ul>
-            
-            <p><strong>Aplicaciones:</strong> Equipos electrónicos sensibles, motores de alta eficiencia, equipos médicos, audio profesional.</p>
-            
-            <h3>1.2 Inversores de Onda Cuadrada</h3>
-            
-            <div class="image-container">
-                <img src="https://www.damiasolar.com/blog/wp-content/uploads/2019/07/como-son-los-inversores-de-onda-cuadrada.png" alt="Inversor Onda Cuadrada" class="img-small">
-            </div>
-            
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Generan una onda cuadrada</li>
-                <li>Menor eficiencia energética</li>
-                <li>Pueden dañar equipos electrónicos sensibles</li>
-                <li>Bajo costo</li>
-            </ul>
-            
-            <p><strong>Aplicaciones:</strong> Cargas resistivas simples, herramientas eléctricas básicas, iluminación.</p>
-            
-            <h3>1.3 Inversores de Onda Sinusoidal Modificada</h3>
-            
-            <div class="image-container">
-                <img src="https://vadecompras.com/wp-content/uploads/2021/11/mj1200.jpg" alt="Inversor Onda Sinusoidal Modificada" class="img-small">
-            </div>
-            
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Generan una onda escalonada que simula una senoidal</li>
-                <li>Eficiencia media</li>
-                <li>Compatibles con la mayoría de los equipos domésticos</li>
-                <li>Costo intermedio</li>
-            </ul>
-            
-            <p><strong>Aplicaciones:</strong> Electrodomésticos estándar, iluminación, herramientas eléctricas, cargas inductivas simples.</p>
-            
-            <h3>1.4 Inversores Híbridos</h3>
-            
-            <div class="image-container">
-                <img src="https://tse3.mm.bing.net/th/id/OIP.DiaBzjf3LJtighRSAlW-lgHaHa" alt="Inversor Híbrido" class="img-small">
-            </div>
-            
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Combinan las funciones de inversor y cargador de baterías</li>
-                <li>Permiten conexión a red y funcionamiento autónomo</li>
-                <li>Gestión inteligente de fuentes de energía</li>
-                <li>Mayor versatilidad</li>
-                <li>Alto costo</li>
-            </ul>
-            
-            <p><strong>Aplicaciones:</strong> Sistemas híbridos, respaldo de energía, autoconsumo con respaldo.</p>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio: Selección de inversor</h4>
-                <p>Para un sistema fotovoltaico con las siguientes características, ¿qué tipo de inversor recomendarías?</p>
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h3>Onda Modificada (Escalonada)</h3>
+                <div class="wave-box" style="color:#f1c40f;">_|-|_|-|</div>
+                <p>Es una imitación barata de la red eléctrica. Funciona haciendo 'escalones' cuadrados bruscos.</p>
                 <ul>
-                    <li>Ubicación: Vivienda familiar</li>
-                    <li>Cargas: Refrigerador, TV, computadora, iluminación LED, bomba de agua</li>
-                    <li>Presupuesto: Medio</li>
-                    <li>Requisitos: Protección para equipos electrónicos</li>
+                    <li><strong>Pros:</strong> Muy baratos.</li>
+                    <li><strong>Contras:</strong> Hacen zumbar los ventiladores, pueden quemar cargadores de laptops y arruinan pantallas sensibles o equipos médicos.</li>
                 </ul>
-                <p><strong>Solución:</strong> Se recomienda un inversor de onda sinusoidal pura por las siguientes razones:</p>
-                <ol>
-                    <li>Protege los equipos electrónicos sensibles (TV, computadora)</li>
-                    <li>Es compatible con motores (refrigerador, bomba de agua)</li>
-                    <li>Ofrece mejor eficiencia energética</li>
-                    <li>El presupuesto medio permite esta inversión</li>
-                </ol>
             </div>
-        </div>
-
-        <h2>2. Características técnicas</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="inverter-type">
-            <h3>2.1 Parámetros clave de los inversores</h3>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Descripción</th>
-                    <th>Valor típico</th>
-                </tr>
-                <tr>
-                    <td>Potencia nominal</td>
-                    <td>Potencia máxima continua que puede suministrar</td>
-                    <td>1000W - 10000W</td>
-                </tr>
-                <tr>
-                    <td>Potencia pico</td>
-                    <td>Potencia máxima durante cortos períodos (arranque de motores)</td>
-                    <td>2-3x la potencia nominal</td>
-                </tr>
-                <tr>
-                    <td>Eficiencia</td>
-                    <td>Porcentaje de energía de entrada que se convierte en salida</td>
-                    <td>85-95%</td>
-                </tr>
-                <tr>
-                    <td>Voltaje de entrada</td>
-                    <td>Rango de voltaje de la batería que acepta</td>
-                    <td>12V, 24V, 48V, etc.</td>
-                </tr>
-                <tr>
-                    <td>Voltaje de salida</td>
-                    <td>Voltaje y frecuencia de la corriente alterna de salida</td>
-                    <td>110/120V o 220/240V, 50/60Hz</td>
-                </tr>
-                <tr>
-                    <td>THD (Distorsión Armónica Total)</td>
-                    <td>Calidad de la onda de salida</td>
-                    <td><3% (sinusoidal pura)</td>
-                </tr>
-                <tr>
-                    <td>Modos de operación</td>
-                    <td>Diferentes formas de funcionamiento</td>
-                    <td>Red, batería, híbrido</td>
-                </tr>
-                <tr>
-                    <td>Protecciones</td>
-                    <td>Sistemas de seguridad incorporados</td>
-                    <td>Sobrecarga, cortocircuito, sobretemperatura, etc.</td>
-                </tr>
-            </table>
-            
-            <h3>2.2 Cálculo del tamaño del inversor</h3>
-            
-            <p>Para dimensionar correctamente un inversor, se deben seguir estos pasos:</p>
-            
-            <ol>
-                <li><strong>Listar todos los equipos</strong> que funcionarán simultáneamente</li>
-                <li><strong>Calcular la potencia total</strong> sumando las potencias de todos los equipos</li>
-                <li><strong>Considerar los picos de arranque</strong> de motores o compresores (3-7x la potencia nominal)</li>
-                <li><strong>Aplicar un factor de seguridad</strong> del 20-30%</li>
-            </ol>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio: Cálculo de potencia necesaria</h4>
-                <p>Calcular la potencia del inversor necesaria para los siguientes equipos que funcionarán simultáneamente:</p>
+            <div class="concept-card">
+                <h3>Onda Sinusoidal Pura</h3>
+                <div class="wave-box">~ ~ ~ ~</div>
+                <p>Crea una onda perfecta y suave, idéntica (o a veces más limpia) que la que te vende la compañía eléctrica.</p>
                 <ul>
-                    <li>Refrigerador: 150W (pico 1000W)</li>
-                    <li>TV LED 32": 50W</li>
-                    <li>5 focos LED: 10W c/u = 50W</li>
-                    <li>Laptop: 60W</li>
-                    <li>Ventilador: 60W (pico 180W)</li>
+                    <li><strong>Pros:</strong> Todo funciona perfecto, sin zumbidos ni riesgos.</li>
+                    <li><strong>Contras:</strong> Más costosos. <em>(Pero valen cada centavo).</em></li>
                 </ul>
-                
-                <p><strong>Solución:</strong></p>
-                <ol>
-                    <li>Potencia total sin picos: 150 + 50 + 50 + 60 + 60 = 370W</li>
-                    <li>Mayor pico: 1000W (refrigerador)</li>
-                    <li>Potencia necesaria: 1000W (por el pico del refrigerador)</li>
-                    <li>Con factor de seguridad del 25%: 1000W × 1.25 = 1250W</li>
-                </ol>
-                
-                <p>Se recomienda un inversor de al menos 1500W de potencia continua y 3000W de potencia pico.</p>
             </div>
         </div>
 
-        <h2>3. Conexión a red vs. sistemas aislados</h2>
-        <p><strong>Duración:</strong> 10 minutos</p>
-        
-        <div class="inverter-type">
-            <h3>3.1 Inversores para Sistemas Aislados (Off-grid)</h3>
-            
-            <div class="image-container">
-                <img src="https://tse4.mm.bing.net/th/id/OIP.Cf5jRvwr3NOREkbJgItnGwHaHa" alt="Sistema Aislado" class="img-small">
-            </div>
-            
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Almacenan energía en bancos de baterías</li>
-                <li>No están conectados a la red eléctrica</li>
-                <li>Requieren control de carga de baterías</li>
-                <li>Pueden incluir generadores de respaldo</li>
-                <li>Mayor costo por kWh</li>
-            </ul>
-            
-            <p><strong>Aplicaciones:</strong> Zonas rurales, lugares sin acceso a la red, aplicaciones remotas.</p>
-            
-            <h3>3.2 Inversores para Sistemas Conectados a Red (On-grid)</h3>
-            
-            <div class="image-container">
-                <img src="https://tse1.mm.bing.net/th/id/OIP.LSBInHgFZhmAUd_4YSf99QHaMH?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sistema Conectado a Red" class="img-small">
-            </div>
-            
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>No requieren baterías (a menos que sean híbridos)</li>
-                <li>Inyectan el excedente a la red eléctrica</li>
-                <li>Requieren sincronización con la red</li>
-                <li>Desconexión automática ante fallas de red</li>
-                <li>Menor costo que los sistemas aislados</li>
-            </ul>
-            
-            <p><strong>Aplicaciones:</strong> Viviendas urbanas, comercios, industrias con conexión a la red eléctrica.</p>
-            
-            <h3>3.3 Inversores Híbridos</h3>
-            
-            <div class="image-container">
-                <img src="https://www.hybridenergypr.com/wp-content/uploads/2022/05/inversor-solar-hibrido.png" alt="Sistema Híbrido" class="img-small">
-            </div>
-            
-            <p><strong>Características:</strong></p>
-            <ul>
-                <li>Combinan lo mejor de ambos sistemas</li>
-                <li>Pueden funcionar conectados a red o en modo isla</li>
-                <li>Gestionan múltiples fuentes de energía</li>
-                <li>Permiten autoconsumo con respaldo</li>
-                <li>Mayor costo inicial pero mayor flexibilidad</li>
-            </ul>
-            
-            <p><strong>Aplicaciones:</strong> Viviendas con frecuentes cortes de energía, negocios que requieren alta disponibilidad.</p>
-        </div>
-
-        <h2>4. Pruebas básicas de funcionamiento</h2>
-        <p><strong>Duración:</strong> 5 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>Práctica: Pruebas de un inversor</h4>
-            
-            <p><strong>Materiales necesarios:</strong></p>
-            <ul>
-                <li>Inversor</li>
-                <li>Batería cargada (voltaje compatible)</li>
-                <li>Multímetro digital</li>
-                <li>Cargas de prueba (lámparas, pequeños electrodomésticos)</li>
-                <li>Cables de conexión</li>
-            </ul>
-            
-            <p><strong>Procedimiento:</strong></p>
-            
-            <h5>Paso 1: Verificación visual</h5>
-            <ol>
-                <li>Inspeccionar el inversor en busca de daños físicos</li>
-                <li>Verificar que los terminales estén limpios y en buen estado</li>
-                <li>Comprobar que los ventiladores (si los tiene) giren libremente</li>
-            </ol>
-            
-            <h5>Paso 2: Conexión eléctrica</h5>
-            <ol>
-                <li>Conectar el inversor a la batería (primero negativo, luego positivo)</li>
-                <li>Verificar que el inversor encienda (luz indicadora)</li>
-                <li>Medir el voltaje de salida con el multímetro (debe ser cercano a 110V o 220V según especificaciones)</li>
-            </ol>
-            
-            <h5>Paso 3: Prueba de carga</h5>
-            <ol>
-                <li>Conectar una pequeña carga (ej. lámpara de 60W)</li>
-                <li>Verificar que la carga funcione correctamente</li>
-                <li>Medir el voltaje con carga (no debe caer más del 10%)</li>
-                <li>Probar con cargas progresivamente mayores (sin exceder la capacidad del inversor)</li>
-            </ol>
-            
-            <h5>Paso 4: Prueba de protecciones</h5>
-            <ol>
-                <li>Probar protección contra sobrecarga (conectar una carga mayor al 110% de la capacidad)</li>
-                <li>Verificar que el inversor se apague o active una alarma</li>
-                <li>Probar protección contra cortocircuito (conectar los terminales de salida momentáneamente)</li>
-                <li>Verificar que el inversor se proteja adecuadamente</li>
-            </ol>
-            
-            <p><strong>Tabla de resultados:</strong></p>
-            <table class="specs-table">
-                <tr>
-                    <th>Prueba</th>
-                    <th>Resultado esperado</th>
-                    <th>Resultado obtenido</th>
-                    <th>¿Aprobado?</th>
-                </tr>
-                <tr>
-                    <td>Encendido</td>
-                    <td>Indicador de encendido activo</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Voltaje en vacío</td>
-                    <td>110V/220V ±10%</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Voltaje con carga</td>
-                    <td>No menor al 90% del voltaje nominal</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Protección sobrecarga</td>
-                    <td>Se apaga o activa alarma</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Protección cortocircuito</td>
-                    <td>Se protege sin dañarse</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
-            <p><strong>Ejercicio de aplicación:</strong> Cálculo correcto de la potencia necesaria para un inversor.</p>
-            <p><strong>Prueba de conocimientos:</strong> Diferenciar entre tipos de inversores y sus aplicaciones.</p>
-            <p><strong>Informe de laboratorio:</strong> Entrega de la tabla de resultados de las pruebas realizadas.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los principios de diseño de sistemas fotovoltaicos aislados y los factores a considerar en su dimensionamiento.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion6.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion8.html" class="back-button next-button">Siguiente sesión →</a>
+        <div class="danger-box">
+            <h3><i class="fas fa-hammer"></i> El Pico de Arranque (Surge Power)</h3>
+            <p>Cualquier cosa con un MOTOR (Refrigerador, Bomba de agua, Taladro, Licuadora) requiere un <strong>Pico de Arranque</strong>. Cuando el motor arranca, puede chupar hasta <strong>5 o 6 veces su potencia nominal</strong> durante el primer segundo.<br>
+            Si tu Inversor no tiene capacidad para soportar ese pico de un segundo, se protegerá y se apagará, dejándote a oscuras.</p>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador de Sobrecarga del Inversor</h2>
+        <p>Tienes un <strong>Inversor de 1500 Watts (Continuos)</strong>. Puede aguantar hasta 3000 Watts por un segundo (Pico). Enciende los electrodomésticos y mira qué pasa con la barra de carga. <em>Atención especial al arrancar el Refrigerador.</em></p>
+
+        <div class="inv-sim">
+            
+            <div class="inverter-box">
+                <h3 style="margin-top:0; color:white;"><i class="fas fa-box"></i> Inversor Pura Onda 1500W</h3>
+                <div class="inv-screen" id="inv-screen">0 W</div>
+                <div style="font-size:0.8rem; color:#bdc3c7;">Carga Continua (Max 1500W)</div>
+                <div class="meter-bar">
+                    <div class="meter-fill" id="inv-meter"></div>
+                </div>
+                <div id="inv-status" style="margin-top:10px; font-weight:bold; color:#2ecc71;">SISTEMA OK</div>
+            </div>
+
+            <div class="appliances">
+                <button class="app-btn" id="btn-tv" onclick="toggleApp('tv')">
+                    <i class="fas fa-tv"></i>
+                    TV LED
+                    <span class="specs">50 W</span>
+                </button>
+                <button class="app-btn" id="btn-luz" onclick="toggleApp('luz')">
+                    <i class="far fa-lightbulb"></i>
+                    Luces (5)
+                    <span class="specs">50 W</span>
+                </button>
+                <button class="app-btn" id="btn-micro" onclick="toggleApp('micro')">
+                    <i class="fas fa-hamburger"></i>
+                    Microondas
+                    <span class="specs">1000 W</span>
+                </button>
+                <button class="app-btn" id="btn-refri" onclick="toggleApp('refri')">
+                    <i class="fas fa-icicles"></i>
+                    Refrigerador
+                    <span class="specs">200W (Pico 1200W)</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Qué tipo de Inversor debes comprar estrictamente si planeas conectar un servidor de computadoras, un equipo médico o una pantalla muy cara?",
+                "options": [
+                    "Onda Modificada (porque es más robusto).",
+                    "Onda Cuadrada.",
+                    "Onda Sinusoidal Pura."
+                ],
+                "correctIndex": 2,
+                "explanation": "La Onda Sinusoidal Pura entrega una curva eléctrica perfecta, idéntica a la red eléctrica. La Onda modificada tiene saltos bruscos que queman fuentes de poder sensibles."
+            },
+            {
+                "question": "Tienes un Inversor de 1000 Watts continuos. Tienes 400W en luces y TV encendidos. Decides prender un Refrigerador que dice consumir 200W. Al encenderlo, ¡PUM!, el inversor se apaga y pita. ¿Por qué?",
+                "options": [
+                    "Porque 400 + 200 son 600, y el inversor se sobrecalentó.",
+                    "Porque los motores (como el del refri) tienen un 'Pico de Arranque' que demanda de 3 a 5 veces su potencia nominal en el primer segundo.",
+                    "Porque las luces LED interfirieron con el refrigerador."
+                ],
+                "correctIndex": 1,
+                "explanation": "Los motores eléctricos requieren muchísima fuerza bruta para salir del reposo (inercia). El refri de 200W pudo haber pedido 1000W o 1200W solo por un segundo. Sumado a los 400W que ya tenías, sobrepasaste la capacidad del inversor."
+            },
+            {
+                "question": "Vives en una casa en la ciudad, tienes servicio de CFE (Red Eléctrica) y solo quieres poner paneles para bajar tu recibo de luz. No quieres comprar baterías. ¿Qué tipo de inversor necesitas?",
+                "options": [
+                    "Inversor Aislado (Off-Grid).",
+                    "Inversor de Interconexión a Red (On-Grid).",
+                    "Inversor de coche 12V."
+                ],
+                "correctIndex": 1,
+                "explanation": "Los inversores On-Grid se sincronizan con la red eléctrica de la calle e inyectan la energía directo a tu casa. Si sobra energía, el medidor gira al revés (o registra saldo a favor). No usan baterías."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion6.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion8.html" class="nav-btn next">Siguiente Sesión (Diseño Aislado) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5 (Solar)</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    const apps = {
+        tv: { power: 50, peak: 0, state: false },
+        luz: { power: 50, peak: 0, state: false },
+        micro: { power: 1000, peak: 0, state: false },
+        refri: { power: 200, peak: 1000, state: false } // 1200w peak total (200 + 1000 extra)
+    };
+
+    let currentLoad = 0;
+    let overloadTripped = false;
+    const MAX_POWER = 1500;
+    const MAX_PEAK = 3000;
+
+    function toggleApp(id) {
+        if(overloadTripped) return; // Must reset logic (not implemented here, requires page reload for simplicity, or we can just block)
+
+        const btn = document.getElementById(`btn-${id}`);
+        const app = apps[id];
+        
+        if(!app.state) {
+            // Turning ON
+            app.state = true;
+            btn.classList.add('on');
+            
+            // Check peak
+            const totalWithPeak = currentLoad + app.power + app.peak;
+            if(totalWithPeak > MAX_PEAK || (currentLoad + app.power) > MAX_POWER) {
+                triggerOverload(totalWithPeak);
+                return;
+            }
+
+            // If it survives peak, show peak briefly, then settle on continuous
+            if(app.peak > 0) {
+                updateUI(totalWithPeak);
+                setTimeout(() => {
+                    if(!overloadTripped) {
+                        currentLoad += app.power;
+                        updateUI(currentLoad);
+                    }
+                }, 800);
+            } else {
+                currentLoad += app.power;
+                updateUI(currentLoad);
+            }
+
+        } else {
+            // Turning OFF
+            app.state = false;
+            btn.classList.remove('on');
+            currentLoad -= app.power;
+            if(currentLoad < 0) currentLoad = 0;
+            updateUI(currentLoad);
+        }
+    }
+
+    function updateUI(val) {
+        const screen = document.getElementById('inv-screen');
+        const meter = document.getElementById('inv-meter');
+        const status = document.getElementById('inv-status');
+
+        screen.textContent = val + " W";
+        
+        let pct = (val / MAX_POWER) * 100;
+        if(pct > 100) pct = 100;
+        meter.style.width = pct + "%";
+
+        if(pct > 80) meter.style.background = "#f1c40f"; // yellow warning
+        else meter.style.background = "#2ecc71"; // green ok
+
+        status.textContent = "SISTEMA OK";
+        status.style.color = "#2ecc71";
+    }
+
+    function triggerOverload(val) {
+        overloadTripped = true;
+        
+        const screen = document.getElementById('inv-screen');
+        const meter = document.getElementById('inv-meter');
+        const status = document.getElementById('inv-status');
+
+        screen.textContent = val + " W";
+        screen.classList.add('overload');
+
+        meter.style.width = "100%";
+        meter.style.background = "#e74c3c";
+
+        status.textContent = "¡FALLA POR SOBRECARGA!";
+        status.style.color = "#e74c3c";
+
+        // Turn off all app buttons visually
+        document.querySelectorAll('.app-btn').forEach(b => b.classList.remove('on'));
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion7');
+          window.markLessonCompleted('electricidad5', 'sesion7');
       }
   });
 </script>
