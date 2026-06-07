@@ -3,202 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 1: Introducción a Conductores y Aislantes | Componentes Eléctricos Básicos</title>
+    <title>Sesión 1: Conductores y Aislantes - El control de los electrones</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Simulator Styles */
+        .simulator-container {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+        }
+        
+        .material-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .mat-btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            background: var(--bg-main);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .mat-btn.active {
+            border-color: var(--primary-color);
+            background: rgba(2, 132, 199, 0.1);
+        }
+        
+        .mat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        #simulator-svg {
+            background: var(--bg-main);
+            border-radius: 8px;
+            border: 1px inset var(--border-color);
+            width: 100%;
+            max-width: 600px;
+            height: 250px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sesión 1: Introducción a Conductores y Aislantes</h1>
-            <p>Conceptos básicos y ejemplos cotidianos</p>
-        </div>
-    </header>
 
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Conductores y Aislantes</h1>
+        <p class="sesion-subtitle">Sesión 1 - Módulo 1: Los Materiales del Electricista</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-bullseye"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrirás el secreto de por qué algunos materiales dejan pasar la electricidad y otros la bloquean por completo. Entenderás la estructura atómica detrás de los conductores (cobre) y los aislantes (plástico).</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>La Autopista vs El Muro de Concreto</h2>
+        <p>Imagina a los electrones como millones de pequeños autos tratando de viajar de un punto A a un punto B. Dependiendo del material por el que intenten viajar, encontrarán una autopista libre (Conductores) o un muro infranqueable (Aislantes).</p>
         
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Al finalizar esta sesión, los estudiantes podrán diferenciar entre materiales conductores y aislantes, identificando ejemplos de cada uno en su entorno cotidiano.</p>
+        <div class="phase-block" style="margin-top: 2rem;">
+            <div class="phase-header">
+                <span>Materiales Conductores (La Autopista)</span>
+                <span><i class="fas fa-bolt"></i></span>
             </div>
-
-            <div class="theory">
-                <h2>Contenido teórico</h2>
-                <p>Los materiales se clasifican según su capacidad para conducir la electricidad:</p>
-                
-                <div class="concept-box">
-                    <h3>Materiales conductores</h3>
-                    <p>Permiten el flujo de corriente eléctrica debido a que sus electrones pueden moverse libremente.</p>
-                    <ul>
-                        <li>Metales como cobre, aluminio, plata y oro</li>
-                        <li>Electrolitos en solución (agua salada, ácidos)</li>
-                        <li>Grafito (presente en lápices)</li>
-                    </ul>
-                </div>
-
-                <div class="concept-box">
-                    <h3>Materiales aislantes</h3>
-                    <p>Resisten el flujo de corriente eléctrica, manteniendo los electrones fuertemente unidos a sus átomos.</p>
-                    <ul>
-                        <li>Plásticos (PVC, teflón)</li>
-                        <li>Vidrio</li>
-                        <li>Caucho</li>
-                        <li>Madera seca</li>
-                        <li>Cerámica</li>
-                    </ul>
-                </div>
+            <div class="phase-content">
+                <p>En el nivel atómico, los metales tienen <strong>"electrones libres"</strong> en su última órbita. Estos electrones están tan lejos de su núcleo que pueden saltar fácilmente de un átomo a otro. ¡Así fluye la electricidad!</p>
+                <ul>
+                    <li><strong>El Cobre:</strong> El rey indiscutible de las instalaciones eléctricas por su relación calidad/precio.</li>
+                    <li><strong>El Oro y la Plata:</strong> Son aún mejores conductores que el cobre, pero demasiado caros. Se usan solo en chips de computadoras y contactos aeroespaciales.</li>
+                    <li><strong>El Agua (con sales):</strong> ¡Cuidado! El agua pura no conduce, pero el agua de la llave o el mar está llena de minerales (electrolitos) que la hacen un conductor peligroso para el cuerpo humano.</li>
+                </ul>
             </div>
-
-            <div class="visual-example">
-                <h2>Ejemplo visual</h2>
-                <div class="analogy">
-                    <p>Imagina que los electrones son como agua fluyendo por tuberías:</p>
-                    <ul>
-                        <li>Los conductores son como tuberías anchas que permiten el paso fácil del agua</li>
-                        <li>Los aislantes son como paredes gruesas que impiden el paso del agua</li>
-                    </ul>
-                </div>
-                <!-- Espacio para SVG interactivo -->
-                <div class="svg-container">
-                    <p><strong>Recurso SVG interactivo:</strong> <a href="#" target="_blank">Ver simulación de conductividad</a></p>
-                </div>
-            </div>
-
-            <div class="practical-activity">
-                <h2>Actividad práctica: Caza del tesoro eléctrico</h2>
-                <p><strong>Materiales necesarios:</strong> Pila de 9V, bombilla pequeña, cables con pinzas cocodrilo, diferentes materiales para probar (moneda, llave, lápiz, goma, etc.)</p>
-                
-                <h3>Instrucciones:</h3>
-                <ol>
-                    <li>Arma un circuito simple con la pila, la bombilla y los cables</li>
-                    <li>Deja un espacio en el circuito donde colocarás los materiales a probar</li>
-                    <li>Prueba cada material y anota si la bombilla enciende (conductor) o no (aislante)</li>
-                    <li>Completa la tabla de clasificación</li>
-                </ol>
-
-                <div class="activity-table">
-                    <table>
-                        <tr>
-                            <th>Material</th>
-                            <th>Conductor</th>
-                            <th>Aislante</th>
-                        </tr>
-                        <tr>
-                            <td>Moneda</td>
-                            <td>
-                                <label class="sr-only" for="moneda-conductor">Moneda conductor</label>
-                                <input type="checkbox" id="moneda-conductor" name="moneda" value="conductor" aria-label="Moneda conductor">
-                            </td>
-                            <td>
-                                <label class="sr-only" for="moneda-aislante">Moneda aislante</label>
-                                <input type="checkbox" id="moneda-aislante" name="moneda" value="aislante" aria-label="Moneda aislante">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Lápiz de madera</td>
-                            <td>
-                                <label class="sr-only" for="lapiz-conductor">Lápiz conductor</label>
-                                <input type="checkbox" id="lapiz-conductor" name="lapiz" value="conductor" aria-label="Lápiz conductor">
-                            </td>
-                            <td>
-                                <label class="sr-only" for="lapiz-aislante">Lápiz aislante</label>
-                                <input type="checkbox" id="lapiz-aislante" name="lapiz" value="aislante" aria-label="Lápiz aislante">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Clip metálico</td>
-                            <td>
-                                <label class="sr-only" for="clip-conductor">Clip conductor</label>
-                                <input type="checkbox" id="clip-conductor" name="clip" value="conductor" aria-label="Clip conductor">
-                            </td>
-                            <td>
-                                <label class="sr-only" for="clip-aislante">Clip aislante</label>
-                                <input type="checkbox" id="clip-aislante" name="clip" value="aislante" aria-label="Clip aislante">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>¿Por qué crees que los cables eléctricos están hechos de cobre (conductor) pero recubiertos de plástico (aislante)? ¿Qué podría pasar si se invirtieran estos materiales?</p>
-                <textarea rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos visuales sugeridos</h2>
-                <div class="resource-grid">
-                    <div class="resource-item">
-                        <h3>Estructura atómica de conductores y aislantes</h3>
-                        <img src="assets/svg/estructura_atomica.svg" alt="Estructura atómica de conductores y aislantes" class="resource-img">
-                        <p>Observa las diferencias en la estructura atómica que hacen que unos materiales conduzcan la electricidad y otros no.</p>
-                    </div>
-                    <div class="resource-item">
-                        <h3>Conductores y aislantes en el hogar</h3>
-                        <img src="assets/svg/conductores_hogar.svg" alt="Conductores y aislantes en el hogar" class="resource-img">
-                        <p>Identifica los materiales conductores y aislantes en los electrodomésticos de tu hogar.</p>
-                    </div>
-                    <div class="resource-item">
-                        <h3>Simulador de conductividad</h3>
-                        <div class="simulator-placeholder">
-                            <p>🔌 Simulador interactivo</p>
-                            <p>Explora cómo diferentes materiales afectan el flujo de corriente eléctrica.</p>
-                            <a href="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_es.html" target="_blank" rel="noopener noreferrer" class="btn-small">Abrir simulador</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="gamification">
-                <h2>Reto gamificado: El detective de materiales</h2>
-                <div class="challenge-container">
-                    <div class="challenge-instructions">
-                        <h3>Instrucciones:</h3>
-                        <ol>
-                            <li>Busca en tu casa 5 objetos que contengan tanto materiales conductores como aislantes.</li>
-                            <li>Toma fotos de cada objeto y márcalos para mostrar las partes conductoras y aislantes.</li>
-                            <li>Explica la función de cada material en el objeto.</li>
-                            <li>¡Gana puntos por cada identificación correcta y por creatividad!</li>
-                        </ol>
-                        <div class="scoring">
-                            <p>🏆 Puntuación:</p>
-                            <ul>
-                                <li>20 puntos por objeto correctamente identificado</li>
-                                <li>10 puntos de bono por creatividad</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="challenge-visual">
-                        <img src="assets/svg/reto_detective_materiales.svg" alt="Reto: El detective de materiales" class="challenge-img">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="session-navigation">
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion2.html" class="btn">Siguiente sesión →</a>
         </div>
-    </main>
 
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
+        <div class="phase-block" style="margin-top: 2rem;">
+            <div class="phase-header" style="background: var(--warning-color); color: white;">
+                <span>Materiales Aislantes (El Muro)</span>
+                <span><i class="fas fa-shield-alt"></i></span>
+            </div>
+            <div class="phase-content" style="border-left-color: var(--warning-color);">
+                <p>Sus átomos tienen a sus electrones fuertemente amarrados. No hay electrones libres. Si aplicas voltaje (presión eléctrica), los electrones simplemente no pueden avanzar y la corriente se detiene al 100%.</p>
+                <ul>
+                    <li><strong>El Plástico (PVC) y Goma:</strong> Recubren todos los cables del mundo para que no te electrocutes al tocarlos.</li>
+                    <li><strong>La Madera Seca y el Vidrio:</strong> Excelentes aislantes. El vidrio se usaba mucho en los postes de luz antiguos.</li>
+                    <li><strong>La Cerámica:</strong> Se utiliza en los postes de alta tensión porque soporta voltajes masivos sin derretirse ni permitir fugas de corriente.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="practica-section">
+        <h2>Simulador Atómico: Prueba de Materiales</h2>
+        <p>Selecciona un material para colocarlo en el centro de nuestro circuito microscópico. Observa qué pasa con los electrones (puntos amarillos) que intentan cruzar desde la batería de la izquierda hacia el foco de la derecha.</p>
+        
+        <div class="simulator-container">
+            <div class="material-buttons">
+                <button class="mat-btn active" onclick="setMaterial('cobre', this)">Cable de Cobre</button>
+                <button class="mat-btn" onclick="setMaterial('goma', this)">Bloque de Goma</button>
+                <button class="mat-btn" onclick="setMaterial('vidrio', this)">Vidrio</button>
+            </div>
+            
+            <svg id="simulator-svg" viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cables fijos -->
+                <rect x="50" y="110" width="150" height="30" fill="#34495e" rx="5"/>
+                <rect x="400" y="110" width="150" height="30" fill="#34495e" rx="5"/>
+                <text x="125" y="100" fill="var(--text-color)" font-size="12" text-anchor="middle">Polo +</text>
+                <text x="475" y="100" fill="var(--text-color)" font-size="12" text-anchor="middle">Foco</text>
+                
+                <!-- Material Central Dinámico -->
+                <rect id="mat-block" x="220" y="100" width="160" height="50" fill="#cd7f32" rx="4" stroke="#8b4513" stroke-width="3"/>
+                <text id="mat-text" x="300" y="130" fill="white" font-weight="bold" font-size="16" text-anchor="middle">Cobre (Conductor)</text>
+                
+                <!-- Electrones (Grupo) -->
+                <g id="electron-group">
+                    <!-- Los electrones se inyectan con JS -->
+                </g>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+                <!-- Status Text -->
+                <text id="status-text" x="300" y="210" fill="#2ecc71" font-weight="bold" font-size="18" text-anchor="middle">¡Los electrones fluyen libremente! Foco Encendido.</text>
+            </svg>
+        </div>
+        
+        <div class="danger-box">
+            <h3><i class="fas fa-exclamation-triangle"></i> ¿Sabías que no existe el aislante perfecto?</h3>
+            <p>Si la presión (Voltaje) es monstruosamente alta, CUALQUIER material se convierte en conductor. Por ejemplo, el aire es un excelente aislante, pero durante una tormenta eléctrica, los millones de voltios de las nubes rompen la resistencia del aire y los electrones lo atraviesan creando un <strong>Rayo</strong> de plasma.</p>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "¿Qué característica atómica hace que los metales sean excelentes conductores de electricidad?",
+                "options": [
+                    "Son muy duros y pesados.",
+                    "Tienen electrones fuertemente atados al núcleo.",
+                    "Poseen 'electrones libres' en su última órbita que pueden saltar de átomo en átomo.",
+                    "Contienen mucha agua en su interior."
+                ],
+                "correctIndex": 2,
+                "explanation": "Los metales tienen entre 1 y 3 electrones de valencia muy alejados del núcleo. Esta débil atracción permite que se muevan libremente formando una 'corriente' si se les aplica voltaje."
+            },
+            {
+                "question": "¿Por qué un electricista utiliza guantes gruesos de goma o caucho?",
+                "options": [
+                    "Para mantener sus manos limpias.",
+                    "Para tener un mejor agarre de las herramientas.",
+                    "Porque la goma es un conductor que desvía la corriente a tierra.",
+                    "Porque la goma es un material aislante que bloquea el paso de los electrones hacia su cuerpo."
+                ],
+                "correctIndex": 3,
+                "explanation": "La goma (caucho) es uno de los mejores aislantes. Obliga a la corriente a detenerse, impidiendo que fluya a través del cuerpo del electricista hacia la tierra."
+            },
+            {
+                "question": "Verdadero o Falso: El agua 100% pura (destilada) es un excelente conductor eléctrico.",
+                "options": [
+                    "Verdadero, toda agua es conductora.",
+                    "Falso, el agua destilada es aislante. Son las sales y minerales disueltos en el agua común los que conducen la electricidad."
+                ],
+                "correctIndex": 1,
+                "explanation": "El agua pura (H2O) es sorprendentemente un mal conductor. Sin embargo, en la vida real el agua siempre tiene sales (iones) que son los verdaderos conductores. ¡Por eso nunca debes tocar aparatos mojado!"
+            },
+            {
+                "question": "Si los cables eléctricos no estuvieran recubiertos de plástico (aislante), ¿qué ocurriría si dos cables con voltaje se tocaran entre sí?",
+                "options": [
+                    "La electricidad fluiría más rápido.",
+                    "Ocurriría un Cortocircuito: la corriente saltaría directamente de un cable al otro buscando el camino más fácil, generando una explosión o fuego.",
+                    "Los cables se apagarían automáticamente.",
+                    "No pasaría nada."
+                ],
+                "correctIndex": 1,
+                "explanation": "El aislante mantiene la electricidad dentro de su propio carril. Si dos conductores desnudos chocan, causan un cortocircuito catastrófico."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa</a>
+        <a href="sesion2.html" class="nav-btn next">Siguiente Sesión (Clasificación) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    // SIMULADOR LÓGICA
+    const electronGroup = document.getElementById('electron-group');
+    const matBlock = document.getElementById('mat-block');
+    const matText = document.getElementById('mat-text');
+    const statusText = document.getElementById('status-text');
+    let animationInterval;
+
+    function createElectrons(isConductor) {
+        electronGroup.innerHTML = '';
+        const numElectrons = 10;
+        for(let i=0; i<numElectrons; i++) {
+            let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("r", "5");
+            circle.setAttribute("fill", "#f1c40f");
+            
+            let animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+            animate.setAttribute("attributeName", "cx");
+            
+            let startDelay = (i * 0.3) + "s";
+            animate.setAttribute("begin", startDelay);
+            animate.setAttribute("repeatCount", "indefinite");
+            
+            if(isConductor) {
+                // Atraviesan todo
+                animate.setAttribute("values", "60; 540");
+                animate.setAttribute("dur", "1.5s");
+            } else {
+                // Chocan contra la pared del material (x=220) y rebotan
+                animate.setAttribute("values", "60; 210; 210; 60");
+                animate.setAttribute("dur", "2s");
+                animate.setAttribute("keyTimes", "0; 0.4; 0.6; 1");
+            }
+            
+            circle.setAttribute("cy", 115 + Math.random()*20); // Distribución vertical aleatoria dentro del cable
+            
+            circle.appendChild(animate);
+            electronGroup.appendChild(circle);
+        }
+    }
+
+    function setMaterial(type, btnElement) {
+        // Update Buttons
+        document.querySelectorAll('.mat-btn').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+
+        if(type === 'cobre') {
+            matBlock.setAttribute('fill', '#cd7f32'); // Cobre
+            matBlock.setAttribute('stroke', '#8b4513');
+            matText.textContent = "Cobre (Conductor)";
+            matText.setAttribute('fill', 'white');
+            statusText.textContent = "¡Los electrones fluyen libremente! Foco Encendido.";
+            statusText.setAttribute('fill', '#2ecc71');
+            createElectrons(true);
+        } else if (type === 'goma') {
+            matBlock.setAttribute('fill', '#2c3e50'); // Dark gray/black
+            matBlock.setAttribute('stroke', '#1a252f');
+            matText.textContent = "Goma (Aislante)";
+            matText.setAttribute('fill', 'white');
+            statusText.textContent = "¡Muro infranqueable! Los electrones chocan. Foco Apagado.";
+            statusText.setAttribute('fill', '#e74c3c');
+            createElectrons(false);
+        } else if (type === 'vidrio') {
+            matBlock.setAttribute('fill', 'rgba(173, 216, 230, 0.5)'); // Light blue transparent
+            matBlock.setAttribute('stroke', '#3498db');
+            matText.textContent = "Vidrio (Aislante)";
+            matText.setAttribute('fill', '#2c3e50');
+            statusText.textContent = "¡El vidrio no deja pasar nada! Corriente Cero.";
+            statusText.setAttribute('fill', '#e74c3c');
+            createElectrons(false);
+        }
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+        createElectrons(true);
+    });
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion1');
+          window.markLessonCompleted('electricidad3', 'sesion1');
       }
   });
 </script>
