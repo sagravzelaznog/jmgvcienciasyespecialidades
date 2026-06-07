@@ -3,441 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 14: Transformadores II | Aplicaciones Avanzadas</title>
+    <title>Sesión 14: Transformadores II - Eficiencia y Pérdidas</title>
     <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .advanced-topics {
+        .loss-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
-        .topic-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            transition: all 0.3s ease;
+
+        .loss-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            border-top: 4px solid var(--accent-color);
         }
-        .topic-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        .loss-card h3 {
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .efficiency-box {
-            background-color: #e8f4f8;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
+
+        /* Efficiency Simulator */
+        .eff-sim {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .safety-note {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 15px 0;
+
+        .transformer-model {
+            position: relative;
+            width: 300px;
+            height: 250px;
+            margin-bottom: 2rem;
+            background: #7f8c8d;
+            border-radius: 10px;
+            border: 8px solid #95a5a6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .hidden-solution {
-            display: none;
+
+        .transformer-fins {
+            position: absolute;
+            top: 20px; bottom: 20px; left: -20px; right: -20px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 15px,
+                #95a5a6 15px,
+                #95a5a6 20px
+            );
+            z-index: 1;
         }
-        .test-steps {
-            background-color: #f5f5f5;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
+
+        .heat-waves {
+            position: absolute;
+            top: -40px; left: 0; width: 100%; height: 40px;
+            display: flex;
+            justify-content: space-around;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        .test-steps h4 {
-            margin-top: 0;
-            color: #2c3e50;
+
+        .heat-waves i {
+            color: #e74c3c;
+            font-size: 2rem;
+            animation: floatUp 1.5s infinite linear;
         }
-        .interactive-diagram {
-            background-color: #f0f7ff;
+
+        @keyframes floatUp {
+            0% { transform: translateY(10px); opacity: 1; }
+            100% { transform: translateY(-30px); opacity: 0; }
+        }
+
+        .magnetic-leaks {
+            position: absolute;
+            width: 100%; height: 100%;
+            border: 2px dashed #f1c40f;
+            border-radius: 15px;
+            animation: pulseLeak 2s infinite alternate;
+            opacity: 0.5; /* Always present (iron loss) */
+        }
+
+        @keyframes pulseLeak {
+            0% { transform: scale(1.05); opacity: 0.3; }
+            100% { transform: scale(1.15); opacity: 0.7; }
+        }
+
+        .sim-controls {
+            width: 100%;
+            max-width: 500px;
+            background: #34495e;
             padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+            border-radius: 10px;
             text-align: center;
-            border: 1px dashed #3498db;
         }
-        .transformer-icon {
-            font-size: 2em;
-            margin: 10px 0;
-            color: #2c3e50;
+
+        .load-slider {
+            width: 100%;
+            margin: 15px 0;
         }
+
+        .eff-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2ecc71;
+            margin-top: 15px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .loss-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .bar-container {
+            width: 100%;
+            background: #111;
+            border-radius: 5px;
+            height: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bar-fill {
+            height: 100%;
+            transition: width 0.3s;
+        }
+        
+        .bar-copper { background: #e74c3c; width: 0%; }
+        .bar-iron { background: #f1c40f; width: 20%; } /* Iron loss is constant */
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sesión 14: Transformadores II</h1>
-            <p>Aplicaciones avanzadas, pruebas y mantenimiento</p>
-        </div>
-    </header>
 
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Transformadores II: Eficiencia</h1>
+        <p class="sesion-subtitle">Sesión 14 - Módulo 7: Donde se esconde la energía</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-search-dollar"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrir que en la vida real, los transformadores "cobran impuestos". Entenderás qué son las Pérdidas en el Cobre y Pérdidas en el Hierro, y cómo calcular la Eficiencia real del equipo.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>Nada es 100% Perfecto</h2>
+        <p>En la Sesión anterior vimos el transformador "ideal". Pero en el mundo real, cuando transfieres energía masiva a través del magnetismo, siempre se pierde un porcentaje. Esta energía perdida no desaparece, se transforma en <strong>Calor y Ruido</strong>.</p>
         
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Al finalizar esta sesión, los estudiantes podrán realizar pruebas avanzadas en transformadores, comprender sus pérdidas y eficiencia, y aplicar técnicas de mantenimiento predictivo y correctivo.</p>
-            </div>
-
-            <div class="theory">
-                <h2>Contenido teórico avanzado</h2>
-                
-                <div class="concept-box">
-                    <h3>Pérdidas y eficiencia en transformadores</h3>
-                    
-                    <div class="efficiency-box">
-                        <h4>Tipos de pérdidas</h4>
-                        <div class="advanced-topics">
-                            <div class="topic-card">
-                                <div class="transformer-icon">🔥</div>
-                                <h4>Pérdidas en el cobre (I²R)</h4>
-                                <ul>
-                                    <li>Dependen de la carga</li>
-                                    <li>Proporcionales al cuadrado de la corriente</li>
-                                    <li>Se minimizan con conductores de baja resistencia</li>
-                                </ul>
-                            </div>
-                            <div class="topic-card">
-                                <div class="transformer-icon">🧲</div>
-                                <h4>Pérdidas en el hierro</h4>
-                                <ul>
-                                    <li>Pérdidas por histéresis</li>
-                                    <li>Corrientes parásitas (Foucault)</li>
-                                    <li>Independientes de la carga</li>
-                                </ul>
-                            </div>
-                            <div class="topic-card">
-                                <div class="transformer-icon">⚡</div>
-                                <h4>Pérdidas adicionales</h4>
-                                <ul>
-                                    <li>Pérdidas por flujo disperso</li>
-                                    <li>Efecto pelicular (skin effect)</li>
-                                    <li>Pérdidas dieléctricas</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="formula">
-                            <h4>Fórmula de eficiencia</h4>
-                            <p>η = (Potencia de salida / Potencia de entrada) × 100%</p>
-                            <p>o</p>
-                            <p>η = (Potencia de salida) / (Potencia de salida + Pérdidas) × 100%</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="concept-box">
-                    <h3>Pruebas de diagnóstico</h3>
-                    <div class="test-steps">
-                        <div class="test-method">
-                            <h4>1. Prueba de relación de transformación (TTR)</h4>
-                            <p>Verifica la relación de vueltas entre devanados.</p>
-                            <p><strong>Procedimiento:</strong></p>
-                            <ol>
-                                <li>Aplicar voltaje conocido al devanado de AT</li>
-                                <li>Medir voltaje inducido en el devanado de BT</li>
-                                <li>Calcular la relación V₁/V₂</li>
-                                <li>Comparar con valores de placa</li>
-                            </ol>
-                        </div>
-                        
-                        <div class="test-method">
-                            <h4>2. Prueba de resistencia óhmica</h4>
-                            <p>Mide la resistencia de los devanados.</p>
-                            <p><strong>Consideraciones:</strong></p>
-                            <ul>
-                                <li>Realizar a temperatura ambiente</li>
-                                <li>Compensar por temperatura (usar 75°C como referencia)</li>
-                                <li>Comparar con valores de fábrica</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="visual-example">
-                <h2>Analogía: El transformador como sistema de agua</h2>
-                <div class="analogy">
-                    <p>Imagina un transformador como un sistema de tuberías de agua:</p>
-                    <ul>
-                        <li><strong>Voltaje ↔ Presión del agua</strong><br>
-                        El transformador modifica la presión (voltaje) del sistema</li>
-                        <li><strong>Corriente ↔ Flujo de agua</strong><br>
-                        A mayor presión (voltaje), menor flujo (corriente) necesitas para la misma potencia</li>
-                        <li><strong>Pérdidas en el cobre ↔ Fricción en las tuberías</strong><br>
-                        Dependen del flujo (corriente) al cuadrado</li>
-                        <li><strong>Pérdidas en el hierro ↔ Pérdidas por fugas</strong><br>
-                        Existen independientemente del flujo</li>
-                    </ul>
-                    <div class="interactive-diagram">
-                        <p>[Diagrama interactivo: Comparación entre sistema hidráulico y transformador]</p>
-                        <p><em>Nota: Este diagrama permitiría ajustar parámetros y ver su efecto en el sistema</em></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="practical-activity">
-                <h2>Actividad práctica: Análisis de eficiencia</h2>
-                
-                <div class="safety-note">
-                    <h4>¡Precaución! Alta tensión</h4>
-                    <ul>
-                        <li>Siempre trabajar con la alimentación desconectada al realizar mediciones de resistencia</li>
-                        <li>Usar equipo de protección personal adecuado</li>
-                        <li>Verificar que el equipo esté descargado antes de manipular</li>
-                    </ul>
-                </div>
-
-                <h3>Materiales necesarios:</h3>
+        <div class="loss-grid">
+            <div class="loss-card">
+                <h3><i class="fas fa-fire"></i> Pérdidas en el Cobre (I²R)</h3>
+                <p>El alambre de cobre de las bobinas no es un conductor perfecto. Tiene resistencia. Al pasar corriente a través de él, se calienta.</p>
                 <ul>
-                    <li>Transformador de potencia pequeño (220V/12V, 50VA)</li>
-                    <li>Multímetro digital</li>
-                    <li>Vatímetro o analizador de potencia</li>
-                    <li>Fuente de alimentación variable AC</li>
-                    <li>Cargas resistivas variables</li>
-                    <li>Termómetro por infrarrojos</li>
+                    <li><strong>Dependen de la Carga:</strong> Si conectas más aparatos, pasa más corriente y el cobre se calienta mucho más.</li>
+                    <li>Por esto los transformadores gigantes de la calle están llenos de aceite mineral (para enfriar las bobinas).</li>
                 </ul>
+            </div>
+            
+            <div class="loss-card">
+                <h3><i class="fas fa-magnet"></i> Pérdidas en el Hierro (Núcleo)</h3>
+                <p>El campo magnético alterno obliga a los átomos del núcleo de hierro a cambiar de dirección 60 veces por segundo. Esta fricción atómica genera calor y ruido (el clásico zumbido de los transformadores).</p>
+                <ul>
+                    <li><strong>Son Constantes:</strong> Ocurren todo el tiempo mientras el transformador esté conectado a la luz, aunque no le conectes ninguna carga.</li>
+                </ul>
+            </div>
+        </div>
 
-                <h3>Procedimiento:</h3>
-                <ol>
-                    <li><strong>Medición de resistencia en frío</strong>
-                        <ul>
-                            <li>Medir la resistencia de los devanados primario y secundario</li>
-                            <li>Registrar la temperatura ambiente</li>
-                            <li>Calcular la resistencia a 75°C</li>
-                        </ul>
-                    </li>
-                    <li><strong>Prueba de vacío</strong>
-                        <ul>
-                            <li>Alimentar el primario a voltaje nominal</li>
-                            <li>Dejar el secundario en circuito abierto</li>
-                            <li>Medir corriente y potencia en vacío</li>
-                        </ul>
-                    </li>
-                    <li><strong>Prueba de cortocircuito</strong>
-                        <ul>
-                            <li>Cortocircuitar el secundario</li>
-                            <li>Aplicar voltaje reducido al primario hasta alcanzar corriente nominal</li>
-                            <li>Medir voltaje, corriente y potencia</li>
-                        </ul>
-                    </li>
-                </ol>
+        <div class="danger-box">
+            <h3>Fórmula de Eficiencia (η)</h3>
+            <p>La eficiencia se mide dividiendo lo que "Sale" entre lo que "Entra". En transformadores gigantes, la eficiencia suele ser espectacular, rondando el <strong>98% al 99%</strong>.</p>
+        </div>
+    </div>
 
-                <div class="measurement-steps">
-                    <h4>Cálculo de parámetros</h4>
-                    <table class="measurement-table">
-                        <tr>
-                            <th>Parámetro</th>
-                            <th>Símbolo</th>
-                            <th>Fórmula</th>
-                            <th>Valor calculado</th>
-                        </tr>
-                        <tr>
-                            <td>Resistencia equivalente</td>
-                            <td>R<sub>eq</sub></td>
-                            <td>P<sub>cc</sub>/I<sub>n</sub>²</td>
-                            <td id="req-value">-</td>
-                        </tr>
-                        <tr>
-                            <td>Reactancia equivalente</td>
-                            <td>X<sub>eq</sub></td>
-                            <td>√(Z<sub>eq</sub>² - R<sub>eq</sub>²)</td>
-                            <td id="xeq-value">-</td>
-                        </tr>
-                        <tr>
-                            <td>Pérdidas en el cobre</td>
-                            <td>P<sub>cu</sub></td>
-                            <td>I²R</td>
-                            <td id="pcu-value">-</td>
-                        </tr>
-                        <tr>
-                            <td>Pérdidas en el hierro</td>
-                            <td>P<sub>fe</sub></td>
-                            <td>P<sub>0</sub> (prueba de vacío)</td>
-                            <td id="pfe-value">-</td>
-                        </tr>
-                        <tr>
-                            <td>Eficiencia máxima</td>
-                            <td>η<sub>max</sub></td>
-                            <td>P<sub>out</sub>/(P<sub>out</sub> + 2P<sub>fe</sub>)</td>
-                            <td id="eta-value">-</td>
-                        </tr>
-                    </table>
-                    <button class="btn calcular-parametros" onclick="calcularParametros()">Calcular parámetros</button>
+    <div class="practica-section">
+        <h2>Simulador de Pérdidas Térmicas</h2>
+        <p>Mueve el control de "Carga" para simular cuántas casas están consumiendo energía del transformador. Observa cómo cambian los dos tipos de pérdidas y cómo esto afecta la Eficiencia global.</p>
+
+        <div class="eff-sim">
+            
+            <div class="transformer-model">
+                <div class="magnetic-leaks"></div>
+                <div class="transformer-fins"></div>
+                <div class="heat-waves" id="heat-waves">
+                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-fire"></i>
                 </div>
-
-                <h3>Análisis de resultados:</h3>
-                <ol>
-                    <li>¿Cómo afecta la carga a la eficiencia del transformador?</li>
-                    <li>¿En qué condiciones se produce la máxima eficiencia?</li>
-                    <li>¿Qué medidas podrías tomar para mejorar la eficiencia?</li>
-                </ol>
             </div>
 
-            <div class="case-study">
-                <h2>Estudio de caso: Mantenimiento de transformador de distribución</h2>
-                <div class="case-content">
-                    <p><strong>Escenario:</strong> Un transformador de distribución de 150 kVA, 13.8kV/220V, ha mostrado un aumento en la temperatura de operación y ruidos anormales. El análisis de aceite mostró presencia de gases disueltos.</p>
-                    
-                    <div class="case-tasks">
-                        <p><strong>Tareas:</strong></p>
-                        <ol>
-                            <li>Identificar las posibles causas de los síntomas</li>
-                            <li>Proponer pruebas de diagnóstico</li>
-                            <li>Elaborar un plan de acción correctivo</li>
-                            <li>Estimar costos y tiempo de reparación</li>
-                        </ol>
-                    </div>
+            <div class="sim-controls">
+                <label style="font-weight: bold; color: #bdc3c7;">NIVEL DE CARGA ELÉCTRICA: <span id="load-val" style="color:white;">0%</span></label>
+                <input type="range" class="load-slider" id="load-slider" min="0" max="120" step="5" value="0" oninput="updateEfficiency()">
+                
+                <div class="eff-display" id="eff-display">Eficiencia: --%</div>
 
-                    <div class="solucion">
-                        <button class="btn" onclick="toggleSolucion()">Mostrar solución</button>
-                        <div id="solucion" class="hidden-solution">
-                            <h4>Solución propuesta:</h4>
-                            <ol>
-                                <li><strong>Posibles causas:</strong>
-                                    <ul>
-                                        <li>Sobrecarga continua</li>
-                                        <li>Fallas en el sistema de enfriamiento</li>
-                                        <li>Cortocircuitos entre espiras</li>
-                                        <li>Pérdida de aislamiento</li>
-                                        <li>Contaminación del aceite</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Pruebas recomendadas:</strong>
-                                    <ul>
-                                        <li>Análisis de gases disueltos (DGA)</li>
-                                        <li>Prueba de resistencia de aislamiento (Megger)</li>
-                                        <li>Análisis de factor de potencia</li>
-                                        <li>Prueba de relación de transformación</li>
-                                        <li>Inspección visual interna</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Plan de acción:</strong>
-                                    <ul>
-                                        <li>Reducir carga temporalmente</li>
-                                        <li>Programar parada para mantenimiento</li>
-                                        <li>Cambiar/filtrar aceite si es necesario</li>
-                                        <li>Reparar o rebobinar si hay daño en devanados</li>
-                                        <li>Reemplazar si el daño es extenso</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Estimación:</strong>
-                                    <ul>
-                                        <li>Mantenimiento correctivo: $5,000 - $10,000 USD</li>
-                                        <li>Tiempo: 1-2 semanas</li>
-                                        <li>Nuevo transformador: $15,000 - $25,000 USD</li>
-                                        <li>Tiempo de entrega: 8-12 semanas</li>
-                                    </ul>
-                                </li>
-                            </ol>
+                <div class="loss-bars">
+                    <div>
+                        <span style="font-size:0.8rem;">Pérdidas en el Hierro (Constantes)</span>
+                        <div class="bar-container">
+                            <div class="bar-fill bar-iron" id="bar-iron"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <span style="font-size:0.8rem;">Pérdidas en el Cobre (Variables por Calor)</span>
+                        <div class="bar-container">
+                            <div class="bar-fill bar-copper" id="bar-copper"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>Considerando la creciente demanda de energía y la necesidad de eficiencia energética, ¿qué innovaciones tecnológicas podrían implementarse en el diseño y operación de transformadores para hacerlos más eficientes, confiables y amigables con el medio ambiente en las próximas décadas?</p>
-                <textarea placeholder="Escribe tus reflexiones aquí..."></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos visuales sugeridos</h2>
-                <div class="resource-list">
-                    <div class="resource">
-                        <h3>Simulador de eficiencia</h3>
-                        <p>Herramienta interactiva para analizar cómo diferentes factores afectan la eficiencia de un transformador.</p>
-                        <p><strong>Formato:</strong> Aplicación web responsive</p>
-                    </div>
-                    <div class="resource">
-                        <h3>Guía de diagnóstico por termografía</h3>
-                        <p>Catálogo de imágenes térmicas de fallas comunes en transformadores.</p>
-                        <p><strong>Formatos:</strong> PDF interactivo con zoom</p>
-                    </div>
-                    <div class="resource">
-                        <h3>Modelos 3D de fallas</h3>
-                        <p>Modelos descargables de transformadores mostrando fallas comunes y sus efectos.</p>
-                        <p><strong>Formatos:</strong> STL, STEP (compatibles con realidad aumentada)</p>
-                    </div>
+                
+                <div style="margin-top: 15px; font-size: 0.9rem; color: #e74c3c; display: none; font-weight: bold;" id="overload-warning">
+                    ¡PELIGRO! SOBRECARGA. CALENTAMIENTO CRÍTICO.
                 </div>
             </div>
-        </section>
 
-        <div class="session-navigation">
-            <a href="sesion13.html" class="btn">← Sesión anterior</a>
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion15.html" class="btn">Próxima sesión →</a>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
-
-    <script>
-        function toggleSolucion() {
-            var solucion = document.getElementById('solucion');
-            solucion.classList.toggle('hidden-solution');
-            event.target.textContent = solucion.classList.contains('hidden-solution') ? 
-                'Mostrar solución' : 'Ocultar solución';
-        }
-
-        function calcularParametros() {
-            // Valores de ejemplo (deberían ser reemplazados con mediciones reales)
-            const Pcc = 120; // Potencia de cortocircuito (W)
-            const In = 6.3;  // Corriente nominal (A)
-            const Vcc = 45;  // Voltaje de cortocircuito (V)
-            const P0 = 30;   // Potencia en vacío (W)
-            
-            // Cálculos
-            const Req = (Pcc / Math.pow(In, 2)).toFixed(2);
-            const Zeq = (Vcc / In).toFixed(2);
-            const Xeq = Math.sqrt(Math.pow(Zeq, 2) - Math.pow(Req, 2)).toFixed(2);
-            const Pcu = Pcc;
-            const Pfe = P0;
-            const etaMax = (150000 / (150000 + 2 * P0) * 100).toFixed(1);
-            
-            // Actualizar la tabla
-            document.getElementById('req-value').textContent = Req + ' Ω';
-            document.getElementById('xeq-value').textContent = Xeq + ' Ω';
-            document.getElementById('pcu-value').textContent = Pcu + ' W';
-            document.getElementById('pfe-value').textContent = Pfe + ' W';
-            document.getElementById('eta-value').textContent = etaMax + ' %';
-            
-            alert('Parámetros calculados con valores de ejemplo.\n\n' +
-                 'Para obtener resultados precisos, reemplace los valores en el código con sus mediciones reales.');
-        }
-        
-        // Función para calcular la resistencia a temperatura de referencia
-        function calcularResistenciaTemperatura() {
-            const Rmedida = parseFloat(prompt('Resistencia medida (Ω):'));
-            const Tmedida = parseFloat(prompt('Temperatura de medición (°C):'));
-            const Tref = 75; // Temperatura de referencia estándar
-            
-            if (Rmedida && Tmedida) {
-                // Coeficiente de temperatura del cobre: 0.00393 1/°C
-                const k = 0.00393;
-                const Rref = Rmedida * (Tref + 234.5) / (Tmedida + 234.5);
-                
-                alert(`Resistencia a ${Tref}°C: ${Rref.toFixed(4)} Ω`);
-            } else {
-                alert('Por favor ingrese valores válidos');
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Conectas un cargador de celular a la pared, pero no le conectas ningún celular. Pasan las horas y notas que la "cajita" del cargador está ligeramente tibia. ¿A qué se debe este calor?",
+                "options": [
+                    "A las pérdidas en el cobre del transformador interno.",
+                    "A las pérdidas en el hierro (núcleo) del transformador interno.",
+                    "A un cortocircuito en tu pared."
+                ],
+                "correctIndex": 1,
+                "explanation": "Como NO hay celular conectado (Carga 0%), no hay corriente pasando (Pérdidas en el Cobre = 0). Ese calor leve se debe exclusivamente a las Pérdidas en el Hierro, que son constantes mientras esté enchufado a la red."
+            },
+            {
+                "question": "¿De qué depende principalmente que las pérdidas 'en el cobre' aumenten en un transformador de distribución (el poste de luz)?",
+                "options": [
+                    "De que sea de día o de noche.",
+                    "Del número de casas que enciendan sus aparatos y consuman corriente al mismo tiempo.",
+                    "Del voltaje original de la CFE."
+                ],
+                "correctIndex": 1,
+                "explanation": "Las pérdidas en el cobre se calculan como I²R (Corriente al cuadrado por Resistencia). Si el vecindario enciende los aires acondicionados al mismo tiempo, la Corriente sube drásticamente, disparando las pérdidas por calor."
+            },
+            {
+                "question": "¿Por qué los transformadores grandes de las calles parecen tener 'aletas' por los lados y están llenos de aceite mineral por dentro?",
+                "options": [
+                    "El aceite es un aislante excelente y transfiere el calor intenso de las bobinas de cobre hacia las aletas metálicas para que se enfríen con el aire.",
+                    "Es aceite lubricante para que las piezas internas puedan girar libremente.",
+                    "El aceite ayuda a generar más voltaje."
+                ],
+                "correctIndex": 0,
+                "explanation": "Los transformadores NO tienen piezas móviles, así que no necesitan lubricación. El aceite mineral es el sistema de enfriamiento. Si este aceite se fuga, el transformador se derrite y explota."
+            },
+            {
+                "question": "En condiciones normales, la eficiencia de un transformador de gran escala (Subestación) es...",
+                "options": [
+                    "Aproximadamente del 50%, perdiendo la mitad de la energía en calor.",
+                    "Del 100%, son máquinas teóricamente perfectas.",
+                    "Suele ser del 98% o superior, haciéndolas una de las máquinas más eficientes creadas por el hombre."
+                ],
+                "correctIndex": 2,
+                "explanation": "A diferencia de un motor de combustión de auto (que apenas tiene 30% de eficiencia), los transformadores eléctricos son increíblemente eficientes, operando arriba del 98% en equipos industriales."
             }
-        }
-    </script>
+        ]
+        </script>
+    </div>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion13.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion15.html" class="nav-btn next">Siguiente Sesión (Aplicaciones) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function updateEfficiency() {
+        const load = parseInt(document.getElementById('load-slider').value);
+        document.getElementById('load-val').textContent = load + "%";
+        
+        const ironLossFixed = 1.0; // Say 1% constant
+        // Copper loss goes with square of load
+        const copperLoss = Math.pow(load / 100, 2) * 2.0; // 2% at full load
+        
+        // Efficiency
+        let eff = 0;
+        if(load === 0) {
+            document.getElementById('eff-display').textContent = "Eficiencia: 0.0%"; // No output
+        } else {
+            // Eff = Output / (Output + Losses)
+            const output = load; // output is proportional to load
+            eff = (output / (output + ironLossFixed + copperLoss)) * 100;
+            document.getElementById('eff-display').textContent = "Eficiencia: " + eff.toFixed(1) + "%";
+        }
+
+        // Color coding
+        if(eff > 96) document.getElementById('eff-display').style.color = "#2ecc71";
+        else if(eff > 90) document.getElementById('eff-display').style.color = "#f1c40f";
+        else document.getElementById('eff-display').style.color = "#e74c3c";
+
+        // Bars
+        document.getElementById('bar-iron').style.width = "20%"; // Constant visual representation
+        
+        let cuPercent = (copperLoss / 4.0) * 100; // Relative to max expected loss
+        if(cuPercent > 100) cuPercent = 100;
+        document.getElementById('bar-copper').style.width = cuPercent + "%";
+
+        // Heat animation
+        const waves = document.getElementById('heat-waves');
+        const warn = document.getElementById('overload-warning');
+        
+        if(load > 100) {
+            waves.style.opacity = "1";
+            warn.style.display = "block";
+            // Extra fast animation
+            const icons = waves.querySelectorAll('i');
+            icons.forEach(i => i.style.animationDuration = "0.5s");
+        } else if (load > 80) {
+            waves.style.opacity = "0.7";
+            warn.style.display = "none";
+            const icons = waves.querySelectorAll('i');
+            icons.forEach(i => i.style.animationDuration = "1s");
+        } else {
+            waves.style.opacity = "0";
+            warn.style.display = "none";
+        }
+    }
+    
+    updateEfficiency();
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion14');
+          window.markLessonCompleted('electricidad3', 'sesion14');
       }
   });
 </script>
