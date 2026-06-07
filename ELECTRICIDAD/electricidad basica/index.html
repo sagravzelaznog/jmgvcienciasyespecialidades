@@ -6,6 +6,36 @@
     <title>Curso de Electricidad Básica - 16 Sesiones</title>
     <link rel="stylesheet" href="../../global-lesson.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <style>
+        .hero { text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, var(--bg-card) 0%, #e0f2fe 100%); border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; }
+        .hero h1 { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; color: var(--text-muted); }
+        
+        .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+        .nav-links a { text-decoration: none; color: var(--text-heading); font-weight: 600; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary-color); }
+        
+        .sesiones-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .sesion-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; box-shadow: var(--shadow-soft); transition: transform 0.3s, box-shadow 0.3s; }
+        .sesion-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary-color); }
+        
+        .sesion-meta { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.85rem; font-weight: bold; color: var(--text-muted); }
+        .sesion-tipo { padding: 0.2rem 0.6rem; border-radius: 4px; color: white; }
+        .tipo-teoria { background-color: #3498db; }
+        .tipo-practica { background-color: #e67e22; }
+        .tipo-mixto { background-color: #9b59b6; }
+        
+        .sesion-card h3 { margin-top: 0; font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-heading); }
+        .sesion-content { flex-grow: 1; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .sesion-objectives { background: var(--bg-main); padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+        .sesion-objectives h4 { margin-top: 0; font-size: 1rem; margin-bottom: 0.5rem; }
+        .sesion-objectives ul { margin-bottom: 0; padding-left: 1.2rem; }
+        
+        .sesion-actions { text-align: center; margin-top: auto; }
+        .btn { display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background 0.2s; }
+        .btn:hover { background: #026ca0; color: white;}
+        .btn-small { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    </style>
 </head>
 <body>
     <!-- Header -->

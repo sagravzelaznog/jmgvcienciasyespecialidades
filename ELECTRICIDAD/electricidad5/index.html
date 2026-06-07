@@ -6,6 +6,35 @@
     <title>Energía Solar Fotovoltaica | Mapa de Conocimiento</title>
     <link rel="stylesheet" href="../../global-lesson.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .roadmap-page { background-color: var(--bg-main); color: var(--text-main); font-family: 'Inter', sans-serif; }
+        .roadmap-header { text-align: center; padding: 3rem 1rem; background: var(--bg-card); border-bottom: 1px solid var(--border-color); }
+        .roadmap-header h1 { font-size: 2.5rem; color: #f39c12; margin-bottom: 1rem; }
+        .roadmap-header p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
+        
+        .course-progress-container { max-width: 600px; margin: 0 auto; background: var(--bg-main); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); }
+        .progress-bar-bg { width: 100%; height: 12px; background: var(--border-color); border-radius: 6px; overflow: hidden; margin-bottom: 1rem; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #3498db, #2ecc71); transition: width 0.5s ease; }
+        .progress-stats { display: flex; justify-content: space-between; font-weight: bold; font-size: 0.9rem; }
+        
+        .roadmap-container { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+        
+        .module-group { margin-bottom: 3rem; background: var(--bg-card); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-soft); border: 1px solid var(--border-color); }
+        .module-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+        
+        .session-card { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s; margin-bottom: 1rem; }
+        .session-card:hover { transform: translateX(5px); border-color: var(--primary-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .session-card.completed { border-left: 5px solid #2ecc71; background: rgba(46, 204, 113, 0.05); }
+        .session-card.completed .status-icon { color: #2ecc71; }
+        
+        .session-status { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .status-icon { color: var(--border-color); font-size: 1.2rem; }
+        
+        .session-info { flex-grow: 1; }
+        .session-badge { display: inline-block; padding: 0.2rem 0.6rem; background: var(--primary-color); color: white; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .session-name { font-size: 1.2rem; font-weight: 600; margin: 0 0 0.5rem 0; color: var(--text-heading); }
+        .session-desc { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
+    </style>
 </head>
 <body class="roadmap-page">
 
