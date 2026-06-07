@@ -3,284 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 3: Introducción a Interruptores y Pulsadores | Componentes Eléctricos Básicos</title>
+    <title>Sesión 3: Interruptores y Pulsadores - El Control Absoluto</title>
     <link rel="stylesheet" href="../../global-lesson.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Sesión 3: Introducción a Interruptores y Pulsadores</h1>
-            <p>Controla el flujo de la corriente eléctrica</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <a href="index.html" class="back-btn">← Volver al índice</a>
-        
-        <section class="session-content">
-            <div class="learning-objective">
-                <h2>Objetivo específico</h2>
-                <p>Al finalizar esta sesión, los estudiantes podrán identificar diferentes tipos de interruptores y pulsadores, comprender su funcionamiento y aplicarlos en circuitos eléctricos básicos.</p>
-            </div>
-
-            <div class="theory">
-                <h2>Contenido teórico</h2>
-                
-                <div class="concept-box">
-                    <h3>¿Qué son los interruptores?</h3>
-                    <p>Dispositivos que permiten abrir o cerrar un circuito eléctrico, controlando el flujo de corriente.</p>
-                    
-                    <h4>Tipos principales:</h4>
-                    <ul>
-                        <li><strong>Interruptor de palanca:</strong> Encendido/apagado básico</li>
-                        <li><strong>Pulsador NA (Normalmente Abierto):</strong> Sólo cierra el circuito mientras se mantiene presionado</li>
-                        <li><strong>Pulsador NC (Normalmente Cerrado):</strong> Abre el circuito mientras se mantiene presionado</li>
-                        <li><strong>Conmutador:</strong> Permite cambiar entre dos circuitos</li>
-                        <li><strong>Interruptor de mercurio:</strong> Se activa por inclinación</li>
-                    </ul>
-                </div>
-
-                <div class="concept-box">
-                    <h3>Símbolos eléctricos</h3>
-                    <div class="symbols-grid">
-                        <div class="symbol-item">
-                            <div class="symbol-placeholder">[Interruptor SPST]</div>
-                            <p>Interruptor simple (SPST)</p>
-                        </div>
-                        <div class="symbol-item">
-                            <div class="symbol-placeholder">[Pulsador NA]</div>
-                            <p>Pulsador NA</p>
-                        </div>
-                        <div class="symbol-item">
-                            <div class="symbol-placeholder">[Conmutador]</div>
-                            <p>Conmutador SPDT</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="visual-example">
-                <h2>Analogía práctica</h2>
-                <div class="analogy">
-                    <p>Imagina que los interruptores son como puentes levadizos en un río (el circuito):</p>
-                    <ul>
-                        <li><strong>Interruptor cerrado:</strong> El puente está bajado, los barcos (electrones) pueden pasar</li>
-                        <li><strong>Interruptor abierto:</strong> El puente está levantado, los barcos no pueden pasar</li>
-                        <li><strong>Pulsador:</strong> Como un puente que solo baja mientras alguien lo sostiene</li>
-                    </ul>
-                </div>
-                <div class="svg-container">
-                    <p><strong>Recurso interactivo:</strong> <a href="#" target="_blank">Simulador de interruptores</a></p>
-                </div>
-            </div>
-
-            <div class="practical-activity">
-                <h2>Actividad práctica: Circuito controlado</h2>
-                <p><strong>Materiales necesarios:</strong> Batería de 9V, portalámparas, bombilla, cables con pinzas, diferentes tipos de interruptores</p>
-                
-                <div class="activity-steps">
-                    <h3>Paso 1: Circuito básico</h3>
-                    <ol>
-                        <li>Conecta la batería al portalámparas</li>
-                        <li>Conecta un interruptor en serie</li>
-                        <li>Prueba el funcionamiento</li>
-                    </ol>
-
-                    <h3>Paso 2: Experimenta con diferentes interruptores</h3>
-                    <p>Prueba cada tipo de interruptor y completa la siguiente tabla:</p>
-                    
-                    <div class="activity-table">
-                        <table>
-                            <tr>
-                                <th>Tipo de Interruptor</th>
-                                <th>Símbolo</th>
-                                <th>Estado en reposo</th>
-                                <th>Uso común</th>
-                            </tr>
-                            <tr>
-                                <td>Palanca</td>
-                                <td><div class="symbol-placeholder small">[Símbolo]</div></td>
-                                <td><select aria-label="Estado en reposo">
-                                    <option value="">Selecciona</option>
-                                    <option value="abierto">Abierto</option>
-                                    <option value="cerrado">Cerrado</option>
-                                </select></td>
-                                <td><input type="text" aria-label="Uso común"></td>
-                            </tr>
-                            <tr>
-                                <td>Pulsador NA</td>
-                                <td><div class="symbol-placeholder small">[Símbolo]</div></td>
-                                <td><select aria-label="Estado en reposo">
-                                    <option value="">Selecciona</option>
-                                    <option value="abierto">Abierto</option>
-                                    <option value="cerrado">Cerrado</option>
-                                </select></td>
-                                <td><input type="text" aria-label="Uso común"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="troubleshooting">
-                <h2>Resolución de problemas</h2>
-                <p><strong>Problema común:</strong> El circuito no funciona al accionar el interruptor.</p>
-                <p><strong>Posibles causas:</strong></p>
-                <ul>
-                    <li>▢ Conexiones flojas</li>
-                    <li>▢ Interruptor en posición incorrecta</li>
-                    <li>▢ Batería descargada</li>
-                    <li>▢ Bombilla quemada</li>
-                </ul>
-            </div>
-
-            <div class="reflection">
-                <h2>Pregunta de reflexión</h2>
-                <p>¿Qué pasaría si todos los interruptores de tu casa fueran pulsadores en lugar de interruptores de palanca? ¿Cómo afectaría esto al uso de los electrodomésticos?</p>
-                <textarea rows="4" placeholder="Escribe tu reflexión aquí..." aria-label="Reflexión sobre interruptores"></textarea>
-            </div>
-
-            <div class="resources">
-                <h2>Recursos visuales sugeridos</h2>
-                <div class="resource-grid">
-                    <div class="resource-item">
-                        <h3>Símbolos Eléctricos de Interruptores</h3>
-                        <img src="/ELECTRICIDAD/electricidad 3/assets/svg/sesion3/simbolos_electricos.svg" alt="Símbolos eléctricos de interruptores" class="resource-img">
-                        <p>Explora los diferentes símbolos estándar utilizados para representar interruptores en diagramas eléctricos.</p>
-                    </div>
-                    <div class="resource-item">
-                        <h3>Tipos de Interruptores</h3>
-                        <img src="/ELECTRICIDAD/electricidad 3/assets/svg/sesion3/tipos_interruptores.svg" alt="Tipos de interruptores" class="resource-img">
-                        <p>Conoce las características y usos de diferentes tipos de interruptores en circuitos eléctricos.</p>
-                    </div>
-                    <div class="resource-item">
-                        <h3>Simulador de Circuito</h3>
-                        <img src="/ELECTRICIDAD/electricidad 3/assets/svg/sesion3/simulador_circuito.svg" alt="Simulador de circuito con interruptores" class="resource-img">
-                        <p>Practica el armado de circuitos con diferentes tipos de interruptores en este simulador interactivo.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="gamification">
-                <h2>Reto: Diseña tu propio interruptor</h2>
-                <p><strong>Objetivo:</strong> Crea un interruptor funcional usando materiales cotidianos.</p>
-                <p><strong>Materiales sugeridos:</strong> Clip, cartón, papel aluminio, cinta aislante</p>
-                <p><strong>Puntos:</strong></p>
-                <ul>
-                    <li>20 puntos por funcionalidad</li>
-                    <li>15 puntos por creatividad</li>
-                    <li>10 puntos por presentación</li>
-                </ul>
-                <button class="btn" id="subir-proyecto">Subir proyecto</button>
-            </div>
-        </section>
-
-        <div class="session-navigation">
-            <a href="sesion2.html" class="btn">← Sesión anterior</a>
-            <a href="index.html" class="btn">Volver al índice</a>
-            <a href="sesion4.html" class="btn">Siguiente sesión →</a>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-        // Código para la interacción de la sesión
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicialización de componentes interactivos
-            const subirBtn = document.getElementById('subir-proyecto');
-            if (subirBtn) {
-                subirBtn.addEventListener('click', function() {
-                    alert('¡Gracias por tu participación! Un instructor revisará tu proyecto pronto.');
-                });
-            }
-
-            // Simulación de selección de símbolos
-            const symbolPlaceholders = document.querySelectorAll('.symbol-placeholder');
-            symbolPlaceholders.forEach(placeholder => {
-                placeholder.addEventListener('click', function() {
-                    this.textContent = this.textContent === '[Símbolo]' ? '⚡' : '[Símbolo]';
-                });
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos específicos para esta sesión */
-        .symbols-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .symbol-item {
-            text-align: center;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-        
-        .symbol-item:hover {
-            transform: translateY(-3px);
-        }
-        
-        .symbol-placeholder {
-            width: 80px;
-            height: 40px;
-            margin: 0 auto 0.5rem;
-            background: #f0f0f0;
+        .control-board {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
             justify-content: center;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .switch-panel {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            width: 300px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s ease;
         }
         
-        .symbol-placeholder.small {
-            width: 40px;
-            height: 30px;
-            font-size: 1rem;
+        .switch-panel:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
         }
-        
-        .troubleshooting ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .troubleshooting li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
+
+        .circuit-view {
+            width: 100%;
+            height: 150px;
+            background: var(--bg-main);
+            border-radius: 8px;
+            margin-bottom: 1rem;
             position: relative;
+            overflow: hidden;
+            border: 1px inset var(--border-color);
+        }
+
+        .bulb {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 3rem;
+            color: #7f8c8d;
+            transition: all 0.2s;
+            text-shadow: none;
+        }
+
+        .bulb.on {
+            color: #f1c40f;
+            text-shadow: 0 0 20px #f1c40f, 0 0 40px #f39c12;
+        }
+
+        /* Interactive Switch Components */
+        .interactive-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: all 0.1s;
         }
         
-        .troubleshooting li::before {
-            content: "";
+        .interactive-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Toggle Switch CSS */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
             position: absolute;
-            left: 0;
-            top: 0.4em;
-            width: 1em;
-            height: 1em;
-            border: 2px solid var(--secondary-color);
-            border-radius: 3px;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2ecc71;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* SVG Circuit Lines */
+        .wire {
+            stroke: #34495e;
+            stroke-width: 4;
+            fill: none;
+        }
+        .wire.live {
+            stroke: #e74c3c; /* Red when live */
         }
     </style>
+</head>
+<body>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Interruptores y Pulsadores</h1>
+        <p class="sesion-subtitle">Sesión 3 - Módulo 2: Domando a la Bestia Eléctrica</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-gamepad"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Descubrirás cómo controlar la furia de los electrones a voluntad. Diferenciarás entre interruptores fijos y pulsadores momentáneos (Normalmente Abiertos y Normalmente Cerrados).</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>Los Puentes Levadizos de la Electricidad</h2>
+        <p>Un circuito eléctrico sin un interruptor es como un coche sin volante ni frenos: inútil y peligroso. Los interruptores son esencialmente "puentes levadizos" microscópicos. Cuando "apagas" la luz, estás físicamente separando dos metales dentro de la pared para que los electrones no puedan saltar el vacío.</p>
+        
+        <div class="phase-block" style="margin-top: 2rem;">
+            <div class="phase-header" style="background: var(--primary-color); color: white;">
+                <span>1. Interruptor Clásico (SPST)</span>
+                <span><i class="fas fa-toggle-on"></i></span>
+            </div>
+            <div class="phase-content" style="border-left-color: var(--primary-color);">
+                <p>El apagador de la luz de tu cuarto. Tiene dos estados estables: Abierto (Apagado) o Cerrado (Encendido). Se queda en la posición en la que lo dejas hasta que alguien vuelva a tocarlo.</p>
+            </div>
+        </div>
+
+        <div class="phase-block" style="margin-top: 1.5rem;">
+            <div class="phase-header" style="background: var(--accent-color); color: white;">
+                <span>2. Pulsador N.A. (Normalmente Abierto)</span>
+                <span><i class="fas fa-hand-pointer"></i></span>
+            </div>
+            <div class="phase-content" style="border-left-color: var(--accent-color);">
+                <p>El timbre de una casa. El puente está levantado por defecto gracias a un resorte. Solo la electricidad pasa <strong>mientras mantienes presionado</strong> el botón con el dedo.</p>
+            </div>
+        </div>
+
+        <div class="phase-block" style="margin-top: 1.5rem;">
+            <div class="phase-header" style="background: var(--danger-color); color: white;">
+                <span>3. Pulsador N.C. (Normalmente Cerrado)</span>
+                <span><i class="fas fa-stop-circle"></i></span>
+            </div>
+            <div class="phase-content" style="border-left-color: var(--danger-color);">
+                <p>El Botón Rojo de Emergencia (Paro) en las máquinas industriales. El puente está bajado siempre (la máquina funciona), pero si lo presionas, rompes el circuito y todo se detiene inmediatamente.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="practica-section">
+        <h2>Laboratorio Interactivo de Control</h2>
+        <p>Prueba los tres tipos de mecanismos en nuestros paneles de simulación. Observa cómo fluye la corriente (línea roja) y se enciende el foco.</p>
+        
+        <div class="control-board">
+            
+            <!-- Panel 1: Interruptor -->
+            <div class="switch-panel">
+                <h3>Interruptor Fijo</h3>
+                <div class="circuit-view">
+                    <i class="fas fa-lightbulb bulb" id="bulb-1"></i>
+                    <svg viewBox="0 0 300 150">
+                        <line x1="20" y1="75" x2="100" y2="75" class="wire" id="wire-1a" />
+                        <line x1="160" y1="75" x2="250" y2="75" class="wire" id="wire-1b" />
+                        <!-- Switch mechanism graphic -->
+                        <line x1="100" y1="75" x2="150" y2="40" stroke="#f1c40f" stroke-width="5" id="mech-1" style="transition: all 0.3s; transform-origin: 100px 75px;"/>
+                        <circle cx="100" cy="75" r="6" fill="#7f8c8d"/>
+                        <circle cx="160" cy="75" r="6" fill="#7f8c8d"/>
+                    </svg>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" onchange="toggleSwitch(this)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Panel 2: Pulsador NA -->
+            <div class="switch-panel">
+                <h3>Pulsador N.A. (Timbre)</h3>
+                <div class="circuit-view">
+                    <i class="fas fa-lightbulb bulb" id="bulb-2"></i>
+                    <svg viewBox="0 0 300 150">
+                        <line x1="20" y1="75" x2="100" y2="75" class="wire" id="wire-2a" />
+                        <line x1="160" y1="75" x2="250" y2="75" class="wire" id="wire-2b" />
+                        <!-- Button mechanism -->
+                        <rect x="110" y="30" width="40" height="15" fill="#e74c3c" id="mech-2-btn" style="transition: all 0.1s;"/>
+                        <line x1="110" y1="45" x2="110" y2="60" stroke="#7f8c8d" stroke-width="4" id="mech-2-leg1" style="transition: all 0.1s;"/>
+                        <line x1="150" y1="45" x2="150" y2="60" stroke="#7f8c8d" stroke-width="4" id="mech-2-leg2" style="transition: all 0.1s;"/>
+                        <line x1="100" y1="60" x2="160" y2="60" stroke="#f1c40f" stroke-width="6" id="mech-2-bridge" style="transition: all 0.1s;"/>
+                        
+                        <circle cx="100" cy="75" r="6" fill="#7f8c8d"/>
+                        <circle cx="160" cy="75" r="6" fill="#7f8c8d"/>
+                    </svg>
+                </div>
+                <button class="interactive-btn" onmousedown="pushNA(true)" onmouseup="pushNA(false)" onmouseleave="pushNA(false)" ontouchstart="pushNA(true)" ontouchend="pushNA(false)">MANTENER PRESIONADO</button>
+            </div>
+
+            <!-- Panel 3: Pulsador NC -->
+            <div class="switch-panel">
+                <h3>Pulsador N.C. (Paro)</h3>
+                <div class="circuit-view">
+                    <!-- Bulb starts ON -->
+                    <i class="fas fa-lightbulb bulb on" id="bulb-3"></i>
+                    <svg viewBox="0 0 300 150">
+                        <!-- Wires start live (red) -->
+                        <line x1="20" y1="75" x2="100" y2="75" class="wire live" id="wire-3a" />
+                        <line x1="160" y1="75" x2="250" y2="75" class="wire live" id="wire-3b" />
+                        <!-- Button mechanism -->
+                        <rect x="110" y="45" width="40" height="15" fill="#e74c3c" id="mech-3-btn" style="transition: all 0.1s;"/>
+                        <line x1="110" y1="60" x2="110" y2="75" stroke="#7f8c8d" stroke-width="4" id="mech-3-leg1" style="transition: all 0.1s;"/>
+                        <line x1="150" y1="60" x2="150" y2="75" stroke="#7f8c8d" stroke-width="4" id="mech-3-leg2" style="transition: all 0.1s;"/>
+                        <line x1="100" y1="75" x2="160" y2="75" stroke="#f1c40f" stroke-width="6" id="mech-3-bridge" style="transition: all 0.1s;"/>
+                        
+                        <circle cx="100" cy="75" r="6" fill="#7f8c8d"/>
+                        <circle cx="160" cy="75" r="6" fill="#7f8c8d"/>
+                    </svg>
+                </div>
+                <button class="interactive-btn" style="background: #e74c3c;" onmousedown="pushNC(true)" onmouseup="pushNC(false)" onmouseleave="pushNC(false)" ontouchstart="pushNC(true)" ontouchend="pushNC(false)">BOTÓN DE PARO</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "En electricidad, ¿qué significa que un contacto sea 'Normalmente Abierto' (N.A.)?",
+                "options": [
+                    "Que está descompuesto y la caja está abierta.",
+                    "Que el circuito permite el paso de corriente libremente sin tocarlo.",
+                    "Que en su estado de reposo (sin ser presionado), los contactos están separados y NO fluye corriente.",
+                    "Que funciona con corriente alterna."
+                ],
+                "correctIndex": 2,
+                "explanation": "El término 'Abierto' en circuitos significa que hay un hueco o ruptura. 'Normalmente Abierto' significa que, por defecto, el puente está levantado y la luz está apagada."
+            },
+            {
+                "question": "El timbre de la puerta de tu casa, ¿qué tipo de dispositivo es?",
+                "options": [
+                    "Un interruptor clásico.",
+                    "Un pulsador N.A. (Normalmente Abierto).",
+                    "Un pulsador N.C. (Normalmente Cerrado).",
+                    "Un conmutador."
+                ],
+                "correctIndex": 1,
+                "explanation": "El timbre es un N.A. porque la chicharra solo suena MIENTRAS mantienes el dedo presionando el botón (cerrando el circuito temporalmente)."
+            },
+            {
+                "question": "¿Por qué los botones de 'PARADA DE EMERGENCIA' en la industria utilizan contactos N.C. (Normalmente Cerrado)?",
+                "options": [
+                    "Porque son más baratos.",
+                    "Porque al estar Normalmente Cerrados permiten que la máquina funcione siempre, y al presionarlos SE ABRE el circuito cortando la energía instantáneamente.",
+                    "Para que las luces de la fábrica brillen más.",
+                    "Porque así ahorran energía."
+                ],
+                "correctIndex": 1,
+                "explanation": "Un contacto N.C. asegura que la máquina reciba energía en todo momento. Si hay una emergencia, al golpear el hongo rojo, separas los contactos y le cortas la vida (electricidad) a la máquina para evitar accidentes."
+            },
+            {
+                "question": "Si un circuito está 'Abierto', ¿significa que el foco está prendido o apagado?",
+                "options": [
+                    "Prendido, porque la puerta está abierta para que entren los electrones.",
+                    "Apagado, porque hay un hueco en el camino y los electrones no pueden cruzar."
+                ],
+                "correctIndex": 1,
+                "explanation": "Esta es la confusión más común. En electricidad, 'Abierto' es igual a Roto/Apagado. 'Cerrado' es igual a Conectado/Encendido."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion2.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion4.html" class="nav-btn next">Siguiente Sesión (Circuitos de Control) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    // Lógica de los Simuladores de Interruptores
+
+    // 1. Toggle Switch Clásico
+    function toggleSwitch(checkbox) {
+        const line = document.getElementById('mech-1');
+        const wireA = document.getElementById('wire-1a');
+        const wireB = document.getElementById('wire-1b');
+        const bulb = document.getElementById('bulb-1');
+
+        if(checkbox.checked) {
+            line.style.transform = 'rotate(35deg)'; // Baja el puente
+            wireA.classList.add('live');
+            wireB.classList.add('live');
+            bulb.classList.add('on');
+        } else {
+            line.style.transform = 'rotate(0deg)'; // Sube el puente
+            wireA.classList.remove('live');
+            wireB.classList.remove('live');
+            bulb.classList.remove('on');
+        }
+    }
+
+    // 2. Pulsador N.A.
+    function pushNA(isPushed) {
+        const btn = document.getElementById('mech-2-btn');
+        const leg1 = document.getElementById('mech-2-leg1');
+        const leg2 = document.getElementById('mech-2-leg2');
+        const bridge = document.getElementById('mech-2-bridge');
+        const wireA = document.getElementById('wire-2a');
+        const wireB = document.getElementById('wire-2b');
+        const bulb = document.getElementById('bulb-2');
+
+        if(isPushed) {
+            btn.setAttribute('y', '45');
+            leg1.setAttribute('y1', '60'); leg1.setAttribute('y2', '75');
+            leg2.setAttribute('y1', '60'); leg2.setAttribute('y2', '75');
+            bridge.setAttribute('y1', '75'); bridge.setAttribute('y2', '75'); // Hace contacto
+            
+            wireA.classList.add('live');
+            wireB.classList.add('live');
+            bulb.classList.add('on');
+        } else {
+            btn.setAttribute('y', '30');
+            leg1.setAttribute('y1', '45'); leg1.setAttribute('y2', '60');
+            leg2.setAttribute('y1', '45'); leg2.setAttribute('y2', '60');
+            bridge.setAttribute('y1', '60'); bridge.setAttribute('y2', '60'); // Sube
+            
+            wireA.classList.remove('live');
+            wireB.classList.remove('live');
+            bulb.classList.remove('on');
+        }
+    }
+
+    // 3. Pulsador N.C.
+    function pushNC(isPushed) {
+        const btn = document.getElementById('mech-3-btn');
+        const leg1 = document.getElementById('mech-3-leg1');
+        const leg2 = document.getElementById('mech-3-leg2');
+        const bridge = document.getElementById('mech-3-bridge');
+        const wireA = document.getElementById('wire-3a');
+        const wireB = document.getElementById('wire-3b');
+        const bulb = document.getElementById('bulb-3');
+
+        if(isPushed) {
+            btn.setAttribute('y', '60');
+            leg1.setAttribute('y1', '75'); leg1.setAttribute('y2', '90');
+            leg2.setAttribute('y1', '75'); leg2.setAttribute('y2', '90');
+            bridge.setAttribute('y1', '90'); bridge.setAttribute('y2', '90'); // Rompe contacto
+            
+            wireA.classList.remove('live'); // Ya no fluye
+            wireB.classList.remove('live');
+            bulb.classList.remove('on');
+        } else {
+            btn.setAttribute('y', '45');
+            leg1.setAttribute('y1', '60'); leg1.setAttribute('y2', '75');
+            leg2.setAttribute('y1', '60'); leg2.setAttribute('y2', '75');
+            bridge.setAttribute('y1', '75'); bridge.setAttribute('y2', '75'); // Vuelve a hacer contacto por resorte
+            
+            wireA.classList.add('live');
+            wireB.classList.add('live');
+            bulb.classList.add('on');
+        }
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion3');
+          window.markLessonCompleted('electricidad3', 'sesion3');
       }
   });
 </script>
