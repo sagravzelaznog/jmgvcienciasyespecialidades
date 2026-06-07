@@ -3,547 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 6: Componentes III - Controladores de Carga</title>
+    <title>Sesión 6: Controladores de Carga</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 2rem 0;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .back-button:hover {
-            background-color: #2980b9;
-        }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        .controller-type {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .specs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #fff8e1;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #ffa000;
-        }
-        .practical-exercise h4 {
-            color: #e65100;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        .comparison-table th, .comparison-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        .comparison-table th {
-            background-color: #f2f2f2;
-        }
-        .pros-cons {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-        }
-        .pros, .cons {
-            width: 48%;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .pros {
-            background-color: #e8f5e9;
-            border-left: 3px solid #4caf50;
-        }
-        .cons {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .pros-cons {
-                flex-direction: column;
-            }
-            .pros, .cons {
-                width: 100%;
-                margin-bottom: 10px;
-            }
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+
+        .controller-card {
+            background: #2c3e50;
+            border-radius: 10px;
+            padding: 1.5rem;
+            color: white;
+            box-shadow: var(--shadow-soft);
+            border-top: 5px solid;
+        }
+
+        .pwm { border-color: #3498db; }
+        .mppt { border-color: #e67e22; }
+
+        .controller-card h3 { margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .pwm h3 { color: #3498db; }
+        .mppt h3 { color: #e67e22; }
+
+        .feature-list { padding-left: 20px; margin-bottom: 0; }
+        .feature-list li { margin-bottom: 8px; }
+
+        /* Simulator MPPT vs PWM */
+        .simulator-box {
+            background: #1a252f;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .sim-canvas {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #34495e;
+            position: relative;
+        }
+
+        .sim-item {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .sim-panel {
+            width: 80px; height: 100px;
+            background: #2980b9;
+            border: 2px solid white;
+            border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            font-weight: bold;
+        }
+
+        .sim-controller {
+            width: 100px; height: 80px;
+            background: #7f8c8d;
+            border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .sim-battery {
+            width: 80px; height: 100px;
+            background: #27ae60;
+            border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            font-weight: bold;
+            position: relative;
+        }
+        .sim-battery::before {
+            content: ''; position: absolute; top: -10px; left: 25px;
+            width: 30px; height: 10px; background: #bdc3c7; border-radius: 3px 3px 0 0;
+        }
+
+        .wire {
+            position: absolute;
+            height: 4px;
+            background: #f1c40f;
+            z-index: 1;
+            top: 50%;
+        }
+
+        .wire.left { left: 15%; right: 55%; }
+        .wire.right { left: 55%; right: 15%; }
+
+        .btn-toggle {
+            background: #34495e;
+            color: white;
+            border: 2px solid #bdc3c7;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-active-pwm { background: #3498db; border-color: #3498db; }
+        .btn-active-mppt { background: #e67e22; border-color: #e67e22; }
+
+        .sim-data { font-family: 'Courier New', Courier, monospace; font-size: 1.2rem; color: #f1c40f; margin-top: 10px;}
+
+        /* Rules Box */
+        .rules-box {
+            background: #fef9e7;
+            border-left: 5px solid #f1c40f;
+            padding: 1.5rem;
+            border-radius: 8px;
+            color: #333;
+            margin: 2rem 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 6: Componentes III - Controladores de Carga</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Comprender el funcionamiento de los controladores de carga PWM y MPPT, aprender a configurar sus parámetros, identificar sus sistemas de protección y realizar configuraciones básicas para diferentes tipos de baterías.</p>
-        </div>
 
-        <h2>1. Funcionamiento de controladores PWM y MPPT</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="controller-type">
-            <h3>1.1 Controladores PWM (Modulación por Ancho de Pulsos)</h3>
-            
-            <div class="image-container">
-                <img src="https://i0.wp.com/wolftechnology.com.br/wp-content/uploads/2021/07/controlador_pwm5.jpeg" alt="Controlador PWM" class="img-small">
-            </div>
-            
-            <p><strong>Principio de funcionamiento:</strong></p>
-            <p>Los controladores PWM regulan la carga de la batería mediante la conexión y desconexión rápida (conmutación) del panel solar a la batería. Cuando la batería alcanza el voltaje de absorción, el controlador reduce la corriente de carga manteniendo el voltaje constante.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>Ventajas:</h4>
-                    <ul>
-                        <li>Menor costo</li>
-                        <li>Mayor durabilidad (menos componentes electrónicos)</li>
-                        <li>Mantenimiento mínimo</li>
-                        <li>Eficiente para sistemas pequeños y medianos</li>
-                    </ul>
-                </div>
-                <div class="cons">
-                    <h4>Desventajas:</h4>
-                    <ul>
-                        <li>Menor eficiencia energética (70-80%)</li>
-                        <li>No aprovecha toda la potencia del panel</li>
-                        <li>Requiere que el voltaje del panel coincida con el de la batería</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h4>1.2 Controladores MPPT (Seguimiento del Punto de Máxima Potencia)</h4>
-            
-            <div class="image-container">
-                <img src="https://servisistemas.com.co/5085-large_default/controlador-solar-epever-tecnologia-avanzada-mppt-maximo-voltaje-100vcd-a-prueba-de-polvo-e-impermeable-xtra-4210-n.jpg" alt="Controlador MPPT" class="img-small">
-            </div>
-            
-            <p><strong>Principio de funcionamiento:</strong></p>
-            <p>Los controladores MPPT utilizan algoritmos avanzados para rastrear constantemente el punto de máxima potencia (MPP) del panel solar, convirtiendo el exceso de voltaje en corriente adicional para cargar la batería de manera más eficiente.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>Ventajas:</h4>
-                    <ul>
-                        <li>Mayor eficiencia (hasta 99%)</li>
-                        <li>Aprovecha mejor la energía del panel (hasta 30% más que PWM)</li>
-                        <li>Permite conectar paneles con mayor voltaje que la batería</li>
-                        <li>Mejor rendimiento en condiciones de poca luz o sombreado parcial</li>
-                    </ul>
-                </div>
-                <div class="cons">
-                    <h4>Desventajas:</h4>
-                    <ul>
-                        <li>Mayor costo inicial</li>
-                        <li>Más complejidad electrónica</li>
-                        <li>Mayor consumo propio</li>
-                        <li>Puede requerir más mantenimiento</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h4>1.3 Comparación entre PWM y MPPT</h4>
-            
-            <table class="comparison-table">
-                <tr>
-                    <th>Característica</th>
-                    <th>PWM</th>
-                    <th>MPPT</th>
-                </tr>
-                <tr>
-                    <td>Eficiencia</td>
-                    <td>70-80%</td>
-                    <td>90-99%</td>
-                </tr>
-                <tr>
-                    <td>Costo</td>
-                    <td>Bajo</td>
-                    <td>Alto (2-4x más que PWM)</td>
-                </tr>
-                <tr>
-                    <td>Tamaño del sistema recomendado</td>
-                    <td>Hasta 500W</td>
-                    <td>Más de 200W</td>
-                </tr>
-                <tr>
-                    <td>Voltaje de entrada</td>
-                    <td>Debe coincidir con la batería</td>
-                    <td>Puede ser mayor que la batería</td>
-                </tr>
-                <tr>
-                    <td>Mejor uso para</td>
-                    <td>Sistemas pequeños, climas cálidos, presupuesto limitado</td>
-                    <td>Sistemas grandes, climas fríos, máxima eficiencia</td>
-                </tr>
-            </table>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio: Selección de controlador</h4>
-                <p>Para un sistema con:</p>
-                <ul>
-                    <li>2 paneles de 300W (Vmp=32V, Imp=9.38A)</li>
-                    <li>Batería de 24V</li>
-                    <li>Ubicación con clima frío</li>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Controladores de Carga</h1>
+        <p class="sesion-subtitle">Sesión 6 - Módulo 2: El Cerebro del Sistema</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-microchip"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Aprenderás la regla de oro para no quemar un controlador (¡La batería siempre va primero!), y descubrirás el truco matemático que hace a los controladores MPPT superiores a los viejos PWM.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>¿Por qué necesitamos un Controlador?</h2>
+        <p>Los paneles solares no son constantes. Una nube pasa y el voltaje cae; sale el sol y el voltaje se dispara a 20V. Si conectaras los paneles directo a tu batería de 12V, <strong>la hervirías y explotaría en pocas semanas.</strong> El controlador es el policía de tránsito que regula ese flujo.</p>
+
+        <div class="comparison-grid">
+            <div class="controller-card pwm">
+                <h3><i class="fas fa-cut"></i> Controlador PWM</h3>
+                <p><em>(Modulación por Ancho de Pulsos)</em></p>
+                <p>Es la tecnología económica. Funciona literalmente como un interruptor muy rápido. Si el panel manda 18V y la batería solo necesita 14V, el PWM <strong>corta y desperdicia</strong> esos 4V sobrantes. El voltaje se pierde para siempre en forma de calor.</p>
+                <ul class="feature-list">
+                    <li>Muy económicos.</li>
+                    <li>Ideales para sistemas pequeñitos (1 o 2 paneles).</li>
+                    <li><span style="color:#e74c3c;">Desperdician hasta el 30% de la energía solar.</span></li>
                 </ul>
-                <p>¿Qué tipo de controlador recomendarías y por qué?</p>
-                <p><strong>Solución:</strong> Se recomienda un controlador MPPT porque:</p>
-                <ol>
-                    <li>El voltaje de los paneles (32V) es mayor que el de la batería (24V)</li>
-                    <li>El clima frío aumenta el voltaje del panel, lo que los controladores MPPT aprovechan mejor</li>
-                    <li>La potencia total del sistema (600W) justifica la inversión en MPPT</li>
-                </ol>
             </div>
-        </div>
 
-        <h2>2. Parámetros de configuración</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="controller-type">
-            <h3>2.1 Parámetros clave de configuración</h3>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Descripción</th>
-                    <th>Valores típicos (12V)</th>
-                </tr>
-                <tr>
-                    <td>Tipo de batería</td>
-                    <td>Define el perfil de carga según la química de la batería</td>
-                    <td>Plomo-Ácido, AGM, Gel, LiFePO4, Personalizado</td>
-                </tr>
-                <tr>
-                    <td>Voltaje de carga máxima (Absorción)</td>
-                    <td>Voltaje al que se carga la batería al 100%</td>
-                    <td>14.4V (Plomo-Ácido), 14.6V (AGM), 14.0V (Gel), 14.2V (LiFePO4)</td>
-                </tr>
-                <tr>
-                    <td>Voltaje de flotación</td>
-                    <td>Voltaje de mantenimiento una vez cargada</td>
-                    <td>13.6V (Plomo-Ácido), 13.8V (AGM/Gel), 13.5V (LiFePO4)</td>
-                </tr>
-                <tr>
-                    <td>Voltaje de desconexión por baja tensión (LVD)</td>
-                    <td>Desconecta la carga para proteger la batería</td>
-                    <td>11.1V (Plomo-Ácido), 10.8V (LiFePO4)</td>
-                </tr>
-                <tr>
-                    <td>Voltaje de reconexión</td>
-                    <td>Vuelve a conectar la carga cuando la batería se recupera</td>
-                    <td>12.6V (Plomo-Ácido), 12.8V (LiFePO4)</td>
-                </tr>
-                <tr>
-                    <td>Tiempo de absorción</td>
-                    <td>Tiempo en mantener el voltaje de absorción</td>
-                    <td>2-4 horas (ajustar según batería)</td>
-                </tr>
-                <tr>
-                    <td>Temperatura de compensación</td>
-                    <td>Ajusta los voltajes según la temperatura</td>
-                    <td>Habilitado/Deshabilitado</td>
-                </tr>
-            </table>
-            
-            <h4>2.2 Perfiles de carga recomendados</h4>
-            
-            <h5>Baterías de Plomo-Ácido Inundadas</h5>
-            <ul>
-                <li><strong>Absorción:</strong> 14.4V - 14.8V</li>
-                <li><strong>Flotación:</strong> 13.4V - 13.8V</li>
-                <li><strong>Ecualización:</strong> 15.0V - 15.8V (cada 30-90 días)</li>
-            </ul>
-            
-            <h5>Baterías AGM/Gel</h5>
-            <ul>
-                <li><strong>Absorción:</strong> 14.2V - 14.6V</li>
-                <li><strong>Flotación:</strong> 13.5V - 13.8V</li>
-                <li><strong>Ecualización:</strong> No recomendada</li>
-            </ul>
-            
-            <h5>Baterías de Litio (LiFePO4)</h5>
-            <ul>
-                <li><strong>Absorción:</strong> 14.2V - 14.6V</li>
-                <li><strong>Flotación:</strong> 13.5V o deshabilitada</li>
-                <li><strong>Ecualización:</strong> No es necesaria</li>
-            </ul>
-            
-            <div class="practical-exercise">
-                <h4>Ejercicio: Configuración de controlador</h4>
-                <p>Configurar un controlador para un banco de baterías de 24V AGM con las siguientes especificaciones del fabricante:</p>
-                <ul>
-                    <li>Voltaje de carga: 28.8V</li>
-                    <li>Voltaje de flotación: 27.6V</li>
-                    <li>Desconexión por baja tensión: 22.0V</li>
+            <div class="controller-card mppt">
+                <h3><i class="fas fa-sync-alt"></i> Controlador MPPT</h3>
+                <p><em>(Seguimiento del Punto de Máxima Potencia)</em></p>
+                <p>Es el controlador inteligente. Tiene un convertidor interno (DC-DC). Si el panel manda 18V y la batería necesita 14V, el MPPT no tira esos 4V a la basura; los <strong>convierte matemáticamente en más Amperaje (Corriente)</strong> para cargar la batería más rápido.</p>
+                <ul class="feature-list">
+                    <li>Alta tecnología (99% de eficiencia).</li>
+                    <li>Totalmente obligatorios para sistemas medianos/grandes.</li>
+                    <li><span style="color:#2ecc71;">Permite conectar paneles grandes en serie.</span></li>
                 </ul>
-                <p><strong>Solución:</strong></p>
-                <ol>
-                    <li>Seleccionar tipo de batería: AGM</li>
-                    <li>Ajustar voltaje de absorción: 28.8V</li>
-                    <li>Ajustar voltaje de flotación: 27.6V</li>
-                    <li>Configurar LVD: 22.0V</li>
-                    <li>Configurar voltaje de reconexión: 24.0V</li>
-                    <li>Establecer tiempo de absorción: 3 horas</li>
-                    <li>Habilitar compensación de temperatura</li>
-                </ol>
             </div>
         </div>
 
-        <h2>3. Protecciones</h2>
-        <p><strong>Duración:</strong> 10 minutos</p>
-        
-        <div class="controller-type">
-            <h3>3.1 Sistemas de protección en controladores</h3>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Protección</th>
-                    <th>Descripción</th>
-                    <th>Importancia</th>
-                </tr>
-                <tr>
-                    <td>Sobrecarga de batería</td>
-                    <td>Evita que el voltaje de la batería suba demasiado</td>
-                    <td>Alta - Previene daños irreversibles</td>
-                </tr>
-                <tr>
-                    <td>Descarga profunda</td>
-                    <td>Desconecta cargas cuando el voltaje es muy bajo</td>
-                    <td>Alta - Extiende la vida útil de la batería</td>
-                </tr>
-                <tr>
-                    <td>Cortocircuito</td>
-                    <td>Protege contra conexiones incorrectas</td>
-                    <td>Alta - Previene daños al equipo</td>
-                </tr>
-                <tr>
-                    <td>Sobretensión de entrada</td>
-                    <td>Protege contra voltajes excesivos de los paneles</td>
-                    <td>Alta - Protege la electrónica</td>
-                </tr>
-                <tr>
-                    <td>Sobretemperatura</td>
-                    <td>Apaga el controlador si se sobrecalienta</td>
-                    <td>Media - Previene daños por calor</td>
-                </tr>
-                <tr>
-                    <td>Polaridad inversa</td>
-                    <td>Protege contra conexiones invertidas</td>
-                    <td>Alta - Previene daños por conexión incorrecta</td>
-                </tr>
-                <tr>
-                    <td>Rayos y sobretensiones</td>
-                    <td>Protege contra picos de voltaje</td>
-                    <td>Media - Depende de la ubicación</td>
-                </tr>
-            </table>
-            
-            <h4>3.2 Buenas prácticas de protección</h4>
-            <ul>
-                <li>Instalar fusibles o disyuntores entre el controlador y la batería</li>
-                <li>Usar cables del calibre adecuado para la corriente máxima</li>
-                <li>Proteger las conexiones de la intemperie</li>
-                <li>Instalar el controlador en un lugar fresco y seco</li>
-                <li>Verificar periódicamente las conexiones</li>
-            </ul>
-        </div>
-
-        <h2>4. Configuración de controladores</h2>
-        <p><strong>Duración:</strong> 5 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>Práctica: Configuración de un controlador de carga</h4>
-            
-            <p><strong>Materiales necesarios:</strong></p>
-            <ul>
-                <li>Controlador de carga (PWM o MPPT)</li>
-                <li>Batería de 12V</li>
-                <li>Panel solar pequeño</li>
-                <li>Cables de conexión</li>
-                <li>Manual del controlador</li>
-            </ul>
-            
-            <p><strong>Procedimiento:</strong></p>
-            
-            <h5>Paso 1: Conexión inicial</h5>
+        <div class="rules-box">
+            <h3 style="margin-top:0; color:#d35400;"><i class="fas fa-exclamation-triangle"></i> La Regla de Oro del Instalador</h3>
+            <p><strong>NUNCA CONECTES LOS PANELES PRIMERO.</strong></p>
+            <p>El orden de conexión es sagrado. Si conectas el panel solar a un controlador sin que este tenga una batería conectada, el controlador no sabrá a qué voltaje trabajar (¿12V o 24V?) y la energía del sol lo quemará por dentro al no tener a dónde ir.</p>
             <ol>
-                <li>Conectar primero la batería al controlador (positivo y negativo)</li>
-                <li>Conectar el panel solar al controlador (positivo y negativo)</li>
-                <li>Conectar las cargas al controlador (si aplica)</li>
+                <li><strong>Conecta la Batería.</strong> (El controlador enciende la pantalla).</li>
+                <li><strong>Conecta los Paneles Solares.</strong> (Inicia la carga).</li>
+                <li><strong>Para desconectar:</strong> Quita los paneles primero, la batería al final.</li>
             </ol>
-            
-            <h5>Paso 2: Configuración básica</h5>
-            <ol>
-                <li>Seleccionar el tipo de batería en el menú</li>
-                <li>Configurar el voltaje del sistema (12V/24V/Auto)</li>
-                <li>Ajustar los parámetros de carga según el tipo de batería</li>
-                <li>Configurar protecciones (LVD, HVD, etc.)</li>
-            </ol>
-            
-            <h5>Paso 3: Verificación</h5>
-            <ol>
-                <li>Verificar que el controlador detecta correctamente la batería</li>
-                <li>Comprobar que el panel está generando energía</li>
-                <li>Verificar que el controlador está en la etapa de carga correcta</li>
-                <li>Monitorear los parámetros en la pantalla del controlador</li>
-            </ol>
-            
-            <p><strong>Tabla de verificación:</strong></p>
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Valor esperado</th>
-                    <th>Valor medido</th>
-                    <th>¿Correcto?</th>
-                </tr>
-                <tr>
-                    <td>Voltaje de la batería</td>
-                    <td>12.0V - 14.4V</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Voltaje del panel</td>
-                    <td>Mayor que voltaje de batería</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Corriente de carga</td>
-                    <td>Depende de la iluminación</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Estado de carga</td>
-                    <td>Depende del estado de la batería</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
-            <p><strong>Ejercicio de configuración:</strong> Configuración correcta de un controlador según especificaciones dadas.</p>
-            <p><strong>Prueba de conocimientos:</strong> Preguntas sobre diferencias entre PWM y MPPT, y parámetros de configuración.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los diferentes tipos de inversores para sistemas fotovoltaicos y sus características principales.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion5.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion7.html" class="back-button next-button">Siguiente sesión →</a>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Simulador: La Magia del MPPT (Conversión de Watts)</h2>
+        <p>Observa cómo la tecnología PWM desperdicia la energía del panel, mientras que el MPPT aplica la Ley de Watt (P = V×I) para transformar el "Voltaje sobrante" en "Amperaje extra", recargando tu batería mucho más rápido.</p>
+
+        <div class="simulator-box">
+            
+            <div class="sim-canvas">
+                <div class="wire left"></div>
+                <div class="wire right"></div>
+
+                <div class="sim-item">
+                    <div class="sim-panel">PANEL SOLAR</div>
+                    <div class="sim-data">
+                        18V<br>
+                        5A<br>
+                        <span style="color:white;">= 90W</span>
+                    </div>
+                </div>
+
+                <div class="sim-item">
+                    <div class="sim-controller" id="ctrl-box">PWM</div>
+                </div>
+
+                <div class="sim-item">
+                    <div class="sim-battery">BATERÍA (Requiere 13V)</div>
+                    <div class="sim-data" id="bat-data">
+                        -- V<br>
+                        -- A<br>
+                        <span style="color:white;">= -- W</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-toggle btn-active-pwm" id="btn-pwm" onclick="setSim('pwm')">Modo PWM</button>
+            <button class="btn-toggle" id="btn-mppt" onclick="setSim('mppt')">Modo MPPT</button>
+
+            <div style="margin-top:20px; font-size:1.1rem; color:#bdc3c7; height: 60px;" id="sim-desc">
+                En modo PWM, el panel entrega 5 Amperes. El controlador recorta el voltaje de 18V a 13V para no quemar la batería. Los 5V de diferencia se pierden. Solo entran 65 Watts a la batería (Se perdieron 25W).
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Llegas a reparar un sistema aislado. ¿Cuál es el orden EXACTO y seguro para desconectar los equipos?",
+                "options": [
+                    "Desconectar primero la Batería, y luego los Paneles.",
+                    "Desconectar primero los Paneles, y luego la Batería.",
+                    "Cortar todos los cables al mismo tiempo."
+                ],
+                "correctIndex": 1,
+                "explanation": "El orden de desconexión es el INVERSO al de instalación. Primero desconectas la fuente de energía (Paneles) para que el controlador deje de trabajar. Finalmente desconectas la batería para que el controlador se apague."
+            },
+            {
+                "question": "¿Por qué un controlador PWM es ineficiente si usas paneles grandes de 24V en una batería de 12V?",
+                "options": [
+                    "Porque el controlador PWM simplemente 'recortará' y botará a la basura los 12V que sobran del panel, perdiendo la mitad de la energía.",
+                    "Porque el PWM convertirá esos voltios en corriente alterna.",
+                    "No es ineficiente, cargará el doble de rápido."
+                ],
+                "correctIndex": 0,
+                "explanation": "El PWM no tiene la capacidad de transformar voltaje en corriente. Simplemente lo recorta. Si tu panel es de 24V y tu batería de 12V, el PWM bajará el panel a 12V y desperdiciarás el 50% de la capacidad de tu panel."
+            },
+            {
+                "question": "Tienes un panel solar que entrega 20V y 5A (100W). Usas un controlador MPPT de alta tecnología para cargar una batería a 10V. ¿Aproximadamente cuántos Amperes inyectará el MPPT a la batería?",
+                "options": [
+                    "5 Amperes (igual que el panel).",
+                    "10 Amperes.",
+                    "0 Amperes."
+                ],
+                "correctIndex": 1,
+                "explanation": "La magia del MPPT es la Ley de Watt. Entran 100W (20V × 5A). Como la batería requiere 10V, el MPPT convierte la ecuación: 100W / 10V = ¡10 Amperes directos a tu batería!"
+            },
+            {
+                "question": "En la configuración del Controlador, ¿Qué es el voltaje de 'Flotación' (Float)?",
+                "options": [
+                    "El voltaje cuando la batería está bajo el agua.",
+                    "El voltaje bajo y seguro que el controlador usa para mantener la batería al 100% sin sobrecalentarla, una vez que ya terminó de cargarla.",
+                    "El voltaje al que se desconectan las cargas para que no se apague la tele."
+                ],
+                "correctIndex": 1,
+                "explanation": "La 'Flotación' es la etapa final de carga. Una vez que la batería está llena, el controlador reduce la presión (voltaje) a un nivel de 'mantenimiento' seguro (usualmente 13.5V en baterías de 12V)."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion5.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion7.html" class="nav-btn next">Siguiente Sesión (Inversores) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    function setSim(type) {
+        const btnPwm = document.getElementById('btn-pwm');
+        const btnMppt = document.getElementById('btn-mppt');
+        const ctrlBox = document.getElementById('ctrl-box');
+        const batData = document.getElementById('bat-data');
+        const simDesc = document.getElementById('sim-desc');
+
+        if(type === 'pwm') {
+            btnPwm.classList.add('btn-active-pwm');
+            btnMppt.classList.remove('btn-active-mppt');
+            
+            ctrlBox.textContent = "PWM";
+            ctrlBox.style.background = "#3498db";
+
+            batData.innerHTML = `
+                13V (Recortado)<br>
+                5A (Mismo que el panel)<br>
+                <span style="color:#e74c3c;">= 65W (¡Se perdieron 25W!)</span>
+            `;
+
+            simDesc.innerHTML = "En modo <strong>PWM</strong>, el panel entrega 5 Amperes. El controlador <em>recorta</em> el voltaje de 18V a 13V para no quemar la batería. Los 5V de diferencia se pierden en calor. Solo entran 65 Watts a la batería.";
+        } else {
+            btnPwm.classList.remove('btn-active-pwm');
+            btnMppt.classList.add('btn-active-mppt');
+            
+            ctrlBox.textContent = "MPPT";
+            ctrlBox.style.background = "#e67e22";
+
+            batData.innerHTML = `
+                13V (Seguro para batería)<br>
+                <strong>6.9A (Corriente aumentada)</strong><br>
+                <span style="color:#2ecc71;">= ~90W (¡Casi sin pérdidas!)</span>
+            `;
+
+            simDesc.innerHTML = "En modo <strong>MPPT</strong>, el controlador lee los 90W totales del panel. Reduce el voltaje a 13V de forma electrónica y transforma la diferencia en corriente extra. Empuja casi 7 Amperes a la batería, cargándola más rápido.";
+        }
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion6');
+          window.markLessonCompleted('electricidad5', 'sesion6');
       }
   });
 </script>
