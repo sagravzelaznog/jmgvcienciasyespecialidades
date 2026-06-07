@@ -3,463 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 14: Monitoreo y Análisis de Rendimiento</title>
+    <title>Sesión 14: Proyecto I - Diseño y Monitoreo</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for beautiful monitoring graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
+        .project-intro {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .back-button:hover {
-            background-color: #2980b9;
-        }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        .monitoring-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .safety-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        .safety-box h4 {
-            color: #c62828;
-            margin-top: 0;
-        }
-        .specs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #e8f5e9;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #2e7d32;
-        }
-        .practical-exercise h4 {
-            color: #1b5e20;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .tip-box {
-            background-color: #fff8e1;
-            border-left: 3px solid #ffa000;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .warning-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .note-box {
-            background-color: #e3f2fd;
-            border-left: 3px solid #1976d2;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .image-container {
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             text-align: center;
-            margin: 20px 0;
         }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
+
+        .project-intro h2 { color: white; border: none; margin-top: 0; }
+        .project-intro p { font-size: 1.1rem; }
+
+        /* Dashboard Simulator */
+        .dashboard-container {
+            background: #1e272e;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
-        .data-box {
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
+
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .kpi-card {
+            background: #2f3640;
             padding: 15px;
-            margin: 15px 0;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 4px solid #f1c40f;
+        }
+
+        .kpi-value { font-size: 2rem; font-weight: bold; margin: 10px 0; font-family: 'Courier New', monospace; }
+        .kpi-label { color: #7f8fa6; font-size: 0.9rem; text-transform: uppercase; }
+
+        .chart-container {
+            background: #2f3640;
+            border-radius: 10px;
+            padding: 15px;
+            height: 350px;
+            position: relative;
+        }
+
+        .analysis-controls {
+            margin-top: 20px;
+            background: #353b48;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .calc-btn {
+            background: #0097e6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
             border-radius: 5px;
-            font-family: monospace;
-            overflow-x: auto;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
         }
-        .step {
-            margin: 15px 0;
+        .calc-btn:hover { background: #00a8ff; }
+
+        #pr-result {
+            font-size: 1.2rem;
+            font-weight: bold;
             padding: 10px;
-            background-color: #f9f9f9;
-            border-left: 3px solid #3498db;
+            border-radius: 5px;
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .specs-table {
-                font-size: 0.9em;
-            }
-        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 14: Monitoreo y Análisis de Rendimiento</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Comprender los principios y técnicas de monitoreo de sistemas fotovoltaicos, aprender a interpretar datos de rendimiento, identificar problemas comunes y aplicar herramientas de análisis para optimizar la producción de energía solar.</p>
-        </div>
 
-        <h2>1. Fundamentos del monitoreo fotovoltaico</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="monitoring-box">
-            <h4>1.1 Importancia del monitoreo</h4>
-            
-            <ul>
-                <li><strong>Detección temprana de fallos:</strong> Pérdidas de rendimiento, sombreados, suciedad</li>
-                <li><strong>Optimización del rendimiento:</strong> Ajuste de parámetros operativos</li>
-                <li><strong>Verificación de garantías:</strong> Cumplimiento de especificaciones del fabricante</li>
-                <li><strong>Análisis financiero:</strong> Retorno de inversión, ahorros energéticos</li>
-                <li><strong>Mantenimiento predictivo:</strong> Anticipación a fallos potenciales</li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.NB3ZV21ZXJJQMLjVH0tz5wHaFV" alt="Sistema de monitoreo fotovoltaico" class="img-small">
-                <p><em>Panel de control de un sistema de monitoreo fotovoltaico</em></p>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Proyecto Práctico I: Diseño y Monitoreo</h1>
+        <p class="sesion-subtitle">Sesión 14 - Módulo 5: Evaluación Final</p>
+    </div>
+
+    <div class="project-intro">
+        <h2><i class="fas fa-laptop-code"></i> El Cerebro de la Operación</h2>
+        <p>Has llegado a la fase final del curso. Ya sabes dimensionar, montar y conectar. Pero un sistema profesional no se abandona después de encenderlo; <strong>se monitorea en la nube</strong>. Hoy aprenderás a leer un Dashboard de inversor y a calcular el famoso "PR" (Performance Ratio) para saber si tu diseño fue un éxito o un fracaso.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>El Performance Ratio (PR)</h2>
+        <p>Imagina que compras un coche deportivo que promete 300km/h, pero al probarlo solo llega a 150km/h. El PR es la calificación que le damos a la instalación solar. Nos dice qué porcentaje de la energía que <em>debería</em> producir (según la luz del sol que hay), está produciendo <em>realmente</em>.</p>
+        <ul>
+            <li><strong>PR > 80%:</strong> Instalación Excelente. (Pérdidas normales por calor y cables).</li>
+            <li><strong>PR 70% - 79%:</strong> Aceptable, pero mejorable (quizá hay polvo o un cable muy delgado).</li>
+            <li><strong>PR < 70%:</strong> Problema Grave. (Sombreado severo, paneles dañados o inversor mal configurado).</li>
+        </ul>
+    </div>
+
+    <div class="practica-section">
+        <h2>Dashboard Interactivo (App de Monitoreo)</h2>
+        <p>A continuación, ves la pantalla de monitoreo WiFi de una casa. Observa la curva de generación solar (amarilla) contra el consumo de la casa (rojo). Luego presiona el botón para auditar el Performance Ratio del día.</p>
+
+        <div class="dashboard-container">
+            <div class="dash-header">
+                <div style="font-size:1.5rem; font-weight:bold;"><i class="fas fa-wifi" style="color:#4cd137;"></i> SolarCloud Inverter App</div>
+                <div style="color:#7f8fa6;">Actualizado: Hace 1 min</div>
             </div>
-            
-            <h4>1.2 Parámetros clave a monitorear</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Parámetro</th>
-                    <th>Descripción</th>
-                    <th>Unidades</th>
-                </tr>
-                <tr>
-                    <td>Energía generada</td>
-                    <td>Energía total producida por el sistema</td>
-                    <td>kWh</td>
-                </tr>
-                <tr>
-                    <td>Potencia activa</td>
-                    <td>Potencia instantánea generada</td>
-                    <td>kW</td>
-                </tr>
-                <tr>
-                    <td>Radiación solar</td>
-                    <td>Irradiancia en el plano de los paneles</td>
-                    <td>W/m²</td>
-                </tr>
-                <tr>
-                    <td>Temperatura módulos</td>
-                    <td>Temperatura de operación de los paneles</td>
-                    <td>°C</td>
-                </tr>
-                <tr>
-                    <td>Factor de capacidad</td>
-                    <td>Relación entre energía real y teórica máxima</td>
-                    <td>%</td>
-                </tr>
-                <tr>
-                    <td>PR (Performance Ratio)</td>
-                    <td>Eficiencia energética del sistema</td>
-                    <td>%</td>
-                </tr>
-                <tr>
-                    <td>Horas pico solares</td>
-                    <td>Horas equivalentes a máxima radiación</td>
-                    <td>h</td>
-                </tr>
-            </table>
-        </div>
 
-        <h2>2. Sistemas de monitoreo</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="monitoring-box">
-            <h4>2.1 Tipos de sistemas de monitoreo</h4>
-            
-            <p><strong>a) Sistemas integrados en inversor:</strong></p>
-            <ul>
-                <li>Ventajas: Solución todo en uno, fácil de instalar</li>
-                <li>Desventajas: Limitado a las capacidades del inversor</li>
-                <li>Ejemplos: Fronius Solar.web, SMA Sunny Portal, SolarEdge Monitoring</li>
-            </ul>
-            
-            <p><strong>b) Sistemas independientes:</strong></p>
-            <ul>
-                <li>Ventajas: Mayor flexibilidad, independencia del fabricante</li>
-                <li>Desventajas: Mayor complejidad de instalación</li>
-                <li>Ejemplos: Solar-Log, Meteocontrol, Sunny Portal</li>
-            </ul>
-            
-            <p><strong>c) Sistemas de adquisición de datos (DAQ):</strong></p>
-            <ul>
-                <li>Ventajas: Alta precisión, personalizable</li>
-                <li>Desventajas: Mayor costo, requiere configuración experta</li>
-                <li>Ejemplos: Campbell Scientific, National Instruments</li>
-            </ul>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Para instalaciones residenciales, los sistemas integrados en el inversor suelen ser suficientes. Para plantas comerciales o industriales, considera sistemas independientes con mayor capacidad de análisis.</p>
+            <div class="kpi-grid">
+                <div class="kpi-card" style="border-color:#fbc531;">
+                    <div class="kpi-label">Potencia Actual</div>
+                    <div class="kpi-value" style="color:#fbc531;">2.4 kW</div>
+                </div>
+                <div class="kpi-card" style="border-color:#4cd137;">
+                    <div class="kpi-label">Energía Hoy</div>
+                    <div class="kpi-value" style="color:#4cd137;" id="kpi-energia">18.5 kWh</div>
+                </div>
+                <div class="kpi-card" style="border-color:#00a8ff;">
+                    <div class="kpi-label">Irradiación Recibida</div>
+                    <div class="kpi-value" style="color:#00a8ff;">22.0 kWh (Teórica)</div>
+                </div>
             </div>
-            
-            <h4>2.2 Componentes de un sistema de monitoreo</h4>
-            
-            <ol>
-                <li><strong>Sensores:</strong> Irradiación, temperatura, viento, humedad</li>
-                <li><strong>Adquisición de datos:</strong> Datalogger o inversor con capacidades de registro</li>
-                <li><strong>Comunicación:</strong> WiFi, Ethernet, GPRS/4G, PLC</li>
-                <li><strong>Plataforma de visualización:</strong> Aplicación web o móvil</li>
-                <li><strong>Alarmas y notificaciones:</strong> Alertas por correo, SMS o app</li>
-            </ol>
-        </div>
 
-        <h2>3. Análisis de rendimiento</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>3.1 Métricas clave de rendimiento (KPI)</h4>
-            
-            <p><strong>a) Performance Ratio (PR):</strong></p>
-            <p>PR (%) = (Energía generada real / Energía teórica máxima) × 100</p>
-            <p>Donde: Energía teórica = Potencia pico (kWp) × Irradiación (kWh/m²) × Eficiencia de referencia</p>
-            
-            <p><strong>Valores de referencia:</strong></p>
-            <ul>
-                <li>Excelente: > 85%</li>
-                <li>Bueno: 75-85%</li>
-                <li>Mejorable: 65-75%</li>
-                <li>Inaceptable: < 65%</li>
-            </ul>
-            
-            <p><strong>b) Factor de capacidad:</strong></p>
-            <p>FC (%) = (Energía generada / (Potencia pico × 24 horas × días)) × 100</p>
-            
-            <p><strong>c) Pérdidas del sistema:</strong></p>
-            <ul>
-                <li>Pérdidas por temperatura</li>
-                <li>Pérdidas por sombreado</li>
-                <li>Pérdidas por suciedad</li>
-                <li>Pérdidas por desajuste de módulos</li>
-                <li>Pérdidas por conversión CC/CA</li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="Ratio performance.png" alt="Ejemplo de Performance Ratio" class="img-small">
-                <p><em>Ejemplo de variación del Performance Ratio a lo largo de un año</em></p>
+            <div class="chart-container">
+                <canvas id="solarChart"></canvas>
             </div>
-            
-            <h4>3.2 Análisis de curvas I-V y P-V</h4>
-            
-            <p><strong>Curva I-V:</strong> Muestra la relación corriente-voltaje del generador fotovoltaico</p>
-            <p><strong>Curva P-V:</strong> Muestra la relación potencia-voltaje</p>
-            
-            <p><strong>Identificación de problemas:</strong></p>
-            <ul>
-                <li><strong>Módulos sucios:</strong> Reducción de corriente de cortocircuito (Isc)</li>
-                <li><strong>Hotspots:</strong> Caídas de tensión anómalas</li>
-                <li><strong>Diodos en cortocircuito:</strong> Reducción de tensión en circuito abierto (Voc)</li>
-                <li><strong>Módulos desconectados:</strong> Pérdida de potencia escalonada</li>
-            </ul>
-        </div>
 
-        <h2>4. Herramientas de análisis</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="monitoring-box">
-            <h4>4.1 Software de análisis de rendimiento</h4>
-            
-            <p><strong>a) Plataformas comerciales:</strong></p>
-            <ul>
-                <li><strong>PVsyst:</strong> Análisis detallado, simulación y comparación con datos reales</li>
-                <li><strong>PV*SOL:</strong> Análisis de rendimiento y diseño de sistemas</li>
-                <li><strong>SolarEdge Monitoring:</strong> Para sistemas con inversores SolarEdge</li>
-                <li><strong>Fronius Solar.web:</strong> Para sistemas con inversores Fronius</li>
-            </ul>
-            
-            <p><strong>b) Herramientas de código abierto:</strong></p>
-            <ul>
-                <li><strong>PVLib (Python):</strong> Biblioteca para modelado de sistemas fotovoltaicos</li>
-                <li><strong>OpenSolar:</strong> Herramienta de diseño y monitoreo</li>
-                <li><strong>Home Assistant:</strong> Para integración de diferentes sistemas de monitoreo</li>
-            </ul>
-            
-            <h4>4.2 Análisis de datos con hojas de cálculo</h4>
-            
-            <p><strong>Ejemplo de cálculo de rendimiento:</strong></p>
-            <div class="data-box">
-                <pre>
-Fecha       | Hora  | Energía (kWh) | Irradiación (kWh/m²) | Temperatura (°C) | PR (%)
-------------|-------|---------------|----------------------|------------------|-------
-2025-09-20 | 12:00 | 4.2           | 0.95                 | 45               | 82.5
-2025-09-20 | 13:00 | 4.0           | 0.90                 | 48               | 80.1
-2025-09-20 | 14:00 | 3.8           | 0.85                 | 47               | 81.3
-                </pre>
+            <div class="analysis-controls">
+                <button class="calc-btn" onclick="calcularPR()">
+                    <i class="fas fa-calculator"></i> Calcular PR (Auditoría)
+                </button>
+                <div id="pr-result" style="display:none;"></div>
             </div>
-            
-            <p><strong>Fórmulas útiles en Excel/Google Sheets:</strong></p>
-            <div class="data-box">
-                <pre>
-# Cálculo de PR
-= (B2 / (Potencia_pico * D2 * 0.85)) * 100
-
-# Cálculo de pérdidas por temperatura
-= (Temperatura_celda - 25) * Coeficiente_temperatura * Potencia_pico
-
-# Cálculo de energía perdida por sombreado
-= (PR_teórico - PR_real) * Energía_teórica
-                </pre>
-            </div>
-        </div>
-
-        <h2>5. Caso práctico: Análisis de un sistema real</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>5.1 Análisis de datos de producción</h4>
-            
-            <p><strong>Datos del sistema:</strong></p>
-            <ul>
-                <li>Potencia pico: 5 kWp</li>
-                <li>Ubicación: Ciudad de México</li>
-                <li>Inclinación: 20°</li>
-                <li>Orientación: Sur</li>
-            </ul>
-            
-            <p><strong>Datos de producción (ejemplo):</strong></p>
-            <div class="data-box">
-                <pre>
-Día     | Energía (kWh) | Irradiación (kWh/m²) | PR (%)
---------|---------------|----------------------|-------
-Lunes   | 28.5          | 6.2                  | 81.3
-Martes  | 26.8          | 5.9                  | 79.5
-Miércol | 15.2          | 6.0                  | 45.1  # Posible problema
-Jueves  | 27.3          | 6.1                  | 80.2
-Viernes | 27.8          | 6.3                  | 81.0
-                </pre>
-            </div>
-            
-            <p><strong>Análisis:</strong></p>
-            <ol>
-                <li>El miércoles hubo una caída significativa en el PR (45.1% vs. promedio de 80.5%)</li>
-                <li>La irradiación fue normal (6.0 kWh/m²), similar a otros días</li>
-                <li>Posibles causas: Sombreado temporal, fallo en un string, limpieza del sistema, etc.</li>
-                <li>Acción recomendada: Revisar registros de alarmas, verificar si hubo mantenimiento programado, inspeccionar el sistema</li>
-            </ol>
-            
-            <h4>5.2 Herramientas de diagnóstico remoto</h4>
-            
-            <ul>
-                <li><strong>Análisis de curvas I-V remotas:</strong> Disponible en algunos inversores avanzados</li>
-                <li><strong>Termografía con drones:</strong> Para detectar puntos calientes</li>
-                <li><strong>Análisis de datos históricos:</strong> Identificar tendencias y degradación</li>
-                <li><strong>Comparativa con sistemas similares:</strong> Benchmarking de rendimiento</li>
-            </ul>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en el análisis de casos prácticos.</p>
-            <p><strong>Ejercicio práctico:</strong> Análisis de un conjunto de datos de producción solar.</p>
-            <p><strong>Cuestionario:</strong> Preguntas sobre interpretación de parámetros de rendimiento.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre soluciones de almacenamiento de energía para sistemas fotovoltaicos, incluyendo tecnologías de baterías, sistemas de gestión de energía y casos de uso prácticos.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion13.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion15.html" class="back-button next-button">Siguiente sesión →</a>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Entras a la App de monitoreo del inversor de tu cliente. Observas que la campana (curva) de generación sube normal en la mañana, pero a las 2:00 PM tiene un 'mordisco' o caída brutal todos los días, y luego vuelve a subir. ¿Qué significa esto?",
+                "options": [
+                    "El inversor está descompuesto y se reinicia.",
+                    "El sol se apaga a esa hora.",
+                    "Hay un obstáculo (como la sombra de una chimenea, un árbol o el tinaco) que proyecta sombra sobre los paneles exactamente a esa hora todos los días."
+                ],
+                "correctIndex": 2,
+                "explanation": "Las caídas abruptas y repetitivas a la misma hora en la curva de generación son el síntoma clásico de sombras proyectadas. Como el sol cambia de ángulo, la sombra 'camina' sobre los paneles."
+            },
+            {
+                "question": "Calculaste el Performance Ratio (PR) de una instalación que terminaste el mes pasado y el resultado es 83%. ¿Qué le dices al cliente?",
+                "options": [
+                    "Que le devuelves su dinero porque fallaste.",
+                    "Que el sistema funciona de manera excelente. Las pérdidas del 17% son normales y se deben a la resistencia de los cables, el calentamiento del cristal y la conversión del inversor.",
+                    "Que hay que lavar los paneles urgente."
+                ],
+                "correctIndex": 1,
+                "explanation": "La física dicta que ningún sistema eléctrico es 100% eficiente (la Segunda Ley de la Termodinámica). Un PR superior al 80% indica un diseño y cableado de alta ingeniería."
+            },
+            {
+                "question": "¿Cuál es la ventaja de que los inversores modernos tengan conexión WiFi y una App en la nube?",
+                "options": [
+                    "Para ver Netflix en el inversor.",
+                    "Permite al instalador (tú) detectar fallas o bajas de rendimiento a distancia sin tener que viajar a la casa del cliente, ofreciendo un mantenimiento preventivo VIP.",
+                    "Para gastar los megas del cliente."
+                ],
+                "correctIndex": 1,
+                "explanation": "El monitoreo remoto es tu mejor herramienta de post-venta. Puedes configurar la App para que te envíe un correo si un panel falla, permitiéndote llamar al cliente para repararlo antes de que él siquiera note que hay un problema."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion13.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion15.html" class="nav-btn next">Siguiente Sesión (Proyecto II) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    // Inicializar la gráfica de Chart.js
+    const ctx = document.getElementById('solarChart').getContext('2d');
+    
+    // Datos simulados (Hora, Producción Solar kW, Consumo Casa kW)
+    const labels = ['6AM', '8AM', '10AM', '12PM', '2PM', '4PM', '6PM', '8PM'];
+    const solarData = [0, 0.8, 2.5, 3.8, 4.0, 2.6, 0.5, 0];
+    const houseData = [0.5, 1.2, 0.8, 0.9, 1.5, 1.0, 2.0, 2.5];
+
+    const solarChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Generación Solar (kW)',
+                    data: solarData,
+                    borderColor: '#fbc531',
+                    backgroundColor: 'rgba(251, 197, 49, 0.2)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Consumo Casa (kW)',
+                    data: houseData,
+                    borderColor: '#e84118',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    fill: false,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: 'white' } }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#353b48' },
+                    ticks: { color: '#7f8fa6' }
+                },
+                x: {
+                    grid: { color: '#353b48' },
+                    ticks: { color: '#7f8fa6' }
+                }
+            }
+        }
+    });
+
+    function calcularPR() {
+        // Valores fijos del ejemplo
+        const energiaReal = 18.5; // kWh
+        const energiaTeorica = 22.0; // kWh
+
+        const pr = (energiaReal / energiaTeorica) * 100;
+        
+        const resDiv = document.getElementById('pr-result');
+        resDiv.style.display = 'block';
+        
+        let msj = `PR Calculado: ${pr.toFixed(1)}% - `;
+        
+        if(pr > 80) {
+            resDiv.style.background = 'rgba(46, 204, 113, 0.2)';
+            resDiv.style.color = '#4cd137';
+            resDiv.style.border = '2px solid #4cd137';
+            msj += "¡Sistema Excelente! Operando en óptimas condiciones.";
+        } else {
+            resDiv.style.background = 'rgba(231, 76, 60, 0.2)';
+            resDiv.style.color = '#e84118';
+            resDiv.style.border = '2px solid #e84118';
+            msj += "Revisar sistema (Sombreado o Polvo).";
+        }
+
+        resDiv.textContent = msj;
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion14');
+          window.markLessonCompleted('electricidad5', 'sesion14');
       }
   });
 </script>
