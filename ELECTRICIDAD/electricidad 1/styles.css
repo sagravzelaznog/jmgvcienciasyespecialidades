@@ -1,0 +1,160 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Encabezado */
+.header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+/* Secciones */
+.section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #2980b9;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+
+/* Contenedores SVG */
+.svg-container {
+    text-align: center;
+    margin: 20px 0;
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Actividades */
+.activity {
+    background-color: #e8f4f8;
+    border-left: 4px solid #3498db;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+/* Enlaces y navegación */
+.home-link {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.home-link:hover {
+    background-color: #2980b9;
+}
+
+/* Consejos y notas */
+.tip {
+    background-color: #fff8e1;
+    border-left: 4px solid #ffc107;
+    padding: 10px 15px;
+    margin: 15px 0;
+    font-style: italic;
+}
+
+/* Navegación al pie */
+.navigation-footer {
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* Recursos adicionales */
+.additional-resources {
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    background-color: #e8f4f8;
+    border-radius: 8px;
+}
+
+/* Navigation */
+.nav-separator {
+    margin: 0 20px;
+}
+
+/* SVG Containers */
+.svg-container-center {
+    text-align: center;
+    margin: 20px auto;
+}
+
+/* Enlaces */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Animaciones */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.atom {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Estilos específicos para la sesión 1 */
+/* Se mantienen los estilos específicos de la sesión 1 */
+
+/* Estilos específicos para la sesión 2 */
+.session2-header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+}
+
+.session2-activity {
+    background-color: #f0f7ff;
+    border-left: 4px solid #6a11cb;
+}
+
+.session2-h2 {
+    color: #2575fc;
+}
+
+.session2-button {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+}
+
+.session2-button:hover {
+    opacity: 0.9;
+}
+
+.session2-tip {
+    background-color: #f0f7ff;
+    border-left: 4px solid #2575fc;
+}

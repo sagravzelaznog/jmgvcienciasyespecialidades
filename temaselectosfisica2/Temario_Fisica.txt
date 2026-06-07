@@ -1,0 +1,95 @@
+Electricidad
+- Carga eléctrica y la ley de la conservación de la carga
+- Interacción en cargas de igual o diferente signo
+- Formas de electrizar los cuerpos
+- Electroscopio y jaula de Faraday
+- Materiales conductores y aislantes
+- Unidades de carga eléctrica
+- Ley de Coulomb
+- Campo eléctrico, líneas de campo eléctrico o líneas de fuerza
+- Flujo eléctrico
+- Potencial eléctrico
+- Electrodinámica
+- Fuerza electromotriz
+- Conexión de pilas en serie y en paralelo
+- Resistencia eléctrica
+
+Leyes de Ohm y de Kirchhoff
+- Ley de Ohm
+- Circuitos eléctricos y conexión de resistencias en serie, en paralelo y mixtas
+- Conexión de resistencias en serie
+- Potencia eléctrica y efecto Joule
+- Leyes de Kirchhoff
+- Capacitores o condensadores eléctricos
+- Electroquímica y ley de Faraday de la electrólisis
+
+Electromagnetismo
+- Propiedades y características de los diferentes tipos de imanes
+- Campo magnético
+- Densidad de flujo magnético
+- Reluctancia
+- Materiales ferromagnéticos, paramagnéticos y diamagnéticos
+- Desarrollo histórico del electromagnetismo
+- Campo magnético producido por una corriente
+- Fuerzas sobre cargas eléctricas en movimiento dentro de campos magnéticos
+- Inducción electromagnética y ley del electromagnetismo
+
+Ley de Lenz
+Ley de Faraday
+- Inductancia
+- Corriente alterna
+- Circuitos de corriente alterna
+
+Circuitos RC
+- Transformadores
+- Bobina de inducción o carrete de Ruhmkorff
+- Generador eléctrico
+- Motor eléctrico
+- Síntesis de Maxwell del electromagnetismo
+
+Fenómenos y naturaleza de la luz
+
+Óptica
+- Óptica geométrica
+- Propagación rectilínea de la luz
+- Métodos de Röemer y Michelson para determinar la rapidez o magnitud de la velocidad de la luz
+- Intensidad luminosa y flujo luminoso
+- Iluminación y ley de iluminación
+- Leyes de reflexión de la luz
+- Espejos esféricos
+- Refracción de la luz
+- Las lentes y sus características
+- Potencia de una lente
+- El telescopio y el microscopio
+- El ojo y la visión
+
+Óptica física
+- Interferencia y anillos de Newton
+- Difracción de la luz
+- Polarización de la luz
+- Naturaleza del color
+- Descomposición o dispersión de la luz blanca
+- Colores primarios o fundamentales
+- Colores binarios y características de algunos colores
+- Daltonismo
+- Propiedades electromagnéticas de la luz y espectro electromagnético
+
+Ondas mecánicas
+- Ondas longitudinales y transversales
+- Tren de ondas, frente de onda y rayo o vector de propagación
+- Ondas lineales, superficiales y tridimensionales
+- Características de las ondas
+- Reflexión de las ondas
+- Principio de superposición de las ondas
+- Interferencia de ondas
+- Ondas estacionarias
+- Refracción de ondas
+- Difracción de ondas
+
+Acústica
+- Rapidez de propagación del sonido
+- Fenómenos acústicos: reflexión, eco, resonancia y reverberación
+- Cualidades del sonido: intensidad, tono y timbre
+- Efecto Doppler
+- Ondas sísmicas
+- Ultrasonido

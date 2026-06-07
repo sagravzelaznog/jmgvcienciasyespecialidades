@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4: Circuitos en Serie - Curso de Electricidad Básica</title>
+    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">⚡ Electricidad Básica</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#sesiones">Sesiones</a></li>
+                <li><a href="../index.html#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido de la Sesión -->
+    <section class="sesion-header">
+        <div class="container">
+            <h1 class="sesion-title">Sesión 4: Circuitos en Serie</h1>
+            <p class="sesion-subtitle">Construcción y análisis de circuitos en serie</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion03.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion05.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+
+        <!-- Información de la sesión -->
+        <div class="sesion-content-main">
+            <div class="section">
+                <h2>📋 Información de la Sesión</h2>
+                <div class="info-box">
+                    <strong>Duración:</strong> 2.5 horas | <strong>Tipo:</strong> Práctica | <strong>Dificultad:</strong> Principiante
+                </div>
+                
+                <h3>🎯 Objetivos de Aprendizaje</h3>
+                <ul>
+                    <li>Construir circuitos eléctricos en serie</li>
+                    <li>Medir voltajes y corrientes en circuitos serie</li>
+                    <li>Aplicar las leyes de Kirchhoff para circuitos serie</li>
+                    <li>Calcular resistencias equivalentes en serie</li>
+                    <li>Verificar experimentalmente los cálculos teóricos</li>
+                </ul>
+            </div>
+
+            <!-- Teoría -->
+            <div class="teoria-section">
+                <h2>🔬 Teoría: Circuitos en Serie</h2>
+                
+                <h3>¿Qué es un Circuito en Serie?</h3>
+                <p>Un circuito en serie es aquel donde los componentes están conectados uno después del otro, formando un solo camino para el flujo de corriente.</p>
+
+                <div class="info-box">
+                    <strong>Características principales:</strong>
+                    <ul>
+                        <li>Un solo camino para la corriente</li>
+                        <li>La corriente es la misma en todos los componentes</li>
+                        <li>El voltaje total se divide entre los componentes</li>
+                        <li>Si un componente falla, todo el circuito se interrumpe</li>
+                    </ul>
+                </div>
+
+                <h3>Leyes de los Circuitos en Serie</h3>
+                
+                <h4>Ley de Corriente en Serie</h4>
+                <p>La corriente es la misma en todos los puntos del circuito.</p>
+                <div class="formula">
+                    I₁ = I₂ = I₃ = Iₜₒₜₐₗ
+                </div>
+
+                <h4>Ley de Voltaje en Serie (Segunda Ley de Kirchhoff)</h4>
+                <p>La suma de las caídas de voltaje es igual al voltaje total aplicado.</p>
+                <div class="formula">
+                    Vₜₒₜₐₗ = V₁ + V₂ + V₃ + ... + Vₙ
+                </div>
+
+                <h4>Resistencia Equivalente en Serie</h4>
+                <p>La resistencia total es la suma de todas las resistencias.</p>
+                <div class="formula">
+                    Rₜₒₜₐₗ = R₁ + R₂ + R₃ + ... + Rₙ
+                </div>
+            </div>
+
+            <!-- Análisis de Circuitos Serie -->
+            <div class="section">
+                <h2>📊 Análisis de Circuitos en Serie</h2>
+
+                <h3>Ejemplo 1: Circuito Básico con Dos Resistencias</h3>
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Voltaje de alimentación: 12 V</li>
+                    <li>R₁ = 4 Ω</li>
+                    <li>R₂ = 8 Ω</li>
+                </ul>
+
+                <p><strong>Cálculos:</strong></p>
+                <div class="formula">
+                    Rₜₒₜₐₗ = R₁ + R₂ = 4 Ω + 8 Ω = 12 Ω
+                </div>
+                <div class="formula">
+                    Iₜₒₜₐₗ = Vₜₒₜₐₗ / Rₜₒₜₐₗ = 12 V / 12 Ω = 1 A
+                </div>
+                <div class="formula">
+                    V₁ = I × R₁ = 1 A × 4 Ω = 4 V
+                </div>
+                <div class="formula">
+                    V₂ = I × R₂ = 1 A × 8 Ω = 8 V
+                </div>
+
+                <h3>Ejemplo 2: Circuito con Tres Resistencias</h3>
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Voltaje de alimentación: 24 V</li>
+                    <li>R₁ = 6 Ω</li>
+                    <li>R₂ = 4 Ω</li>
+                    <li>R₃ = 2 Ω</li>
+                </ul>
+
+                <p><strong>Cálculos:</strong></p>
+                <div class="formula">
+                    Rₜₒₜₐₗ = 6 Ω + 4 Ω + 2 Ω = 12 Ω
+                </div>
+                <div class="formula">
+                    Iₜₒₜₐₗ = 24 V / 12 Ω = 2 A
+                </div>
+                <div class="formula">
+                    V₁ = 2 A × 6 Ω = 12 V
+                </div>
+                <div class="formula">
+                    V₂ = 2 A × 4 Ω = 8 V
+                </div>
+                <div class="formula">
+                    V₃ = 2 A × 2 Ω = 4 V
+                </div>
+
+                <div class="success-box">
+                    <strong>Verificación:</strong> V₁ + V₂ + V₃ = 12 V + 8 V + 4 V = 24 V ✓
+                </div>
+            </div>
+
+            <!-- Práctica -->
+            <div class="practica-section">
+                <h2>🛠️ Práctica: Construcción de Circuitos en Serie</h2>
+
+                <h3>Materiales Necesarios</h3>
+                <ul>
+                    <li>Protoboard</li>
+                    <li>Resistencias: 220 Ω, 470 Ω, 1 kΩ</li>
+                    <li>Multímetro digital</li>
+                    <li>Cables de conexión</li>
+                    <li>Fuente de alimentación 5V o batería 9V</li>
+                    <li>LED (opcional para visualización)</li>
+                </ul>
+
+                <h3>Ejercicio 1: Circuito Básico con Dos Resistencias</h3>
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Coloca las resistencias de 220 Ω y 470 Ω en serie en el protoboard</li>
+                    <li>Conecta la fuente de alimentación</li>
+                    <li>Mide el voltaje total aplicado</li>
+                    <li>Mide la corriente total del circuito</li>
+                    <li>Mide el voltaje en cada resistencia</li>
+                    <li>Compara los valores medidos con los calculados</li>
+                </ol>
+
+                <h4>Tabla de Mediciones</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parámetro</th>
+                            <th>Valor Calculado</th>
+                            <th>Valor Medido</th>
+                            <th>% Error</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>R total</td>
+                            <td>690 Ω</td>
+                            <td>___ Ω</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>I total</td>
+                            <td>___ A</td>
+                            <td>___ A</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>V₁ (220 Ω)</td>
+                            <td>___ V</td>
+                            <td>___ V</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>V₂ (470 Ω)</td>
+                            <td>___ V</td>
+                            <td>___ V</td>
+                            <td>___ %</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Ejercicio 2: Efecto de la Resistencia Variable</h3>
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Construye un circuito con resistencia variable (potenciómetro)</li>
+                    <li>Mide la corriente para diferentes valores de resistencia</li>
+                    <li>Grafica la relación I vs R</li>
+                    <li>Verifica que I = V/R</li>
+                </ol>
+
+                <h3>Ejercicio 3: Fallo en Serie</h3>
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Construye un circuito con tres LEDs en serie</li>
+                    <li>Verifica que todos funcionen</li>
+                    <li>Desconecta uno de los LEDs</li>
+                    <li>Observa que todos se apagan (fallo en serie)</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>⚠️ Precauciones:</strong>
+                    <ul>
+                        <li>Verifica las polaridades antes de conectar</li>
+                        <li>No excedas los valores nominales de los componentes</li>
+                        <li>Desconecta la alimentación antes de modificar el circuito</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Aplicaciones Prácticas -->
+            <div class="section">
+                <h2>🏠 Aplicaciones Prácticas de Circuitos en Serie</h2>
+
+                <h3>Iluminación Decorativa</h3>
+                <p>Las luces de Navidad tradicionales están conectadas en serie:</p>
+                <ul>
+                    <li><strong>Ventaja:</strong> Consumo de corriente reducido</li>
+                    <li><strong>Desventaja:</strong> Si una bombilla se quema, todas se apagan</li>
+                    <li><strong>Solución moderna:</strong> LEDs con resistencias en paralelo</li>
+                </ul>
+
+                <h3>Divisores de Voltaje</h3>
+                <p>Los circuitos en serie se usan para dividir voltajes:</p>
+                <div class="formula">
+                    Vₒᵤₜ = Vᵢₙ × (R₂ / (R₁ + R₂))
+                </div>
+
+                <h3>Protección contra Sobrecorriente</h3>
+                <p>Las resistencias en serie limitan la corriente:</p>
+                <ul>
+                    <li>Protección de LEDs</li>
+                    <li>Limitación de corriente de carga</li>
+                    <li>Disipación de potencia</li>
+                </ul>
+
+                <h3>Medición de Corriente</h3>
+                <p>Los amperímetros se conectan en serie:</p>
+                <ul>
+                    <li>Medición precisa de corriente</li>
+            </div>
+
+            <!-- Ventajas y Desventajas -->
+            <div class="section">
+                <h2>⚖️ Ventajas y Desventajas de Circuitos en Serie</h2>
+
+                <h3>Ventajas</h3>
+                <ul>
+                    <li><strong>Simplicidad:</strong> Fácil de diseñar y construir</li>
+                    <li><strong>Corriente uniforme:</strong> La misma corriente en todos los componentes</li>
+                    <li><strong>División de voltaje:</strong> Útil para divisores de voltaje</li>
+                    <li><strong>Protección:</strong> Fallo de un componente protege el resto</li>
+                    <li><strong>Eficiencia:</strong> Menor consumo de corriente total</li>
+                </ul>
+
+                <h3>Desventajas</h3>
+                <ul>
+                    <li><strong>Fallo en cascada:</strong> Un componente defectuoso interrumpe todo</li>
+                    <li><strong>Voltaje limitado:</strong> Cada componente recibe menos voltaje</li>
+                    <li><strong>Dificultad de control:</strong> No se puede controlar componentes individuales</li>
+                    <li><strong>Resistencia total alta:</strong> Aumenta con cada componente</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 Regla práctica:</strong> Usa circuitos en serie cuando necesites división de voltaje o protección. Usa circuitos en paralelo cuando necesites control individual o mayor confiabilidad.
+                </div>
+            </div>
+
+            <!-- Actividades de Verificación -->
+            <div class="section">
+                <h2>✅ Actividades de Verificación</h2>
+
+                <h3>Problemas de Cálculo</h3>
+                <ol>
+                    <li>Un circuito en serie tiene R₁=10Ω, R₂=20Ω, R₃=30Ω y V=24V. Calcula:
+                        <ul>
+                            <li>Resistencia total</li>
+                            <li>Corriente total</li>
+                            <li>Voltaje en cada resistencia</li>
+                            <li>Potencia disipada en cada resistencia</li>
+                        </ul>
+                    </li>
+                    <li>¿Qué resistencia necesitas en serie con un LED de 2V para limitar la corriente a 20mA con una fuente de 5V?</li>
+                    <li>Calcula el voltaje de salida de un divisor de voltaje con R₁=1kΩ, R₂=2kΩ y Vᵢₙ=9V</li>
+                </ol>
+
+                <h3>Ejercicios Prácticos</h3>
+                <ol>
+                    <li>Construye un circuito con 3 resistencias diferentes y verifica las leyes de Kirchhoff</li>
+                    <li>Mide la resistencia total de varias resistencias en serie y compara con la suma individual</li>
+                    <li>Investiga qué pasa cuando cambias el orden de las resistencias en serie</li>
+                    <li>Construye un divisor de voltaje y mide los voltajes de salida</li>
+                </ol>
+
+                <h3>Análisis de Errores</h3>
+                <p>Al realizar las mediciones, considera estas fuentes de error:</p>
+                <ul>
+                    <li><strong>Tolerancia de resistencias:</strong> ±5% o ±10%</li>
+                    <li><strong>Precisión del multímetro:</strong> Generalmente ±0.5%</li>
+                    <li><strong>Resistencia interna de la fuente:</strong> Puede afectar las mediciones</li>
+                    <li><strong>Contactos del protoboard:</strong> Pueden introducir resistencia adicional</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>💡 Consejo:</strong> Si tus mediciones no coinciden exactamente con los cálculos, verifica las tolerancias de los componentes y la precisión de tu multímetro.
+                </div>
+            </div>
+
+            <!-- Recursos Adicionales -->
+            <div class="section">
+                <h2>📚 Recursos Adicionales</h2>
+                
+                <h3>Simuladores de Circuitos</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Falstad Circuit Simulator - Circuitos Serie</a></li>
+                    <li><a href="#" target="_blank">LTspice - Simulación avanzada</a></li>
+                    <li><a href="#" target="_blank">Tinkercad Circuits - Simulación online</a></li>
+                </ul>
+
+                <h3>Calculadoras Online</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Calculadora de resistencias en serie</a></li>
+                    <li><a href="#" target="_blank">Calculadora de divisor de voltaje</a></li>
+                    <li><a href="#" target="_blank">Calculadora de corriente en serie</a></li>
+                </ul>
+
+                <h3>Proyectos Prácticos</h3>
+                <ul>
+                    <li>Construcción de una fuente de voltaje variable</li>
+                    <li>Diseño de un atenuador de LED</li>
+                    <li>Creación de un indicador de nivel de batería</li>
+                    <li>Desarrollo de un sensor de temperatura simple</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion03.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion05.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; JMGV-PTEL 2025. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de entrada para secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar secciones
+        document.querySelectorAll('.section, .teoria-section, .practica-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Calculadora de circuito en serie
+        function calculateSeriesCircuit() {
+            const voltage = parseFloat(document.getElementById('inputVoltage').value);
+            const resistance1 = parseFloat(document.getElementById('resistance1').value);
+            const resistance2 = parseFloat(document.getElementById('resistance2').value);
+            const resistance3 = parseFloat(document.getElementById('resistance3').value) || 0;
+            
+            const totalResistance = resistance1 + resistance2 + resistance3;
+            const totalCurrent = voltage / totalResistance;
+            const voltage1 = totalCurrent * resistance1;
+            const voltage2 = totalCurrent * resistance2;
+            const voltage3 = totalCurrent * resistance3;
+            
+            document.getElementById('results').innerHTML = `
+                <h4>Resultados:</h4>
+                <p><strong>Resistencia total:</strong> ${totalResistance.toFixed(2)} Ω</p>
+                <p><strong>Corriente total:</strong> ${totalCurrent.toFixed(3)} A</p>
+                <p><strong>Voltaje R₁:</strong> ${voltage1.toFixed(2)} V</p>
+                <p><strong>Voltaje R₂:</strong> ${voltage2.toFixed(2)} V</p>
+                ${resistance3 > 0 ? `<p><strong>Voltaje R₃:</strong> ${voltage3.toFixed(2)} V</p>` : ''}
+                <p><strong>Verificación:</strong> ${(voltage1 + voltage2 + voltage3).toFixed(2)} V</p>
+            `;
+        }
+    </script>
+</body>
+</html>

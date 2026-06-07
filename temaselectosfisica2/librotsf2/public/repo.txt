@@ -1,0 +1,4 @@
+firebase login
+firebase init
+firebase deploy
+https://autorizacion-para-tsf2.web.app/

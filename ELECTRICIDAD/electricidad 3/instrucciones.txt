@@ -1,0 +1,85 @@
+Diseña un programa educativo de 16 sesiones de 45 minutos, En la carpeta electricidad5, dirigido a estudiantes de nivel medio o introductorio. El enfoque debe ser visual, práctico, modular y progresivo, con ejemplos cotidianos, ejercicios interactivos y actividades que fomenten la comprensión técnica.
+Temario a desarrollar:
+sesion: "Introducción a la Energía Solar Fotovoltaica",
+	"Conceptos básicos de energía solar",
+	"Ventajas y desventajas de la energía fotovoltaica",
+	"Componentes básicos de un sistema fotovoltaico"
+	"Análisis de casos de estudio de instalaciones existentes"
+sesion: "Fundamentos de Electricidad Básica",
+	"Conceptos de voltaje, corriente y resistencia",
+	"Ley de Ohm",
+	"Potencia y energía eléctrica"
+	"Mediciones básicas con multímetro"
+sesion: "Radiación Solar y Orientación de Paneles",
+	"Conceptos de radiación solar",
+	"Ángulos óptimos de inclinación",
+	"Uso de herramientas de medición solar"
+	"Cálculo de sombras y orientación óptima"
+sesion: "Componentes de un Sistema Fotovoltaico I: Paneles Solares",
+	"Tipos de paneles solares",
+	"Características técnicas",
+	"Conexiones serie y paralelo"
+	"Identificación y medición de parámetros en paneles"
+sesion: "Componentes de un Sistema Fotovoltaico II: Baterías",
+	"Tipos de baterías para sistemas solares",
+	"Capacidad y ciclo de vida",
+	"Esquemas de conexión"
+	"Medición de parámetros en baterías"
+sesion: "Componentes de un Sistema Fotovoltaico III: Controladores de Carga",
+	"Funcionamiento de controladores PWM y MPPT",
+	"Parámetros de configuración",
+	"Protecciones"
+	"Configuración de controladores"
+sesion: "Componentes de un Sistema Fotovoltaico IV: Inversores",
+	"Tipos de inversores",
+	"Características técnicas",
+	"Conexión a red vs. sistemas aislados"
+	"Pruebas básicas de funcionamiento"
+sesion: "Diseño de Sistemas Aislados",
+	"Cálculo de consumo energético",
+	"Dimensionamiento de componentes",
+	"Selección de equipos"
+	"Ejercicio de diseño de un sistema básico"
+sesion: "Instalación de Paneles Solares",
+	"Sistemas de montaje",
+	"Orientación e inclinación",
+	"Consideraciones estructurales"
+	"Simulación de montaje en techo"
+sesion: "Conexiones Eléctricas en Sistemas Fotovoltaicos",
+	"Tipos de conductores",
+	"Protecciones eléctricas",
+	"Puesta a tierra"
+	"Realización de conexiones básicas"
+sesion: "Sistemas Conectados a Red",
+	"Marco normativo",
+	"Componentes específicos",
+	"Procedimientos de conexión"
+	"Análisis de esquemas de conexión"
+sesion: "Mantenimiento de Instalaciones Fotovoltaicas",
+	"Protocolos de mantenimiento",
+	"Detección de fallos",
+	"Limpieza y conservación"
+	"Simulación de mantenimiento preventivo"
+sesion: "Seguridad en Instalaciones Fotovoltaicas",
+	"Riesgos eléctricos",
+	"Equipos de protección personal",
+	"Procedimientos seguros de trabajo"
+	"Simulacro de emergencias"
+sesion: "Proyecto Práctico I: Diseño",
+	"Planteamiento del proyecto",
+	"Cálculos preliminares",
+	"Selección de componentes"
+	"Elaboración de memoria técnica"
+sesion: "Proyecto Práctico II: Implementación",
+	"Preparación del área de trabajo",
+	"Secuencia de montaje",
+	"Pruebas iniciales"
+	"Montaje de la instalación"
+sesion: "Proyecto Práctico III: Puesta en Marcha y Evaluación",
+	"Protocolo de puesta en marcha",
+	"Medición de parámetros",
+	"Verificación de funcionamiento"
+	"Pruebas finales y entrega del proyecto"
+
+- Divide el contenido en 16 sesiones equilibradas
+crea solo las 16 sesiones y en un archivo con el nombre index.html, y prepara para vincular con un archivo html que contendrá el desarrollo del tema de cada sesión 

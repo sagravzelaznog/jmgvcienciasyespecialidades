@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Clasificación Visual de Materiales | Componentes Eléctricos Básicos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sesión 2: Clasificación Visual de Materiales</h1>
+            <p>Identificando conductores y aislantes en la vida cotidiana</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-btn">← Volver al índice</a>
+        
+        <section class="session-content">
+            <div class="learning-objective">
+                <h2>Objetivo específico</h2>
+                <p>Al finalizar esta sesión, los estudiantes podrán identificar visualmente materiales conductores y aislantes, aplicando criterios de clasificación en diversos contextos.</p>
+            </div>
+
+            <div class="theory">
+                <h2>Contenido teórico</h2>
+                <p>La clasificación visual de materiales se basa en propiedades observables que nos permiten predecir su conductividad eléctrica.</p>
+                
+                <div class="concept-box">
+                    <h3>Características de los conductores</h3>
+                    <ul>
+                        <li><strong>Apariencia:</strong> Metálica y brillante</li>
+                        <li><strong>Textura:</strong> Fría al tacto (buen conductor térmico)</li>
+                        <li><strong>Peso:</strong> Generalmente más pesados</li>
+                        <li><strong>Maleabilidad:</strong> Se pueden doblar sin romperse</li>
+                    </ul>
+                </div>
+
+                <div class="concept-box">
+                    <h3>Características de los aislantes</h3>
+                    <ul>
+                        <li><strong>Apariencia:</strong> Opacos o traslúcidos</li>
+                        <li><strong>Textura:</strong> Variable (madera, plástico, goma)</li>
+                        <li><strong>Peso:</strong> Generalmente más ligeros</li>
+                        <li><strong>Fragilidad:</strong> Algunos se rompen fácilmente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="visual-example">
+                <h2>Ejemplo visual</h2>
+                <div class="analogy">
+                    <p>Imagina que los materiales conductores son como carreteras para los electrones, mientras que los aislantes son como barreras naturales:</p>
+                    <ul>
+                        <li>Los metales son como autopistas de varios carriles (alta conductividad)</li>
+                        <li>El grafito es como un camino de tierra (conductividad media)</li>
+                        <li>Los plásticos son como montañas infranqueables (aislantes)</li>
+                    </ul>
+                </div>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <h3>Guía de Clasificación Visual</h3>
+                        <img src="assets/svg/sesion2/guia_clasificacion.svg" alt="Guía de clasificación visual de materiales" class="resource-img">
+                        <p>Compara las características visuales de conductores y aislantes.</p>
+                    </div>
+                    <div class="resource-item">
+                        <h3>Vista Microscópica</h3>
+                        <img src="assets/svg/sesion2/vista_microscopica.svg" alt="Vista microscópica de materiales" class="resource-img">
+                        <p>Observa las diferencias a nivel atómico entre conductores y aislantes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practical-activity">
+                <h2>Actividad práctica: El detective de materiales</h2>
+                <p><strong>Materiales necesarios:</strong> Lupa, imán, linterna, objetos cotidianos variados (monedas, lápices, clips, gomas, etc.)</p>
+                
+                <h3>Instrucciones:</h3>
+                <ol>
+                    <li>Observa cada objeto con atención usando la lupa</li>
+                    <li>Registra tus observaciones en la tabla</li>
+                    <li>Usa el imán para verificar propiedades magnéticas</li>
+                    <li>Clasifica cada material según tus observaciones</li>
+                </ol>
+
+                <div class="activity-table">
+                    <table>
+                        <tr>
+                            <th>Objeto</th>
+                            <th>Color</th>
+                            <th>Brillo</th>
+                            <th>¿Atrae imán?</th>
+                            <th>Predicción</th>
+                        </tr>
+                        <tr>
+                            <td>Moneda</td>
+                            <td><input type="text" id="moneda-color" aria-label="Color de la moneda"></td>
+                            <td>
+                                <select id="moneda-brillo" aria-label="Brillo de la moneda">
+                                    <option value="">Selecciona</option>
+                                    <option value="alto">Alto</option>
+                                    <option value="medio">Medio</option>
+                                    <option value="bajo">Bajo</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="moneda-iman" aria-label="Moneda atrae imán">
+                            </td>
+                            <td>
+                                <select id="moneda-prediccion" aria-label="Predicción para moneda">
+                                    <option value="">Selecciona</option>
+                                    <option value="conductor">Conductor</option>
+                                    <option value="aislante">Aislante</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lápiz de madera</td>
+                            <td><input type="text" id="lapiz-color" aria-label="Color del lápiz"></td>
+                            <td>
+                                <select id="lapiz-brillo" aria-label="Brillo del lápiz">
+                                    <option value="">Selecciona</option>
+                                    <option value="alto">Alto</option>
+                                    <option value="medio">Medio</option>
+                                    <option value="bajo">Bajo</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="lapiz-iman" aria-label="Lápiz atrae imán">
+                            </td>
+                            <td>
+                                <select id="lapiz-prediccion" aria-label="Predicción para lápiz">
+                                    <option value="">Selecciona</option>
+                                    <option value="conductor">Conductor</option>
+                                    <option value="aislante">Aislante</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <!-- Más filas según sea necesario -->
+                    </table>
+                    <button class="btn" id="verificar-predicciones">Verificar predicciones</button>
+                </div>
+            </div>
+
+            <div class="reflection">
+                <h2>Pregunta de reflexión</h2>
+                <p>¿Qué características visuales te resultaron más útiles para predecir si un material es conductor o aislante? ¿Hubo alguna característica que te sorprendió?</p>
+                <textarea rows="4" placeholder="Escribe tu reflexión aquí..." aria-label="Reflexión sobre características visuales"></textarea>
+            </div>
+
+            <div class="resources">
+                <h2>Recursos interactivos</h2>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <h3>Juego: Cazatesoros Eléctrico</h3>
+                        <img src="assets/svg/sesion2/tablero_tesoro.svg" alt="Juego Cazatesoros Eléctrico" class="resource-img">
+                        <p>Encuentra los materiales conductores ocultos en el tablero. ¡Cada acierto suma puntos!</p>
+                        <a href="assets/svg/sesion2/tablero_tesoro.svg" target="_blank" rel="noopener noreferrer" class="btn-small">Jugar ahora</a>
+                    </div>
+                    <div class="simulator-placeholder">
+                        <h3>Simulador de Materiales</h3>
+                        <p>🔍 Explora cómo diferentes materiales afectan el flujo de corriente eléctrica.</p>
+                        <a href="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_es.html" target="_blank" rel="noopener noreferrer" class="btn-small">Abrir simulador</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gamification">
+                <h2>Reto gamificado: El cazatesoros eléctrico</h2>
+                <p><strong>Misión:</strong> Encuentra en tu casa 3 objetos que contengan tanto materiales conductores como aislantes. Toma fotografías y explica la función de cada material en el objeto.</p>
+                <p><strong>Puntos:</strong></p>
+                <ul>
+                    <li>10 puntos por objeto correctamente identificado</li>
+                    <li>5 puntos adicionales por explicación detallada</li>
+                    <li>Bono de 15 puntos por encontrar un objeto inusual</li>
+                </ul>
+                <button class="btn" id="subir-evidencia">Subir evidencia</button>
+            </div>
+        </section>
+
+        <div class="session-navigation">
+            <a href="sesion1.html" class="btn">← Sesión anterior</a>
+            <a href="index.html" class="btn">Volver al índice</a>
+            <a href="sesion3.html" class="btn">Siguiente sesión →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Código para la interacción de la tabla
+        document.addEventListener('DOMContentLoaded', function() {
+            const verificarBtn = document.getElementById('verificar-predicciones');
+            if (verificarBtn) {
+                verificarBtn.addEventListener('click', function() {
+                    alert('¡Buen trabajo! Revisa tus respuestas con tu instructor o compáralas con la guía de materiales.');
+                });
+            }
+
+            const subirBtn = document.getElementById('subir-evidencia');
+            if (subirBtn) {
+                subirBtn.addEventListener('click', function() {
+                    alert('Función de subir evidencia: Esta funcionalidad se implementará en una versión futura.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass: Fuerzas Magnéticas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex">
+            <div>
+                <h1>MASTERCLASS: Dinámica del Electromagnetismo</h1>
+                <p class="subtitle">De la partícula al cable: Las fuerzas invisibles que mueven al mundo.</p>
+            </div>
+            <button id="btn-maestro" onclick="desbloquearMaestro()">Modo Maestro 🔒</button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="card">
+            <h2 class="tema-title">1. Fuerzas sobre cargas eléctricas en movimiento</h2>
+            <div class="teacher-note hide">
+                <strong>💡 TIP PEDAGÓGICO:</strong> Inicie la clase recordando a los alumnos que un imán no atrae a una carga estática (como un globo frotado). La fuerza magnética SOLO existe si la carga tiene velocidad. Haga que todos practiquen físicamente la Regla de la Mano Derecha en el aire.
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>Cuando una partícula con carga eléctrica (q) se mueve con una velocidad (v) dentro de un campo magnético (B), experimenta una fuerza magnética, conocida como <strong>Fuerza de Lorentz</strong>. Esta fuerza es perpendicular tanto a la velocidad como al campo magnético. La fórmula es: <strong>F = qvB sin(&theta;)</strong>.</p>
+                
+                <h3>Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>Las Auroras Boreales:</strong> Partículas cargadas del viento solar entran a la Tierra y son desviadas por el campo magnético terrestre hacia los polos, chocando con la atmósfera y emitiendo luz.</li>
+                    <li><strong>Tubos de Rayos Catódicos (Televisores Antiguos):</strong> Un haz de electrones es dirigido magnéticamente hacia la pantalla para "pintar" la imagen píxel por píxel.</li>
+                    <li><strong>Espectrómetro de Masas:</strong> Dispositivo que utiliza campos magnéticos para desviar iones en trayectoria circular; los iones más pesados hacen curvas más amplias, permitiendo identificar sustancias químicas.</li>
+                </ol>
+
+                <div class="exercise-box">
+                    <h3>🛠️ Ejercicios Prácticos</h3>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 1 (Cálculo Directo):</strong> Un electrón (q = 1.6 x 10<sup>-19</sup> C) viaja a 5 x 10<sup>6</sup> m/s perpendicularmente a un campo de 0.2 T. Calcula la fuerza. <br><em>Solución:</em> F = (1.6 x 10<sup>-19</sup>)(5 x 10<sup>6</sup>)(0.2) sin(90&deg;) = 1.6 x 10<sup>-13</sup> N.</p>
+                    </div>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 2 (Ángulo Paralelo):</strong> Un protón viaja a 2000 m/s exactamente en la misma dirección y sentido que un campo magnético de 5 T. ¿Cuál es la fuerza? <br><em>Solución:</em> Como el ángulo &theta; = 0&deg;, sin(0&deg;) = 0. La fuerza es 0 N. ¡La partícula no se desvía!</p>
+                    </div>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 3 (Fuerza Máxima):</strong> Tienes un ion de Helio cruzando un campo B. ¿En qué ángulo debes dispararlo para que experimente la máxima desviación posible? <br><em>Solución:</em> La función seno alcanza su valor máximo (1) a los 90&deg;. Debe dispararse de forma perpendicular al campo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="tema-title">2. Fuerza sobre un conductor con corriente</h2>
+            <div class="teacher-note hide">
+                <strong>💡 TIP FÍSICO-MATEMÁTICO:</strong> Explique que esta fórmula es una consecuencia macroscópica de la anterior. Una corriente es simplemente millones de electrones moviéndose por un cable. La suma de las fuerzas de Lorentz sobre cada electrón empuja el cable entero (Ley de Laplace).
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>Si un cable recto de longitud (L) por el que circula una corriente eléctrica (I) se coloca dentro de un campo magnético (B), el cable entero experimentará una fuerza mecánica. La ecuación que describe este fenómeno es: <strong>F = ILB sin(&theta;)</strong>.</p>
+                
+                <h3>Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>El Motor Eléctrico:</strong> Una espira de alambre dentro de imanes. Al pasar corriente, un lado es empujado hacia arriba y el otro hacia abajo, creando un giro continuo (torque).</li>
+                    <li><strong>El Altavoz (Bocina):</strong> Una bobina atada a un cono de cartón dentro de un imán fijo. Al variar la corriente con la música, la bobina es empujada hacia adelante y atrás, moviendo el cono y creando sonido.</li>
+                    <li><strong>El Riel Electromagnético (Railgun):</strong> Un proyectil conductor cierra el circuito entre dos rieles magnetizados, siendo expulsado a velocidades supersónicas por la inmensa fuerza magnética generada.</li>
+                </ol>
+
+                <div class="exercise-box">
+                    <h3>🛠️ Ejercicios Prácticos</h3>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 1 (Fuerza Perpendicular):</strong> Un cable de 2 m lleva una corriente de 5 A a través de un campo magnético perpendicular de 0.3 T. Calcula la fuerza. <br><em>Solución:</em> F = (5 A)(2 m)(0.3 T) sin(90&deg;) = 3 N.</p>
+                    </div>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 2 (Levitación Magnética):</strong> Un cable de cobre de 0.5 kg y 1 m de largo requiere levitar magnéticamente. Si la gravedad es 9.8 m/s&sup2; (Peso = 4.9 N), y pasa una corriente de 10 A, ¿qué campo B perpendicular necesita? <br><em>Solución:</em> F = ILB &rarr; 4.9 = (10)(1)B &rarr; B = 0.49 T.</p>
+                    </div>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 3 (Efecto del Ángulo):</strong> Un cable de 1 m con 4 A cruza un campo de 0.5 T formando un ángulo de 30&deg;. ¿Qué fuerza experimenta? <br><em>Solución:</em> F = (4)(1)(0.5) sin(30&deg;) = (2)(0.5) = 1 N.</p>
+                    </div>
+                </div>
+            </section>
+
+        <section class="card">
+            <h2 class="tema-title">3. Fuerza magnética entre dos conductores paralelos</h2>
+            <div class="teacher-note hide">
+                <strong>💡 TIP DE ANDRAGOGÍA:</strong> Use la analogía social para que no lo olviden: En el electromagnetismo de cables, "los que van en la misma dirección (mismo sentido) se atraen y se unen, los que van en direcciones contrarias (sentido opuesto) se rechazan". Es anti-intuitivo comparado con las cargas estáticas (+ y + se repelen).
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>Cuando dos cables paralelos llevan corriente eléctrica, cada cable genera un campo magnético que afecta al otro cable. La fuerza por unidad de longitud entre ellos es: <strong>F/L = (&mu;₀ &middot; I₁ &middot; I₂) / (2&pi;d)</strong>. <br><strong>Regla de oro:</strong> Corrientes en el MISMO sentido se ATRAEN. Corrientes en sentido OPUESTO se REPELEN.</p>
+                
+                <h3>Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>Definición del Amperio:</strong> Hasta 2019, la unidad de corriente (Amperio) se definía oficialmente en función de la fuerza de atracción mecánica medida entre dos cables paralelos infinitos.</li>
+                    <li><strong>Líneas de Alta Tensión en Cortocircuito:</strong> Cuando hay un cortocircuito, la inmensa corriente hace que los gruesos cables de las torres eléctricas se atraigan violentamente o se repelan, pudiendo chocar entre sí.</li>
+                    <li><strong>Espiras de un Solenoide:</strong> En una bobina, todas las vueltas de cable llevan la corriente en la misma dirección. Por lo tanto, al encender el electroimán, las vueltas se atraen, comprimiendo físicamente la bobina.</li>
+                </ol>
+
+                <div class="exercise-box">
+                    <h3>🛠️ Ejercicios Prácticos</h3>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 1 (Predicción de Fuerza):</strong> Dos cables paralelos llevan corrientes de 10 A hacia "arriba" de la pizarra. ¿Qué le pasa a los cables físicamente? <br><em>Solución:</em> Al tener el mismo sentido, la fuerza magnética hará que los cables se atraigan y tiendan a juntarse.</p>
+                    </div>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 2 (Repulsión de Cables):</strong> Un cable puente de batería de auto tiene el cable positivo y negativo pegados paralelamente. Uno lleva la corriente al motor y el otro la regresa. Cuando arrancas el motor (gran corriente), ¿qué fuerza hay entre ellos? <br><em>Solución:</em> Como llevan corrientes en sentidos opuestos, experimentan una fuerte fuerza de repulsión que tiende a separarlos.</p>
+                    </div>
+                    <div class="ejercicio">
+                        <p><strong>Ejercicio 3 (Cálculo de Proporción):</strong> Si duplicas la corriente que pasa por AMBOS cables paralelos sin cambiar su distancia, ¿cómo cambia la fuerza entre ellos? <br><em>Solución:</em> La fuerza es proporcional a (I₁ &middot; I₂). Si duplicas ambos, (2I₁ &middot; 2I₂) = 4. La fuerza mecánica de atracción o repulsión se cuadruplicará.</p>
+                    </div>
+                </div>
+            </section>
+
+        <section class="card quiz-card">
+            <h2>🧠 Quiz de Maestría Magnética</h2>
+            <p>Demuestra tu conocimiento resolviendo este desafío interactivo.</p>
+            
+            <div id="quiz-container">
+                <div id="pantalla-inicio">
+                    <button id="btn-iniciar" class="btn-action">▶️ Empezar Quiz</button>
+                </div>
+                
+                <div id="pantalla-juego" class="hide">
+                    <h3 id="pregunta-texto">Pregunta...</h3>
+                    <div class="grid-respuestas" id="botones-respuesta">
+                        </div>
+                    <div class="quiz-footer">
+                        <span id="contador">Pregunta 1 de 10</span>
+                        <button id="btn-siguiente" class="btn-action hide">Siguiente ⏭️</button>
+                    </div>
+                </div>
+
+                <div id="pantalla-resultados" class="hide">
+                    <h3>¡Quiz Completado!</h3>
+                    <p class="score-text">Tu puntuación es: <span id="puntuacion"></span> / 10</p>
+                    <button id="btn-reiniciar" class="btn-action">🔄 Reiniciar</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>copyright &copy;jmgv-ptel-2026. masterclass campos magneticos. todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+:root {
+	--primary-color: #0d1b2a; /* Azul Marino Profundo */
+	--secondary-color: #1b263b; /* Azul Acero */
+	--accent-color: #e0e1dd; /* Gris Platino */
+	--highlight-color: #ffaa00; /* Dorado Genio */
+	--text-color: #333;
+	--bg-color: #f4f4f9;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	margin: 0;
+	padding: 0;
+	line-height: 1.6;
+}
+
+/* Header */
+.main-header {
+	background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+	color: white;
+	padding: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 5px solid var(--highlight-color);
+}
+
+.course-title {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 2rem;
+	margin: 0;
+	font-weight: 700;
+}
+
+.semester-info {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1.2rem;
+	font-weight: 400;
+	margin: 5px 0 15px 0;
+	color: var(--accent-color);
+}
+
+.teacher-info p {
+	margin: 0;
+	font-size: 0.95rem;
+}
+
+.teacher-info .titles {
+	font-size: 0.8rem;
+	color: var(--highlight-color);
+	font-style: italic;
+	margin-top: 5px;
+}
+
+.btn-print {
+	background-color: var(--highlight-color);
+	color: var(--primary-color);
+	border: none;
+	padding: 10px 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: transform 0.2s;
+	box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-print:hover {
+	transform: scale(1.05);
+}
+
+/* Container */
+.container {
+	max-width: 1200px;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 0 0 15px rgba(0,0,0,0.1);
+	border-radius: 8px;
+}
+
+.overview {
+	border-left: 5px solid var(--secondary-color);
+	padding-left: 20px;
+	margin-bottom: 30px;
+}
+
+.overview h3 {
+	color: var(--primary-color);
+	margin-top: 0;
+}
+
+/* Table */
+.planner-wrapper {
+	overflow-x: auto;
+}
+
+.planner-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+.planner-table th, .planner-table td {
+	padding: 12px 15px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+.planner-table th {
+	background-color: var(--primary-color);
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 0.85rem;
+}
+
+.planner-table tr:hover {
+	background-color: #f1f1f1;
+}
+
+.block-header td {
+	background-color: var(--secondary-color);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	padding: 15px;
+	letter-spacing: 1px;
+}
+
+/* Footer */
+.main-footer {
+	text-align: center;
+	padding: 20px;
+	background-color: var(--primary-color);
+	color: var(--accent-color);
+	font-size: 0.8rem;
+	margin-top: 40px;
+	border-top: 3px solid var(--highlight-color);
+}
+
+/* Print Styles */
+@media print {
+	body {
+					background-color: white;
+					font-size: 11pt;
+	}
+
+	.main-header {
+					background: none;
+					color: black;
+					border-bottom: 2px solid black;
+					padding: 10px 0;
+					display: block;
+					text-align: center;
+	}
+
+	.semester-info, .teacher-info .titles {
+					color: #555;
+	}
+
+	.actions {
+					display: none;
+	}
+
+	.container {
+					box-shadow: none;
+					margin: 0;
+					padding: 0;
+	}
+
+	.planner-table th {
+					background-color: #eee !important;
+					color: black !important;
+					border: 1px solid #000;
+	}
+	
+	.block-header td {
+					background-color: #ddd !important;
+					color: black !important;
+					border: 1px solid #000;
+					font-weight: 900;
+	}
+
+	.planner-table td {
+					border: 1px solid #ccc;
+	}
+
+	/* Evitar que las filas se corten a la mitad */
+	tr {
+					page-break-inside: avoid;
+	}
+
+	.main-footer {
+					background: none;
+					color: black;
+					border-top: 1px solid black;
+					position: fixed;
+					bottom: 0;
+					width: 100%;
+	}
+}

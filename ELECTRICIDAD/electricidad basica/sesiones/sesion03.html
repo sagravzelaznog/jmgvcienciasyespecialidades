@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: Componentes Eléctricos Básicos - Curso de Electricidad Básica</title>
+    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">⚡ Electricidad Básica</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#sesiones">Sesiones</a></li>
+                <li><a href="../index.html#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido de la Sesión -->
+    <section class="sesion-header">
+        <div class="container">
+            <h1 class="sesion-title">Sesión 3: Componentes Eléctricos Básicos</h1>
+            <p class="sesion-subtitle">Identificación y funcionamiento de componentes fundamentales</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion02.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion04.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+
+        <!-- Información de la sesión -->
+        <div class="sesion-content-main">
+            <div class="section">
+                <h2>📋 Información de la Sesión</h2>
+                <div class="info-box">
+                    <strong>Duración:</strong> 2.5 horas | <strong>Tipo:</strong> Teoría + Práctica | <strong>Dificultad:</strong> Principiante
+                </div>
+                
+                <h3>🎯 Objetivos de Aprendizaje</h3>
+                <ul>
+                    <li>Identificar los componentes eléctricos básicos y sus funciones</li>
+                    <li>Entender el funcionamiento de resistencias, capacitores e inductores</li>
+                    <li>Utilizar el multímetro para medir componentes</li>
+                    <li>Interpretar códigos de colores y especificaciones</li>
+                    <li>Construir circuitos básicos con componentes reales</li>
+                </ul>
+            </div>
+
+            <!-- Teoría -->
+            <div class="teoria-section">
+                <h2>🔬 Teoría: Componentes Eléctricos</h2>
+                
+                <h3>Introducción a los Componentes</h3>
+                <p>Los componentes eléctricos son elementos básicos que se utilizan para construir circuitos eléctricos. Cada componente tiene una función específica y características únicas.</p>
+
+                <div class="info-box">
+                    <strong>Clasificación:</strong> Los componentes pueden ser activos (generan energía) o pasivos (consumen, almacenan o transforman energía).
+                </div>
+
+                <h3>Componentes Pasivos Fundamentales</h3>
+                <p>Los tres componentes pasivos básicos son:</p>
+                <ul>
+                    <li><strong>Resistencia:</strong> Limita el flujo de corriente</li>
+                    <li><strong>Capacitor:</strong> Almacena energía eléctrica</li>
+                    <li><strong>Inductor:</strong> Almacena energía magnética</li>
+                </ul>
+            </div>
+
+            <!-- Resistencias -->
+            <div class="section">
+                <h2>🔧 Resistencias</h2>
+
+                <h3>¿Qué es una Resistencia?</h3>
+                <p>Una resistencia es un componente que se opone al flujo de corriente eléctrica, convirtiendo la energía eléctrica en calor.</p>
+
+                <h3>Tipos de Resistencias</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Características</th>
+                            <th>Aplicaciones</th>
+                            <th>Tolerancia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Carbón</td>
+                            <td>Baratas, ruido térmico</td>
+                            <td>Circuitos generales</td>
+                            <td>±5%, ±10%</td>
+                        </tr>
+                        <tr>
+                            <td>Película metálica</td>
+                            <td>Estables, precisas</td>
+                            <td>Instrumentación</td>
+                            <td>±1%, ±2%</td>
+                        </tr>
+                        <tr>
+                            <td>Película de óxido</td>
+                            <td>Alta potencia</td>
+                            <td>Disipación de calor</td>
+                            <td>±5%</td>
+                        </tr>
+                        <tr>
+                            <td>Hilo bobinado</td>
+                            <td>Alta precisión</td>
+                            <td>Laboratorio</td>
+                            <td>±0.1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Código de Colores de Resistencias</h3>
+                <p>Las resistencias utilizan un código de colores para indicar su valor:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Color</th>
+                            <th>Valor</th>
+                            <th>Multiplicador</th>
+                            <th>Tolerancia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Negro</td>
+                            <td>0</td>
+                            <td>10⁰</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Marrón</td>
+                            <td>1</td>
+                            <td>10¹</td>
+                            <td>±1%</td>
+                        </tr>
+                        <tr>
+                            <td>Rojo</td>
+                            <td>2</td>
+                            <td>10²</td>
+                            <td>±2%</td>
+                        </tr>
+                        <tr>
+                            <td>Naranja</td>
+                            <td>3</td>
+                            <td>10³</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Amarillo</td>
+                            <td>4</td>
+                            <td>10⁴</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Verde</td>
+                            <td>5</td>
+                            <td>10⁵</td>
+                            <td>±0.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Azul</td>
+                            <td>6</td>
+                            <td>10⁶</td>
+                            <td>±0.25%</td>
+                        </tr>
+                        <tr>
+                            <td>Violeta</td>
+                            <td>7</td>
+                            <td>10⁷</td>
+                            <td>±0.1%</td>
+                        </tr>
+                        <tr>
+                            <td>Gris</td>
+                            <td>8</td>
+                            <td>10⁸</td>
+                            <td>±0.05%</td>
+                        </tr>
+                        <tr>
+                            <td>Blanco</td>
+                            <td>9</td>
+                            <td>10⁹</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Dorado</td>
+                            <td>-</td>
+                            <td>10⁻¹</td>
+                            <td>±5%</td>
+                        </tr>
+                        <tr>
+                            <td>Plateado</td>
+                            <td>-</td>
+                            <td>10⁻²</td>
+                            <td>±10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Ejemplo de Lectura</h3>
+                <p>Una resistencia con colores: <strong>Rojo - Rojo - Marrón - Dorado</strong></p>
+                <ul>
+                    <li>Primer rojo: 2</li>
+                    <li>Segundo rojo: 2</li>
+                    <li>Marrón: 10¹</li>
+                    <li>Dorado: ±5%</li>
+                </ul>
+                <div class="formula">
+                    Valor = 22 × 10¹ = 220 Ω ± 5%
+                </div>
+            </div>
+
+            <!-- Capacitores -->
+            <div class="section">
+                <h2>🔋 Capacitores</h2>
+
+                <h3>¿Qué es un Capacitor?</h3>
+                <p>Un capacitor es un componente que almacena energía eléctrica en forma de campo eléctrico entre dos placas conductoras separadas por un dieléctrico.</p>
+
+                <h3>Tipos de Capacitores</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Rango de Valores</th>
+                            <th>Características</th>
+                            <th>Aplicaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cerámico</td>
+                            <td>1 pF - 100 μF</td>
+                            <td>Estables, pequeños</td>
+                            <td>Circuitos de alta frecuencia</td>
+                        </tr>
+                        <tr>
+                            <td>Electrolítico</td>
+                            <td>1 μF - 10,000 μF</td>
+                            <td>Alta capacidad</td>
+                            <td>Filtrado, almacenamiento</td>
+                        </tr>
+                        <tr>
+                            <td>Tantalio</td>
+                            <td>1 μF - 1,000 μF</td>
+                            <td>Estables, confiables</td>
+                            <td>Circuitos críticos</td>
+                        </tr>
+                        <tr>
+                            <td>Poliester</td>
+                            <td>1 nF - 100 μF</td>
+                            <td>Buen rendimiento</td>
+                            <td>Circuitos generales</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Capacitancia</h3>
+                <p>La capacidad se mide en Faradios (F). Las unidades más comunes son:</p>
+                <ul>
+                    <li>pF (picofaradios): 10⁻¹² F</li>
+                    <li>nF (nanofaradios): 10⁻⁹ F</li>
+                    <li>μF (microfaradios): 10⁻⁶ F</li>
+                    <li>mF (milifaradios): 10⁻³ F</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ Polaridad:</strong> Los capacitores electrolíticos tienen polaridad (+ y -). Conectarlos incorrectamente puede causar explosión.
+                </div>
+            </div>
+
+            <!-- Inductores -->
+            <div class="section">
+                <h2>🧲 Inductores</h2>
+
+                <h3>¿Qué es un Inductor?</h3>
+                <p>Un inductor es un componente que almacena energía en forma de campo magnético. Consiste en un conductor enrollado en forma de bobina.</p>
+
+                <h3>Tipos de Inductores</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Rango de Valores</th>
+                            <th>Características</th>
+                            <th>Aplicaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Aire</td>
+                            <td>nH - μH</td>
+                            <td>Sin pérdidas</td>
+                            <td>Alta frecuencia</td>
+                        </tr>
+                        <tr>
+                            <td>Núcleo de hierro</td>
+                            <td>mH - H</td>
+                            <td>Alta inductancia</td>
+                            <td>Filtros, transformadores</td>
+                        </tr>
+                        <tr>
+                            <td>Núcleo de ferrita</td>
+                            <td>μH - mH</td>
+                            <td>Buen rendimiento</td>
+                            <td>Fuentes de alimentación</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Inductancia</h3>
+                <p>La inductancia se mide en Henries (H). Las unidades más comunes son:</p>
+                <ul>
+                    <li>nH (nanohenries): 10⁻⁹ H</li>
+                    <li>μH (microhenries): 10⁻⁶ H</li>
+                    <li>mH (milihenries): 10⁻³ H</li>
+                    <li>H (henries): 1 H</li>
+                </ul>
+            </div>
+
+            <!-- Práctica -->
+            <div class="practica-section">
+                <h2>🛠️ Práctica: Uso del Multímetro</h2>
+
+                <h3>Configuración del Multímetro</h3>
+                <p>El multímetro es la herramienta más importante para medir componentes eléctricos:</p>
+
+                <h4>Medición de Resistencias</h4>
+                <ol>
+                    <li>Desconecta la resistencia del circuito</li>
+                    <li>Selecciona la escala de resistencia (Ω)</li>
+                    <li>Conecta las puntas en paralelo con la resistencia</li>
+                    <li>Lee el valor en la pantalla</li>
+                </ol>
+
+                <h4>Medición de Capacitores</h4>
+                <ol>
+                    <li>Descarga completamente el capacitor</li>
+                    <li>Selecciona la escala de capacitancia (F)</li>
+                    <li>Conecta las puntas respetando la polaridad</li>
+                    <li>Espera a que se estabilice la lectura</li>
+                </ol>
+
+                <h4>Prueba de Continuidad</h4>
+                <ol>
+                    <li>Selecciona la función de continuidad (🔊)</li>
+                    <li>Toca las puntas entre sí para verificar</li>
+                    <li>Conecta las puntas a los extremos del conductor</li>
+                    <li>El sonido indica continuidad</li>
+                </ol>
+
+                <div class="danger-box">
+                    <strong>⚠️ Seguridad:</strong> Nunca midas componentes energizados. Siempre desconecta la alimentación antes de realizar mediciones.
+                </div>
+            </div>
+
+            <!-- Ejercicios Prácticos -->
+            <div class="section">
+                <h2>🔬 Ejercicios Prácticos</h2>
+
+                <h3>Ejercicio 1: Identificación de Resistencias</h3>
+                <p><strong>Materiales necesarios:</strong></p>
+                <ul>
+                    <li>5 resistencias de diferentes valores</li>
+                    <li>Multímetro</li>
+                    <li>Tabla de códigos de colores</li>
+                </ul>
+
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Observa los colores de cada resistencia</li>
+                    <li>Determina el valor usando el código de colores</li>
+                    <li>Mide cada resistencia con el multímetro</li>
+                    <li>Compara los valores teóricos con los medidos</li>
+                    <li>Calcula el porcentaje de error</li>
+                </ol>
+
+                <h3>Ejercicio 2: Construcción de Circuito Básico</h3>
+                <p><strong>Materiales necesarios:</strong></p>
+                <ul>
+                    <li>Protoboard</li>
+                    <li>Resistencia de 220 Ω</li>
+                    <li>LED</li>
+                    <li>Batería de 9V</li>
+                    <li>Cables de conexión</li>
+                    <li>Multímetro</li>
+                </ul>
+
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Monta el circuito en el protoboard</li>
+                    <li>Mide el voltaje de la batería</li>
+                    <li>Mide la corriente del circuito</li>
+                    <li>Calcula la potencia disipada en la resistencia</li>
+                    <li>Verifica que el LED funcione correctamente</li>
+                </ol>
+
+                <h3>Ejercicio 3: Análisis de Capacitores</h3>
+                <p><strong>Materiales necesarios:</strong></p>
+                <ul>
+                    <li>3 capacitores de diferentes valores</li>
+                    <li>Multímetro con función de capacitancia</li>
+                    <li>Resistencia de 10 kΩ</li>
+                    <li>Cronómetro</li>
+                </ul>
+
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Mide la capacitancia de cada capacitor</li>
+                    <li>Construye un circuito RC de carga</li>
+                    <li>Mide el tiempo de carga de cada capacitor</li>
+                    <li>Compara con los valores teóricos</li>
+                </ol>
+            </div>
+
+            <!-- Actividades de Verificación -->
+            <div class="section">
+                <h2>✅ Actividades de Verificación</h2>
+
+                <h3>Preguntas de Repaso</h3>
+                <ol>
+                    <li>¿Cuál es la diferencia entre un componente activo y pasivo?</li>
+                    <li>Explica el código de colores de las resistencias</li>
+                    <li>¿Por qué los capacitores electrolíticos tienen polaridad?</li>
+                    <li>¿Qué precauciones debes tomar al medir componentes con multímetro?</li>
+                    <li>Calcula el valor de una resistencia con colores: Azul-Verde-Rojo-Dorado</li>
+                </ol>
+
+                <h3>Ejercicios de Identificación</h3>
+                <ol>
+                    <li>Identifica 10 componentes eléctricos en tu entorno</li>
+                    <li>Lee el código de colores de 5 resistencias diferentes</li>
+                    <li>Mide la resistencia de varios objetos conductores</li>
+                    <li>Verifica la continuidad de diferentes cables</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>💡 Consejo:</strong> Practica regularmente la identificación de componentes. La experiencia visual es crucial para el trabajo práctico en electricidad.
+                </div>
+            </div>
+
+            <!-- Herramientas y Equipos -->
+            <div class="section">
+                <h2>🔧 Herramientas y Equipos Necesarios</h2>
+
+                <h3>Herramientas Básicas</h3>
+                <ul>
+                    <li><strong>Multímetro digital:</strong> Para mediciones de voltaje, corriente y resistencia</li>
+                    <li><strong>Protoboard:</strong> Para construcción temporal de circuitos</li>
+                    <li><strong>Cables de conexión:</strong> Para interconectar componentes</li>
+                    <li><strong>Pelacables:</strong> Para preparar conexiones</li>
+                    <li><strong>Soldador:</strong> Para conexiones permanentes</li>
+                </ul>
+
+                <h3>Componentes de Práctica</h3>
+                <ul>
+                    <li>Resistencias: 100Ω, 220Ω, 1kΩ, 10kΩ, 100kΩ</li>
+                    <li>Capacitores: 100nF, 1μF, 10μF, 100μF</li>
+                    <li>LEDs de diferentes colores</li>
+                    <li>Interruptores y pulsadores</li>
+                    <li>Baterías de 9V y portabaterías</li>
+                </ul>
+
+                <h3>Equipos de Medición</h3>
+                <ul>
+                    <li>Osciloscopio (para análisis avanzado)</li>
+                    <li>Generador de funciones</li>
+                    <li>Fuente de alimentación variable</li>
+                    <li>Analizador de espectros (opcional)</li>
+                </ul>
+            </div>
+
+            <!-- Recursos Adicionales -->
+            <div class="section">
+                <h2>📚 Recursos Adicionales</h2>
+                
+                <h3>Simuladores de Circuitos</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Falstad Circuit Simulator</a></li>
+                    <li><a href="#" target="_blank">LTspice (gratuito)</a></li>
+                    <li><a href="#" target="_blank">Proteus (profesional)</a></li>
+                </ul>
+
+                <h3>Calculadoras Online</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Calculadora de código de colores</a></li>
+                    <li><a href="#" target="_blank">Calculadora de constantes de tiempo RC</a></li>
+                    <li><a href="#" target="_blank">Calculadora de inductancia</a></li>
+                </ul>
+
+                <h3>Catálogos de Componentes</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Digikey - Catálogo completo</a></li>
+                    <li><a href="#" target="_blank">Mouser Electronics</a></li>
+                    <li><a href="#" target="_blank">RS Components</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion02.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion04.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; JMGV-PTEL 2025. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de entrada para secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar secciones
+        document.querySelectorAll('.section, .teoria-section, .practica-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Calculadora de código de colores de resistencias
+        function calculateResistance() {
+            const color1 = document.getElementById('color1').value;
+            const color2 = document.getElementById('color2').value;
+            const color3 = document.getElementById('color3').value;
+            const tolerance = document.getElementById('tolerance').value;
+            
+            const colorValues = {
+                'black': 0, 'brown': 1, 'red': 2, 'orange': 3, 'yellow': 4,
+                'green': 5, 'blue': 6, 'violet': 7, 'gray': 8, 'white': 9
+            };
+            
+            const multiplierValues = {
+                'black': 1, 'brown': 10, 'red': 100, 'orange': 1000, 'yellow': 10000,
+                'green': 100000, 'blue': 1000000, 'violet': 10000000, 'gray': 100000000,
+                'white': 1000000000, 'gold': 0.1, 'silver': 0.01
+            };
+            
+            const toleranceValues = {
+                'brown': '±1%', 'red': '±2%', 'green': '±0.5%', 'blue': '±0.25%',
+                'violet': '±0.1%', 'gray': '±0.05%', 'gold': '±5%', 'silver': '±10%'
+            };
+            
+            const firstDigit = colorValues[color1];
+            const secondDigit = colorValues[color2];
+            const multiplier = multiplierValues[color3];
+            const toleranceText = toleranceValues[tolerance];
+            
+            const value = (firstDigit * 10 + secondDigit) * multiplier;
+            
+            document.getElementById('resistanceResult').innerHTML = 
+                `Valor: ${value} Ω ${toleranceText}`;
+        }
+    </script>
+</body>
+</html>

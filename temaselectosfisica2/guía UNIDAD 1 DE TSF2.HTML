@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Unidad 1 de Física</title>
+    <style>
+        /* =========================================================
+           VARIABLES DE GAMIFICACIÓN WEB (ESTILO KAHOOT)
+           ========================================================= */
+        :root {
+            --bg-main: #f0f4f8;
+            --header-bg: #0d47a1; /* Azul Eléctrico */
+            --text-dark: #1f2937;
+            --text-light: #ffffff;
+            --card-bg: #ffffff;
+            --opt-a: #e21b3c; /* Rojo */
+            --opt-b: #1368ce; /* Azul */
+            --opt-c: #d89e00; /* Amarillo */
+            --opt-d: #26890c; /* Verde */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+
+        body { background-color: var(--bg-main); color: var(--text-dark); line-height: 1.5; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
+        /* --- ENCABEZADO --- */
+        header {
+            background: linear-gradient(135deg, var(--header-bg) 0%, #1976D2 100%);
+            color: var(--text-light); padding: 25px 20px; border-radius: 12px; 
+            margin-bottom: 25px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 15px; font-weight: 800; }
+
+        .student-info {
+            display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between;
+            background: rgba(255, 255, 255, 0.15); padding: 15px; border-radius: 8px;
+        }
+
+        .info-group { flex: 1; min-width: 150px; display: flex; align-items: center; gap: 8px; }
+        .info-group label { font-weight: 700; font-size: 1rem; white-space: nowrap; }
+        .info-group input {
+            flex: 1; background: transparent; border: none; border-bottom: 2px solid var(--text-light);
+            color: var(--text-light); font-size: 1rem; padding: 4px; outline: none; transition: border-color 0.3s;
+        }
+        .info-group input:focus { border-bottom-color: #64B5F6; }
+        .info-group input::placeholder { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+
+        /* --- TARJETAS DE PREGUNTAS --- */
+        .question-card {
+            background-color: var(--card-bg); padding: 20px; border-radius: 10px;
+            margin-bottom: 20px; box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--header-bg); transition: all 0.3s ease;
+        }
+
+        /* Bloqueo Visual */
+        .question-card.locked { opacity: 0.75; border-left-color: #9ca3af; filter: grayscale(15%); }
+
+        .question-text { font-size: 1.15rem; font-weight: 700; margin-bottom: 15px; }
+
+        /* --- OPCIONES (BOTONES TIPO KAHOOT) --- */
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        .option-label {
+            display: flex; align-items: center; padding: 12px; border-radius: 8px;
+            color: white; font-weight: 700; font-size: 1rem; cursor: pointer;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.2); transition: transform 0.1s, filter 0.2s;
+        }
+
+        .option-label:hover:not(.disabled) { filter: brightness(1.1); transform: translateY(-2px); }
+        .option-label:active:not(.disabled) { transform: translateY(2px); box-shadow: none; }
+        
+        .option-label.disabled { cursor: not-allowed; box-shadow: none; transform: none; opacity: 0.8; }
+        .option-label input[type="radio"] { margin-right: 12px; transform: scale(1.3); cursor: inherit; }
+
+        .opt-0 { background-color: var(--opt-a); }
+        .opt-1 { background-color: var(--opt-b); }
+        .opt-2 { background-color: var(--opt-c); }
+        .opt-3 { background-color: var(--opt-d); }
+
+        /* --- BOTÓN FINAL --- */
+        .submit-btn {
+            display: block; width: 100%; padding: 15px; font-size: 1.3rem; font-weight: 800;
+            background-color: var(--header-bg); color: white; border: none; border-radius: 8px;
+            cursor: pointer; margin-top: 30px; box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+        .submit-btn:hover { background-color: #082F6E; }
+
+        #result-container {
+            margin-top: 20px; padding: 20px; background-color: #d1fae5; color: #065f46;
+            border-radius: 8px; font-size: 1.4rem; text-align: center; font-weight: 800; display: none;
+        }
+
+        .footer-text { text-align: center; margin-top: 30px; color: #6b7280; font-size: 0.85rem; font-weight: bold; }
+
+        /* =========================================================
+           SÚPER COMPRESIÓN PARA PDF (30 PREGUNTAS EN 2 HOJAS MÁXIMO)
+           ========================================================= */
+        @media print {
+            @page { size: letter; margin: 0.7cm; } /* Margen ultra mínimo */
+            
+            body { background-color: white; color: black; font-size: 7.5pt; line-height: 1.1; }
+            .container { width: 100%; max-width: none; padding: 0; }
+            
+            /* Encabezado puramente textual */
+            header { 
+                background: white !important; color: black !important; box-shadow: none; 
+                border-radius: 0; padding: 0; margin-bottom: 5px; text-align: left;
+            }
+            h1 { font-size: 12pt; margin-bottom: 4px; border-bottom: 1.5px solid black; padding-bottom: 2px; }
+            
+            /* Identificación en una sola línea */
+            .student-info { background: none; padding: 0; gap: 6px; margin-bottom: 8px; flex-wrap: nowrap;}
+            .info-group label { color: black; font-size: 8pt; font-weight: bold;}
+            .info-group input { border: none; border-bottom: 1px solid black; color: black; font-size: 8pt; padding: 0; height: 12px; }
+            .info-group input::placeholder { color: transparent; }
+            
+            /* ESTRATEGIA CLAVE: Dividir contenedor general en 2 columnas exactas */
+            #questions-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 12px;
+                row-gap: 4px;
+            }
+
+            /* Quitar bordes y sombras para ahorrar espacio y tinta */
+            .question-card { 
+                box-shadow: none; border: none; border-bottom: 0.5px dashed #ccc; 
+                border-left: none; padding: 4px 0; margin-bottom: 0; 
+                page-break-inside: avoid; break-inside: avoid; 
+                opacity: 1 !important; filter: none !important;
+            }
+            .question-text { font-size: 8pt; margin-bottom: 2px; font-weight: bold; }
+            
+            /* Opciones comprimidas en 2 mini-columnas */
+            .options-grid { display: flex; flex-wrap: wrap; gap: 2px; }
+            .option-label { 
+                background: transparent !important; color: black !important; 
+                border: none; box-shadow: none; padding: 0; width: 48%;
+                font-size: 7.5pt; font-weight: normal; opacity: 1 !important;
+            }
+            .option-label input[type="radio"] { transform: scale(0.8); margin-right: 4px; }
+
+            /* Ocultar botones de web */
+            .submit-btn, #result-container { display: none !important; }
+            .footer-text { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .options-grid { grid-template-columns: 1fr; }
+            .student-info { flex-direction: column; }
+            .info-group { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Guia de Temas Selectos de Física</h1>
+        <div class="student-info">
+            <div class="info-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Requerido" autocomplete="off">
+            </div>
+            <div class="info-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Requerido" autocomplete="off">
+            </div>
+            <div class="info-group">
+                <label for="semestre">Semestre:</label>
+                <input type="text" id="semestre" name="semestre" autocomplete="off">
+            </div>
+            <div class="info-group">
+                <label for="fecha">Fecha:</label>
+                <input type="text" id="fecha" name="fecha" autocomplete="off">
+            </div>
+        </div>
+    </header>
+
+    <form id="quiz-form">
+        <div id="questions-container"></div>
+        <button type="button" class="submit-btn" onclick="calificarExamen()">calificar guía</button>
+        <div id="result-container"></div>
+    </form>
+    
+    <div class="footer-text">
+        &copy; 2026 JMGV-PTEL Programa de TEMAS SELECTOS DE FÍSICA. Todos los derechos reservados.
+    </div>
+</div>
+
+<script>
+    // =========================================================================
+    // BANCO DE 30 PREGUNTAS (Las 10 del usuario + 20 adicionales de alto nivel)
+    // Nota: El texto "1. ", "2. ", etc., se eliminó para poder barajarlas dinámicamente.
+    // En la base de datos, el índice 0 del arreglo 'options' es siempre el correcto inicialmente.
+    // El script mezclará estas opciones antes de mostrarlas.
+    // =========================================================================
+    let quizData = [
+        // Las 10 preguntas originales del usuario
+        { q: "De acuerdo con la Ley de Coulomb, si la distancia entre dos cargas puntuales eléctricas se reduce a la mitad, ¿qué ocurre con la magnitud de la fuerza de atracción o repulsión entre ellas?", options: ["Se cuadruplica", "Se reduce a la cuarta parte", "Se duplica", "Permanece igual"], correct: 0 },
+        { q: "¿Qué partícula subatómica es la principal responsable de que un material conductor adquiera una carga eléctrica neta negativa al ser frotado?", options: ["El electrón, porque se transfiere entre materiales", "El protón, porque viaja desde el núcleo", "El neutrón, porque adquiere polaridad", "El positrón, porque se aniquila con la materia"], correct: 0 },
+        { q: "Por convención física, la dirección de las líneas de un Campo Eléctrico en un punto del espacio siempre se define como la dirección de la fuerza que experimentaría:", options: ["Una carga de prueba positiva", "Una carga de prueba negativa", "Un campo magnético perpendicular", "Un neutrón en reposo"], correct: 0 },
+        { q: "¿Qué magnitud física describe correctamente la Fuerza Electromotriz (FEM) proporcionada por una batería?", options: ["La energía suministrada por cada unidad de carga que la atraviesa", "La fuerza mecánica que empuja los cables del circuito", "La resistencia interna del propio generador", "La velocidad con la que fluyen los electrones en el circuito"], correct: 0 },
+        { q: "Según la Ley de Ohm, si en un componente resistivo se duplica el voltaje aplicado manteniendo su resistencia constante, ¿qué sucederá con la corriente eléctrica?", options: ["Se duplica de manera directamente proporcional", "Se reduce a la mitad de forma inversamente proporcional", "Se cuadruplica debido al efecto Joule", "Permanece constante sin importar el voltaje"], correct: 0 },
+        { q: "En un circuito donde tres focos (resistencias) están conectados estrictamente en SERIE, ¿qué parámetro eléctrico es idéntico para los tres?", options: ["La corriente eléctrica (Amperaje)", "La caída de voltaje (Voltaje)", "La potencia disipada (Vataje)", "La resistencia total (Ohmios)"], correct: 0 },
+        { q: "Al conectar múltiples resistencias eléctricas en PARALELO, la resistencia equivalente total del circuito siempre será:", options: ["Menor que la resistencia individual más pequeña del circuito", "Mayor que la resistencia más grande del circuito", "Exactamente igual a la suma aritmética de todas las resistencias", "El promedio exacto de las resistencias conectadas"], correct: 0 },
+        { q: "La Ley de Corrientes de Kirchhoff (LCK) establece que la suma de las corrientes que entran a un nodo es igual a la suma de las corrientes que salen. Esto es una consecuencia directa del principio de:", options: ["Conservación de la carga eléctrica", "Conservación de la energía mecánica", "Conservación de la masa inercial", "La Ley de Faraday"], correct: 0 },
+        { q: "La Ley de Voltajes de Kirchhoff (LVK) indica que en cualquier lazo o malla cerrada, la suma algebraica de los voltajes es igual a cero. Este postulado se fundamenta en el principio de:", options: ["Conservación de la energía", "Conservación de la carga", "Atracción magnética", "Resistencia de materiales"], correct: 0 },
+        { q: "Tienes tres cargas alineadas horizontalmente: q1 (Positiva) a la izquierda, q2 (Negativa) en el centro, y q3 (Positiva) a la derecha. ¿Qué tipo de fuerza electromagnética experimenta la carga central q2?", options: ["Atracción hacia ambas cargas laterales (q1 y q3)", "Repulsión hacia ambas cargas laterales (q1 y q3)", "Atracción hacia q1 pero repulsión hacia q3", "Ninguna, al estar en el centro las fuerzas siempre se anulan"], correct: 0 },
+        
+        // 20 Preguntas complementarias de Electricidad y Magnetismo
+        { q: "¿Cuál es la unidad de medida en el Sistema Internacional (SI) para la Resistencia Eléctrica?", options: ["Ohmios (Ω)", "Voltios (V)", "Amperios (A)", "Vatios (W)"], correct: 0 },
+        { q: "La potencia eléctrica, que indica la cantidad de energía transferida o convertida por unidad de tiempo, se mide en:", options: ["Vatios (Watts)", "Julios (J)", "Voltios (V)", "Culombios (C)"], correct: 0 },
+        { q: "¿Qué instrumento se utiliza para medir la diferencia de potencial y cómo debe conectarse en el circuito?", options: ["Voltímetro en paralelo", "Voltímetro en serie", "Amperímetro en paralelo", "Amperímetro en serie"], correct: 0 },
+        { q: "Para medir la corriente eléctrica que fluye a través de un componente, se usa un amperímetro conectado obligatoriamente en:", options: ["Serie", "Paralelo", "Mixto", "Cortocircuito"], correct: 0 },
+        { q: "¿Cómo se calcula la resistencia equivalente de tres resistencias conectadas en serie?", options: ["Sumando sus valores algebraicamente (R1 + R2 + R3)", "Sumando los inversos de sus valores", "Multiplicando sus valores", "Calculando el promedio de sus valores"], correct: 0 },
+        { q: "Un material que no permite el flujo libre de electrones debido a que sus electrones están fuertemente ligados a sus átomos se clasifica como:", options: ["Aislante o dieléctrico", "Conductor", "Semiconductor", "Superconductor"], correct: 0 },
+        { q: "El fenómeno físico por el cual un globo adquiere carga estática al ser frotado contra el cabello se conoce como:", options: ["Efecto triboeléctrico", "Efecto Joule", "Inducción magnética", "Efecto fotoeléctrico"], correct: 0 },
+        { q: "¿Cuál es el componente pasivo de un circuito diseñado específicamente para almacenar energía en forma de campo eléctrico?", options: ["Capacitor (Condensador)", "Inductor (Bobina)", "Resistencia", "Diodo LED"], correct: 0 },
+        { q: "¿Qué establece el Efecto Joule cuando una corriente eléctrica atraviesa un conductor que posee resistencia?", options: ["Parte de la energía eléctrica se transforma en calor", "El conductor se enfría proporcionalmente al voltaje", "Se genera una fuerza nuclear débil", "La resistencia del material cae a cero absoluto"], correct: 0 },
+        { q: "En un circuito de corriente alterna (CA), a diferencia de la corriente directa (CD), el flujo de electrones:", options: ["Cambia de dirección periódicamente", "Fluye en una sola dirección constante", "Se detiene completamente en las resistencias", "Fluye a la velocidad de la luz"], correct: 0 },
+        { q: "Al acercar dos imanes enfrentando sus respectivos polos norte, la fuerza resultante será magnéticamente de:", options: ["Repulsión", "Atracción", "Atracción solo si existe corriente", "Nula (no interactúan)"], correct: 0 },
+        { q: "¿Qué destacado físico demostró experimentalmente que un campo magnético variable en el tiempo puede inducir una corriente eléctrica (Inducción Electromagnética)?", options: ["Michael Faraday", "Georg Simon Ohm", "Alessandro Volta", "André-Marie Ampère"], correct: 0 },
+        { q: "Si un circuito eléctrico presenta un 'cortocircuito', significa operativamente que:", options: ["La corriente encuentra un camino de muy baja resistencia, elevando su flujo de forma peligrosa", "El circuito se quedó sin fuente de energía", "Las resistencias instaladas son demasiado altas", "El voltaje cambia de polaridad"], correct: 0 },
+        { q: "¿Cuál es el valor aproximado de la constante de Coulomb (k) en el vacío?", options: ["9 x 10^9 N·m²/C²", "8.85 x 10^-12 C²/N·m²", "6.67 x 10^-11 N·m²/kg²", "3.14 x 10^8 N·m/C"], correct: 0 },
+        { q: "Físicamente, la capacidad de un cable material para oponerse al paso de la corriente eléctrica depende de:", options: ["Su resistividad intrínseca, longitud y área transversal", "Solo de su temperatura ambiental", "Exclusivamente del voltaje que le aplique la batería", "Su peso molecular y densidad magnética"], correct: 0 },
+        { q: "¿Qué regla mnemotécnica se utiliza clásicamente para determinar la dirección del campo magnético concéntrico generado por un cable recto que transporta corriente?", options: ["Regla de la mano derecha", "Regla de la mano izquierda", "Ley de Lenz", "Regla de las mallas de Kirchhoff"], correct: 0 },
+        { q: "En un condensador de placas paralelas, si se introduce un material aislante (dieléctrico) entre las placas, ¿qué le ocurre a su capacitancia?", options: ["Aumenta", "Disminuye", "Permanece exactamente igual", "Se vuelve negativa"], correct: 0 },
+        { q: "Convencionalmente, las líneas de campo magnético producidas por un imán de barra siempre viajan de:", options: ["El Polo Norte hacia el Polo Sur", "El Polo Sur hacia el Polo Norte", "El Polo Este hacia el Polo Oeste", "La Carga Positiva a la Negativa"], correct: 0 },
+        { q: "Según la Ley de Ohm, la fórmula matemática correcta que relaciona voltaje (V), corriente (I) y resistencia (R) es:", options: ["V = I * R", "I = V * R", "R = V * I", "V = I / R"], correct: 0 },
+        { q: "Imagina que dos cargas eléctricas de 1 Coulomb cada una se separan a exactamente 1 metro de distancia en el vacío. La fuerza entre ellas sería enorme, calculada en:", options: ["9 x 10^9 Newtons", "1 Newton", "0 Newtons", "100 Newtons"], correct: 0 }
+    ];
+
+    // =========================================================================
+    // ALGORITMOS DE ALEATORIEDAD
+    // =========================================================================
+
+    // 1. Barajar el orden de las preguntas del examen
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+    
+    shuffleArray(quizData);
+
+    // 2. Barajar las opciones DENTRO de cada pregunta sin perder la correcta
+    quizData.forEach((q) => {
+        let optionsWithIndex = q.options.map((opt, index) => {
+            return { text: opt, isCorrect: (index === q.correct) };
+        });
+
+        shuffleArray(optionsWithIndex);
+
+        q.options = optionsWithIndex.map(opt => opt.text);
+        q.correct = optionsWithIndex.findIndex(opt => opt.isCorrect);
+    });
+
+    const container = document.getElementById('questions-container');
+
+    // 3. Renderizar las 30 preguntas dinámicamente enumeradas
+    quizData.forEach((q, index) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `card-${index}`;
+        
+        let optionsHTML = '';
+        q.options.forEach((opt, i) => {
+            optionsHTML += `
+                <label class="option-label opt-${i}">
+                    <input type="radio" name="q${index}" value="${i}" onclick="validarYBloquear(event, ${index})">
+                    <span>${opt}</span>
+                </label>
+            `;
+        });
+
+        // Agregamos la numeración (index + 1) dinámicamente
+        card.innerHTML = `
+            <div class="question-text">${index + 1}. ${q.q}</div>
+            <div class="options-grid">
+                ${optionsHTML}
+            </div>
+        `;
+        container.appendChild(card);
+    });
+
+    // =========================================================================
+    // LÓGICA DE INTERACTIVIDAD ESTRICTA Y BLOQUEO
+    // =========================================================================
+    function validarYBloquear(event, questionIndex) {
+        const nombre = document.getElementById('nombre').value.trim();
+        const apellido = document.getElementById('apellido').value.trim();
+
+        // VALIDACIÓN: Exigir identidad
+        if (nombre === "" || apellido === "") {
+            event.preventDefault(); // Impide seleccionar el botón
+            alert("⚠️ AVISO ACADÉMICO: Es estrictamente obligatorio ingresar Nombre y Apellido completos antes de poder responder la prueba.");
+            
+            if (nombre === "") document.getElementById('nombre').focus();
+            else document.getElementById('apellido').focus();
+            return;
+        }
+
+        // BLOQUEO IRREVERSIBLE: La respuesta no se puede cambiar
+        const radioSeleccionado = event.target;
+        const nombreGrupo = radioSeleccionado.name;
+        const todosLosRadios = document.querySelectorAll(`input[name="${nombreGrupo}"]`);
+        
+        todosLosRadios.forEach(radio => {
+            if (radio !== radioSeleccionado) {
+                radio.disabled = true; // Deshabilita los inputs
+                radio.closest('.option-label').classList.add('disabled'); // Estilo opaco
+            }
+        });
+
+        // Estilo de "tarjeta respondida"
+        document.getElementById(`card-${questionIndex}`).classList.add('locked');
+    }
+
+    // =========================================================================
+    // CALIFICACIÓN FINAL
+    // =========================================================================
+    function calificarExamen() {
+        const nombre = document.getElementById('nombre').value.trim();
+        const apellido = document.getElementById('apellido').value.trim();
+        
+        if (nombre === "" || apellido === "") {
+            alert("Debes ingresar tus datos personales para calificar.");
+            return;
+        }
+
+        let score = 0;
+        let answeredCount = 0;
+
+        quizData.forEach((q, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            if (selected) {
+                answeredCount++;
+                if (parseInt(selected.value) === q.correct) {
+                    score++;
+                }
+            }
+        });
+
+        const resultDiv = document.getElementById('result-container');
+        resultDiv.style.display = 'block';
+
+        if (answeredCount < quizData.length) {
+            resultDiv.style.backgroundColor = '#fef3c7'; // Amarillo alerta
+            resultDiv.style.color = '#92400e';
+            resultDiv.innerHTML = `Atención: Solo has respondido ${answeredCount} de 30 preguntas. Completa el examen.`;
+            return;
+        }
+
+        const percentage = Math.round((score / quizData.length) * 100);
+        // Aprobar con 60% (18/30)
+        resultDiv.style.backgroundColor = score >= 18 ? '#d1fae5' : '#fee2e2';
+        resultDiv.style.color = score >= 18 ? '#065f46' : '#991b1b';
+        resultDiv.innerHTML = `Examen completado por: ${nombre} ${apellido}<br>Tu calificación final es: ${score} de 30 (${percentage}%)`;
+        
+        // Deshabilitar el botón de entrega
+        document.querySelector('.submit-btn').disabled = true;
+    }
+</script>
+
+</body>
+</html>

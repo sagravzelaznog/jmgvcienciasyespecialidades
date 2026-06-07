@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: Electricidad Dinámica - Conceptos Básicos de Electricidad</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para la sesión 3 */
+        .header {
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+        }
+        .activity {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+        }
+        h2 {
+            color: #2e7d32;
+        }
+        .home-link {
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+        }
+        .home-link:hover {
+            opacity: 0.9;
+        }
+        .tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #43a047;
+        }
+        .circuit-path {
+            fill: none;
+            stroke: #ff9800;
+            stroke-width: 3;
+            stroke-dasharray: 10,5;
+            animation: dash 10s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 1000;
+            }
+        }
+        .electron {
+            animation: move 2s linear infinite;
+        }
+        @keyframes move {
+            to {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">← Volver al índice</a>
+    
+    <div class="header">
+        <h1>Electricidad Dinámica</h1>
+        <p>Sesión 3 - Módulo 1: Introducción a la Electricidad</p>
+    </div>
+
+    <div class="section">
+        <h2>Objetivo específico</h2>
+        <p>Comprender los principios fundamentales de la electricidad dinámica y su diferencia con la electricidad estática, identificando ejemplos cotidianos de su aplicación.</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#f1f8e9"/>
+                
+                <!-- Batería -->
+                <rect x="50" y="80" width="40" height="60" fill="#e0e0e0" rx="2"/>
+                <rect x="55" y="85" width="30" height="50" fill="#4caf50" rx="1"/>
+                <rect x="90" y="100" width="10" height="20" fill="#9e9e9e"/>
+                
+                <!-- Cable -->
+                <path d="M100 110 H 200" stroke="#9e9e9e" stroke-width="8" fill="none"/>
+                
+                <!-- Foco -->
+                <circle cx="250" cy="110" r="25" fill="#ffeb3b" filter="url(#glow)">
+                    <animate attributeName="r" values="25;28;25" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <path d="M250 85 L250 60" stroke="#9e9e9e" stroke-width="3" fill="none"/>
+                
+                <!-- Electrones en movimiento -->
+                <circle cx="120" cy="110" r="4" fill="#2196f3" class="electron">
+                    <animate attributeName="cx" values="120;280;120" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="150" cy="110" r="4" fill="#2196f3" class="electron">
+                    <animate attributeName="cx" values="150;310;150" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+                </circle>
+                
+                <defs>
+                    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="5" result="glow"/>
+                        <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+                    </filter>
+                </defs>
+                
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Circuito Eléctrico Simple</text>
+                <text x="70" y="170" text-anchor="middle" font-size="12">Batería</text>
+                <text x="250" y="170" text-anchor="middle" font-size="12">Foco</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Contenido teórico</h2>
+        <p>La electricidad dinámica es el flujo ordenado de electrones a través de un conductor en un circuito cerrado. A diferencia de la electricidad estática, en la electricidad dinámica los electrones se mueven de manera continua y controlada.</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#f1f8e9"/>
+                
+                <!-- Átomo con electrones en movimiento -->
+                <circle cx="200" cy="100" r="40" fill="none" stroke="#4caf50" stroke-width="2"/>
+                <circle cx="200" cy="100" r="5" fill="#4caf50"/>
+                
+                <!-- Electrones orbitando -->
+                <g class="atom">
+                    <circle cx="170" cy="70" r="6" fill="#2196f3">
+                        <animate attributeName="cx" values="170;230;170" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="cy" values="70;130;70" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="230" cy="130" r="6" fill="#2196f3">
+                        <animate attributeName="cx" values="230;170;230" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="cy" values="130;70;130" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                </g>
+                
+                <!-- Flechas de corriente -->
+                <path d="M270 100 L350 100" stroke="#4caf50" stroke-width="3" marker-end="url(#arrow)">
+                    <animate attributeName="stroke-dashoffset" values="0;20" dur="1s" repeatCount="indefinite"/>
+                </path>
+                
+                <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#4caf50"/>
+                    </marker>
+                </defs>
+                
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">De Átomos a Corriente Eléctrica</text>
+                <text x="100" y="180" text-anchor="middle" font-size="12">Electrones en movimiento</text>
+                <text x="310" y="180" text-anchor="middle" font-size="12">Corriente eléctrica</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Ejemplo ilustrativo</h2>
+        <p>Imagina un sistema de riego: el agua en la tubería es como los electrones en un cable. La bomba de agua sería la batería (fuente de energía), la presión del agua sería el voltaje, y la cantidad de agua que fluye sería la corriente eléctrica. Si abres el grifo (cerrando el circuito), el agua fluye (corriente eléctrica).</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="250" fill="#e3f2fd"/>
+                
+                <!-- Depósito de agua -->
+                <rect x="50" y="50" width="100" height="150" fill="#bbdefb" stroke="#64b5f6" stroke-width="2"/>
+                <rect x="50" y="50" width="100" height="100" fill="#42a5f5">
+                    <animate attributeName="height" values="100;150;100" dur="5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="50;0;50" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                
+                <!-- Tubería -->
+                <rect x="150" y="120" width="200" height="30" fill="#9e9e9e"/>
+                <rect x="150" y="120" width="200" height="10" fill="#2196f3">
+                    <animate attributeName="x" values="150;350;150" dur="3s" repeatCount="indefinite"/>
+                </rect>
+                
+                <!-- Grifo -->
+                <path d="M350 120 L380 120 L370 150 L360 150 Z" fill="#9e9e9e"/>
+                <path d="M365 150 L365 200" stroke="#9e9e9e" stroke-width="10" stroke-linecap="round"/>
+                
+                <!-- Gotas de agua -->
+                <circle cx="365" cy="210" r="5" fill="#2196f3">
+                    <animate attributeName="cy" values="210;230;210" dur="1s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="360" cy="220" r="4" fill="#2196f3">
+                    <animate attributeName="cy" values="220;240;220" dur="1.2s" repeatCount="indefinite" begin="0.3s"/>
+                </circle>
+                
+                <!-- Flechas explicativas -->
+                <path d="M100 30 L100 10 M90 20 L110 20" stroke="#e91e63" stroke-width="2"/>
+                <text x="110" y="15" font-size="12">Presión (Voltaje)</text>
+                
+                <path d="M200 160 L200 180 M190 170 L210 170" stroke="#e91e63" stroke-width="2"/>
+                <text x="140" y="175" font-size="12">Flujo (Corriente)</text>
+                
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Analogía del Sistema de Riego</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Actividad práctica</h2>
+        <div class="activity">
+            <h3>Experimento: Construye un Circuito Simple</h3>
+            <p><strong>Materiales:</strong> Pila de 9V, cable de cobre (pelado en los extremos), bombilla pequeña de 9V o LED con resistencia.</p>
+            <ol>
+                <li>Conecta un extremo del cable al polo positivo (+) de la pila.</li>
+                <li>Conecta el otro extremo del cable a la base de la bombilla.</li>
+                <li>Toca la parte inferior de la bombilla al polo negativo (-) de la pila.</li>
+                <li>Observa cómo se enciende la bombilla.</li>
+            </ol>
+            
+            <div class="svg-container">
+                <svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="250" fill="#f1f8e9"/>
+                    
+                    <!-- Pila -->
+                    <rect x="100" y="100" width="50" height="80" fill="#e0e0e0" rx="2"/>
+                    <rect x="105" y="105" width="40" height="70" fill="#4caf50" rx="1"/>
+                    <text x="125" y="145" text-anchor="middle" font-size="12" fill="white">9V</text>
+                    <rect x="115" y="100" width="20" height="5" fill="#9e9e9e"/>
+                    <text x="125" y="95" text-anchor="middle" font-size="10">+</text>
+                    <text x="125" y="195" text-anchor="middle" font-size="10">-</text>
+                    
+                    <!-- Cable positivo -->
+                    <path d="M150 120 L200 80" stroke="#f44336" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- Bombilla -->
+                    <circle cx="250" cy="80" r="15" fill="#ffeb3b" filter="url(#glow2)"/>
+                    <path d="M250 95 L250 120" stroke="#9e9e9e" stroke-width="3" fill="none"/>
+                    
+                    <!-- Cable negativo -->
+                    <path d="M250 140 L150 180" stroke="#2196f3" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- Electrones en movimiento -->
+                    <circle cx="170" cy="100" r="3" fill="#2196f3" class="electron">
+                        <animate attributeName="cx" values="170;230;170" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <defs>
+                        <filter id="glow2" x="-30%" y="-30%" width="160%" height="160%">
+                            <feGaussianBlur stdDeviation="3" result="glow"/>
+                            <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+                        </filter>
+                    </defs>
+                    
+                    <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Circuito Eléctrico Simple</text>
+                    <text x="125" y="220" text-anchor="middle" font-size="10">Pila de 9V</text>
+                    <text x="250" y="220" text-anchor="middle" font-size="10">Bombilla</text>
+                </svg>
+            </div>
+            
+            <div class="tip">
+                <strong>¿Qué está pasando?</strong> Al conectar todos los componentes, cierras el circuito eléctrico, permitiendo que los electrones fluyan desde el polo negativo al positivo de la pila, pasando a través de la bombilla y haciéndola encender.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Pregunta de reflexión</h2>
+        <p>Piensa en tres aparatos eléctricos que uses diariamente. ¿Cómo crees que fluye la electricidad en cada uno de ellos? ¿Qué pasaría si se interrumpe el flujo de electricidad en alguno de estos aparatos?</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#f1f8e9"/>
+                
+                <!-- Teléfono móvil -->
+                <rect x="50" y="50" width="40" height="70" rx="3" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="1"/>
+                <rect x="55" y="55" width="30" height="40" fill="#212121" rx="1"/>
+                <circle cx="70" cy="110" r="2" fill="#9e9e9e"/>
+                
+                <!-- Laptop -->
+                <rect x="150" y="80" width="80" height="50" fill="#bdbdbd" rx="2"/>
+                <rect x="155" y="85" width="70" height="30" fill="#424242"/>
+                <rect x="170" y="135" width="40" height="5" fill="#9e9e9e"/>
+                
+                <!-- Ventilador -->
+                <circle cx="320" cy="90" r="25" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="2"/>
+                <circle cx="320" cy="90" r="5" fill="#9e9e9e"/>
+                <path d="M320 65 L320 55 M320 125 L320 115 M295 90 L285 90 M355 90 L365 90" 
+                      stroke="#9e9e9e" 
+                      stroke-width="2"
+                      stroke-linecap="round">
+                    <animateTransform attributeName="transform" 
+                                    attributeType="XML"
+                                    type="rotate"
+                                    from="0 320 90"
+                                    to="360 320 90"
+                                    dur="2s"
+                                    repeatCount="indefinite"/>
+                </path>
+                
+                <text x="70" y="140" text-anchor="middle" font-size="10">Teléfono</text>
+                <text x="190" y="140" text-anchor="middle" font-size="10">Laptop</text>
+                <text x="320" y="140" text-anchor="middle" font-size="10">Ventilador</text>
+                
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Aparatos que usan Electricidad Dinámica</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="navigation-footer">
+        <a href="index.html" class="home-link">← Volver al índice</a>
+    </div>
+    <footer>
+        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,463 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 12: Mantenimiento de Sistemas Fotovoltaicos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .maintenance-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .safety-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .safety-box h4 {
+            color: #c62828;
+            margin-top: 0;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #2e7d32;
+        }
+        .practical-exercise h4 {
+            color: #1b5e20;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffa000;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .note-box {
+            background-color: #e3f2fd;
+            border-left: 3px solid #1976d2;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .checklist-item {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        .checklist-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .specs-table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 12: Mantenimiento de Sistemas Fotovoltaicos</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Conocer y aplicar los procedimientos de mantenimiento preventivo y correctivo para sistemas fotovoltaicos, incluyendo la limpieza de paneles, verificación de conexiones, diagnóstico de fallas comunes y registro de actividades para garantizar el máximo rendimiento y vida útil del sistema.</p>
+        </div>
+
+        <h2>1. Importancia del mantenimiento</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="maintenance-box">
+            <h4>1.1 Beneficios del mantenimiento regular</h4>
+            
+            <ul>
+                <li><strong>Máximo rendimiento:</strong> Los paneles sucios pueden perder hasta un 25% de su eficiencia</li>
+                <li><strong>Mayor vida útil:</strong> La detección temprana de problemas previene daños mayores</li>
+                <li><strong>Seguridad:</strong> Reduce riesgos eléctricos y estructurales</li>
+                <li><strong>Garantía:</strong> Muchos fabricantes requieren mantenimiento regular para mantener la garantía</li>
+                <li><strong>Retorno de inversión:</strong> Mejor rendimiento = mayor ahorro energético</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.ndLfNKsALJINKKQPyEILhgHaFj" alt="Mantenimiento de paneles solares" class="img-small">
+                <p><em>Limpieza y mantenimiento regular de paneles solares</em></p>
+            </div>
+            
+            <h4>1.2 Frecuencia recomendada de mantenimiento</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Componente</th>
+                    <th>Mantenimiento</th>
+                    <th>Frecuencia</th>
+                </tr>
+                <tr>
+                    <td>Paneles solares</td>
+                    <td>Limpieza e inspección visual</td>
+                    <td>Cada 6 meses</td>
+                </tr>
+                <tr>
+                    <td>Estructuras de montaje</td>
+                    <td>Verificación de anclajes y corrosión</td>
+                    <td>Anual</td>
+                </tr>
+                <tr>
+                    <td>Cableado</td>
+                    <td>Inspección de aislamiento y conexiones</td>
+                    <td>Anual</td>
+                </tr>
+                <tr>
+                    <td>Baterías (si aplica)</td>
+                    <td>Nivel de electrolito y limpieza de bornes</td>
+                    <td>Trimestral</td>
+                </tr>
+                <tr>
+                    <td>Inversor</td>
+                    <td>Limpieza de ventiladores y verificación de parámetros</td>
+                    <td>Anual</td>
+                </tr>
+                <tr>
+                    <td>Sistema de monitoreo</td>
+                    <td>Verificación de funcionamiento</td>
+                    <td>Mensual</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>2. Mantenimiento de paneles solares</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="maintenance-box">
+            <h4>2.1 Limpieza de paneles</h4>
+            
+            <p><strong>Materiales necesarios:</strong></p>
+            <ul>
+                <li>Escobilla de cerdas suaves o esponja no abrasiva</li>
+                <li>Agua desmineralizada o destilada</li>
+                <li>Jabón neutro (opcional)</li>
+                <li>Manguera con boquilla de baja presión</li>
+                <li>Escalera o pértiga extensible (para techos altos)</li>
+                <li>Guantes de goma</li>
+                <li>Gafas de protección</li>
+            </ul>
+            
+            <p><strong>Procedimiento de limpieza:</strong></p>
+            <ol>
+                <li><strong>Desconectar el sistema:</strong> Seguir el procedimiento de bloqueo/etiquetado (LOTO)</li>
+                <li><strong>Enfriar los paneles:</strong> Limpiar temprano en la mañana o al atardecer</li>
+                <li><strong>Enjuagar con agua:</strong> Eliminar polvo y suciedad suelta</li>
+                <li><strong>Lavar suavemente:</strong> Usar agua con jabón neutro si es necesario</li>
+                <li><strong>Enjuagar bien:</strong> Evitar dejar residuos de jabón</li>
+                <li><strong>Secar al aire:</strong> O usar una escobilla de goma sin raspar</li>
+            </ol>
+            
+            <div class="warning-box">
+                <h4>¡Precaución!</h4>
+                <p>Nunca uses agua fría sobre paneles calientes, podrían agrietarse. Evita limpiar cuando los paneles estén calientes al tacto.</p>
+            </div>
+            
+            <h4>2.2 Inspección visual</h4>
+            
+            <p>Buscar los siguientes problemas:</p>
+            <ul>
+                <li><strong>Grietas o roturas</strong> en las celdas o vidrio</li>
+                <li><strong>Puntos calientes</strong> (manchas oscuras)</li>
+                <li><strong>Descoloramiento</strong> o quemaduras</li>
+                <li><strong>Sellado deteriorado</strong> en los bordes</li>
+                <li><strong>Corrosión</strong> en los marcos o cajas de conexión</li>
+                <li><strong>Nidos de pájaros</strong> o excrementos persistentes</li>
+            </ul>
+            
+            <div class="tip-box">
+                <p><strong>Consejo:</strong> Usa una cámara térmica para identificar celdas calientes que pueden indicar microgrietas o fallas internas.</p>
+            </div>
+        </div>
+
+        <h2>3. Mantenimiento de componentes eléctricos</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="maintenance-box">
+            <h4>3.1 Baterías (sistemas aislados)</h4>
+            
+            <p><strong>Baterías de plomo-ácido inundadas:</strong></p>
+            <ul>
+                <li>Verificar nivel de electrolito mensualmente</li>
+                <li>Rellenar solo con agua destilada hasta el nivel indicado</li>
+                <li>Limpiar bornes con bicarbonato y agua para neutralizar la corrosión</li>
+                <li>Aplicar grasa dieléctrica después de limpiar</li>
+                <li>Verificar la tensión de flotación con multímetro</li>
+            </ul>
+            
+            <p><strong>Baterías selladas (AGM, Gel, Litio):</strong></p>
+            <ul>
+                <li>Inspeccionar visualmente en busca de abultamientos o fugas</li>
+                <li>Verificar conexiones y apriete de terminales</li>
+                <li>Medir voltaje en circuito abierto</li>
+                <li>Realizar pruebas de capacidad periódicas</li>
+            </ul>
+            
+            <h4>3.2 Inversores y reguladores</h4>
+            
+            <p><strong>Mantenimiento del inversor:</strong></p>
+            <ul>
+                <li>Limpiar rejillas de ventilación con aire comprimido</li>
+                <li>Verificar que los ventiladores funcionen correctamente</li>
+                <li>Revisar códigos de error en la pantalla</li>
+                <li>Medir voltaje de entrada/salida</li>
+                <li>Verificar conexiones de los terminales</li>
+            </ul>
+            
+            <p><strong>Mantenimiento del regulador de carga:</strong></p>
+            <ul>
+                <li>Verificar indicadores LED o pantalla</li>
+                <li>Medir voltaje de carga de las baterías</li>
+                <li>Verificar que los parámetros de carga sean los correctos</li>
+                <li>Limpiar terminales y conexiones</li>
+            </ul>
+            
+            <div class="note-box">
+                <p><strong>Nota:</strong> Consulta siempre el manual del fabricante para procedimientos específicos de mantenimiento y no realices ajustes en parámetros sin la debida capacitación.</p>
+            </div>
+            
+            <h4>3.3 Cableado y protecciones</h4>
+            
+            <ul>
+                <li><strong>Inspeccionar cables:</strong> Buscar signos de desgaste, roedores o daños por intemperie</li>
+                <li><strong>Verificar conexiones:</strong> Apretar terminales sueltos</li>
+                <li><strong>Revisar canaletas:</strong> Asegurar que estén bien fijas y sin daños</li>
+                <li><strong>Protecciones:</strong> Verificar que los fusibles estén en buen estado y sean del amperaje correcto</li>
+                <li><strong>Puesta a tierra:</strong> Medir la resistencia de tierra (debe ser <25Ω)</li>
+            </ul>
+        </div>
+
+        <h2>4. Diagnóstico de fallas comunes</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>4.1 Problemas comunes y soluciones</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Síntoma</th>
+                    <th>Posibles causas</th>
+                    <th>Solución</th>
+                </tr>
+                <tr>
+                    <td>Baja producción de energía</td>
+                    <td>Paneles sucios, sombreados, falla en cadenas, degradación</td>
+                    <td>Limpiar paneles, eliminar sombras, verificar cadenas con multímetro</td>
+                </tr>
+                <tr>
+                    <td>Inversor no enciende</td>
+                    <td>Sin alimentación CC, fusibles quemados, falla del inversor</td>
+                    <td>Verificar tensión de entrada, revisar fusibles, resetear inversor</td>
+                </tr>
+                <tr>
+                    <td>Baterías no cargan</td>
+                    <td>Regulador defectuoso, conexiones sueltas, baterías sulfatadas</td>
+                    <td>Verificar voltaje del panel, conexiones, estado de las baterías</td>
+                </tr>
+                <tr>
+                    <td>Pérdida de potencia en horas pico</td>
+                    <td>Sobrecalentamiento, sombras parciales, fallo en MPPT</td>
+                    <td>Mejorar ventilación, eliminar sombras, verificar seguimiento MPPT</td>
+                </tr>
+                <tr>
+                    <td>Ruidos anormales en inversor</td>
+                    <td>Ventiladores sucios, componentes electrónicos defectuosos</td>
+                    <td>Limpiar ventiladores, verificar condensadores inflados, contactar servicio técnico</td>
+                </tr>
+            </table>
+            
+            <h4>4.2 Uso de herramientas de diagnóstico</h4>
+            
+            <p><strong>Multímetro digital:</strong></p>
+            <ul>
+                <li>Medir voltaje de circuito abierto (Voc) y cortocircuito (Isc) de los paneles</li>
+                <li>Verificar voltaje de las baterías bajo carga y en reposo</li>
+                <li>Comprobar continuidad en cables y fusibles</li>
+            </ul>
+            
+            <p><strong>Pinza amperimétrica:</strong></p>
+            <ul>
+                <li>Medir corriente de salida de los paneles</li>
+                <li>Verificar carga/descarga de baterías</li>
+                <li>Identificar consumos fantasmas</li>
+            </ul>
+            
+            <p><strong>Analizador de redes:</strong> (para sistemas conectados a red)</p>
+            <ul>
+                <li>Verificar sincronización con la red</li>
+                <li>Medir calidad de la onda de salida</li>
+                <li>Detectar armónicos</li>
+            </ul>
+        </div>
+
+        <h2>5. Registro y documentación</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="maintenance-box">
+            <h4>5.1 Hoja de registro de mantenimiento</h4>
+            
+            <p>Mantén un registro detallado que incluya:</p>
+            <ul>
+                <li>Fecha de la inspección</li>
+                <li>Condiciones climáticas</li>
+                <li>Lecturas de producción de energía (kWh/día)</li>
+                <li>Mediciones de tensión y corriente</li>
+                <li>Acciones realizadas</li>
+                <li>Piezas reemplazadas</li>
+                <li>Observaciones y recomendaciones</li>
+                <li>Firma del técnico</li>
+            </ul>
+            
+            <div class="tip-box">
+                <p><strong>Consejo:</strong> Usa aplicaciones móviles de monitoreo que permitan registrar automáticamente el rendimiento del sistema y generen alertas ante caídas de producción.</p>
+            </div>
+            
+            <h4>5.2 Plan de mantenimiento anual</h4>
+            
+            <p>Desarrolla un calendario de mantenimiento que incluya:</p>
+            <ul>
+                <li>Limpieza estacional de paneles</li>
+                <li>Revisión pre y pos temporada de lluvias/huracanes</li>
+                <li>Verificación de parámetros eléctricos trimestral</li>
+                <li>Revisión estructural anual</li>
+                <li>Actualizaciones de firmware (inversores con conectividad)</li>
+            </ul>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos y discusiones.</p>
+            <p><strong>Ejercicio práctico:</strong> Realización de una inspección de mantenimiento a un sistema fotovoltaico simulado.</p>
+            <p><strong>Cuestionario:</strong> Responder preguntas sobre diagnóstico de fallas y procedimientos de mantenimiento.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre normativas y estándares aplicables a instalaciones fotovoltaicas en tu localidad, incluyendo códigos eléctricos y requisitos de interconexión a red.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion11.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion13.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

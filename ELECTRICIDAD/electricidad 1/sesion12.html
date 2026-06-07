@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 12: Introducción a la Ley de Ohm</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .formula-box {
+            background-color: #f0f8ff;
+            border-left: 4px solid #4a90e2;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .formula {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .analogy {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .practice-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .reflection {
+            background-color: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .interactive-ohm {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .slider-container {
+            margin: 15px 0;
+        }
+        
+        .slider-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .circuit-svg {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        /* Formula display styles */
+        .formula-display {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        /* Button container styles */
+        .button-container {
+            text-align: center;
+        }
+        
+        /* Navigation container */
+        .nav-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">← Volver al índice</a>
+    
+    <div class="header">
+        <h1>Sesión 12: Introducción a la Ley de Ohm</h1>
+        <p>Comprendiendo la relación entre voltaje, corriente y resistencia</p>
+    </div>
+
+    <div class="section">
+        <h2>Objetivo Específico</h2>
+        <p>Comprender y aplicar la Ley de Ohm para analizar circuitos eléctricos simples, calculando voltaje, corriente o resistencia cuando se conocen dos de estos valores.</p>
+        
+        <svg class="circuit-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Batería -->
+            <rect x="50" y="80" width="40" height="40" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+            <rect x="55" y="85" width="10" height="30" fill="#4caf50"/>
+            <rect x="75" y="85" width="10" height="30" fill="#f44336"/>
+            
+            <!-- Cable positivo -->
+            <line x1="90" y1="100" x2="150" y2="100" stroke="#333" stroke-width="3"/>
+            
+            <!-- Resistencia -->
+            <rect x="150" y="80" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
+            <rect x="170" y="80" width="20" height="40" fill="#8b4513"/>
+            
+            <!-- Cable negativo -->
+            <line x1="210" y1="100" x2="270" y2="100" stroke="#333" stroke-width="3"/>
+            
+            <!-- Amperímetro -->
+            <circle cx="270" cy="100" r="20" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+            <text x="270" y="105" text-anchor="middle" font-size="14">A</text>
+            
+            <!-- Regreso a la batería -->
+            <line x1="290" y1="100" x2="350" y2="100" stroke="#333" stroke-width="3"/>
+            <line x1="350" y1="100" x2="350" y2="140" stroke="#333" stroke-width="3"/>
+            <line x1="50" y1="140" x2="350" y2="140" stroke="#333" stroke-width="3"/>
+            <line x1="50" y1="100" x2="50" y2="140" stroke="#333" stroke-width="3"/>
+            
+            <!-- Voltímetro -->
+            <rect x="120" y="30" width="120" height="30" fill="#f5f5f5" stroke="#333" stroke-width="1" rx="3"/>
+            <line x1="150" y1="60" x2="150" y2="80" stroke="#333" stroke-width="2"/>
+            <line x1="210" y1="60" x2="210" y2="80" stroke="#333" stroke-width="2"/>
+            <text x="180" y="50" text-anchor="middle" font-size="14">V</text>
+            
+            <!-- Etiquetas -->
+            <text x="70" y="70" text-anchor="middle" font-size="12">Batería</text>
+            <text x="180" y="70" text-anchor="middle" font-size="12">Resistencia</text>
+            <text x="270" y="80" text-anchor="middle" font-size="12">Amperímetro</text>
+        </svg>
+    </div>
+
+    <div class="section">
+        <h2>Contenido Teórico</h2>
+        
+        <p>La Ley de Ohm establece la relación matemática entre tres magnitudes fundamentales en los circuitos eléctricos:</p>
+        
+        <div class="formula-box">
+            <div class="formula">V = I × R</div>
+            <p>Donde:</p>
+            <ul>
+                <li><strong>V</strong> = Voltaje (en voltios, V)</li>
+                <li><strong>I</strong> = Corriente (en amperios, A)</li>
+                <li><strong>R</strong> = Resistencia (en ohmios, Ω)</li>
+            </ul>
+        </div>
+        
+        <p>Esta fórmula nos permite calcular cualquiera de estas magnitudes si conocemos las otras dos. Por ejemplo:</p>
+        <ul>
+            <li>Para calcular el voltaje: <strong>V = I × R</strong></li>
+            <li>Para calcular la corriente: <strong>I = V / R</strong></li>
+            <li>Para calcular la resistencia: <strong>R = V / I</strong></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Analogía del Agua</h2>
+        
+        <div class="analogy">
+            <p>Imagina que la corriente eléctrica es como el flujo de agua en una tubería:</p>
+            
+            <svg width="100%" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Tubería -->
+                <rect x="50" y="50" width="300" height="20" fill="#8d6e63" rx="5"/>
+                
+                <!-- Agua -->
+                <rect x="50" y="50" width="300" height="20" fill="#4fc3f7" fill-opacity="0.5"/>
+                
+                <!-- Flechas de flujo -->
+                <polygon points="70,40 80,60 90,40" fill="#1976d2"/>
+                <polygon points="110,40 120,60 130,40" fill="#1976d2"/>
+                <polygon points="150,40 160,60 170,40" fill="#1976d2"/>
+                <polygon points="190,40 200,60 210,40" fill="#1976d2"/>
+                <polygon points="230,40 240,60 250,40" fill="#1976d2"/>
+                <polygon points="270,40 280,60 290,40" fill="#1976d2"/>
+                <polygon points="310,40 320,60 330,40" fill="#1976d2"/>
+                
+                <!-- Restricción (resistencia) -->
+                <rect x="220" y="30" width="20" height="60" fill="#795548" rx="3"/>
+                
+                <!-- Etiquetas -->
+                <text x="80" y="30" text-anchor="middle" font-size="12">Presión (Voltaje)</text>
+                <text x="230" y="25" text-anchor="middle" font-size="12">Válvula (Resistencia)</text>
+                <text x="340" y="30" text-anchor="middle" font-size="12">Flujo (Corriente)</text>
+            </svg>
+            
+            <ul>
+                <li><strong>Voltaje (V):</strong> Es como la presión del agua en la tubería.</li>
+                <li><strong>Corriente (I):</strong> Es como la cantidad de agua que fluye por la tubería.</li>
+                <li><strong>Resistencia (R):</strong> Es como una válvula que restringe el flujo de agua.</li>
+            </ul>
+            
+            <p>Si aumentas la presión (voltaje) o abres más la válvula (disminuyes la resistencia), fluirá más agua (corriente).</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Actividad Práctica</h2>
+        
+        <div class="practice-box">
+            <h3>Simulador de la Ley de Ohm</h3>
+            
+            <p>Ajusta los siguientes valores y observa cómo cambian los demás:</p>
+            
+            <div class="interactive-ohm">
+                <div class="slider-container">
+                    <label for="voltage">Voltaje (V): <span id="voltage-value">12</span> V</label>
+                    <input type="range" id="voltage" min="1" max="24" value="12" class="slider">
+                </div>
+                
+                <div class="slider-container">
+                    <label for="current">Corriente (I): <span id="current-value">2</span> A</label>
+                    <input type="range" id="current" min="0.1" max="10" step="0.1" value="2" class="slider">
+                </div>
+                
+                <div class="slider-container">
+                    <label for="resistance">Resistencia (R): <span id="resistance-value">6</span> Ω</label>
+                    <input type="range" id="resistance" min="1" max="100" value="6" class="slider">
+                </div>
+                
+                <div class="formula-display">
+                    V = I × R<br>
+                    <span id="formula-values">12V = 2A × 6Ω</span>
+                </div>
+                
+                <div class="button-container">
+                    <button onclick="resetSimulator()">Reiniciar</button>
+                </div>
+            </div>
+            
+            <h4>Ejercicio:</h4>
+            <ol>
+                <li>Si una batería de 9V está conectada a una resistencia de 3Ω, ¿cuánta corriente circulará por el circuito?</li>
+                <li>¿Qué resistencia se necesita para limitar la corriente a 0.5A con una batería de 6V?</li>
+                <li>Si por una resistencia de 10Ω circulan 0.3A, ¿cuál es el voltaje en sus extremos?</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Pregunta de Reflexión</h2>
+        
+        <div class="reflection">
+            <p>Imagina que tienes un circuito con una batería de 12V y dos resistencias en serie: una de 4Ω y otra de 8Ω.</p>
+            
+            <svg width="100%" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Batería -->
+                <rect x="20" y="50" width="40" height="20" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                <rect x="25" y="55" width="5" height="10" fill="#4caf50"/>
+                <rect x="50" y="55" width="5" height="10" fill="#f44336"/>
+                
+                <!-- Circuito -->
+                <line x1="60" y1="60" x2="100" y2="60" stroke="#333" stroke-width="2"/>
+                
+                <!-- Resistencia 1 -->
+                <rect x="100" y="40" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
+                <rect x="120" y="40" width="20" height="40" fill="#8b4513"/>
+                <text x="130" y="95" text-anchor="middle" font-size="12">4Ω</text>
+                
+                <line x1="160" y1="60" x2="200" y2="60" stroke="#333" stroke-width="2"/>
+                
+                <!-- Resistencia 2 -->
+                <rect x="200" y="40" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
+                <rect x="220" y="40" width="20" height="40" fill="#8b4513"/>
+                <text x="230" y="95" text-anchor="middle" font-size="12">8Ω</text>
+                
+                <line x1="260" y1="60" x2="300" y2="60" stroke="#333" stroke-width="2"/>
+                <line x1="300" y1="60" x2="300" y2="100" stroke="#333" stroke-width="2"/>
+                <line x1="60" y1="100" x2="300" y2="100" stroke="#333" stroke-width="2"/>
+                <line x1="60" y1="60" x2="60" y2="100" stroke="#333" stroke-width="2"/>
+                
+                <!-- Voltaje -->
+                <text x="40" y="40" text-anchor="middle" font-size="14">12V</text>
+            </svg>
+            
+            <ol>
+                <li>¿Cuál es la resistencia total del circuito?</li>
+                <li>¿Qué corriente circulará por el circuito?</li>
+                <li>¿Cuál será la caída de voltaje en cada resistencia?</li>
+                <li>¿Qué sucedería si una de las resistencias se desconecta?</li>
+            </ol>
+            
+            <p>Reflexiona sobre cómo se relaciona esto con lo que aprendiste en la sesión anterior sobre resistencias en serie.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Resumen y Próximos Pasos</h2>
+        
+        <p>En esta sesión has aprendido:</p>
+        <ul>
+            <li>La relación matemática entre voltaje, corriente y resistencia según la Ley de Ohm</li>
+            <li>Cómo calcular cualquiera de estas magnitudes cuando conoces las otras dos</li>
+            <li>La analogía del agua para entender los conceptos de voltaje, corriente y resistencia</li>
+            <li>Cómo analizar circuitos simples con múltiples resistencias</li>
+        </ul>
+        
+        <p>En la próxima sesión, exploraremos cómo se comportan las resistencias cuando se conectan en serie y en paralelo, y cómo esto afecta a la resistencia total del circuito.</p>
+        
+        <div class="nav-container">
+            <a href="index.html" class="button">Volver al Índice</a>
+        </div>
+    </div>
+
+    <script>
+        // Variables para el simulador
+        let voltage = 12;
+        let current = 2;
+        let resistance = 6;
+        
+        // Elementos del DOM
+        const voltageSlider = document.getElementById('voltage');
+        const currentSlider = document.getElementById('current');
+        const resistanceSlider = document.getElementById('resistance');
+        const voltageValue = document.getElementById('voltage-value');
+        const currentValue = document.getElementById('current-value');
+        const resistanceValue = document.getElementById('resistance-value');
+        const formulaValues = document.getElementById('formula-values');
+        
+        // Inicializar el simulador
+        function initSimulator() {
+            updateValues();
+            
+            // Event listeners para los controles deslizantes
+            voltageSlider.addEventListener('input', updateFromVoltage);
+            currentSlider.addEventListener('input', updateFromCurrent);
+            resistanceSlider.addEventListener('input', updateFromResistance);
+        }
+        
+        // Actualizar valores cuando cambia el voltaje
+        function updateFromVoltage() {
+            voltage = parseFloat(voltageSlider.value);
+            current = voltage / resistance;
+            updateSliders();
+            updateValues();
+        }
+        
+        // Actualizar valores cuando cambia la corriente
+        function updateFromCurrent() {
+            current = parseFloat(currentSlider.value);
+            resistance = voltage / current;
+            updateSliders();
+            updateValues();
+        }
+        
+        // Actualizar valores cuando cambia la resistencia
+        function updateFromResistance() {
+            resistance = parseFloat(resistanceSlider.value);
+            current = voltage / resistance;
+            updateSliders();
+            updateValues();
+        }
+        
+        // Actualizar los controles deslizantes
+        function updateSliders() {
+            voltageSlider.value = voltage;
+            currentSlider.value = current.toFixed(1);
+            resistanceSlider.value = resistance;
+        }
+        
+        // Actualizar los valores mostrados
+        function updateValues() {
+            voltageValue.textContent = voltage;
+            currentValue.textContent = current.toFixed(1);
+            resistanceValue.textContent = resistance;
+            formulaValues.textContent = `${voltage}V = ${current.toFixed(1)}A × ${resistance}Ω`;
+        }
+        
+        // Reiniciar el simulador
+        function resetSimulator() {
+            voltage = 12;
+            current = 2;
+            resistance = 6;
+            
+            voltageSlider.value = voltage;
+            currentSlider.value = current;
+            resistanceSlider.value = resistance;
+            
+            updateValues();
+        }
+        
+        // Inicializar el simulador cuando el documento esté listo
+        document.addEventListener('DOMContentLoaded', initSimulator);
+    </script>
+    <footer>
+        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+</body>
+</html>

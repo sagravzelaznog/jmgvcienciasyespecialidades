@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 9: Práctica Experimental FEM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="lab-sheet">
+        <header>
+            <div>
+                <h1>Sesión 9: Práctica Experimental</h1>
+                <h2>Determinación de la FEM y Resistencia Interna</h2>
+            </div>
+            <div style="text-align: right; font-weight: bold;">
+                Equipo Nº: _____ <br>
+                Fecha: _________
+            </div>
+        </header>
+
+        <div class="safety-box">
+            <span style="font-size: 1.5em; margin-right: 15px;">🥽</span>
+            <strong>SEGURIDAD PRIMERO:</strong> Aunque usaremos bajo voltaje, no introduzcas objetos metálicos en tomacorrientes. Lávate las manos después de manipular los limones/metales.
+        </div>
+
+        <div class="section-header">1. MATERIALES Y EQUIPO</div>
+        <div class="materials-grid">
+            <div class="check-item"><span class="check-box"></span> 3 Limones grandes</div>
+            <div class="check-item"><span class="check-box"></span> 3 Clavos de Zinc (o galvanizados)</div>
+            <div class="check-item"><span class="check-box"></span> 3 Monedas de Cobre (o alambre)</div>
+            <div class="check-item"><span class="check-box"></span> 1 Pila cuadrada de 9 Volts</div>
+            <div class="check-item"><span class="check-box"></span> Cables caimán</div>
+            <div class="check-item"><span class="check-box"></span> 1 Multímetro Digital</div>
+            <div class="check-item"><span class="check-box"></span> 1 LED (Cualquier color)</div>
+            <div class="check-item"><span class="check-box"></span> 1 Resistencia (aprox 100&Omega;)</div>
+        </div>
+
+        <div class="section-header">2. MARCO TEÓRICO (Hipótesis)</div>
+        <p><em>¿Crees que una pila de 9V entrega realmente 9V cuando la conectas a un foco? ¿Por qué?</em></p>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+
+        <div class="section-header">3. PROCEDIMIENTO A: La Batería Orgánica (Visualizando FEM)</div>
+        <p><strong>Paso 1:</strong> Inserta un clavo (polo -) y una moneda (polo +) en un limón. No dejes que se toquen entre sí.</p>
+        <p><strong>Paso 2:</strong> Usa el multímetro en la escala de 20V DC. Mide el voltaje. Anótalo.</p>
+        <p><strong>Paso 3:</strong> Conecta 3 limones en SERIE (Clavo de uno a Moneda del otro) y mide el total.</p>
+        
+        <table>
+            <tr>
+                <th>Configuración</th>
+                <th>Voltaje Medido (V)</th>
+                <th>¿Prende el LED?</th>
+            </tr>
+            <tr>
+                <td>1 Limón</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3 Limones (Serie)</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div class="section-header">4. PROCEDIMIENTO B: FEM vs Voltaje Real</div>
+        <p><strong>Paso 1 (Circuito Abierto):</strong> Mide el voltaje de la pila de 9V sola (sin conectar nada más). Esto se aproxima a la <strong>FEM (&epsilon;)</strong>.</p>
+        <p><strong>Paso 2 (Circuito Cerrado):</strong> Conecta la resistencia a la pila. Mientras está conectada, mide el voltaje en los polos de la pila otra vez. Este es el <strong>Voltaje Terminal (V)</strong>.</p>
+
+        <table>
+            <tr>
+                <th>Medición</th>
+                <th>Valor Obtenido</th>
+            </tr>
+            <tr>
+                <td>Voltaje sin carga (FEM &epsilon;)</td>
+                <td>____________ Volts</td>
+            </tr>
+            <tr>
+                <td>Voltaje con carga (V Terminal)</td>
+                <td>____________ Volts</td>
+            </tr>
+            <tr>
+                <td>Diferencia (&epsilon; - V)</td>
+                <td>____________ Volts (Caída)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="lab-sheet" style="margin-top: 20px;">
+        <header>
+            <div><h1>Análisis de Resultados</h1></div>
+        </header>
+
+        <div class="section-header">5. CUESTIONARIO DE ANÁLISIS</div>
+        
+        <p><strong>1. ¿Por qué el voltaje bajó cuando conectaste la resistencia a la pila de 9V?</strong> (Pista: Recuerda la analogía del "Salario Neto").</p>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+        <br>
+        
+        <p><strong>2. ¿Qué transformación de energía ocurrió dentro del limón?</strong></p>
+        <div class="input-line"></div>
+        <br>
+
+        <div class="section-header">6. RÚBRICA DE EVALUACIÓN</div>
+        <p>Evaluación del desempeño durante la práctica experimental (Según programa DGB ).</p>
+
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th width="30%">Criterio</th>
+                    <th width="20%">Excelente (2.5 pts)</th>
+                    <th width="20%">Bueno (1.5 pts)</th>
+                    <th width="20%">Debe Mejorar (0.5 pts)</th>
+                    <th width="10%">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Trabajo Colaborativo</strong></td>
+                    <td>Todos participan activamente y con respeto.</td>
+                    <td>Participan pero hay distracciones.</td>
+                    <td>Un solo alumno hace todo el trabajo.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Manejo de Instrumentos</strong></td>
+                    <td>Usa el multímetro en la escala correcta sin ayuda.</td>
+                    <td>Requiere ayuda para configurar el equipo.</td>
+                    <td>Daña fusibles o no sabe medir.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Registro de Datos</strong></td>
+                    <td>Tabla completa, unidades correctas y letra legible.</td>
+                    <td>Faltan unidades o datos incompletos.</td>
+                    <td>No registró datos durante la práctica.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Análisis y Conclusiones</strong></td>
+                    <td>Explica la caída de tensión basándose en la resistencia interna.</td>
+                    <td>Describe lo que pasó pero no explica por qué (física).</td>
+                    <td>No contestó el cuestionario.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: right; font-weight: bold;">CALIFICACIÓN FINAL:</td>
+                    <td>____/10</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="border: 2px dashed #999; padding: 15px; margin-top: 30px; text-align: center; color: #777;">
+            Espacio para sello de la institución o firma del docente
+        </div>
+
+    </div>
+    <div class="text-center mt-20 mb-20"><a href="index.html" class="btn">
+            ← Volver al índice
+        </a>
+    </div>
+
+    <footer class="fixed-footer">
+        &copy; JMGV-PTEL-2025. todos los derechos reservados
+    </footer>
+
+</body>
+</html>

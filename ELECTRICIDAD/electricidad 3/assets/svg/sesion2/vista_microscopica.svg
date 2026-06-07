@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <title>Vista Microscópica: Conductores vs Aislantes</title>
+    <style>
+        .title { font: bold 28px Arial; text-anchor: middle; fill: #2c3e50; }
+        .subtitle { font: bold 20px Arial; text-anchor: middle; fill: #34495e; }
+        .atom { opacity: 0.8; }
+        .electron { fill: #3498db; }
+        .nucleus { fill: #e74c3c; }
+        .electron-path { fill: none; stroke: #3498db; stroke-width: 1; stroke-dasharray: 3,3; }
+        .free-electron { fill: #9b59b6; }
+        .electron-flow { stroke: #9b59b6; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+        .label { font: 14px Arial; text-anchor: middle; }
+        .section-title { font: bold 18px Arial; fill: #2980b9; }
+    </style>
+    
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#9b59b6" />
+        </marker>
+        <radialGradient id="electronGlow" cx="0.5" cy="0.5" r="0.8" fx="0.25" fy="0.25">
+            <stop offset="0%" stop-color="#3498db" />
+            <stop offset="100%" stop-color="#2980b9" />
+        </radialGradient>
+    </defs>
+
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f9f9f9" />
+    
+    <!-- Título -->
+    <text x="400" y="40" class="title">Vista Microscópica</text>
+    <text x="400" y="70" class="subtitle">Estructura atómica de conductores y aislantes</text>
+    
+    <!-- Línea divisoria -->
+    <line x1="50" y1="100" x2="750" y2="100" stroke="#3498db" stroke-width="2" />
+    
+    <!-- Sección de Conductor -->
+    <rect x="50" y="120" width="340" height="420" rx="10" fill="white" stroke="#f1c40f" stroke-width="2" />
+    <text x="220" y="150" class="section-title">ESTRUCTURA DE UN CONDUCTOR</text>
+    
+    <!-- Átomo de cobre (simplificado) -->
+    <g transform="translate(150, 200)">
+        <!-- Núcleo -->
+        <circle cx="60" cy="80" r="30" class="nucleus" />
+        <text x="60" y="85" class="label" fill="white" font-weight="bold">+29</text>
+        
+        <!-- Capas de electrones -->
+        <circle cx="60" cy="80" r="60" fill="none" stroke="#bdc3c7" stroke-width="1" stroke-dasharray="5,5" />
+        <circle cx="60" cy="80" r="100" fill="none" stroke="#bdc3c7" stroke-width="1" stroke-dasharray="5,5" />
+        
+        <!-- Electrones fijos -->
+        <g class="atom">
+            <circle cx="60" cy="20" r="8" class="electron" />
+            <circle cx="100" cy="50" r="8" class="electron" />
+            <circle cx="90" cy="100" r="8" class="electron" />
+            <circle cx="30" cy="100" r="8" class="electron" />
+            <circle cx="20" cy="50" r="8" class="electron" />
+        </g>
+        
+        <!-- Electrones libres -->
+        <circle cx="200" cy="80" r="8" class="free-electron" filter="url(#electronGlow)">
+            <animate attributeName="cx" values="200;250;200;150;200" dur="5s" repeatCount="indefinite" />
+            <animate attributeName="cy" values="80;100;150;100;80" dur="5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="250" cy="150" r="8" class="free-electron" filter="url(#electronGlow)">
+            <animate attributeName="cx" values="250;200;150;200;250" dur="7s" repeatCount="indefinite" />
+            <animate attributeName="cy" values="150;100;150;200;150" dur="7s" repeatCount="indefinite" />
+        </circle>
+        
+        <!-- Flujo de electrones -->
+        <path d="M60,20 Q100,30 120,60" class="electron-flow" stroke-dasharray="5,3">
+            <animate attributeName="stroke-dashoffset" from="0" to="20" dur="2s" repeatCount="indefinite" />
+        </path>
+        
+        <text x="150" y="250" class="label" text-anchor="middle">Electrones libres</text>
+        <text x="150" y="270" class="label" text-anchor="middle">pueden moverse fácilmente</text>
+    </g>
+    
+    <!-- Sección de Aislante -->
+    <rect x="410" y="120" width="340" height="420" rx="10" fill="white" stroke="#2ecc71" stroke-width="2" />
+    <text x="580" y="150" class="section-title">ESTRUCTURA DE UN AISLANTE</text>
+    
+    <!-- Átomo de plástico (simplificado) -->
+    <g transform="translate(510, 200)">
+        <!-- Núcleo -->
+        <circle cx="60" cy="80" r="30" class="nucleus" />
+        <text x="60" y="85" class="label" fill="white" font-weight="bold">+6</text>
+        
+        <!-- Capas de electrones -->
+        <circle cx="60" cy="80" r="60" fill="none" stroke="#bdc3c7" stroke-width="1" stroke-dasharray="5,5" />
+        
+        <!-- Electrones fuertemente unidos -->
+        <g class="atom">
+            <circle cx="60" cy="20" r="8" class="electron">
+                <animate attributeName="cx" values="57;63;60;57" dur="3s" repeatCount="indefinite" />
+                <animate attributeName="cy" values="23;17;20;23" dur="3s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="100" cy="50" r="8" class="electron">
+                <animate attributeName="cx" values="97;103;100;97" dur="4s" repeatCount="indefinite" />
+                <animate attributeName="cy" values="53;47;50;53" dur="4s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="90" cy="100" r="8" class="electron">
+                <animate attributeName="cx" values="87;93;90;87" dur="5s" repeatCount="indefinite" />
+                <animate attributeName="cy" values="103;97;100;103" dur="5s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="30" cy="100" r="8" class="electron">
+                <animate attributeName="cx" values="27;33;30;27" dur="3.5s" repeatCount="indefinite" />
+                <animate attributeName="cy" values="103;97;100;103" dur="3.5s" repeatCount="indefinite" />
+            </circle>
+        </g>
+        
+        <!-- Enlaces covalentes -->
+        <line x1="60" y1="80" x2="150" y2="50" stroke="#2ecc71" stroke-width="2" stroke-dasharray="5,3" />
+        <line x1="60" y1="80" x2="150" y2="110" stroke="#2ecc71" stroke-width="2" stroke-dasharray="5,3" />
+        
+        <text x="150" y="250" class="label" text-anchor="middle">Electrones fuertemente</text>
+        <text x="150" y="270" class="label" text-anchor="middle">unidos al núcleo</text>
+    </g>
+    
+    <!-- Comparación -->
+    <rect x="150" y="480" width="500" height="80" rx="10" fill="#f8f9fa" stroke="#ddd" />
+    <text x="400" y="505" class="subtitle" font-size="16">¿Por qué los conductores conducen la electricidad?</text>
+    <text x="400" y="530" class="item-text" text-anchor="middle">Los conductores tienen electrones libres que pueden moverse fácilmente,</text>
+    <text x="400" y="550" class="item-text" text-anchor="middle">mientras que en los aislantes los electrones están fuertemente unidos a sus átomos.</text>
+    
+    <!-- Pie de página -->
+    <text x="400" y="590" class="item-text" text-anchor="middle" font-style="italic">Visualización microscópica - Sesión 2: Estructura atómica</text>
+</svg>

@@ -1,0 +1,16 @@
+- crea un archivo html con el nombre de la sesion correspondiente con la siguiente Estructura esperada por sesión:
+- Título de la sesión
+- Objetivo específico
+- Contenido teórico breve
+- Ejemplo visual o analogía
+- Actividad práctica o ejercicio guiado
+- Pregunta de reflexión o repaso
+- Recurso visual sugerido (SVG interactivo, esquema, simulador)
+- Crea el archivo de la sesion basado en la plantilla template.html
+- Desarrolla la sesion combinando teoría, práctica y repaso.
+- Usa lenguaje claro, analogías visuales y ejemplos cotidianos.
+- Sugiere recursos SVG interactivos para cada sesión, que puedan integrarse en plataformas web, Inkscape o CNC.
+- El programa debe ser adaptable para aula, autoaprendizaje o formato gamificado
+-agrega un pie de pagina  con  el  texto " &copy. JMGV-PTEL 2025. TODOS LOS DERECHOS RESERVADOS."
+recuerda vincular al archivo index.html y los estilos css ademas un pie de pagina con  "&copy; JMGV-PTEL 2025 - Todos los derechos reservados".
+empecemos creando el archivo de la Sesión 16: Integración de Conceptos II

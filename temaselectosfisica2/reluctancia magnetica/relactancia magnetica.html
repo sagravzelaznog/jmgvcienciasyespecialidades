@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass: Reluctancia Magnética</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+					window.MathJax = {
+									tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+					};
+	</script>			
+</head>
+<body>
+
+    <header>
+        <div class="container text-center">
+            <h1>Reluctancia Magnética</h1>
+            <p class="subtitle">El arte de guiar campos invisibles: Desde la teoría hasta los aerogeneradores</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="module">
+            <h2>1. El Paradigma de la Oposición</h2>
+            <p>Imagina que eres un arquitecto diseñando un pasillo. Si el pasillo es ancho y sin obstáculos, la gente fluye fácilmente. Si es estrecho o está lleno de escombros, hay resistencia. En la física del electromagnetismo, los materiales se comportan como esos pasillos frente al flujo magnético.</p>
+            <p>La <strong>reluctancia magnética</strong> es la oposición que presenta un material al paso del flujo magnético. Es el equivalente exacto a la resistencia eléctrica en un circuito eléctrico.</p>
+        </section>
+
+        <section class="module math-section">
+            <h2>2. La Naturaleza Matemática del Material</h2>
+            <p>La reluctancia depende de la geometría y la naturaleza del material (su permeabilidad). La fórmula fundamental es:</p>
+            <div class="formula-box">
+                <p>$$ \mathcal{R} = \frac{l}{\mu A} $$</p>
+            </div>
+            <ul>
+                <li><strong>l:</strong> Longitud del circuito magnético.</li>
+                <li><strong>&mu;:</strong> Permeabilidad magnética del material.</li>
+                <li><strong>A:</strong> Área de la sección transversal.</li>
+            </ul>
+            <p>También, basándonos en la Ley de Hopkinson (la "Ley de Ohm magnética"), podemos definirla relacionando la fuerza magnetomotriz y el flujo magnético:</p>
+            <div class="formula-box">
+                <p>$$ \mathcal{R} = \frac{\mathcal{F}}{\Phi} $$</p>
+            </div>
+        </section>
+
+        <section class="module visual-section">
+            <h2>3. Visualización del Circuito Magnético</h2>
+            <p>Observa el siguiente circuito magnético. La mayor reluctancia siempre se encuentra en el "entrehierro" (el espacio de aire), ya que el aire tiene una permeabilidad magnética muy baja en comparación con el núcleo de hierro.</p>
+            
+            <div class="svg-container">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 50 50 L 350 50 L 350 250 L 220 250 L 220 200 L 300 200 L 300 100 L 100 100 L 100 200 L 180 200 L 180 250 L 50 250 Z" fill="#94a3b8" stroke="#1e293b" stroke-width="4"/>
+                    
+                    <text x="200" y="75" font-family="Inter" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Núcleo Ferromagnético (Baja Reluctancia)</text>
+                    
+                    <path d="M 40 120 Q 110 110 110 130 Q 40 140 40 150 Q 110 140 110 160 Q 40 170 40 180" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+                    <text x="-10" y="55" font-family="Inter" font-size="14" font-weight="bold" fill="#f59e0b">Bobina (FMM)</text>
+                    
+                    <rect x="180" y="240" width="40" height="20" fill="#f4f7f6" stroke="#ef4444" stroke-width="2" stroke-dasharray="4"/>
+                    <text x="200" y="280" font-family="Inter" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">Entrehierro (Alta Reluctancia)</text>
+                    
+                    <path d="M 75 150 L 75 75 L 325 75 L 325 225 L 200 225" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="5 5"/>
+                    <text x="325" y="150" font-family="Inter" font-size="14" font-weight="bold" fill="#0284c7" text-anchor="start">Flujo (&Phi;)</text>
+                </svg>
+            </div>
+        </section>
+
+        <section class="module">
+            <h2>4. Aplicación en Aerogeneradores</h2>
+            <p>Como especialistas en diseño de aerogeneradores, sabemos que la eficiencia es el dios que veneramos. En un generador eólico (generalmente un generador síncrono de imanes permanentes), necesitamos convertir el par mecánico del viento en energía eléctrica minimizando las pérdidas.</p>
+            <p><strong>El problema:</strong> Un entrehierro muy grande entre el estator y el rotor aumenta drásticamente la reluctancia magnética del sistema. Esto significa que necesitamos imanes mucho más fuertes (y caros) o corrientes de excitación más altas para mantener el flujo magnético necesario para inducir voltaje.</p>
+            <p><strong>La solución arquitectónica:</strong> Diseñar máquinas con tolerancias mecánicas precisas para reducir el entrehierro al mínimo indispensable (evitando el roce físico debido a las vibraciones del viento). <em>A menor reluctancia, mayor eficiencia de conversión energética.</em></p>
+        </section>
+
+        <section class="module quiz-section">
+            <h2>5. Evaluación de Sesión</h2>
+            <p>Demuestra lo aprendido en este test cognitivo de refuerzo.</p>
+            
+            <form id="quiz-form">
+                <div class="question">
+                    <p>1. ¿Qué es la reluctancia magnética?</p>
+                    <label><input type="radio" name="q1" value="a"> La facilidad de un material para conducir corriente eléctrica.</label><br>
+                    <label><input type="radio" name="q1" value="b"> La oposición que presenta un material al establecimiento del flujo magnético.</label><br>
+                    <label><input type="radio" name="q1" value="c"> La fuerza mecánica de un imán de neodimio.</label>
+                </div>
+
+                <div class="question">
+                    <p>2. ¿Cuál es la analogía directa de la reluctancia en los circuitos eléctricos?</p>
+                    <label><input type="radio" name="q2" value="a"> El voltaje.</label><br>
+                    <label><input type="radio" name="q2" value="b"> La capacitancia.</label><br>
+                    <label><input type="radio" name="q2" value="c"> La resistencia.</label>
+                </div>
+
+                <div class="question">
+                    <p>3. Matemáticamente, si el área de la sección transversal de un núcleo aumenta, ¿qué sucede con su reluctancia?</p>
+                    <label><input type="radio" name="q3" value="a"> Disminuye.</label><br>
+                    <label><input type="radio" name="q3" value="b"> Aumenta proporcionalmente.</label><br>
+                    <label><input type="radio" name="q3" value="c"> Se mantiene igual, solo depende de la longitud.</label>
+                </div>
+
+                <div class="question">
+                    <p>4. En el diagrama presentado, ¿qué elemento aporta la mayor reluctancia al circuito?</p>
+                    <label><input type="radio" name="q4" value="a"> El núcleo ferromagnético.</label><br>
+                    <label><input type="radio" name="q4" value="b"> La bobina de cobre.</label><br>
+                    <label><input type="radio" name="q4" value="c"> El entrehierro (aire).</label>
+                </div>
+
+                <div class="question">
+                    <p>5. En el diseño de un aerogenerador, ¿qué objetivo se busca respecto al tamaño del entrehierro entre rotor y estator?</p>
+                    <label><input type="radio" name="q5" value="a"> Aumentarlo al máximo para enfriar los imanes.</label><br>
+                    <label><input type="radio" name="q5" value="b"> Reducirlo al mínimo seguro para disminuir la reluctancia y maximizar la eficiencia.</label><br>
+                    <label><input type="radio" name="q5" value="c"> El tamaño no importa, la reluctancia no afecta la inducción.</label>
+                </div>
+
+                <button type="button" id="submit-btn" onclick="calculateScore()">Evaluar mis conocimientos</button>
+            </form>
+            
+            <div id="result-box" class="hidden">
+                <h3 id="score-text"></h3>
+                <p id="feedback-text"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; JMGVPTEL. masterclass reluctancia magnetica. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

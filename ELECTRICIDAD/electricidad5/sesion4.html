@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4: Componentes I - Paneles Solares</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .panel-type {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .panel-type h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #fff8e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffa000;
+        }
+        .practical-exercise h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 4: Componentes I - Paneles Solares</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Conocer los diferentes tipos de paneles solares, sus características técnicas, y aprender a realizar conexiones en serie y paralelo, así como a identificar y medir sus parámetros fundamentales.</p>
+        </div>
+
+        <h2>1. Tipos de paneles solares</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="panel-type">
+            <h4>1.1 Paneles Monocristalinos</h4>
+            <div class="image-container">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.8jxkxi4-6WyUhNpjhsSRJwHaE5?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Panel Monocristalino" class="img-small">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Fabricados con silicio de un solo cristal</li>
+                <li>Color negro uniforme</li>
+                <li>Mayor eficiencia (15-22%)</li>
+                <li>Vida útil más larga (25+ años)</li>
+                <li>Mejor rendimiento en condiciones de poca luz</li>
+                <li>Mayor costo</li>
+            </ul>
+        </div>
+
+        <div class="panel-type">
+            <h4>1.2 Paneles Policristalinos</h4>
+            <div class="image-container">
+                <img src="https://http2.mlstatic.com/panel-solar-fotovoltaico-iusa-250w-policristalino-D_NQ_NP_761257-MLM31217804294_062019-F.jpg" alt="Panel Policristalino" class="img-small">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Fabricados con múltiples cristales de silicio</li>
+                <li>Color azulado con bordes visibles</li>
+                <li>Eficiencia media (13-16%)</li>
+                <li>Vida útil de aproximadamente 25 años</li>
+                <li>Mejor relación calidad-precio</li>
+            </ul>
+        </div>
+
+        <div class="panel-type">
+            <h4>1.3 Paneles de Capa Delgada (Thin-Film)</h4>
+            <div class="image-container">
+                <img src="https://www.genpower.es/wp-content/uploads/2022/10/de-capa-fina.jpeg" alt="Panel de Capa Delgada" class="img-small">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Fabricados con capas delgadas de material fotovoltaico</li>
+                <li>Apariencia uniforme y flexible</li>
+                <li>Menor eficiencia (7-13%)</li>
+                <li>Menor costo de producción</li>
+                <li>Ligeros y flexibles</li>
+                <li>Mejor rendimiento en condiciones de calor</li>
+            </ul>
+        </div>
+
+        <h2>2. Características técnicas</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="panel-type">
+            <h4>Parámetros clave de un panel solar</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Símbolo</th>
+                    <th>Unidad</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr>
+                    <td>Potencia pico</td>
+                    <td>P<sub>max</sub></td>
+                    <td>Wp</td>
+                    <td>Potencia máxima que puede generar el panel en condiciones estándar</td>
+                </tr>
+                <tr>
+                    <td>Tensión en circuito abierto</td>
+                    <td>V<sub>oc</sub></td>
+                    <td>V</td>
+                    <td>Voltaje cuando no hay carga conectada</td>
+                </tr>
+                <tr>
+                    <td>Corriente de cortocircuito</td>
+                    <td>I<sub>sc</sub></td>
+                    <td>A</td>
+                    <td>Corriente cuando los terminales están en cortocircuito</td>
+                </tr>
+                <tr>
+                    <td>Tensión en punto de máxima potencia</td>
+                    <td>V<sub>mp</sub></td>
+                    <td>V</td>
+                    <td>Voltaje en el punto de máxima potencia</td>
+                </tr>
+                <tr>
+                    <td>Corriente en punto de máxima potencia</td>
+                    <td>I<sub>mp</sub></td>
+                    <td>A</td>
+                    <td>Corriente en el punto de máxima potencia</td>
+                </tr>
+                <tr>
+                    <td>Eficiencia</td>
+                    <td>η</td>
+                    <td>%</td>
+                    <td>Porcentaje de energía solar que se convierte en electricidad</td>
+                </tr>
+                <tr>
+                    <td>Coeficiente de temperatura</td>
+                    <td>β</td>
+                    <td>%/°C</td>
+                    <td>Variación de potencia por grado de temperatura</td>
+                </tr>
+            </table>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio: Interpretación de hoja de datos</h4>
+                <p>Analizar la hoja de datos de un panel solar real y extraer los parámetros clave.</p>
+                <p><strong>Datos de ejemplo (panel de 300W):</strong></p>
+                <ul>
+                    <li>P<sub>max</sub> = 300W</li>
+                    <li>V<sub>oc</sub> = 40V</li>
+                    <li>I<sub>sc</sub> = 9.5A</li>
+                    <li>V<sub>mp</sub> = 32V</li>
+                    <li>I<sub>mp</sub> = 9.38A</li>
+                    <li>Eficiencia = 18.5%</li>
+                    <li>Coeficiente de temperatura = -0.35%/°C</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>3. Conexiones serie y paralelo</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="panel-type">
+            <h4>3.1 Conexión en Serie</h4>
+            <div class="image-container">
+                <img src="https://www.prostarsolar.net/es/wp-content/uploads/2020/08/Como-Conectar-Paneles-Solares-En-Serie.jpg" alt="Conexión en serie" class="img-medium">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Se conecta el positivo de un panel con el negativo del siguiente</li>
+                <li>El voltaje total es la suma de los voltajes individuales</li>
+                <li>La corriente total es igual a la de un solo panel</li>
+                <li>Fórmula: V<sub>total</sub> = V<sub>1</sub> + V<sub>2</sub> + ... + V<sub>n</sub></li>
+                <li>I<sub>total</sub> = I<sub>panel</sub></li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio:</h4>
+                <p>Calcular el voltaje y corriente totales al conectar 3 paneles de 12V y 8A en serie.</p>
+                <p><strong>Solución:</strong></p>
+                <p>V<sub>total</sub> = 12V + 12V + 12V = 36V</p>
+                <p>I<sub>total</sub> = 8A</p>
+            </div>
+        </div>
+
+        <div class="panel-type">
+            <h4>3.2 Conexión en Paralelo</h4>
+            <div class="image-container">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.XCTONCCd-OFKVicCtwE7UQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Conexión en paralelo" class="img-medium">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Se conectan todos los positivos juntos y todos los negativos juntos</li>
+                <li>El voltaje total es igual al de un solo panel</li>
+                <li>La corriente total es la suma de las corrientes individuales</li>
+                <li>Fórmula: I<sub>total</sub> = I<sub>1</sub> + I<sub>2</sub> + ... + I<sub>n</sub></li>
+                <li>V<sub>total</sub> = V<sub>panel</sub></li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio:</h4>
+                <p>Calcular el voltaje y corriente totales al conectar 3 paneles de 12V y 8A en paralelo.</p>
+                <p><strong>Solución:</strong></p>
+                <p>V<sub>total</sub> = 12V</p>
+                <p>I<sub>total</sub> = 8A + 8A + 8A = 24A</p>
+            </div>
+        </div>
+
+        <h2>4. Identificación y medición de parámetros en paneles</h2>
+        <p><strong>Duración:</strong> 10 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>Práctica: Medición de parámetros</h4>
+            
+            <p><strong>Materiales necesarios:</strong></p>
+            <ul>
+                <li>Panel solar</li>
+                <li>Multímetro digital</li>
+                <li>Resistencia de carga</li>
+                <li>Cables de conexión</li>
+                <li>Fuente de luz (sol o lámpara potente)</li>
+            </ul>
+            
+            <p><strong>Procedimiento:</strong></p>
+            <ol>
+                <li><strong>Medir voltaje en circuito abierto (V<sub>oc</sub>):</strong>
+                    <ol>
+                        <li>Configurar el multímetro en escala de voltaje DC (20V o superior)</li>
+                        <li>Conectar las puntas del multímetro a los terminales del panel</li>
+                        <li>Exponer el panel a la luz y medir el voltaje</li>
+                    </ol>
+                </li>
+                <li><strong>Medir corriente de cortocircuito (I<sub>sc</sub>):</strong>
+                    <ol>
+                        <li>Configurar el multímetro en escala de amperaje DC (10A)</li>
+                        <li>Conectar el multímetro en serie con el panel (cortocircuito)</li>
+                        <li>Exponer el panel a la luz y medir la corriente</li>
+                    </ol>
+                </li>
+                <li><strong>Medir potencia máxima:</strong>
+                    <ol>
+                        <li>Conectar una resistencia variable en serie con el panel</li>
+                        <li>Medir voltaje y corriente para diferentes valores de resistencia</li>
+                        <li>Calcular la potencia (P = V × I) para cada medición</li>
+                        <li>Identificar el punto de máxima potencia</li>
+                    </ol>
+                </li>
+            </ol>
+            
+            <p><strong>Tabla de resultados:</strong></p>
+            <table class="specs-table">
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Valor nominal</th>
+                    <th>Valor medido</th>
+                    <th>% de diferencia</th>
+                </tr>
+                <tr>
+                    <td>V<sub>oc</sub> (V)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>I<sub>sc</sub> (A)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>P<sub>max</sub> (W)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
+            <p><strong>Ejercicio de aplicación:</strong> Resolución de problemas de conexión de paneles.</p>
+            <p><strong>Informe de laboratorio:</strong> Entrega de la tabla de resultados con las mediciones realizadas.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los diferentes tipos de baterías utilizadas en sistemas fotovoltaicos y sus características principales.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion3.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion5.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

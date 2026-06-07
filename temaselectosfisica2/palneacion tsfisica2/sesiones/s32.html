@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass: Espejos Cóncavos y Convexos</title>
+    <link rel="stylesheet" href="style.css"> 
+							    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="header-titles">
+                <h1>MASTERCLASS: Óptica Esférica</h1>
+                <p class="subtitle">Sesión 32: Geometría de los Espejos Cóncavos y Convexos.</p>
+            </div>
+            <button id="btn-teacher" onclick="unlockTeacherMode()">Modo Maestro 🔒</button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="card">
+            <h2 class="section-title">1. Espejos Cóncavos (Convergentes)</h2>
+            <div class="teacher-note hidden">
+                <strong>💡 TIP PEDAGÓGICO (Regla de Signos):</strong> Para la Ecuación de Descartes ($1/f = 1/d_o + 1/d_i$), recuérdeles que en un espejo cóncavo la distancia focal ($f$) SIEMPRE es positiva, porque el foco es "real" y está frente al espejo. 
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>Un espejo cóncavo es una porción de esfera cuya superficie reflectante es la parte <strong>interna</strong> (como el interior de una cueva). Su característica principal es que hace <strong>converger</strong> (juntar) los rayos de luz paralelos en un solo punto matemático llamado <strong>Foco ($F$)</strong>. Pueden proyectar imágenes <em>Reales</em> (invertidas) si el objeto está lejos, o imágenes <em>Virtuales</em> (derechas y muy grandes) si el objeto está muy cerca del espejo.</p>
+                
+                <h3>3 Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>Espejos de Maquillaje y Odontología:</strong> Al colocar el rostro o el diente muy cerca (entre el foco y el espejo), se crea una imagen virtual gigante y al derecho, ideal para ver detalles finos.</li>
+                    <li><strong>Faros de Automóvil / Linternas:</strong> Funcionan a la inversa. Tienen una bombilla situada exactamente en el Foco del espejo cóncavo. La luz rebota en el espejo y sale proyectada en un haz perfectamente recto y lejano.</li>
+                    <li><strong>Telescopios Reflectores:</strong> Utilizan enormes espejos cóncavos para capturar y concentrar la débil luz de galaxias lejanas en un solo punto focal.</li>
+                </ol>
+
+                <div class="practical-box">
+                    <h3>🛠️ 3 Ejercicios Prácticos y Observacionales</h3>
+                    <div class="exercise">
+                        <p><strong>1. El Laboratorio de la Cuchara (Parte Interna):</strong> Toma una cuchara de metal brillante. Mírate en la parte hundida sosteniéndola con el brazo estirado. <em>Observación:</em> Te verás de cabeza (Imagen Real). Ahora acércala a tu ojo hasta casi tocarlo. <em>Observación:</em> Te verás al derecho y muy grande (Imagen Virtual).</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>2. Atrapando el Foco Solar:</strong> En un día soleado, toma un espejo de aumento (cóncavo) y apunta al sol. Refleja la luz hacia una hoja de papel oscuro, acercando y alejando el espejo hasta formar el punto de luz más diminuto posible. <em>Efecto:</em> Ese punto es el Foco geométrico, y concentra tanta energía térmica que quemará el papel.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>3. Reto Algebraico (Ecuación de Espejos):</strong> Si colocas una vela a 15 cm ($d_o$) de un espejo cóncavo con un foco de 10 cm ($f$), ¿dónde aparecerá su imagen ($d_i$)? <br><em>Solución:</em> $1/10 = 1/15 + 1/d_i$ → $1/d_i = 1/10 - 1/15 = 3/30 - 2/30 = 1/30$. La imagen se forma a <strong>30 cm</strong> frente al espejo (es real y se puede proyectar en una pared).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">2. Espejos Convexos (Divergentes)</h2>
+            <div class="teacher-note hidden">
+                <strong>💡 TIP DE ANDRAGOGÍA:</strong> Conecte este tema con la experiencia de conducir. Pregúnteles por qué el espejo derecho del auto dice "Los objetos están más cerca de lo que aparentan". Es porque al ser convexo, la imagen virtual es más pequeña, engañando al cerebro que asume que "si es pequeño, debe estar lejos".
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>Un espejo convexo tiene su superficie reflectante en la parte <strong>externa</strong> de la esfera (como la "panza" de la esfera). Su naturaleza geométrica es <strong>divergir</strong> (separar) los rayos de luz. A diferencia de los cóncavos, los espejos convexos <strong>SIEMPRE</strong> forman imágenes <em>Virtuales</em> (detrás del espejo), <em>Derechas</em> (no se invierten) y <strong>más pequeñas</strong> que el objeto original. Su gran ventaja es que amplían enormemente el campo de visión.</p>
+                
+                <h3>3 Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>Espejos de Seguridad en Pasillos:</strong> Esos grandes espejos circulares en las esquinas de los supermercados permiten ver múltiples pasillos a la vez porque reducen el tamaño de todo, metiendo más espacio visual en el espejo.</li>
+                    <li><strong>Espejo Lateral Derecho de los Autos:</strong> Al ser ligeramente convexo, elimina el punto ciego del conductor al mostrar una panorámica más amplia de la carretera detrás.</li>
+                    <li><strong>Esferas Navideñas:</strong> Cualquier esfera reflectante actúa como espejo convexo, devolviendo una visión en miniatura de toda la habitación.</li>
+                </ol>
+
+                <div class="practical-box">
+                    <h3>🛠️ 3 Ejercicios Prácticos y Observacionales</h3>
+                    <div class="exercise">
+                        <p><strong>1. El Laboratorio de la Cuchara (Parte Externa):</strong> Ahora usa la "panza" de tu cuchara metálica. Acércala, aléjala y muévela de lado a lado. <em>Observación:</em> No importa qué hagas, NUNCA te verás de cabeza. Siempre te verás derecho, pero tu rostro se verá distorsionado y pequeño.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>2. Mapeo del Campo de Visión:</strong> Coloca un espejo plano pequeño en la pared y retrocede 1 metro. Pide a dos amigos que caminen lateralmente hasta que ya no los veas; marca el suelo. Repite el experimento reemplazando el espejo plano por uno convexo (o una tapa de olla brillante). <em>Efecto:</em> El ángulo geométrico de visión será radicalmente más amplio.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>3. Reto de Trazado de Rayos (Mental):</strong> Imagina dos rayos de luz láser paralelos golpeando un espejo convexo. Al chocar con la curva externa, rebotan abriéndose hacia afuera (divergen). <em>Análisis:</em> Si prolongas esos rayos dispersos hacia "adentro" del espejo geométricamente, se cruzarán en un punto ficticio: El Foco Virtual (con valor negativo en las ecuaciones).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card quiz-section">
+            <h2>🎯 Quiz: Maestría Óptica</h2>
+            <p>10 preguntas dinámicas para calibrar tu conocimiento geométrico y espacial de los espejos.</p>
+            
+            <div id="quiz-container">
+                <div id="quiz-start">
+                    <button class="btn-primary" onclick="startQuiz32()">▶ Iniciar Test Óptico</button>
+                </div>
+
+                <div id="quiz-game" class="hidden">
+                    <div class="quiz-header">
+                        <span id="question-progress" class="hud-text">Pregunta 1/10</span>
+                        <span id="score-tracker" class="hud-text">Puntos: 0</span>
+                    </div>
+                    <h3 id="question-title">¿Cargando pregunta?</h3>
+                    <div class="answer-grid" id="answer-buttons">
+                        </div>
+                    <button id="btn-next" class="btn-primary hidden" onclick="nextQuestion()">Siguiente ⏭</button>
+                </div>
+
+                <div id="quiz-results" class="hidden">
+                    <h3>¡Simulación Esférica Completada!</h3>
+                    <p id="final-score-text" class="final-score"></p>
+                    <button class="btn-primary" onclick="resetQuiz32()">Reiniciar Instrumentos</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>copyright &copy;jmgv-ptel-2026. masterclass sesion 32 tsf2. todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+</body>
+</html>

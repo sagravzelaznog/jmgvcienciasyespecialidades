@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 10: Leyes de Kirchhoff</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="page-container">
+        <header>
+            <div>
+                <h1>Sesión 10: Leyes de Kirchhoff</h1>
+                <h2>Parte 1: La Ley de los Nodos (Corrientes)</h2>
+            </div>
+            <div style="text-align: right;">
+                <strong>Tema:</strong> Circuitos Complejos<br>
+                <strong>Duración:</strong> 30 min (Parte 1)
+            </div>
+        </header>
+
+        <p>A veces, la Ley de Ohm no basta porque los circuitos tienen muchos caminos. Aquí entra Gustav Kirchhoff con dos reglas de "sentido común".</p>
+
+        <div class="concept-card card-node">
+            <span class="card-title">1ª Ley: Ley de Corrientes (Nodos)</span>
+            <p><strong>Definición:</strong> La suma de las corrientes que ENTRAN a un punto es igual a la suma de las corrientes que SALEN.</p>
+            <p style="text-align: center; font-weight: bold; font-family: monospace; font-size: 1.2em;">&Sigma; I<sub>entrada</sub> = &Sigma; I<sub>salida</sub></p>
+
+            <div class="visual-diagram">
+                <img src="nodokirchhoff.png" alt="ley de corrientes de Kirchhoff" style="width: 80%;">
+              <img src="nodos.svg" alt="nodo Kirchhoff" style="width: 80%;">
+														<p>En el dibujo: Entran 5A y 3A. Tienen que salir 8A obligatoriamente.</p>
+														<p>5A + 3A = 8A</p>
+													</div>
+
+            <div class="analogy-box">
+                <span class="icon-large">🚰</span>
+                <div>
+                    <strong>Analogía: La Tubería de Agua (o Tráfico)</strong><br>
+                    Imagina una unión de tuberías en "T". Si entran 10 litros de agua por un lado, no pueden desaparecer. Tienen que salir esos mismos 10 litros por las otras salidas.
+                    <br><em>"La carga eléctrica no se crea ni se destruye, solo se distribuye."</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-section">
+            <strong>🧠 Reto Mental Rápido:</strong>
+            <p>A un nodo llegan tres cables. Por el cable A entran <strong>2 Amperes</strong>. Por el cable B entran <strong>3 Amperes</strong>. ¿Cuánto sale por el cable C?</p>
+            <p style="border-bottom: 1px solid #ccc; width: 100%; margin-top: 20px;"></p>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <header>
+            <div>
+                <h1>Sesión 10: Leyes de Kirchhoff</h1>
+                <h2>Parte 2: La Ley de las Mallas (Voltajes)</h2>
+            </div>
+            <div style="text-align: right;">
+                <strong>Duración:</strong> 30 min (Parte 2)
+            </div>
+        </header>
+
+        <div class="concept-card card-mesh">
+            <span class="card-title">2ª Ley: Ley de Voltajes (Mallas)</span>
+            <p><strong>Definición:</strong> En un camino cerrado (un circuito donde sales y regresas al mismo punto), la suma de los voltajes que ganas (baterías) es igual a la suma de los voltajes que pierdes (resistencias).</p>
+            <p style="text-align: center; font-weight: bold; font-family: monospace; font-size: 1.2em;">&Sigma; V<sub>subidas</sub> = &Sigma; V<sub>caídas</sub></p>
+<div style="text-align: center;">
+	<img src="mallaskirchhoff.png" alt="malla Kirchhoff" style="width: 100%;" >
+	<p>En el dibujo la suma de voltajes en un circuito cerrado es cero.</p>
+</div>
+            <div class="analogy-box">
+                <span class="icon-large">🎢</span>
+                <div>
+                    <strong>Analogía: La Montaña Rusa</strong><br>
+                    Imagina un carrito en una pista cerrada:
+                    <ul>
+                        <li><strong>La Batería:</strong> Es el motor que sube el carrito (Ganas Altura/Voltaje).</li>
+                        <li><strong>Las Resistencias:</strong> Son las bajadas y curvas (Pierdes Altura/Voltaje).</li>
+                    </ul>
+                    Al final del recorrido, cuando llegas al punto de inicio, tu altura neta debe ser CERO. Todo lo que subiste, tuviste que bajarlo.
+                </div>
+            </div>
+        </div>
+
+        <h3>¿Cómo identificar Nodos y Mallas?</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tr style="background-color: var(--dark); color: white;">
+                <th style="padding: 10px;">Elemento</th>
+                <th style="padding: 10px;">¿Cómo se ve?</th>
+                <th style="padding: 10px;">Pista Visual</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 10px; font-weight: bold; color: var(--node-color);">NODO</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">Es un punto de unión donde se conectan 3 o más cables.</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">Parece una intersección de calles o una "T".</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 10px; font-weight: bold; color: var(--mesh-color);">MALLA</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">Es cualquier camino cerrado. Empiezas en un punto y recorres cables sin pasar dos veces por el mismo lugar hasta volver al inicio.</td>
+                <td style="border: 1px solid #ccc; padding: 10px;">Parece una ventana o un marco de cuadro.</td>
+            </tr>
+        </table>
+
+        <div class="activity-section" style="border-color: var(--mesh-color); background-color: #eaf2f8;">
+            <strong>📝 Actividad de Cierre (Identificación Visual):</strong>
+            <p>Dibuja en tu cuaderno un rectángulo con una línea en medio (como una ventana dividida). Identifica:</p>
+            <ul>
+                <li>¿Cuántas "ventanas" (Mallas) pequeñas ves? ______</li>
+                <li>¿Cuántas intersecciones (Nodos) de 3 líneas ves? ______</li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="text-center mt-20 mb-20"><a href="index.html" class="btn">
+            ← Volver al índice
+        </a>
+    </div>
+    <footer class="fixed-footer">
+        &copy; JMGV-PTEL-2025. todos los derechos reservados
+    </footer>
+
+</body>
+</html>

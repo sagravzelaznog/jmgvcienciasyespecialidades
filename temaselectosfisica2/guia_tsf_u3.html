@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Examen y Simulador: Física II (U3)</title>
+    <style>
+        /* =========================================================
+           PALETA DE COLORES Y DISEÑO "QUANTUM NEON" (MOBILE-FIRST)
+        ========================================================= */
+        :root {
+            --bg-dark: #0f172a;       /* Fondo cosmos */
+            --card-bg: #1e293b;       /* Fondo tarjeta */
+            --text-light: #f8fafc;    /* Texto principal */
+            --cyan-glow: #06b6d4;     /* Acento tecnológico */
+            --purple-math: #8b5cf6;   /* Acento abstracto */
+            --teacher-bg: #4c1d95;    /* Fondo Modo Maestro */
+            
+            /* Colores Kahoot */
+            --k-red: #e21b3c;
+            --k-blue: #1368ce;
+            --k-yellow: #d89e00;
+            --k-green: #26890c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+            flex-grow: 1;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #020617 0%, var(--card-bg) 100%);
+            border-bottom: 3px solid var(--cyan-glow);
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--cyan-glow);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        #btn-teacher {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: 1px solid var(--cyan-glow);
+            color: var(--cyan-glow);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* MODO MAESTRO (NOTAS OCULTAS) */
+        .teacher-note {
+            background: var(--teacher-bg);
+            border-left: 5px solid #c4b5fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: none; /* Oculto por defecto */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* INTERFAZ DEL QUIZ */
+        .quiz-container {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .hud {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: var(--purple-math);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .answer-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile-first: 1 columna */
+            gap: 12px;
+        }
+
+        .btn-answer {
+            padding: 18px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.3);
+            transition: transform 0.1s, opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+        }
+
+        .btn-answer:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* Colores estilo Kahoot asignados por orden */
+        .btn-answer:nth-child(1) { background-color: var(--k-red); }
+        .btn-answer:nth-child(2) { background-color: var(--k-blue); }
+        .btn-answer:nth-child(3) { background-color: var(--k-yellow); color: #000; }
+        .btn-answer:nth-child(4) { background-color: var(--k-green); }
+
+        .btn-answer:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .btn-answer.correct {
+            border: 4px solid #fff;
+            box-shadow: 0 0 15px #fff;
+            opacity: 1 !important;
+        }
+
+        .btn-answer.wrong {
+            opacity: 0.3;
+        }
+
+        .btn-action {
+            background: var(--cyan-glow);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        .btn-action:hover {
+            background: #0891b2;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* PANTALLA FINAL */
+        .final-score {
+            font-size: 3rem;
+            color: var(--cyan-glow);
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #020617;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.75rem;
+            color: #64748b;
+            border-top: 1px solid #1e293b;
+            margin-top: auto;
+        }
+
+        /* MEDIA QUERIES PARA PC/TABLET */
+        @media (min-width: 600px) {
+            .answer-grid {
+                grid-template-columns: 1fr 1fr; /* 2 columnas en pantallas grandes */
+            }
+            h1 { font-size: 2rem; }
+            #question-text { font-size: 1.5rem; }
+            .btn-action { width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button id="btn-teacher" onclick="unlockTeacherMode()">🔒</button>
+        <h1>Guía Interactiva: Física II</h1>
+        <p class="subtitle">Unidad 3: Óptica, Electromagnetismo y Física Moderna</p>
+    </header>
+
+    <div class="container">
+        <div class="teacher-note" id="tn-1">
+            <strong>👨‍🏫 Tip Pedagógico (Andragogía):</strong> Para motivar al alumno, explícales que este simulador contiene TODAS las preguntas posibles del examen. Si dominan este simulador, garantizan su aprobación. El aprendizaje basado en la repetición gamificada (Kahoot style) reduce la ansiedad ante las pruebas.
+        </div>
+        <div class="teacher-note" id="tn-2">
+            <strong>🧠 Tip Físico/Matemático:</strong> En las preguntas de Refracción (Ley de Snell) o Transformadores, haz énfasis en la proporcionalidad. Si el alumno entiende que "mayor índice de refracción = menor velocidad", podrá deducir las respuestas sin necesidad de memorizar.
+        </div>
+
+        <div class="quiz-container">
+            
+            <div id="start-screen">
+                <h2 style="margin-bottom: 15px; color: var(--text-light);">Simulador de Examen (40 Reactivos)</h2>
+                <p style="margin-bottom: 25px; font-size: 0.9rem; color: #cbd5e1;">Lee atentamente cada pregunta. Selecciona la respuesta correcta. Al finalizar obtendrás tu puntaje.</p>
+                <button class="btn-action" onclick="startQuiz()">Comenzar Simulador</button>
+            </div>
+
+            <div id="game-screen" class="hidden">
+                <div class="hud">
+                    <span id="question-progress">Pregunta 1/40</span>
+                    <span id="score-tracker">Aciertos: 0</span>
+                </div>
+                <h3 id="question-text">¿Cargando pregunta...?</h3>
+                <div class="answer-grid" id="answer-buttons">
+                    </div>
+                <button id="btn-next" class="btn-action hidden" onclick="nextQuestion()">Siguiente ⏭</button>
+            </div>
+
+            <div id="result-screen" class="hidden">
+                <h2>¡Simulación Completada!</h2>
+                <p class="final-score" id="final-score-text">0/40</p>
+                <p id="feedback-text" style="margin-bottom: 20px; font-size: 1.1rem;"></p>
+                <button class="btn-action" onclick="resetQuiz()">Repetir Examen</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>copyright @SynthID &copy;jmgv-ptel-2026. guia de examen u3 tsf2. todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // =========================================================
+        // MODO MAESTRO
+        // =========================================================
+        function unlockTeacherMode() {
+            const pin = prompt("Ingrese el PIN de seguridad docente para revelar los tips pedagógicos:");
+            if (pin === "1983") {
+                alert("Modo Maestro Validado. Los Tips Pedagógicos ahora son visibles.");
+                document.querySelectorAll('.teacher-note').forEach(el => el.style.display = 'block');
+                document.getElementById('btn-teacher').style.display = 'none';
+            } else if (pin !== null) {
+                alert("PIN incorrecto. Acceso denegado.");
+            }
+        }
+
+        // =========================================================
+        // BASE DE DATOS DE PREGUNTAS (Curadas, sin repetir, complementadas a 40)
+        // =========================================================
+        const quizData = [
+            // --- ÓPTICA ---
+            { q: "¿Qué es la reflexión de la luz?", options: ["Cuando la luz rebota en una superficie como un espejo", "Cuando la luz se dispersa por una abertura", "El cambio de velocidad de la luz", "La separación en colores"], ans: 0 },
+            { q: "¿Qué es la difracción de la luz?", options: ["Cuando la luz rebota en un espejo", "Cuando la luz se dispersa o dobla al pasar por una pequeña abertura o borde", "El aumento de voltaje", "La absorción total de energía"], ans: 1 },
+            { q: "¿Qué es la refracción?", options: ["El rebote de la luz", "Ocurre cuando una onda pasa de un medio a otro diferente, cambiando su velocidad", "La creación de energía eléctrica", "La unión de dos ondas"], ans: 1 },
+            { q: "¿Cuál es el índice de refracción aproximado del vacío?", options: ["1.33", "2.42", "1.00", "0.00"], ans: 2 },
+            { q: "¿Cuál es el índice de refracción aproximado del agua?", options: ["1.00", "1.33", "1.52", "2.42"], ans: 1 },
+            { q: "¿Qué ley matemática describe la refracción de la luz al cambiar de medio?", options: ["Ley de Faraday", "Ley de Coulomb", "Ley de Snell", "Ley de Lenz"], ans: 2 },
+            { q: "¿Cuáles son los dos tipos de interferencia de ondas que existen?", options: ["Positiva y Negativa", "Constructiva y Destructiva", "Estática y Dinámica", "Real y Virtual"], ans: 1 },
+            { q: "¿Cómo funciona un interferómetro?", options: ["Genera electricidad por fricción", "Refleja rayos de luz con espejos y los une para medir distancias minúsculas con precisión", "Aumenta el voltaje de una bobina", "Mide el peso de los fotones"], ans: 1 },
+            { q: "¿Qué es la dispersión cromática?", options: ["La descomposición de la luz blanca en los colores del arcoíris", "El choque de dos electrones", "La reflexión en un espejo cóncavo", "La pérdida de energía en un cable"], ans: 0 },
+            { q: "¿Qué polariza la luz?", options: ["Un prisma de cristal", "Un filtro que hace que las ondas de luz vibren en un solo plano", "Un motor eléctrico", "Una lente divergente"], ans: 1 },
+            { q: "¿Qué tipo de imagen forma SIEMPRE un espejo plano?", options: ["Real, invertida y más pequeña", "Virtual, de cabeza y gigante", "Virtual, derecha y del mismo tamaño", "Real, derecha y microscópica"], ans: 2 },
+            { q: "¿Qué característica principal tienen las lentes convergentes (como la lupa)?", options: ["Son más gruesas en el centro que en los bordes", "Son perfectamente planas", "Son más delgadas en el centro", "No refractan la luz"], ans: 0 },
+            { q: "Para corregir la miopía, ¿qué tipo de lente se utiliza?", options: ["Lente convergente", "Lente cilíndrica", "Espejo convexo", "Lente divergente"], ans: 3 },
+            
+            // --- ELECTROMAGNETISMO ---
+            { q: "¿Qué es el espectro electromagnético?", options: ["El conjunto de todas las ondas electromagnéticas organizadas por frecuencia", "El arcoíris visible únicamente", "Un dispositivo para medir voltaje", "La fuerza de los imanes"], ans: 0 },
+            { q: "¿Cuáles son algunos usos del espectro electromagnético?", options: ["Solo para cocinar", "Radio, TV, WiFi, hornos de microondas y radiografías", "Solo para iluminación", "Exclusivo para la gravedad"], ans: 1 },
+            { q: "¿Qué es el flujo magnético?", options: ["La corriente en un cable", "La cantidad de campo magnético que atraviesa una superficie específica", "La resistencia eléctrica", "El voltaje de una batería"], ans: 1 },
+            { q: "¿De qué factores depende el flujo eléctrico?", options: ["De la gravedad y la masa", "Del calor y la presión", "Del campo eléctrico, el área y el ángulo", "Solo de la distancia"], ans: 2 },
+            { q: "¿Qué es la inductancia?", options: ["La capacidad de un cuerpo de flotar", "La propiedad de un circuito de oponerse a los cambios en la corriente", "La fuerza de atracción de la Tierra", "La velocidad de la luz"], ans: 1 },
+            { q: "¿Qué es un transformador?", options: ["Una máquina que produce movimiento", "Un dispositivo eléctrico que funciona por inducción para aumentar o disminuir el voltaje", "Un calentador de agua", "Un tipo de espejo"], ans: 1 },
+            { q: "¿Por cuántas bobinas principales está formado un transformador básico?", options: ["Una", "Tres", "Cuatro", "Dos (Primaria y Secundaria)"], ans: 3 },
+            { q: "¿Qué establece la Ley de Faraday?", options: ["El magnetismo no existe", "La masa no se crea ni se destruye", "El voltaje inducido es proporcional a la velocidad con que cambia el flujo magnético", "Las cargas iguales se atraen"], ans: 2 },
+            { q: "¿Cuál fue el principal aporte de Michael Faraday al electromagnetismo?", options: ["Creó la bomba atómica", "Sentó las bases demostrando que un campo magnético variable induce electricidad", "Descubrió el electrón", "Inventó la pila alcalina"], ans: 1 },
+            { q: "¿Qué es un motor eléctrico?", options: ["Transforma energía mecánica en calor", "Máquina que transforma energía eléctrica en energía mecánica (movimiento)", "Genera electricidad con viento", "Acumula carga estática"], ans: 1 },
+            { q: "¿En qué ayuda un generador eléctrico?", options: ["Enfriar habitaciones", "Mover un automóvil", "Proporcionar suministro eléctrico en lugares sin red o durante apagones", "Reducir la presión del agua"], ans: 2 },
+            { q: "¿Cuáles son las partes principales de un generador eléctrico?", options: ["Pistón y bujía", "Motor, alternador, refrigeración y panel de control", "Espejo y lente", "Ánodo y cátodo"], ans: 1 },
+            { q: "¿Qué demostró el experimento de Oersted en 1820?", options: ["Que la luz es una onda", "Que la Tierra es redonda", "Que una corriente eléctrica genera un campo magnético a su alrededor", "Que los imanes curan enfermedades"], ans: 2 },
+            { q: "¿Qué establece la Ley de Lenz sobre la corriente inducida?", options: ["Que siempre es positiva", "Que su dirección siempre se opone al cambio que la produce", "Que viaja a la velocidad de la luz", "Que produce colores"], ans: 1 },
+            { q: "¿Cómo se llama la fuerza que experimenta una carga en movimiento dentro de un campo magnético?", options: ["Fuerza de Fricción", "Fuerza de Newton", "Fuerza de Lorentz", "Fuerza Normal"], ans: 2 },
+            
+            // --- FÍSICA MODERNA Y CONCEPTOS GENERALES ---
+            { q: "¿Cuál es el valor exacto de la Constante de Planck (h)?", options: ["3.00 x 10^8 m/s", "6.626 x 10^-34 J·s", "9.81 m/s²", "1.602 x 10^-19 C"], ans: 1 },
+            { q: "¿Qué son las energías alternativas?", options: ["Combustibles fósiles", "Energías que provienen del petróleo", "Fuentes de energía diferentes a los combustibles fósiles (ej. solar, eólica)", "Energías no renovables"], ans: 2 },
+            { q: "¿Qué es la luz según la física moderna?", options: ["Solo una onda mecánica", "Solo un rayo láser", "Es una onda electromagnética formada por fotones con naturaleza dual (onda-partícula)", "Un fluido transparente"], ans: 2 },
+            { q: "¿Qué es un fotón?", options: ["Un protón con carga neutra", "La partícula elemental o 'paquete de energía' que compone la luz", "Un átomo de helio", "Una onda de sonido"], ans: 1 },
+            { q: "El fenómeno en el que la luz arranca electrones de la superficie de un metal se llama:", options: ["Efecto Invernadero", "Efecto Doppler", "Efecto Fotoeléctrico", "Efecto Mariposa"], ans: 2 },
+            { q: "De todo el espectro electromagnético, ¿qué ondas tienen la MENOR frecuencia y energía?", options: ["Rayos Gamma", "Rayos X", "Luz Visible", "Ondas de Radio"], ans: 3 },
+            { q: "De todo el espectro electromagnético, ¿qué ondas tienen la MAYOR frecuencia y energía?", options: ["Rayos Gamma", "Microondas", "Luz Infrarroja", "Ondas de Televisión"], ans: 0 },
+            { q: "En una onda electromagnética, si la frecuencia aumenta, su longitud de onda...", options: ["También aumenta", "Permanece igual", "Disminuye (son inversamente proporcionales)", "Se vuelve infinita"], ans: 2 },
+            { q: "¿A qué velocidad viaja la luz y cualquier onda electromagnética en el vacío?", options: ["340 m/s", "1,000 km/h", "300,000 km/s (aprox)", "A velocidad infinita"], ans: 2 },
+            { q: "¿Por qué los espejos cóncavos se usan en telescopios reflectores?", options: ["Porque dispersan la luz en colores", "Porque hacen que la luz converja en un solo punto (Foco) recolectando mucha luz", "Porque hacen las cosas invisibles", "Porque absorben el calor"], ans: 1 },
+            { q: "¿Qué ocurre si colocas una brújula cerca de un cable por el que pasa corriente eléctrica?", options: ["La brújula se rompe", "La aguja apuntará siempre al norte", "La aguja se desviará debido al campo magnético generado por la corriente", "El cable se enfría"], ans: 2 },
+            { q: "¿Cómo interactúan dos cables paralelos si la corriente fluye en la MISMA dirección por ambos?", options: ["Se repelen fuertemente", "Se atraen mecánicamente", "Se neutralizan", "Comienzan a brillar"], ans: 1 }
+        ];
+
+        // =========================================================
+        // LÓGICA DEL SIMULADOR KAHOOT
+        // =========================================================
+        const startScreen = document.getElementById('start-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const questionText = document.getElementById('question-text');
+        const answerButtons = document.getElementById('answer-buttons');
+        const btnNext = document.getElementById('btn-next');
+        const scoreTracker = document.getElementById('score-tracker');
+        const questionProgress = document.getElementById('question-progress');
+        const finalScoreText = document.getElementById('final-score-text');
+        const feedbackText = document.getElementById('feedback-text');
+
+        let shuffledQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function startQuiz() {
+            startScreen.classList.add('hidden');
+            resultScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            
+            // Mezclar el array de preguntas
+            shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            updateHUD();
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            resetState();
+            const currentQ = shuffledQuestions[currentQuestionIndex];
+            questionText.innerText = currentQ.q;
+            questionProgress.innerText = `Pregunta ${currentQuestionIndex + 1}/${shuffledQuestions.length}`;
+            
+            // Crear array de opciones con su estado correcto original antes de mezclar
+            let optionsWithState = currentQ.options.map((opt, index) => {
+                return { text: opt, isCorrect: index === currentQ.ans };
+            });
+
+            // Mezclar opciones para que la correcta no siempre esté en el mismo botón
+            optionsWithState.sort(() => Math.random() - 0.5);
+
+            optionsWithState.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.innerText = opt.text;
+                btn.classList.add('btn-answer');
+                if (opt.isCorrect) btn.dataset.correct = true;
+                btn.addEventListener('click', selectAnswer);
+                answerButtons.appendChild(btn);
+            });
+        }
+
+        function resetState() {
+            btnNext.classList.add('hidden');
+            while (answerButtons.firstChild) {
+                answerButtons.removeChild(answerButtons.firstChild);
+            }
+        }
+
+        function selectAnswer(e) {
+            const selectedButton = e.target;
+            const isCorrect = selectedButton.dataset.correct === 'true';
+            
+            if (isCorrect) {
+                score++;
+                updateHUD();
+            }
+
+            // Mostrar retroalimentación visual
+            Array.from(answerButtons.children).forEach(button => {
+                if (button.dataset.correct === 'true') {
+                    button.classList.add('correct');
+                } else {
+                    button.classList.add('wrong');
+                }
+                button.disabled = true; // Bloquear opciones tras seleccionar
+            });
+
+            // Avance automático estilo Kahoot rápido o mostrar botón
+            setTimeout(() => {
+                if (shuffledQuestions.length > currentQuestionIndex + 1) {
+                    nextQuestion();
+                } else {
+                    showFinalResults();
+                }
+            }, 1500); // 1.5 segundos para ver la respuesta antes de avanzar
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function updateHUD() {
+            scoreTracker.innerText = `Aciertos: ${score}`;
+        }
+
+        function showFinalResults() {
+            gameScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+            finalScoreText.innerText = `${score} / ${shuffledQuestions.length}`;
+            
+            let percentage = (score / shuffledQuestions.length) * 100;
+            if(percentage === 100) feedbackText.innerText = "¡Perfecto! Eres un maestro de la física.";
+            else if(percentage >= 80) feedbackText.innerText = "¡Excelente trabajo! Estás más que listo para el examen.";
+            else if(percentage >= 60) feedbackText.innerText = "Buen intento. Un repaso más y estarás al 100%.";
+            else feedbackText.innerText = "Necesitas estudiar más los conceptos. ¡No te rindas, vuelve a intentarlo!";
+        }
+
+        function resetQuiz() {
+            startQuiz();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7: Componentes IV - Inversores</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .inverter-type {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #fff8e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffa000;
+        }
+        .practical-exercise h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        .pros-cons {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+        .pros, .cons {
+            width: 48%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .pros {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+        }
+        .cons {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .pros-cons {
+                flex-direction: column;
+            }
+            .pros, .cons {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 7: Componentes IV - Inversores</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Comprender los diferentes tipos de inversores utilizados en sistemas fotovoltaicos, sus características técnicas, diferencias entre sistemas conectados a red y aislados, y aprender a realizar pruebas básicas de funcionamiento.</p>
+        </div>
+
+        <h2>1. Tipos de inversores</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="inverter-type">
+            <h3>1.1 Inversores de Onda Sinusoidal Pura</h3>
+            
+            <div class="image-container">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_764991-CBT70659360931_072023-O.webp" alt="Inversor Onda Sinusoidal Pura" class="img-small">
+            </div>
+            
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Generan una onda senoidal perfecta</li>
+                <li>Compatibles con todo tipo de cargas</li>
+                <li>Mayor eficiencia energética</li>
+                <li>Menor ruido eléctrico</li>
+                <li>Mayor costo</li>
+            </ul>
+            
+            <p><strong>Aplicaciones:</strong> Equipos electrónicos sensibles, motores de alta eficiencia, equipos médicos, audio profesional.</p>
+            
+            <h3>1.2 Inversores de Onda Cuadrada</h3>
+            
+            <div class="image-container">
+                <img src="https://www.damiasolar.com/blog/wp-content/uploads/2019/07/como-son-los-inversores-de-onda-cuadrada.png" alt="Inversor Onda Cuadrada" class="img-small">
+            </div>
+            
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Generan una onda cuadrada</li>
+                <li>Menor eficiencia energética</li>
+                <li>Pueden dañar equipos electrónicos sensibles</li>
+                <li>Bajo costo</li>
+            </ul>
+            
+            <p><strong>Aplicaciones:</strong> Cargas resistivas simples, herramientas eléctricas básicas, iluminación.</p>
+            
+            <h3>1.3 Inversores de Onda Sinusoidal Modificada</h3>
+            
+            <div class="image-container">
+                <img src="https://vadecompras.com/wp-content/uploads/2021/11/mj1200.jpg" alt="Inversor Onda Sinusoidal Modificada" class="img-small">
+            </div>
+            
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Generan una onda escalonada que simula una senoidal</li>
+                <li>Eficiencia media</li>
+                <li>Compatibles con la mayoría de los equipos domésticos</li>
+                <li>Costo intermedio</li>
+            </ul>
+            
+            <p><strong>Aplicaciones:</strong> Electrodomésticos estándar, iluminación, herramientas eléctricas, cargas inductivas simples.</p>
+            
+            <h3>1.4 Inversores Híbridos</h3>
+            
+            <div class="image-container">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.DiaBzjf3LJtighRSAlW-lgHaHa" alt="Inversor Híbrido" class="img-small">
+            </div>
+            
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Combinan las funciones de inversor y cargador de baterías</li>
+                <li>Permiten conexión a red y funcionamiento autónomo</li>
+                <li>Gestión inteligente de fuentes de energía</li>
+                <li>Mayor versatilidad</li>
+                <li>Alto costo</li>
+            </ul>
+            
+            <p><strong>Aplicaciones:</strong> Sistemas híbridos, respaldo de energía, autoconsumo con respaldo.</p>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio: Selección de inversor</h4>
+                <p>Para un sistema fotovoltaico con las siguientes características, ¿qué tipo de inversor recomendarías?</p>
+                <ul>
+                    <li>Ubicación: Vivienda familiar</li>
+                    <li>Cargas: Refrigerador, TV, computadora, iluminación LED, bomba de agua</li>
+                    <li>Presupuesto: Medio</li>
+                    <li>Requisitos: Protección para equipos electrónicos</li>
+                </ul>
+                <p><strong>Solución:</strong> Se recomienda un inversor de onda sinusoidal pura por las siguientes razones:</p>
+                <ol>
+                    <li>Protege los equipos electrónicos sensibles (TV, computadora)</li>
+                    <li>Es compatible con motores (refrigerador, bomba de agua)</li>
+                    <li>Ofrece mejor eficiencia energética</li>
+                    <li>El presupuesto medio permite esta inversión</li>
+                </ol>
+            </div>
+        </div>
+
+        <h2>2. Características técnicas</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="inverter-type">
+            <h3>2.1 Parámetros clave de los inversores</h3>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Descripción</th>
+                    <th>Valor típico</th>
+                </tr>
+                <tr>
+                    <td>Potencia nominal</td>
+                    <td>Potencia máxima continua que puede suministrar</td>
+                    <td>1000W - 10000W</td>
+                </tr>
+                <tr>
+                    <td>Potencia pico</td>
+                    <td>Potencia máxima durante cortos períodos (arranque de motores)</td>
+                    <td>2-3x la potencia nominal</td>
+                </tr>
+                <tr>
+                    <td>Eficiencia</td>
+                    <td>Porcentaje de energía de entrada que se convierte en salida</td>
+                    <td>85-95%</td>
+                </tr>
+                <tr>
+                    <td>Voltaje de entrada</td>
+                    <td>Rango de voltaje de la batería que acepta</td>
+                    <td>12V, 24V, 48V, etc.</td>
+                </tr>
+                <tr>
+                    <td>Voltaje de salida</td>
+                    <td>Voltaje y frecuencia de la corriente alterna de salida</td>
+                    <td>110/120V o 220/240V, 50/60Hz</td>
+                </tr>
+                <tr>
+                    <td>THD (Distorsión Armónica Total)</td>
+                    <td>Calidad de la onda de salida</td>
+                    <td><3% (sinusoidal pura)</td>
+                </tr>
+                <tr>
+                    <td>Modos de operación</td>
+                    <td>Diferentes formas de funcionamiento</td>
+                    <td>Red, batería, híbrido</td>
+                </tr>
+                <tr>
+                    <td>Protecciones</td>
+                    <td>Sistemas de seguridad incorporados</td>
+                    <td>Sobrecarga, cortocircuito, sobretemperatura, etc.</td>
+                </tr>
+            </table>
+            
+            <h3>2.2 Cálculo del tamaño del inversor</h3>
+            
+            <p>Para dimensionar correctamente un inversor, se deben seguir estos pasos:</p>
+            
+            <ol>
+                <li><strong>Listar todos los equipos</strong> que funcionarán simultáneamente</li>
+                <li><strong>Calcular la potencia total</strong> sumando las potencias de todos los equipos</li>
+                <li><strong>Considerar los picos de arranque</strong> de motores o compresores (3-7x la potencia nominal)</li>
+                <li><strong>Aplicar un factor de seguridad</strong> del 20-30%</li>
+            </ol>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio: Cálculo de potencia necesaria</h4>
+                <p>Calcular la potencia del inversor necesaria para los siguientes equipos que funcionarán simultáneamente:</p>
+                <ul>
+                    <li>Refrigerador: 150W (pico 1000W)</li>
+                    <li>TV LED 32": 50W</li>
+                    <li>5 focos LED: 10W c/u = 50W</li>
+                    <li>Laptop: 60W</li>
+                    <li>Ventilador: 60W (pico 180W)</li>
+                </ul>
+                
+                <p><strong>Solución:</strong></p>
+                <ol>
+                    <li>Potencia total sin picos: 150 + 50 + 50 + 60 + 60 = 370W</li>
+                    <li>Mayor pico: 1000W (refrigerador)</li>
+                    <li>Potencia necesaria: 1000W (por el pico del refrigerador)</li>
+                    <li>Con factor de seguridad del 25%: 1000W × 1.25 = 1250W</li>
+                </ol>
+                
+                <p>Se recomienda un inversor de al menos 1500W de potencia continua y 3000W de potencia pico.</p>
+            </div>
+        </div>
+
+        <h2>3. Conexión a red vs. sistemas aislados</h2>
+        <p><strong>Duración:</strong> 10 minutos</p>
+        
+        <div class="inverter-type">
+            <h3>3.1 Inversores para Sistemas Aislados (Off-grid)</h3>
+            
+            <div class="image-container">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.Cf5jRvwr3NOREkbJgItnGwHaHa" alt="Sistema Aislado" class="img-small">
+            </div>
+            
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Almacenan energía en bancos de baterías</li>
+                <li>No están conectados a la red eléctrica</li>
+                <li>Requieren control de carga de baterías</li>
+                <li>Pueden incluir generadores de respaldo</li>
+                <li>Mayor costo por kWh</li>
+            </ul>
+            
+            <p><strong>Aplicaciones:</strong> Zonas rurales, lugares sin acceso a la red, aplicaciones remotas.</p>
+            
+            <h3>3.2 Inversores para Sistemas Conectados a Red (On-grid)</h3>
+            
+            <div class="image-container">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.LSBInHgFZhmAUd_4YSf99QHaMH?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sistema Conectado a Red" class="img-small">
+            </div>
+            
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>No requieren baterías (a menos que sean híbridos)</li>
+                <li>Inyectan el excedente a la red eléctrica</li>
+                <li>Requieren sincronización con la red</li>
+                <li>Desconexión automática ante fallas de red</li>
+                <li>Menor costo que los sistemas aislados</li>
+            </ul>
+            
+            <p><strong>Aplicaciones:</strong> Viviendas urbanas, comercios, industrias con conexión a la red eléctrica.</p>
+            
+            <h3>3.3 Inversores Híbridos</h3>
+            
+            <div class="image-container">
+                <img src="https://www.hybridenergypr.com/wp-content/uploads/2022/05/inversor-solar-hibrido.png" alt="Sistema Híbrido" class="img-small">
+            </div>
+            
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Combinan lo mejor de ambos sistemas</li>
+                <li>Pueden funcionar conectados a red o en modo isla</li>
+                <li>Gestionan múltiples fuentes de energía</li>
+                <li>Permiten autoconsumo con respaldo</li>
+                <li>Mayor costo inicial pero mayor flexibilidad</li>
+            </ul>
+            
+            <p><strong>Aplicaciones:</strong> Viviendas con frecuentes cortes de energía, negocios que requieren alta disponibilidad.</p>
+        </div>
+
+        <h2>4. Pruebas básicas de funcionamiento</h2>
+        <p><strong>Duración:</strong> 5 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>Práctica: Pruebas de un inversor</h4>
+            
+            <p><strong>Materiales necesarios:</strong></p>
+            <ul>
+                <li>Inversor</li>
+                <li>Batería cargada (voltaje compatible)</li>
+                <li>Multímetro digital</li>
+                <li>Cargas de prueba (lámparas, pequeños electrodomésticos)</li>
+                <li>Cables de conexión</li>
+            </ul>
+            
+            <p><strong>Procedimiento:</strong></p>
+            
+            <h5>Paso 1: Verificación visual</h5>
+            <ol>
+                <li>Inspeccionar el inversor en busca de daños físicos</li>
+                <li>Verificar que los terminales estén limpios y en buen estado</li>
+                <li>Comprobar que los ventiladores (si los tiene) giren libremente</li>
+            </ol>
+            
+            <h5>Paso 2: Conexión eléctrica</h5>
+            <ol>
+                <li>Conectar el inversor a la batería (primero negativo, luego positivo)</li>
+                <li>Verificar que el inversor encienda (luz indicadora)</li>
+                <li>Medir el voltaje de salida con el multímetro (debe ser cercano a 110V o 220V según especificaciones)</li>
+            </ol>
+            
+            <h5>Paso 3: Prueba de carga</h5>
+            <ol>
+                <li>Conectar una pequeña carga (ej. lámpara de 60W)</li>
+                <li>Verificar que la carga funcione correctamente</li>
+                <li>Medir el voltaje con carga (no debe caer más del 10%)</li>
+                <li>Probar con cargas progresivamente mayores (sin exceder la capacidad del inversor)</li>
+            </ol>
+            
+            <h5>Paso 4: Prueba de protecciones</h5>
+            <ol>
+                <li>Probar protección contra sobrecarga (conectar una carga mayor al 110% de la capacidad)</li>
+                <li>Verificar que el inversor se apague o active una alarma</li>
+                <li>Probar protección contra cortocircuito (conectar los terminales de salida momentáneamente)</li>
+                <li>Verificar que el inversor se proteja adecuadamente</li>
+            </ol>
+            
+            <p><strong>Tabla de resultados:</strong></p>
+            <table class="specs-table">
+                <tr>
+                    <th>Prueba</th>
+                    <th>Resultado esperado</th>
+                    <th>Resultado obtenido</th>
+                    <th>¿Aprobado?</th>
+                </tr>
+                <tr>
+                    <td>Encendido</td>
+                    <td>Indicador de encendido activo</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Voltaje en vacío</td>
+                    <td>110V/220V ±10%</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Voltaje con carga</td>
+                    <td>No menor al 90% del voltaje nominal</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Protección sobrecarga</td>
+                    <td>Se apaga o activa alarma</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Protección cortocircuito</td>
+                    <td>Se protege sin dañarse</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
+            <p><strong>Ejercicio de aplicación:</strong> Cálculo correcto de la potencia necesaria para un inversor.</p>
+            <p><strong>Prueba de conocimientos:</strong> Diferenciar entre tipos de inversores y sus aplicaciones.</p>
+            <p><strong>Informe de laboratorio:</strong> Entrega de la tabla de resultados de las pruebas realizadas.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los principios de diseño de sistemas fotovoltaicos aislados y los factores a considerar en su dimensionamiento.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion6.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion8.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

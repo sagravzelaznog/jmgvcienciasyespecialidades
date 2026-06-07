@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temas Selectos de Física II</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+</head>
+<body>
+    <header class="topbar">
+    <button id="menu-toggle" class="btn-menu">☰ Menú</button>
+    <h1>Física II</h1>
+    
+    <div id="contenedor-auth">
+        <button id="btn-login" class="btn-accion" style="padding: 8px 15px; border-radius: 5px; background: #fff; color: #0f4c75; border: none; font-weight: bold; cursor: pointer;">
+            Iniciar Sesión
+        </button>
+        <div id="info-usuario" style="display: none; align-items: center; gap: 10px;">
+            <span id="nombre-usuario"></span>
+            <button id="btn-logout" style="background: none; border: none; color: white; cursor: pointer; text-decoration: underline;">Salir</button>
+        </div>
+    </div>
+</header>
+
+
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <nav id="nav-semanas"></nav>
+        </aside>
+
+        <main id="contenido-principal" class="content">
+            <div class="welcome-screen">
+                <h2>Bienvenido al Laboratorio Virtual</h2>
+                <p>Selecciona una semana en el menú para comenzar.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

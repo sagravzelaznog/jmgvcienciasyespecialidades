@@ -1,0 +1,40 @@
+Qué es la reflexión? R= Es cuando la luz rebota con un suplente, por ejemplo el espejo
+Que es la disfraccion? R= Es cuando la luz se dispersa al pasar por una abertura
+ ¿Qué es el espectro elctromagnetico?R=El espectro electromagnético es el conjunto de todas las ondas electromagnéticas, organizadas según su frecuencia o longitud de onda. Incluye ondas de radio, microondas, luz visible, rayos X y rayos gamma.
+ Que es la inductancia? R= Es la propiedad de un circuito el donde se aplica la inductancia? Se aplica en todos lados, los transformadores transfieren energía entre bobinas
+ que es un transformador? R= es un dispositivo eléctrico que funciona por inducción y sirve para aumentar o disminuir el voltaje
+por cuantas bobinas esta formado? R= por dos bobinas, bobina primaria y bobina secundaria
+ uso del espectro electromagnético? R= radio y televisión, wifi y celulares, hornos de microondas, cámaras térmicas, radiografías médicas
+ ¿De qué depende el flujo eléctrico?R: Del campo eléctrico, área y ángulo
+¿Qué es el flujo magnético?R= La cantidad de campo magnético que atraviesa una superficie.
+ 2. ¿Qué es un motor eléctrico?R= Un motor eléctrico es una máquina que transforma la energía eléctrica en energía mecánica (movimiento rotatorio).
+ Que es la ley de faraday?R= establece que el voltaje inducido en un circuito es directamente proporcional a la velocidad con la que cambia el flujo magnético que lo atraviesa.
+ ¿Que es la constante de planck?R= la constante de planck relaciona la frecuencia con la energía
+ ¿la capacidad de la inductancia?R= capacidad de un componente eléctrico (como una bobina) para almacenar energía en forma de campo magnético y oponerse a los cambios bruscos de corriente que lo atraviesan
+ ¿Funcionamiento del transformador?R= Un transformador es un dispositivo que cambia el voltaje (la fuerza) de la electricidad de corriente alterna (CA), ya sea para subirlo o bajarlo, utilizando el principio de inducción electromagnética.
+ cuáles son las partes de un generador eléctrico? imán, espira, conmutador y corriente eléctrica 
+	 Cuál es la fórmula de la inductancia? R= L=N*N2*ALL
+ que es la reflexión?R= es cuando una onda choca contra una superficie y regresa al medio del que venía
+ ¿Para que sirve un motor?R= convertir la energía eléctrica en energía mecánica (movimiento).
+ que es la interferencia?R= es lo que pasa cuando dos o más ondas se encuentran en el mismo punto al mismo tiempo
+ qué es la difraccion ?R= es un fenómeno que ocurre cuando una onda se encuentra con un obstáculo o pasa por una abertura y se desvía o se dobla
+ Que es el efecto foto eléctrico R=El efecto fotoeléctrico es un fenómeno físico que consiste en la emisión de electrones por parte de un material
+ qué es la polarización ?R= un fenómeno de las ondas, especialmente de la luz, donde las vibraciones de la onda se orientan en una sola dirección.
+ Características del motor electrico: R= carcosa, escobillas, polos inductores, devando en derivación, alimentación
+ La naturaleza de la luz?R= Es una radiación electromagnética, es decir una forma de energía que se propaga en el espacio en forma de ondas formadas por campos eléctricos y magnéticos
+ ¿Quién descubrió la constante de Planck?R= Fue descubierta por Max Planck en el año 1900 mientras estudiaba la radiación de los cuerpos calientes.
+¿Cuál es la fórmula de la constante de Planck?R= E= h f
+ Cuál es el Índice de refracción del agua?R= Es aproximadamente 1,33 para la luz visible.
+ Que es la ley de faraday? R= establece que el voltaje inducido en un circuito es directamente proporcional a la velocidad con la que cambia el flujo magnético que lo atraviesa.
+Que es el electromagnetismo?R= Es la rama de la física que estudia y unifica los fenómenos eléctricos y magnéticos en una sola teoría. Describe la interacción de partículas cargadas con campos eléctricos y magnéticos
+ ¿Qué hizo Micheal faraday? R= Sentó las bases con la ley de inducción demostrado que un campo magnético variable induce la electricidad
+ ¿Cuál es el valor de la constante de Planck?R= h= 6.626 x 10^-34 J•s
+ ¿Que es la refracción?R= Ocurre cuando una onda pasa por un medio a otro diferente
+ ¿Que son las energias alternativas?R= Las energías alternativas son fuentes de energía diferentes a los combustibles fósiles como el petróleo, carbón y gas natural.
+ ¿Cuantos tipos de interferencias existen?R= Existen 2, interferencia constructiva e interferencia destructiva
+ Cuál es el índice de refracción aproximado de el vacío? R=1.00
+ Cuáles son las partes de un generador eléctrico? Sus componentes principales incluyen el motor, el alternador, refrigeración y un panel de control.
+ Cuál es el índice de refracción aproximado del agua? R=1.33
+ ¿Como funciona el interferometro?R= El interferómetro funciona reflejando rayos de luz dentro del aparato mediante espejos; después los vuelve a unir para comparar las ondas y medir cambios o distancias muy pequeñas con gran precisión.
+ ¿En que ayuda en Generador Electrico?R= proporcionar suministro eléctrico en lugares sin acceso a la red convencional o actuar como fuente de energía de respaldo durante apagones, garantizando el funcionamiento continuo de equipos críticos en hogares, empresas e industrias.
+ ¿Qué es la luz? R= Es una onda electromagnética, Esta formada por fotones y Tiene una doble naturaleza (onda-particula)

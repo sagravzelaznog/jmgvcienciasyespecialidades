@@ -1,0 +1,48 @@
+# Curso de Electricidad 5
+
+## Descripción del Curso
+
+Este curso cubre los conceptos fundamentales de electricidad, incluyendo principios básicos, circuitos, mediciones y aplicaciones prácticas. El material está organizado en 16 sesiones que abarcan desde conceptos introductorios hasta temas avanzados.
+
+## Estructura del Curso
+
+### Sesiones
+
+1. [Sesión 1: Introducción a la Electricidad](sesion1.html)
+2. [Sesión 2: Fundamentos de Circuitos](sesion2.html)
+3. [Sesión 3: Componentes Eléctricos Básicos](sesion3.html)
+4. [Sesión 4: Mediciones Eléctricas](sesion4.html)
+5. [Sesión 5: Circuitos en Serie y Paralelo](sesion5.html)
+6. [Sesión 6: Potencia y Energía Eléctrica](sesion6.html)
+7. [Sesión 7: Magnetismo y Electromagnetismo](sesion7.html)
+8. [Sesión 8: Generadores y Motores](sesion8.html)
+9. [Sesión 9: Instalaciones Eléctricas](sesion9.html)
+10. [Sesión 10: Seguridad Eléctrica](sesion10.html)
+11. [Sesión 11: Eficiencia Energética](seson11.html)
+12. [Sesión 12: Electrónica Básica](sesion12.html)
+13. [Sesión 13: Circuitos Digitales](sesion13.html)
+14. [Sesión 14: Control Eléctrico](sesion14.html)
+15. [Sesión 15: Mantenimiento Eléctrico](sesion15.html)
+16. [Sesión 16: Proyecto Final](sesion16.html)
+
+## Recursos
+
+- [Presentación Principal](index.html)
+- [Hoja de Estilos](styles.css)
+- [Guía de Eficiencia Energética](etiqueta%20energetica%20del%20electrodomesticode%20.jpg)
+- [Tabla de Rendimiento](Ratio%20performance.png)
+
+## Cómo Usar Este Material
+
+1. Abre el archivo `index.html` para acceder a la página principal del curso
+2. Navega a través de las sesiones utilizando el menú de navegación
+3. Revisa los recursos adicionales para complementar tu aprendizaje
+
+## Requisitos
+
+- Navegador web moderno (Chrome, Firefox, Safari, Edge)
+- Conexión a Internet (para recursos externos, si los hay)
+
+## Licencia
+
+Este material está disponible para uso educativo. Por favor, contacta al administrador del curso para más información sobre derechos de autor.

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 16: Proyecto Final - Diseño de Circuito Eléctrico Residencial</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para el proyecto final */
+        .project-overview {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .requirements {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2980b9;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .project-steps {
+            counter-reset: step;
+        }
+        
+        .project-step {
+            position: relative;
+            padding: 15px 15px 15px 60px;
+            margin: 20px 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .project-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .house-layout {
+            width: 100%;
+            height: 400px;
+            background-color: #f5f7fa;
+            margin: 20px 0;
+            position: relative;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .room {
+            position: absolute;
+            border: 2px solid #34495e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2c3e50;
+            background-color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .room:hover {
+            background-color: #e8f4f8;
+            transform: scale(1.02);
+        }
+        
+        .circuit-diagram {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .evaluation-rubric {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .evaluation-rubric th, .evaluation-rubric td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .evaluation-rubric th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .evaluation-rubric tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .project-resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">← Volver al índice</a>
+    
+    <div class="header">
+        <h1>Sesión 16: Proyecto Final - Diseño de Circuito Eléctrico Residencial</h1>
+        <p>Aplicación integral de los conceptos aprendidos en el curso</p>
+    </div>
+
+    <div class="section">
+        <h2>Objetivo del Proyecto</h2>
+        <p>Diseñar el plano eléctrico de una vivienda aplicando los conceptos de electricidad aprendidos durante el curso, incluyendo cálculo de cargas, selección de componentes y normativas de seguridad.</p>
+        
+        <div class="project-overview">
+            <h3>📋 Descripción General</h3>
+            <p>En este proyecto final, trabajarás en el diseño completo del sistema eléctrico para una casa de interés medio. Deberás considerar todos los aspectos aprendidos, desde los fundamentos de la electricidad hasta el cálculo de consumos y la selección adecuada de componentes.</p>
+            
+            <svg width="100%" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Casa simple -->
+                <rect x="150" y="80" width="300" height="120" fill="#f9e79f" stroke="#d4ac0d" stroke-width="2"/>
+                <polygon points="150,80 300,20 450,80" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                
+                <!-- Puerta -->
+                <rect x="250" y="140" width="40" height="60" fill="#8b4513"/>
+                <circle cx="280" cy="170" r="3" fill="#f1c40f"/>
+                
+                <!-- Ventanas -->
+                <rect x="180" y="100" width="40" height="40" fill="#3498db" rx="2"/>
+                <rect x="380" y="100" width="40" height="40" fill="#3498db" rx="2"/>
+                
+                <!-- Líneas de corriente -->
+                <line x1="200" y1="120" x2="200" y2="90" stroke="#f1c40f" stroke-width="2" stroke-dasharray="5,3">
+                    <animate attributeName="y2" from="90" to="120" dur="2s" repeatCount="indefinite"/>
+                </line>
+                <line x1="400" y1="120" x2="400" y2="90" stroke="#f1c40f" stroke-width="2" stroke-dasharray="5,3">
+                    <animate attributeName="y2" from="90" to="120" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                </line>
+                
+                <!-- Texto -->
+                <text x="300" y="180" font-size="14" text-anchor="middle" fill="#2c3e50">Diseña el sistema eléctrico de esta vivienda</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Requisitos del Proyecto</h2>
+        
+        <div class="requirements">
+            <h3>📐 Especificaciones de la Vivienda</h3>
+            <ul>
+                <li>Área total: 100m² (10m x 10m)</li>
+                <li>Niveles: 1 planta</li>
+                <li>Habitaciones: 3 (principal con baño, 2 secundarias)</li>
+                <li>Baños: 2 (1 completo, 1 medio baño)</li>
+                <li>Cocina, sala-comedor, área de lavado y patio</li>
+            </ul>
+            
+            <h3>💡 Requisitos Eléctricos</h3>
+            <ul>
+                <li>Voltaje de operación: 127V CA</li>
+                <li>Máxima demanda: 5,000W</li>
+                <li>Circuitos independientes para iluminación y contactos</li>
+                <li>Protecciones contra sobrecargas y cortocircuitos</li>
+                <li>Considerar ahorro de energía</li>
+            </ul>
+        </div>
+        
+        <div class="house-layout" id="houseLayout">
+            <!-- Las habitaciones se generarán con JavaScript -->
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Instrucciones del Proyecto</h2>
+        
+        <div class="project-steps">
+            <div class="project-step">
+                <h3>1. Diseño del Plano Arquitectónico</h3>
+                <p>Crea un plano a escala de la vivienda incluyendo todas las habitaciones, puertas y ventanas. Utiliza el espacio proporcionado arriba como referencia.</p>
+            </div>
+            
+            <div class="project-step">
+                <h3>2. Distribución de Puntos de Luz y Contactos</h3>
+                <p>Determina la ubicación de todos los puntos de luz, contactos eléctricos, apagadores y aparatos especiales (aire acondicionado, calentador, etc.).</p>
+                
+                <div class="circuit-diagram" id="lightingDiagram">
+                    <!-- Diagrama de iluminación se generará con JavaScript -->
+                </div>
+            </div>
+            
+            <div class="project-step">
+                <h3>3. Cálculo de Cargas</h3>
+                <p>Realiza el cálculo de cargas para cada circuito considerando:</p>
+                <ul>
+                    <li>Potencia de iluminación (mínimo 100W por cada 5m²)</li>
+                    <li>Contactos de uso general (mínimo 1 por cada 6m²)</li>
+                    <li>Electrodomésticos y cargas especiales</li>
+                    <li>Factor de demanda según la NOM-001-SEDE</li>
+                </ul>
+            </div>
+            
+            <div class="project-step">
+                <h3>4. Selección de Componentes</h3>
+                <p>Especifica todos los componentes necesarios:</p>
+                <ul>
+                    <li>Calibre de conductores para cada circuito</li>
+                    <li>Capacidad de interruptores termomagnéticos</li>
+                    <li>Especificaciones del centro de carga</li>
+                    <li>Tubería y canalización</li>
+                </ul>
+            </div>
+            
+            <div class="project-step">
+                <h3>5. Diagrama Unifilar</h3>
+                <p>Elabora el diagrama unifilar completo del sistema eléctrico, incluyendo:</p>
+                <ul>
+                    <li>Alimentación principal</li>
+                    <li>Tablero de distribución</li>
+                    <li>Circuitos derivados</li>
+                    <li>Protecciones</li>
+                </ul>
+            </div>
+            
+            <div class="project-step">
+                <h3>6. Presupuesto y Especificaciones Técnicas</h3>
+                <p>Prepara un presupuesto detallado que incluya:</p>
+                <ul>
+                    <li>Lista de materiales con cantidades</li>
+                    <li>Costos unitarios y totales</li>
+                    <li>Mano de obra estimada</li>
+                    <li>Tiempo de ejecución</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Recursos y Herramientas</h2>
+        
+        <div class="project-resources">
+            <div class="resource-card">
+                <h4>📏 Herramientas de Medición</h4>
+                <ul>
+                    <li>Cinta métrica</li>
+                    <li>Multímetro digital</li>
+                    <li>Detector de tensión</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h4>📚 Referencias Normativas</h4>
+                <ul>
+                    <li>NOM-001-SEDE (Instalaciones Eléctricas)</li>
+                    <li>NOM-003-SCFI (Productos eléctricos)</li>
+                    <li>CFE (Especificaciones de conexión)</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h4>💻 Software Útil</h4>
+                <ul>
+                    <li>SketchUp (Diseño 3D)</li>
+                    <li>QElectroTech (Esquemas eléctricos)</li>
+                    <li>Excel (Cálculos y presupuesto)</li>
+                </ul>
+            </div>
+            
+            <div class="resource-card">
+                <h4>📝 Plantillas</h4>
+                <ul>
+                    <li>Formato de cálculo de cargas</li>
+                    <li>Lista de verificación de seguridad</li>
+                    <li>Plantilla de presupuesto</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Rúbrica de Evaluación</h2>
+        
+        <table class="evaluation-rubric">
+            <thead>
+                <tr>
+                    <th>Criterio</th>
+                    <th>Excelente (5)</th>
+                    <th>Bueno (4)</th>
+                    <th>Suficiente (3)</th>
+                    <th>Insuficiente (1-2)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Diseño del plano</td>
+                    <td>Plano completo, a escala y con todos los detalles</td>
+                    <td>Plano completo con algunos detalles menores faltantes</td>
+                    <td>Plano básico sin escala o con omisiones importantes</td>
+                    <td>Plano incompleto o con errores graves</td>
+                </tr>
+                <tr>
+                    <td>Cálculos eléctricos</td>
+                    <td>Cálculos precisos y justificados</td>
+                    <td>Cálculos correctos con pequeñas omisiones</td>
+                    <td>Cálculos con algunos errores</td>
+                    <td>Cálculos incorrectos o faltantes</td>
+                </tr>
+                <tr>
+                    <td>Selección de materiales</td>
+                    <td>Componentes adecuados y justificados</td>
+                    <td>Componentes adecuados con algunas justificaciones</td>
+                    <td>Algunos componentes inadecuados</td>
+                    <td>Selección inadecuada de componentes</td>
+                </tr>
+                <tr>
+                    <td>Presentación</td>
+                    <td>Documentación profesional y organizada</td>
+                    <td>Buena presentación con algunos detalles mejorables</td>
+                    <td>Presentación básica</td>
+                    <td>Presentación descuidada</td>
+                </tr>
+                <tr>
+                    <td>Creatividad e innovación</td>
+                    <td>Soluciones innovadoras y eficientes</td>
+                    <td>Algunas ideas creativas</td>
+                    <td>Solución convencional</td>
+                    <td>Falta de originalidad</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Preguntas de Reflexión Final</h2>
+        
+        <div class="reflection">
+            <ol>
+                <li>¿Cómo aplicaste los conceptos de seguridad eléctrica en tu diseño?</li>
+                <li>¿Qué estrategias implementaste para hacer la instalación más eficiente energéticamente?</li>
+                <li>¿Cómo se relaciona este proyecto con situaciones reales de trabajo en el campo de la electricidad?</li>
+                <li>Si tuvieras que mejorar tu diseño, ¿qué cambios harías y por qué?</li>
+                <li>¿Qué habilidades técnicas y blandas desarrollaste durante este proyecto?</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Entrega del Proyecto</h2>
+        
+        <p>El proyecto deberá incluir:</p>
+        <ul>
+            <li>Plano arquitectónico con distribución eléctrica</li>
+            <li>Diagrama unifilar completo</li>
+            <li>Memoria de cálculo</li>
+            <li>Lista de materiales y presupuesto</li>
+            <li>Manual de usuario y mantenimiento</li>
+        </ul>
+        
+        <p><strong>Fecha de entrega:</strong> [Indicar fecha]</p>
+        <p><strong>Formato:</strong> Digital (PDF) y físico (opcional)</p>
+        
+        <div class="nav-container">
+            <a href="index.html" class="button">Volver al Índice</a>
+        </div>
+    </div>
+
+    <script>
+        // Generar plano de la casa
+        document.addEventListener('DOMContentLoaded', function() {
+            const houseLayout = document.getElementById('houseLayout');
+            const rooms = [
+                { name: 'Sala', x: '5%', y: '10%', width: '40%', height: '30%' },
+                { name: 'Cocina', x: '5%', y: '45%', width: '25%', height: '30%' },
+                { name: 'Baño', x: '35%', y: '45%', width: '20%', height: '30%' },
+                { name: 'Recámara 1', x: '60%', y: '10%', width: '35%', height: '30%' },
+                { name: 'Recámara 2', x: '60%', y: '45%', width: '35%', height: '30%' },
+                { name: 'Baño', x: '75%', y: '10%', width: '20%', height: '30%' }
+            ];
+            
+            rooms.forEach(room => {
+                const div = document.createElement('div');
+                div.className = 'room';
+                div.style.left = room.x;
+                div.style.top = room.y;
+                div.style.width = room.width;
+                div.style.height = room.height;
+                div.textContent = room.name;
+                houseLayout.appendChild(div);
+            });
+            
+            // Generar diagrama de iluminación simple
+            const lightingDiagram = document.getElementById('lightingDiagram');
+            lightingDiagram.innerHTML = `
+                <svg width="100%" height="100%" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Líneas de circuito -->
+                    <line x1="50" y1="50" x2="450" y2="50" stroke="#f1c40f" stroke-width="3"/>
+                    <line x1="50" y1="50" x2="50" y2="250" stroke="#f1c40f" stroke-width="3"/>
+                    
+                    <!-- Puntos de luz -->
+                    <circle cx="150" cy="100" r="20" fill="#f1c40f" stroke="#d4ac0d" stroke-width="2">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="250" cy="150" r="20" fill="#f1c40f" stroke="#d4ac0d" stroke-width="2">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                    </circle>
+                    <circle cx="350" cy="200" r="20" fill="#f1c40f" stroke="#d4ac0d" stroke-width="2">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+                    </circle>
+                    
+                    <!-- Interruptores -->
+                    <rect x="130" y="220" width="40" height="20" fill="#95a5a6" rx="3"/>
+                    <rect x="230" y="220" width="40" height="20" fill="#95a5a6" rx="3"/>
+                    <rect x="330" y="220" width="40" height="20" fill="#95a5a6" rx="3"/>
+                    
+                    <!-- Conexiones -->
+                    <line x1="150" y1="120" x2="150" y2="220" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5,3"/>
+                    <line x1="250" y1="170" x2="250" y2="220" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5,3"/>
+                    <line x1="350" y1="220" x2="350" y2="220" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5,3"/>
+                    
+                    <!-- Etiquetas -->
+                    <text x="150" y="90" text-anchor="middle" font-size="10">Lámpara 1</text>
+                    <text x="250" y="140" text-anchor="middle" font-size="10">Lámpara 2</text>
+                    <text x="350" y="190" text-anchor="middle" font-size="10">Lámpara 3</text>
+                </svg>
+            `;
+        });
+    </script>
+    <footer>
+        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+</body>
+</html>

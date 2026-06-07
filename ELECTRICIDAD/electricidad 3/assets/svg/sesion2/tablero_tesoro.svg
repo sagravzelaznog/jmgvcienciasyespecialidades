@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <title>Tablero del Juego: Cazatesoros Eléctrico</title>
+    <style>
+        .title { font: bold 28px Arial; text-anchor: middle; fill: #2c3e50; }
+        .subtitle { font: bold 20px Arial; text-anchor: middle; fill: #34495e; }
+        .item-text { font: 14px Arial; }
+        .label { font: 12px Arial; text-anchor: middle; }
+        .board { fill: #8e44ad; }
+        .tile { fill: #9b59b6; stroke: #8e44ad; stroke-width: 2; cursor: pointer; }
+        .tile:hover { fill: #af7ac5; }
+        .tile-found { fill: #f1c40f; }
+        .treasure { fill: #f1c40f; stroke: #d35400; stroke-width: 2; }
+        .material-icon { font-size: 24px; text-anchor: middle; }
+        .score { font: bold 18px Arial; fill: #2c3e50; }
+        .timer { font: bold 24px Arial; fill: #e74c3c; }
+        .button { fill: #2ecc71; rx: 5; cursor: pointer; }
+        .button-text { font: bold 14px Arial; fill: white; text-anchor: middle; }
+    </style>
+
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f0f0f0" />
+    
+    <!-- Título -->
+    <text x="400" y="40" class="title">Cazatesoros Eléctrico</text>
+    <text x="400" y="70" class="subtitle">Encuentra los materiales conductores y gana puntos</text>
+    
+    <!-- Tablero de juego -->
+    <rect x="50" y="100" width="500" height="400" class="board" rx="10" />
+    
+    <!-- Celdas del tablero (5x4) -->
+    <g id="game-tiles">
+        <!-- Fila 1 -->
+        <rect x="70" y="120" width="90" height="90" class="tile" id="tile-1" />
+        <rect x="170" y="120" width="90" height="90" class="tile" id="tile-2" />
+        <rect x="270" y="120" width="90" height="90" class="tile" id="tile-3" />
+        <rect x="370" y="120" width="90" height="90" class="tile" id="tile-4" />
+        <rect x="470" y="120" width="90" height="90" class="tile" id="tile-5" />
+        
+        <!-- Fila 2 -->
+        <rect x="70" y="220" width="90" height="90" class="tile" id="tile-6" />
+        <rect x="170" y="220" width="90" height="90" class="tile" id="tile-7" />
+        <rect x="270" y="220" width="90" height="90" class="tile" id="tile-8" />
+        <rect x="370" y="220" width="90" height="90" class="tile" id="tile-9" />
+        <rect x="470" y="220" width="90" height="90" class="tile" id="tile-10" />
+        
+        <!-- Fila 3 -->
+        <rect x="70" y="320" width="90" height="90" class="tile" id="tile-11" />
+        <rect x="170" y="320" width="90" height="90" class="tile" id="tile-12" />
+        <rect x="270" y="320" width="90" height="90" class="tile" id="tile-13" />
+        <rect x="370" y="320" width="90" height="90" class="tile" id="tile-14" />
+        <rect x="470" y="320" width="90" height="90" class="tile" id="tile-15" />
+        
+        <!-- Fila 4 -->
+        <rect x="70" y="420" width="90" height="70" class="tile" id="tile-16" />
+        <rect x="170" y="420" width="90" height="70" class="tile" id="tile-17" />
+        <rect x="270" y="420" width="90" height="70" class="tile" id="tile-18" />
+        <rect x="370" y="420" width="90" height="70" class="tile" id="tile-19" />
+        <rect x="470" y="420" width="90" height="70" class="tile" id="tile-20" />
+    </g>
+    
+    <!-- Tesoros ocultos (inicialmente invisibles) -->
+    <g id="treasures" display="none">
+        <!-- Moneda (conductor) -->
+        <circle cx="115" cy="165" r="25" class="treasure" id="treasure-1" />
+        <text x="115" y="170" class="material-icon">💰</text>
+        
+        <!-- Llave (conductor) -->
+        <path d="M315,165 Q320,150 335,150 Q350,150 355,165 L365,165 L365,175 L355,175 Q350,160 335,160 Q320,160 315,175 L315,165 Z" class="treasure" id="treasure-2" />
+        <text x="335" y="165" class="material-icon" font-size="20">🔑</text>
+        
+        <!-- Clip (conductor) -->
+        <rect x="415" y="145" width="40" height="40" rx="5" class="treasure" id="treasure-3" transform="rotate(45, 435, 165)" />
+        <text x="435" y="170" class="material-icon" font-size="16">📎</text>
+    </g>
+    
+    <!-- Panel de control -->
+    <rect x="570" y="100" width="200" height="390" fill="white" rx="10" stroke="#ddd" stroke-width="2" />
+    
+    <!-- Título del panel -->
+    <text x="670" y="130" class="subtitle" font-size="18" text-anchor="middle">Panel de Control</text>
+    
+    <!-- Puntuación -->
+    <text x="580" y="170" class="score">Puntuación:</text>
+    <text x="750" y="170" class="score" id="score">0</text>
+    
+    <!-- Tiempo -->
+    <text x="580" y="210" class="score">Tiempo:</text>
+    <text x="750" y="210" class="timer" id="timer">02:00</text>
+    
+    <!-- Objetivos -->
+    <text x="580" y="250" class="score">Objetivos:</text>
+    <g>
+        <rect x="580" y="260" width="15" height="15" rx="3" fill="#f1c40f" />
+        <text x="600" y="272" class="item-text">Encuentra 3 conductores</text>
+        <text x="600" y="295" class="item-text">- Moneda metálica</text>
+        <text x="600" y="315" class="item-text">- Llave</text>
+        <text x="600" y="335" class="item-text">- Clip</text>
+    </g>
+    
+    <!-- Botones -->
+    <g id="start-button" cursor="pointer">
+        <rect x="600" y="380" width="140" height="40" class="button" rx="5" />
+        <text x="670" y="405" class="button-text">Comenzar Juego</text>
+    </g>
+    
+    <g id="hint-button" cursor="pointer" opacity="0.5">
+        <rect x="600" y="430" width="140" height="40" class="button" fill="#3498db" rx="5" />
+        <text x="670" y="455" class="button-text">Pista (10s)</text>
+    </g>
+    
+    <!-- Instrucciones -->
+    <rect x="50" y="530" width="700" height="50" fill="#f8f9fa" rx="5" stroke="#ddd" />
+    <text x="400" y="555" class="item-text" text-anchor="middle">Haz clic en las celdas para encontrar los materiales conductores. ¡Gana puntos por cada acierto!</text>
+    
+    <!-- Pie de página -->
+    <text x="400" y="590" class="item-text" text-anchor="middle" font-style="italic">Juego educativo - Sesión 2: Clasificación de Materiales</text>
+    
+    <!-- Script para la interactividad (simplificado) -->
+    <script type="text/ecmascript">
+        // Este es un script SVG básico para simular la interactividad
+        // En una implementación real, esto se manejaría con JavaScript externo
+        document.addEventListener('DOMContentLoaded', function() {
+            const startButton = document.getElementById('start-button');
+            const hintButton = document.getElementById('hint-button');
+            const tiles = document.querySelectorAll('.tile');
+            const treasures = document.getElementById('treasures');
+            let gameActive = false;
+            let score = 0;
+            
+            // Iniciar juego
+            startButton.addEventListener('click', function() {
+                gameActive = true;
+                treasures.setAttribute('display', 'inline');
+                startButton.setAttribute('opacity', '0.5');
+                hintButton.setAttribute('opacity', '1');
+                document.getElementById('score').textContent = '0';
+                // Aquí iría el código para iniciar el temporizador
+            });
+            
+            // Revelar pista
+            hintButton.addEventListener('click', function() {
+                if (!gameActive) return;
+                // Aquí iría el código para mostrar una pista
+                alert('¡Busca en las esquinas superiores!');
+            });
+            
+            // Manejar clics en las celdas
+            tiles.forEach(tile => {
+                tile.addEventListener('click', function() {
+                    if (!gameActive) return;
+                    
+                    const tileId = tile.id.split('-')[1];
+                    const treasure = document.getElementById(`treasure-${tileId}`);
+                    
+                    if (treasure) {
+                        // Acierto
+                        tile.setAttribute('class', 'tile-found');
+                        score += 100;
+                        document.getElementById('score').textContent = score;
+                        treasure.style.display = 'none';
+                        
+                        // Verificar si se ganó el juego
+                        if (score >= 300) {
+                            alert('¡Felicidades! Has encontrado todos los conductores.');
+                            gameActive = false;
+                        }
+                    } else {
+                        // Error
+                        tile.setAttribute('opacity', '0.5');
+                        score = Math.max(0, score - 20);
+                        document.getElementById('score').textContent = score;
+                    }
+                });
+            });
+        });
+    </script>
+</svg>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compendio de Claves de Respuestas - Evaluaciones</title>
+    <style>
+        /* =========================================================
+           ESTILOS WEB (PANTALLA)
+           ========================================================= */
+        :root {
+            --primary: #1e3a8a;
+            --bg-body: #f8fafc;
+            --text-main: #334155;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+
+        body { background-color: var(--bg-body); color: var(--text-main); padding: 20px; }
+
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+
+        header { text-align: center; margin-bottom: 30px; border-bottom: 3px solid var(--primary); padding-bottom: 15px; }
+        header h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; text-transform: uppercase; }
+        header p { color: #64748b; font-size: 1.1rem; margin-top: 5px; }
+
+        .exam-section { margin-bottom: 30px; page-break-inside: avoid; }
+        .exam-title { background-color: var(--primary); color: white; padding: 8px 15px; font-size: 1.2rem; border-radius: 5px 5px 0 0; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; vertical-align: top; }
+        
+        tbody tr:nth-child(even) { background-color: #f1f5f9; }
+        
+        .num { font-weight: bold; color: var(--primary); width: 35px; text-align: center; }
+        .ans { font-size: 0.95rem; font-weight: 500;}
+
+        .footer-text { text-align: center; margin-top: 40px; color: #94a3b8; font-size: 0.9rem; font-weight: bold; }
+
+        /* =========================================================
+           COMPRESIÓN PARA IMPRESIÓN (AHORRO MÁXIMO DE ESPACIO Y TINTA)
+           ========================================================= */
+        @media print {
+            @page { size: letter; margin: 1cm; }
+            body { background-color: white; padding: 0; }
+            .container { box-shadow: none; padding: 0; margin: 0; }
+            
+            header { border-bottom: 2px solid black; margin-bottom: 15px; padding-bottom: 5px; }
+            header h1 { color: black !important; font-size: 14pt; }
+            header p { font-size: 10pt; color: black; }
+
+            /* Estructura de columnas para aprovechar el ancho de la hoja */
+            .exam-section { 
+                margin-bottom: 15px; 
+                page-break-inside: avoid; 
+                break-inside: avoid;
+            }
+            .exam-title { 
+                background-color: #eee !important; 
+                color: black !important; 
+                border: 1px solid black; 
+                border-bottom: none; 
+                font-size: 10pt; 
+                padding: 4px 8px;
+            }
+            
+            table { border: 1px solid black; }
+            th, td { border: 1px solid black; padding: 3px 5px; font-size: 8pt; line-height: 1.1; }
+            tbody tr:nth-child(even) { background-color: white !important; }
+            
+            .num { color: black !important; width: 25px; }
+
+            .footer-text { position: fixed; bottom: 0; width: 100%; border-top: 1px solid black; padding-top: 2px; font-size: 7.5pt; }
+            
+            /* Grilla para exámenes largos (como física) */
+            .grid-table { display: grid; grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Compendio Maestro de Respuestas</h1>
+        <p>Uso Exclusivo del Docente - Claves de Calificación Directa</p>
+    </header>
+
+    <div class="exam-section">
+        <div class="exam-title">Examen 1: Álgebra (Expresiones y Factorización) - 15 Preguntas</div>
+        <table>
+            <tbody>
+                <tr><td class="num">1</td><td class="ans">Signo, coeficiente, literal y exponente</td><td class="num">9</td><td class="ans">x² + 7x + 12</td></tr>
+                <tr><td class="num">2</td><td class="ans">-5a²b³</td><td class="num">10</td><td class="ans">(7a + 8b²)(7a - 8b²)</td></tr>
+                <tr><td class="num">3</td><td class="ans">7m - 4n</td><td class="num">11</td><td class="ans">(x + 3)(x + 5)</td></tr>
+                <tr><td class="num">4</td><td class="ans">2x + 5y - 3z</td><td class="num">12</td><td class="ans">-8</td></tr>
+                <tr><td class="num">5</td><td class="ans">Una expresión algebraica que consta de más de un término</td><td class="num">13</td><td class="ans">Binomios conjugados</td></tr>
+                <tr><td class="num">6</td><td class="ans">x² + 10x + 25</td><td class="num">14</td><td class="ans">(6x - 5y)²</td></tr>
+                <tr><td class="num">7</td><td class="ans">8m³ - 36m²n + 54mn² - 27n³</td><td class="num">15</td><td class="ans">4x² + 8x + 3</td></tr>
+                <tr><td class="num">8</td><td class="ans">25x⁴ - 16y⁶</td><td class="num"></td><td class="ans"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exam-section">
+        <div class="exam-title">Examen 2: Geometría y Trigonometría - 15 Preguntas</div>
+        <table>
+            <tbody>
+                <tr><td class="num">1</td><td class="ans">Su autosimilitud a diferentes escalas</td><td class="num">9</td><td class="ans">180°</td></tr>
+                <tr><td class="num">2</td><td class="ans">Extrayendo iterativamente el triángulo equilátero central de otro triángulo equilátero</td><td class="num">10</td><td class="ans">Equilátero, Isósceles, Escaleno</td></tr>
+                <tr><td class="num">3</td><td class="ans">Lados</td><td class="num">11</td><td class="ans">Sus ángulos correspondientes sean iguales y sus lados proporcionales</td></tr>
+                <tr><td class="num">4</td><td class="ans">Obtuso</td><td class="num">12</td><td class="ans">La suma de los cuadrados de los catetos</td></tr>
+                <tr><td class="num">5</td><td class="ans">Suplementarios</td><td class="num">13</td><td class="ans">Cateto Opuesto sobre Hipotenusa</td></tr>
+                <tr><td class="num">6</td><td class="ans">Iguales (Congruentes)</td><td class="num">14</td><td class="ans">Tangente</td></tr>
+                <tr><td class="num">7</td><td class="ans">Iguales entre sí</td><td class="num">15</td><td class="ans">10 cm</td></tr>
+                <tr><td class="num">8</td><td class="ans">Divide los dos lados proporcionalmente</td><td class="num"></td><td class="ans"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exam-section">
+        <div class="exam-title">Examen 3: Probabilidad y Estadística Teórica - 10 Preguntas</div>
+        <table>
+            <tbody>
+                <tr><td class="num">1</td><td class="ans">El conjunto de todos los resultados posibles</td><td class="num">6</td><td class="ans">Subconjuntos de 'r' elementos que se pueden formar a partir de un conjunto de 'n' elementos, sin importar el orden</td></tr>
+                <tr><td class="num">2</td><td class="ans">Para representar visualmente y organizar todos los resultados posibles de una secuencia de eventos</td><td class="num">7</td><td class="ans">Eventos dependientes</td></tr>
+                <tr><td class="num">3</td><td class="ans">120</td><td class="num">8</td><td class="ans">Eventos independientes</td></tr>
+                <tr><td class="num">4</td><td class="ans">Permutación, porque el orden de los ganadores sí importa</td><td class="num">9</td><td class="ans">Eventos mutuamente excluyentes</td></tr>
+                <tr><td class="num">5</td><td class="ans">Combinaciones, porque el orden en que se elijan no cambia el comité</td><td class="num">10</td><td class="ans">6</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exam-section">
+        <div class="exam-title">Examen 4: Cálculo Integral - 10 Preguntas</div>
+        <table>
+            <tbody>
+                <tr><td class="num">1</td><td class="ans">x⁷/7 + C</td><td class="num">6</td><td class="ans">-3/(4x⁴) + 2/x - 6 ln|x| + C</td></tr>
+                <tr><td class="num">2</td><td class="ans">bx⁴/4 + C</td><td class="num">7</td><td class="ans">ax⁴/4 - bx³/3 - cx²/2 + dx + C</td></tr>
+                <tr><td class="num">3</td><td class="ans">-5/(3x³) + C</td><td class="num">8</td><td class="ans">x⁴/4 - 2x³ - 7x + C</td></tr>
+                <tr><td class="num">4</td><td class="ans">4 ln|x| + C</td><td class="num">9</td><td class="ans">(3x + 4)⁷ / 21 + C</td></tr>
+                <tr><td class="num">5</td><td class="ans">4x^(5/4) + C</td><td class="num">10</td><td class="ans">(ax² - b)⁶ / (6a) + C</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exam-section">
+        <div class="exam-title">Examen 5: Informática (Lenguaje HTML) - 10 Preguntas</div>
+        <table>
+            <tbody>
+                <tr><td class="num">1</td><td class="ans">HyperText Markup Language</td><td class="num">6</td><td class="ans">&lt;img&gt;</td></tr>
+                <tr><td class="num">2</td><td class="ans">&lt;html&gt;</td><td class="num">7</td><td class="ans">&lt;ol&gt;</td></tr>
+                <tr><td class="num">3</td><td class="ans">&lt;title&gt;</td><td class="num">8</td><td class="ans">&lt;p&gt;</td></tr>
+                <tr><td class="num">4</td><td class="ans">&lt;h1&gt;</td><td class="num">9</td><td class="ans">&lt;div&gt;</td></tr>
+                <tr><td class="num">5</td><td class="ans">&lt;a&gt;</td><td class="num">10</td><td class="ans">&lt;br&gt;</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exam-section">
+        <div class="exam-title">Examen 6: Informática (Canva y Diseño Digital Final) - 10 Preguntas</div>
+        <table>
+            <tbody>
+                <tr><td class="num">1</td><td class="ans">Que funciona mediante el sistema de 'Arrastrar y Soltar' elementos</td><td class="num">6</td><td class="ans">Guiar la atención del alumno y evitar la sobrecarga cognitiva</td></tr>
+                <tr><td class="num">2</td><td class="ans">Modernidad, limpieza y tecnología</td><td class="num">7</td><td class="ans">Editando los datos en la pequeña hoja de cálculo integrada que aparece en el panel</td></tr>
+                <tr><td class="num">3</td><td class="ans">La foto se recorta tomando la forma exacta del marco</td><td class="num">8</td><td class="ans">Para cortar un clip de video en dos partes independientes</td></tr>
+                <tr><td class="num">4</td><td class="ans">Confianza, seriedad y calma</td><td class="num">9</td><td class="ans">Porque divide la atención del público (no pueden leer detenidamente y escucharte a la vez)</td></tr>
+                <tr><td class="num">5</td><td class="ans">Ctrl + G (o Cmd + G)</td><td class="num">10</td><td class="ans">Crea una presentación inicial completa (texto, imágenes y layout) a partir de un breve prompt descriptivo</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exam-section">
+        <div class="exam-title">Examen 7: Temas Selectos de Física (Electricidad y Magnetismo) - 30 Preguntas</div>
+        <table>
+            <tbody>
+                <tr><td class="num">1</td><td class="ans">Se cuadruplica</td><td class="num">16</td><td class="ans">Aislante o dieléctrico</td></tr>
+                <tr><td class="num">2</td><td class="ans">El electrón, porque se transfiere entre materiales</td><td class="num">17</td><td class="ans">Efecto triboeléctrico</td></tr>
+                <tr><td class="num">3</td><td class="ans">Una carga de prueba positiva</td><td class="num">18</td><td class="ans">Capacitor (Condensador)</td></tr>
+                <tr><td class="num">4</td><td class="ans">La energía suministrada por cada unidad de carga que la atraviesa</td><td class="num">19</td><td class="ans">Parte de la energía eléctrica se transforma en calor</td></tr>
+                <tr><td class="num">5</td><td class="ans">Se duplica de manera directamente proporcional</td><td class="num">20</td><td class="ans">Cambia de dirección periódicamente</td></tr>
+                <tr><td class="num">6</td><td class="ans">La corriente eléctrica (Amperaje)</td><td class="num">21</td><td class="ans">Repulsión</td></tr>
+                <tr><td class="num">7</td><td class="ans">Menor que la resistencia individual más pequeña del circuito</td><td class="num">22</td><td class="ans">Michael Faraday</td></tr>
+                <tr><td class="num">8</td><td class="ans">Conservación de la carga eléctrica</td><td class="num">23</td><td class="ans">La corriente encuentra un camino de muy baja resistencia, elevando su flujo de forma peligrosa</td></tr>
+                <tr><td class="num">9</td><td class="ans">Conservación de la energía</td><td class="num">24</td><td class="ans">9 x 10^9 N·m²/C²</td></tr>
+                <tr><td class="num">10</td><td class="ans">Atracción hacia ambas cargas laterales (q1 y q3)</td><td class="num">25</td><td class="ans">Su resistividad intrínseca, longitud y área transversal</td></tr>
+                <tr><td class="num">11</td><td class="ans">Ohmios (Ω)</td><td class="num">26</td><td class="ans">Regla de la mano derecha</td></tr>
+                <tr><td class="num">12</td><td class="ans">Vatios (Watts)</td><td class="num">27</td><td class="ans">Aumenta</td></tr>
+                <tr><td class="num">13</td><td class="ans">Voltímetro en paralelo</td><td class="num">28</td><td class="ans">El Polo Norte hacia el Polo Sur</td></tr>
+                <tr><td class="num">14</td><td class="ans">Serie</td><td class="num">29</td><td class="ans">V = I * R</td></tr>
+                <tr><td class="num">15</td><td class="ans">Sumando sus valores algebraicamente (R1 + R2 + R3)</td><td class="num">30</td><td class="ans">9 x 10^9 Newtons</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer-text">
+        &copy; 2026 JMGV-PTEL Documento de Control Exclusivo para el Docente. Todos los derechos reservados.
+    </div>
+</div>
+
+</body>
+</html>

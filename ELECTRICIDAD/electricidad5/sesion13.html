@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 13: Normativas y Estándares en Sistemas Fotovoltaicos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .regulation-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .safety-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .safety-box h4 {
+            color: #c62828;
+            margin-top: 0;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #2e7d32;
+        }
+        .practical-exercise h4 {
+            color: #1b5e20;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffa000;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .note-box {
+            background-color: #e3f2fd;
+            border-left: 3px solid #1976d2;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .checklist-item {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        .checklist-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .legal-text {
+            font-size: 0.85em;
+            line-height: 1.5;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .specs-table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 13: Normativas y Estándares en Sistemas Fotovoltaicos</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Conocer y comprender las normativas, estándares y códigos aplicables a los sistemas fotovoltaicos, incluyendo regulaciones locales e internacionales, requisitos de interconexión a red, aspectos legales y procedimientos de inspección, para garantizar instalaciones seguras, eficientes y conformes a la ley.</p>
+        </div>
+
+        <h2>1. Marco normativo internacional</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="regulation-box">
+            <h4>1.1 Organismos reguladores internacionales</h4>
+            
+            <ul>
+                <li><strong>IEC (Comisión Electrotécnica Internacional):</strong> Estándares de componentes y sistemas</li>
+                <li><strong>IEEE (Instituto de Ingenieros Eléctricos y Electrónicos):</strong> Normas para interconexión y seguridad</li>
+                <li><strong>UL (Underwriters Laboratories):</strong> Certificación de seguridad de equipos</li>
+                <li><strong>ISO (Organización Internacional de Normalización):</strong> Estándares de gestión de calidad y ambiental</li>
+                <li><strong>CEI (Comisión Electrotécnica Internacional):</strong> Normas internacionales de componentes eléctricos</li>
+            </ul>
+            
+            <h4>1.2 Normas técnicas internacionales clave</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Norma</th>
+                    <th>Descripción</th>
+                    <th>Aplicación</th>
+                </tr>
+                <tr>
+                    <td>IEC 61215</td>
+                    <td>Módulos fotovoltaicos de silicio cristalino</td>
+                    <td>Calificación de diseño y aprobación de tipo</td>
+                </tr>
+                <tr>
+                    <td>IEC 61730</td>
+                    <td>Calificación de seguridad para módulos fotovoltaicos</td>
+                    <td>Requisitos de construcción y pruebas de seguridad</td>
+                </tr>
+                <tr>
+                    <td>IEC 62109</td>
+                    <td>Seguridad de convertidores de potencia</td>
+                    <td>Inversores y controladores de carga</td>
+                </tr>
+                <tr>
+                    <td>IEC 62446</td>
+                    <td>Sistemas fotovoltaicos conectados a red</td>
+                    <td>Requisitos de documentación, pruebas e inspección</td>
+                </tr>
+                <tr>
+                    <td>IEC 60364-7-712</td>
+                    <td>Instalaciones eléctricas de baja tensión</td>
+                    <td>Requisitos para sistemas de suministro de energía</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>2. Regulaciones nacionales y locales</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="regulation-box">
+            <h4>2.1 Marco regulatorio en México</h4>
+            
+            <p><strong>Organismos reguladores:</strong></p>
+            <ul>
+                <li><strong>CRE (Comisión Reguladora de Energía):</strong> Regula la generación de energía</li>
+                <li><strong>SENER (Secretaría de Energía):</strong> Políticas energéticas</li>
+                <li><strong>CFE (Comisión Federal de Electricidad):</strong> Interconexión a la red</li>
+                <li><strong>PROFECO:</strong> Protección al consumidor</li>
+                <li><strong>STPS:</strong> Seguridad en instalaciones</li>
+            </ul>
+            
+            <h4>2.2 Normatividad aplicable</h4>
+            
+            <p><strong>Normas Oficiales Mexicanas (NOM):</strong></p>
+            <ul>
+                <li><strong>NOM-001-SEDE-2012:</strong> Instalaciones eléctricas</li>
+                <li><strong>NOM-029-ENER-2017:</strong> Eficiencia energética en edificaciones</li>
+                <li><strong>NOM-030-ENER-2016:</strong> Eficiencia energética en alumbrado público</li>
+                <li><strong>NOM-058-SCFI-2015:</strong> Especificaciones para módulos fotovoltaicos</li>
+            </ul>
+            
+            <div class="note-box">
+                <p><strong>Nota:</strong> Las regulaciones pueden variar por estado y municipio. Siempre verifica las normativas locales específicas.</p>
+            </div>
+            
+            <h4>2.3 Procedimientos de interconexión</h4>
+            
+            <ol>
+                <li><strong>Solicitud de interconexión:</strong> Documentación requerida</li>
+                <li><strong>Análisis técnico:</strong> Capacidad de la red</li>
+                <li><strong>Contrato de interconexión:</strong> Derechos y obligaciones</li>
+                <li><strong>Medición neta:</strong> Esquemas de facturación</li>
+                <li><strong>Inspecciones:</strong> Requisitos de seguridad</li>
+            </ol>
+        </div>
+
+        <h2>3. Aspectos legales y contractuales</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="regulation-box">
+            <h4>3.1 Contratos y permisos</h4>
+            
+            <p><strong>Documentación requerida:</strong></p>
+            <ul>
+                <li>Licencia de instalador eléctrico</li>
+                <li>Permisos de construcción</li>
+                <li>Contrato de interconexión</li>
+                <li>Pólizas de seguro</li>
+                <li>Garantías de equipo</li>
+            </ul>
+            
+            <h4>3.2 Responsabilidades legales</h4>
+            
+            <ul>
+                <li><strong>Responsabilidad civil:</strong> Daños a terceros</li>
+                <li><strong>Garantías:</strong> Cobertura de equipos y mano de obra</li>
+                <li><strong>Seguros:</strong> Cobertura contra riesgos</li>
+                <li><strong>Impuestos:</strong> Tratamiento fiscal de la energía generada</li>
+            </ul>
+            
+            <div class="warning-box">
+                <h4>¡Importante!</h4>
+                <p>El incumplimiento de las normativas puede resultar en multas, descalificación de garantías, desconexión del sistema o responsabilidades legales en caso de accidentes.</p>
+            </div>
+        </div>
+
+        <h2>4. Seguridad y protección</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="safety-box">
+            <h4>4.1 Normas de seguridad eléctrica</h4>
+            
+            <ul>
+                <li><strong>Protecciones contra sobrecorriente:</strong> Fusibles y disyuntores</li>
+                <li><strong>Protecciones contra sobretensión:</strong> Supresores de picos</li>
+                <li><strong>Sistemas de puesta a tierra:</strong> Requisitos y mediciones</li>
+                <li><strong>Distancias de seguridad:</strong> Separaciones mínimas</li>
+                <li><strong>Protección contra arcos eléctricos:</strong> Equipos de protección personal</li>
+            </ul>
+            
+            <h4>4.2 Protección contra incendios</h4>
+            
+            <ul>
+                <li>Distancias de seguridad para techos combustibles</li>
+                <li>Rutas de escape y acceso para bomberos</li>
+                <li>Señalización de sistemas fotovoltaicos</li>
+                <li>Procedimientos de emergencia</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://solarama.mx/blog/wp-content/uploads/2022/10/protecciones-electricas-para-sistemas-fotovoltaicos-para-CD.jpg" alt="Medidas de seguridad en instalaciones fotovoltaicas" class="img-small">
+                <p><em>Elementos de seguridad en instalaciones fotovoltaicas</em></p>
+            </div>
+        </div>
+
+        <h2>5. Inspección y certificación</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>5.1 Proceso de inspección</h4>
+            
+            <ol>
+                <li><strong>Inspección visual:</strong> Verificación de componentes y conexiones</li>
+                <li><strong>Pruebas eléctricas:</strong> Continuidad, aislamiento, puesta a tierra</li>
+                <li><strong>Pruebas de funcionamiento:</strong> Rendimiento del sistema</li>
+                <li><strong>Revisión documental:</strong> Manuales, garantías, cálculos</li>
+                <li><strong>Entrega de certificado de cumplimiento</strong></li>
+            </ol>
+            
+            <h4>5.2 Lista de verificación de inspección</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Elemento</th>
+                    <th>Verificación</th>
+                    <th>Cumple</th>
+                </tr>
+                <tr>
+                    <td>Documentación completa</td>
+                    <td>Planos, manuales, garantías</td>
+                    <td>□</td>
+                </tr>
+                <tr>
+                    <td>Instalación mecánica</td>
+                    <td>Sujeción, orientación, inclinación</td>
+                    <td>□</td>
+                </tr>
+                <tr>
+                    <td>Instalación eléctrica</td>
+                    <td>Cableado, protecciones, conexiones</td>
+                    <td>□</td>
+                </tr>
+                <tr>
+                    <td>Puesta a tierra</td>
+                    <td>Resistencia < 25Ω</td>
+                    <td>□</td>
+                </tr>
+                <tr>
+                    <td>Señalización</td>
+                    <td>Advertencias e identificaciones</td>
+                    <td>□</td>
+                </tr>
+                <tr>
+                    <td>Pruebas de funcionamiento</td>
+                    <td>Rendimiento según especificaciones</td>
+                    <td>□</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en discusiones sobre normativas.</p>
+            <p><strong>Ejercicio práctico:</strong> Análisis de un caso de estudio de cumplimiento normativo.</p>
+            <p><strong>Cuestionario:</strong> Preguntas sobre normativas y estándares clave.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre herramientas de monitoreo y análisis de rendimiento de sistemas fotovoltaicos, incluyendo tecnologías de IoT y plataformas de gestión de energía.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion12.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion14.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass: Materiales Magnéticos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container text-center">
+            <h1>La Danza de los Electrones</h1>
+            <p class="subtitle">Materiales Ferromagnéticos, Paramagnéticos y Diamagnéticos en el Diseño de Aerogeneradores</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="intro-module">
+            <h2>Introducción: La Arquitectura del Magnetismo</h2>
+            <p>Como ingenieros y diseñadores de aerogeneradores, nuestro mayor reto es la conversión de energía mecánica en eléctrica. El corazón de este proceso es el generador, donde el flujo magnético es el verdadero protagonista. Pero, ¿cómo interactúan los diferentes materiales con estos campos invisibles? Todo se reduce a sus dominios magnéticos.</p>
+        </section>
+
+        <section class="module content-grid">
+            <div class="card ferro">
+                <h3>1. Ferromagnéticos</h3>
+                <p><strong>Definición:</strong> Materiales cuyos momentos magnéticos atómicos se alinean fuertemente en paralelo bajo un campo magnético externo y <em>mantienen</em> esa magnetización. Son los pilares de la alta permeabilidad.</p>
+                <div class="svg-box">
+                    <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10,25 L30,25 M25,20 L30,25 L25,30" />
+                            <path d="M40,25 L60,25 M55,20 L60,25 L55,30" />
+                            <path d="M70,25 L90,25 M85,20 L90,25 L85,30" />
+                        </g>
+                    </svg>
+                    <p class="caption">Alineación perfecta (Dominios magnéticos fuertes)</p>
+                </div>
+                <p><strong>3 Ejemplos:</strong></p>
+                <ul>
+                    <li><strong>Hierro (Fe):</strong> Núcleos de estatores.</li>
+                    <li><strong>Cobalto (Co):</strong> Aleaciones de alta temperatura.</li>
+                    <li><strong>Níquel (Ni):</strong> Componentes de sensores magnéticos.</li>
+                </ul>
+            </div>
+
+            <div class="card para">
+                <h3>2. Paramagnéticos</h3>
+                <p><strong>Definición:</strong> Materiales que se magnetizan débilmente en la misma dirección que el campo magnético aplicado. Al retirar el campo externo, su magnetización desaparece debido a la agitación térmica.</p>
+                <div class="svg-box">
+                    <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10,35 L25,20 M20,18 L25,20 L27,25" />
+                            <path d="M40,25 L60,25 M55,20 L60,25 L55,30" />
+                            <path d="M75,15 L85,35 M80,35 L85,35 L85,30" />
+                        </g>
+                    </svg>
+                    <p class="caption">Alineación parcial y temporal</p>
+                </div>
+                <p><strong>3 Ejemplos:</strong></p>
+                <ul>
+                    <li><strong>Aluminio (Al):</strong> Carcasas de nacelles.</li>
+                    <li><strong>Magnesio (Mg):</strong> Aleaciones ultraligeras.</li>
+                    <li><strong>Platino (Pt):</strong> Contactos eléctricos especiales.</li>
+                </ul>
+            </div>
+
+            <div class="card dia">
+                <h3>3. Diamagnéticos</h3>
+                <p><strong>Definición:</strong> Materiales que repelen los campos magnéticos. Cuando se exponen a un campo externo, inducen un campo magnético débil en dirección <em>opuesta</em>. Su permeabilidad relativa es menor a 1.</p>
+                <div class="svg-box">
+                    <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M30,25 L10,25 M15,20 L10,25 L15,30" stroke="red"/>
+                            <path d="M60,25 L40,25 M45,20 L40,25 L45,30" stroke="red"/>
+                            <path d="M90,25 L70,25 M75,20 L70,25 L75,30" stroke="red"/>
+                        </g>
+                    </svg>
+                    <p class="caption">Oposición débil al campo (Repulsión)</p>
+                </div>
+                <p><strong>3 Ejemplos:</strong></p>
+                <ul>
+                    <li><strong>Cobre (Cu):</strong> Bobinados del generador.</li>
+                    <li><strong>Bismuto (Bi):</strong> Aislantes magnéticos.</li>
+                    <li><strong>Agua (H2O):</strong> Humedad ambiental (factor de diseño).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="module">
+            <h2>Ejercicios de Análisis Ingenieril</h2>
+            <div class="exercise-list">
+                <div class="item">
+                    <h4>Ejercicio 1: Cálculo de Permeabilidad</h4>
+                    <p>Si el núcleo de un generador tiene una permeabilidad relativa (μr) de 5000 y se reemplaza por uno de Aluminio (μr ≈ 1.000022), ¿qué tipo de material era el original y qué impacto tendrá en el flujo magnético de la máquina eólica?</p>
+                </div>
+                <div class="item">
+                    <h4>Ejercicio 2: Selección de Materiales</h4>
+                    <p>Diseñas la carcasa de un rotor. Necesitas que el material no interactúe ni distorsione el campo magnético de los imanes de neodimio internos. Elige entre Hierro, Cobalto o Aluminio y justifica tu respuesta basándote en su clasificación magnética.</p>
+                </div>
+                <div class="item">
+                    <h4>Ejercicio 3: Análisis de Frenado Magnético</h4>
+                    <p>Un disco de cobre (diamagnético) gira entre dos potentes imanes en el sistema de frenado de emergencia del aerogenerador. Explica por qué el cobre, aunque no es atraído por los imanes, experimenta una fuerza de frenado (Pista: Relaciona el diamagnetismo y las corrientes de Foucault).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="module">
+            <h2>Actividades de Comprobación (Taller)</h2>
+            <ul class="activity-list">
+                <li><strong>Actividad 1: "La Danza del Neodimio".</strong> Acerca un imán de neodimio a un tubo de cobre (diamagnético) y deja caer el imán por dentro. Observa y anota por qué el imán cae lentamente, desafiando aparentemente la gravedad.</li>
+                <li><strong>Actividad 2: "El Puente Invisible".</strong> Coloca clips de acero (ferromagnéticos) uno colgando del otro desde un imán. Retira con cuidado el imán principal y observa cuánto tiempo conservan los clips su magnetización residual.</li>
+                <li><strong>Actividad 3: "Repulsión Acuática".</strong> Coloca una uva (rica en agua, diamagnética) en cada extremo de un palillo suspendido de un hilo. Acerca un imán potente a una uva sin tocarla y documenta la repulsión observada.</li>
+            </ul>
+        </section>
+
+        <section class="module quiz-container" id="kahoot-section">
+            <h2>Evaluación Interactiva</h2>
+            <p class="text-center">¡Prepárate! Tienes 15 segundos por pregunta.</p>
+            
+            <div id="quiz-start">
+                <button onclick="startQuiz()" class="btn-start">Iniciar Kahoot!</button>
+            </div>
+
+            <div id="quiz-active" class="hidden">
+                <div class="timer-bar"><div id="timer-fill"></div></div>
+                <h3 id="question-text">Pregunta...</h3>
+                <div class="answers-grid" id="answers-grid">
+                    </div>
+            </div>
+
+            <div id="quiz-feedback" class="hidden">
+                <h2 id="feedback-title">¡Correcto!</h2>
+                <button onclick="nextQuestion()" class="btn-next">Siguiente</button>
+            </div>
+
+            <div id="quiz-results" class="hidden">
+                <h2>Podio de Conocimiento</h2>
+                <p id="final-score"></p>
+                <button onclick="resetQuiz()" class="btn-start">Reintentar</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; JMGVPTEL. masterclass materiales ferro-para-diamagneticos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

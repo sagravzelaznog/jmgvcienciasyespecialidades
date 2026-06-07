@@ -1,0 +1,202 @@
+/* --- Variables y Paleta de Colores --- */
+:root {
+	--bg-color: #f4f7f6; /* Fondo suave y neutro */
+	--text-main: #1e293b; /* Pizarra 800 - alta legibilidad pero menos agresivo que el negro */
+	--accent-blue: #0284c7; /* Azul eléctrico - tecnología e intelecto */
+	--accent-amber: #f59e0b; /* Ámbar - energía y resaltado */
+	--white: #ffffff;
+	--border-radius: 12px;
+}
+
+/* --- Estilos Generales --- */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	background-color: var(--bg-color);
+	color: var(--text-main);
+	line-height: 1.6;
+}
+
+.container {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.text-center {
+	text-center: center;
+}
+
+/* --- Header --- */
+header {
+	background-color: var(--text-main);
+	color: var(--white);
+	padding: 60px 20px;
+	text-align: center;
+	border-bottom: 5px solid var(--accent-amber);
+	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+	font-size: 3rem;
+	font-weight: 800;
+	margin-bottom: 10px;
+	letter-spacing: -1px;
+}
+
+header .subtitle {
+	font-size: 1.2rem;
+	font-weight: 300;
+	color: #cbd5e1;
+}
+
+/* --- Modulos (Secciones) --- */
+.module {
+	background-color: var(--white);
+	margin: 40px 0;
+	padding: 40px;
+	border-radius: var(--border-radius);
+	box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+	border-left: 6px solid var(--accent-blue);
+	transition: transform 0.3s ease;
+}
+
+.module:hover {
+	transform: translateY(-2px);
+}
+
+.module h2 {
+	color: var(--accent-blue);
+	margin-bottom: 20px;
+	font-size: 1.8rem;
+	border-bottom: 2px solid var(--bg-color);
+	padding-bottom: 10px;
+}
+
+.module p, .module ul {
+	font-size: 1.1rem;
+	margin-bottom: 15px;
+}
+
+.module ul {
+	margin-left: 20px;
+}
+
+/* --- Matemáticas --- */
+.formula-box {
+	background-color: var(--bg-color);
+	padding: 20px;
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 600;
+	letter-spacing: 2px;
+	border-radius: 8px;
+	margin: 20px 0;
+	border: 1px dashed var(--accent-blue);
+}
+
+/* --- SVG y Visuales --- */
+.svg-container {
+	display: flex;
+	justify-content: center;
+	margin: 30px 0;
+	background-color: var(--bg-color);
+	border-radius: var(--border-radius);
+	padding: 20px;
+}
+
+.svg-container svg {
+	max-width: 100%;
+	height: auto;
+}
+
+/* --- Quiz --- */
+.question {
+	background-color: var(--bg-color);
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 8px;
+}
+
+.question p {
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.question label {
+	display: block;
+	margin-bottom: 10px;
+	cursor: pointer;
+	font-size: 1rem;
+	transition: color 0.2s ease;
+}
+
+.question label:hover {
+	color: var(--accent-blue);
+}
+
+input[type="radio"] {
+	margin-right: 10px;
+	accent-color: var(--accent-amber);
+}
+
+button {
+	background-color: var(--accent-blue);
+	color: var(--white);
+	border: none;
+	padding: 15px 30px;
+	font-size: 1.1rem;
+	font-weight: 600;
+	border-radius: 50px;
+	cursor: pointer;
+	display: block;
+	margin: 30px auto 0;
+	transition: background-color 0.3s ease, transform 0.1s;
+	box-shadow: 0 4px 6px rgba(2, 132, 199, 0.3);
+}
+
+button:hover {
+	background-color: #0369a1;
+}
+
+button:active {
+	transform: scale(0.98);
+}
+
+#result-box {
+	margin-top: 30px;
+	padding: 20px;
+	border-radius: var(--border-radius);
+	text-align: center;
+}
+
+#result-box.hidden {
+	display: none;
+}
+
+.success {
+	background-color: #dcfce7;
+	color: #166534;
+	border: 2px solid #22c55e;
+}
+
+.needs-review {
+	background-color: #fef9c3;
+	color: #854d0e;
+	border: 2px solid #eab308;
+}
+
+/* --- Footer --- */
+footer {
+	background-color: var(--text-main);
+	color: #cbd5e1;
+	text-align: center;
+	padding: 30px 20px;
+	margin-top: 50px;
+	font-size: 0.9rem;
+}

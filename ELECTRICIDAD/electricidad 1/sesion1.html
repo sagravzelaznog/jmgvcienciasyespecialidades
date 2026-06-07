@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 1: ¿Qué es la electricidad? - Conceptos Básicos de Electricidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="index.html" class="home-link">← Volver al índice</a>
+    
+    <div class="header">
+        <h1>¿Qué es la electricidad?</h1>
+        <p>Sesión 1 - Módulo 1: Introducción a la Electricidad</p>
+    </div>
+
+    <div class="section">
+        <h2>Objetivo específico</h2>
+        <p>Comprender los conceptos fundamentales de la electricidad y reconocer su presencia en la vida cotidiana.</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#f0f8ff"/>
+                <circle cx="200" cy="100" r="60" fill="#ffeb3b" filter="url(#glow)"/>
+                <path d="M200 40 L220 100 L180 80 L220 80 L180 160" 
+                      stroke="#ff9800" 
+                      stroke-width="8" 
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <defs>
+                    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="10" result="glow"/>
+                        <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+                    </filter>
+                </defs>
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">La electricidad en nuestra vida diaria</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Contenido teórico</h2>
+        <p>La electricidad es una forma de energía que se manifiesta por el movimiento de electrones a través de un material conductor. Está presente en la naturaleza y es fundamental para la tecnología moderna.</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="150" fill="#f0f8ff"/>
+                <circle cx="100" cy="75" r="30" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+                <circle cx="100" cy="75" r="15" fill="#2196f3"/>
+                <text x="100" y="130" text-anchor="middle" font-size="12">Átomo</text>
+                
+                <line x1="140" y1="75" x2="260" y2="75" stroke="#2196f3" stroke-width="2" stroke-dasharray="5,5"/>
+                
+                <circle cx="300" cy="75" r="30" fill="#e8f5e9" stroke="#4caf50" stroke-width="2">
+                    <animate attributeName="r" values="30;35;30" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <path d="M285 60 L300 75 L285 90" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/>
+                <path d="M315 60 L300 75 L315 90" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round"/>
+                <text x="300" y="130" text-anchor="middle" font-size="12">Flujo de electrones</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Ejemplo ilustrativo</h2>
+        <p>Imagina un río: el agua que fluye es como la corriente eléctrica. El desnivel del río sería el voltaje, y las rocas en el cauce serían la resistencia al paso del agua.</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#e3f5fb"/>
+                
+                <!-- Montañas -->
+                <path d="M0 150 L50 100 L100 130 L150 80 L200 120 L250 70 L300 100 L350 50 L400 90 L400 200 L0 200 Z" fill="#8bc34a"/>
+                
+                <!-- Río -->
+                <path d="M0 150 Q100 160 200 140 Q300 120 400 140 L400 200 L0 200 Z" fill="#4fc3f7"/>
+                
+                <!-- Rocas -->
+                <circle cx="100" cy="160" r="10" fill="#795548"/>
+                <circle cx="150" cy="170" r="8" fill="#5d4037"/>
+                <circle cx="300" cy="165" r="12" fill="#6d4c41"/>
+                
+                <!-- Flechas de corriente -->
+                <path d="M50 160 L70 160" stroke="#0d47a1" stroke-width="2" fill="none" marker-end="url(#arrow)">
+                    <animate attributeName="d" values="M50 160 L70 160; M40 160 L60 160; M50 160 L70 160" dur="3s" repeatCount="indefinite"/>
+                </path>
+                <path d="M200 150 L220 150" stroke="#0d47a1" stroke-width="2" fill="none" marker-end="url(#arrow)">
+                    <animate attributeName="d" values="M200 150 L220 150; M190 150 L210 150; M200 150 L220 150" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                </path>
+                <path d="M350 155 L370 155" stroke="#0d47a1" stroke-width="2" fill="none" marker-end="url(#arrow)">
+                    <animate attributeName="d" values="M350 155 L370 155; M340 155 L360 155; M350 155 L370 155" dur="3s" repeatCount="indefinite" begin="1s"/>
+                </path>
+                
+                <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#0d47a1"/>
+                    </marker>
+                </defs>
+                
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Analogía del río para entender la electricidad</text>
+                <text x="100" y="190" text-anchor="middle" font-size="12">Rocas = Resistencia</text>
+                <text x="300" y="190" text-anchor="middle" font-size="12">Corriente = Flujo de agua</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Actividad práctica</h2>
+        <div class="activity">
+            <h3>Experimento: Electricidad estática con globos</h3>
+            <p><strong>Materiales:</strong> 2 globos, un trozo de tela de lana, un hilo.</p>
+            <ol>
+                <li>Infla los dos globos y átalos con un hilo.</li>
+                <li>Frota ambos globos con la tela de lana durante 30 segundos.</li>
+                <li>Acerca los globos entre sí y observa lo que sucede.</li>
+            </ol>
+            
+            <div class="svg-container">
+                <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="200" fill="#f9f9f9"/>
+                    
+                    <!-- Globos -->
+                    <circle cx="150" cy="100" r="40" fill="#ffcdd2" stroke="#f44336" stroke-width="2"/>
+                    <path d="M150 140 L150 180" stroke="#9e9e9e" stroke-width="2" stroke-dasharray="3,3"/>
+                    <circle cx="250" cy="100" r="40" fill="#bbdefb" stroke="#2196f3" stroke-width="2"/>
+                    <path d="M250 140 L250 180" stroke="#9e9e9e" stroke-width="2" stroke-dasharray="3,3"/>
+                    
+                    <!-- Manos -->
+                    <path d="M100 80 L120 100 L110 110 L90 90 Z" fill="#ffccbc"/>
+                    <path d="M300 80 L280 100 L290 110 L310 90 Z" fill="#ffccbc"/>
+                    
+                    <!-- Rayos de carga -->
+                    <path d="M140 70 L130 60 M145 65 L135 55" stroke="#ffc107" stroke-width="1.5"/>
+                    <path d="M260 70 L270 60 M255 65 L265 55" stroke="#ffc107" stroke-width="1.5"/>
+                    
+                    <!-- Flechas de repulsión -->
+                    <path d="M190 100 L170 100" stroke="#f44336" stroke-width="2" marker-end="url(#arrow2)"/>
+                    <path d="M210 100 L230 100" stroke="#f44336" stroke-width="2" marker-end="url(#arrow2)"/>
+                    
+                    <defs>
+                        <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#f44336"/>
+                        </marker>
+                    </defs>
+                    
+                    <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Experimento de electricidad estática</text>
+                    <text x="200" y="50" text-anchor="middle" font-size="12">Los globos con cargas iguales se repelen</text>
+                </svg>
+            </div>
+            
+            <div class="tip">
+                <strong>¿Qué está pasando?</strong> Al frotar los globos con la lana, estos adquieren carga eléctrica estática. Como ambos globos tienen la misma carga, se repelen entre sí.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Pregunta de reflexión</h2>
+        <p>Piensa en tres aparatos eléctricos que uses diariamente. ¿Cómo sería tu vida sin ellos? ¿Cómo crees que funcionan internamente?</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="150" fill="#f5f5f5"/>
+                
+                <!-- Bombilla -->
+                <circle cx="100" cy="60" r="30" fill="#fff176" stroke="#fbc02d" stroke-width="2">
+                    <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <path d="M100 90 L100 120" stroke="#9e9e9e" stroke-width="2"/>
+                <text x="100" y="140" text-anchor="middle" font-size="11">Bombilla</text>
+                
+                <!-- Teléfono -->
+                <rect x="180" y="30" width="60" height="100" rx="5" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="2"/>
+                <rect x="190" y="40" width="40" height="60" rx="2" fill="#424242"/>
+                <circle cx="210" cy="115" r="3" fill="#9e9e9e"/>
+                <text x="210" y="140" text-anchor="middle" font-size="11">Teléfono</text>
+                
+                <!-- Nevera -->
+                <rect x="290" y="20" width="80" height="100" fill="#e3f2fd" stroke="#90caf9" stroke-width="2"/>
+                <rect x="295" y="25" width="70" height="40" fill="#bbdefb"/>
+                <circle cx="330" cy="80" r="3" fill="#2196f3"/>
+                <text x="330" y="140" text-anchor="middle" font-size="11">Refrigerador</text>
+                
+                <text x="200" y="20" text-anchor="middle" font-weight="bold" font-size="12">Aparatos eléctricos cotidianos</text>
+            </svg>
+        </div>
+    </div>
+
+    
+
+    <div class="navigation-footer">
+        <a href="index.html" class="home-link">← Volver al índice</a>
+    </div>
+    <footer>
+        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+</body>
+</html>

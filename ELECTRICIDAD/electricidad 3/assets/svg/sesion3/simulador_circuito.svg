@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <title>Simulador de Circuito con Interruptores</title>
+    <style>
+        .title { font: bold 28px Arial; text-anchor: middle; fill: #2c3e50; }
+        .subtitle { font: bold 20px Arial; text-anchor: middle; fill: #34495e; }
+        .wire { stroke: #2c3e50; stroke-width: 3; fill: none; }
+        .wire-active { stroke: #e74c3c; stroke-width: 4; }
+        .component { cursor: pointer; }
+        .battery { fill: #3498db; }
+        .bulb-off { fill: #bdc3c7; }
+        .bulb-on { fill: #f1c40f; filter: url(#glow); }
+        .switch-base { fill: #7f8c8d; }
+        .switch-lever { fill: #34495e; }
+        .contact { fill: #2c3e50; }
+        .label { font: 16px Arial; text-anchor: middle; }
+        .status { font: 14px Arial; text-anchor: middle; fill: #e74c3c; font-weight: bold; }
+        .btn { cursor: pointer; }
+        .btn-text { font: 14px Arial; text-anchor: middle; fill: white; }
+    </style>
+    
+    <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" />
+        </marker>
+    </defs>
+
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f9f9f9" />
+    
+    <!-- Título -->
+    <text x="400" y="40" class="title">Simulador de Circuito con Interruptores</text>
+    <text x="400" y="70" class="subtitle">Arma y prueba diferentes configuraciones</text>
+    
+    <!-- Línea divisoria -->
+    <line x1="50" y1="100" x2="750" y2="100" stroke="#3498db" stroke-width="2" />
+    
+    <!-- Área de trabajo -->
+    <rect x="50" y="120" width="700" height="380" fill="white" rx="10" stroke="#ddd" />
+    
+    <!-- Componentes del circuito -->
+    
+    <!-- Batería -->
+    <g id="battery" transform="translate(150, 200)">
+        <rect x="0" y="0" width="40" height="80" rx="5" class="battery" />
+        <rect x="10" y="5" width="20" height="10" fill="#2c3e50" />
+        <rect x="15" y="15" width="10" height="50" fill="#ecf0f1" />
+        <rect x="5" y="65" width="30" height="10" fill="#2c3e50" />
+        <text x="20" y="120" class="label">Batería 9V</text>
+        <text x="20" y="140" class="status" id="battery-status">+9V</text>
+    </g>
+    
+    <!-- Interruptor 1 -->
+    <g id="switch1" class="component" transform="translate(300, 200)">
+        <rect x="-30" y="-15" width="60" height="60" rx="5" fill="#ecf0f1" stroke="#bdc3c7" />
+        <rect x="-20" y="-10" width="40" height="50" rx="3" class="switch-base" />
+        <rect x="-5" y="0" width="10" height="30" rx="2" class="switch-lever" id="switch1-lever" />
+        <circle cx="0" cy="30" r="5" class="contact" />
+        <text x="0" y="70" class="label">Interruptor 1</text>
+        <text x="0" y="90" class="status" id="switch1-status">APAGADO</text>
+    </g>
+    
+    <!-- Bombilla -->
+    <g id="bulb" transform="translate(450, 200)">
+        <circle cx="0" cy="0" r="30" class="bulb-off" id="bulb-element" />
+        <rect x="-10" y="25" width="20" height="15" rx="3" class="bulb-off" id="bulb-base" />
+        <text x="0" y="70" class="label">Bombilla</text>
+        <text x="0" y="90" class="status" id="bulb-status">APAGADA</text>
+    </g>
+    
+    <!-- Interruptor 2 -->
+    <g id="switch2" class="component" transform="translate(300, 350)">
+        <rect x="-30" y="-15" width="60" height="60" rx="5" fill="#ecf0f1" stroke="#bdc3c7" />
+        <rect x="-20" y="-10" width="40" height="50" rx="20" class="switch-base" />
+        <circle cx="0" cy="15" r="12" class="switch-lever" id="switch2-button" />
+        <circle cx="0" cy="40" r="5" class="contact" />
+        <text x="0" y="70" class="label">Pulsador NA</text>
+        <text x="0" y="90" class="status" id="switch2-status">SUÉLTAME</text>
+    </g>
+    
+    <!-- Cableado -->
+    <g id="wiring">
+        <!-- Conexión batería a interruptor 1 -->
+        <line x1="190" y1="240" x2="270" y2="240" class="wire" id="wire1" />
+        
+        <!-- Conexión interruptor 1 a bombilla -->
+        <line x1="330" y1="240" x2="420" y2="200" class="wire" id="wire2" />
+        
+        <!-- Conexión bombilla a interruptor 2 -->
+        <line x1="450" y1="230" x2="450" y2="320" class="wire" id="wire3" />
+        
+        <!-- Conexión interruptor 2 a batería -->
+        <line x1="300" y1="350" x1="300" y2="280" class="wire" id="wire4" />
+        <line x1="300" y1="280" x2="170" y2="280" class="wire" id="wire5" />
+        <line x1="170" y1="280" x1="170" y2="240" class="wire" id="wire6" />
+        
+        <!-- Flechas de corriente -->
+        <path d="M200,240 L220,240" class="wire-active" id="current1" marker-end="url(#arrowhead)" style="display: none;" />
+        <path d="M340,240 L420,210" class="wire-active" id="current2" marker-end="url(#arrowhead)" style="display: none;" />
+        <path d="M450,250 L450,300" class="wire-active" id="current3" marker-end="url(#arrowhead)" style="display: none;" />
+        <path d="M300,340 L300,300" class="wire-active" id="current4" marker-end="url(#arrowhead)" style="display: none;" />
+        <path d="M300,300 L200,300 L200,250" class="wire-active" id="current5" marker-end="url(#arrowhead)" style="display: none;" />
+    </g>
+    
+    <!-- Panel de control -->
+    <rect x="600" y="150" width="130" height="150" rx="10" fill="#ecf0f1" stroke="#bdc3c7" />
+    <text x="665" y="180" class="label" text-anchor="middle">Panel de Control</text>
+    
+    <!-- Botón de encendido -->
+    <rect x="630" y="200" width="70" height="30" rx="5" class="btn" id="power-btn" fill="#2ecc71" />
+    <text x="665" y="221" class="btn-text">ENCENDER</text>
+    
+    <!-- Indicador de estado -->
+    <circle cx="620" y="250" r="8" fill="#e74c3c" id="status-led" />
+    <text x="665" y="255" class="label">Circuito: <tspan id="circuit-status">INCOMPLETO</tspan></text>
+    
+    <!-- Instrucciones -->
+    <rect x="100" y="520" width="600" height="60" rx="5" fill="#f8f9fa" stroke="#ddd" />
+    <text x="400" y="545" class="label" text-anchor="middle">1. Enciende el interruptor de palanca 2. Mantén presionado el pulsador</text>
+    <text x="400" y="565" class="label" text-anchor="middle" font-size="12" fill="#7f8c8d">Observa cómo fluye la corriente cuando ambos interruptores están activados</text>
+    
+    <!-- Interactividad con JavaScript -->
+    <script type="text/ecmascript">
+        // Variables de estado
+        let powerOn = false;
+        let switch1On = false;
+        let switch2Pressed = false;
+        let animationInterval;
+        
+        // Elementos del DOM
+        const powerBtn = document.getElementById('power-btn');
+        const powerBtnText = powerBtn.nextElementSibling;
+        const statusLED = document.getElementById('status-led');
+        const circuitStatus = document.getElementById('circuit-status');
+        
+        const switch1Lever = document.getElementById('switch1-lever');
+        const switch1Status = document.getElementById('switch1-status');
+        
+        const switch2Button = document.getElementById('switch2-button');
+        const switch2Status = document.getElementById('switch2-status');
+        
+        const bulbElement = document.getElementById('bulb-element');
+        const bulbBase = document.getElementById('bulb-base');
+        const bulbStatus = document.getElementById('bulb-status');
+        
+        // Funciones de utilidad
+        function updateCircuit() {
+            // Verificar si el circuito está completo
+            const circuitComplete = switch1On && switch2Pressed;
+            
+            // Actualizar bombilla
+            if (powerOn && circuitComplete) {
+                bulbElement.classList.remove('bulb-off');
+                bulbElement.classList.add('bulb-on');
+                bulbBase.classList.remove('bulb-off');
+                bulbBase.classList.add('bulb-on');
+                bulbStatus.textContent = 'ENCENDIDA';
+                bulbStatus.setAttribute('fill', '#2ecc71');
+                
+                // Mostrar corriente
+                document.querySelectorAll('#current1, #current2, #current3, #current4, #current5').forEach(el => {
+                    el.style.display = 'inline';
+                });
+                
+                // Iniciar animación de corriente
+                if (!animationInterval) {
+                    let offset = 0;
+                    animationInterval = setInterval(() => {
+                        offset = (offset + 1) % 20;
+                        document.querySelectorAll('.wire-active').forEach(el => {
+                            el.style.strokeDasharray = '10,10';
+                            el.style.strokeDashoffset = -offset;
+                        });
+                    }, 100);
+                }
+            } else {
+                bulbElement.classList.remove('bulb-on');
+                bulbElement.classList.add('bulb-off');
+                bulbBase.classList.remove('bulb-on');
+                bulbBase.classList.add('bulb-off');
+                bulbStatus.textContent = 'APAGADA';
+                bulbStatus.setAttribute('fill', '#e74c3c');
+                
+                // Ocultar corriente
+                document.querySelectorAll('.wire-active').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Detener animación
+                if (animationInterval) {
+                    clearInterval(animationInterval);
+                    animationInterval = null;
+                }
+            }
+            
+            // Actualizar estado del circuito
+            if (!powerOn) {
+                circuitStatus.textContent = 'APAGADO';
+                statusLED.setAttribute('fill', '#e74c3c');
+            } else if (!switch1On || !switch2Pressed) {
+                circuitStatus.textContent = 'INCOMPLETO';
+                statusLED.setAttribute('fill', '#f1c40f');
+            } else {
+                circuitStatus.textContent = 'FUNCIONANDO';
+                statusLED.setAttribute('fill', '#2ecc71');
+            }
+        }
+        
+        // Event Listeners
+        powerBtn.addEventListener('click', function() {
+            powerOn = !powerOn;
+            if (powerOn) {
+                this.setAttribute('fill', '#e74c3c');
+                powerBtnText.textContent = 'APAGAR';
+            } else {
+                this.setAttribute('fill', '#2ecc71');
+                powerBtnText.textContent = 'ENCENDER';
+            }
+            updateCircuit();
+        });
+        
+        // Interruptor de palanca
+        document.getElementById('switch1').addEventListener('click', function() {
+            if (!powerOn) return;
+            
+            switch1On = !switch1On;
+            if (switch1On) {
+                switch1Lever.setAttribute('transform', 'rotate(45, 0, 30)');
+                switch1Status.textContent = 'ENCENDIDO';
+                switch1Status.setAttribute('fill', '#2ecc71');
+            } else {
+                switch1Lever.setAttribute('transform', 'rotate(0, 0, 30)');
+                switch1Status.textContent = 'APAGADO';
+                switch1Status.setAttribute('fill', '#e74c3c');
+            }
+            updateCircuit();
+        });
+        
+        // Pulsador NA
+        switch2Button.addEventListener('mousedown', function() {
+            if (!powerOn) return;
+            
+            switch2Pressed = true;
+            switch2Status.textContent = 'PRESIONADO';
+            switch2Status.setAttribute('fill', '#2ecc71');
+            this.setAttribute('r', '8');
+            updateCircuit();
+        });
+        
+        switch2Button.addEventListener('mouseup', function() {
+            if (!powerOn) return;
+            
+            switch2Pressed = false;
+            switch2Status.textContent = 'SUÉLTAME';
+            switch2Status.setAttribute('fill', '#e74c3c');
+            this.setAttribute('r', '12');
+            updateCircuit();
+        });
+        
+        switch2Button.addEventListener('mouseleave', function() {
+            if (switch2Pressed) {
+                switch2Pressed = false;
+                switch2Status.textContent = 'SUÉLTAME';
+                switch2Status.setAttribute('fill', '#e74c3c');
+                this.setAttribute('r', '12');
+                updateCircuit();
+            }
+        });
+        
+        // Inicialización
+        updateCircuit();
+    </script>
+</svg>

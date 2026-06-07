@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6: Circuitos Mixtos - Curso de Electricidad Básica</title>
+    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">⚡ Electricidad Básica</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#sesiones">Sesiones</a></li>
+                <li><a href="../index.html#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido de la Sesión -->
+    <section class="sesion-header">
+        <div class="container">
+            <h1 class="sesion-title">Sesión 6: Circuitos Mixtos</h1>
+            <p class="sesion-subtitle">Análisis de circuitos que combinan serie y paralelo</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion05.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion07.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+
+        <!-- Información de la sesión -->
+        <div class="sesion-content-main">
+            <div class="section">
+                <h2>📋 Información de la Sesión</h2>
+                <div class="info-box">
+                    <strong>Duración:</strong> 3 horas | <strong>Tipo:</strong> Teoría + Práctica | <strong>Dificultad:</strong> Intermedio
+                </div>
+                
+                <h3>🎯 Objetivos de Aprendizaje</h3>
+                <ul>
+                    <li>Identificar circuitos mixtos y sus componentes</li>
+                    <li>Aplicar métodos de simplificación de circuitos</li>
+                    <li>Calcular resistencias equivalentes en circuitos mixtos</li>
+                    <li>Analizar voltajes y corrientes en circuitos complejos</li>
+                    <li>Construir y verificar circuitos mixtos prácticamente</li>
+                </ul>
+            </div>
+
+            <!-- Teoría -->
+            <div class="teoria-section">
+                <h2>🔬 Teoría: Circuitos Mixtos</h2>
+                
+                <h3>¿Qué es un Circuito Mixto?</h3>
+                <p>Un circuito mixto (o serie-paralelo) es aquel que combina conexiones en serie y en paralelo. Estos circuitos son muy comunes en aplicaciones reales.</p>
+
+                <div class="info-box">
+                    <strong>Características:</strong>
+                    <ul>
+                        <li>Combinan elementos en serie y paralelo</li>
+                        <li>Requieren análisis paso a paso</li>
+                        <li>Son más complejos que circuitos puros</li>
+                        <li>Muy comunes en aplicaciones prácticas</li>
+                    </ul>
+                </div>
+
+                <h3>Método de Análisis de Circuitos Mixtos</h3>
+                <p>Para analizar circuitos mixtos, seguimos estos pasos:</p>
+                
+                <ol>
+                    <li><strong>Identificar grupos:</strong> Localizar grupos de resistencias en serie y paralelo</li>
+                    <li><strong>Simplificar:</strong> Reducir cada grupo a su resistencia equivalente</li>
+                    <li><strong>Repetir:</strong> Continuar simplificando hasta obtener una sola resistencia</li>
+                    <li><strong>Calcular corriente total:</strong> Usar la resistencia total y el voltaje aplicado</li>
+                    <li><strong>Expandir:</strong> Calcular voltajes y corrientes en cada nivel</li>
+                </ol>
+
+                <h3>Estrategias de Simplificación</h3>
+                
+                <h4>1. Identificar Patrones</h4>
+                <ul>
+                    <li>Buscar resistencias que compartan un solo punto de conexión (paralelo)</li>
+                    <li>Buscar resistencias que compartan ambos puntos de conexión (serie)</li>
+                    <li>Trabajar desde el interior hacia el exterior</li>
+                </ul>
+
+                <h4>2. Dibujar Circuitos Simplificados</h4>
+                <ul>
+                    <li>Redibujar el circuito después de cada simplificación</li>
+                    <li>Mantener claridad visual</li>
+                    <li>Etiquetar resistencias equivalentes</li>
+                </ul>
+
+                <h4>3. Verificar Cálculos</h4>
+                <ul>
+                    <li>Usar las leyes de Kirchhoff para verificar</li>
+                    <li>Comprobar que la suma de corrientes y voltajes sea correcta</li>
+                    <li>Validar con mediciones prácticas</li>
+                </ul>
+            </div>
+
+            <!-- Ejemplos de Análisis -->
+            <div class="section">
+                <h2>📊 Ejemplos de Análisis de Circuitos Mixtos</h2>
+
+                <h3>Ejemplo 1: Circuito Básico Mixto</h3>
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Vₜₒₜₐₗ = 12 V</li>
+                    <li>R₁ = 4 Ω (en serie)</li>
+                    <li>R₂ = 6 Ω (en paralelo con R₃)</li>
+                    <li>R₃ = 3 Ω (en paralelo con R₂)</li>
+                </ul>
+
+                <p><strong>Paso 1:</strong> Simplificar el grupo paralelo R₂||R₃</p>
+                <div class="formula">
+                    R₂₃ = (R₂ × R₃) / (R₂ + R₃) = (6 × 3) / (6 + 3) = 18 / 9 = 2 Ω
+                </div>
+
+                <p><strong>Paso 2:</strong> Calcular resistencia total</p>
+                <div class="formula">
+                    Rₜₒₜₐₗ = R₁ + R₂₃ = 4 Ω + 2 Ω = 6 Ω
+                </div>
+
+                <p><strong>Paso 3:</strong> Calcular corriente total</p>
+                <div class="formula">
+                    Iₜₒₜₐₗ = Vₜₒₜₐₗ / Rₜₒₜₐₗ = 12 V / 6 Ω = 2 A
+                </div>
+
+                <p><strong>Paso 4:</strong> Calcular voltajes</p>
+                <div class="formula">
+                    V₁ = Iₜₒₜₐₗ × R₁ = 2 A × 4 Ω = 8 V
+                </div>
+                <div class="formula">
+                    V₂₃ = Iₜₒₜₐₗ × R₂₃ = 2 A × 2 Ω = 4 V
+                </div>
+
+                <p><strong>Paso 5:</strong> Calcular corrientes en el grupo paralelo</p>
+                <div class="formula">
+                    I₂ = V₂₃ / R₂ = 4 V / 6 Ω = 0.67 A
+                </div>
+                <div class="formula">
+                    I₃ = V₂₃ / R₃ = 4 V / 3 Ω = 1.33 A
+                </div>
+
+                <h3>Ejemplo 2: Circuito Más Complejo</h3>
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Vₜₒₜₐₗ = 24 V</li>
+                    <li>R₁ = 2 Ω</li>
+                    <li>R₂ = 4 Ω (en paralelo con R₃)</li>
+                    <li>R₃ = 4 Ω (en paralelo con R₂)</li>
+                    <li>R₄ = 6 Ω (en serie con el grupo paralelo)</li>
+                </ul>
+
+                <p><strong>Análisis paso a paso:</strong></p>
+                <ol>
+                    <li>Simplificar R₂||R₃ = 2 Ω</li>
+                    <li>Rₜₒₜₐₗ = R₁ + R₂₃ + R₄ = 2 + 2 + 6 = 10 Ω</li>
+                    <li>Iₜₒₜₐₗ = 24 V / 10 Ω = 2.4 A</li>
+                    <li>V₁ = 2.4 A × 2 Ω = 4.8 V</li>
+                    <li>V₂₃ = 2.4 A × 2 Ω = 4.8 V</li>
+                    <li>V₄ = 2.4 A × 6 Ω = 14.4 V</li>
+                    <li>I₂ = 4.8 V / 4 Ω = 1.2 A</li>
+                    <li>I₃ = 4.8 V / 4 Ω = 1.2 A</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Verificación:</strong> V₁ + V₂₃ + V₄ = 4.8 + 4.8 + 14.4 = 24 V ✓
+                </div>
+            </div>
+
+            <!-- Práctica -->
+            <div class="practica-section">
+                <h2>🛠️ Práctica: Construcción de Circuitos Mixtos</h2>
+
+                <h3>Materiales Necesarios</h3>
+                <ul>
+                    <li>Protoboard</li>
+                    <li>Resistencias: 220 Ω, 330 Ω, 470 Ω, 1 kΩ</li>
+                    <li>Multímetro digital</li>
+                    <li>Cables de conexión</li>
+                    <li>Fuente de alimentación 9V</li>
+                    <li>LEDs y resistencias limitadoras</li>
+                </ul>
+
+                <h3>Ejercicio 1: Circuito Mixto Básico</h3>
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Construye el circuito del Ejemplo 1 usando las resistencias disponibles</li>
+                    <li>Calcula teóricamente todos los valores</li>
+                    <li>Mide voltajes y corrientes en cada punto</li>
+                    <li>Compara valores teóricos con medidos</li>
+                    <li>Identifica fuentes de error</li>
+                </ol>
+
+                <h4>Tabla de Comparación</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parámetro</th>
+                            <th>Valor Calculado</th>
+                            <th>Valor Medido</th>
+                            <th>% Error</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>R equivalente</td>
+                            <td>___ Ω</td>
+                            <td>___ Ω</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>I total</td>
+                            <td>___ A</td>
+                            <td>___ A</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>V₁</td>
+                            <td>___ V</td>
+                            <td>___ V</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>V₂₃</td>
+                            <td>___ V</td>
+                            <td>___ V</td>
+                            <td>___ %</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Ejercicio 2: Proyecto Práctico - Divisor de Voltaje con Carga</h3>
+                <p><strong>Objetivo:</strong> Crear un divisor de voltaje que mantenga un voltaje estable bajo diferentes cargas.</p>
+
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Diseña un divisor de voltaje de 12V a 6V</li>
+                    <li>Conecta diferentes resistencias de carga</li>
+                    <li>Mide cómo cambia el voltaje de salida</li>
+                    <li>Analiza el efecto de la carga en el divisor</li>
+                </ol>
+
+                <h3>Ejercicio 3: Análisis de Fallas</h3>
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Construye un circuito mixto funcional</li>
+                    <li>Mide todos los valores normales</li>
+                    <li>Simula una falla (desconecta una resistencia)</li>
+                    <li>Mide los nuevos valores</li>
+                    <li>Analiza el impacto de la falla</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>⚠️ Precauciones:</strong>
+                    <ul>
+                        <li>Verifica las conexiones antes de energizar</li>
+                        <li>No excedas los valores nominales de los componentes</li>
+                        <li>Usa resistencias limitadoras apropiadas para LEDs</li>
+                        <li>Documenta todas las mediciones</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Aplicaciones Prácticas -->
+            <div class="section">
+                <h2>🏠 Aplicaciones Prácticas de Circuitos Mixtos</h2>
+
+                <h3>Divisores de Voltaje con Carga</h3>
+                <p>Los circuitos mixtos son fundamentales en divisores de voltaje:</p>
+                <ul>
+                    <li><strong>Aplicación:</strong> Fuentes de referencia de voltaje</li>
+                    <li><strong>Ventaja:</strong> Voltaje estable bajo diferentes cargas</li>
+                    <li><strong>Desventaja:</strong> Consumo de corriente constante</li>
+                </ul>
+
+                <h3>Circuitos de Iluminación</h3>
+                <p>Los sistemas de iluminación modernos usan circuitos mixtos:</p>
+                <ul>
+                    <li>Grupos de luces en paralelo</li>
+                    <li>Interruptores en serie con cada grupo</li>
+                    <li>Control independiente por áreas</li>
+                    <li>Eficiencia energética</li>
+                </ul>
+
+                <h3>Fuentes de Alimentación</h3>
+                <p>Las fuentes de alimentación usan circuitos mixtos para:</p>
+                <ul>
+                    <li>Regulación de voltaje</li>
+                    <li>Protección contra sobrecarga</li>
+                    <li>Múltiples salidas</li>
+                    <li>Filtrado de señales</li>
+                </ul>
+
+                <h3>Sistemas de Control</h3>
+                <p>Los sistemas de automatización usan circuitos mixtos para:</p>
+                <ul>
+                    <li>Interfaz de sensores</li>
+                    <li>Control de actuadores</li>
+                    <li>Señalización y alarmas</li>
+                    <li>Comunicación entre módulos</li>
+                </ul>
+            </div>
+
+            <!-- Métodos de Análisis Avanzados -->
+            <div class="section">
+                <h2>🔧 Métodos de Análisis Avanzados</h2>
+
+                <h3>Método de Análisis de Nodos</h3>
+                <p>Para circuitos más complejos, se puede usar el análisis de nodos:</p>
+                <ol>
+                    <li>Identificar todos los nodos del circuito</li>
+                    <li>Seleccionar un nodo de referencia (tierra)</li>
+                    <li>Aplicar la ley de corrientes de Kirchhoff en cada nodo</li>
+                    <li>Resolver el sistema de ecuaciones</li>
+                </ol>
+
+                <h3>Método de Análisis de Mallas</h3>
+                <p>Para circuitos con múltiples lazos:</p>
+                <ol>
+                    <li>Identificar todas las mallas del circuito</li>
+                    <li>Aplicar la ley de voltajes de Kirchhoff en cada malla</li>
+                    <li>Resolver el sistema de ecuaciones</li>
+                    <li>Calcular corrientes y voltajes</li>
+                </ol>
+
+                <h3>Teorema de Superposición</h3>
+                <p>Útil para circuitos con múltiples fuentes:</p>
+                <ol>
+                    <li>Analizar el circuito con una fuente a la vez</li>
+                    <li>Desactivar las demás fuentes</li>
+                    <li>Sumar los efectos de todas las fuentes</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>💡 Consejo:</strong> Para circuitos simples, usa el método de simplificación. Para circuitos complejos, considera métodos más avanzados como análisis de nodos o mallas.
+                </div>
+            </div>
+
+            <!-- Actividades de Verificación -->
+            <div class="section">
+                <h2>✅ Actividades de Verificación</h2>
+
+                <h3>Problemas de Cálculo</h3>
+                <ol>
+                    <li>Analiza el siguiente circuito mixto:
+                        <ul>
+                            <li>R₁ = 10 Ω (en serie)</li>
+                            <li>R₂ = 20 Ω (en paralelo con R₃)</li>
+                            <li>R₃ = 30 Ω (en paralelo con R₂)</li>
+                            <li>R₄ = 15 Ω (en serie)</li>
+                            <li>V = 36 V</li>
+                        </ul>
+                        Calcula: R equivalente, I total, voltajes y corrientes en cada resistencia.
+                    </li>
+                    <li>Diseña un divisor de voltaje que proporcione 5V desde una fuente de 12V con una resistencia de carga de 1kΩ</li>
+                    <li>¿Qué resistencia necesitas en serie con un grupo paralelo de 100Ω y 200Ω para obtener una resistencia total de 150Ω?</li>
+                </ol>
+
+                <h3>Ejercicios Prácticos</h3>
+                <ol>
+                    <li>Construye un circuito mixto con al menos 5 resistencias</li>
+                    <li>Verifica tus cálculos teóricos con mediciones</li>
+                    <li>Analiza el efecto de cambiar una resistencia en el circuito</li>
+                    <li>Diseña un circuito que mantenga un voltaje constante bajo diferentes cargas</li>
+                </ol>
+
+                <h3>Proyecto Integrador</h3>
+                <p><strong>Objetivo:</strong> Diseñar y construir un sistema de iluminación con control independiente.</p>
+
+                <p><strong>Especificaciones:</strong></p>
+                <ul>
+                    <li>3 grupos de LEDs en paralelo</li>
+                    <li>Control independiente de cada grupo</li>
+                    <li>Voltaje de alimentación: 9V</li>
+                    <li>Protección contra sobrecorriente</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>💡 Evaluación:</strong> Tu proyecto será evaluado por: funcionamiento correcto, diseño eficiente, documentación clara y análisis de resultados.
+                </div>
+            </div>
+
+            <!-- Recursos Adicionales -->
+            <div class="section">
+                <h2>📚 Recursos Adicionales</h2>
+                
+                <h3>Software de Simulación</h3>
+                <ul>
+                    <li><a href="#" target="_blank">LTspice - Simulación profesional</a></li>
+                    <li><a href="#" target="_blank">Falstad Circuit Simulator - Análisis interactivo</a></li>
+                    <li><a href="#" target="_blank">Multisim - Simulación educativa</a></li>
+                </ul>
+
+                <h3>Calculadoras Especializadas</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Calculadora de circuitos mixtos</a></li>
+                    <li><a href="#" target="_blank">Calculadora de divisores de voltaje</a></li>
+                    <li><a href="#" target="_blank">Calculadora de resistencias equivalentes</a></li>
+                </ul>
+
+                <h3>Proyectos Avanzados</h3>
+                <ul>
+                    <li>Diseño de fuente de alimentación variable</li>
+                    <li>Construcción de amplificador de audio básico</li>
+                    <li>Desarrollo de sistema de monitoreo de sensores</li>
+                    <li>Creación de controlador de temperatura</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion05.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion07.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; JMGV-PTEL 2025. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de entrada para secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar secciones
+        document.querySelectorAll('.section, .teoria-section, .practica-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Calculadora de circuito mixto
+        function calculateMixedCircuit() {
+            const voltage = parseFloat(document.getElementById('inputVoltage').value);
+            const r1 = parseFloat(document.getElementById('r1').value);
+            const r2 = parseFloat(document.getElementById('r2').value);
+            const r3 = parseFloat(document.getElementById('r3').value);
+            const r4 = parseFloat(document.getElementById('r4').value);
+            
+            // Simplificar grupo paralelo R2||R3
+            const r23 = (r2 * r3) / (r2 + r3);
+            
+            // Resistencia total
+            const rTotal = r1 + r23 + r4;
+            
+            // Corriente total
+            const iTotal = voltage / rTotal;
+            
+            // Voltajes
+            const v1 = iTotal * r1;
+            const v23 = iTotal * r23;
+            const v4 = iTotal * r4;
+            
+            // Corrientes en grupo paralelo
+            const i2 = v23 / r2;
+            const i3 = v23 / r3;
+            
+            document.getElementById('results').innerHTML = `
+                <h4>Resultados del Análisis:</h4>
+                <p><strong>R₂₃ equivalente:</strong> ${r23.toFixed(2)} Ω</p>
+                <p><strong>R total:</strong> ${rTotal.toFixed(2)} Ω</p>
+                <p><strong>I total:</strong> ${iTotal.toFixed(3)} A</p>
+                <p><strong>V₁:</strong> ${v1.toFixed(2)} V</p>
+                <p><strong>V₂₃:</strong> ${v23.toFixed(2)} V</p>
+                <p><strong>V₄:</strong> ${v4.toFixed(2)} V</p>
+                <p><strong>I₂:</strong> ${i2.toFixed(3)} A</p>
+                <p><strong>I₃:</strong> ${i3.toFixed(3)} A</p>
+                <p><strong>Verificación V:</strong> ${(v1 + v23 + v4).toFixed(2)} V</p>
+            `;
+        }
+    </script>
+</body>
+</html>

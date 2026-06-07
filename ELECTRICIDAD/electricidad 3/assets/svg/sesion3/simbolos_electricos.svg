@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <title>Símbolos Eléctricos de Interruptores</title>
+    <style>
+        .title { font: bold 28px Arial; text-anchor: middle; fill: #2c3e50; }
+        .subtitle { font: bold 20px Arial; text-anchor: middle; fill: #34495e; }
+        .symbol { stroke: #2c3e50; stroke-width: 2; fill: none; }
+        .wire { stroke: #2c3e50; stroke-width: 2; }
+        .contact { fill: #2c3e50; }
+        .label { font: 16px Arial; text-anchor: middle; }
+        .symbol-container { cursor: pointer; }
+        .symbol-container:hover .symbol { stroke: #e74c3c; stroke-width: 3; }
+        .symbol-container:hover .contact { fill: #e74c3c; }
+    </style>
+
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f9f9f9" />
+    
+    <!-- Título -->
+    <text x="400" y="40" class="title">Símbolos Eléctricos de Interruptores</text>
+    <text x="400" y="70" class="subtitle">Aprende a identificar los símbolos estándar</text>
+    
+    <!-- Línea divisoria -->
+    <line x1="50" y1="90" x2="750" y2="90" stroke="#3498db" stroke-width="2" />
+    
+    <!-- Símbolo 1: Interruptor SPST -->
+    <g class="symbol-container" transform="translate(150, 150)">
+        <line x1="0" y1="30" x2="100" y2="30" class="wire" />
+        <line x1="0" y1="30" x2="30" y2="30" class="symbol" />
+        <line x1="70" y1="30" x2="100" y2="30" class="symbol" />
+        <line x1="30" y1="10" x2="70" y2="50" class="symbol" id="spst-switch" />
+        <circle cx="30" cy="30" r="3" class="contact" />
+        <circle cx="70" cy="30" r="3" class="contact" />
+        <text x="50" y="100" class="label">SPST (Unipolar Unidireccional)</text>
+        <text x="50" y="120" class="label" font-size="14" fill="#7f8c8d">Interruptor de palanca básico</text>
+    </g>
+    
+    <!-- Símbolo 2: Pulsador NA -->
+    <g class="symbol-container" transform="translate(450, 150)">
+        <line x1="0" y1="30" x2="100" y2="30" class="wire" />
+        <line x1="0" y1="30" x2="30" y2="30" class="symbol" />
+        <line x1="70" y1="30" x2="100" y2="30" class="symbol" />
+        <line x1="30" y1="30" x2="70" y2="30" class="symbol" stroke-dasharray="5,3" id="pushbutton-na" />
+        <line x1="30" y1="15" x2="30" y2="45" class="symbol" />
+        <circle cx="30" cy="30" r="3" class="contact" />
+        <circle cx="70" cy="30" r="3" class="contact" />
+        <text x="50" y="100" class="label">Pulsador NA</text>
+        <text x="50" y="120" class="label" font-size="14" fill="#7f8c8d">Normalmente Abierto</text>
+    </g>
+    
+    <!-- Símbolo 3: Interruptor SPDT -->
+    <g class="symbol-container" transform="translate(150, 300)">
+        <line x1="50" y1="30" x2="100" y2="30" class="wire" />
+        <line x1="50" y1="30" x2="70" y2="10" class="symbol" id="spdt-switch-1" />
+        <line x1="50" y1="30" x2="70" y2="50" class="symbol" id="spdt-switch-2" />
+        <line x1="70" y1="10" x2="150" y2="10" class="symbol" />
+        <line x1="70" y1="50" x2="150" y2="50" class="symbol" />
+        <circle cx="50" cy="30" r="3" class="contact" />
+        <circle cx="70" cy="10" r="3" class="contact" />
+        <circle cx="70" cy="50" r="3" class="contact" />
+        <text x="100" y="100" class="label">SPDT (Unipolar Doble Dirección)</text>
+        <text x="100" y="120" class="label" font-size="14" fill="#7f8c8d">Conmutador</text>
+    </g>
+    
+    <!-- Símbolo 4: Interruptor de Mercurio -->
+    <g class="symbol-container" transform="translate(450, 300)">
+        <line x1="0" y1="30" x2="100" y2="30" class="wire" />
+        <rect x="30" y="10" width="40" height="40" rx="5" class="symbol" />
+        <circle cx="50" cy="30" r="15" fill="#ecf0f1" class="symbol" />
+        <path d="M45,20 L55,20 L55,40 L45,40 Z" fill="#bdc3c7" class="symbol" />
+        <circle cx="50" cy="25" r="2" fill="#e74c3c" id="mercury-drop" />
+        <text x="50" y="100" class="label">Interruptor de Mercurio</text>
+        <text x="50" y="120" class="label" font-size="14" fill="#7f8c8d">Se activa por inclinación</text>
+    </g>
+    
+    <!-- Leyenda -->
+    <rect x="100" y="450" width="600" height="100" rx="10" fill="#f8f9fa" stroke="#ddd" />
+    <text x="400" y="480" class="subtitle" font-size="16">¿Cómo leer los símbolos?</text>
+    <text x="400" y="510" class="label" text-anchor="middle">Cada símbolo muestra cómo se conecta el interruptor en un circuito.</text>
+    <text x="400" y="530" class="label" text-anchor="middle">Los círculos representan puntos de conexión y las líneas muestran el estado del interruptor.</text>
+    
+    <!-- Interactividad con JavaScript -->
+    <script type="text/ecmascript">
+        // Animación para el interruptor SPST
+        const spstSwitch = document.getElementById('spst-switch');
+        let spstState = false;
+        
+        spstSwitch.addEventListener('click', function() {
+            spstState = !spstState;
+            if (spstState) {
+                this.setAttribute('y1', '50');
+                this.setAttribute('y2', '10');
+            } else {
+                this.setAttribute('y1', '10');
+                this.setAttribute('y2', '50');
+            }
+        });
+        
+        // Animación para el pulsador NA
+        const pushButton = document.getElementById('pushbutton-na');
+        
+        pushButton.addEventListener('mousedown', function() {
+            this.style.strokeDasharray = '0,0';
+        });
+        
+        pushButton.addEventListener('mouseup', function() {
+            this.style.strokeDasharray = '5,3';
+        });
+        
+        pushButton.addEventListener('mouseleave', function() {
+            this.style.strokeDasharray = '5,3';
+        });
+        
+        // Animación para el interruptor SPDT
+        const spdtSwitch1 = document.getElementById('spdt-switch-1');
+        const spdtSwitch2 = document.getElementById('spdt-switch-2');
+        let spdtState = false;
+        
+        spdtSwitch1.addEventListener('click', function() {
+            spdtState = !spdtState;
+            if (spdtState) {
+                spdtSwitch1.style.stroke = '#2ecc71';
+                spdtSwitch1.style.strokeWidth = '3';
+                spdtSwitch2.style.stroke = '#2c3e50';
+                spdtSwitch2.style.strokeWidth = '2';
+            } else {
+                spdtSwitch1.style.stroke = '#2c3e50';
+                spdtSwitch1.style.strokeWidth = '2';
+                spdtSwitch2.style.stroke = '#2ecc71';
+                spdtSwitch2.style.strokeWidth = '3';
+            }
+        });
+        
+        spdtSwitch2.addEventListener('click', function() {
+            spdtState = !spdtState;
+            if (spdtState) {
+                spdtSwitch1.style.stroke = '#2ecc71';
+                spdtSwitch1.style.strokeWidth = '3';
+                spdtSwitch2.style.stroke = '#2c3e50';
+                spdtSwitch2.style.strokeWidth = '2';
+            } else {
+                spdtSwitch1.style.stroke = '#2c3e50';
+                spdtSwitch1.style.strokeWidth = '2';
+                spdtSwitch2.style.stroke = '#2ecc71';
+                spdtSwitch2.style.strokeWidth = '3';
+            }
+        });
+        
+        // Animación para el interruptor de mercurio
+        const mercuryDrop = document.getElementById('mercury-drop');
+        let mercuryState = false;
+        
+        mercuryDrop.addEventListener('click', function() {
+            mercuryState = !mercuryState;
+            if (mercuryState) {
+                this.setAttribute('cy', '35');
+            } else {
+                this.setAttribute('cy', '25');
+            }
+        });
+    </script>
+</svg>

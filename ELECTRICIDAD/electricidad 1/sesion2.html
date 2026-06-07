@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Electricidad Estática - Conceptos Básicos de Electricidad</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para la sesión 2 que sobrescriben los estilos generales */
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+        .activity {
+            background-color: #f0f7ff;
+            border-left: 4px solid #6a11cb;
+        }
+        h2 {
+            color: #2575fc;
+        }
+        .home-link {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+        .home-link:hover {
+            opacity: 0.9;
+        }
+        .tip {
+            background-color: #f0f7ff;
+            border-left: 4px solid #2575fc;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">← Volver al índice</a>
+    
+    <div class="header">
+        <h1>Electricidad Estática</h1>
+        <p>Sesión 2 - Módulo 1: Introducción a la Electricidad</p>
+    </div>
+
+    <div class="section">
+        <h2>Objetivo específico</h2>
+        <p>Comprender los principios de la electricidad estática, sus causas y efectos en la vida cotidiana.</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#f8f9ff"/>
+                <!-- Átomo con electrones -->
+                <circle cx="200" cy="100" r="30" fill="none" stroke="#6a11cb" stroke-width="2"/>
+                <circle cx="200" cy="100" r="5" fill="#6a11cb"/>
+                
+                <!-- Electrones orbitando -->
+                <g class="atom">
+                    <circle cx="170" cy="70" r="8" fill="#2575fc">
+                        <animate attributeName="cx" values="170;230;170" dur="4s" repeatCount="indefinite"/>
+                        <animate attributeName="cy" values="70;130;70" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="230" cy="130" r="8" fill="#2575fc">
+                        <animate attributeName="cx" values="230;170;230" dur="4s" repeatCount="indefinite"/>
+                        <animate attributeName="cy" values="130;70;130" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                </g>
+                
+                <!-- Rayos de energía estática -->
+                <path d="M100 50 L120 30 M110 40 L130 20" stroke="#ffd700" stroke-width="2"/>
+                <path d="M300 170 L280 150 M290 160 L270 140" stroke="#ffd700" stroke-width="2"/>
+                
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Electricidad Estática: Cargas en Reposo</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Contenido teórico</h2>
+        <p>La electricidad estática es un fenómeno que se debe a una acumulación de cargas eléctricas en un objeto. Ocurre cuando hay un desequilibrio entre cargas positivas y negativas en los átomos.</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#f8f9ff"/>
+                
+                <!-- Átomo neutro -->
+                <g>
+                    <circle cx="100" cy="100" r="30" fill="#e8f4fc" stroke="#6a11cb" stroke-width="2"/>
+                    <circle cx="100" cy="100" r="20" fill="#6a11cb" fill-opacity="0.2"/>
+                    <text x="100" y="150" text-anchor="middle" font-size="12">Átomo Neutro</text>
+                    <text x="100" y="165" text-anchor="middle" font-size="10">Mismo número de</text>
+                    <text x="100" y="180" text-anchor="middle" font-size="10">protones y electrones</text>
+                </g>
+                
+                <!-- Flecha -->
+                <path d="M150 100 L200 100" stroke="#6a11cb" stroke-width="2" stroke-dasharray="5,5"/>
+                <polygon points="210,100 200,95 200,105" fill="#6a11cb"/>
+                
+                <!-- Átomo cargado -->
+                <g>
+                    <circle cx="300" cy="100" r="30" fill="#f0e6ff" stroke="#6a11cb" stroke-width="2"/>
+                    <circle cx="300" cy="100" r="20" fill="#6a11cb" fill-opacity="0.2">
+                        <animate attributeName="r" values="20;25;20" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="300" y="150" text-anchor="middle" font-size="12">Átomo Cargado</text>
+                    <text x="300" y="165" text-anchor="middle" font-size="10">Desequilibrio de cargas</text>
+                    <text x="300" y="180" text-anchor="middle" font-size="10">(más electrones que protones)</text>
+                </g>
+                
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">De Átomo Neutro a Cargado</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Ejemplo ilustrativo</h2>
+        <p>Imagina que caminas sobre una alfombra con calcetines. Al hacerlo, los electrones de tus pies "frotan" contra la alfombra y se transfieren a tu cuerpo. Cuando tocas el picaporte metálico, los electrones saltan rápidamente, produciendo esa pequeña descarga que sientes.</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="250" fill="#f8f9ff"/>
+                
+                <!-- Suelo -->
+                <rect x="0" y="200" width="400" height="50" fill="#8d6e63"/>
+                
+                <!-- Alfombra -->
+                <rect x="100" y="180" width="200" height="20" fill="#a1887f"/>
+                <line x1="100" y1="185" x2="300" y2="185" stroke="#8d6e63" stroke-width="2"/>
+                <line x1="100" y1="195" x2="300" y2="195" stroke="#8d6e63" stroke-width="2"/>
+                
+                <!-- Persona -->
+                <circle cx="200" cy="140" r="15" fill="#ffccbc"/>
+                <line x1="200" y1="155" x2="200" y2="180" stroke="#5d4037" stroke-width="4"/>
+                <line x1="200" y1="165" x2="170" y2="150" stroke="#5d4037" stroke-width="3"/>
+                <line x1="200" y1="165" x2="230" y2="150" stroke="#5d4037" stroke-width="3"/>
+                <line x1="200" y1="180" x2="185" y2="210" stroke="#5d4037" stroke-width="4"/>
+                <line x1="200" y1="180" x2="215" y2="210" stroke="#5d4037" stroke-width="4"/>
+                
+                <!-- Cargas en la persona -->
+                <circle cx="210" cy="130" r="3" fill="#2575fc">
+                    <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="220" cy="150" r="3" fill="#2575fc">
+                    <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite" begin="0.2s"/>
+                </circle>
+                
+                <!-- Picaporte -->
+                <rect x="320" y="150" width="10" height="50" fill="#9e9e9e"/>
+                <circle cx="325" cy="150" r="15" fill="#bdbdbd"/>
+                
+                <!-- Rayo de descarga -->
+                <path d="M215 160 Q230 155 240 165 Q250 175 260 170 Q270 165 280 175 Q290 185 300 180 Q310 175 320 170" 
+                      stroke="#ffd700" 
+                      stroke-width="2" 
+                      fill="none"
+                      stroke-dasharray="3,2"
+                      opacity="0">
+                    <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="1s"/>
+                </path>
+                
+                <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">La Caminata que Genera Electricidad Estática</text>
+                <text x="100" y="230" text-anchor="middle" font-size="10">Frotamiento con la alfombra</text>
+                <text x="300" y="230" text-anchor="middle" font-size="10">Descarga al tocar metal</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Actividad práctica</h2>
+        <div class="activity">
+            <h3>Experimento: El Poder de la Electricidad Estática</h3>
+            <p><strong>Materiales:</strong> Pequeños trozos de papel, una regla de plástico, un paño de lana o tu propio cabello.</p>
+            <ol>
+                <li>Corta pequeños trozos de papel (aproximadamente del tamaño de una uña).</li>
+                <li>Frota la regla de plástico vigorosamente con el paño de lana o contra tu cabello durante 30 segundos.</li>
+                <li>Acerca la regla a los trozos de papel sin tocarlos y observa lo que sucede.</li>
+            </ol>
+            
+            <div class="svg-container">
+                <svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="250" fill="#f8f9ff"/>
+                    
+                    <!-- Mesa -->
+                    <rect x="50" y="180" width="300" height="10" fill="#8d6e63"/>
+                    
+                    <!-- Trozos de papel -->
+                    <rect x="150" y="160" width="20" height="10" rx="2" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1"/>
+                    <rect x="155" y="155" width="15" height="10" rx="2" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1" transform="rotate(15, 155, 155)"/>
+                    <rect x="160" y="165" width="12" height="8" rx="2" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1" transform="rotate(-10, 160, 165)"/>
+                    
+                    <!-- Regla -->
+                    <rect x="200" y="100" width="100" height="15" rx="3" fill="#4caf50" stroke="#388e3c" stroke-width="1"/>
+                    <text x="250" y="112" text-anchor="middle" font-size="8" fill="white">30 cm</text>
+                    
+                    <!-- Mano -->
+                    <path d="M250 70 Q260 80 255 90 L245 95 Q235 85 240 75 Z" fill="#ffccbc"/>
+                    
+                    <!-- Flechas de fricción -->
+                    <path d="M220 95 L220 85 M225 95 L225 85 M230 95 L230 85" stroke="#ff9800" stroke-width="2"/>
+                    
+                    <!-- Fuerza de atracción -->
+                    <path d="M170 150 L170 170" stroke="#f44336" stroke-width="1.5" marker-end="url(#arrow)">
+                        <animate attributeName="y2" values="170;160;170" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    
+                    <!-- Papel siendo atraído -->
+                    <rect x="160" y="165" width="12" height="8" rx="2" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1" transform="rotate(-10, 160, 165)">
+                        <animate attributeName="y" values="165;150;165" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                    
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+                            <path d="M0,0 L0,6 L5,3 z" fill="#f44336"/>
+                        </marker>
+                    </defs>
+                    
+                    <text x="200" y="30" text-anchor="middle" font-weight="bold" font-size="14">Atracción por Electricidad Estática</text>
+                    <text x="200" y="50" text-anchor="middle" font-size="12" fill="#666">La regla cargada atrae los trozos de papel</text>
+                </svg>
+            </div>
+            
+            <div class="tip">
+                <strong>¿Qué está pasando?</strong> Al frotar la regla, ésta adquiere carga eléctrica estática. Esta carga crea un campo eléctrico que induce una separación de cargas en el papel, haciendo que sea atraído hacia la regla cargada.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Pregunta de reflexión</h2>
+        <p>Piensa en tres situaciones de la vida cotidiana donde hayas experimentado electricidad estática. ¿Por qué crees que ocurren estos fenómenos en esos contextos específicos?</p>
+        
+        <div class="svg-container">
+            <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="150" fill="#f8f9ff"/>
+                
+                <!-- Ropa en secadora -->
+                <rect x="50" y="80" width="40" height="40" rx="5" fill="#bbdefb" stroke="#64b5f6" stroke-width="1"/>
+                <text x="70" y="110" text-anchor="middle" font-size="10">Ropa</text>
+                <path d="M70 90 L70 70" stroke="#ff9800" stroke-width="2" stroke-dasharray="2,2">
+                    <animate attributeName="y2" values="70;65;70" dur="2s" repeatCount="indefinite"/>
+                </path>
+                <circle cx="70" cy="60" r="15" fill="#fff9c4" stroke="#ffd54f" stroke-width="1">
+                    <animate attributeName="r" values="15;18;15" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                
+                <!-- Peine y cabello -->
+                <rect x="150" y="70" width="10" height="40" fill="#bdbdbd"/>
+                <path d="M140 70 L170 70 L165 40 L145 40 Z" fill="#bdbdbd"/>
+                <path d="M150 110 Q145 120 140 130" stroke="#5d4037" stroke-width="3" fill="none"/>
+                <path d="M155 110 Q160 125 165 135" stroke="#5d4037" stroke-width="3" fill="none"/>
+                <path d="M160 110 Q165 122 170 130" stroke="#5d4037" stroke-width="3" fill="none">
+                    <animate attributeName="d" values="M160 110 Q165 122 170 130; M160 110 Q165 115 170 120; M160 110 Q165 122 170 130" dur="3s" repeatCount="indefinite"/>
+                </path>
+                
+                <!-- Auto y gasolinera -->
+                <rect x="280" y="90" width="60" height="30" rx="5" fill="#e0e0e0"/>
+                <circle cx="290" cy="120" r="10" fill="#212121"/>
+                <circle cx="330" cy="120" r="10" fill="#212121"/>
+                <rect x="300" y="60" width="20" height="10" fill="#f44336"/>
+                <rect x="310" y="50" width="5" height="10" fill="#f44336"/>
+                <path d="M310 60 L310 30" stroke="#9e9e9e" stroke-width="2"/>
+                <rect x="300" y="20" width="20" height="10" fill="#f44336"/>
+                <text x="310" y="32" text-anchor="middle" font-size="8" fill="white">SURTIDOR</text>
+                
+                <text x="200" y="20" text-anchor="middle" font-weight="bold" font-size="14">Ejemplos de Electricidad Estática</text>
+                <text x="70" y="140" text-anchor="middle" font-size="10">Ropa en la secadora</text>
+                <text x="155" y="140" text-anchor="middle" font-size="10">Peinarse el cabello</text>
+                <text x="310" y="140" text-anchor="middle" font-size="10">Cargar gasolina</text>
+            </svg>
+        </div>
+    </div>
+
+    
+
+    <div class="navigation-footer">
+        <a href="index.html" class="home-link">← Volver al índice</a>
+    </div>
+    <footer>
+        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+</body>
+</html>

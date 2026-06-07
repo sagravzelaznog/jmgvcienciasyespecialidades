@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 13: Ejercicios Prácticos de la Ley de Ohm</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .exercise {
+            background-color: #f5f9ff;
+            border-left: 4px solid #4a90e2;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .exercise h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .exercise-solution {
+            background-color: #f0f8f0;
+            border-left: 4px solid #4caf50;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+            display: none;
+        }
+        
+        .show-solution {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+        
+        .show-solution:hover {
+            background-color: #45a049;
+        }
+        
+        .circuit-diagram {
+            width: 100%;
+            max-width: 300px;
+            margin: 15px auto;
+            display: block;
+        }
+        
+        .formula {
+            font-family: 'Courier New', monospace;
+            background-color: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        .interactive-calculator {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .input-group {
+            margin: 10px 0;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .result {
+            font-weight: bold;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">← Volver al índice</a>
+    
+    <div class="header">
+        <h1>Sesión 13: Ejercicios Prácticos de la Ley de Ohm</h1>
+        <p>Aplicando los conceptos de la Ley de Ohm en situaciones reales</p>
+    </div>
+
+    <div class="section">
+        <h2>Objetivo Específico</h2>
+        <p>Resolver problemas prácticos aplicando la Ley de Ohm, desarrollando la capacidad de analizar circuitos eléctricos simples y calcular voltaje, corriente y resistencia en diferentes configuraciones.</p>
+        
+        <svg class="circuit-diagram" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+            <!-- Batería -->
+            <rect x="50" y="60" width="40" height="30" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+            <rect x="55" y="65" width="5" height="10" fill="#4caf50"/>
+            <rect x="80" y="65" width="5" height="10" fill="#f44336"/>
+            
+            <!-- Circuito -->
+            <line x1="90" y1="75" x2="130" y2="75" stroke="#333" stroke-width="2"/>
+            
+            <!-- Resistencia 1 -->
+            <rect x="130" y="60" width="60" height="30" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
+            <rect x="150" y="60" width="20" height="30" fill="#8b4513"/>
+            
+            <!-- Amperímetro -->
+            <circle cx="230" cy="75" r="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+            <text x="230" y="80" text-anchor="middle" font-size="12">A</text>
+            
+            <!-- Voltímetro -->
+            <rect x="130" y="10" width="60" height="20" fill="#f5f5f5" stroke="#333" stroke-width="1" rx="2"/>
+            <text x="160" y="24" text-anchor="middle" font-size="12">V</text>
+            <line x1="150" y1="30" x2="150" y2="60" stroke="#333" stroke-width="1"/>
+            <line x1="170" y1="30" x2="170" y2="60" stroke="#333" stroke-width="1"/>
+            
+            <!-- Conexiones -->
+            <line x1="190" y1="75" x2="215" y2="75" stroke="#333" stroke-width="2"/>
+            <line x1="245" y1="75" x2="270" y2="75" stroke="#333" stroke-width="2"/>
+            <line x1="270" y1="75" x2="270" y2="120" stroke="#333" stroke-width="2"/>
+            <line x1="50" y1="120" x2="270" y2="120" stroke="#333" stroke-width="2"/>
+            <line x1="50" y1="75" x2="50" y2="120" stroke="#333" stroke-width="2"/>
+            
+            <!-- Etiquetas -->
+            <text x="70" y="50" text-anchor="middle" font-size="10">12V</text>
+            <text x="160" y="110" text-anchor="middle" font-size="10">R = 6Ω</text>
+        </svg>
+    </div>
+
+    <div class="section">
+        <h2>Repaso Rápido</h2>
+        
+        <div class="formula-box">
+            <div class="formula">V = I × R</div>
+            <p>Donde:</p>
+            <ul>
+                <li><strong>V</strong> = Voltaje (en voltios, V)</li>
+                <li><strong>I</strong> = Corriente (en amperios, A)</li>
+                <li><strong>R</strong> = Resistencia (en ohmios, Ω)</li>
+            </ul>
+        </div>
+        
+        <p>Recuerda que puedes reorganizar la fórmula según lo que necesites calcular:</p>
+        <ul>
+            <li>Para calcular el voltaje: <span class="formula">V = I × R</span></li>
+            <li>Para calcular la corriente: <span class="formula">I = V / R</span></li>
+            <li>Para calcular la resistencia: <span class="formula">R = V / I</span></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Ejercicios Prácticos</h2>
+        
+        <div class="exercise">
+            <h4>Ejercicio 1: Cálculo de Corriente</h4>
+            <p>Un circuito tiene una batería de 9V conectada a una resistencia de 3Ω. ¿Qué corriente circulará por el circuito?</p>
+            
+            <button class="show-solution" onclick="toggleSolution('sol1')">Mostrar Solución</button>
+            
+            <div id="sol1" class="exercise-solution">
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Voltaje (V) = 9V</li>
+                    <li>Resistencia (R) = 3Ω</li>
+                    <li>Corriente (I) = ?</li>
+                </ul>
+                <p><strong>Fórmula:</strong> <span class="formula">I = V / R</span></p>
+                <p><strong>Solución:</strong> I = 9V / 3Ω = 3A</p>
+                <p><strong>Respuesta:</strong> Circularán 3 amperios por el circuito.</p>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h4>Ejercicio 2: Cálculo de Resistencia</h4>
+            <p>Por un circuito circula una corriente de 0.5A cuando se le aplica un voltaje de 6V. ¿Cuál es el valor de la resistencia del circuito?</p>
+            
+            <button class="show-solution" onclick="toggleSolution('sol2')">Mostrar Solución</button>
+            
+            <div id="sol2" class="exercise-solution">
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Voltaje (V) = 6V</li>
+                    <li>Corriente (I) = 0.5A</li>
+                    <li>Resistencia (R) = ?</li>
+                </ul>
+                <p><strong>Fórmula:</strong> <span class="formula">R = V / I</span></p>
+                <p><strong>Solución:</strong> R = 6V / 0.5A = 12Ω</p>
+                <p><strong>Respuesta:</strong> La resistencia del circuito es de 12 ohmios.</p>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h4>Ejercicio 3: Cálculo de Voltaje</h4>
+            <p>Por una resistencia de 100Ω circula una corriente de 0.1A. ¿Qué voltaje hay entre sus extremos?</p>
+            
+            <button class="show-solution" onclick="toggleSolution('sol3')">Mostrar Solución</button>
+            
+            <div id="sol3" class="exercise-solution">
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Resistencia (R) = 100Ω</li>
+                    <li>Corriente (I) = 0.1A</li>
+                    <li>Voltaje (V) = ?</li>
+                </ul>
+                <p><strong>Fórmula:</strong> <span class="formula">V = I × R</span></p>
+                <p><strong>Solución:</strong> V = 0.1A × 100Ω = 10V</p>
+                <p><strong>Respuesta:</strong> El voltaje entre los extremos de la resistencia es de 10 voltios.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Calculadora Interactiva</h2>
+        
+        <p>Usa esta calculadora para verificar tus respuestas o resolver otros problemas:</p>
+        
+        <div class="interactive-calculator">
+            <h4>Calculadora de la Ley de Ohm</h4>
+            
+            <div class="input-group">
+                <label for="calc-voltage">Voltaje (V):</label>
+                <input type="number" id="calc-voltage" placeholder="Dejar en blanco para calcular">
+            </div>
+            
+            <div class="input-group">
+                <label for="calc-current">Corriente (A):</label>
+                <input type="number" id="calc-current" placeholder="Dejar en blanco para calcular">
+            </div>
+            
+            <div class="input-group">
+                <label for="calc-resistance">Resistencia (Ω):</label>
+                <input type="number" id="calc-resistance" placeholder="Dejar en blanco para calcular">
+            </div>
+            
+            <button onclick="calculateOhm()" class="show-solution">Calcular</button>
+            
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Problemas Avanzados</h2>
+        
+        <div class="exercise">
+            <h4>Problema 1: Circuito en Serie</h4>
+            <p>Un circuito tiene dos resistencias en serie: R₁ = 4Ω y R₂ = 6Ω. Si se conecta a una batería de 12V, calcula:</p>
+            <ol>
+                <li>La resistencia total del circuito</li>
+                <li>La corriente que circula por el circuito</li>
+                <li>La caída de voltaje en cada resistencia</li>
+            </ol>
+            
+            <button class="show-solution" onclick="toggleSolution('sol4')">Mostrar Solución</button>
+            
+            <div id="sol4" class="exercise-solution">
+                <p><strong>1. Resistencia total (R<sub>T</sub>):</strong></p>
+                <p class="formula">R<sub>T</sub> = R₁ + R₂ = 4Ω + 6Ω = 10Ω</p>
+                
+                <p><strong>2. Corriente total (I):</strong></p>
+                <p class="formula">I = V / R<sub>T</sub> = 12V / 10Ω = 1.2A</p>
+                
+                <p><strong>3. Caída de voltaje en cada resistencia:</strong></p>
+                <p class="formula">V₁ = I × R₁ = 1.2A × 4Ω = 4.8V</p>
+                <p class="formula">V₂ = I × R₂ = 1.2A × 6Ω = 7.2V</p>
+                <p class="formula">(Verificación: 4.8V + 7.2V = 12V ✓)</p>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h4>Problema 2: Potencia Eléctrica</h4>
+            <p>Una plancha eléctrica tiene una resistencia de 24Ω y funciona con 120V. Calcula:</p>
+            <ol>
+                <li>La corriente que consume</li>
+                <li>La potencia que disipa</li>
+                <li>La energía consumida si está encendida durante 2 horas</li>
+            </ol>
+            
+            <button class="show-solution" onclick="toggleSolution('sol5')">Mostrar Solución</button>
+            
+            <div id="sol5" class="exercise-solution">
+                <p><strong>1. Corriente (I):</strong></p>
+                <p class="formula">I = V / R = 120V / 24Ω = 5A</p>
+                
+                <p><strong>2. Potencia (P):</strong></p>
+                <p class="formula">P = V × I = 120V × 5A = 600W</p>
+                <p class="formula">o también: P = I² × R = (5A)² × 24Ω = 600W</p>
+                
+                <p><strong>3. Energía consumida en 2 horas:</strong></p>
+                <p class="formula">E = P × t = 600W × 2h = 1200Wh = 1.2kWh</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Resistencias en Paralelo</h2>
+        
+        <p>Cuando las resistencias se conectan en paralelo, el voltaje es el mismo en todas ellas, pero la corriente se divide entre las diferentes ramas. La resistencia total (R<sub>T</sub>) de resistencias en paralelo se calcula con:</p>
+        
+        <div class="formula-box">
+            <div class="formula">1/R<sub>T</sub> = 1/R₁ + 1/R₂ + 1/R₃ + ...</div>
+            <p>O para dos resistencias en paralelo:</p>
+            <div class="formula">R<sub>T</sub> = (R₁ × R₂) / (R₁ + R₂)</div>
+        </div>
+        
+        <svg class="circuit-diagram" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Batería -->
+            <rect x="50" y="80" width="40" height="40" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+            <rect x="55" y="85" width="5" height="10" fill="#4caf50"/>
+            <rect x="80" y="85" width="5" height="10" fill="#f44336"/>
+            
+            <!-- Circuito principal -->
+            <line x1="90" y1="100" x2="120" y2="100" stroke="#333" stroke-width="2"/>
+            
+            <!-- Nodo superior -->
+            <line x1="120" y1="60" x2="120" y2="140" stroke="#333" stroke-width="2"/>
+            
+            <!-- Rama superior con R1 -->
+            <line x1="120" y1="80" x2="150" y2="80" stroke="#333" stroke-width="2"/>
+            <rect x="150" y="60" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
+            <text x="180" y="85" text-anchor="middle" font-size="12">R₁ = 4Ω</text>
+            <line x1="210" y1="80" x2="240" y2="80" stroke="#333" stroke-width="2"/>
+            
+            <!-- Rama media con R2 -->
+            <line x1="120" y1="100" x2="150" y2="100" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+            <rect x="150" y="80" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
+            <text x="180" y="105" text-anchor="middle" font-size="12">R₂ = 6Ω</text>
+            <line x1="210" y1="100" x2="240" y2="100" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+            
+            <!-- Rama inferior con R3 -->
+            <line x1="120" y1="120" x2="150" y2="120" stroke="#333" stroke-width="2"/>
+            <rect x="150" y="100" width="60" height="40" fill="#d2b48c" stroke="#8b4513" stroke-width="2" rx="5"/>
+            <text x="180" y="125" text-anchor="middle" font-size="12">R₃ = 12Ω</text>
+            <line x1="210" y1="120" x2="240" y2="120" stroke="#333" stroke-width="2"/>
+            
+            <!-- Nodo inferior -->
+            <line x1="240" y1="80" x2="240" y2="120" stroke="#333" stroke-width="2"/>
+            
+            <!-- Retorno al circuito principal -->
+            <line x1="240" y1="100" x2="270" y2="100" stroke="#333" stroke-width="2"/>
+            
+            <!-- Amperímetro -->
+            <circle cx="290" cy="100" r="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+            <text x="290" y="105" text-anchor="middle" font-size="12">A</text>
+            
+            <!-- Conexión de retorno -->
+            <line x1="305" y1="100" x2="330" y2="100" stroke="#333" stroke-width="2"/>
+            <line x1="330" y1="100" x2="330" y2="150" stroke="#333" stroke-width="2"/>
+            <line x1="50" y1="150" x2="330" y2="150" stroke="#333" stroke-width="2"/>
+            <line x1="50" y1="100" x2="50" y2="150" stroke="#333" stroke-width="2"/>
+            
+            <!-- Etiquetas -->
+            <text x="70" y="70" text-anchor="middle" font-size="10">12V</text>
+            <text x="180" y="40" text-anchor="middle" font-size="10">Circuito en Paralelo</text>
+        </svg>
+        
+        <h3>Ejercicios de Resistencias en Paralelo</h3>
+        
+        <div class="exercise">
+            <h4>Ejercicio 4: Dos Resistencias en Paralelo</h4>
+            <p>Se conectan dos resistencias en paralelo: R₁ = 4Ω y R₂ = 6Ω a una batería de 12V. Calcula:</p>
+            <ol>
+                <li>La resistencia equivalente del circuito</li>
+                <li>La corriente total que suministra la batería</li>
+                <li>La corriente que circula por cada resistencia</li>
+                <li>La potencia disipada por cada resistencia</li>
+            </ol>
+            
+            <button class="show-solution" onclick="toggleSolution('sol6')">Mostrar Solución</button>
+            
+            <div id="sol6" class="exercise-solution">
+                <p><strong>1. Resistencia equivalente (R<sub>T</sub>):</strong></p>
+                <p class="formula">1/R<sub>T</sub> = 1/R₁ + 1/R₂ = 1/4Ω + 1/6Ω = 3/12 + 2/12 = 5/12</p>
+                <p class="formula">R<sub>T</sub> = 12/5 Ω = 2.4Ω</p>
+                
+                <p><strong>2. Corriente total (I<sub>T</sub>):</strong></p>
+                <p class="formula">I<sub>T</sub> = V / R<sub>T</sub> = 12V / 2.4Ω = 5A</p>
+                
+                <p><strong>3. Corriente por cada resistencia:</strong></p>
+                <p class="formula">I₁ = V / R₁ = 12V / 4Ω = 3A</p>
+                <p class="formula">I₂ = V / R₂ = 12V / 6Ω = 2A</p>
+                <p class="formula">(Verificación: I₁ + I₂ = 3A + 2A = 5A = I<sub>T</sub> ✓)</p>
+                
+                <p><strong>4. Potencia disipada:</strong></p>
+                <p class="formula">P₁ = V × I₁ = 12V × 3A = 36W</p>
+                <p class="formula">P₂ = V × I₂ = 12V × 2A = 24W</p>
+                <p class="formula">P<sub>T</sub> = P₁ + P₂ = 36W + 24W = 60W</p>
+                <p class="formula">(Verificación: P<sub>T</sub> = V × I<sub>T</sub> = 12V × 5A = 60W ✓)</p>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h4>Ejercicio 5: Tres Resistencias en Paralelo</h4>
+            <p>En el circuito mostrado en el diagrama, tenemos tres resistencias en paralelo: R₁ = 4Ω, R₂ = 6Ω y R₃ = 12Ω, conectadas a una batería de 12V. Calcula:</p>
+            <ol>
+                <li>La resistencia equivalente del circuito</li>
+                <li>La corriente total que suministra la batería</li>
+                <li>La corriente que circula por cada resistencia</li>
+                <li>La potencia total del circuito</li>
+            </ol>
+            
+            <button class="show-solution" onclick="toggleSolution('sol7')">Mostrar Solución</button>
+            
+            <div id="sol7" class="exercise-solution">
+                <p><strong>1. Resistencia equivalente (R<sub>T</sub>):</strong></p>
+                <p class="formula">1/R<sub>T</sub> = 1/R₁ + 1/R₂ + 1/R₃ = 1/4Ω + 1/6Ω + 1/12Ω</p>
+                <p class="formula">1/R<sub>T</sub> = 3/12 + 2/12 + 1/12 = 6/12 = 1/2</p>
+                <p class="formula">R<sub>T</sub> = 2Ω</p>
+                
+                <p><strong>2. Corriente total (I<sub>T</sub>):</strong></p>
+                <p class="formula">I<sub>T</sub> = V / R<sub>T</sub> = 12V / 2Ω = 6A</p>
+                
+                <p><strong>3. Corriente por cada resistencia:</strong></p>
+                <p class="formula">I₁ = V / R₁ = 12V / 4Ω = 3A</p>
+                <p class="formula">I₂ = V / R₂ = 12V / 6Ω = 2A</p>
+                <p class="formula">I₃ = V / R₃ = 12V / 12Ω = 1A</p>
+                <p class="formula">(Verificación: I₁ + I₂ + I₃ = 3A + 2A + 1A = 6A = I<sub>T</sub> ✓)</p>
+                
+                <p><strong>4. Potencia total del circuito:</strong></p>
+                <p class="formula">P<sub>T</sub> = V × I<sub>T</sub> = 12V × 6A = 72W</p>
+                <p class="formula">(Verificación: P₁ + P₂ + P₃ = (12V×3A) + (12V×2A) + (12V×1A) = 36W + 24W + 12W = 72W ✓)</p>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h4>Ejercicio 6: Resistencias Iguales en Paralelo</h4>
+            <p>Se conectan cuatro resistencias de 100Ω en paralelo a una fuente de 10V. Calcula:</p>
+            <ol>
+                <li>La resistencia equivalente del circuito</li>
+                <li>La corriente total del circuito</li>
+                <li>La corriente que circula por cada resistencia</li>
+                <li>¿Qué sucede con la resistencia total si se añade una quinta resistencia igual en paralelo?</li>
+            </ol>
+            
+            <button class="show-solution" onclick="toggleSolution('sol8')">Mostrar Solución</button>
+            
+            <div id="sol8" class="exercise-solution">
+                <p><strong>1. Resistencia equivalente (R<sub>T</sub>):</strong></p>
+                <p>Para n resistencias iguales en paralelo: R<sub>T</sub> = R / n</p>
+                <p class="formula">R<sub>T</sub> = 100Ω / 4 = 25Ω</p>
+                
+                <p><strong>2. Corriente total (I<sub>T</sub>):</strong></p>
+                <p class="formula">I<sub>T</sub> = V / R<sub>T</sub> = 10V / 25Ω = 0.4A</p>
+                
+                <p><strong>3. Corriente por cada resistencia:</strong></p>
+                <p class="formula">I = V / R = 10V / 100Ω = 0.1A por cada resistencia</p>
+                <p class="formula">(Verificación: 4 × 0.1A = 0.4A = I<sub>T</sub> ✓)</p>
+                
+                <p><strong>4. Añadiendo una quinta resistencia:</strong></p>
+                <p class="formula">R<sub>T-nueva</sub> = 100Ω / 5 = 20Ω</p>
+                <p>La resistencia total disminuye al añadir más resistencias en paralelo. En general, cuantas más resistencias se conectan en paralelo, menor es la resistencia total del circuito.</p>
+            </div>
+        </div>
+        
+        <div class="interactive-calculator">
+            <h4>Calculadora de Resistencias en Paralelo</h4>
+            
+            <p>Ingresa los valores de las resistencias (deja en blanco las que no uses):</p>
+            
+            <div class="input-group">
+                <label for="r1">Resistencia 1 (Ω):</label>
+                <input type="number" id="r1" placeholder="Ω">
+            </div>
+            
+            <div class="input-group">
+                <label for="r2">Resistencia 2 (Ω):</label>
+                <input type="number" id="r2" placeholder="Ω">
+            </div>
+            
+            <div class="input-group">
+                <label for="r3">Resistencia 3 (Ω):</label>
+                <input type="number" id="r3" placeholder="Ω">
+            </div>
+            
+            <div class="input-group">
+                <label for="r4">Resistencia 4 (Ω):</label>
+                <input type="number" id="r4" placeholder="Ω">
+            </div>
+            
+            <button onclick="calculateParallel()" class="show-solution">Calcular Resistencia Equivalente</button>
+            
+            <div id="parallel-result" class="result"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Preguntas de Reflexión</h2>
+        
+        <div class="reflection">
+            <ol>
+                <li>¿Qué sucede con la corriente en un circuito si mantenemos el voltaje constante pero aumentamos la resistencia?</li>
+                <li>¿Por qué los cables de conexión en los circuitos eléctricos ofrecen poca resistencia al paso de la corriente?</li>
+                <li>Si conectas dos resistencias idénticas en paralelo a una batería, ¿la resistencia total del circuito será mayor o menor que el valor de una sola resistencia? ¿Por qué?</li>
+                <li>¿Cómo se relaciona la Ley de Ohm con la seguridad al trabajar con circuitos eléctricos?</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Resumen y Próximos Pasos</h2>
+        
+        <p>En esta sesión has practicado:</p>
+        <ul>
+            <li>Cálculo de corriente, voltaje y resistencia usando la Ley de Ohm</li>
+            <li>Resolución de problemas con circuitos en serie</li>
+            <li>Cálculo de potencia y energía eléctrica</li>
+            <li>Uso de herramientas interactivas para verificar tus soluciones</li>
+        </ul>
+        
+        
+        <div class="nav-container">
+            <a href="index.html" class="button">Volver al Índice</a>
+        </div>
+    </div>
+
+    <script>
+        // Función para calcular resistencias en paralelo
+        function calculateParallel() {
+            const resistances = [];
+            
+            // Obtener valores de las resistencias
+            for (let i = 1; i <= 4; i++) {
+                const r = parseFloat(document.getElementById(`r${i}`).value);
+                if (!isNaN(r) && r > 0) {
+                    resistances.push(r);
+                }
+            }
+            
+            const resultDiv = document.getElementById('parallel-result');
+            
+            if (resistances.length === 0) {
+                resultDiv.textContent = 'Ingresa al menos un valor de resistencia válido.';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            // Calcular la resistencia equivalente en paralelo
+            let inverseSum = 0;
+            for (const r of resistances) {
+                inverseSum += 1 / r;
+            }
+            
+            const equivalentResistance = 1 / inverseSum;
+            
+            // Mostrar el resultado con el proceso de cálculo
+            let calculationSteps = '1/R<sub>eq</sub> = ';
+            calculationSteps += resistances.map(r => `1/${r}Ω`).join(' + ');
+            calculationSteps += ` = ${inverseSum.toFixed(4)} Ω⁻¹`;
+            
+            resultDiv.innerHTML = `
+                <p>${calculationSteps}</p>
+                <p>R<sub>eq</sub> = 1 / (${inverseSum.toFixed(4)} Ω⁻¹) = <strong>${equivalentResistance.toFixed(4)} Ω</strong></p>
+                <p>La resistencia equivalente del circuito en paralelo es de <strong>${equivalentResistance.toFixed(4)} Ω</strong>.</p>
+            `;
+            resultDiv.style.display = 'block';
+        }
+        
+        // Función para mostrar/ocultar soluciones
+        function toggleSolution(id) {
+            const solution = document.getElementById(id);
+            if (solution.style.display === 'block') {
+                solution.style.display = 'none';
+            } else {
+                solution.style.display = 'block';
+            }
+        }
+        
+        // Función para la calculadora interactiva
+        function calculateOhm() {
+            const voltage = parseFloat(document.getElementById('calc-voltage').value);
+            const current = parseFloat(document.getElementById('calc-current').value);
+            const resistance = parseFloat(document.getElementById('calc-resistance').value);
+            const resultDiv = document.getElementById('result');
+            
+            // Contar cuántos valores se proporcionaron
+            const valuesProvided = [voltage, current, resistance].filter(x => !isNaN(x)).length;
+            
+            if (valuesProvided < 2) {
+                resultDiv.textContent = 'Por favor, ingresa al menos dos valores conocidos.';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            let result = '';
+            
+            // Calcular el valor faltante
+            if (isNaN(voltage) && !isNaN(current) && !isNaN(resistance)) {
+                const v = current * resistance;
+                result = `Voltaje (V) = ${v.toFixed(2)}V`;
+            } else if (!isNaN(voltage) && isNaN(current) && !isNaN(resistance)) {
+                const i = voltage / resistance;
+                result = `Corriente (I) = ${i.toFixed(4)}A`;
+            } else if (!isNaN(voltage) && !isNaN(current) && isNaN(resistance)) {
+                const r = voltage / current;
+                result = `Resistencia (R) = ${r.toFixed(2)}Ω`;
+            } else if (valuesProvided === 3) {
+                // Verificar si los valores son consistentes con la Ley de Ohm
+                if (Math.abs(voltage - (current * resistance)) < 0.01) {
+                    result = '¡Los valores son consistentes con la Ley de Ohm!';
+                } else {
+                    result = '¡Atención! Los valores no cumplen con la Ley de Ohm (V = I × R)';
+                }
+            } else {
+                result = 'Por favor, deja solo un campo en blanco para calcular.';
+            }
+            
+            resultDiv.textContent = result;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+    <footer>
+        <p>&copy; JMGV-PTEL 2025 <em>curso electricidad 1</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+</body>
+</html>

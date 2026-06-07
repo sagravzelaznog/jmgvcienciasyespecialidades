@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Fundamentos de Electricidad Básica</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .activity {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .activity h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .formula {
+            background-color: #f0f8ff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .practical-exercise {
+            background-color: #fff8e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffa000;
+        }
+        .practical-exercise h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 2: Fundamentos de Electricidad Básica</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Comprender los conceptos fundamentales de la electricidad (voltaje, corriente, resistencia, potencia) y su aplicación en sistemas fotovoltaicos, mediante ejercicios prácticos y mediciones con multímetro.</p>
+        </div>
+
+        <h2>1. Conceptos de voltaje, corriente y resistencia</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="activity">
+            <h4>Actividad: Analogía hidráulica</h4>
+            <p>Usar la analogía de agua en tuberías para explicar los conceptos eléctricos:</p>
+            
+            <table>
+                <tr>
+                    <th>Concepto Eléctrico</th>
+                    <th>Análogo Hidráulico</th>
+                    <th>Definición</th>
+                    <th>Unidad de medida</th>
+                    <th>Símbolo</th>
+                </tr>
+                <tr>
+                    <td>Voltaje (V)</td>
+                    <td>Presión del agua</td>
+                    <td>Diferencia de potencial eléctrico</td>
+                    <td>Voltios (V)</td>
+                    <td>V</td>
+                </tr>
+                <tr>
+                    <td>Corriente (I)</td>
+                    <td>Flujo de agua</td>
+                    <td>Cantidad de carga eléctrica por unidad de tiempo</td>
+                    <td>Amperios (A)</td>
+                    <td>I</td>
+                </tr>
+                <tr>
+                    <td>Resistencia (R)</td>
+                    <td>Obstrucción en la tubería</td>
+                    <td>Oposición al flujo de corriente</td>
+                    <td>Ohmios (Ω)</td>
+                    <td>R</td>
+                </tr>
+            </table>
+            
+            <p class="time">Tiempo estimado: 15 minutos</p>
+        </div>
+
+        <h2>2. Ley de Ohm</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="activity">
+            <h4>Actividad: Demostración práctica</h4>
+            
+            <div class="formula">
+                V = I × R
+            </div>
+            
+            <p>Donde:</p>
+            <ul>
+                <li>V = Voltaje (en voltios)</li>
+                <li>I = Corriente (en amperios)</li>
+                <li>R = Resistencia (en ohmios)</li>
+            </ul>
+            
+            <p><strong>Ejercicios prácticos:</strong></p>
+            <ol>
+                <li>Calcular el voltaje necesario para que circule una corriente de 2A a través de una resistencia de 10Ω.</li>
+                <li>Determinar la corriente que circulará por un circuito de 12V con una resistencia de 4Ω.</li>
+                <li>Hallar la resistencia de un circuito por el que circulan 0.5A con un voltaje de 9V.</li>
+            </ol>
+            
+            <p class="time">Tiempo estimado: 15 minutos</p>
+        </div>
+
+        <h2>3. Potencia y energía eléctrica</h2>
+        <p><strong>Duración:</strong> 10 minutos</p>
+        
+        <div class="activity">
+            <h4>Actividad: Cálculo de consumo</h4>
+            
+            <div class="formula">
+                P = V × I
+            </div>
+            
+            <p>Donde:</p>
+            <ul>
+                <li>P = Potencia (en vatios, W)</li>
+                <li>V = Voltaje (en voltios, V)</li>
+                <li>I = Corriente (en amperios, A)</li>
+            </ul>
+            
+            <p><strong>Ejercicio práctico:</strong></p>
+            <p>Calcular la potencia consumida por diferentes electrodomésticos y su consumo energético diario:</p>
+            
+            <table>
+                <tr>
+                    <th>Electrodoméstico</th>
+                    <th>Potencia (W)</th>
+                    <th>Horas de uso al día</th>
+                    <th>Energía (Wh/día)</th>
+                </tr>
+                <tr>
+                    <td>Foco LED</td>
+                    <td>9</td>
+                    <td>5</td>
+                    <td>45</td>
+                </tr>
+                <tr>
+                    <td>Televisor</td>
+                    <td>100</td>
+                    <td>4</td>
+                    <td>400</td>
+                </tr>
+                <tr>
+                    <td>Ventilador</td>
+                    <td>50</td>
+                    <td>8</td>
+                    <td>400</td>
+                </tr>
+                <tr>
+                    <td>Refrigerador pequeño</td>
+                    <td>100</td>
+                    <td>12*</td>
+                    <td>1200</td>
+                </tr>
+            </table>
+            <p class="small-note">* El refrigerador no consume energía constantemente, este es un valor estimado</p>
+            
+            <p class="time">Tiempo estimado: 10 minutos</p>
+        </div>
+
+        <h2>4. Mediciones básicas con multímetro</h2>
+        <p><strong>Duración:</strong> 5 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>Práctica: Uso del multímetro</h4>
+            
+            <p><strong>Objetivo:</strong> Aprender a medir voltaje, corriente y resistencia con un multímetro digital.</p>
+            
+            <p><strong>Materiales por equipo:</strong></p>
+            <ul>
+                <li>1 multímetro digital</li>
+                <li>1 batería de 9V</li>
+                <li>3 resistencias de diferentes valores (ej. 100Ω, 1kΩ, 10kΩ)</li>
+                <li>Cables de conexión</li>
+                <li>1 foco LED</li>
+            </ul>
+            
+            <p><strong>Procedimiento:</strong></p>
+            <ol>
+                <li><strong>Medir voltaje de la batería:</strong> Configurar el multímetro en escala de voltaje DC, seleccionar 20V, conectar las puntas a los polos de la batería y registrar el valor.</li>
+                <li><strong>Medir resistencia:</strong> Configurar el multímetro en la escala de ohmios (Ω), tocar las puntas a los extremos de cada resistencia y registrar los valores.</li>
+                <li><strong>Medir corriente en un circuito simple:</strong> Armar un circuito con la batería, el foco LED y una resistencia. Configurar el multímetro en escala de corriente DC (200mA), conectarlo en serie y medir la corriente.</li>
+            </ol>
+            
+            <p><strong>Tabla de resultados:</strong></p>
+            <table>
+                <tr>
+                    <th>Medición</th>
+                    <th>Valor medido</th>
+                    <th>Valor esperado</th>
+                    <th>% de error</th>
+                </tr>
+                <tr>
+                    <td>Voltaje de la batería</td>
+                    <td></td>
+                    <td>9V</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Resistencia 1</td>
+                    <td></td>
+                    <td>100Ω</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Resistencia 2</td>
+                    <td></td>
+                    <td>1kΩ</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Resistencia 3</td>
+                    <td></td>
+                    <td>10kΩ</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Corriente en el circuito</td>
+                    <td></td>
+                    <td>Calculado</td>
+                    <td></td>
+                </tr>
+            </table>
+            
+            <p><strong>Preguntas de análisis:</strong></p>
+            <ol>
+                <li>¿Por qué la lectura del voltaje de la batería puede diferir del valor nominal?</li>
+                <li>¿Qué factores pueden afectar la precisión de las mediciones de resistencia?</li>
+                <li>¿Cómo se relacionan los valores medidos con los cálculos teóricos usando la Ley de Ohm?</li>
+            </ol>
+            
+            <p class="time">Tiempo estimado: 15 minutos (continuación en la siguiente sesión si es necesario)</p>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en las actividades prácticas.</p>
+            <p><strong>Ejercicio de aplicación:</strong> Resolución de problemas aplicando la Ley de Ohm.</p>
+            <p><strong>Informe de laboratorio:</strong> Entrega de la tabla de resultados con las mediciones realizadas.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los conceptos de radiación solar y su importancia en los sistemas fotovoltaicos.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion1.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion3.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

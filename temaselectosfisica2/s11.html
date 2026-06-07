@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 11: Aplicación de Kirchhoff</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="page-container">
+        <header>
+            <div>
+                <h1>Sesión 11: Aplicación de Kirchhoff</h1>
+                <h2>Resolución de Circuitos Mixtos (Mallas)</h2>
+            </div>
+            <div style="text-align: right;">
+                <strong>Metodología:</strong> Paso a Paso<br>
+                <strong>Duración:</strong> 60 min
+            </div>
+        </header>
+
+        <p>Hoy no adivinaremos. Usaremos un sistema infalible para resolver circuitos de 2 mallas sin perdernos en las matemáticas. Necesitarás <strong>dos colores diferentes</strong> (ej. Rojo y Azul).</p>
+
+        <div class="step-box" style="border-left-color: var(--mesh-1);">
+            <span class="step-title" style="color: var(--mesh-1);">PASO 1: Bautizar las Corrientes</span>
+            <p>Dibuja una flecha circular en cada "ventana" (malla) del circuito.</p>
+            <ul>
+                <li><strong>Malla 1 (Izquierda):</strong> Dibuja una flecha en sentido horario. Llámala <strong style="color:var(--mesh-1)">I<sub>1</sub></strong>.</li>
+                <li><strong>Malla 2 (Derecha):</strong> Dibuja una flecha en sentido horario. Llámala <strong style="color:var(--mesh-2)">I<sub>2</sub></strong>.</li>
+            </ul>
+        </div>
+
+        <div class="step-box" style="border-left-color: var(--common);">
+            <span class="step-title" style="color: var(--common);">PASO 2: La Regla de los Signos (Crucial)</span>
+            <p>Al recorrer la malla con tu dedo, ¿sumas o restas voltaje? Usa esta guía:</p>
+            
+            <div class="sign-guide">
+                <div class="sign-card">
+                    <strong>BATERÍAS (Fuentes)</strong><br><br>
+                    Si entras por el (-) y sales por el (+):<br>
+                    <span class="symbol-plus">GANAS (+V)</span><br>
+                    <em style="font-size:0.8em; color:#777;">(Subida de voltaje)</em>
+                </div>
+                <div class="sign-card">
+                    <strong>RESISTENCIAS (Consumidores)</strong><br><br>
+                    Si vas a favor de la corriente:<br>
+                    <span class="symbol-minus">PIERDES (-R·I)</span><br>
+                    <em style="font-size:0.8em; color:#777;">(Caída de voltaje)</em>
+                </div>
+            </div>
+        </div>
+
+        <h3>Ejemplo Guiado: El Circuito de 2 Habitaciones</h3>
+        <div class="circuit-example">
+            <p>Imagina un circuito con dos mallas compartiendo una resistencia central (R<sub>2</sub>).</p>
+            
+            <div style="text-align: left; margin: 10px 20px;">
+                <strong>Datos:</strong><br>
+                Fuente V1 = 10V (Izq), Fuente V2 = 5V (Der)<br>
+                R1 = 2&Omega; (Izq), R2 = 4&Omega; (Centro), R3 = 2&Omega; (Der)
+            </div>
+
+            <div class="equation-box">
+                <strong>ECUACIÓN MALLA 1 (ROJA):</strong><br>
+                +10V - (2&Omega;·<span class="hl-m1">I1</span>) - 4&Omega;·(<span class="hl-m1">I1</span> - <span class="hl-m2">I2</span>) = 0<br>
+                <em style="color:#aaa; font-size:0.8em;">(Nota cómo en el centro las corrientes se pelean: I1 - I2)</em>
+            </div>
+            
+            <div class="equation-box" style="margin-top: 5px;">
+                <strong>ECUACIÓN MALLA 2 (AZUL):</strong><br>
+                -5V - (2&Omega;·<span class="hl-m2">I2</span>) - 4&Omega;·(<span class="hl-m2">I2</span> - <span class="hl-m1">I1</span>) = 0<br>
+            </div>
+        </div>
+
+        <div class="challenge-section">
+            <span class="step-title" style="color: #d35400;">🚀 RETO: "Ingenieros Forenses"</span>
+            <p><strong>Instrucción:</strong> En equipos de 3, analicen el siguiente "Crimen Eléctrico". Un estudiante intentó resolver un circuito pero cometió un error fatal.</p>
+            
+            <p><strong>El caso:</strong><br>
+            <em>"El estudiante escribió la ecuación de la Malla 2 así: <strong>+5V - 2(I2) - 4(I2 + I1) = 0</strong>"</em></p>
+            
+            <p><strong>Su Misión:</strong> Encuentren los 2 errores en esa ecuación:</p>
+            <ol>
+                <li>¿El signo de la fuente de 5V es correcto si la corriente sale por el polo negativo? _________</li>
+                <li>¿En la resistencia central las corrientes se suman o se restan si van en sentido opuesto? _________</li>
+            </ol>
+        </div>
+
+    </div>
+				<div class="text-center mt-20 mb-20"><a href="index.html" class="btn">
+									← Volver al índice
+					</a>
+	</div>
+
+    <footer class="fixed-footer">
+        &copy; JMGV-PTEL-2025. todos los derechos reservados
+    </footer>
+
+</body>
+</html>

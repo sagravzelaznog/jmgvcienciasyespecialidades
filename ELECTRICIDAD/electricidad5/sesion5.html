@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Componentes II - Baterías</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .battery-type {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .battery-type h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #fff8e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffa000;
+        }
+        .practical-exercise h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 5: Componentes II - Baterías</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Conocer los diferentes tipos de baterías utilizadas en sistemas fotovoltaicos, comprender sus características técnicas, capacidades, ciclos de vida, y aprender los esquemas de conexión adecuados para su implementación en sistemas solares.</p>
+        </div>
+
+        <h2>1. Tipos de baterías para sistemas solares</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="battery-type">
+            <h4>1.1 Baterías de Plomo-Ácido (Ácido-Plomo)</h4>
+            <div class="image-container">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.ysHfFjzZwxk0dJj6QvoxZwHaFA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Batería de Plomo-Ácido" class="img-small">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Tecnología madura y ampliamente utilizada</li>
+                <li>Bajo costo inicial</li>
+                <li>Alta corriente de arranque</li>
+                <li>Requiere mantenimiento (nivel de electrolito)</li>
+                <li>Vida útil: 3-5 años</li>
+                <li>Profundidad de descarga recomendada: 50%</li>
+            </ul>
+            
+            <p><strong>Variantes:</strong></p>
+            <ul>
+                <li><strong>Líquidas (inundadas):</strong> Requieren mantenimiento de agua destilada</li>
+                <li><strong>VRLA (Valve Regulated Lead Acid):</strong> Selladas, sin mantenimiento</li>
+                <li><strong>AGM (Absorbed Glass Mat):</strong> Electrolito inmovilizado en fibra de vidrio</li>
+                <li><strong>Gel:</strong> Electrolito en forma de gel, mayor vida útil</li>
+            </ul>
+        </div>
+
+        <div class="battery-type">
+            <h4>1.2 Baterías de Iones de Litio (Li-ion)</h4>
+            <div class="image-container">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.y7Urg8duiPNAby8ttBfuZgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Batería de Iones de Litio" class="img-small">
+
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Alta densidad energética</li>
+                <li>Larga vida útil (5,000-7,000 ciclos al 80% DoD)</li>
+                <li>Alta eficiencia (95-98%)</li>
+                <li>Sin mantenimiento</li>
+                <li>Mayor profundidad de descarga (80-90%)</li>
+                <li>Menor peso y tamaño que las de plomo-ácido</li>
+                <li>Mayor costo inicial</li>
+            </ul>
+            
+            <p><strong>Variantes:</strong></p>
+            <ul>
+                <li><strong>LiFePO4 (Fosfato de Hierro y Litio):</strong> Mayor seguridad y vida útil</li>
+                <li><strong>NMC (Níquel Manganeso Cobalto):</strong> Mayor densidad energética</li>
+            </ul>
+        </div>
+
+        <div class="battery-type">
+            <h4>1.3 Baterías de Níquel-Cadmio (Ni-Cd)</h4>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Alta resistencia a temperaturas extremas</li>
+                <li>Larga vida útil (2,000-3,500 ciclos)</li>
+                <li>Alta resistencia a sobrecargas</li>
+                <li>Efecto memoria</li>
+                <li>Alto costo</li>
+                <li>Impacto ambiental por el cadmio</li>
+            </ul>
+        </div>
+
+        <h2>2. Capacidad y ciclo de vida</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="battery-type">
+            <h4>2.1 Capacidad de las baterías</h4>
+            
+            <p><strong>Capacidad nominal (C<sub>n</sub>):</strong> Cantidad de energía que puede almacenar una batería, medida en Amperios-hora (Ah).</p>
+            
+            <p><strong>Factores que afectan la capacidad:</strong></p>
+            <ul>
+                <li><strong>Tasa de descarga (C-rate):</strong> A mayor tasa de descarga, menor capacidad disponible</li>
+                <li><strong>Temperatura:</strong> La capacidad disminuye con bajas temperaturas</li>
+                <li><strong>Edad de la batería:</strong> La capacidad disminuye con el tiempo y los ciclos</li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio: Cálculo de capacidad necesaria</h4>
+                <p>Calcular la capacidad de batería necesaria para un consumo diario de 2,400Wh con 2 días de autonomía, considerando una profundidad de descarga máxima del 50% y una tensión del sistema de 24V.</p>
+                
+                <p><strong>Fórmula:</strong></p>
+                <p>Capacidad (Ah) = (Consumo diario × Días de autonomía) / (Tensión × Profundidad de descarga)</p>
+                
+                <p><strong>Solución:</strong></p>
+                <p>Capacidad = (2,400Wh × 2) / (24V × 0.5) = 400Ah</p>
+            </div>
+            
+            <h4>2.2 Ciclo de vida</h4>
+            
+            <p>El ciclo de vida de una batería se refiere al número de ciclos completos de carga/descarga que puede soportar antes de que su capacidad disminuya por debajo del 80% de su capacidad nominal.</p>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Tipo de Batería</th>
+                    <th>Ciclos al 50% DoD</th>
+                    <th>Ciclos al 80% DoD</th>
+                    <th>Vida útil (años)</th>
+                </tr>
+                <tr>
+                    <td>Plomo-Ácido Inundada</td>
+                    <td>500-1,200</td>
+                    <td>200-500</td>
+                    <td>3-5</td>
+                </tr>
+                <tr>
+                    <td>AGM</td>
+                    <td>600-1,200</td>
+                    <td>300-600</td>
+                    <td>4-7</td>
+                </tr>
+                <tr>
+                    <td>Gel</td>
+                    <td>800-1,500</td>
+                    <td>500-1,000</td>
+                    <td>5-8</td>
+                </tr>
+                <tr>
+                    <td>LiFePO4</td>
+                    <td>3,000-7,000</td>
+                    <td>2,000-5,000</td>
+                    <td>8-15</td>
+                </tr>
+            </table>
+            
+            <p><strong>Factores que afectan el ciclo de vida:</strong></p>
+            <ul>
+                <li>Profundidad de descarga (DoD)</li>
+                <li>Temperatura de operación</li>
+                <li>Sobrecarga y sobredescarga</li>
+                <li>Corriente de carga/descarga</li>
+                <li>Mantenimiento (en baterías que lo requieran)</li>
+            </ul>
+        </div>
+
+        <h2>3. Esquemas de conexión</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="battery-type">
+            <h4>3.1 Conexión en Serie</h4>
+            <div class="image-container">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.nObsGCwEfLv-GAumLdWnswHaDo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Conexión en serie" class="img-medium">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Se conecta el positivo de una batería con el negativo de la siguiente</li>
+                <li>El voltaje total es la suma de los voltajes individuales</li>
+                <li>La capacidad total es igual a la de una sola batería</li>
+                <li>Fórmula: V<sub>total</sub> = V<sub>1</sub> + V<sub>2</sub> + ... + V<sub>n</sub></li>
+                <li>C<sub>total</sub> = C<sub>individual</sub></li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio:</h4>
+                <p>Calcular el voltaje y capacidad totales al conectar 4 baterías de 12V y 100Ah en serie.</p>
+                <p><strong>Solución:</strong></p>
+                <p>V<sub>total</sub> = 12V + 12V + 12V + 12V = 48V</p>
+                <p>C<sub>total</sub> = 100Ah</p>
+            </div>
+            
+            <h4>3.2 Conexión en Paralelo</h4>
+            <div class="image-container">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.0scw9h_SkNbcReqXNTSsZgHaDn?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Conexión en paralelo" class="img-medium">
+            </div>
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li>Se conectan todos los positivos juntos y todos los negativos juntos</li>
+                <li>El voltaje total es igual al de una sola batería</li>
+                <li>La capacidad total es la suma de las capacidades individuales</li>
+                <li>Fórmula: C<sub>total</sub> = C<sub>1</sub> + C<sub>2</sub> + ... + C<sub>n</sub></li>
+                <li>V<sub>total</sub> = V<sub>individual</sub></li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio:</h4>
+                <p>Calcular el voltaje y capacidad totales al conectar 4 baterías de 12V y 100Ah en paralelo.</p>
+                <p><strong>Solución:</strong></p>
+                <p>V<sub>total</sub> = 12V</p>
+                <p>C<sub>total</sub> = 100Ah + 100Ah + 100Ah + 100Ah = 400Ah</p>
+            </div>
+            
+            <h4>3.3 Conexión Serie-Paralelo</h4>
+            <p>Combinación de ambas configuraciones para lograr el voltaje y capacidad deseados.</p>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio:</h4>
+                <p>Se necesitan 24V y 400Ah usando baterías de 12V y 100Ah. Diseñar el arreglo.</p>
+                <p><strong>Solución:</strong></p>
+                <ol>
+                    <li>Conectar 2 baterías en serie para obtener 24V y 100Ah</li>
+                    <li>Repetir el paso anterior para tener 4 conjuntos idénticos</li>
+                    <li>Conectar los 4 conjuntos en paralelo para mantener 24V y sumar capacidades</li>
+                    <li>Resultado: 24V y 400Ah</li>
+                </ol>
+                <p>Total de baterías: 8 (2 en serie × 4 ramas en paralelo)</p>
+            </div>
+        </div>
+
+        <h2>4. Medición de parámetros en baterías</h2>
+        <p><strong>Duración:</strong> 10 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>Práctica: Medición de parámetros en baterías</h4>
+            
+            <p><strong>Materiales necesarios:</strong></p>
+            <ul>
+                <li>Batería de 12V</li>
+                <li>Multímetro digital</li>
+                <li>Hidrómetro (para baterías de plomo-ácido inundadas)</li>
+                <li>Carga resistiva (bombilla de 12V)</li>
+                <li>Cables de conexión</li>
+            </ul>
+            
+            <p><strong>Procedimiento:</strong></p>
+            
+            <h5>4.1 Medición de voltaje en circuito abierto</h5>
+            <ol>
+                <li>Desconectar la batería del sistema</li>
+                <li>Configurar el multímetro en escala de voltaje DC (20V)</li>
+                <li>Conectar las puntas del multímetro a los bornes de la batería (rojo a positivo, negro a negativo)</li>
+                <li>Registrar el voltaje</li>
+                <li>Comparar con la tabla de estado de carga (SoC)</li>
+            </ol>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Voltaje (12V)</th>
+                    <th>Estado de Carga</th>
+                </tr>
+                <tr>
+                    <td>12.7V</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>12.5V</td>
+                    <td>75%</td>
+                </tr>
+                <tr>
+                    <td>12.3V</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>12.1V</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>11.9V</td>
+                    <td>0% (descargada)</td>
+                </tr>
+            </table>
+            
+            <h5>4.2 Medición de densidad del electrolito (solo baterías inundadas)</h5>
+            <ol>
+                <li>Usar el hidrómetro para extraer líquido de cada celda</li>
+                <li>Leer la densidad específica</li>
+                <li>Registrar los valores</li>
+                <li>Comparar con la tabla de referencia</li>
+            </ol>
+            
+            <h5>4.3 Prueba de carga</h5>
+            <ol>
+                <li>Conectar una carga conocida (ej. bombilla de 12V/55W)</li>
+                <li>Medir el voltaje bajo carga</li>
+                <li>Si el voltaje cae por debajo de 10.5V (para 12V), la batería está en mal estado</li>
+            </ol>
+            
+            <p><strong>Tabla de resultados:</strong></p>
+            <table class="specs-table">
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Valor medido</th>
+                    <th>Valor esperado</th>
+                    <th>Estado</th>
+                </tr>
+                <tr>
+                    <td>Voltaje en circuito abierto</td>
+                    <td></td>
+                    <td>12.6-12.8V (cargada)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Densidad del electrolito (si aplica)</td>
+                    <td></td>
+                    <td>1.265-1.280 (cargada)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Voltaje bajo carga</td>
+                    <td></td>
+                    <td>>10.5V (para 12V)</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
+            <p><strong>Ejercicio de aplicación:</strong> Diseño de un banco de baterías para un sistema específico.</p>
+            <p><strong>Informe de laboratorio:</strong> Entrega de la tabla de resultados con las mediciones realizadas.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los diferentes tipos de controladores de carga para sistemas fotovoltaicos y sus características principales.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion4.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion6.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

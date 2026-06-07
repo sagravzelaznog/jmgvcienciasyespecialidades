@@ -1,0 +1,1543 @@
+/* PALETA DE COLORES UNIFICADA - TODAS LAS SESIONES */
+:root {
+    /* Sesión 31 - Dark Room & Lasers */
+    --bg-dark: #0B0C10;         /* Obsidiana */
+    --bg-card: #1F2833;         /* Gris Carbón Azulao */
+    --text-main: #C5C6C7;       /* Gris claro */
+    --text-title: #FFFFFF;
+    
+    --laser-red: #FF003C;       /* Rojo Láser (Acento 1) */
+    --photon-blue: #00E5FF;     /* Azul Fotón (Acento 2) */
+    --ray-yellow: #FFEA00;      /* Amarillo Rayo (Acento 3) */
+    
+    /* Sesión 32 - Glass & Reflection */
+    --bg-optics: #050B14;       /* Azul Espacio Profundo */
+    --card-optics: #0D1B2A;     /* Cristal Oscuro */
+    --text-optics: #E0E1DD;     /* Plata Reflejante */
+    --title-optics: #FFFFFF;    /* Blanco Puro */
+    
+    --focal-cyan: #45A29E;      /* Cian Focal */
+    --mirror-silver: #C5C6C7;   /* Gris Metálico */
+    --ray-gold: #FFC300;        /* Oro (Rayos de luz) */
+    
+    /* Sesión 33 - Abismo Oceánico y Prisma */
+    --bg-ocean: #001219;       /* Azul abisal oscuro */
+    --card-ocean: #002233;     /* Azul profundo */
+    --text-ocean: #E0FBFC;     /* Blanco luz */
+    
+    --prism-cyan: #4ECDC4;     /* Cian prismático */
+    --aqua-marine: #87DFD6;    /* Aguamarina suave */
+    --laser-gold: #FFD166;     /* Dorado rayo de luz */
+    
+    /* Teacher notes - Sesión 33 */
+    --teacher-bg-33: #1B4332;
+    --teacher-border-33: #95D5B2;
+    
+    /* Teacher notes - Sesión 31/32 */
+    --teacher-bg: #2B0000;
+    --teacher-border: #FF003C;
+    
+    /* Colores Kahoot estándar */
+    --k-red: #E21B3C;
+    --k-blue: #1368CE;
+    --k-yellow: #D89E00;
+    --k-green: #26890C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(180deg, #000000 0%, var(--bg-card) 100%);
+    border-bottom: 4px solid var(--photon-blue);
+    padding: 40px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0, 229, 255, 0.2);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-titles h1 {
+    color: var(--text-title);
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0,229,255,0.4);
+}
+
+.subtitle {
+    color: var(--photon-blue);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#btn-teacher {
+    background: transparent;
+    color: var(--laser-red);
+    border: 1px solid var(--laser-red);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#btn-teacher:hover {
+    background: var(--laser-red);
+    color: #FFF;
+    box-shadow: 0 0 15px var(--laser-red);
+}
+
+/* TARJETAS DE CONTENIDO */
+.card {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-left: 5px solid var(--photon-blue);
+}
+
+.section-title {
+    color: var(--photon-blue);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+
+.content h3 {
+    color: var(--text-title);
+    margin: 20px 0 10px 0;
+}
+
+ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+strong {
+    color: var(--ray-yellow);
+}
+
+/* CAJA PRÁCTICA */
+.practical-box {
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px dashed var(--photon-blue);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+
+.practical-box h3 {
+    color: var(--photon-blue);
+    margin-top: 0;
+}
+
+.exercise {
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--ray-yellow);
+    border-radius: 4px;
+}
+
+/* NOTAS DEL MAESTRO */
+.teacher-note {
+    background: var(--teacher-bg);
+    color: #FFF;
+    padding: 15px;
+    border-left: 5px solid var(--teacher-border);
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    box-shadow: inset 0 0 15px rgba(255,0,60,0.2);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* QUIZ ESTILO KAHOOT */
+.quiz-section {
+    border-left: 5px solid var(--k-yellow);
+    text-align: center;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.hud-text {
+    font-weight: bold;
+    color: var(--photon-blue);
+    font-size: 1.1rem;
+}
+
+#question-title {
+    color: #FFF;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.answer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-answer {
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #FFF;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.4);
+    transition: transform 0.1s;
+}
+
+.btn-answer:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.btn-answer:nth-child(1) { background-color: var(--k-red); }
+.btn-answer:nth-child(2) { background-color: var(--k-blue); }
+.btn-answer:nth-child(3) { background-color: var(--k-yellow); color: #000; }
+.btn-answer:nth-child(4) { background-color: var(--k-green); }
+
+.btn-answer:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.btn-answer.correct {
+    box-shadow: 0 0 15px var(--k-green), inset 0 0 10px rgba(0,0,0,0.5);
+    border: 3px solid white;
+}
+
+.btn-answer.wrong {
+    opacity: 0.3;
+}
+
+.btn-primary {
+    background: var(--photon-blue);
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #00B8D4;
+    box-shadow: 0 0 15px var(--photon-blue);
+}
+
+.final-score {
+    font-size: 2.5rem;
+    color: var(--ray-yellow);
+    margin: 20px 0;
+    text-shadow: 0 0 10px rgba(255,234,0,0.5);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    background: #000;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 2px solid #333;
+    margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header-container { flex-direction: column; gap: 15px; text-align: center; }
+    .answer-grid { grid-template-columns: 1fr; }
+}
+/* =========================================================
+   SESIÓN 32: ESTILOS "GLASS & REFLECTION" 
+   Variables consolidadas en :root principal
+========================================================= */
+
+body {
+    background-color: var(--bg-optics);
+    color: var(--text-optics);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(135deg, #000000 0%, var(--card-optics) 100%);
+    border-bottom: 3px solid var(--focal-cyan);
+    padding: 40px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(69, 162, 158, 0.2);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-titles h1 {
+    color: var(--title-optics);
+    font-size: 2.3rem;
+    margin: 0 0 5px 0;
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.subtitle {
+    color: var(--focal-cyan);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+#btn-teacher {
+    background: transparent;
+    color: var(--ray-gold);
+    border: 1px solid var(--ray-gold);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#btn-teacher:hover {
+    background: var(--ray-gold);
+    color: #000;
+    box-shadow: 0 0 10px var(--ray-gold);
+}
+
+/* CARTAS DE CONTENIDO */
+.card {
+    background: var(--card-optics);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 35px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    border-left: 5px solid var(--focal-cyan);
+}
+
+.section-title {
+    color: var(--focal-cyan);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+}
+
+.content h3 {
+    color: var(--title-optics);
+    margin: 20px 0 10px 0;
+}
+
+.content p, .content li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.content strong {
+    color: var(--ray-gold);
+}
+
+/* CAJA PRÁCTICA */
+.practical-box {
+    background: rgba(69, 162, 158, 0.05);
+    border: 1px dashed var(--focal-cyan);
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.practical-box h3 {
+    color: var(--focal-cyan);
+    margin-top: 0;
+}
+
+.exercise {
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--ray-gold);
+    border-radius: 4px;
+}
+
+/* MODO MAESTRO */
+.teacher-note {
+    background: var(--teacher-bg);
+    color: #FFF;
+    padding: 15px;
+    border-left: 5px solid var(--teacher-border);
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    box-shadow: inset 0 0 12px rgba(255,0,0,0.2);
+}
+
+.hidden { display: none !important; }
+
+/* ESTILOS DEL QUIZ KAHOOT */
+.quiz-section {
+    border-left: 5px solid var(--k-yellow);
+    text-align: center;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.hud-text {
+    font-weight: bold;
+    color: var(--mirror-silver);
+}
+
+#question-title {
+    color: #FFF;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    min-height: 60px;
+}
+
+.answer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-answer {
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.5);
+    transition: transform 0.1s;
+}
+
+.btn-answer:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.btn-answer:nth-child(1) { background-color: var(--k-red); }
+.btn-answer:nth-child(2) { background-color: var(--k-blue); }
+.btn-answer:nth-child(3) { background-color: var(--k-yellow); color: #000; }
+.btn-answer:nth-child(4) { background-color: var(--k-green); }
+
+.btn-answer:disabled {
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+.btn-answer.correct {
+    box-shadow: 0 0 15px var(--k-green), inset 0 0 10px rgba(0,0,0,0.5);
+    border: 3px solid white;
+}
+
+.btn-answer.wrong {
+    opacity: 0.3;
+}
+
+.btn-primary {
+    background: var(--focal-cyan);
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: var(--mirror-silver);
+    box-shadow: 0 0 12px var(--focal-cyan);
+}
+
+.final-score {
+    font-size: 2.5rem;
+    color: var(--ray-gold);
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 25px 0;
+    background: #020408;
+    color: #555;
+    font-size: 0.85rem;
+    border-top: 1px solid #111;
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .header-container { flex-direction: column; gap: 15px; text-align: center; }
+    .answer-grid { grid-template-columns: 1fr; }
+}
+/* =========================================================
+   SESIÓN 33: ESTILOS "ABISMO OCEÁNICO Y PRISMA" 
+   Variables consolidadas en :root principal
+========================================================= */
+
+body {
+    background-color: var(--bg-ocean);
+    color: var(--text-ocean);
+}
+
+header {
+    background: linear-gradient(135deg, #00080B 0%, var(--card-ocean) 100%);
+    border-bottom: 4px solid var(--prism-cyan);
+    padding: 40px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(78, 205, 196, 0.15);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-titles h1 {
+    color: #FFF;
+    font-size: 2.4rem;
+    margin: 0 0 5px 0;
+    text-shadow: 0 0 12px rgba(78, 205, 196, 0.4);
+}
+
+.subtitle {
+    color: var(--prism-cyan);
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.btn-prism {
+    background: transparent;
+    color: var(--prism-cyan);
+    border: 2px solid var(--prism-cyan);
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-prism:hover {
+    background: var(--prism-cyan);
+    color: var(--bg-ocean);
+    box-shadow: 0 0 15px var(--prism-cyan);
+}
+
+/* CARTAS DE CONTENIDO */
+.refraction-card {
+    background: var(--card-ocean);
+    border-radius: 10px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border-left: 6px solid var(--prism-cyan);
+}
+
+.section-title {
+    color: var(--prism-cyan);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+}
+
+.content h3 {
+    color: var(--laser-gold);
+    margin: 25px 0 12px 0;
+}
+
+.content p, .content li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.content strong {
+    color: var(--aqua-marine);
+}
+
+/* CAJA PRÁCTICA */
+.practical-box {
+    background: rgba(78, 205, 196, 0.05);
+    border: 1px dashed var(--prism-cyan);
+    padding: 22px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+
+.practical-box h3 {
+    color: var(--prism-cyan);
+    margin-top: 0;
+}
+
+.exercise {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 18px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--laser-gold);
+    border-radius: 5px;
+}
+
+/* MODO MAESTRO */
+.teacher-note-33 {
+    background: var(--teacher-bg);
+    color: #D8F3DC;
+    padding: 18px;
+    border-left: 6px solid var(--teacher-border);
+    margin-bottom: 22px;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+}
+
+.hidden { display: none !important; }
+
+/* ESTILOS DEL QUIZ KAHOOT */
+.quiz-section {
+    border-left: 6px solid var(--k-yellow);
+    text-align: center;
+    background: #000;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.hud-text {
+    font-weight: bold;
+    color: var(--prism-cyan);
+    font-size: 1.2rem;
+}
+
+#question-title-33 {
+    color: #FFF;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    min-height: 70px;
+}
+
+.answer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.btn-answer {
+    padding: 22px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #FFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.5);
+    transition: transform 0.1s;
+}
+
+.btn-answer:active {
+    transform: translateY(6px);
+    box-shadow: none;
+}
+
+.btn-answer:nth-child(1) { background-color: var(--k-red); }
+.btn-answer:nth-child(2) { background-color: var(--k-blue); }
+.btn-answer:nth-child(3) { background-color: var(--k-yellow); color: #000; }
+.btn-answer:nth-child(4) { background-color: var(--k-green); }
+
+.btn-answer:disabled {
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+.btn-answer.correct {
+    box-shadow: 0 0 20px var(--k-green), inset 0 0 15px rgba(0,0,0,0.6);
+    border: 4px solid white;
+}
+
+.btn-answer.wrong {
+    opacity: 0.25;
+}
+
+.final-score {
+    font-size: 2.8rem;
+    color: var(--prism-cyan);
+    margin: 25px 0;
+    font-weight: bold;
+    text-shadow: 0 0 15px rgba(78, 205, 196, 0.5);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    background: #000508;
+    color: #555;
+    font-size: 0.9rem;
+    border-top: 2px solid var(--prism-cyan);
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .header-container { flex-direction: column; gap: 15px; text-align: center; }
+    .answer-grid { grid-template-columns: 1fr; }
+}
+/* =========================================================
+   SESIÓN 34: ESTILOS "CHROMATIC ABERRATION & GLASS" 
+   Agrega este bloque al final de tu archivo style.css
+========================================================= */
+
+/* Solo afectará a los elementos de la Sesión 34 para evitar conflictos */
+.header-34 {
+    background: linear-gradient(135deg, #1B003A 0%, #4A0E4E 100%);
+    border-bottom: 4px solid #00F0FF;
+    padding: 40px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 25px rgba(216, 27, 96, 0.3);
+}
+
+.optic-card {
+    background: #FAFAFA;
+    border-radius: 12px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-left: 6px solid #D81B60; /* Magenta Focal */
+    color: #333;
+}
+
+.header-34 .header-titles h1 {
+    color: #FFF;
+    text-shadow: -2px 0 #00F0FF, 2px 0 #D81B60; /* Efecto Aberración Cromática */
+}
+
+.header-34 .subtitle {
+    color: #E1BEE7;
+    font-size: 1.15rem;
+}
+
+.btn-optic {
+    background: transparent;
+    color: #00F0FF;
+    border: 2px solid #00F0FF;
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-optic:hover {
+    background: #00F0FF;
+    color: #1B003A;
+    box-shadow: 0 0 15px #00F0FF;
+}
+
+.optic-card .section-title {
+    color: #4A0E4E;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #E1BEE7;
+    padding-bottom: 8px;
+}
+
+.optic-card h3 {
+    color: #D81B60;
+}
+
+.optic-card .practical-box {
+    background: #F3E5F5;
+    border: 1px dashed #D81B60;
+    padding: 22px;
+    border-radius: 8px;
+}
+
+.optic-card .exercise {
+    background: #FFFFFF;
+    border-left: 4px solid #00F0FF;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* NOTAS DOCENTES SESIÓN 34 */
+.teacher-note-34 {
+    background: #1A0033;
+    color: #00F0FF;
+    padding: 18px;
+    border-left: 6px solid #FFD600;
+    margin-bottom: 22px;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ESTILOS DEL QUIZ SESIÓN 34 */
+.quiz-section-34 {
+    background: #121212;
+    color: white;
+    border-left: 6px solid #FFD600;
+    border-radius: 12px;
+    padding: 35px;
+    text-align: center;
+}
+
+.quiz-section-34 h2 {
+    color: #00F0FF;
+    text-shadow: 0 0 10px rgba(0,240,255,0.4);
+}
+
+.quiz-section-34 .hud-text {
+    color: #D81B60;
+    font-weight: bold;
+}
+
+#question-title-34 {
+    font-size: 1.6rem;
+    margin: 30px 0;
+    color: #FFF;
+}
+
+.btn-optic-action {
+    background: #D81B60;
+    color: #FFF;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(216, 27, 96, 0.4);
+}
+
+.btn-optic-action:hover {
+    background: #C2185B;
+    transform: translateY(-2px);
+}
+
+.final-score-34 {
+    font-size: 3rem;
+    color: #00F0FF;
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+    margin: 30px 0;
+}
+/* =========================================================
+   SESIÓN 35: ESTILOS "BIOLUMINESCENCE & DEEP SPACE" 
+   Agrega este bloque al final de tu archivo style.css
+========================================================= */
+
+/* Aislamiento para la sesión 35 */
+.header-35 {
+    background: linear-gradient(135deg, #020024 0%, #090979 50%, #00d4ff 100%);
+    border-bottom: 4px solid #00FF7F; /* Verde bioluminiscente */
+    padding: 40px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 25px rgba(0, 255, 127, 0.2);
+}
+
+.optic-card-35 {
+    background: #0D1117; /* Gris muy oscuro, casi negro */
+    border-radius: 12px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-left: 6px solid #00FF7F; 
+    color: #E6E6E6;
+}
+
+.header-35 .header-titles h1 {
+    color: #FFFFFF;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.8); 
+}
+
+.header-35 .subtitle {
+    color: #00FF7F;
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+.btn-optic-35 {
+    background: transparent;
+    color: #00FF7F;
+    border: 2px solid #00FF7F;
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-optic-35:hover {
+    background: #00FF7F;
+    color: #020024;
+    box-shadow: 0 0 20px #00FF7F;
+}
+
+.optic-card-35 .section-title-35 {
+    color: #00d4ff; /* Azul neón */
+    font-size: 1.8rem;
+    border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.optic-card-35 h3 {
+    color: #00FF7F;
+}
+
+.practical-box-35 {
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px dashed #00d4ff;
+    padding: 22px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+
+.practical-box-35 h3 {
+    color: #00d4ff;
+}
+
+.exercise-35 {
+    background: rgba(0,0,0,0.4);
+    border-left: 4px solid #00FF7F;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* NOTAS DOCENTES SESIÓN 35 */
+.teacher-note-35 {
+    background: #2D0A31;
+    color: #E0B0FF;
+    padding: 18px;
+    border-left: 6px solid #D500F9; /* Púrpura profundo */
+    margin-bottom: 22px;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: inset 0 0 15px rgba(213, 0, 249, 0.2);
+}
+
+/* ESTILOS DEL QUIZ SESIÓN 35 */
+.quiz-section-35 {
+    background: #000000;
+    color: white;
+    border-left: 6px solid #00d4ff;
+    border-radius: 12px;
+    padding: 35px;
+    text-align: center;
+}
+
+.quiz-section-35 h2 {
+    color: #00FF7F;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.4);
+}
+
+.quiz-header-35 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.hud-text-35 {
+    color: #00d4ff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#question-title-35 {
+    font-size: 1.6rem;
+    margin: 30px 0;
+    color: #FFF;
+}
+
+.btn-optic-action-35 {
+    background: #090979;
+    color: #FFF;
+    border: 2px solid #00d4ff;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+}
+
+.btn-optic-action-35:hover {
+    background: #00d4ff;
+    color: #000;
+    box-shadow: 0 0 20px #00d4ff;
+    transform: translateY(-2px);
+}
+
+.final-score-35 {
+    font-size: 3rem;
+    color: #00FF7F;
+    text-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+    margin: 30px 0;
+}
+/* =========================================================
+   SESIÓN 36: ESTILOS "DARK PRISM & NEON SPECTRUM" 
+   Agrega este bloque al final de tu archivo style.css
+========================================================= */
+
+/* Aislamiento de variables para evitar choques con otras sesiones */
+.body-36 {
+    background-color: #0A0A0A; /* Negro puro mate */
+    color: #E0E0E0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.header-36 {
+    background: linear-gradient(135deg, #111 0%, #1A0033 50%, #4A00E0 100%);
+    border-bottom: 4px solid #FF00FF; /* Neon Magenta */
+    padding: 40px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 25px rgba(255, 0, 255, 0.2);
+}
+
+.spectrum-card-36 {
+    background: #141414; 
+    border-radius: 12px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border-left: 6px solid #00E5FF; /* Neon Cyan */
+    color: #E6E6E6;
+}
+
+.header-36 .header-titles h1 {
+    color: #FFFFFF;
+    text-shadow: 0 0 15px #FF00FF, 0 0 25px #00E5FF; /* Resplandor dual */
+}
+
+.header-36 .subtitle {
+    color: #00E5FF;
+    font-size: 1.15rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-spectrum-36 {
+    background: transparent;
+    color: #FFEA00; /* Amarillo láser */
+    border: 2px solid #FFEA00;
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-spectrum-36:hover {
+    background: #FFEA00;
+    color: #000;
+    box-shadow: 0 0 20px #FFEA00;
+}
+
+.spectrum-card-36 .section-title-36 {
+    /* Gradiente Arcoíris para los títulos */
+    background: linear-gradient(90deg, #FF0000, #FFEA00, #00FF00, #00E5FF, #4A00E0, #FF00FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.spectrum-card-36 h3 {
+    color: #00E5FF;
+}
+
+.practical-box-36 {
+    background: rgba(255, 0, 255, 0.05);
+    border: 1px dashed #FF00FF;
+    padding: 22px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+
+.practical-box-36 h3 {
+    color: #FF00FF;
+}
+
+.exercise-36 {
+    background: #0A0A0A;
+    border-left: 4px solid #FFEA00;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* NOTAS DOCENTES SESIÓN 36 */
+.teacher-note-36 {
+    background: #2D0000; /* Rojo muy oscuro */
+    color: #FF5555;
+    padding: 18px;
+    border-left: 6px solid #FF0000;
+    margin-bottom: 22px;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.2);
+}
+
+/* ESTILOS DEL QUIZ SESIÓN 36 */
+.quiz-section-36 {
+    background: #0D0D0D;
+    color: white;
+    border-left: 6px solid #FFEA00;
+    border-radius: 12px;
+    padding: 35px;
+    text-align: center;
+}
+
+.quiz-section-36 h2 {
+    color: #FFEA00;
+    text-shadow: 0 0 10px rgba(255, 234, 0, 0.4);
+}
+
+.quiz-header-36 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.hud-text-36 {
+    color: #00E5FF;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#question-title-36 {
+    font-size: 1.6rem;
+    margin: 30px 0;
+    color: #FFF;
+}
+
+.btn-spectrum-action-36 {
+    background: #4A00E0;
+    color: #FFF;
+    border: 2px solid #00E5FF;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(74, 0, 224, 0.5);
+}
+
+.btn-spectrum-action-36:hover {
+    background: #00E5FF;
+    color: #000;
+    box-shadow: 0 0 20px #00E5FF;
+    transform: translateY(-2px);
+}
+
+.final-score-36 {
+    font-size: 3rem;
+    /* Gradiente Arcoíris para el score */
+    background: linear-gradient(90deg, #FFEA00, #00FF00, #00E5FF, #FF00FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 30px 0;
+    font-weight: bold;
+}
+/* =========================================================
+   SESIÓN 37: ESTILOS "WAVE FUSION" (PROYECTO INTEGRADOR)
+   Agrega este bloque al final de tu archivo style.css
+========================================================= */
+
+.body-37 {
+    background-color: #121212; 
+    color: #E0E0E0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.header-37 {
+    background: linear-gradient(135deg, #1A0B2E 0%, #311B92 50%, #00E676 100%);
+    border-bottom: 4px solid #00E676; /* Verde Neón Acústico */
+    padding: 40px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0, 230, 118, 0.25);
+}
+
+.maker-card-37 {
+    background: #1E1E1E; 
+    border-radius: 12px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    border-left: 6px solid #B388FF; /* Púrpura Óptico */
+    color: #F5F5F5;
+}
+
+.header-37 .header-titles h1 {
+    color: #FFFFFF;
+    text-shadow: 0 0 15px rgba(0, 230, 118, 0.6); 
+    font-size: 2.3rem;
+    margin-bottom: 5px;
+}
+
+.header-37 .subtitle {
+    color: #B388FF;
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+.btn-maker-37 {
+    background: transparent;
+    color: #00E676;
+    border: 2px solid #00E676;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-maker-37:hover {
+    background: #00E676;
+    color: #121212;
+    box-shadow: 0 0 20px #00E676;
+}
+
+.maker-card-37 .section-title-37 {
+    color: #00E676; 
+    font-size: 1.8rem;
+    border-bottom: 2px solid rgba(179, 136, 255, 0.3);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.maker-card-37 h3 {
+    color: #B388FF;
+    margin: 20px 0 10px 0;
+}
+
+.practical-box-37 {
+    background: rgba(179, 136, 255, 0.05);
+    border: 1px dashed #B388FF;
+    padding: 22px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+
+.practical-box-37 h3 {
+    color: #00E676;
+}
+
+.exercise-37 {
+    background: rgba(0,0,0,0.5);
+    border-left: 4px solid #B388FF;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* NOTAS DOCENTES SESIÓN 37 */
+.teacher-note-37 {
+    background: #00331A; /* Contraste verde muy oscuro */
+    color: #69F0AE;
+    padding: 18px;
+    border-left: 6px solid #00E676;
+    margin-bottom: 22px;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: inset 0 0 15px rgba(0, 230, 118, 0.1);
+}
+
+/* ESTILOS DEL QUIZ SESIÓN 37 */
+.quiz-section-37 {
+    background: #000000;
+    color: white;
+    border-left: 6px solid #00E676;
+    border-radius: 12px;
+    padding: 35px;
+    text-align: center;
+}
+
+.quiz-section-37 h2 {
+    color: #00E676;
+    text-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+}
+
+.quiz-header-37 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.hud-text-37 {
+    color: #B388FF;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#question-title-37 {
+    font-size: 1.6rem;
+    margin: 30px 0;
+    color: #FFF;
+    min-height: 60px;
+}
+
+.btn-maker-action-37 {
+    background: #311B92;
+    color: #00E676;
+    border: 2px solid #00E676;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(49, 27, 146, 0.5);
+}
+
+.btn-maker-action-37:hover {
+    background: #00E676;
+    color: #121212;
+    box-shadow: 0 0 20px #00E676;
+    transform: translateY(-2px);
+}
+
+.final-score-37 {
+    font-size: 3rem;
+    color: #B388FF;
+    text-shadow: 0 0 15px rgba(179, 136, 255, 0.5);
+    margin: 30px 0;
+    font-weight: bold;
+}
+/* =========================================================
+   SESIÓN 38: ESTILOS "SCIENTIFIC GALA & EXCELLENCE" 
+   Anexar al final de tu archivo style.css
+========================================================= */
+
+.body-38 {
+    background-color: #050A18; /* Azul noche casi negro */
+    color: #E2E8F0;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+}
+
+.header-38 {
+    background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+    border-bottom: 4px solid #FFD700; /* Oro de Gala */
+    padding: 50px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+}
+
+.gala-card-38 {
+    background: #0B1120;
+    border: 1px solid #1E293B;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-top: 5px solid #FFD700; 
+}
+
+.header-38 h1 {
+    color: #FFFFFF;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+.header-38 .subtitle {
+    color: #FFD700;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.btn-gala-38 {
+    background: transparent;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.btn-gala-38:hover {
+    background: #FFD700;
+    color: #0A192F;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+}
+
+.section-title-38 {
+    color: #FFD700;
+    font-size: 1.9rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.gala-card-38 h3 {
+    color: #64FFDA; /* Verde Aguamarina Técnico */
+    margin-top: 30px;
+}
+
+.practical-box-38 {
+    background: rgba(100, 255, 218, 0.03);
+    border: 1px dashed #64FFDA;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.exercise-38 {
+    background: #112240;
+    border-left: 4px solid #FFD700;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.2s;
+}
+
+.exercise-38:hover {
+    transform: translateX(10px);
+}
+
+/* NOTAS DOCENTES SESIÓN 38 */
+.teacher-note-38 {
+    background: #022C22;
+    color: #64FFDA;
+    padding: 20px;
+    border-left: 6px solid #FFD700;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.hidden { display: none !important; }
+
+/* QUIZ SESIÓN 38 */
+.quiz-section-38 {
+    background: #020617;
+    border: 2px solid #1E293B;
+    text-align: center;
+    padding: 50px;
+}
+
+.hud-text-38 {
+    color: #FFD700;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+#question-title-38 {
+    font-size: 1.8rem;
+    margin: 40px 0;
+    color: #FFFFFF;
+}
+
+.btn-gala-action-38 {
+    background: #FFD700;
+    color: #020617;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-gala-action-38:hover {
+    background: #FFFFFF;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.final-score-38 {
+    font-size: 4rem;
+    color: #FFD700;
+    font-weight: 900;
+    margin: 30px 0;
+}

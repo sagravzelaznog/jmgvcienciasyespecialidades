@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planeación Didáctica: Temas Selectos de Física II</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --border-color: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 24pt;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 18pt;
+            margin-top: 0;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--primary-color);
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: #fff;
+            page-break-inside: auto;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+        }
+        .badge-theory { background-color: var(--secondary-color); }
+        .badge-practice { background-color: var(--accent-color); }
+        .badge-collab { background-color: #27ae60; }
+
+        .pedagogical-note {
+            background-color: #e8f4fc;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 0.95em;
+        }
+
+        /* Footer for Screen */
+        .site-footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+                font-size: 11pt;
+            }
+            .meta-info {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .pedagogical-note {
+                background-color: #f0f0f0;
+                border-left: 2px solid #000;
+            }
+            /* Fixed Footer for Every Page */
+            .site-footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                background-color: white;
+                padding: 10px 0;
+                border-top: 1px solid #000;
+            }
+            /* Ensure content doesn't overlap footer */
+            table { margin-bottom: 50px; }
+            @page {
+                margin: 2cm;
+                margin-bottom: 2.5cm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Planeación Didáctica: Temas Selectos de Física II</h1>
+        <h2>Bloque I: Aplica la Electricidad en su Entorno Natural</h2>
+    </header>
+
+    <div class="meta-info">
+        <div class="meta-item">
+            <strong>Materia</strong>
+            Temas Selectos de Física II
+        </div>
+        <div class="meta-item">
+            <strong>Duración Total</strong>
+            12 Horas (12 Sesiones) 
+        </div>
+        <div class="meta-item">
+            <strong>Enfoque</strong>
+            Competencias y Aprendizaje Significativo
+        </div>
+        <div class="meta-item">
+            <strong>Objetivo General</strong>
+            Aplicar el método analítico y esquemático para valorar la electricidad en situaciones de la vida cotidiana. 
+        </div>
+    </div>
+
+    <div class="pedagogical-note">
+        <strong>Nota Psicopedagógica:</strong> Esta planeación utiliza el modelo de andamiaje (Scaffolding). Se comienza activando conocimientos previos (conceptos intuitivos), se pasa a la estructuración formal (leyes físicas) y se finaliza con la aplicación práctica y resolución de problemas complejos. Se integran actividades visuales, auditivas y kinestésicas para atender diversos estilos de aprendizaje.
+    </div>
+
+    <h3>Cronograma de Sesiones</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">Ses.</th>
+                <th style="width: 20%;">Tema / Objeto de Aprendizaje </th>
+                <th style="width: 35%;">Actividades de Enseñanza - Aprendizaje [cite: 6]</th>
+                <th style="width: 25%;">Estrategia Didáctica</th>
+                <th style="width: 15%;">Evaluación [cite: 6]</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><strong>Introducción a la Electricidad y Fenómenos Naturales</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Apertura:</strong> Pregunta detonadora: "¿Qué llega primero, el rayo o el trueno?" y "¿Cómo llega la luz a tu casa?". </li>
+                        <li><strong>Desarrollo:</strong> Lluvia de ideas sobre ideas preconcebidas vs. conocimiento científico.</li>
+                        <li><strong>Cierre:</strong> Definición grupal básica de electricidad.</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-collab">Colaborativo</span><br>Activación Cognitiva</td>
+                <td>Participación oral</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>Características de la Electricidad</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Actividad:</strong> Elaboración de un Cuadro Sinóptico o Mapa Conceptual sobre las características de la electricidad y su origen (átomo, electrones). [cite: 6]</li>
+                        <li><strong>Foco:</strong> Diferencia entre estática y dinámica.</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-theory">Teórico-Visual</span><br>Organización Gráfica</td>
+                <td>Rúbrica de Mapa Conceptual [cite: 6]</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td><strong>Campo Eléctrico y Ley de Gauss</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Docente:</strong> Exposición interactiva sobre el concepto de Campo Eléctrico y flujo eléctrico.</li>
+                        <li><strong>Estudiante:</strong> Investigación guiada sobre la Ley de Gauss y sus aplicaciones teóricas. [cite: 6]</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-theory">Teórico</span><br>Aula Invertida</td>
+                <td>Apuntes de clase</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>Contexto Real: Entrevistas e Investigación</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Actividad:</strong> Simulación o reporte de entrevista a expertos (electricistas/ingenieros).</li>
+                        <li><strong>Pregunta clave:</strong> "¿Por qué se ponen mallas ciclónicas en torres de alta tensión?". [cite: 6]</li>
+                        <li><strong>Producto:</strong> Reporte de hallazgos sobre seguridad eléctrica.</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-collab">Social</span><br>Aprendizaje Basado en Indagación</td>
+                <td>Rúbrica de Entrevista [cite: 6]</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td><strong>Potencial Eléctrico en el Entorno</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Actividad:</strong> Análisis de aparatos cotidianos. Proponer ejercicios prácticos de aplicación en su entorno. [cite: 6]</li>
+                        <li><strong>Dinámica:</strong> Identificar voltaje y consumo en etiquetas de aparatos reales.</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-practice">Práctico</span><br>Aprendizaje Situado</td>
+                <td>Escala de clasificación [cite: 6]</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><strong>Ley de Ohm: Teoría y Gráficos</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Docente:</strong> Explicación de la relación V=IR.</li>
+                        <li><strong>Actividad:</strong> Representación gráfica del flujo de electrones en un circuito simple. [cite: 6]</li>
+                        <li><strong>Pregunta:</strong> "¿Cómo funciona una plancha?".</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-theory">Analítico</span><br>Modelado Matemático</td>
+                <td>Esquemas gráficos</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><strong>Ley de Ohm: Resolución de Problemas</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Actividad:</strong> Resolución en equipos mixtos de ejercicios analíticos de la Ley de Ohm. [cite: 6]</li>
+                        <li><strong>Cierre:</strong> Exposición de resultados al grupo explicando el procedimiento.</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-collab">Colaborativo</span><br>Resolución de Problemas</td>
+                <td>Lista de cotejo [cite: 6]</td>
+            </tr>
+
+            <tr>
+                <td>8</td>
+                <td><strong>Fuerza Electromotriz (FEM)</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Concepto:</strong> Definición de FEM y diferencia con diferencia de potencial.</li>
+                        <li><strong>Análisis:</strong> Estudio del funcionamiento de motores, licuadoras y hornos de microondas. [cite: 6]</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-theory">Teórico</span><br>Análisis de Objetos</td>
+                <td>Participación</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><strong>Práctica Experimental: FEM</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Actividad:</strong> Coordinar práctica experimental donde se aplique FEM (construcción de motor simple o análisis de circuito con batería). [cite: 6]</li>
+                        <li><strong>Producto:</strong> Reporte con cálculos analíticos y esquemas. [cite: 6]</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-practice">Experimental</span><br>Kinestésico</td>
+                <td>Rúbrica de proceso experimental [cite: 6]</td>
+            </tr>
+
+            <tr>
+                <td>10</td>
+                <td><strong>Leyes de Kirchhoff: Mallas y Nodos</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Docente:</strong> Introducción a la 1ª y 2ª Ley de Kirchhoff. Uso de analogías (tráfico, tuberías de agua).</li>
+                        <li><strong>Estudiante:</strong> Identificación de nodos y mallas en diagramas simples. [cite: 10]</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-theory">Lógico-Matemático</span><br>Instrucción Directa</td>
+                <td>Ejercicios guiados</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td><strong>Aplicación de Kirchhoff</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Actividad:</strong> Resolución en equipos de ejercicios complejos de circuitos mixtos usando Kirchhoff. [cite: 10]</li>
+                        <li><strong>Socialización:</strong> Presentar conclusiones y métodos de solución al grupo. [cite: 10]</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-collab">Colaborativo</span><br>Aprendizaje entre Pares</td>
+                <td>Lista de cotejo [cite: 10]</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td><strong>Evaluación y Cierre del Bloque</strong></td>
+                <td>
+                    <ul>
+                        <li><strong>Actividad:</strong> Integración de conocimientos. Reflexión sobre las implicaciones del uso de la electricidad y su relación con fenómenos naturales. </li>
+                        <li><strong>Evaluación Final:</strong> Entrega de portafolio de evidencias (Mapas, ejercicios, reportes).</li>
+                    </ul>
+                </td>
+                <td><span class="badge badge-theory">Metacognición</span><br>Evaluación Sumativa</td>
+                <td>Portafolio de Evidencias</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="pedagogical-note" style="border-left-color: var(--accent-color);">
+        <strong>Recursos y Bibliografía Sugerida:</strong>
+        <ul>
+            <li>HEWITT, R. (1999). Conceptos de física. [cite: 12]</li>
+            <li>TIPPENS, P. (2007). Física, conceptos y aplicaciones. [cite: 12]</li>
+            <li>Recursos Web: Simuladores de Ley de Ohm y Kirchhoff. [cite: 12]</li>
+        </ul>
+    </div>
+
+    <footer class="site-footer">
+        &copy; JMGV-PTEL-2025. todos los derechos reservados
+    </footer>
+
+</body>
+</html>

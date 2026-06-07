@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass: Desarrollo Histórico del Electromagnetismo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>MASTERCLASS: Desarrollo Histórico del Electromagnetismo</h1>
+            <p class="subtitle">Descubre la unificación de dos fuerzas fundamentales que cambiaron el mundo.</p>
+        </div>
+    </header>
+
+    <button id="teacher-access-btn" onclick="askTeacherCode()">Panel del Maestro</button>
+
+    <section id="concepto" class="container">
+        <div class="card main-card">
+            <h2>1. ¿Qué es el Electromagnetismo?</h2>
+            <div class="teacher-note" id="note-concepto">
+                <strong>TIP PEDAGÓGICO:</strong> Inicie la clase preguntando qué aparatos usan en casa que necesiten electricidad y cuáles tienen imanes. Use esto para generar curiosidad sobre la conexión.
+            </div>
+            <p>Es la rama de la física que estudia y unifica los fenómenos eléctricos y magnéticos en una sola teoría. Describe la interacción de partículas cargadas con campos eléctricos y magnéticos.</p>
+            <p><strong>Quién establece el término:</strong> La unificación fue formalizada por **James Clerk Maxwell**, pero el descubrimiento fundamental de la relación fue de Hans Christian Ørsted.</p>
+        </div>
+    </section>
+
+    <section id="historia" class="container">
+        <h2>2. Personajes Clave y sus Aportes</h2>
+        <p class="section-intro">Explora la línea del tiempo de los descubrimientos.</p>
+        <div class="teacher-note" id="note-historia">
+            <strong>TIP ANDRAGÓGICO:</strong> Para alumnos adultos, enfatice cómo estos descubrimientos impulsaron la Revolución Industrial y la tecnología moderna. Conecte la teoría con aplicaciones reales.
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-img">1820</div>
+                <div class="timeline-content card">
+                    <h3>Hans Christian Ørsted</h3>
+                    <p class="date">14 de agosto de 1820 (Publicación)</p>
+                    <img src="oersted.png" alt="Hans Christian Ørsted" class="bio-img">
+                    <p class="bio"><em>(1777–1851, Dinamarca)</em>. Físico y químico. Durante una clase, descubrió accidentalmente que una corriente eléctrica desviaba la aguja de una brújula cercana.</p>
+                    <p><strong>Aporte:</strong> Demostró empíricamente que **la electricidad genera magnetismo**. Inició el electromagnetismo.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-img">1820+</div>
+                <div class="timeline-content card">
+                    <h3>André-Marie Ampère</h3>
+                    <p class="date">Septiembre de 1820 (Pocos días después de Ørsted)</p>
+                    <img src="ampere.png" alt="André-Marie Ampère" class="bio-img">
+                    <p class="bio"><em>(1775–1836, Francia)</em>. Matemático y físico. Considerado uno de los fundadores de la electrodinámica.</p>
+                    <p><strong>Aporte:</strong> Formuló la ley que describe la fuerza entre dos conductores con corriente. Estableció la teoría matemática del electromagnetismo. La unidad de corriente (Amperio) lleva su nombre.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-img">1831</div>
+                <div class="timeline-content card">
+                    <h3>Michael Faraday</h3>
+                    <p class="date">29 de agosto de 1831 (Descubrimiento)</p>
+                    <img src="faraday.png" alt="Michael Faraday" class="bio-img">
+                    <p class="bio"><em>(1791–1867, Reino Unido)</em>. Físico y químico, gran experimentador. Venía de una familia humilde y fue autodidacta.</p>
+                    <p><strong>Aporte:</strong> Descubrió la **Inducción Electromagnética**: un campo magnético variable induce una corriente eléctrica. Creó el primer motor eléctrico y el primer generador (dinamo).</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-img">1865</div>
+                <div class="timeline-content card">
+                    <h3>James Clerk Maxwell</h3>
+                    <p class="date">1865 (Publicación de "A Dynamical Theory...")</p>
+                    <img src="maxwell.png" alt="James Clerk Maxwell" class="bio-img">
+                    <p class="bio"><em>(1831–1879, Reino Unido)</em>. Físico matemático. Su trabajo unificó todo el conocimiento previo.</p>
+                    <p><strong>Aporte:</strong> Formuló las **Ecuaciones de Maxwell**, cuatro ecuaciones que unifican electricidad, magnetismo y luz como manifestaciones del mismo fenómeno: el campo electromagnético. Predijo las ondas electromagnéticas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="practica" class="container">
+        <div class="card practical-card">
+            <h2>3. Actividad Práctica: ¡Crea un Electroimán Casero!</h2>
+            <div class="teacher-note" id="note-practica">
+                <strong>TIP DE GEOMETRÍA/FÍSICA (PARA EL MAESTRO):</strong> Al explicar el solenoide (bobina), mencione que la fuerza del imán depende del número de vueltas (N) y la corriente (I). La geometría circular de cada vuelta suma sus campos magnéticos en el eje.
+            </div>
+            <p>Mira el efecto del electromagnetismo tú mismo con materiales fáciles de conseguir.</p>
+            <div class="materials">
+                <h3>Materiales:</h3>
+                <ul>
+                    <li>Una pila (D, C o AA) - 1.5V</li>
+                    <li>Un clavo de hierro grande (aprox. 10-15 cm)</li>
+                    <li>Cable de cobre esmaltado fino (aprox. 1 metro)</li>
+                    <li>Clips metálicos, chinchetas</li>
+                    <li>Cinta aislante</li>
+                    <li>Papel de lija fino</li>
+                </ul>
+            </div>
+            <div class="steps">
+                <h3>Pasos:</h3>
+                <ol>
+                    <li>Lija las puntas del cable de cobre para quitar el esmalte aislante.</li>
+                    <li>Enrolla el cable firmemente alrededor del clavo, dejando unos 10 cm sueltos en cada extremo. ¡Cuantas más vueltas, mejor!</li>
+                    <li>Usa la cinta aislante para fijar un extremo del cable al polo positivo (+) de la pila y el otro extremo al polo negativo (-).</li>
+                    <li><strong>¡CUIDADO!</strong> El clavo y el cable se calentarán rápidamente. No mantengas la conexión mucho tiempo.</li>
+                    <li>Acerca la punta del clavo a los clips. ¿Qué sucede?</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz" class="container quiz-container">
+        <div class="card quiz-card">
+            <h2>4. Quiz Desafío de Electromagnetismo</h2>
+            <p>Pon a prueba tus conocimientos. Estilo Kahoot (10 preguntas).</p>
+            <div id="quiz-game">
+                <div id="question-container">
+                    <p id="question-text">Pregunta 1: ...</p>
+                    <div id="answer-buttons" class="btn-grid">
+                        <button title="Respuesta 1" id="1" class="btn quiz-btn"></button>
+                        <button title="Respuesta 2" id="2" class="btn quiz-btn"></button>
+                        <button title="Respuesta 3" id="3" class="btn quiz-btn"></button>
+                        <button title="Respuesta 4" id="4" class="btn quiz-btn"></button>
+                    </div>
+                </div>
+                <div id="controls">
+                    <button id="start-btn" class="btn next-btn">Empezar Quiz</button>
+                    <button id="next-btn" class="btn next-btn hide">Siguiente</button>
+                </div>
+                <p id="score-display" class="hide">Puntuación: 0 / 10</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>copyright &copy;jmgv-ptel-2026. masterclass DESARROLLO HISTÓRICO DEL ELECTROMAGNETISMO. todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

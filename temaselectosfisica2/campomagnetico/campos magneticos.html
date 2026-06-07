@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass: Campos Magnéticos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>MASTERCLASS: Geometría de los Campos Magnéticos</h1>
+            <p class="subtitle">De la línea recta al solenoide: visualizando las fuerzas invisibles del universo.</p>
+        </div>
+    </header>
+
+    <button id="btn-maestro" onclick="verificarCodigoMaestro()">Acceso Docente</button>
+
+    <main class="container">
+        <section class="card">
+            <div class="topic-header">
+                <h2>1. Campo Magnético Producido por una Corriente</h2>
+            </div>
+            <div class="teacher-note">
+                <strong>💡 TIP PEDAGÓGICO (Andragogía):</strong> Conecte este tema con el conocimiento previo del alumno sobre la experiencia de Ørsted. Destaque que la electricidad y el magnetismo no son fenómenos aislados, sino manifestaciones de una misma fuerza fundamental.
+            </div>
+            <div class="content">
+                <h3>Definición:</h3>
+                <p>Toda carga eléctrica en movimiento (es decir, una corriente eléctrica) genera un campo magnético a su alrededor. Este es el principio fundamental del electromagnetismo. La intensidad de este campo depende directamente de la cantidad de corriente que fluye.</p>
+                
+                <div class="practical-box">
+                    <h3>🛠️ Ejercicio Práctico: "La brújula desviada"</h3>
+                    <p><strong>Materiales:</strong> Una pila de 9V, un cable de cobre, una brújula.</p>
+                    <p><strong>Procedimiento:</strong> Coloca la brújula sobre una mesa. Mantén el cable estirado por encima de la brújula, paralelo a la aguja. Conecta los extremos del cable a la pila por solo un par de segundos. Observarás que la aguja de la brújula gira violentamente intentando colocarse perpendicular al cable, demostrando la existencia del campo magnético generado por la corriente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="topic-header">
+                <h2>2. Campo Magnético Producido por un Conductor Recto</h2>
+            </div>
+            <div class="teacher-note">
+                <strong>💡 TIP DE GEOMETRÍA:</strong> Explique que las líneas de campo no tienen principio ni fin, forman circunferencias concéntricas. Use la "Regla de la mano derecha" físicamente en el aula: el pulgar indica la corriente (vector I) y los dedos enrollados indican el campo (vector B). Fórmula: B = (&mu;₀·I) / (2&pi;·r).
+            </div>
+            <div class="content">
+                <h3>Definición:</h3>
+                <p>Cuando la corriente viaja por un cable recto y largo, el campo magnético toma la forma de cilindros invisibles. Las líneas de campo magnético forman <strong>círculos concéntricos</strong> alrededor del cable. Mientras más nos alejamos del cable, más débil se vuelve el campo.</p>
+                
+                <div class="practical-box">
+                    <h3>🛠️ Ejercicio Práctico: "Círculos de Hierro"</h3>
+                    <p><strong>Materiales:</strong> Un trozo de cartón grueso, limaduras de hierro, un cable de cobre grueso, una fuente de poder (o batería fuerte).</p>
+                    <p><strong>Procedimiento:</strong> Haz un agujero en el centro del cartón y pasa el cable recto verticalmente a través de él. Espolvorea las limaduras de hierro sobre el cartón de manera uniforme. Haz pasar una corriente alta por el cable y da golpecitos suaves al cartón. Las limaduras se alinearán formando círculos perfectos alrededor del cable.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="topic-header">
+                <h2>3. Campo Magnético Producido por una Espira</h2>
+            </div>
+            <div class="teacher-note">
+                <strong>💡 TIP FÍSICO-MATEMÁTICO:</strong> Una espira concentra el campo. Demuestre cómo la integración de los vectores del campo en el interior de la espira se suman, creando un campo más intenso en el centro. Fórmula en el centro: B = (&mu;₀·I) / (2·r). Compare esto con un imán de disco (polo norte en una cara, sur en la otra).
+            </div>
+            <div class="content">
+                <h3>Definición:</h3>
+                <p>Una espira es simplemente un conductor recto que ha sido doblado para formar un lazo o anillo circular. Al curvar el cable, las líneas de campo magnético que lo rodean se concentran en el centro del anillo, creando un campo magnético mucho más intenso en su interior que en su exterior. Actúa como un imán plano muy delgado con un polo Norte de un lado y un polo Sur del otro.</p>
+                
+                <div class="practical-box">
+                    <h3>🛠️ Ejercicio Práctico: "El anillo magnético"</h3>
+                    <p><strong>Materiales:</strong> Cartón, cable de cobre esmaltado largo, limaduras de hierro, fuente de corriente.</p>
+                    <p><strong>Procedimiento:</strong> Pasa el cable por el cartón haciendo que la mitad del anillo quede por arriba y la otra mitad por abajo (haz dos agujeros). Espolvorea limaduras y aplica corriente. Al dar golpecitos, verás cómo las líneas entran por una cara de la espira, se concentran y salen por la otra.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="topic-header">
+                <h2>4. Campo Magnético Producido por un Solenoide (Bobina)</h2>
+            </div>
+            <div class="teacher-note">
+                <strong>💡 TIP DE INGENIERÍA:</strong> Un solenoide es la suma geométrica de múltiples espiras. Muestre cómo los campos externos se cancelan entre sí, mientras que los internos se suman (superposición). La ecuación B = &mu;₀·(N/L)·I revela que importar la densidad de vueltas (N/L), no el diámetro. Este es el principio de actuadores y relés.
+            </div>
+            <div class="content">
+                <h3>Definición:</h3>
+                <p>Un solenoide es un alambre enrollado en forma de espiral o hélice tubular (como un resorte). Es básicamente una sucesión de muchas espiras alineadas. El campo magnético de cada espira se suma al de las demás, creando en su interior un campo magnético muy fuerte, uniforme y paralelo al eje del cilindro. El exterior del solenoide se comporta exactamente igual que un imán de barra clásico.</p>
+                
+                <div class="practical-box">
+                    <h3>🛠️ Ejercicio Práctico: "El Imán de Barra Artificial"</h3>
+                    <p><strong>Materiales:</strong> Un tubo de cartón (como los del papel higiénico), varios metros de cable de cobre esmaltado fino, una brújula, una pila.</p>
+                    <p><strong>Procedimiento:</strong> Enrolla el cable alrededor del tubo dando unas 100 vueltas apretadas (creando el solenoide). Conecta los extremos a la pila. Acerca la brújula a uno de los extremos del tubo; la aguja apuntará directamente hacia él o se alejará (Polo Norte o Sur). Si inviertes los cables en la pila, la brújula girará 180°, demostrando que puedes invertir los polos magnéticos a voluntad.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card quiz-section">
+            <h2>🧠 Quiz de Maestría Electromagnética</h2>
+            <p>Demuestra tu conocimiento de las geometrías magnéticas.</p>
+            
+            <div id="quiz-container">
+                <div id="question-box">
+                    <h3 id="question-text">Presiona iniciar para comenzar.</h3>
+                    <div id="answer-buttons" class="btn-grid hide">
+                        </div>
+                </div>
+                <div class="quiz-controls">
+                    <button id="start-btn" class="quiz-action-btn">▶️ Iniciar Quiz</button>
+                    <button id="next-btn" class="quiz-action-btn hide">Siguiente ⏭️</button>
+                </div>
+                <div id="score-box" class="hide">
+                    Tu puntuación: <span id="score">0</span> / 10
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>copyright &copy;jmgv-ptel-2026. masterclass campos magneticos. todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

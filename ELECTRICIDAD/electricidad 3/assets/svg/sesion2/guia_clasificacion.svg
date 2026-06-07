@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <title>Guía de Clasificación Visual de Materiales</title>
+    <style>
+        .title { font: bold 28px Arial; text-anchor: middle; fill: #2c3e50; }
+        .subtitle { font: bold 20px Arial; text-anchor: middle; fill: #34495e; }
+        .section-title { font: bold 18px Arial; fill: #2980b9; }
+        .item-text { font: 14px Arial; }
+        .conductor { fill: #f1c40f; stroke: #d35400; }
+        .aislante { fill: #2ecc71; stroke: #27ae60; }
+        .grid-line { stroke: #ddd; stroke-width: 1; }
+        .label { font: 12px Arial; text-anchor: middle; }
+    </style>
+
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f9f9f9" />
+    
+    <!-- Título -->
+    <text x="400" y="40" class="title">Guía de Clasificación Visual de Materiales</text>
+    <text x="400" y="70" class="subtitle">Identifica conductores y aislantes por sus características</text>
+    
+    <!-- Línea divisoria -->
+    <line x1="50" y1="90" x2="750" y2="90" stroke="#3498db" stroke-width="2" />
+    
+    <!-- Sección de Conductores -->
+    <rect x="50" y="110" width="340" height="450" rx="10" fill="white" stroke="#f1c40f" stroke-width="2" />
+    <text x="220" y="140" class="section-title">CONDUCTORES</text>
+    
+    <!-- Características de conductores -->
+    <circle cx="100" cy="180" r="10" class="conductor" />
+    <text x="120" y="185" class="item-text">Apariencia metálica y brillante</text>
+    
+    <circle cx="100" cy="220" r="10" class="conductor" />
+    <text x="120" y="225" class="item-text">Fríos al tacto</text>
+    
+    <circle cx="100" cy="260" r="10" class="conductor" />
+    <text x="120" y="265" class="item-text">Generalmente más pesados</text>
+    
+    <circle cx="100" cy="300" r="10" class="conductor" />
+    <text x="120" y="305" class="item-text">Maleables y dúctiles</text>
+    
+    <!-- Ejemplos de conductores -->
+    <text x="220" y="350" class="section-title">Ejemplos comunes</text>
+    <g transform="translate(80, 370)">
+        <rect x="0" y="0" width="80" height="80" rx="5" fill="#f1c40f" opacity="0.3" />
+        <text x="40" y="30" class="label">Cobre</text>
+        <rect x="100" y="0" width="80" height="80" rx="40" fill="#f1c40f" opacity="0.3" />
+        <text x="140" y="30" class="label">Monedas</text>
+        <rect x="200" y="0" width="80" height="80" rx="5" fill="#f1c40f" opacity="0.3" />
+        <text x="240" y="30" class="label">Llaves</text>
+    </g>
+    
+    <!-- Sección de Aislantes -->
+    <rect x="410" y="110" width="340" height="450" rx="10" fill="white" stroke="#2ecc71" stroke-width="2" />
+    <text x="580" y="140" class="section-title">AISLANTES</text>
+    
+    <!-- Características de aislantes -->
+    <circle cx="460" cy="180" r="10" class="aislante" />
+    <text x="480" y="185" class="item-text">Opacos o traslúcidos</text>
+    
+    <circle cx="460" cy="220" r="10" class="aislante" />
+    <text x="480" y="225" class="item-text">Tacto variable</text>
+    
+    <circle cx="460" cy="260" r="10" class="aislante" />
+    <text x="480" y="265" class="item-text">Generalmente más ligeros</text>
+    
+    <circle cx="460" cy="300" r="10" class="aislante" />
+    <text x="480" y="305" class="item-text">Algunos son frágiles</text>
+    
+    <!-- Ejemplos de aislantes -->
+    <text x="580" y="350" class="section-title">Ejemplos comunes</text>
+    <g transform="translate(440, 370)">
+        <rect x="0" y="0" width="80" height="80" rx="5" fill="#2ecc71" opacity="0.3" />
+        <text x="40" y="30" class="label">Madera</text>
+        <rect x="100" y="0" width="80" height="80" rx="5" fill="#2ecc71" opacity="0.3" />
+        <text x="140" y="30" class="label">Plástico</text>
+        <rect x="200" y="0" width="80" height="80" rx="40" fill="#2ecc71" opacity="0.3" />
+        <text x="240" y="30" class="label">Goma</text>
+    </g>
+    
+    <!-- Leyenda -->
+    <rect x="150" y="480" width="500" height="60" rx="10" fill="#f8f9fa" stroke="#ddd" />
+    <text x="400" y="500" class="subtitle" font-size="16">Consejo: Usa todos tus sentidos para identificar los materiales</text>
+    <text x="400" y="525" class="item-text" text-anchor="middle">Toca, observa, compara y experimenta para mejorar tu clasificación</text>
+    
+    <!-- Pie de página -->
+    <text x="400" y="580" class="item-text" text-anchor="middle" font-style="italic">Guía interactiva - Sesión 2: Clasificación Visual de Materiales</text>
+</svg>

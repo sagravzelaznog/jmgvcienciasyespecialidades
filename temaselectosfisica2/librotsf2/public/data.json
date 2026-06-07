@@ -1,0 +1,239 @@
+{
+  "curso": "Temas Selectos de Física II",
+  "duracion_semanas": 15,
+  "modulos": [
+    {
+      "semana": 1,
+      "bloque": "Electricidad Estática",
+      "temas": [
+        "Carga eléctrica y la ley de la conservación de la carga",
+        "Interacción en cargas de igual o diferente signo",
+        "Formas de electrizar los cuerpos",
+        "Electroscopio y jaula de Faraday",
+        "Materiales conductores y aislantes",
+        "Unidades de carga eléctrica"
+      ],
+      "interactivo": {
+        "id_componente": "sim_electroscopio",
+        "tipo": "Canvas",
+        "descripcion": "Electroscopio virtual donde los alumnos arrastran materiales para ver la transferencia de electrones."
+      }
+    },
+    {
+      "semana": 2,
+      "bloque": "Fuerzas y Campos",
+      "temas": [
+        "Ley de Coulomb",
+        "Campo eléctrico, líneas de campo eléctrico o líneas de fuerza",
+        "Flujo eléctrico",
+        "Potencial eléctrico"
+      ],
+      "interactivo": {
+        "id_componente": "sim_campo_electrico",
+        "tipo": "Graficos_2D",
+        "descripcion": "Plano interactivo para colocar cargas puntuales y observar dinámicamente las líneas de fuerza."
+      }
+    },
+    {
+      "semana": 3,
+      "bloque": "Electrodinámica Básica",
+      "temas": [
+        "Electrodinámica",
+        "Fuerza electromotriz",
+        "Conexión de pilas en serie y en paralelo",
+        "Resistencia eléctrica"
+      ],
+      "interactivo": {
+        "id_componente": "sim_baterias",
+        "tipo": "Drag_and_Drop",
+        "descripcion": "Constructor básico de circuitos visuales para conectar pilas y medir voltaje total."
+      }
+    },
+    {
+      "semana": 4,
+      "bloque": "Leyes de Circuitos I",
+      "temas": [
+        "Ley de Ohm",
+        "Circuitos eléctricos y conexión de resistencias en serie, en paralelo y mixtas",
+        "Potencia eléctrica y efecto Joule"
+      ],
+      "interactivo": {
+        "id_componente": "sim_ley_ohm",
+        "tipo": "Simulador_DOM",
+        "descripcion": "Protoboard virtual. Medidores actualizan la corriente en tiempo real al cambiar resistencias."
+      }
+    },
+    {
+      "semana": 5,
+      "bloque": "Leyes de Circuitos II",
+      "temas": [
+        "Leyes de Kirchhoff",
+        "Capacitores o condensadores eléctricos",
+        "Electroquímica y ley de Faraday de la electrólisis"
+      ],
+      "interactivo": {
+        "id_componente": "calc_kirchhoff",
+        "tipo": "Calculadora_Logica",
+        "descripcion": "Sistema paso a paso que genera sistemas de ecuaciones lineales basados en los valores ingresados."
+      }
+    },
+    {
+      "semana": 6,
+      "bloque": "Fundamentos Magnéticos",
+      "temas": [
+        "Propiedades y características de los diferentes tipos de imanes",
+        "Campo magnético y densidad de flujo magnético",
+        "Reluctancia",
+        "Materiales ferromagnéticos, paramagnéticos y diamagnéticos",
+        "Desarrollo histórico del electromagnetismo"
+      ],
+      "interactivo": {
+        "id_componente": "anim_dominios_mag",
+        "tipo": "Animacion_SVG",
+        "descripcion": "Visualización de dominios magnéticos alineándose al acercar un imán externo."
+      }
+    },
+    {
+      "semana": 7,
+      "bloque": "Inducción y Fuerzas",
+      "temas": [
+        "Campo magnético producido por una corriente",
+        "Fuerzas sobre cargas eléctricas en movimiento dentro de campos magnéticos",
+        "Inducción electromagnética y ley del electromagnetismo",
+        "Ley de Lenz",
+        "Ley de Faraday"
+      ],
+      "interactivo": {
+        "id_componente": "sim_induccion",
+        "tipo": "Canvas_Interactividad",
+        "descripcion": "Espira e imán móvil; un galvanómetro registra la corriente inducida según el movimiento del cursor."
+      }
+    },
+    {
+      "semana": 8,
+      "bloque": "Corriente Alterna",
+      "temas": [
+        "Inductancia",
+        "Corriente alterna y circuitos de corriente alterna",
+        "Circuitos RC",
+        "Transformadores y bobina de inducción (Ruhmkorff)",
+        "Generador y motor eléctrico",
+        "Síntesis de Maxwell del electromagnetismo"
+      ],
+      "interactivo": {
+        "id_componente": "sim_osciloscopio",
+        "tipo": "Graficador_Canvas",
+        "descripcion": "Osciloscopio web con gráficas sinusoidales animadas ajustando frecuencia y amplitud."
+      }
+    },
+    {
+      "semana": 9,
+      "bloque": "Óptica Geométrica I",
+      "temas": [
+        "Fenómenos y naturaleza de la luz",
+        "Óptica geométrica y propagación rectilínea de la luz",
+        "Métodos de Röemer y Michelson (velocidad de la luz)",
+        "Intensidad luminosa y flujo luminoso",
+        "Iluminación y ley de iluminación",
+        "Leyes de reflexión de la luz y espejos esféricos"
+      ],
+      "interactivo": {
+        "id_componente": "sim_trazado_rayos",
+        "tipo": "Canvas_Geometria",
+        "descripcion": "Interfaz de trazado de rayos para espejos cóncavos/convexos y formación de imágenes."
+      }
+    },
+    {
+      "semana": 10,
+      "bloque": "Óptica Geométrica II",
+      "temas": [
+        "Refracción de la luz",
+        "Las lentes y sus características",
+        "Potencia de una lente",
+        "El telescopio y el microscopio",
+        "El ojo y la visión"
+      ],
+      "interactivo": {
+        "id_componente": "sim_lentes_snell",
+        "tipo": "Canvas_Interactividad",
+        "descripcion": "Laboratorio de lentes para ajustar el índice de refracción (Ley de Snell) y enfoque visual."
+      }
+    },
+    {
+      "semana": 11,
+      "bloque": "Óptica Física y Color",
+      "temas": [
+        "Óptica física",
+        "Interferencia y anillos de Newton",
+        "Difracción y polarización de la luz",
+        "Naturaleza del color y descomposición de la luz blanca",
+        "Colores primarios, binarios y daltonismo",
+        "Propiedades electromagnéticas de la luz y espectro electromagnético"
+      ],
+      "interactivo": {
+        "id_componente": "sim_espectro_color",
+        "tipo": "Mezclador_DOM",
+        "descripcion": "Simulador aditivo y sustractivo de color, junto con un prisma virtual dispersor."
+      }
+    },
+    {
+      "semana": 12,
+      "bloque": "Ondas Mecánicas I",
+      "temas": [
+        "Ondas longitudinales y transversales",
+        "Tren de ondas, frente de onda y rayo o vector de propagación",
+        "Ondas lineales, superficiales y tridimensionales",
+        "Características de las ondas"
+      ],
+      "interactivo": {
+        "id_componente": "sim_cuerda_onda",
+        "tipo": "Animacion_Canvas",
+        "descripcion": "Cuerda vibrante con controles para modificar amplitud, longitud de onda y frecuencia."
+      }
+    },
+    {
+      "semana": 13,
+      "bloque": "Ondas Mecánicas II",
+      "temas": [
+        "Reflexión de las ondas",
+        "Principio de superposición de las ondas",
+        "Interferencia de ondas",
+        "Ondas estacionarias",
+        "Refracción y difracción de ondas"
+      ],
+      "interactivo": {
+        "id_componente": "sim_ripple_tank",
+        "tipo": "Render_2D",
+        "descripcion": "Tanque de ondas (Ripple Tank) mostrando patrones de interferencia de dos fuentes."
+      }
+    },
+    {
+      "semana": 14,
+      "bloque": "Acústica",
+      "temas": [
+        "Rapidez de propagación del sonido",
+        "Fenómenos acústicos: reflexión, eco, resonancia y reverberación",
+        "Cualidades del sonido: intensidad, tono y timbre",
+        "Efecto Doppler",
+        "Ondas sísmicas y ultrasonido"
+      ],
+      "interactivo": {
+        "id_componente": "sim_acustica_doppler",
+        "tipo": "Web_Audio_API",
+        "descripcion": "Generador de tonos para demostrar frecuencias y simulador visual/auditivo del efecto Doppler."
+      }
+    },
+    {
+      "semana": 15,
+      "bloque": "Evaluación Global",
+      "temas": [
+        "Repaso general y evaluación final de Temas Selectos de Física II"
+      ],
+      "interactivo": {
+        "id_componente": "motor_evaluacion_final",
+        "tipo": "Logica_JSON",
+        "descripcion": "Motor de examen que extrae aleatoriamente preguntas del banco de datos general calculando la puntuación final."
+      }
+    }
+  ]
+}

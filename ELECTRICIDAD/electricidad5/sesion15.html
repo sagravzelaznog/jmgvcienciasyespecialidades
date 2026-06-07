@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 15: Almacenamiento de Energía y Sistemas Híbridos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .storage-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .safety-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .safety-box h4 {
+            color: #c62828;
+            margin-top: 0;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #2e7d32;
+        }
+        .practical-exercise h4 {
+            color: #1b5e20;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffa000;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .note-box {
+            background-color: #e3f2fd;
+            border-left: 3px solid #1976d2;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .battery-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .battery-type {
+            width: 48%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .pros-cons {
+            display: flex;
+            margin-top: 10px;
+        }
+        .pros, .cons {
+            width: 48%;
+            padding: 0 10px;
+        }
+        .pros {
+            color: #2e7d32;
+            border-right: 1px solid #ddd;
+        }
+        .cons {
+            color: #c62828;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .battery-type {
+                width: 100%;
+            }
+            .specs-table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 15: Almacenamiento de Energía y Sistemas Híbridos</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Explorar las tecnologías de almacenamiento de energía para sistemas fotovoltaicos, comprender los principios de los sistemas híbridos, analizar casos de uso prácticos y aprender a dimensionar sistemas de almacenamiento para diferentes aplicaciones.</p>
+        </div>
+
+        <h2>1. Fundamentos del almacenamiento de energía</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="storage-box">
+            <h4>1.1 Necesidad de almacenamiento en sistemas fotovoltaicos</h4>
+            
+            <ul>
+                <li><strong>Desfase temporal:</strong> La energía se produce de día pero a menudo se necesita de noche</li>
+                <li><strong>Estabilización de red:</strong> Compensación de fluctuaciones en la generación</li>
+                <li><strong>Backup energético:</strong> Suministro durante cortes de red</li>
+                <li><strong>Optimización del autoconsumo:</strong> Aumentar el porcentaje de energía solar autoconsumida</li>
+                <li><strong>Servicios auxiliares:</strong> Control de frecuencia, reserva rodante</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://www.pv-magazine-mexico.com/wp-content/uploads/sites/10/2019/03/Sistemas-de-Almacenamiento.png" alt="Conceptos básicos de almacenamiento de energía" class="img-small">
+                <p><em>Funciones clave del almacenamiento de energía en sistemas fotovoltaicos</em></p>
+            </div>
+            
+            <h4>1.2 Parámetros clave de los sistemas de almacenamiento</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Descripción</th>
+                    <th>Unidades típicas</th>
+                </tr>
+                <tr>
+                    <td>Capacidad</td>
+                    <td>Cantidad de energía que puede almacenar</td>
+                    <td>kWh</td>
+                </tr>
+                <tr>
+                    <td>Potencia</td>
+                    <td>Rapidez con la que puede cargar/descargar</td>
+                    <td>kW</td>
+                </tr>
+                <tr>
+                    <td>Profundidad de descarga (DoD)</td>
+                    <td>Porcentaje de la capacidad que puede usarse</td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Eficiencia ida/vuelta</td>
+                    <td>Energía que se puede recuperar respecto a la almacenada</td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Ciclos de vida</td>
+                    <td>Número de ciclos de carga/descarga antes de degradarse</td>
+                    <td>Cantidad</td>
+                </tr>
+                <tr>
+                    <td>Autodescarga</td>
+                    <td>Pérdida de energía cuando no se usa</td>
+                    <td>%/mes</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>2. Tecnologías de almacenamiento</h2>
+        <p><strong>Duración:</strong> 30 minutos</p>
+        
+        <div class="storage-box">
+            <h4>2.1 Baterías de iones de litio</h4>
+            
+            <div class="battery-comparison">
+                <div class="battery-type">
+                    <h5>Fosfato de Hierro y Litio (LiFePO4)</h5>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Alta seguridad y estabilidad térmica</li>
+                        <li>Larga vida útil (2000-7000 ciclos)</li>
+                        <li>Buena potencia tanto para carga como descarga</li>
+                        <li>Bajo mantenimiento</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul>
+                        <li>Mayor costo inicial</li>
+                        <li>Menor densidad energética que otras químicas de litio</li>
+                    </ul>
+                    <p><strong>Aplicaciones:</strong> Residencial, comercial, sistemas fuera de red</p>
+                </div>
+                
+                <div class="battery-type">
+                    <h5>Níquel Manganeso Cobalto (NMC)</h5>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Alta densidad energética</li>
+                        <li>Buen rendimiento en un amplio rango de temperaturas</li>
+                        <li>Alta eficiencia</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul>
+                        <li>Mayor riesgo térmico que LiFePO4</li>
+                        <li>Vida útil ligeramente menor</li>
+                        <li>Uso de cobalto (aspectos éticos y de suministro)</li>
+                    </ul>
+                    <p><strong>Aplicaciones:</strong> Vehículos eléctricos, almacenamiento a gran escala</p>
+                </div>
+            </div>
+            
+            <h4>2.2 Otras tecnologías de almacenamiento</h4>
+            
+            <div class="battery-comparison">
+                <div class="battery-type">
+                    <h5>Baterías de plomo-ácido</h5>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Costo inicial más bajo</li>
+                        <li>Tecnología madura y ampliamente disponible</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul>
+                        <li>Menor vida útil (300-1500 ciclos)</li>
+                        <li>Mayor mantenimiento</li>
+                        <li>Baja profundidad de descarga recomendada (50%)</li>
+                        <li>Contiene plomo y ácido (impacto ambiental)</li>
+                    </ul>
+                </div>
+                
+                <div class="battery-type">
+                    <h5>Almacenamiento térmico y otras tecnologías</h5>
+                    <ul>
+                        <li><strong>Bombeo hidroeléctrico:</strong> Gran escala, alta capacidad</li>
+                        <li>Almacenamiento por aire comprimido (CAES)</li>
+                        <li>Volantes de inercia: Alta potencia por corta duración</li>
+                        <li>Supercapacitores: Alta potencia, baja energía</li>
+                        <li>Hidrógeno verde: Almacenamiento estacional</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <p><strong>Consejo:</strong> Para aplicaciones residenciales, las baterías de litio (especialmente LiFePO4) ofrecen el mejor equilibrio entre costo, vida útil y rendimiento, a pesar de su mayor inversión inicial.</p>
+            </div>
+        </div>
+
+        <h2>3. Sistemas híbridos</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="storage-box">
+            <h4>3.1 Configuraciones de sistemas híbridos</h4>
+            
+            <p><strong>a) Solar + Almacenamiento + Red:</strong></p>
+            <ul>
+                <li>Permite autoconsumo, respaldo y servicios a la red</li>
+                <li>Puede participar en programas de medición neta o servicios auxiliares</li>
+                <li>Configuración más común en aplicaciones residenciales y comerciales</li>
+            </ul>
+            
+            <p><strong>b) Solar + Almacenamiento + Generador:</strong></p>
+            <ul>
+                <li>Común en zonas aisladas sin conexión a red</li>
+                <li>El generador funciona como respaldo cuando hay poca radiación solar</li>
+                <li>Puede reducir significativamente el consumo de combustible</li>
+            </ul>
+            
+            <p><strong>c) Solar + Eólica + Almacenamiento:</strong></p>
+            <ul>
+                <li>Complementariedad entre recursos solares y eólicos</li>
+                <li>Mayor factor de capacidad del sistema</li>
+                <li>Común en microrredes y sistemas aislados</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://i0.wp.com/solar.dragoncontractors.com/wp-content/uploads/2022/09/hibrido-03-3-scaled.jpg" alt="Diagrama de sistema híbrido" class="img-small">
+                <p><em>Ejemplo de configuración de un sistema híbrido con acoplamiento CA</em></p>
+            </div>
+            
+            <h4>3.2 Control y gestión de sistemas híbridos</h4>
+            
+            <p><strong>Estrategias de control:</strong></p>
+            <ul>
+                <li><strong>Control basado en reglas:</strong> Priorización de fuentes según condiciones predefinidas</li>
+                <li><strong>Control predictivo:</strong> Uso de pronósticos de generación y consumo</li>
+                <li><strong>Control óptimo:</strong> Minimización de costos o maximización de beneficios</li>
+            </ul>
+            
+            <p><strong>Software de gestión de energía (EMS):</strong></p>
+            <ul>
+                <li>Monitoreo en tiempo real de generación, consumo y almacenamiento</li>
+                <li>Optimización del flujo de energía entre fuentes</li>
+                <li>Participación en mercados de energía (en sistemas a gran escala)</li>
+                <li>Análisis de datos y generación de informes</li>
+            </ul>
+        </div>
+
+        <h2>4. Dimensionamiento de sistemas de almacenamiento</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>4.1 Metodología de dimensionamiento</h4>
+            
+            <p><strong>Paso 1: Análisis de carga</strong></p>
+            <ul>
+                <li>Identificar cargas críticas y su perfil de consumo</li>
+                <li>Estimar el consumo diario (kWh/día)</li>
+                <li>Determinar la potencia máxima simultánea (kW)</li>
+            </ul>
+            
+            <p><strong>Paso 2: Definir la autonomía requerida</strong></p>
+            <ul>
+                <li>Horas de respaldo deseadas (ej. 1 noche, 24 horas, varios días)</li>
+                <li>Considerar días de autonomía para sistemas aislados (3-5 días típicos)</li>
+            </ul>
+            
+            <p><strong>Paso 3: Calcular la capacidad de almacenamiento</strong></p>
+            <p>Capacidad (kWh) = Consumo diario (kWh/día) × Días de autonomía × Factor de seguridad (1.2-1.5) / Profundidad de descarga (DoD)</p>
+            
+            <p><strong>Paso 4: Determinar la potencia del inversor/cargador</strong></p>
+            <p>Potencia (kW) = Potencia máxima simultánea (kW) × Factor de simultaneidad (0.7-1.0) × Factor de seguridad (1.1-1.2)</p>
+            
+            <div class="example">
+                <h5>Ejemplo práctico:</h5>
+                <p><strong>Vivienda con:</strong></p>
+                <ul>
+                    <li>Consumo diario: 15 kWh</li>
+                    <li>Potencia máxima: 5 kW</li>
+                    <li>Autonomía deseada: 1 día (noche completa)</li>
+                    <li>Batería LiFePO4 con DoD del 90%</li>
+                </ul>
+                
+                <p><strong>Cálculo de capacidad:</strong></p>
+                <p>15 kWh × 1 día × 1.2 / 0.9 = 20 kWh</p>
+                
+                <p><strong>Cálculo de potencia:</strong></p>
+                <p>5 kW × 0.8 × 1.1 = 4.4 kW</p>
+                
+                <p><strong>Solución:</strong> Sistema de 20 kWh de capacidad y 4.4 kW de potencia continua</p>
+            </div>
+        </div>
+
+        <h2>5. Casos de estudio y aplicaciones prácticas</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="storage-box">
+            <h4>5.1 Aplicaciones residenciales</h4>
+            
+            <p><strong>Autoconsumo con respaldo:</strong></p>
+            <ul>
+                <li>Reducción de factura eléctrica mediante desplazamiento de carga</li>
+                <li>Suministro durante cortes de energía</li>
+                <li>Participación en programas de respuesta a la demanda</li>
+            </ul>
+            
+            <p><strong>Ejemplo real:</strong> Vivienda en California con 8 kWp solar + 13.5 kWh Powerwall</p>
+            <ul>
+                <li>Ahorro anual: $1,800</li>
+                <li>Autonomía: 24 horas para cargas esenciales</li>
+                <li>Retorno de inversión: 7-10 años</li>
+            </ul>
+            
+            <h4>5.2 Aplicaciones comerciales e industriales</h4>
+            
+            <p><strong>Recorte de demanda:</strong></p>
+            <ul>
+                <li>Reducción de cargos por demanda máxima</li>
+                <li>Almacenamiento de energía durante periodos de baja demanda</li>
+                <li>Descarga durante periodos pico para reducir costos</li>
+            </ul>
+            
+            <p><strong>Ejemplo real:</strong> Supermercado con 200 kWp solar + 500 kWh almacenamiento</p>
+            <ul>
+                <li>Reducción de factura eléctrica en 40%</li>
+                <li>Retorno de inversión: 5-7 años</li>
+                <li>Reducción de huella de carbono</li>
+            </ul>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en discusiones sobre casos de estudio.</p>
+            <p><strong>Ejercicio práctico:</strong> Dimensionamiento de un sistema de almacenamiento para un caso real.</p>
+            <p><strong>Cuestionario:</strong> Preguntas sobre tecnologías de almacenamiento y sistemas híbridos.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Preparar una presentación sobre un proyecto fotovoltaico completo que incluya análisis de viabilidad, diseño, instalación y mantenimiento, aplicando todos los conceptos aprendidos en el curso.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion14.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion16.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

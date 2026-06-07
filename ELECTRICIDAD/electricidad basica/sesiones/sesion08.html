@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Simbología Eléctrica - Curso de Electricidad Básica</title>
+    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">⚡ Electricidad Básica</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#sesiones">Sesiones</a></li>
+                <li><a href="../index.html#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido de la Sesión -->
+    <section class="sesion-header">
+        <div class="container">
+            <h1 class="sesion-title">Sesión 8: Simbología Eléctrica</h1>
+            <p class="sesion-subtitle">Símbolos estándar, planos eléctricos y diagramas de circuitos</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion07.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion09.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+
+        <!-- Información de la sesión -->
+        <div class="sesion-content-main">
+            <div class="section">
+                <h2>📋 Información de la Sesión</h2>
+                <div class="info-box">
+                    <strong>Duración:</strong> 2 horas | <strong>Tipo:</strong> Teoría + Práctica | <strong>Dificultad:</strong> Principiante
+                </div>
+                
+                <h3>🎯 Objetivos de Aprendizaje</h3>
+                <ul>
+                    <li>Identificar símbolos eléctricos estándar según normas internacionales</li>
+                    <li>Leer e interpretar planos y diagramas eléctricos básicos</li>
+                    <li>Crear diagramas de circuitos simples</li>
+                    <li>Entender la importancia de la estandarización en electricidad</li>
+                    <li>Aplicar simbología en proyectos prácticos</li>
+                </ul>
+            </div>
+
+            <!-- Teoría -->
+            <div class="teoria-section">
+                <h2>🔬 Teoría: Simbología Eléctrica</h2>
+                
+                <h3>Importancia de la Simbología Eléctrica</h3>
+                <p>Los símbolos eléctricos son representaciones gráficas estandarizadas que permiten comunicar información técnica de manera universal. Son fundamentales para:</p>
+
+                <div class="info-box">
+                    <strong>Beneficios de la simbología estandarizada:</strong>
+                    <ul>
+                        <li>Comunicación universal entre técnicos</li>
+                        <li>Interpretación rápida de circuitos</li>
+                        <li>Documentación técnica clara</li>
+                        <li>Facilitar el mantenimiento y reparación</li>
+                        <li>Cumplimiento de normativas internacionales</li>
+                    </ul>
+                </div>
+
+                <h3>Normas Internacionales</h3>
+                <p>Los símbolos eléctricos están estandarizados según diferentes normas:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Norma</th>
+                            <th>País/Región</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>IEC 60617</td>
+                            <td>Internacional</td>
+                            <td>Norma internacional más utilizada</td>
+                        </tr>
+                        <tr>
+                            <td>ANSI Y32.2</td>
+                            <td>Estados Unidos</td>
+                            <td>Estándar americano</td>
+                        </tr>
+                        <tr>
+                            <td>DIN 40700</td>
+                            <td>Alemania</td>
+                            <td>Estándar alemán/europeo</td>
+                        </tr>
+                        <tr>
+                            <td>JIS C 0617</td>
+                            <td>Japón</td>
+                            <td>Estándar japonés</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Símbolos Básicos -->
+            <div class="section">
+                <h2>⚡ Símbolos Eléctricos Básicos</h2>
+
+                <h3>Fuentes de Alimentación</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊞</td>
+                            <td>Batería</td>
+                            <td>Fuente de voltaje DC</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">○</td>
+                            <td>Generador AC</td>
+                            <td>Fuente de voltaje alterno</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊡</td>
+                            <td>Fuente DC</td>
+                            <td>Fuente de voltaje continuo</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">GND</td>
+                            <td>Tierra</td>
+                            <td>Referencia de potencial cero</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Componentes Pasivos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">〓</td>
+                            <td>Resistencia</td>
+                            <td>Oposición al flujo de corriente</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">||</td>
+                            <td>Capacitor</td>
+                            <td>Almacena energía eléctrica</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊏⊐</td>
+                            <td>Inductor</td>
+                            <td>Almacena energía magnética</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">〓</td>
+                            <td>Potenciómetro</td>
+                            <td>Resistencia variable</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Interruptores y Conectores</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⧄</td>
+                            <td>Interruptor simple</td>
+                            <td>Controla un circuito</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⧄⧄</td>
+                            <td>Interruptor doble</td>
+                            <td>Controla dos circuitos</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊞</td>
+                            <td>Conmutador</td>
+                            <td>Cambia entre circuitos</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">○</td>
+                            <td>Pulsador</td>
+                            <td>Actuación momentánea</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Símbolos de Iluminación -->
+            <div class="section">
+                <h2>💡 Símbolos de Iluminación</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">○</td>
+                            <td>Bombilla incandescente</td>
+                            <td>Lámpara tradicional</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⚡</td>
+                            <td>LED</td>
+                            <td>Diodo emisor de luz</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊞</td>
+                            <td>Lámpara fluorescente</td>
+                            <td>Tubo fluorescente</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⧈</td>
+                            <td>Lámpara de emergencia</td>
+                            <td>Iluminación de emergencia</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Símbolos de Tomas y Conectores</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊞</td>
+                            <td>Toma de corriente</td>
+                            <td>Conector para electrodomésticos</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊞+</td>
+                            <td>Toma con tierra</td>
+                            <td>Toma con conexión a tierra</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊞GFCI</td>
+                            <td>Toma GFCI</td>
+                            <td>Toma con protección diferencial</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">○</td>
+                            <td>Conector coaxial</td>
+                            <td>Conexión para TV/cable</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Protecciones Eléctricas -->
+            <div class="section">
+                <h2>🛡️ Símbolos de Protecciones Eléctricas</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊞</td>
+                            <td>Fusible</td>
+                            <td>Protección contra sobrecorriente</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⧄</td>
+                            <td>Disyuntor</td>
+                            <td>Interruptor automático</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⊞</td>
+                            <td>Diferencial</td>
+                            <td>Protección contra fallas a tierra</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 1.5rem;">⧈</td>
+                            <td>Varistor</td>
+                            <td>Protección contra sobretensiones</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Práctica -->
+            <div class="practica-section">
+                <h2>🛠️ Práctica: Creación de Diagramas</h2>
+
+                <h3>Ejercicio 1: Circuito Básico con Símbolos</h3>
+                <p><strong>Objetivo:</strong> Dibujar un circuito simple usando símbolos estándar</p>
+                
+                <p><strong>Especificaciones:</strong></p>
+                <ul>
+                    <li>Una batería de 9V</li>
+                    <li>Una resistencia de 1kΩ</li>
+                    <li>Un LED</li>
+                    <li>Un interruptor simple</li>
+                </ul>
+
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Dibuja los símbolos de cada componente</li>
+                    <li>Conecta los componentes en serie</li>
+                    <li>Etiqueta los valores de los componentes</li>
+                    <li>Indica la polaridad del LED</li>
+                    <li>Verifica que el diagrama sea claro y legible</li>
+                </ol>
+
+                <h3>Ejercicio 2: Diagrama de Instalación Residencial</h3>
+                <p><strong>Objetivo:</strong> Crear un diagrama de una habitación con iluminación básica</p>
+                
+                <p><strong>Especificaciones:</strong></p>
+                <ul>
+                    <li>Un interruptor simple</li>
+                    <li>Una lámpara en el techo</li>
+                    <li>Una toma de corriente con tierra</li>
+                    <li>Conexión a la red eléctrica</li>
+                </ul>
+
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Dibuja el plano de la habitación</li>
+                    <li>Ubica los símbolos de los componentes</li>
+                    <li>Dibuja las conexiones eléctricas</li>
+                    <li>Indica los calibres de cable</li>
+                    <li>Agrega información de voltaje</li>
+                </ol>
+
+                <h3>Ejercicio 3: Interpretación de Planos</h3>
+                <p><strong>Objetivo:</strong> Interpretar un plano eléctrico existente</p>
+                
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Identifica todos los símbolos en el plano</li>
+                    <li>Explica la función de cada componente</li>
+                    <li>Describe las conexiones entre elementos</li>
+                    <li>Identifica posibles problemas o mejoras</li>
+                    <li>Propone modificaciones al diseño</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>⚠️ Consejos para dibujar diagramas:</strong>
+                    <ul>
+                        <li>Usa regla y compás para símbolos precisos</li>
+                        <li>Mantén el diagrama limpio y ordenado</li>
+                        <li>Etiqueta claramente todos los componentes</li>
+                        <li>Sigue las convenciones de dibujo técnico</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Software de Dibujo -->
+            <div class="section">
+                <h2>💻 Software para Dibujo de Diagramas</h2>
+
+                <h3>Software Gratuito</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Software</th>
+                            <th>Plataforma</th>
+                            <th>Características</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fritzing</td>
+                            <td>Windows, Mac, Linux</td>
+                            <td>Específico para electrónica, símbolos predefinidos</td>
+                        </tr>
+                        <tr>
+                            <td>KiCad</td>
+                            <td>Windows, Mac, Linux</td>
+                            <td>Diseño de PCB, biblioteca extensa</td>
+                        </tr>
+                        <tr>
+                            <td>LibreCAD</td>
+                            <td>Windows, Mac, Linux</td>
+                            <td>CAD 2D general, símbolos personalizables</td>
+                        </tr>
+                        <tr>
+                            <td>Draw.io</td>
+                            <td>Web</td>
+                            <td>Online, colaborativo, símbolos eléctricos</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Software Profesional</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Software</th>
+                            <th>Empresa</th>
+                            <th>Características</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AutoCAD Electrical</td>
+                            <td>Autodesk</td>
+                            <td>Estándar industrial, automatización</td>
+                        </tr>
+                        <tr>
+                            <td>Eagle</td>
+                            <td>Autodesk</td>
+                            <td>Diseño de PCB profesional</td>
+                        </tr>
+                        <tr>
+                            <td>Altium Designer</td>
+                            <td>Altium</td>
+                            <td>Herramientas avanzadas de diseño</td>
+                        </tr>
+                        <tr>
+                            <td>SolidWorks Electrical</td>
+                            <td>Dassault</td>
+                            <td>Integración con CAD 3D</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Estándares de Dibujo -->
+            <div class="section">
+                <h2>📐 Estándares de Dibujo Técnico</h2>
+
+                <h3>Convenciones de Dibujo</h3>
+                <ul>
+                    <li><strong>Líneas:</strong> Usar diferentes grosores para diferentes tipos de conexión</li>
+                    <li><strong>Etiquetas:</strong> Identificar claramente todos los componentes</li>
+                    <li><strong>Valores:</strong> Incluir valores nominales y tolerancias</li>
+                    <li><strong>Referencias:</strong> Usar códigos de referencia consistentes</li>
+                    <li><strong>Escala:</strong> Mantener proporciones realistas</li>
+                </ul>
+
+                <h3>Información Requerida en Diagramas</h3>
+                <ul>
+                    <li><strong>Título:</strong> Nombre descriptivo del circuito</li>
+                    <li><strong>Fecha:</strong> Fecha de creación o modificación</li>
+                    <li><strong>Dibujante:</strong> Nombre de quien creó el diagrama</li>
+                    <li><strong>Escala:</strong> Relación de dibujo a realidad</li>
+                    <li><strong>Lista de materiales:</strong> Componentes utilizados</li>
+                    <li><strong>Notas:</strong> Información adicional importante</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>💡 Buenas prácticas:</strong>
+                    <ul>
+                        <li>Mantén los diagramas simples y claros</li>
+                        <li>Usa símbolos estándar reconocidos</li>
+                        <li>Organiza el flujo lógico de izquierda a derecha</li>
+                        <li>Agrupa componentes relacionados</li>
+                        <li>Incluye toda la información necesaria</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Actividades de Verificación -->
+            <div class="section">
+                <h2>✅ Actividades de Verificación</h2>
+
+                <h3>Preguntas de Repaso</h3>
+                <ol>
+                    <li>¿Por qué es importante usar símbolos estándar en electricidad?</li>
+                    <li>¿Cuál es la diferencia entre un interruptor simple y un conmutador?</li>
+                    <li>¿Qué información debe incluirse en un diagrama eléctrico?</li>
+                    <li>¿Cuándo usarías una toma GFCI en lugar de una toma normal?</li>
+                    <li>¿Qué norma internacional rige la simbología eléctrica?</li>
+                </ol>
+
+                <h3>Ejercicios de Identificación</h3>
+                <ol>
+                    <li>Identifica 20 símbolos eléctricos diferentes en planos reales</li>
+                    <li>Dibuja el símbolo correcto para cada componente dado</li>
+                    <li>Explica la función de cada símbolo identificado</li>
+                    <li>Crea tu propia biblioteca de símbolos más utilizados</li>
+                </ol>
+
+                <h3>Proyecto de Diseño</h3>
+                <p><strong>Objetivo:</strong> Diseñar el sistema eléctrico de una habitación</p>
+                
+                <p><strong>Especificaciones:</strong></p>
+                <ul>
+                    <li>Habitación de 4m x 3m</li>
+                    <li>2 lámparas en el techo</li>
+                    <li>3 tomas de corriente</li>
+                    <li>1 interruptor para cada lámpara</li>
+                    <li>1 conmutador para control desde dos puntos</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>📋 Criterios de evaluación:</strong>
+                    <ul>
+                        <li>Uso correcto de símbolos estándar</li>
+                        <li>Claridad y legibilidad del diagrama</li>
+                        <li>Completitud de la información</li>
+                        <li>Cumplimiento de normativas básicas</li>
+                        <li>Creatividad en la solución</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Recursos Adicionales -->
+            <div class="section">
+                <h2>📚 Recursos Adicionales</h2>
+                
+                <h3>Bibliotecas de Símbolos</h3>
+                <ul>
+                    <li><a href="#" target="_blank">IEC 60617 - Símbolos gráficos para diagramas</a></li>
+                    <li><a href="#" target="_blank">ANSI Y32.2 - Estándar americano</a></li>
+                    <li><a href="#" target="_blank">Biblioteca de símbolos eléctricos online</a></li>
+                </ul>
+
+                <h3>Software de Diseño</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Fritzing - Software gratuito</a></li>
+                    <li><a href="#" target="_blank">KiCad - Diseño profesional</a></li>
+                    <li><a href="#" target="_blank">Draw.io - Herramienta online</a></li>
+                </ul>
+
+                <h3>Plantillas y Ejemplos</h3>
+                <ul>
+                    <li>Plantillas de diagramas eléctricos</li>
+                    <li>Ejemplos de instalaciones residenciales</li>
+                    <li>Diagramas de circuitos industriales</li>
+                    <li>Esquemas de protecciones eléctricas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion07.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion09.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; JMGV-PTEL 2025. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de entrada para secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar secciones
+        document.querySelectorAll('.section, .teoria-section, .practica-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

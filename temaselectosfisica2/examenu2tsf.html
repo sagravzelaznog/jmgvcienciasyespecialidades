@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen: Temas Selectos de Física</title>
+    <style>
+        /* ================= ESTILOS DE PANTALLA (ESTILO KAHOOT) ================= */
+        :root {
+            --bg-color: #f2f2f2;
+            --kahoot-red: #E21B3C;
+            --kahoot-blue: #1368CE;
+            --kahoot-yellow: #D89E00;
+            --kahoot-green: #26890C;
+            --text-dark: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        .container { width: 100%; max-width: 800px; padding: 20px; text-align: center; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 10px; margin-top: 20px;}
+        
+        h1, h2 { color: var(--text-dark); margin-bottom: 20px; }
+        
+        input[type="text"] { width: 80%; padding: 15px; font-size: 1.2rem; margin-bottom: 20px; border: 2px solid #ccc; border-radius: 5px; text-align: center; font-weight: bold;}
+        
+        .btn-start { background-color: #333; color: white; padding: 15px 40px; font-size: 1.2rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-start:hover { background-color: #555; }
+        
+        /* Estilos del Quiz */
+        #question-container { font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; padding: 20px; background: #fff; border-radius: 10px;}
+        
+        .grid-answers { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; }
+        
+        .btn-answer { padding: 30px 20px; font-size: 1.2rem; font-weight: bold; color: white; border: none; border-radius: 5px; cursor: pointer; transition: transform 0.1s; box-shadow: 0 4px 0 rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; min-height: 100px;}
+        .btn-answer:active { transform: translateY(4px); box-shadow: none; }
+        .btn-answer:disabled { cursor: not-allowed; opacity: 0.9; transform: none; }
+        
+        .btn-answer:nth-child(1) { background-color: var(--kahoot-red); }
+        .btn-answer:nth-child(2) { background-color: var(--kahoot-blue); }
+        .btn-answer:nth-child(3) { background-color: var(--kahoot-yellow); color: #000; }
+        .btn-answer:nth-child(4) { background-color: var(--kahoot-green); }
+
+        .hidden { display: none !important; }
+        
+        /* Pantalla de bloqueo */
+        #cheat-screen { background-color: var(--kahoot-red); color: white; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; }
+        
+        .print-btn { background-color: var(--kahoot-blue); color: white; padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; cursor: pointer; margin: 10px 0; font-weight: bold; }
+
+        .summary-box { background: #f9f9f9; border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: left; }
+        .question-result { text-align: left; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .question-result.correct { border-left: 5px solid var(--kahoot-green); padding-left: 10px; }
+        .question-result.incorrect { border-left: 5px solid var(--kahoot-red); padding-left: 10px; }
+
+        #progress-bar { width: 100%; background-color: #ddd; height: 10px; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background-color: var(--kahoot-blue); width: 0%; transition: width 0.3s; }
+
+        /* ================= ESTILOS DE IMPRESIÓN (PDF) ================= */
+        @media print {
+            body { background: white; color: black; font-size: 12pt; display: block; }
+            .container { box-shadow: none; max-width: 100%; margin: 0; padding: 0; }
+            .print-btn, #progress-bar { display: none !important; }
+            
+            /* Optimización de espacio para caber en 1 hoja */
+            h1 { font-size: 16pt; margin-bottom: 10px; text-align: center; }
+            .summary-box { border: 2px solid black; padding: 10px; margin-bottom: 15px; font-size: 12pt; }
+            
+            #results-list { columns: 2; column-gap: 20px; } /* Divide las preguntas en 2 columnas */
+            .question-result { break-inside: avoid; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid #ccc; border-left: none !important; padding-left: 0 !important;}
+            .question-result h4 { font-size: 12pt; margin-bottom: 2px; }
+            .question-result p { font-size: 12pt; margin: 0; }
+            
+            @page { margin: 1cm; size: letter; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen" class="container">
+        <h1>Evaluación: Electromagnetismo</h1>
+        <p style="margin-bottom: 20px; color: #666;">Ingresa tu nombre completo para comenzar. El examen monitorea tu actividad; si sales de esta pantalla por más de 5 segundos, se bloqueará automáticamente.</p>
+        <input type="text" id="student-name" placeholder="Escribe tu Apellido y Nombre..." autocomplete="off">
+        <br>
+        <button class="btn-start" onclick="iniciarExamen()">Comenzar Examen</button>
+    </div>
+
+    <div id="exam-screen" class="container hidden">
+        <div id="progress-bar"><div id="progress-fill"></div></div>
+        <p id="question-counter" style="text-align: right; font-weight: bold; color: #666;">Pregunta 1 de 10</p>
+        <div id="question-container">¿Cargando pregunta...?</div>
+        <div class="grid-answers" id="answer-buttons">
+            </div>
+    </div>
+
+    <div id="results-screen" class="container hidden">
+        <button class="print-btn" onclick="window.print()">🖨️ Guardar PDF / Imprimir (INICIO)</button>
+        
+        <h1>Reporte de Evaluación - Física 2</h1>
+        <div class="summary-box">
+            <p><strong>Alumno:</strong> <span id="res-name"></span></p>
+            <p><strong>Aciertos:</strong> <span id="res-score"></span> / 10</p>
+            <p><strong>Calificación:</strong> <span id="res-grade"></span></p>
+            <p><strong>Inicio:</strong> <span id="res-start"></span></p>
+            <p><strong>Término:</strong> <span id="res-end"></span></p>
+        </div>
+
+        <div id="results-list">
+            </div>
+
+        <button class="print-btn" onclick="window.print()">🖨️ Guardar PDF / Imprimir (FINAL)</button>
+        <p style="margin-top: 15px; font-size: 10pt; color: #666;">Guarda este documento como PDF y envíalo por correo electrónico a tu profesor.</p>
+    </div>
+
+    <div id="cheat-screen" class="hidden">
+        <h1 style="font-size: 4rem;">🚫 EXAMEN BLOQUEADO 🚫</h1>
+        <h2 style="color: white; margin-top: 20px;">TRAMPA DETECTADA</h2>
+        <p style="font-size: 1.5rem; margin-top: 10px;">Saliste de la pantalla de evaluación por más de 5 segundos.</p>
+        <p style="font-size: 1.2rem; margin-top: 20px;">Tu intento ha sido anulado. Informa a tu profesor.</p>
+    </div>
+
+    <script>
+        // --- BASE DE DATOS DE PREGUNTAS ---
+        const questions = [
+            {
+                q: "¿Qué fenómeno se genera a partir de una carga eléctrica en movimiento (corriente)?",
+                options: ["Un campo gravitacional", "Un campo magnético", "Ondas sonoras", "Luz ultravioleta"],
+                answer: 1 // Índice de la respuesta correcta (0-3)
+            },
+            {
+                q: "Según la Regla de la Mano Derecha en un conductor recto, si el pulgar indica la corriente, ¿qué indican los dedos?",
+                options: ["Fuerza eléctrica", "Velocidad de la carga", "Dirección del campo magnético", "Resistencia del cable"],
+                answer: 2
+            },
+            {
+                q: "¿Qué sucede con la fuerza magnética sobre una carga si se mueve paralelamente al campo magnético (ángulo de 0°)?",
+                options: ["Es máxima", "Es cero", "Se duplica", "La carga se detiene"],
+                answer: 1
+            },
+            {
+                q: "¿Cómo interactúan físicamente dos cables paralelos que llevan corriente en la MISMA dirección?",
+                options: ["Se repelen fuertemente", "Se atraen mecánicamente", "No se afectan", "Generan chispas"],
+                answer: 1
+            },
+            {
+                q: "¿Qué nombre recibe un componente formado por un alambre enrollado en forma de hélice tubular?",
+                options: ["Espira", "Capacitor", "Diodo", "Solenoide (Bobina)"],
+                answer: 3
+            },
+            {
+                q: "En la fórmula de fuerza magnética F = qvB sen(θ), ¿con qué ángulo se obtiene la fuerza máxima?",
+                options: ["0 grados", "45 grados", "90 grados", "180 grados"],
+                answer: 2
+            },
+            {
+                q: "¿Qué científico descubrió accidentalmente en 1820 que la corriente eléctrica desvía una brújula?",
+                options: ["Isaac Newton", "Hans Christian Ørsted", "Albert Einstein", "Charles Coulomb"],
+                answer: 1
+            },
+            {
+                q: "¿Qué aparato tecnológico utiliza la fuerza magnética sobre una bobina móvil para crear vibraciones en el aire?",
+                options: ["Un altavoz (bocina)", "Una batería", "Un foco LED", "Una brújula"],
+                answer: 0
+            },
+            {
+                q: "¿Cómo se comporta el exterior de un solenoide ideal cuando le aplicas corriente eléctrica?",
+                options: ["Como un material aislante", "Como un imán de barra (Polos N y S)", "Como un agujero negro", "Pierde su gravedad"],
+                answer: 1
+            },
+            {
+                q: "¿Cuál de las siguientes partículas experimentará una fuerza magnética si entra a un campo magnético?",
+                options: ["Un neutrón en reposo", "Un electrón en reposo", "Un neutrón en movimiento", "Un electrón en movimiento"],
+                answer: 3
+            }
+        ];
+
+        // --- VARIABLES DE ESTADO ---
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let studentName = "";
+        let startTime, endTime;
+        let cheatTimer = null;
+        let isExamActive = false;
+        let userResponses = []; // Guarda las respuestas del usuario para imprimir
+
+        // --- LÓGICA PRINCIPAL ---
+
+        function formatDate(date) {
+            return date.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', second:'2-digit' }) + " hrs";
+        }
+
+        function iniciarExamen() {
+            const nameInput = document.getElementById("student-name").value.trim().toUpperCase();
+            
+            if(nameInput.length < 3) {
+                alert("Por favor, ingresa tu nombre completo para continuar.");
+                return;
+            }
+
+            // Validar repetición
+            if(localStorage.getItem("fisicaExamen_" + nameInput)) {
+                alert("El sistema detecta que este alumno ya realizó el examen. No está permitido repetir.");
+                return;
+            }
+
+            studentName = nameInput;
+            startTime = new Date();
+            
+            // Marcar en localStorage
+            localStorage.setItem("fisicaExamen_" + studentName, "completado");
+
+            document.getElementById("login-screen").classList.add("hidden");
+            document.getElementById("exam-screen").classList.remove("hidden");
+            isExamActive = true;
+            
+            mostrarPregunta();
+        }
+
+        function mostrarPregunta() {
+            const qData = questions[currentQuestionIndex];
+            document.getElementById("question-container").innerText = qData.q;
+            document.getElementById("question-counter").innerText = `Pregunta ${currentQuestionIndex + 1} de ${questions.length}`;
+            
+            // Actualizar barra de progreso
+            const progress = (currentQuestionIndex / questions.length) * 100;
+            document.getElementById("progress-fill").style.width = `${progress}%`;
+
+            const btnContainer = document.getElementById("answer-buttons");
+            btnContainer.innerHTML = ""; // Limpiar botones
+
+            qData.options.forEach((option, index) => {
+                const btn = document.createElement("button");
+                btn.className = "btn-answer";
+                btn.innerText = option;
+                btn.onclick = () => procesarRespuesta(index, btn);
+                btnContainer.appendChild(btn);
+            });
+        }
+
+        function procesarRespuesta(selectedIndex, buttonElement) {
+            // Bloquear botones al instante para evitar doble clic
+            const buttons = document.querySelectorAll(".btn-answer");
+            buttons.forEach(btn => btn.disabled = true);
+
+            const qData = questions[currentQuestionIndex];
+            const isCorrect = (selectedIndex === qData.answer);
+            
+            if(isCorrect) score++;
+
+            // Guardar datos para impresión
+            userResponses.push({
+                question: qData.q,
+                userAnswer: qData.options[selectedIndex],
+                correctAnswer: qData.options[qData.answer],
+                isCorrect: isCorrect
+            });
+
+            // Pasar a la siguiente pregunta después de 1 segundo (estilo Kahoot)
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if(currentQuestionIndex < questions.length) {
+                    mostrarPregunta();
+                } else {
+                    finalizarExamen();
+                }
+            }, 800);
+        }
+
+        function finalizarExamen() {
+            isExamActive = false; // Desactiva el anti-trampa
+            endTime = new Date();
+            
+            document.getElementById("exam-screen").classList.add("hidden");
+            document.getElementById("results-screen").classList.remove("hidden");
+
+            // Llenar resumen
+            document.getElementById("res-name").innerText = studentName;
+            document.getElementById("res-score").innerText = score;
+            document.getElementById("res-grade").innerText = (score * 10 / questions.length).toFixed(1);
+            document.getElementById("res-start").innerText = formatDate(startTime);
+            document.getElementById("res-end").innerText = formatDate(endTime);
+
+            // Generar lista para imprimir
+            const resultsList = document.getElementById("results-list");
+            userResponses.forEach((res, i) => {
+                const div = document.createElement("div");
+                div.className = `question-result ${res.isCorrect ? 'correct' : 'incorrect'}`;
+                
+                div.innerHTML = `
+                    <h4>${i+1}. ${res.question}</h4>
+                    <p><strong>Tu respuesta:</strong> ${res.userAnswer} ${res.isCorrect ? '✅' : '❌'}</p>
+                    ${!res.isCorrect ? `<p style="color:#555;"><em>Correcta: ${res.correctAnswer}</em></p>` : ''}
+                `;
+                resultsList.appendChild(div);
+            });
+        }
+
+        // --- SISTEMA ANTI-TRAMPA (VISIBILITY API) ---
+        document.addEventListener("visibilitychange", () => {
+            if (isExamActive) {
+                if (document.hidden) {
+                    // Si pierde el foco, inicia contador de 5 segundos
+                    cheatTimer = setTimeout(() => {
+                        bloquearPorTrampa();
+                    }, 5000);
+                } else {
+                    // Si regresa antes de los 5 segundos, se cancela el bloqueo
+                    clearTimeout(cheatTimer);
+                }
+            }
+        });
+
+        function bloquearPorTrampa() {
+            isExamActive = false;
+            document.getElementById("exam-screen").classList.add("hidden");
+            document.getElementById("cheat-screen").classList.remove("hidden");
+            
+            // Marcar trampa en localStorage para este alumno
+            localStorage.setItem("fisicaExamen_" + studentName, "TRAMPA DETECTADA");
+        }
+    </script>
+</body>
+</html>

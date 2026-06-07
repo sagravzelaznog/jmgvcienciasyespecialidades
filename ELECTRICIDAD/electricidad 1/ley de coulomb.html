@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ley de Coulomb - Electricidad 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .formula {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+        }
+        .example {
+            background-color: #e8f8f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #2ecc71;
+        }
+        .activity {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #f39c12;
+        }
+        .important {
+            font-weight: bold;
+            color: #c0392b;
+        }
+        .note {
+            background-color: #f5eef8;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #9b59b6;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ley de Coulomb</h1>
+        
+        <section id="introduccion">
+            <h2>Introducción</h2>
+            <p>La Ley de Coulomb, nombrada en honor al físico francés Charles-Augustin de Coulomb, describe la interacción electrostática entre cargas eléctricas. Es una de las leyes fundamentales de la electrostática y establece que:</p>
+            
+            <div class="formula">
+                F = k * |q₁ * q₂| / r²
+            </div>
+            
+            <p>Donde:</p>
+            <ul>
+                <li><strong>F</strong>: Fuerza entre las cargas (en Newtons, N)</li>
+                <li><strong>k</strong>: Constante de Coulomb (8.9875 × 10⁹ N·m²/C²)</li>
+                <li><strong>q₁, q₂</strong>: Magnitudes de las cargas (en Coulombs, C)</li>
+                <li><strong>r</strong>: Distancia entre las cargas (en metros, m)</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://www.fisicalab.com/sites/default/files/styles/medium/public/ley-coulomb.svg" alt="Representación gráfica de la Ley de Coulomb">
+                <p><em>Representación de la fuerza entre dos cargas puntuales</em></p>
+            </div>
+        </section>
+        
+        <section id="explicacion-detallada">
+            <h2>Explicación Detallada</h2>
+            
+            <h3>1. Naturaleza de la Fuerza</h3>
+            <p>La fuerza eléctrica entre dos cargas puede ser de dos tipos:</p>
+            <ul>
+                <li><strong>Atractiva</strong>: Cuando las cargas son de signos opuestos (+ y -)</li>
+                <li><strong>Repulsiva</strong>: Cuando las cargas son del mismo signo (++ o --)</li>
+            </ul>
+            
+            <h3>2. Principio de Superposición</h3>
+            <p>Cuando hay más de dos cargas, la fuerza resultante sobre una carga es la suma vectorial de las fuerzas ejercidas por cada una de las otras cargas.</p>
+            
+            <h3>3. Comparación con la Ley de Gravitación Universal</h3>
+            <p>La Ley de Coulomb tiene una forma matemática similar a la Ley de Gravitación Universal de Newton, pero existen diferencias clave:</p>
+            
+            <table>
+                <tr>
+                    <th>Característica</th>
+                    <th>Ley de Coulomb</th>
+                    <th>Ley de Gravitación Universal</th>
+                </tr>
+                <tr>
+                    <td>Tipo de fuerza</td>
+                    <td>Eléctrica</td>
+                    <td>Gravitacional</td>
+                </tr>
+                <tr>
+                    <td>Constante</td>
+                    <td>k = 8.9875 × 10⁹ N·m²/C²</td>
+                    <td>G = 6.674 × 10⁻¹¹ N·m²/kg²</td>
+                </tr>
+                <tr>
+                    <td>Naturaleza</td>
+                    <td>Puede ser atractiva o repulsiva</td>
+                    <td>Siempre atractiva</td>
+                </tr>
+                <tr>
+                    <td>Dependencia de la masa/carga</td>
+                    <td>Depende del producto de las cargas</td>
+                    <td>Depende del producto de las masas</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section id="ejemplos">
+            <h2>Ejemplos Prácticos</h2>
+            
+            <div class="example">
+                <h3>Ejemplo 1: Cálculo de fuerza entre dos cargas</h3>
+                <p><strong>Problema:</strong> Calcula la fuerza entre dos cargas de +3 μC y -5 μC separadas por una distancia de 2 cm.</p>
+                
+                <p><strong>Solución:</strong></p>
+                <p>1. Convertir las unidades al SI:</p>
+                <p>q₁ = +3 μC = +3 × 10⁻⁶ C</p>
+                <p>q₂ = -5 μC = -5 × 10⁻⁶ C</p>
+                <p>r = 2 cm = 0.02 m</p>
+                
+                <p>2. Aplicar la fórmula de Coulomb:</p>
+                <p>F = (8.9875 × 10⁹ N·m²/C²) * |(+3 × 10⁻⁶ C) * (-5 × 10⁻⁶ C)| / (0.02 m)²</p>
+                <p>F = (8.9875 × 10⁹) * (15 × 10⁻¹²) / (0.0004)</p>
+                <p>F = (134.8125 × 10⁻³) / (0.0004)</p>
+                <p>F = 337.03 N</p>
+                
+                <p>3. Interpretación:</p>
+                <p>La fuerza es de 337.03 N y es <strong>atractiva</strong> porque las cargas son de signos opuestos.</p>
+            </div>
+            
+            <div class="example">
+                <h3>Ejemplo 2: Tres cargas en línea</h3>
+                <p><strong>Problema:</strong> Tres cargas están alineadas: q₁ = +4 μC en x=0, q₂ = -3 μC en x=2 m, y q₃ = +5 μC en x=5 m. Calcula la fuerza neta sobre q₃.</p>
+                
+                <p><strong>Solución:</strong></p>
+                <p>1. Calcular distancia entre q₁ y q₃: r₁₃ = 5 m</p>
+                <p>2. Calcular distancia entre q₂ y q₃: r₂₃ = 3 m</p>
+                <p>3. Fuerza de q₁ sobre q₃ (repulsiva, hacia la derecha):</p>
+                <p>F₁₃ = (8.9875 × 10⁹) * |(4 × 10⁻⁶) * (5 × 10⁻⁶)| / (5)² = 7.19 × 10⁻³ N</p>
+                <p>4. Fuerza de q₂ sobre q₃ (atractiva, hacia la izquierda):</p>
+                <p>F₂₃ = (8.9875 × 10⁹) * |(-3 × 10⁻⁶) * (5 × 10⁻⁶)| / (3)² = 14.98 × 10⁻³ N</p>
+                <p>5. Fuerza neta sobre q₃:</p>
+                <p>F_net = F₂₃ - F₁₃ = (14.98 - 7.19) × 10⁻³ N = 7.79 × 10⁻³ N hacia la izquierda</p>
+            </div>
+        </section>
+        
+        <section id="actividades">
+            <h2>Actividades de Práctica</h2>
+            
+            <div class="activity">
+                <h3>Actividad 1: Cálculo de Fuerza Eléctrica</h3>
+                <p>Calcula la magnitud y dirección de la fuerza eléctrica entre las siguientes parejas de cargas:</p>
+                <ol>
+                    <li>q₁ = +2 μC, q₂ = +3 μC, separadas por 1 cm</li>
+                    <li>q₁ = -5 nC, q₂ = +8 nC, separadas por 5 mm</li>
+                    <li>q₁ = +10 μC, q₂ = -15 μC, separadas por 2 cm</li>
+                </ol>
+                <p>Para cada caso, indica si la fuerza es atractiva o repulsiva.</p>
+            </div>
+            
+            <div class="activity">
+                <h3>Actividad 2: Configuración de Cargas</h3>
+                <p>Dibuja un sistema con tres cargas puntuales: q₁ = +2 μC en (0,0), q₂ = -3 μC en (4,0) cm, y q₃ = +1 μC en (0,3) cm.</p>
+                <ol>
+                    <li>Calcula la fuerza neta sobre q₃ debido a q₁ y q₂.</li>
+                    <li>Determina la dirección de la fuerza resultante.</li>
+                    <li>¿Cómo cambiaría la fuerza si q₃ fuera negativa en lugar de positiva?</li>
+                </ol>
+            </div>
+            
+            <div class="activity">
+                <h3>Actividad 3: Análisis Crítico</h3>
+                <p>Responde las siguientes preguntas:</p>
+                <ol>
+                    <li>¿Por qué la constante k en la Ley de Coulomb es tan grande comparada con la constante gravitacional G?</li>
+                    <li>¿Cómo afecta la distancia a la fuerza entre dos cargas? Proporciona un ejemplo numérico.</li>
+                    <li>Explica por qué no sentimos fuerzas eléctricas en la vida cotidiana a pesar de que los átomos están formados por cargas eléctricas.</li>
+                </ol>
+            </div>
+        </section>
+        
+        <section id="conclusion">
+            <h2>Conclusión</h2>
+            <p>La Ley de Coulomb es fundamental para comprender las interacciones eléctricas a nivel macroscópico. Su comprensión es esencial para el estudio de campos eléctricos, potencial eléctrico y posteriormente, circuitos eléctricos. Las aplicaciones prácticas de esta ley son numerosas, desde el diseño de dispositivos electrónicos hasta el estudio de fenómenos atmosféricos.</p>
+            
+            <div class="note">
+                <p><strong>Nota importante:</strong> Recuerda que la Ley de Coulomb solo es estrictamente válida para cargas puntuales en reposo. Para cargas en movimiento o distribuciones de carga extensas, se requieren consideraciones adicionales.</p>
+            </div>
+        </section>
+        
+        <section id="recursos">
+            <h2>Recursos Adicionales</h2>
+            <ul>
+                <li><a href="https://es.khanacademy.org/science/physics/electric-charge-electric-force-and-voltage/charge-electric-force/v/coulombs-law" target="_blank" rel="noopener">Vídeo explicativo de Khan Academy</a></li>
+                <li><a href="https://www.fisicalab.com/apartado/ley-coulomb" target="_blank" rel="noopener">Ejercicios interactivos en FísicaLab</a></li>
+                <li><a href="https://phet.colorado.edu/sims/html/coulombs-law/latest/coulombs-law_es.html" target="_blank" rel="noopener">Simulación interactiva de la Ley de Coulomb</a></li>
+            </ul>
+        </section>
+        
+        <footer >
+            <p>© JMGV-PTEL 2025 Módulo de Electricidad 1 - Ley de Coulomb</p>
+        </footer>
+    </div>
+</body>
+</html>

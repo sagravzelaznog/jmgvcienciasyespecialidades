@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Ley de Ohm y Potencia - Curso de Electricidad Básica</title>
+    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">⚡ Electricidad Básica</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#sesiones">Sesiones</a></li>
+                <li><a href="../index.html#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido de la Sesión -->
+    <section class="sesion-header">
+        <div class="container">
+            <h1 class="sesion-title">Sesión 2: Ley de Ohm y Potencia</h1>
+            <p class="sesion-subtitle">Fundamentos matemáticos de los circuitos eléctricos</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion01.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion03.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+
+        <!-- Información de la sesión -->
+        <div class="sesion-content-main">
+            <div class="section">
+                <h2>📋 Información de la Sesión</h2>
+                <div class="info-box">
+                    <strong>Duración:</strong> 2 horas | <strong>Tipo:</strong> Teoría | <strong>Dificultad:</strong> Principiante
+                </div>
+                
+                <h3>🎯 Objetivos de Aprendizaje</h3>
+                <ul>
+                    <li>Comprender y aplicar la Ley de Ohm en circuitos básicos</li>
+                    <li>Calcular potencia eléctrica en diferentes dispositivos</li>
+                    <li>Resolver problemas prácticos usando fórmulas eléctricas</li>
+                    <li>Identificar las relaciones entre voltaje, corriente y resistencia</li>
+                    <li>Aplicar conceptos de eficiencia energética</li>
+                </ul>
+            </div>
+
+            <!-- Teoría -->
+            <div class="teoria-section">
+                <h2>🔬 Teoría: Ley de Ohm</h2>
+                
+                <h3>Introducción a la Ley de Ohm</h3>
+                <p>La Ley de Ohm es una de las leyes fundamentales de la electricidad, establecida por Georg Simon Ohm en 1827. Esta ley describe la relación entre voltaje, corriente y resistencia en un circuito eléctrico.</p>
+
+                <div class="info-box">
+                    <strong>Definición:</strong> La Ley de Ohm establece que la corriente que fluye a través de un conductor es directamente proporcional al voltaje aplicado e inversamente proporcional a la resistencia del conductor.
+                </div>
+
+                <h3>Fórmula de la Ley de Ohm</h3>
+                <div class="formula">
+                    V = I × R
+                </div>
+                <p><strong>Donde:</strong></p>
+                <ul>
+                    <li>V = Voltaje (Volts, V)</li>
+                    <li>I = Corriente (Amperes, A)</li>
+                    <li>R = Resistencia (Ohms, Ω)</li>
+                </ul>
+
+                <h3>Variaciones de la Fórmula</h3>
+                <p>La Ley de Ohm puede expresarse de tres formas diferentes:</p>
+                
+                <div class="formula">
+                    V = I × R (para calcular voltaje)
+                </div>
+                <div class="formula">
+                    I = V / R (para calcular corriente)
+                </div>
+                <div class="formula">
+                    R = V / I (para calcular resistencia)
+                </div>
+
+                <h3>El Triángulo de Ohm</h3>
+                <p>Una herramienta visual útil para recordar las fórmulas:</p>
+                
+                <div class="info-box">
+                    <strong>Método del triángulo:</strong> Cubre la variable que quieres calcular. Las dos restantes te muestran la operación a realizar.
+                    <br><br>
+                    <strong>Ejemplo:</strong> Para calcular I, cubre la I en el triángulo. Queda V sobre R, por lo tanto: I = V/R
+                </div>
+            </div>
+
+            <!-- Potencia Eléctrica -->
+            <div class="section">
+                <h2>⚡ Potencia Eléctrica</h2>
+
+                <h3>¿Qué es la Potencia?</h3>
+                <p>La potencia eléctrica es la velocidad a la que se consume o produce energía eléctrica. Se mide en vatios (W).</p>
+
+                <div class="info-box">
+                    <strong>Definición:</strong> La potencia es la cantidad de energía eléctrica consumida o producida por unidad de tiempo.
+                </div>
+
+                <h3>Fórmulas de Potencia</h3>
+                <p>Existen varias formas de calcular la potencia eléctrica:</p>
+
+                <div class="formula">
+                    P = V × I
+                </div>
+                <p><strong>Donde:</strong></p>
+                <ul>
+                    <li>P = Potencia (Watts, W)</li>
+                    <li>V = Voltaje (Volts, V)</li>
+                    <li>I = Corriente (Amperes, A)</li>
+                </ul>
+
+                <h3>Otras Fórmulas de Potencia</h3>
+                <p>Combinando la Ley de Ohm con la fórmula de potencia:</p>
+
+                <div class="formula">
+                    P = I² × R
+                </div>
+                <div class="formula">
+                    P = V² / R
+                </div>
+
+                <h3>Unidades de Potencia</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unidad</th>
+                            <th>Símbolo</th>
+                            <th>Equivalencia</th>
+                            <th>Aplicación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vatio</td>
+                            <td>W</td>
+                            <td>1 W</td>
+                            <td>Pequeños dispositivos</td>
+                        </tr>
+                        <tr>
+                            <td>Kilovatio</td>
+                            <td>kW</td>
+                            <td>1,000 W</td>
+                            <td>Electrodomésticos</td>
+                        </tr>
+                        <tr>
+                            <td>Megavatio</td>
+                            <td>MW</td>
+                            <td>1,000,000 W</td>
+                            <td>Plantas eléctricas</td>
+                        </tr>
+                        <tr>
+                            <td>Caballo de fuerza</td>
+                            <td>HP</td>
+                            <td>746 W</td>
+                            <td>Motores</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Energía Eléctrica -->
+            <div class="section">
+                <h2>🔋 Energía Eléctrica</h2>
+
+                <h3>Relación entre Potencia y Energía</h3>
+                <p>La energía eléctrica es el producto de la potencia por el tiempo durante el cual se consume.</p>
+
+                <div class="formula">
+                    E = P × t
+                </div>
+                <p><strong>Donde:</strong></p>
+                <ul>
+                    <li>E = Energía (Watt-hora, Wh)</li>
+                    <li>P = Potencia (Watts, W)</li>
+                    <li>t = Tiempo (horas, h)</li>
+                </ul>
+
+                <h3>Unidades de Energía</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unidad</th>
+                            <th>Símbolo</th>
+                            <th>Equivalencia</th>
+                            <th>Aplicación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Watt-hora</td>
+                            <td>Wh</td>
+                            <td>3,600 J</td>
+                            <td>Pequeños dispositivos</td>
+                        </tr>
+                        <tr>
+                            <td>Kilowatt-hora</td>
+                            <td>kWh</td>
+                            <td>3,600,000 J</td>
+                            <td>Facturación eléctrica</td>
+                        </tr>
+                        <tr>
+                            <td>Megawatt-hora</td>
+                            <td>MWh</td>
+                            <td>3,600,000,000 J</td>
+                            <td>Plantas eléctricas</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="warning-box">
+                    <strong>Importante:</strong> La factura de electricidad se basa en el consumo de energía (kWh), no en la potencia instantánea.
+                </div>
+            </div>
+
+            <!-- Ejemplos Prácticos -->
+            <div class="practica-section">
+                <h2>🛠️ Ejemplos Prácticos</h2>
+
+                <h3>Ejemplo 1: Cálculo Básico de la Ley de Ohm</h3>
+                <p><strong>Problema:</strong> Un circuito tiene una resistencia de 10 Ω y una corriente de 2 A. ¿Cuál es el voltaje?</p>
+                
+                <p><strong>Solución:</strong></p>
+                <div class="formula">
+                    V = I × R = 2 A × 10 Ω = 20 V
+                </div>
+
+                <h3>Ejemplo 2: Cálculo de Potencia</h3>
+                <p><strong>Problema:</strong> Una bombilla de 60 W funciona a 120 V. ¿Cuál es la corriente que consume?</p>
+                
+                <p><strong>Solución:</strong></p>
+                <div class="formula">
+                    I = P / V = 60 W / 120 V = 0.5 A
+                </div>
+
+                <h3>Ejemplo 3: Consumo de Energía</h3>
+                <p><strong>Problema:</strong> Un refrigerador de 150 W funciona 24 horas al día. ¿Cuánta energía consume en un mes (30 días)?</p>
+                
+                <p><strong>Solución:</strong></p>
+                <div class="formula">
+                    E = P × t = 150 W × (24 h × 30 días) = 150 W × 720 h = 108,000 Wh = 108 kWh
+                </div>
+
+                <h3>Ejemplo 4: Resistencia de un Filamento</h3>
+                <p><strong>Problema:</strong> Una bombilla de 100 W a 120 V. ¿Cuál es la resistencia del filamento?</p>
+                
+                <p><strong>Solución:</strong></p>
+                <div class="formula">
+                    R = V² / P = (120 V)² / 100 W = 14,400 / 100 = 144 Ω
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Consejo:</strong> Siempre verifica tus cálculos usando diferentes fórmulas. Si obtienes el mismo resultado, es probable que esté correcto.
+                </div>
+            </div>
+
+            <!-- Eficiencia Energética -->
+            <div class="section">
+                <h2>🌱 Eficiencia Energética</h2>
+
+                <h3>Concepto de Eficiencia</h3>
+                <p>La eficiencia energética es la relación entre la energía útil obtenida y la energía total consumida.</p>
+
+                <div class="formula">
+                    η = (Pútil / Ptotal) × 100%
+                </div>
+                <p><strong>Donde:</strong></p>
+                <ul>
+                    <li>η = Eficiencia (porcentaje)</li>
+                    <li>Pútil = Potencia útil</li>
+                    <li>Ptotal = Potencia total consumida</li>
+                </ul>
+
+                <h3>Ejemplos de Eficiencia</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dispositivo</th>
+                            <th>Eficiencia Típica</th>
+                            <th>Pérdidas Principales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bombilla incandescente</td>
+                            <td>5-10%</td>
+                            <td>Calor (90-95%)</td>
+                        </tr>
+                        <tr>
+                            <td>Bombilla LED</td>
+                            <td>80-90%</td>
+                            <td>Calor (10-20%)</td>
+                        </tr>
+                        <tr>
+                            <td>Motor eléctrico</td>
+                            <td>85-95%</td>
+                            <td>Fricción, calor</td>
+                        </tr>
+                        <tr>
+                            <td>Transformador</td>
+                            <td>95-99%</td>
+                            <td>Calor, magnetización</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="success-box">
+                    <strong>💡 Ahorro energético:</strong> Elegir dispositivos de alta eficiencia puede reducir significativamente el consumo de energía y los costos de electricidad.
+                </div>
+            </div>
+
+            <!-- Actividades de Verificación -->
+            <div class="section">
+                <h2>✅ Actividades de Verificación</h2>
+
+                <h3>Ejercicios de Práctica</h3>
+                <ol>
+                    <li>Calcula la corriente si V = 24 V y R = 8 Ω</li>
+                    <li>Encuentra la resistencia si V = 12 V e I = 3 A</li>
+                    <li>Determina el voltaje si I = 0.5 A y R = 50 Ω</li>
+                    <li>Calcula la potencia de un dispositivo que consume 2 A a 110 V</li>
+                    <li>¿Cuánta energía consume una plancha de 1,200 W si funciona 30 minutos?</li>
+                </ol>
+
+                <h3>Problemas Avanzados</h3>
+                <ol>
+                    <li>Un calentador eléctrico de 2,000 W funciona 3 horas diarias. ¿Cuánto cuesta mensualmente si el kWh cuesta $0.15?</li>
+                    <li>Compara el consumo mensual de una bombilla LED de 10 W vs una incandescente de 60 W, ambas funcionando 8 horas diarias.</li>
+                    <li>Un motor tiene una eficiencia del 85% y produce 5 HP de potencia útil. ¿Cuánta potencia consume de la red?</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>⚠️ Precisión:</strong> Siempre incluye las unidades en tus cálculos y verifica que las unidades del resultado sean correctas.
+                </div>
+            </div>
+
+            <!-- Aplicaciones en la Vida Real -->
+            <div class="section">
+                <h2>🏠 Aplicaciones en la Vida Real</h2>
+
+                <h3>Facturación Eléctrica</h3>
+                <p>Las compañías eléctricas facturan basándose en el consumo de energía (kWh). Comprender estos cálculos te ayuda a:</p>
+                <ul>
+                    <li>Estimar el costo de operar diferentes electrodomésticos</li>
+                    <li>Identificar los dispositivos que más energía consumen</li>
+                    <li>Planificar el presupuesto para servicios públicos</li>
+                    <li>Tomar decisiones informadas sobre eficiencia energética</li>
+                </ul>
+
+                <h3>Diseño de Circuitos</h3>
+                <p>Los cálculos de la Ley de Ohm son fundamentales para:</p>
+                <ul>
+                    <li>Seleccionar el calibre correcto de cable</li>
+                    <li>Dimensionar fusibles y disyuntores</li>
+                    <li>Calcular caídas de voltaje en instalaciones</li>
+                    <li>Diseñar sistemas de alimentación</li>
+                </ul>
+
+                <h3>Seguridad Eléctrica</h3>
+                <p>Entender las relaciones eléctricas es crucial para:</p>
+                <ul>
+                    <li>Prevenir sobrecargas en circuitos</li>
+                    <li>Calcular corrientes de cortocircuito</li>
+                    <li>Seleccionar protecciones adecuadas</li>
+                    <li>Evaluar riesgos eléctricos</li>
+                </ul>
+            </div>
+
+            <!-- Recursos Adicionales -->
+            <div class="section">
+                <h2>📚 Recursos Adicionales</h2>
+                
+                <h3>Calculadoras Online</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Calculadora de la Ley de Ohm</a></li>
+                    <li><a href="#" target="_blank">Calculadora de potencia eléctrica</a></li>
+                    <li><a href="#" target="_blank">Calculadora de consumo energético</a></li>
+                </ul>
+
+                <h3>Simulaciones Interactivas</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Simulador de circuitos básicos</a></li>
+                    <li><a href="#" target="_blank">Visualización de la Ley de Ohm</a></li>
+                    <li><a href="#" target="_blank">Comparador de eficiencia energética</a></li>
+                </ul>
+
+                <h3>Lecturas Recomendadas</h3>
+                <ul>
+                    <li>Biografía de Georg Simon Ohm</li>
+                    <li>Historia del desarrollo de la electricidad</li>
+                    <li>Guías de eficiencia energética para el hogar</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion01.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion03.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; JMGV-PTEL 2025. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de entrada para secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar secciones
+        document.querySelectorAll('.section, .teoria-section, .practica-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Calculadora interactiva de la Ley de Ohm
+        function calculateOhm() {
+            const voltage = parseFloat(document.getElementById('voltage').value);
+            const current = parseFloat(document.getElementById('current').value);
+            const resistance = parseFloat(document.getElementById('resistance').value);
+            
+            if (voltage && current && !resistance) {
+                document.getElementById('resistance').value = (voltage / current).toFixed(2);
+                document.getElementById('result').innerHTML = `Resistencia: ${(voltage / current).toFixed(2)} Ω`;
+            } else if (voltage && resistance && !current) {
+                document.getElementById('current').value = (voltage / resistance).toFixed(2);
+                document.getElementById('result').innerHTML = `Corriente: ${(voltage / resistance).toFixed(2)} A`;
+            } else if (current && resistance && !voltage) {
+                document.getElementById('voltage').value = (current * resistance).toFixed(2);
+                document.getElementById('result').innerHTML = `Voltaje: ${(current * resistance).toFixed(2)} V`;
+            }
+        }
+    </script>
+</body>
+</html>

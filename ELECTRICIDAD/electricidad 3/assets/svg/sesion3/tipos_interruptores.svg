@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <title>Tipos de Interruptores y sus Aplicaciones</title>
+    <style>
+        .title { font: bold 28px Arial; text-anchor: middle; fill: #2c3e50; }
+        .subtitle { font: bold 20px Arial; text-anchor: middle; fill: #34495e; }
+        .switch { stroke: #2c3e50; stroke-width: 2; fill: #ecf0f1; }
+        .lever { fill: #7f8c8d; }
+        .button { fill: #e74c3c; }
+        .base { fill: #bdc3c7; }
+        .contact { fill: #f1c40f; }
+        .label { font: 16px Arial; text-anchor: middle; }
+        .description { font: 14px Arial; text-anchor: middle; fill: #7f8c8d; }
+        .highlight { fill: #f1c40f; opacity: 0.3; }
+        .hidden { display: none; }
+    </style>
+
+    <!-- Fondo -->
+    <rect width="100%" height="100%" fill="#f9f9f9" />
+    
+    <!-- Título -->
+    <text x="400" y="40" class="title">Tipos de Interruptores</text>
+    <text x="400" y="70" class="subtitle">Conoce las características y usos de cada tipo</text>
+    
+    <!-- Línea divisoria -->
+    <line x1="50" y1="90" x2="750" y2="90" stroke="#3498db" stroke-width="2" />
+    
+    <!-- Interruptor de Palanca -->
+    <g id="lever-switch" transform="translate(150, 150)" style="cursor: pointer;">
+        <rect x="0" y="0" width="100" height="60" rx="5" class="switch" />
+        <rect x="10" y="10" width="80" height="40" rx="3" class="base" />
+        <rect x="45" y="15" width="10" height="30" rx="2" class="lever" id="lever" />
+        <circle cx="50" cy="30" r="8" class="contact" id="lever-contact" />
+        <text x="50" y="100" class="label">Interruptor de Palanca</text>
+        <text x="50" y="120" class="description">Encendido/Apagado</text>
+        
+        <!-- Estado oculto -->
+        <rect x="0" y="130" width="100" height="0" class="highlight" id="lever-highlight" />
+        <text x="50" y="160" class="description hidden" id="lever-desc">
+            Usado en lámparas y aparatos eléctricos.
+            Mantiene su estado hasta ser accionado.
+        </text>
+    </g>
+    
+    <!-- Pulsador NA -->
+    <g id="pushbutton-na" transform="translate(450, 150)" style="cursor: pointer;">
+        <rect x="0" y="0" width="100" height="60" rx="5" class="switch" />
+        <rect x="10" y="10" width="80" height="40" rx="20" class="base" />
+        <circle cx="50" cy="20" r="15" class="button" id="pushbutton" />
+        <circle cx="50" cy="50" r="8" class="contact" id="pushbutton-contact" />
+        <text x="50" y="100" class="label">Pulsador NA</text>
+        <text x="50" y="120" class="description">Normalmente Abierto</text>
+        
+        <!-- Estado oculto -->
+        <rect x="0" y="130" width="100" height="0" class="highlight" id="pushbutton-highlight" />
+        <text x="50" y="160" class="description hidden" id="pushbutton-desc">
+            Sólo activa el circuito mientras se mantiene presionado.
+            Usado en timbres y controles.
+        </text>
+    </g>
+    
+    <!-- Conmutador -->
+    <g id="toggle-switch" transform="translate(150, 330)" style="cursor: pointer;">
+        <rect x="0" y="0" width="100" height="80" rx="5" class="switch" />
+        <rect x="10" y="10" width="80" height="60" rx="3" class="base" />
+        <path d="M50,20 L80,50 L50,80 Z" class="lever" id="toggle" transform="rotate(0, 50, 50)" />
+        <circle cx="50" cy="50" r="8" class="contact" id="toggle-contact" />
+        <text x="50" y="130" class="label">Conmutador</text>
+        <text x="50" y="150" class="description">SPDT (Selección)</text>
+        
+        <!-- Estado oculto -->
+        <rect x="0" y="160" width="100" height="0" class="highlight" id="toggle-highlight" />
+        <text x="50" y="190" class="description hidden" id="toggle-desc">
+            Permite cambiar entre dos circuitos.
+            Usado en lámparas de tres vías.
+        </text>
+    </g>
+    
+    <!-- Interruptor de Mercurio -->
+    <g id="mercury-switch" transform="translate(450, 330)" style="cursor: pointer;">
+        <rect x="0" y="0" width="100" height="80" rx="5" class="switch" />
+        <rect x="10" y="10" width="80" height="60" rx="5" class="base" />
+        <rect x="30" y="20" width="40" height="40" rx="2" fill="#34495e" />
+        <circle cx="50" cy="40" r="15" fill="#bdc3c7" />
+        <circle cx="50" cy="30" r="5" fill="#e74c3c" id="mercury" />
+        <text x="50" y="130" class="label">Interruptor de Mercurio</text>
+        <text x="50" y="150" class="description">Activación por inclinación</text>
+        
+        <!-- Estado oculto -->
+        <rect x="0" y="160" width="100" height="0" class="highlight" id="mercury-highlight" />
+        <text x="50" y="190" class="description hidden" id="mercury-desc">
+            Se activa al inclinarse. Usado en alarmas
+y sistemas de seguridad.
+        </text>
+    </g>
+    
+    <!-- Leyenda -->
+    <rect x="100" y="480" width="600" height="80" rx="10" fill="#f8f9fa" stroke="#ddd" />
+    <text x="400" y="510" class="subtitle" font-size="16">¿Cómo funcionan?</text>
+    <text x="400" y="540" class="description" text-anchor="middle">Haz clic en cada interruptor para ver su descripción detallada</text>
+    
+    <!-- Interactividad con JavaScript -->
+    <script type="text/ecmascript">
+        // Función para manejar los clics en los interruptores
+								
+        function setupSwitch(switchId, leverId, contactId, highlightId, descId) {
+            const switchEl = document.getElementById(switchId);
+            const lever = document.getElementById(leverId);
+            const contact = document.getElementById(contactId);
+            const highlight = document.getElementById(highlightId);
+            const desc = document.getElementById(descId);
+            
+            let isActive = false;
+            
+            switchEl.addEventListener('click', function() {
+                // Ocultar todos los highlights y descripciones primero
+                document.querySelectorAll('.highlight, .hidden').forEach(el => {
+                    if (el.id !== highlightId && el.id !== descId) {
+                        el.setAttribute('height', '0');
+                        el.classList.add('hidden');
+                    }
+                });
+                
+                // Alternar estado
+                isActive = !isActive;
+                
+                if (isActive) {
+                    // Mostrar highlight y descripción
+                    highlight.setAttribute('height', '60');
+                    desc.classList.remove('hidden');
+                    
+                    // Resaltar el interruptor
+                    switchEl.style.filter = 'drop-shadow(0 0 5px rgba(241, 196, 15, 0.7))';
+                    
+                    // Animación específica para cada tipo
+                    if (leverId === 'lever') {
+                        // Animación de palanca
+                        lever.setAttribute('transform', 'rotate(30, 50, 30)');
+                        contact.setAttribute('fill', '#2ecc71');
+                    } else if (leverId === 'pushbutton') {
+                        // Animación de pulsador
+                        lever.setAttribute('cy', '40');
+                        contact.setAttribute('fill', '#2ecc71');
+                    } else if (leverId === 'toggle') {
+                        // Animación de conmutador
+                        lever.setAttribute('transform', 'rotate(45, 50, 50)');
+                        contact.setAttribute('fill', '#2ecc71');
+                    } else if (leverId === 'mercury') {
+                        // Animación de mercurio
+                        lever.setAttribute('cy', '50');
+                    }
+                } else {
+                    // Ocultar highlight y descripción
+                    highlight.setAttribute('height', '0');
+                    desc.classList.add('hidden');
+                    
+                    // Quitar resaltado
+                    switchEl.style.filter = 'none';
+                    
+                    // Restaurar estado inicial
+                    if (leverId === 'lever') {
+                        lever.setAttribute('transform', 'rotate(0, 50, 30)');
+                        contact.setAttribute('fill', '#f1c40f');
+                    } else if (leverId === 'pushbutton') {
+                        lever.setAttribute('cy', '20');
+                        contact.setAttribute('fill', '#f1c40f');
+                    } else if (leverId === 'toggle') {
+                        lever.setAttribute('transform', 'rotate(0, 50, 50)');
+                        contact.setAttribute('fill', '#f1c40f');
+                    } else if (leverId === 'mercury') {
+                        lever.setAttribute('cy', '30');
+                    }
+                }
+            });
+        }
+        
+        // Configurar cada interruptor
+        setupSwitch('lever-switch', 'lever', 'lever-contact', 'lever-highlight', 'lever-desc');
+        setupSwitch('pushbutton-na', 'pushbutton', 'pushbutton-contact', 'pushbutton-highlight', 'pushbutton-desc');
+        setupSwitch('toggle-switch', 'toggle', 'toggle-contact', 'toggle-highlight', 'toggle-desc');
+        setupSwitch('mercury-switch', 'mercury', '', 'mercury-highlight', 'mercury-desc');
+    </script>
+</svg>

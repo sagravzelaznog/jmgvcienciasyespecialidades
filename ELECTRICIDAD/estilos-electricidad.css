@@ -1,0 +1,33 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f7f7f7; }
+.nav-principal {
+    background: #234;
+    color: white;
+    padding: 1em 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-titulo {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.nav-link {
+    color: white;
+    margin-right: 1.5em;
+    text-decoration: none;
+}
+.nav-link:last-child {
+    margin-right: 0;
+}
+.main-principal {
+    max-width: 900px;
+    margin: 2em auto;
+    padding: 1em;
+}
+h1, h2, h3 { color: #14213d; }
+section { margin-bottom: 2.5em; }
+img { display: block; margin: 1em auto; }
+.info-box { background: #f8f9fa; border-left: 4px solid #4361ee; padding: 1em; margin: 1em 0; border-radius: 8px; }
+.actividad { background: #fff0c0; border-left: 4px solid #fca311; padding: 1em; margin: 1.5em 0; border-radius: 8px; }
+.paso { margin: 0.4em 0 0.4em 1em; }
+footer { margin-top: 3em; padding-top: 2em; border-top: 1px solid #eee; color: #666; font-size: 0.95em; }

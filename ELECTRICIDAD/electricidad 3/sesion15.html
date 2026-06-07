@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 15: Integración de Conceptos I | Aplicación Práctica</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .concept-map {
+            background-color: #f0f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #3498db;
+        }
+        
+        .integration-card {
+            border: 2px solid #2ecc71;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #f0fdf4;
+            transition: all 0.3s ease;
+        }
+        
+        .integration-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
+        }
+        
+        .practical-challenge {
+            background-color: #fef9e7;
+            border-left: 4px solid #f1c40f;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .concept-connections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .connection {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .connection:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .connection h4 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .interactive-diagram {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px dashed #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sesión 15: Integración de Conceptos I</h1>
+            <p>Conexión de principios eléctricos fundamentales</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-btn">← Volver al índice</a>
+        
+        <section class="session-content">
+            <div class="learning-objective">
+                <h2>Objetivo específico</h2>
+                <p>Integrar y aplicar los conceptos fundamentales de electricidad vistos en sesiones anteriores para resolver problemas complejos y comprender sistemas eléctricos completos.</p>
+            </div>
+
+            <div class="theory">
+                <h2>Mapa conceptual integrador</h2>
+                
+                <div class="concept-map">
+                    <h3>Conexión entre conceptos clave</h3>
+                    <div class="concept-connections">
+                        <div class="connection">
+                            <h4>Ley de Ohm y Potencia</h4>
+                            <p>V = I×R</p>
+                            <p>P = V×I</p>
+                            <p>→ Base para todos los cálculos</p>
+                        </div>
+                        <div class="connection">
+                            <h4>Circuitos en Serie/Paralelo</h4>
+                            <p>Resistencia equivalente</p>
+                            <p>División de corriente y voltaje</p>
+                            <p>→ Aplicación de leyes de Kirchhoff</p>
+                        </div>
+                        <div class="connection">
+                            <h4>Magnetismo</h4>
+                            <p>Campos magnéticos</p>
+                            <p>Inducción electromagnética</p>
+                            <p>→ Fundamentos de motores y generadores</p>
+                        </div>
+                        <div class="connection">
+                            <h4>Transformadores</h4>
+                            <p>Relación de vueltas</p>
+                            <p>Pérdidas y eficiencia</p>
+                            <p>→ Distribución de energía</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="integration-card">
+                    <h3>¿Cómo se relacionan estos conceptos en la vida real?</h3>
+                    <p>Imagina un sistema de suministro eléctrico completo:</p>
+                    <ol>
+                        <li>La energía se genera en una planta (inducción electromagnética)</li>
+                        <li>Se eleva el voltaje para transmisión (transformadores)</li>
+                        <li>Se distribuye a través de la red (circuitos en paralelo)</li>
+                        <li>Se reduce el voltaje para uso doméstico (más transformadores)</li>
+                        <li>Finalmente alimenta dispositivos que convierten la energía (ley de Ohm y potencia)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="visual-example">
+                <h2>Analogía: El sistema circulatorio eléctrico</h2>
+                <div class="analogy">
+                    <p>Compara el sistema eléctrico con el sistema circulatorio humano:</p>
+                    <div class="interactive-diagram">
+                        <p>[Diagrama interactivo: Comparación entre sistema circulatorio y circuito eléctrico]</p>
+                        <div class="comparison-container">
+                            <div class="comparison-item">
+                                <h4>Sistema Circulatorio</h4>
+                                <p>Corazón → Fuente de voltaje</p>
+                                <p>Vasos sanguíneos → Cables</p>
+                                <p>Sangre → Electrones</p>
+                                <p>Válvulas → Interruptores</p>
+                                <p>Órganos → Dispositivos eléctricos</p>
+                            </div>
+                            <div class="comparison-item">
+                                <h4>Sistema Eléctrico</h4>
+                                <p>Fuente de poder → Corazón</p>
+                                <p>Cables → Vasos sanguíneos</p>
+                                <p>Electrones → Glóbulos rojos</p>
+                                <p>Interruptores → Válvulas</p>
+                                <p>Dispositivos → Órganos</p>
+                            </div>
+                        </>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practical-activity">
+                <h2>Desafío práctico integrador</h2>
+                
+                <div class="practical-challenge">
+                    <h3>Diseño de un sistema de energía residencial</h3>
+                    <p><strong>Objetivo:</strong> Diseñar el sistema eléctrico básico para una casa pequeña, integrando todos los conceptos vistos.</p>
+                    
+                    <h4>Requisitos:</h4>
+                    <ul>
+                        <li>4 habitaciones con 2 tomas de corriente cada una</li>
+                        <li>Sala/comedor con 6 tomas</li>
+                        <li>Cocina con 8 tomas (incluyendo tomas de 220V)</li>
+                        <li>2 baños con 1 toma cada uno</li>
+                        <li>Área de lavado con 2 tomas</li>
+                        <li>Iluminación: 12 focos LED de 9W</li>
+                        <li>Electrodomésticos principales: Refrigerador, microondas, TV, computadora</li>
+                    </ul>
+                    
+                    <h4>Actividades:</h4>
+                    <ol>
+                        <li><strong>Diagrama unifilar:</strong> Crear el diagrama del sistema eléctrico</li>
+                        <li><strong>Cálculo de cargas:</strong> Determinar la corriente total y por circuito</li>
+                        <li><strong>Selección de conductores:</strong> Basado en la corriente y caída de tensión</li>
+                        <li><strong>Protecciones:</strong> Especificar interruptores termomagnéticos</li>
+                        <li><strong>Tablero principal:</strong> Diseñar la distribución del tablero</li>
+                    </ol>
+                    
+                    <div class="interactive-diagram">
+                        <h4>Herramienta de diseño interactivo</h4>
+                        <p>[Espacio para herramienta de diseño de circuitos residenciales]</p>
+                        <p><em>Nota: Esta herramienta permitiría arrastrar y conectar componentes para crear el diagrama.</em></p>
+                    </div>
+                </div>
+                
+                <h3>Guía paso a paso:</h3>
+                <div class="measurement-steps">
+                    <h4>1. Cálculo de cargas</h4>
+                    <table class="measurement-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Circuito</th>
+                                <th scope="col">Potencia (W)</th>
+                                <th scope="col">Voltaje (V)</th>
+                                <th scope="col">Corriente (A)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <label for="potencia-iluminacion">Iluminación</label>
+                                </th>
+                                <td>
+                                    <input type="number" 
+                                           id="potencia-iluminacion" 
+                                           value="108" 
+                                           onchange="calcularCorriente('iluminacion')"
+                                           aria-label="Potencia de iluminación en vatios"
+                                           title="Ingrese la potencia de iluminación en vatios">
+                                </td>
+                                <td>120</td>
+                                <td id="corriente-iluminacion">0.9</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <label for="potencia-contactos">Contactos habitaciones</label>
+                                </th>
+                                <td>
+                                    <input type="number" 
+                                           id="potencia-contactos" 
+                                           value="1500" 
+                                           onchange="calcularCorriente('contactos')"
+                                           aria-label="Potencia de contactos en vatios"
+                                           title="Ingrese la potencia de los contactos en vatios">
+                                </td>
+                                <td>120</td>
+                                <td id="corriente-contactos">12.5</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <label for="potencia-cocina">Cocina</label>
+                                </th>
+                                <td>
+                                    <input type="number" 
+                                           id="potencia-cocina" 
+                                           value="5000" 
+                                           onchange="calcularCorriente('cocina')"
+                                           aria-label="Potencia de cocina en vatios"
+                                           title="Ingrese la potencia de la cocina en vatios">
+                                </td>
+                                <td>220</td>
+                                <td id="corriente-cocina">22.7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn" onclick="calcularTotal()">Calcular corriente total</button>
+                    <p id="resultado-total"></p>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h2>Estudio de caso: Análisis de falla</h2>
+                <div class="case-content">
+                    <p><strong>Escenario:</strong> Una casa experimenta constantes apagones en el circuito de iluminación. Algunas luces parpadean y los focos se queman con frecuencia.</p>
+                    
+                    <div class="case-tasks">
+                        <p><strong>Datos:</strong></p>
+                        <ul>
+                            <li>El circuito tiene 10 focos LED de 9W</li>
+                            <li>La instalación tiene aproximadamente 15 años</li>
+                            <li>Recientemente se agregaron 4 luces adicionales</li>
+                            <li>El interruptor automático es de 10A</li>
+                            <li>Se midió 105V en las tomas (cuando deberían ser 120V)</li>
+                        </ul>
+                        
+                        <p><strong>Tareas:</strong></p>
+                        <ol>
+                            <li>Identificar posibles causas del problema</li>
+                            <li>Proponer un plan de diagnóstico</li>
+                            <li>Sugerir soluciones</li>
+                            <li>Calcular la corriente real del circuito</li>
+                        </ol>
+                    </div>
+
+                    <div class="solucion">
+                        <button class="btn" onclick="toggleSolucion()">Mostrar solución</button>
+                        <div id="solucion" class="hidden-solution">
+                            <h4>Análisis y solución:</h4>
+                            <ol>
+                                <li><strong>Causas probables:</strong>
+                                    <ul>
+                                        <li>Sobrecarga del circuito</li>
+                                        <li>Conexión floja en algún punto</li>
+                                        <li>Corrosión en los contactos</li>
+                                        <li>Caída de tensión excesiva</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Plan de diagnóstico:</strong>
+                                    <ol>
+                                        <li>Medir corriente en diferentes puntos</li>
+                                        <li>Verificar conexiones en cajas de paso</li>
+                                        <li>Inspeccionar estado de los empalmes</li>
+                                        <li>Medir resistencia de los conductores</li>
+                                    </ol>
+                                </li>
+                                <li><strong>Soluciones recomendadas:</strong>
+                                    <ul>
+                                        <li>Dividir el circuito en dos</li>
+                                        <li>Revisar y apretar todas las conexiones</li>
+                                        <li>Considerar actualizar el cableado si es necesario</li>
+                                        <li>Verificar la calidad de la tierra física</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Cálculos:</strong>
+                                    <p>Corriente total = (10 focos × 9W) / 105V = 0.86A</p>
+                                    <p>La corriente está muy por debajo del límite del interruptor (10A), lo que sugiere que el problema no es sobrecarga sino pérdidas en las conexiones.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reflection">
+                <h2>Pregunta de reflexión</h2>
+                <p>Considerando el rápido avance de la tecnología y la creciente demanda de energía, ¿cómo podrías rediseñar el sistema eléctrico de una vivienda para que sea más eficiente, sostenible y preparado para las necesidades futuras? Considera aspectos como energías renovables, domótica y vehículos eléctricos.</p>
+                <textarea placeholder="Escribe tus reflexiones aquí..."></textarea>
+            </div>
+
+            <div class="resources">
+                <h2>Recursos visuales sugeridos</h2>
+                <div class="resource-list">
+                    <div class="resource">
+                        <h3>Simulador de instalaciones eléctricas</h3>
+                        <p>Herramienta interactiva para diseñar y probar instalaciones eléctricas residenciales.</p>
+                        <p><strong>Formatos:</strong> Web, compatible con móviles</p>
+                    </div>
+                    <div class="resource">
+                        <h3>Guía de códigos eléctricos</h3>
+                        <p>Manual interactivo con los estándares de instalación eléctrica.</p>
+                        <p><strong>Formatos:</strong> PDF con enlaces interactivos</p>
+                    </div>
+                    <div class="resource">
+                        <h3>Modelos 3D de instalaciones</h3>
+                        <p>Vista en 3D de diferentes tipos de instalaciones eléctricas.</p>
+                        <p><strong>Formatos:</strong> STL, compatible con realidad aumentada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="session-navigation">
+            <a href="sesion14.html" class="btn">← Sesión anterior</a>
+            <a href="index.html" class="btn">Volver al índice</a>
+            <a href="sesion16.html" class="btn">Próxima sesión →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+
+    <script>
+        function toggleSolucion() {
+            var solucion = document.getElementById('solucion');
+            solucion.classList.toggle('hidden-solution');
+            event.target.textContent = solucion.classList.contains('hidden-solution') ? 
+                'Mostrar solución' : 'Ocultar solución';
+        }
+
+        function calcularCorriente(circuito) {
+            const potencia = parseFloat(document.getElementById(`potencia-${circuito}`).value);
+            const voltaje = (circuito === 'cocina') ? 220 : 120;
+            const corriente = (potencia / voltaje).toFixed(2);
+            document.getElementById(`corriente-${circuito}`).textContent = corriente;
+        }
+
+        function calcularTotal() {
+            const corrientes = ['iluminacion', 'contactos', 'cocina'];
+            let total = 0;
+            
+            corrientes.forEach(circuito => {
+                const corriente = parseFloat(document.getElementById(`corriente-${circuito}`).textContent);
+                total += corriente;
+            });
+            
+            document.getElementById('resultado-total').innerHTML = 
+                `<strong>Corriente total calculada:</strong> ${total.toFixed(2)}A<br>
+                 <strong>Factor de demanda (80%):</strong> ${(total * 0.8).toFixed(2)}A`;
+        }
+        
+        // Calcular corrientes iniciales
+        window.onload = function() {
+            ['iluminacion', 'contactos', 'cocina'].forEach(calcularCorriente);
+        };
+    </script>
+</body>
+</html>

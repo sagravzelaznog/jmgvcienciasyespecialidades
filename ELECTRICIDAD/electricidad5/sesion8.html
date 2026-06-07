@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Diseño de Sistemas Fotovoltaicos I - Cálculo de Cargas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .calculation-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #fff8e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffa000;
+        }
+        .practical-exercise h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .formula-box {
+            background-color: #f0f7ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .formula {
+            font-weight: bold;
+            color: #0066cc;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        .variable {
+            font-style: italic;
+            color: #e74c3c;
+        }
+        .note-box {
+            background-color: #fffde7;
+            border-left: 3px solid #ffd600;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .tip-box {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4caf50;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .specs-table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 8: Diseño de Sistemas Fotovoltaicos I - Cálculo de Cargas</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Aprender a realizar un inventario detallado de cargas eléctricas, calcular el consumo energético diario, determinar la potencia total requerida y aplicar factores de simultaneidad y uso para dimensionar correctamente un sistema fotovoltaico aislado.</p>
+        </div>
+
+        <h2>1. Inventario de cargas eléctricas</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="calculation-box">
+            <h3>1.1 Identificación de cargas</h3>
+            
+            <p>Para realizar un inventario completo de cargas, se deben considerar los siguientes aspectos de cada equipo:</p>
+            
+            <ul>
+                <li><strong>Potencia nominal (W):</strong> Indicada en la placa del equipo</li>
+                <li><strong>Horas de uso diario:</strong> Tiempo promedio de funcionamiento</li>
+                <li><strong>Factor de uso:</strong> Porcentaje de tiempo que el equipo está realmente consumiendo energía</li>
+                <li><strong>Factor de potencia:</strong> Relación entre potencia activa y aparente (generalmente 0.8 para cargas inductivas)</li>
+                <li><strong>Factor de simultaneidad:</strong> Probabilidad de que varios equipos funcionen al mismo tiempo</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.KI_-r6HO8STMPFnktypZhQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Etiqueta energética de electrodomésticos" class="img-small">
+                <p><em>Ejemplo de etiqueta con información de consumo</em></p>
+            </div>
+            
+            <h3>1.2 Hoja de cálculo de cargas</h3>
+            
+            <p>Utilizar la siguiente tabla para registrar todas las cargas del sistema:</p>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Equipo</th>
+                    <th>Cantidad</th>
+                    <th>Potencia (W)</th>
+                    <th>Horas/día</th>
+                    <th>Días/semana</th>
+                    <th>Consumo diario (Wh)</th>
+                    <th>Factor de uso</th>
+                    <th>Consumo ajustado (Wh)</th>
+                </tr>
+                <tr>
+                    <td>Foco LED 10W</td>
+                    <td>5</td>
+                    <td>10</td>
+                    <td>5</td>
+                    <td>7</td>
+                    <td>250</td>
+                    <td>0.8</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>Refrigerador A++</td>
+                    <td>1</td>
+                    <td>150</td>
+                    <td>8</td>
+                    <td>7</td>
+                    <td>1200</td>
+                    <td>0.7</td>
+                    <td>840</td>
+                </tr>
+                <tr>
+                    <td>TV LED 32"</td>
+                    <td>1</td>
+                    <td>50</td>
+                    <td>4</td>
+                    <td>7</td>
+                    <td>200</td>
+                    <td>1.0</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>Laptop</td>
+                    <td>1</td>
+                    <td>60</td>
+                    <td>6</td>
+                    <td>5</td>
+                    <td>360</td>
+                    <td>0.9</td>
+                    <td>324</td>
+                </tr>
+                <tr>
+                    <td>Ventilador</td>
+                    <td>2</td>
+                    <td>60</td>
+                    <td>8</td>
+                    <td>7</td>
+                    <td>960</td>
+                    <td>0.8</td>
+                    <td>768</td>
+                </tr>
+                <tr>
+                    <td colspan="7" class="text-right"><strong>Total diario:</strong></td>
+                    <td><strong>2,332 Wh/día</strong></td>
+                </tr>
+            </table>
+            
+            <div class="note-box">
+                <p><strong>Nota:</strong> El factor de uso se aplica para considerar que los equipos no siempre están consumiendo su potencia nominal. Por ejemplo, un refrigerador enfría y luego se apaga periódicamente.</p>
+            </div>
+        </div>
+
+        <h2>2. Cálculo del consumo energético diario</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="calculation-box">
+            <h3>2.1 Fórmula básica</h3>
+            
+            <p>El consumo energético diario se calcula con la siguiente fórmula:</p>
+            
+            <div class="formula-box">
+                <p class="formula">Consumo diario (Wh) = Potencia (W) × Horas de uso × Factor de uso × Factor de simultaneidad</p>
+            </div>
+            
+            <h3>2.2 Factores de corrección</h3>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Factor</th>
+                    <th>Descripción</th>
+                    <th>Valor típico</th>
+                </tr>
+                <tr>
+                    <td>Factor de uso</td>
+                    <td>Porcentaje de tiempo que el equipo está realmente consumiendo energía</td>
+                    <td>0.3 - 1.0</td>
+                </tr>
+                <tr>
+                    <td>Factor de simultaneidad</td>
+                    <td>Probabilidad de que varios equipos funcionen al mismo tiempo</td>
+                    <td>0.6 - 0.9</td>
+                </tr>
+                <tr>
+                    <td>Factor de seguridad</td>
+                    <td>Margen para futuras expansiones o cálculos imprevistos</td>
+                    <td>1.1 - 1.3</td>
+                </tr>
+                <tr>
+                    <td>Pérdidas del sistema</td>
+                    <td>Pérdidas en cables, inversor, regulador, etc.</td>
+                    <td>0.8 - 0.9</td>
+                </tr>
+            </table>
+            
+            <h3>2.3 Ejemplo práctico</h3>
+            
+            <p>Para una vivienda con los siguientes equipos:</p>
+            
+            <ul>
+                <li>5 focos LED de 10W, 5 horas/día, factor de uso 0.8</li>
+                <li>1 refrigerador de 150W, 24h/día, factor de uso 0.3</li>
+                <li>1 TV LED 32" de 50W, 4 horas/día, factor de uso 1.0</li>
+                <li>1 laptop de 60W, 6 horas/día, factor de uso 0.9</li>
+                <li>2 ventiladores de 60W, 8 horas/día, factor de uso 0.8</li>
+            </ul>
+            
+            <p><strong>Cálculo detallado:</strong></p>
+            
+            <ol>
+                <li><strong>Focos LED:</strong> 5 × 10W × 5h × 0.8 = 200 Wh/día</li>
+                <li><strong>Refrigerador:</strong> 1 × 150W × 24h × 0.3 = 1,080 Wh/día</li>
+                <li><strong>TV LED:</strong> 1 × 50W × 4h × 1.0 = 200 Wh/día</li>
+                <li><strong>Laptop:</strong> 1 × 60W × 6h × 0.9 = 324 Wh/día</li>
+                <li><strong>Ventiladores:</strong> 2 × 60W × 8h × 0.8 = 768 Wh/día</li>
+            </ol>
+            
+            <p><strong>Total sin factores:</strong> 2,572 Wh/día</p>
+            
+            <p><strong>Aplicando factores de corrección:</strong></p>
+            <ul>
+                <li>Factor de simultaneidad (0.8): 2,572 × 0.8 = 2,058 Wh/día</li>
+                <li>Factor de seguridad (1.2): 2,058 × 1.2 = 2,469 Wh/día</li>
+                <li>Pérdidas del sistema (0.85): 2,469 / 0.85 = 2,905 Wh/día</li>
+            </ul>
+            
+            <p><strong>Consumo diario ajustado:</strong> 2,905 Wh/día ≈ 2.9 kWh/día</p>
+            
+            <div class="tip-box">
+                <p><strong>Consejo:</strong> Es recomendable redondear siempre hacia arriba para tener un margen de seguridad. En este caso, podríamos trabajar con 3.0 kWh/día.</p>
+            </div>
+        </div>
+
+        <h2>3. Determinación de la potencia total requerida</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="calculation-box">
+            <h3>3.1 Potencia pico y potencia media</h3>
+            
+            <p>Es importante diferenciar entre:</p>
+            
+            <ul>
+                <li><strong>Potencia pico:</strong> Suma de las potencias de todos los equipos que podrían funcionar simultáneamente</li>
+                <li><strong>Potencia media:</strong> Potencia promedio consumida a lo largo del día</li>
+            </ul>
+            
+            <p><strong>Ejemplo de cálculo de potencia pico:</strong></p>
+            
+            <p>Suponiendo que todos los equipos podrían funcionar al mismo tiempo (escenario poco probable pero posible):</p>
+            
+            <ul>
+                <li>5 focos LED: 5 × 10W = 50W</li>
+                <li>1 refrigerador: 150W</li>
+                <li>1 TV: 50W</li>
+                <li>1 laptop: 60W</li>
+                <li>2 ventiladores: 2 × 60W = 120W</li>
+            </ul>
+            
+            <p><strong>Potencia pico total:</strong> 50 + 150 + 50 + 60 + 120 = 430W</p>
+            
+            <p><strong>Potencia media:</strong> Consumo diario / 24h = 2,905 Wh / 24h ≈ 121W</p>
+            
+            <div class="warning-box">
+                <p><strong>Importante:</strong> La potencia del inversor debe ser al menos igual a la potencia pico, más un margen de seguridad del 20-30% para picos de arranque de motores.</p>
+                <p>En este caso: 430W × 1.3 = 559W → Se recomendaría un inversor de al menos 600W.</p>
+            </div>
+            
+            <h3>3.2 Hoja de cálculo resumen</h3>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Concepto</th>
+                    <th>Valor</th>
+                    <th>Unidad</th>
+                </tr>
+                <tr>
+                    <td>Consumo diario sin correcciones</td>
+                    <td>2,572</td>
+                    <td>Wh/día</td>
+                </tr>
+                <tr>
+                    <td>Consumo diario con factores</td>
+                    <td>2,905</td>
+                    <td>Wh/día</td>
+                </tr>
+                <tr>
+                    <td>Potencia pico</td>
+                    <td>430</td>
+                    <td>W</td>
+                </tr>
+                <tr>
+                    <td>Potencia media</td>
+                    <td>121</td>
+                    <td>W</td>
+                </tr>
+                <tr>
+                    <td>Potencia inversor recomendada</td>
+                    <td>600</td>
+                    <td>W</td>
+                </tr>
+                <tr>
+                    <td>Días de autonomía deseados</td>
+                    <td>3</td>
+                    <td>días</td>
+                </tr>
+                <tr>
+                    <td>Energía necesaria (sin sol)</td>
+                    <td>8,715</td>
+                    <td>Wh</td>
+                </tr>
+                <tr>
+                    <td>Profundidad de descarga máxima</td>
+                    <td>50%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Capacidad de batería necesaria</td>
+                    <td>17,430</td>
+                    <td>Wh</td>
+                </tr>
+                <tr>
+                    <td>Voltaje del sistema</td>
+                    <td>24</td>
+                    <td>V</td>
+                </tr>
+                <tr>
+                    <td>Capacidad de batería en Ah</td>
+                    <td>726</td>
+                    <td>Ah @24V</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>4. Ejercicio práctico: Cálculo para un caso real</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>Ejercicio: Diseño de un sistema para una cabaña rural</h4>
+            
+            <p><strong>Enunciado:</strong> Se desea diseñar un sistema fotovoltaico aislado para una cabaña rural con los siguientes consumos:</p>
+            
+            <ul>
+                <li>6 focos LED de 12W, 4 horas/día</li>
+                <li>1 refrigerador clase A++ de 120W, 24h/día</li>
+                <li>1 televisor LED 24" de 30W, 3 horas/día</li>
+                <li>1 ventilador de techo de 70W, 6 horas/día</li>
+                <li>1 bomba de agua de 200W, 1 hora/día</li>
+            </ul>
+            
+            <p><strong>Parámetros adicionales:</strong></p>
+            <ul>
+                <li>Ubicación: Zona con 4.5 horas pico de sol al día (HSP)</li>
+                <li>Días de autonomía deseados: 2 días</li>
+                <li>Profundidad de descarga máxima: 50%</li>
+                <li>Pérdidas del sistema: 15%</li>
+                <li>Factor de seguridad: 20%</li>
+            </ul>
+            
+            <p><strong>Se pide:</strong></p>
+            <ol>
+                <li>Calcular el consumo energético diario</li>
+                <li>Determinar la potencia pico y media</li>
+                <li>Calcular la capacidad necesaria de baterías</li>
+                <li>Dimensionar el campo fotovoltaico necesario</li>
+            </ol>
+            
+            <div class="note-box">
+                <p><strong>Nota:</strong> Los estudiantes trabajarán en grupos para resolver el ejercicio, aplicando los conceptos aprendidos en la sesión.</p>
+            </div>
+            
+            <p><strong>Solución guiada:</strong></p>
+            
+            <p><strong>1. Cálculo del consumo diario:</strong></p>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Equipo</th>
+                    <th>Cantidad</th>
+                    <th>Potencia (W)</th>
+                    <th>Horas/día</th>
+                    <th>Consumo (Wh/día)</th>
+                    <th>Factor de uso</th>
+                    <th>Consumo ajustado (Wh/día)</th>
+                </tr>
+                <tr>
+                    <td>Foco LED</td>
+                    <td>6</td>
+                    <td>12</td>
+                    <td>4</td>
+                    <td>288</td>
+                    <td>1.0</td>
+                    <td>288</td>
+                </tr>
+                <tr>
+                    <td>Refrigerador</td>
+                    <td>1</td>
+                    <td>120</td>
+                    <td>24</td>
+                    <td>2,880</td>
+                    <td>0.3</td>
+                    <td>864</td>
+                </tr>
+                <tr>
+                    <td>Televisor</td>
+                    <td>1</td>
+                    <td>30</td>
+                    <td>3</td>
+                    <td>90</td>
+                    <td>1.0</td>
+                    <td>90</td>
+                </tr>
+                <tr>
+                    <td>Ventilador</td>
+                    <td>1</td>
+                    <td>70</td>
+                    <td>6</td>
+                    <td>420</td>
+                    <td>0.8</td>
+                    <td>336</td>
+                </tr>
+                <tr>
+                    <td>Bomba de agua</td>
+                    <td>1</td>
+                    <td>200</td>
+                    <td>1</td>
+                    <td>200</td>
+                    <td>1.0</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-right"><strong>Subtotal:</strong></td>
+                    <td><strong>1,778</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-right">Factor de simultaneidad (0.8):</td>
+                    <td>1,422</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-right">Factor de seguridad (1.2):</td>
+                    <td>1,707</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-right">Pérdidas del sistema (0.85):</td>
+                    <td>2,008</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-right"><strong>Consumo diario ajustado:</strong></td>
+                    <td><strong>2,000 Wh/día</strong></td>
+                </tr>
+            </table>
+            
+            <p><strong>2. Potencia pico y media:</strong></p>
+            <ul>
+                <li>Potencia pico: (6×12) + 120 + 30 + 70 + 200 = 492W</li>
+                <li>Potencia media: 2,000 Wh / 24h ≈ 83W</li>
+            </ul>
+            
+            <p><strong>3. Capacidad de baterías:</strong></p>
+            <ul>
+                <li>Energía necesaria: 2,000 Wh/día × 2 días = 4,000 Wh</li>
+                <li>Considerando 50% de descarga: 4,000 Wh / 0.5 = 8,000 Wh</li>
+                <li>Para un sistema de 24V: 8,000 Wh / 24V = 333 Ah @24V</li>
+            </ul>
+            
+            <p><strong>4. Campo fotovoltaico:</strong></p>
+            <ul>
+                <li>HSP = 4.5 horas</li>
+                <li>Pérdidas del sistema: 15% (factor 0.85)</li>
+                <li>Potencia pico necesaria: 2,000 Wh / (4.5 h × 0.85) ≈ 523 Wp</li>
+                <li>Podrían ser 2 paneles de 270W cada uno (540Wp total)</li>
+            </ul>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos y discusiones.</p>
+            <p><strong>Ejercicio de aplicación:</strong> Resolución correcta del ejercicio de cálculo de cargas.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Realizar un inventario de cargas de su propia vivienda y calcular el consumo energético diario, siguiendo la metodología aprendida.</p>
+            <p><strong>Material de apoyo:</strong> Se proporcionará una hoja de cálculo para facilitar los cálculos de diseño de sistemas fotovoltaicos.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion7.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion9.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

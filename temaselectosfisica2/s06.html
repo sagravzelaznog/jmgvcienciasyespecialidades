@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6: Ley de Ohm - Teoría y Gráficos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="page-container">
+        <header>
+            <div>
+                <h1>Sesión 6: Ley de Ohm</h1>
+                <h2>Teoría, Fórmulas y Gráficos</h2>
+            </div>
+            <div style="text-align: right;">
+                <strong>Bloque:</strong> I<br>
+                <strong>Competencia:</strong> Representación gráfica y analítica
+            </div>
+        </header>
+
+        <p>Para entender la electricidad, debemos conocer a los tres actores principales. Imagina esto como una tubería de agua:</p>
+
+        <div class="actors-container">
+            <div class="actor-card actor-v">
+                <span class="symbol">V</span>
+                <strong>Voltaje</strong>
+                <div class="unit">(Volts)</div>
+                <p style="font-size:0.9em; margin-top:5px;">Es la <strong>PRESIÓN</strong> que empuja el agua.</p>
+            </div>
+            <div class="actor-card actor-i">
+                <span class="symbol">I</span>
+                <strong>Corriente</strong>
+                <div class="unit">(Amperes)</div>
+                <p style="font-size:0.9em; margin-top:5px;">Es la <strong>CANTIDAD</strong> de agua que fluye.</p>
+            </div>
+            <div class="actor-card actor-r">
+                <span class="symbol">R</span>
+                <strong>Resistencia</strong>
+                <div class="unit">(Ohms &Omega;)</div>
+                <p style="font-size:0.9em; margin-top:5px;">Es el <strong>OBSTÁCULO</strong> o estrechamiento del tubo.</p>
+            </div>
+        </div>
+
+        <h3>1. La Ley Fundamental</h3>
+        <div class="triangle-section">
+            <div class="triangle-visual">
+                <div class="tri-top">V</div>
+                <div class="tri-bottom-left">I</div>
+                <div class="tri-bottom-right">R</div>
+            </div>
+            <div>
+                <strong>Estrategia Mnemotécnica: "El Triángulo Mágico"</strong>
+                <p>Para encontrar una variable, simplemente "tapa" con tu dedo la letra que buscas:</p>
+                <ul>
+                    <li>¿Buscas Voltaje? Tapa la V ➔ Queda <strong>I × R</strong></li>
+                    <li>¿Buscas Corriente? Tapa la I ➔ Queda <strong>V / R</strong></li>
+                    <li>¿Buscas Resistencia? Tapa la R ➔ Queda <strong>V / I</strong></li>
+                </ul>
+                <p><em>"La corriente (I) es directamente proporcional al voltaje (V) e inversamente proporcional a la resistencia (R)."</em></p>
+            </div>
+        </div>
+
+        <h3>2. Representación Gráfica (V vs I)</h3>
+        <div class="graph-explanation">
+            <p>Si graficamos cómo cambia la corriente al aumentar el voltaje en una resistencia fija, obtenemos una línea recta.</p>
+            
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <div style="flex: 1;">
+                    <svg width="200" height="150" style="border-left: 2px solid black; border-bottom: 2px solid black;">
+                        <text x="5" y="20" font-family="Arial" font-size="12">V (Voltaje)</text>
+                        <text x="120" y="140" font-family="Arial" font-size="12">I (Corriente)</text>
+                        <line x1="0" y1="150" x2="180" y2="20" style="stroke:var(--ohm-red);stroke-width:3" />
+                        <text x="80" y="70" font-family="Arial" font-size="12" fill="var(--dark)">Pendiente = R</text>
+                    </svg>
+                </div>
+                <div style="flex: 2;">
+                    <strong>Interpretación para el Alumno:</strong>
+                    <ul>
+                        <li><strong>Eje Vertical (Y):</strong> Voltaje (La fuerza).</li>
+                        <li><strong>Eje Horizontal (X):</strong> Corriente (El flujo).</li>
+                        <li><strong>La Línea Roja:</strong> Representa la Resistencia.</li>
+                    </ul>
+                    <p><em>Si la línea es muy inclinada (empinada), significa que hay MUCHA resistencia (se necesita mucho voltaje para mover poca corriente).</em></p>
+                </div>
+            </div>
+        </div>
+
+        <h3>3. Aplicación en el Entorno: ¿Cómo funciona una plancha?</h3>
+        <div class="real-world-box">
+            <p><strong>Pregunta detonadora:</strong> ¿Por qué un cable de celular no se calienta, pero una plancha sí, si ambos usan electricidad?</p>
+            <p><strong>Respuesta Física (Efecto Joule + Ley de Ohm):</strong></p>
+            <ul>
+                <li>La plancha tiene adentro una <strong>Resistencia muy especial</strong> (Nicromo).</li>
+                <li>Esta resistencia "pelea" contra el paso de los electrones.</li>
+                <li>Esa fricción o "pelea" transforma la energía eléctrica en <strong>CALOR</strong>.</li>
+                <li><strong>Cálculo Rápido:</strong> Si tu casa tiene 120V y la plancha pide 10 Amperes.
+                    <br>R = 120V / 10A = <strong>12 Ohms de pura resistencia calórica.</strong></li>
+            </ul>
+        </div>  
+    </div>
+    <div class="text-center mt-20 mb-20"><a href="index.html" class="btn">
+            ← Volver al índice
+        </a>
+    </div>
+
+    <footer class="fixed-footer">
+        &copy; JMGV-PTEL-2025. todos los derechos reservados
+    </footer>
+
+
+</body>
+</html>

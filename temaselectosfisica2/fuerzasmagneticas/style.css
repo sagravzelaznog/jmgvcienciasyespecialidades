@@ -1,0 +1,256 @@
+/* PALETA DE COLORES PROFESIONAL: Electromagnetic Vector */
+:root {
+	--bg-page: #0B132B;       /* Azul Noche Profundo */
+	--bg-card: #1C2541;       /* Azul Pizarra */
+	--text-main: #EAEAEA;     /* Blanco suave */
+	--accent-cyan: #6FFFE9;   /* Cian Magnético */
+	--accent-teal: #5BC0BE;   /* Verde-Azulado Corriente */
+	--accent-magenta: #F72585;/* Magenta Fuerza Lorentz */
+	--teacher-bg: #3A0CA3;    /* Fondo Modo Maestro */
+	--teacher-border: #FCA311;/* Borde Dorado Maestro */
+	
+	/* Kahoot Colors */
+	--k-red: #E21B3C;
+	--k-blue: #1368CE;
+	--k-yellow: #D89E00;
+	--k-green: #26890C;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+	background-color: var(--bg-page);
+	color: var(--text-main);
+	line-height: 1.6;
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+/* HEADER */
+header {
+	background: linear-gradient(135deg, #060913 0%, var(--bg-card) 100%);
+	padding: 40px 0;
+	border-bottom: 3px solid var(--accent-cyan);
+	margin-bottom: 40px;
+	box-shadow: 0 4px 15px rgba(111, 255, 233, 0.1);
+}
+
+.header-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header h1 {
+	color: var(--text-main);
+	font-size: 2.2rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.subtitle {
+	color: var(--accent-teal);
+	font-size: 1.1rem;
+	margin-top: 5px;
+}
+
+#btn-maestro {
+	background: transparent;
+	color: var(--teacher-border);
+	border: 1px solid var(--teacher-border);
+	padding: 8px 15px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: all 0.3s ease;
+}
+
+#btn-maestro:hover {
+	background: var(--teacher-border);
+	color: #000;
+}
+
+/* SECTIONS / CARDS */
+.card {
+	background-color: var(--bg-card);
+	border-radius: 10px;
+	padding: 30px;
+	margin-bottom: 40px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+	border-left: 6px solid var(--accent-cyan);
+}
+
+.tema-title {
+	color: var(--accent-cyan);
+	font-size: 1.8rem;
+	margin-bottom: 15px;
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+	padding-bottom: 10px;
+}
+
+.content h3 {
+	color: var(--accent-teal);
+	margin: 20px 0 10px 0;
+}
+
+.content p, .content li {
+	font-size: 1.05rem;
+	margin-bottom: 10px;
+}
+
+ol {
+	margin-left: 20px;
+}
+
+/* EJERCICIOS PRACTICOS */
+.exercise-box {
+	background-color: rgba(0,0,0,0.2);
+	border: 1px dashed var(--accent-magenta);
+	padding: 20px;
+	border-radius: 8px;
+	margin-top: 25px;
+}
+
+.exercise-box h3 {
+	color: var(--accent-magenta);
+	margin-top: 0;
+}
+
+.ejercicio {
+	background-color: rgba(247, 37, 133, 0.05);
+	padding: 15px;
+	margin-bottom: 10px;
+	border-left: 3px solid var(--accent-magenta);
+	border-radius: 4px;
+}
+
+.ejercicio p {
+	margin: 0;
+}
+
+/* NOTAS MAESTRO */
+.teacher-note {
+	background-color: var(--teacher-bg);
+	color: #FFF;
+	padding: 15px;
+	border-left: 5px solid var(--teacher-border);
+	border-radius: 5px;
+	margin-bottom: 20px;
+	font-size: 0.95rem;
+	box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+
+.hide {
+	display: none !important;
+}
+
+/* QUIZ KAHOOT */
+.quiz-card {
+	border-left: 6px solid var(--k-yellow);
+	text-align: center;
+}
+
+#pregunta-texto {
+	font-size: 1.5rem;
+	color: #FFF;
+	margin-bottom: 25px;
+}
+
+.grid-respuestas {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 15px;
+	margin-bottom: 20px;
+}
+
+.btn-respuesta {
+	padding: 20px;
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: transform 0.1s;
+	box-shadow: 0 4px 0 rgba(0,0,0,0.3);
+}
+
+.btn-respuesta:active {
+	transform: translateY(4px);
+	box-shadow: none;
+}
+
+/* Kahoot Colors mapping */
+.btn-respuesta:nth-child(1) { background-color: var(--k-red); }
+.btn-respuesta:nth-child(2) { background-color: var(--k-blue); }
+.btn-respuesta:nth-child(3) { background-color: var(--k-yellow); color: #000; }
+.btn-respuesta:nth-child(4) { background-color: var(--k-green); }
+
+.btn-respuesta:disabled {
+	cursor: not-allowed;
+	opacity: 0.8;
+}
+
+.btn-respuesta.correct {
+	box-shadow: 0 0 20px var(--k-green), inset 0 0 10px rgba(0,0,0,0.5);
+	border: 3px solid white;
+}
+
+.btn-respuesta.wrong {
+	opacity: 0.3;
+}
+
+.btn-action {
+	background-color: var(--accent-cyan);
+	color: var(--bg-page);
+	border: none;
+	padding: 12px 30px;
+	font-size: 1.2rem;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.btn-action:hover {
+	background-color: var(--accent-teal);
+}
+
+.quiz-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+	color: var(--accent-teal);
+	font-weight: bold;
+}
+
+.score-text {
+	font-size: 1.5rem;
+	margin: 20px 0;
+	color: var(--accent-cyan);
+}
+
+/* FOOTER */
+footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 40px;
+	background-color: #060913;
+	color: #555;
+	font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+	.grid-respuestas { grid-template-columns: 1fr; }
+	.header-flex { flex-direction: column; gap: 15px; text-align: center; }
+}

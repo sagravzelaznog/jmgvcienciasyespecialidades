@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4: Interruptores y Pulsadores II | Componentes Eléctricos Básicos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sesión 4: Interruptores y Pulsadores II</h1>
+            <p>Circuitos avanzados y aplicaciones prácticas</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-btn">← Volver al índice</a>
+        
+        <section class="session-content">
+            <div class="learning-objective">
+                <h2>Objetivo específico</h2>
+                <p>Al finalizar esta sesión, los estudiantes podrán diseñar e implementar circuitos con diferentes tipos de interruptores, comprendiendo su funcionamiento en aplicaciones prácticas.</p>
+            </div>
+
+            <div class="theory">
+                <h2>Contenido teórico</h2>
+                
+                <div class="concept-box">
+                    <h3>Tipos avanzados de interruptores</h3>
+                    <div class="switch-grid">
+                        <div class="switch-card">
+                            <h4>Interruptor DPDT</h4>
+                            <p>Doble polo, doble tiro. Permite controlar dos circuitos independientes simultáneamente.</p>
+                            <div class="symbol-placeholder">[DPDT]</div>
+                        </div>
+                        <div class="switch-card">
+                            <h4>Final de carrera</h4>
+                            <p>Se activa por movimiento mecánico, usado en puertas automáticas y límites de movimiento.</p>
+                            <div class="symbol-placeholder">[Final de carrera]</div>
+                        </div>
+                        <div class="switch-card">
+                            <h4>Reed switch</h4>
+                            <p>Controlado por campo magnético, común en sistemas de alarma.</p>
+                            <div class="symbol-placeholder">[Reed]</div>
+                        </div>
+                        <div class="switch-card">
+                            <h4>DIP switch</h4>
+                            <p>Múltiples interruptores en miniatura para configuraciones electrónicas.</p>
+                            <div class="symbol-placeholder">[DIP]</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <h3>Configuraciones de circuitos</h3>
+                    <ul>
+                        <li><strong>Control de dos vías:</strong> Encendido/apagado desde dos puntos</li>
+                        <li><strong>Control de tres vías:</strong> Encendido/apagado desde tres o más puntos</li>
+                        <li><strong>Circuito de conmutación cruzada:</strong> Para control en múltiples ubicaciones</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="visual-example">
+                <h2>Analogía práctica</h2>
+                <div class="analogy">
+                    <p>Imagina los diferentes interruptores como diferentes tipos de cruces de trenes:</p>
+                    <ul>
+                        <li><strong>SPST:</strong> Un simple desvío de vía</li>
+                        <li><strong>SPDT:</strong> Un cruce en Y que permite elegir entre dos direcciones</li>
+                        <li><strong>DPDT:</strong> Como un cruce de vías múltiples que puede redirigir dos trenes a la vez</li>
+                    </ul>
+                </div>
+                <div class="svg-container">
+                    <p><strong>Recurso interactivo:</strong> <a href="#" target="_blank">Simulador de circuitos de conmutación</a></p>
+                </div>
+            </div>
+
+            <div class="practical-activity">
+                <h2>Actividad práctica: Diseño de circuitos</h2>
+                <p><strong>Materiales necesarios:</strong> Batería 9V, cables, portalámparas, bombillas, varios tipos de interruptores, protoboard</p>
+                
+                <div class="activity-steps">
+                    <h3>Reto 1: Control de escalera</h3>
+                    <p>Crea un circuito que permita encender/apagar una luz desde dos puntos diferentes (como en un pasillo).</p>
+                    
+                    <div class="circuit-diagram">
+                        <div class="placeholder-diagram">
+                            [Diagrama de circuito de conmutación de dos vías]
+                            <button class="btn btn-small" id="mostrar-solucion-1">Ver solución</button>
+                            <div id="solucion-1" class="solucion" hidden>
+                                <p>Conecta los dos conmutadores de tres vías en serie con la lámpara.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Reto 2: Control maestro</h3>
+                    <p>Diseña un circuito donde un interruptor maestro pueda apagar todas las luces de una habitación, independientemente de otros interruptores.</p>
+                    
+                    <div class="circuit-diagram">
+                        <div class="placeholder-diagram">
+                            [Diagrama de circuito de control maestro]
+                            <button class="btn btn-small" id="mostrar-solucion-2">Ver solución</button>
+                            <div id="solucion-2" class="solucion" hidden>
+                                <p>Coloca el interruptor maestro en serie con la alimentación principal.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="troubleshooting">
+                <h2>Resolución de problemas</h2>
+                <div class="troubleshooting-grid">
+                    <div class="problem-card">
+                        <h4>Problema: La luz no se enciende</h4>
+                        <ul>
+                            <li>▢ Verificar conexiones sueltas</li>
+                            <li>▢ Comprobar estado del fusible</li>
+                            <li>▢ Probar con otra bombilla</li>
+                        </ul>
+                    </div>
+                    <div class="problem-card">
+                        <h4>Problema: La luz parpadea</h4>
+                        <ul>
+                            <li>▢ Ajustar conexiones</li>
+                            <li>▢ Verificar desgaste del interruptor</li>
+                            <li>▢ Comprobar voltaje de la fuente</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reflection">
+                <h2>Pregunta de reflexión</h2>
+                <p>¿Qué pasaría si en una instalación eléctrica doméstica no existieran interruptores de seguridad? Describe tres situaciones de riesgo que podrían presentarse y cómo los interruptores de seguridad las previenen.</p>
+                <textarea rows="4" placeholder="Escribe tu reflexión aquí..." aria-label="Reflexión sobre seguridad eléctrica"></textarea>
+            </div>
+
+            <div class="resources">
+                <h2>Recursos adicionales</h2>
+                <ul>
+                    <li><a href="#" target="_blank">Guía de instalación de interruptores</a></li>
+                    <li><a href="#" target="_blank">Simulador de circuitos eléctricos</a></li>
+                    <li><a href="#" target="_blank">Video: Reparación de interruptores comunes</a></li>
+                </ul>
+            </div>
+
+            <div class="gamification">
+                <h2>Reto: Diseña tu propia habitación</h2>
+                <p><strong>Objetivo:</strong> Crea el plano de instalación eléctrica para una habitación que incluya:</p>
+                <ul>
+                    <li>Control de iluminación desde la entrada y la cama</li>
+                    <li>Un interruptor maestro de emergencia</li>
+                    <li>Control independiente para lámparas de lectura</li>
+                </ul>
+                <p><strong>Puntos:</strong></p>
+                <ul>
+                    <li>25 puntos por funcionalidad completa</li>
+                    <li>15 puntos por eficiencia en el diseño</li>
+                    <li>10 puntos por presentación</li>
+                </ul>
+                <button class="btn" id="subir-diseno">Subir diseño</button>
+            </div>
+        </section>
+
+        <div class="session-navigation">
+            <a href="sesion3.html" class="btn">← Sesión anterior</a>
+            <a href="index.html" class="btn">Volver al índice</a>
+            <a href="sesion5.html" class="btn">Siguiente sesión →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <style>
+        /* Estilos específicos para esta sesión */
+        .switch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .switch-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .switch-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .switch-card h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+        }
+        
+        .symbol-placeholder {
+            height: 60px;
+            background: #f5f7fa;
+            border: 2px dashed #ccc;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .circuit-diagram {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .placeholder-diagram {
+            width: 100%;
+        }
+        
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        
+        .solucion {
+            background: white;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--secondary-color);
+            text-align: left;
+        }
+        
+        .troubleshooting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .problem-card {
+            background: #fff8f8;
+            border-radius: 8px;
+            padding: 1.2rem;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .problem-card h4 {
+            margin-top: 0;
+            color: #c0392b;
+        }
+        
+        .problem-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.8rem 0 0 0;
+        }
+        
+        .problem-card li {
+            padding: 0.3rem 0 0.3rem 1.5rem;
+            position: relative;
+        }
+        
+        .problem-card li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 0.8em;
+            height: 0.8em;
+            border: 2px solid #e74c3c;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .switch-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .troubleshooting-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script>
+        // Interacción para mostrar/ocultar soluciones
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar/ocultar soluciones
+            document.querySelectorAll('[id^="mostrar-solucion"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const solucionId = this.id.replace('mostrar-', '');
+                    const solucion = document.getElementById(solucionId);
+                    solucion.hidden = !solucion.hidden;
+                    this.textContent = solucion.hidden ? 'Ver solución' : 'Ocultar solución';
+                });
+            });
+            
+            // Manejo del envío del diseño
+            const subirBtn = document.getElementById('subir-diseno');
+            if (subirBtn) {
+                subirBtn.addEventListener('click', function() {
+                    alert('¡Gracias por tu diseño! Será revisado por el instructor.');
+                });
+            }
+            
+            // Interactividad para los símbolos
+            document.querySelectorAll('.symbol-placeholder').forEach(symbol => {
+                symbol.addEventListener('click', function() {
+                    this.classList.toggle('symbol-selected');
+                    if (this.textContent.trim() === '') {
+                        this.textContent = '[Haz clic para editar]';
+                        this.focus();
+                    }
+                });
+                
+                symbol.addEventListener('blur', function() {
+                    if (this.textContent.trim() === '[Haz clic para editar]') {
+                        this.textContent = '';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

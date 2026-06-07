@@ -1,0 +1,453 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 14: Monitoreo y Análisis de Rendimiento</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .monitoring-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .safety-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .safety-box h4 {
+            color: #c62828;
+            margin-top: 0;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .specs-table th, .specs-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .specs-table th {
+            background-color: #f2f2f2;
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .practical-exercise {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #2e7d32;
+        }
+        .practical-exercise h4 {
+            color: #1b5e20;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .tip-box {
+            background-color: #fff8e1;
+            border-left: 3px solid #ffa000;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 3px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .note-box {
+            background-color: #e3f2fd;
+            border-left: 3px solid #1976d2;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .data-box {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        .step {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 3px solid #3498db;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .specs-table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 14: Monitoreo y Análisis de Rendimiento</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Comprender los principios y técnicas de monitoreo de sistemas fotovoltaicos, aprender a interpretar datos de rendimiento, identificar problemas comunes y aplicar herramientas de análisis para optimizar la producción de energía solar.</p>
+        </div>
+
+        <h2>1. Fundamentos del monitoreo fotovoltaico</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="monitoring-box">
+            <h4>1.1 Importancia del monitoreo</h4>
+            
+            <ul>
+                <li><strong>Detección temprana de fallos:</strong> Pérdidas de rendimiento, sombreados, suciedad</li>
+                <li><strong>Optimización del rendimiento:</strong> Ajuste de parámetros operativos</li>
+                <li><strong>Verificación de garantías:</strong> Cumplimiento de especificaciones del fabricante</li>
+                <li><strong>Análisis financiero:</strong> Retorno de inversión, ahorros energéticos</li>
+                <li><strong>Mantenimiento predictivo:</strong> Anticipación a fallos potenciales</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.NB3ZV21ZXJJQMLjVH0tz5wHaFV" alt="Sistema de monitoreo fotovoltaico" class="img-small">
+                <p><em>Panel de control de un sistema de monitoreo fotovoltaico</em></p>
+            </div>
+            
+            <h4>1.2 Parámetros clave a monitorear</h4>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Descripción</th>
+                    <th>Unidades</th>
+                </tr>
+                <tr>
+                    <td>Energía generada</td>
+                    <td>Energía total producida por el sistema</td>
+                    <td>kWh</td>
+                </tr>
+                <tr>
+                    <td>Potencia activa</td>
+                    <td>Potencia instantánea generada</td>
+                    <td>kW</td>
+                </tr>
+                <tr>
+                    <td>Radiación solar</td>
+                    <td>Irradiancia en el plano de los paneles</td>
+                    <td>W/m²</td>
+                </tr>
+                <tr>
+                    <td>Temperatura módulos</td>
+                    <td>Temperatura de operación de los paneles</td>
+                    <td>°C</td>
+                </tr>
+                <tr>
+                    <td>Factor de capacidad</td>
+                    <td>Relación entre energía real y teórica máxima</td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>PR (Performance Ratio)</td>
+                    <td>Eficiencia energética del sistema</td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Horas pico solares</td>
+                    <td>Horas equivalentes a máxima radiación</td>
+                    <td>h</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>2. Sistemas de monitoreo</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="monitoring-box">
+            <h4>2.1 Tipos de sistemas de monitoreo</h4>
+            
+            <p><strong>a) Sistemas integrados en inversor:</strong></p>
+            <ul>
+                <li>Ventajas: Solución todo en uno, fácil de instalar</li>
+                <li>Desventajas: Limitado a las capacidades del inversor</li>
+                <li>Ejemplos: Fronius Solar.web, SMA Sunny Portal, SolarEdge Monitoring</li>
+            </ul>
+            
+            <p><strong>b) Sistemas independientes:</strong></p>
+            <ul>
+                <li>Ventajas: Mayor flexibilidad, independencia del fabricante</li>
+                <li>Desventajas: Mayor complejidad de instalación</li>
+                <li>Ejemplos: Solar-Log, Meteocontrol, Sunny Portal</li>
+            </ul>
+            
+            <p><strong>c) Sistemas de adquisición de datos (DAQ):</strong></p>
+            <ul>
+                <li>Ventajas: Alta precisión, personalizable</li>
+                <li>Desventajas: Mayor costo, requiere configuración experta</li>
+                <li>Ejemplos: Campbell Scientific, National Instruments</li>
+            </ul>
+            
+            <div class="tip-box">
+                <p><strong>Consejo:</strong> Para instalaciones residenciales, los sistemas integrados en el inversor suelen ser suficientes. Para plantas comerciales o industriales, considera sistemas independientes con mayor capacidad de análisis.</p>
+            </div>
+            
+            <h4>2.2 Componentes de un sistema de monitoreo</h4>
+            
+            <ol>
+                <li><strong>Sensores:</strong> Irradiación, temperatura, viento, humedad</li>
+                <li><strong>Adquisición de datos:</strong> Datalogger o inversor con capacidades de registro</li>
+                <li><strong>Comunicación:</strong> WiFi, Ethernet, GPRS/4G, PLC</li>
+                <li><strong>Plataforma de visualización:</strong> Aplicación web o móvil</li>
+                <li><strong>Alarmas y notificaciones:</strong> Alertas por correo, SMS o app</li>
+            </ol>
+        </div>
+
+        <h2>3. Análisis de rendimiento</h2>
+        <p><strong>Duración:</strong> 25 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>3.1 Métricas clave de rendimiento (KPI)</h4>
+            
+            <p><strong>a) Performance Ratio (PR):</strong></p>
+            <p>PR (%) = (Energía generada real / Energía teórica máxima) × 100</p>
+            <p>Donde: Energía teórica = Potencia pico (kWp) × Irradiación (kWh/m²) × Eficiencia de referencia</p>
+            
+            <p><strong>Valores de referencia:</strong></p>
+            <ul>
+                <li>Excelente: > 85%</li>
+                <li>Bueno: 75-85%</li>
+                <li>Mejorable: 65-75%</li>
+                <li>Inaceptable: < 65%</li>
+            </ul>
+            
+            <p><strong>b) Factor de capacidad:</strong></p>
+            <p>FC (%) = (Energía generada / (Potencia pico × 24 horas × días)) × 100</p>
+            
+            <p><strong>c) Pérdidas del sistema:</strong></p>
+            <ul>
+                <li>Pérdidas por temperatura</li>
+                <li>Pérdidas por sombreado</li>
+                <li>Pérdidas por suciedad</li>
+                <li>Pérdidas por desajuste de módulos</li>
+                <li>Pérdidas por conversión CC/CA</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="Ratio performance.png" alt="Ejemplo de Performance Ratio" class="img-small">
+                <p><em>Ejemplo de variación del Performance Ratio a lo largo de un año</em></p>
+            </div>
+            
+            <h4>3.2 Análisis de curvas I-V y P-V</h4>
+            
+            <p><strong>Curva I-V:</strong> Muestra la relación corriente-voltaje del generador fotovoltaico</p>
+            <p><strong>Curva P-V:</strong> Muestra la relación potencia-voltaje</p>
+            
+            <p><strong>Identificación de problemas:</strong></p>
+            <ul>
+                <li><strong>Módulos sucios:</strong> Reducción de corriente de cortocircuito (Isc)</li>
+                <li><strong>Hotspots:</strong> Caídas de tensión anómalas</li>
+                <li><strong>Diodos en cortocircuito:</strong> Reducción de tensión en circuito abierto (Voc)</li>
+                <li><strong>Módulos desconectados:</strong> Pérdida de potencia escalonada</li>
+            </ul>
+        </div>
+
+        <h2>4. Herramientas de análisis</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="monitoring-box">
+            <h4>4.1 Software de análisis de rendimiento</h4>
+            
+            <p><strong>a) Plataformas comerciales:</strong></p>
+            <ul>
+                <li><strong>PVsyst:</strong> Análisis detallado, simulación y comparación con datos reales</li>
+                <li><strong>PV*SOL:</strong> Análisis de rendimiento y diseño de sistemas</li>
+                <li><strong>SolarEdge Monitoring:</strong> Para sistemas con inversores SolarEdge</li>
+                <li><strong>Fronius Solar.web:</strong> Para sistemas con inversores Fronius</li>
+            </ul>
+            
+            <p><strong>b) Herramientas de código abierto:</strong></p>
+            <ul>
+                <li><strong>PVLib (Python):</strong> Biblioteca para modelado de sistemas fotovoltaicos</li>
+                <li><strong>OpenSolar:</strong> Herramienta de diseño y monitoreo</li>
+                <li><strong>Home Assistant:</strong> Para integración de diferentes sistemas de monitoreo</li>
+            </ul>
+            
+            <h4>4.2 Análisis de datos con hojas de cálculo</h4>
+            
+            <p><strong>Ejemplo de cálculo de rendimiento:</strong></p>
+            <div class="data-box">
+                <pre>
+Fecha       | Hora  | Energía (kWh) | Irradiación (kWh/m²) | Temperatura (°C) | PR (%)
+------------|-------|---------------|----------------------|------------------|-------
+2025-09-20 | 12:00 | 4.2           | 0.95                 | 45               | 82.5
+2025-09-20 | 13:00 | 4.0           | 0.90                 | 48               | 80.1
+2025-09-20 | 14:00 | 3.8           | 0.85                 | 47               | 81.3
+                </pre>
+            </div>
+            
+            <p><strong>Fórmulas útiles en Excel/Google Sheets:</strong></p>
+            <div class="data-box">
+                <pre>
+# Cálculo de PR
+= (B2 / (Potencia_pico * D2 * 0.85)) * 100
+
+# Cálculo de pérdidas por temperatura
+= (Temperatura_celda - 25) * Coeficiente_temperatura * Potencia_pico
+
+# Cálculo de energía perdida por sombreado
+= (PR_teórico - PR_real) * Energía_teórica
+                </pre>
+            </div>
+        </div>
+
+        <h2>5. Caso práctico: Análisis de un sistema real</h2>
+        <p><strong>Duración:</strong> 20 minutos</p>
+        
+        <div class="practical-exercise">
+            <h4>5.1 Análisis de datos de producción</h4>
+            
+            <p><strong>Datos del sistema:</strong></p>
+            <ul>
+                <li>Potencia pico: 5 kWp</li>
+                <li>Ubicación: Ciudad de México</li>
+                <li>Inclinación: 20°</li>
+                <li>Orientación: Sur</li>
+            </ul>
+            
+            <p><strong>Datos de producción (ejemplo):</strong></p>
+            <div class="data-box">
+                <pre>
+Día     | Energía (kWh) | Irradiación (kWh/m²) | PR (%)
+--------|---------------|----------------------|-------
+Lunes   | 28.5          | 6.2                  | 81.3
+Martes  | 26.8          | 5.9                  | 79.5
+Miércol | 15.2          | 6.0                  | 45.1  # Posible problema
+Jueves  | 27.3          | 6.1                  | 80.2
+Viernes | 27.8          | 6.3                  | 81.0
+                </pre>
+            </div>
+            
+            <p><strong>Análisis:</strong></p>
+            <ol>
+                <li>El miércoles hubo una caída significativa en el PR (45.1% vs. promedio de 80.5%)</li>
+                <li>La irradiación fue normal (6.0 kWh/m²), similar a otros días</li>
+                <li>Posibles causas: Sombreado temporal, fallo en un string, limpieza del sistema, etc.</li>
+                <li>Acción recomendada: Revisar registros de alarmas, verificar si hubo mantenimiento programado, inspeccionar el sistema</li>
+            </ol>
+            
+            <h4>5.2 Herramientas de diagnóstico remoto</h4>
+            
+            <ul>
+                <li><strong>Análisis de curvas I-V remotas:</strong> Disponible en algunos inversores avanzados</li>
+                <li><strong>Termografía con drones:</strong> Para detectar puntos calientes</li>
+                <li><strong>Análisis de datos históricos:</strong> Identificar tendencias y degradación</li>
+                <li><strong>Comparativa con sistemas similares:</strong> Benchmarking de rendimiento</li>
+            </ul>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en el análisis de casos prácticos.</p>
+            <p><strong>Ejercicio práctico:</strong> Análisis de un conjunto de datos de producción solar.</p>
+            <p><strong>Cuestionario:</strong> Preguntas sobre interpretación de parámetros de rendimiento.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre soluciones de almacenamiento de energía para sistemas fotovoltaicos, incluyendo tecnologías de baterías, sistemas de gestión de energía y casos de uso prácticos.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion13.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion15.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

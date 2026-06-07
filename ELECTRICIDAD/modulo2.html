@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Circuitos Eléctricos y Componentes Básicos</title>
+    <link rel="stylesheet" href="estilos-electricidad.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Programa completo</a>
+        <a href="modulo1.html">Módulo 1</a>
+        <a href="modulo2.html" class="active">Módulo 2</a>
+        <a href="modulo3.html">Módulo 3</a>
+        <a href="modulo4.html">Módulo 4</a>
+        <a href="modulo5.html">Módulo 5</a>
+        <a href="modulo6.html">Módulo 6</a>
+    </nav>
+    <main>
+        <h1>Módulo 2: Circuitos Eléctricos y Componentes Básicos</h1>
+        <section id="tipos-circuitos">
+            <h2>Tipos de circuitos</h2>
+            <ul>
+                <li><strong>Serie:</strong> La corriente es la misma en todos los elementos. <em>Ejemplo: luces navideñas antiguas.</em></li>
+                <li><strong>Paralelo:</strong> El voltaje es el mismo en todos los elementos. <em>Ejemplo: focos en una casa.</em></li>
+                <li><strong>Mixto:</strong> Combinación de ambos.</li>
+            </ul>
+            <div class="actividad">
+                <strong>Actividad:</strong> Dibuja un circuito serie y uno paralelo. Analiza qué sucede si se funde una lámpara en cada caso.
+            </div>
+        </section>
+        <section id="elementos-simbolos">
+            <h2>Elementos y simbología</h2>
+            <ul>
+                <li>Fuente de energía</li>
+                <li>Conductores</li>
+                <li>Receptores (focos, motores, timbres)</li>
+                <li>Interruptores y protecciones</li>
+            </ul>
+            <div class="info-box">
+                <strong>Ejemplo:</strong> Un diagrama eléctrico de una lámpara con interruptor.
+            </div>
+        </section>
+        <section id="instrumentos-medicion">
+            <h2>Instrumentos de medición</h2>
+            <ul>
+                <li>Multímetro</li>
+                <li>Probador de corriente</li>
+                <li>Pinza amperimétrica</li>
+            </ul>
+            <div class="actividad">
+                <strong>Actividad:</strong> Mide el voltaje de una pila y la continuidad de un cable con un multímetro.
+            </div>
+        </section>
+        <section id="planos">
+            <h2>Lectura de planos</h2>
+            <p>Interpretación de esquemas eléctricos básicos. Identificación de símbolos y trayectorias de corriente.</p>
+            <div class="actividad">
+                <strong>Actividad:</strong> Analiza un plano sencillo de instalación eléctrica y localiza los componentes principales.
+            </div>
+        </section>
+        <section id="ejemplos-armado">
+            <h2>Ejemplos de armado y diagnóstico</h2>
+            <ul>
+                <li>Armado de un circuito de lámpara con interruptor</li>
+                <li>Diagnóstico de fallas: foco fundido, falso contacto</li>
+            </ul>
+        </section>
+        <section id="actividades-practicas">
+            <h2>Actividades prácticas</h2>
+            <div class="actividad">
+                <strong>Actividad final:</strong> Construye un circuito mixto en protoboard y documenta el funcionamiento de cada parte.
+            </div>
+        </section>
+        <footer>
+            <p>¿Tienes dudas o quieres sugerir ejemplos para mejorar este módulo? ¡No dudes en editar este archivo o contactar al responsable del curso!</p>
+        </footer>
+    </main>
+</body>
+</html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Circuitos Eléctricos</title>
+    <link rel="stylesheet" href="estilos-electricidad.css">
+</head>
+<body>
+    <nav>
+        <span>Electricidad</span>
+        <div>
+            <a href="index.html">Programa</a>
+            <a href="modulo1.html">Módulo 1</a>
+            <a href="modulo2.html" class="active">Módulo 2</a>
+            <a href="#">Próximos módulos</a>
+        </div>
+    </nav>
+    <main>
+        <h1>Módulo 2: Circuitos Eléctricos</h1>
+
+        <section id="tipos-circuitos">
+    <h2>2.1 Tipos de circuitos (serie, paralelo, mixto)</h2>
+    <p><strong>Definición conceptual:</strong> Un circuito eléctrico es una red cerrada por la que circulan cargas eléctricas (generalmente electrones), impulsadas por una fuente de energía. Según la forma en que se conectan los componentes, existen distintos tipos de circuitos:</p>
+    <h3>Circuito en serie</h3>
+    <p>Todos los componentes están conectados uno tras otro, formando una única trayectoria para la corriente. <br>
+    <strong>Características:</strong>
+    <ul>
+        <li>La <strong>corriente</strong> es la misma en todos los elementos.</li>
+        <li>El <strong>voltaje total</strong> se reparte entre los componentes.</li>
+        <li>Si un elemento se abre o falla, todo el circuito se interrumpe.</li>
+    </ul>
+    <strong>Fundamento matemático:</strong> <br>
+    <span>V<sub>total</sub> = V<sub>1</sub> + V<sub>2</sub> + ... + V<sub>n</sub></span><br>
+    <span>R<sub>total</sub> = R<sub>1</sub> + R<sub>2</sub> + ... + R<sub>n</sub></span>
+    </p>
+    <ul>
+        <li><strong>Ejemplo:</strong> Luces de navidad antiguas: si una se funde, todas se apagan.</li>
+    </ul>
+    <div>
+        <strong>Ilustración:</strong><br>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Series_circuit.svg" alt="Circuito en serie" class="img-principal">
+        <p>Figura: Circuito en serie.</p>
+    </div>
+
+    <h3>Circuito en paralelo</h3>
+    <p>Los componentes están conectados en ramas independientes, formando varias trayectorias para la corriente.<br>
+    <strong>Características:</strong>
+    <ul>
+        <li>El <strong>voltaje</strong> es el mismo en cada rama.</li>
+        <li>La <strong>corriente total</strong> se reparte entre las ramas.</li>
+        <li>Si un componente falla, los demás siguen funcionando.</li>
+    </ul>
+    <strong>Fundamento matemático:</strong> <br>
+    <span>I<sub>total</sub> = I<sub>1</sub> + I<sub>2</sub> + ... + I<sub>n</sub></span><br>
+    <span>1/R<sub>total</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> + ... + 1/R<sub>n</sub></span>
+    </p>
+    <ul>
+        <li><strong>Ejemplo:</strong> Instalación eléctrica de una casa: si una lámpara se funde, las demás siguen funcionando.</li>
+    </ul>
+    <div>
+        <strong>Ilustración:</strong><br>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Parallel_circuit.svg" alt="Circuito en paralelo" class="img-principal">
+        <p>Figura: Circuito en paralelo.</p>
+    </div>
+
+    <h3>Circuito mixto</h3>
+    <p>Combinación de conexiones en serie y en paralelo.<br>
+    <strong>Características:</strong>
+    <ul>
+        <li>Permite mayor flexibilidad y control sobre el funcionamiento de los dispositivos.</li>
+        <li>Se utiliza en instalaciones donde se requiere que algunos elementos funcionen juntos y otros de forma independiente.</li>
+    </ul>
+    <li><strong>Ejemplo:</strong> Alumbrado público donde varios postes están conectados en paralelo, pero cada poste tiene varias lámparas en serie.</li>
+    <p><strong>Analogía:</strong> Un circuito en serie es como una fila de personas pasándose cubos de agua: si alguien se detiene, el agua deja de pasar. Un circuito en paralelo es como varias filas independientes: si una se detiene, las otras siguen funcionando.</p>
+</section>
+
+        <section id="elementos-circuito">
+    <h2>2.2 Elementos de un circuito</h2>
+    <p>Un circuito eléctrico está formado por varios elementos básicos, cada uno con una función específica:</p>
+    <ul>
+        <li><strong>Fuente de energía:</strong> Proporciona la fuerza electromotriz (fem) necesaria para mover las cargas. Ejemplo: batería, pila, generador. <br>
+        <em>Teoría:</em> La fuente establece una diferencia de potencial (voltaje) entre sus terminales.</li>
+        <li><strong>Conductores:</strong> Materiales (generalmente cables de cobre o aluminio) que permiten el paso de la corriente eléctrica con baja resistencia.</li>
+        <li><strong>Receptores:</strong> Dispositivos que transforman la energía eléctrica en otra forma de energía útil: bombilla (luz), motor (movimiento), resistencia (calor).</li>
+        <li><strong>Interruptores:</strong> Permiten abrir o cerrar el circuito, controlando el flujo de corriente.</li>
+        <li><strong>Protecciones:</strong> Dispositivos como fusibles o disyuntores que interrumpen el circuito en caso de sobrecorriente, evitando daños y accidentes.</li>
+    </ul>
+    <p><strong>Fundamento físico:</strong> El flujo de corriente depende de la diferencia de potencial y la resistencia total según la Ley de Ohm: <span>V = I·R</span></p>
+    <div>
+        <strong>Ejemplo visual:</strong><br>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Electric_circuit_components.png" alt="Componentes de un circuito eléctrico">
+        <p>Figura: Componentes básicos de un circuito eléctrico.</p>
+    </div>
+    <p><strong>Analogía:</strong> La fuente es como una bomba de agua, los cables son las tuberías, y los receptores son los dispositivos que usan el agua.</p>
+</section>
+
+        <section id="simbolos-electricos">
+    <h2>2.3 Simbología eléctrica</h2>
+    <p>La simbología eléctrica es un conjunto de signos gráficos normalizados que representan los diferentes componentes y conexiones de un circuito. Permite interpretar y construir esquemas eléctricos de manera universal, independientemente del idioma o país.</p>
+    <ul>
+        <li><strong>Resistencia:</strong> <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Electrical_symbols.png" alt="Símbolos eléctricos"> <br>Figura: Símbolos eléctricos comunes (resistencia, lámpara, interruptor, pila, etc.).</li>
+    </ul>
+    <p><strong>Normas:</strong> Los símbolos eléctricos están regulados por normas internacionales (IEC, ANSI, UNE). Es fundamental conocerlos para leer e interpretar planos eléctricos.</p>
+    <p><strong>Analogía:</strong> Así como las notas musicales permiten interpretar una partitura, los símbolos eléctricos permiten "leer" un circuito.</p>
+</section>
+
+        <section id="planos-esquemas">
+    <h2>2.4 Interpretación de planos y esquemas</h2>
+    <p>Un plano eléctrico es una representación gráfica de una instalación real, mientras que un esquema eléctrico es una abstracción que muestra las conexiones entre los componentes.</p>
+    <ul>
+        <li><strong>Planos eléctricos:</strong> Indican la ubicación física de cables, dispositivos y canalizaciones en un edificio o instalación.</li>
+        <li><strong>Esquemas eléctricos:</strong> Representan la conexión lógica y funcional de los componentes, sin importar su ubicación física.</li>
+        <li><strong>Diagramas unifilares:</strong> Usan una sola línea para representar varios conductores, simplificando la interpretación.</li>
+        <li><strong>Diagramas multifilares:</strong> Muestran cada conductor por separado, proporcionando mayor detalle.</li>
+    </ul>
+    <p><strong>Importancia:</strong> Saber leer e interpretar planos y esquemas es esencial para la instalación, el mantenimiento y la reparación de sistemas eléctricos.</p>
+    <div>
+        <strong>Ejemplo visual:</strong><br>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Electrical_wiring_diagram.png" alt="Plano eléctrico">
+        <p>Figura: Plano/esquema eléctrico.</p>
+    </div>
+    <p><strong>Analogía:</strong> Un plano eléctrico es como el mapa de una ciudad, mientras que el esquema es como el plano de las rutas de transporte.</p>
+</section>
+
+        <section id="medicion-magnitudes">
+    <h2>2.5 Medición de magnitudes eléctricas</h2>
+    <p>Las principales magnitudes eléctricas que se miden en un circuito son:</p>
+    <ul>
+        <li><strong>Voltaje (V):</strong> Diferencia de potencial eléctrico entre dos puntos. Es la "fuerza" que impulsa a los electrones a moverse. Se mide en voltios (V) con un voltímetro.</li>
+        <li><strong>Corriente (A):</strong> Cantidad de carga eléctrica que pasa por un conductor en un segundo. Se mide en amperios (A) con un amperímetro.</li>
+        <li><strong>Resistencia (Ω):</strong> Oposición que ofrece un material al paso de la corriente. Se mide en ohmios (Ω) con un óhmetro.</li>
+    </ul>
+    <p><strong>Instrumentos de medición:</strong> El <strong>multímetro</strong> es el instrumento más común, ya que permite medir voltaje, corriente y resistencia en un solo aparato.</p>
+    <div>
+        <strong>Ejemplo visual:</strong><br>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Multimeter.jpg" alt="Multímetro">
+        <p>Figura: Multímetro digital.</p>
+    </div>
+    <p><strong>Fundamento físico:</strong> La Ley de Ohm relaciona estas magnitudes: <span>V = I · R</span></p>
+    <p><strong>Analogía:</strong> El voltaje es como la presión del agua, la corriente es el caudal y la resistencia es el tamaño de la tubería.</p>
+</section>
+
+        <section id="actividades-modulo2">
+    <h2>Actividades y ejemplos prácticos</h2>
+    <div class="actividad">
+        <strong>Ejemplo paso a paso:</strong> Arma un circuito en serie y otro en paralelo con focos y una batería. Dibuja los esquemas y registra el comportamiento al encender/apagar cada foco.
+    </div>
+    <div class="actividad">
+        <strong>Actividad:</strong> Identifica y dibuja los símbolos eléctricos de al menos 10 componentes distintos. Explica su función en un circuito.
+    </div>
+    <div class="actividad">
+        <strong>Actividad guiada:</strong> Interpreta un plano eléctrico sencillo de una habitación y marca la ubicación de lámparas, apagadores y contactos.
+    </div>
+    <div class="actividad">
+        <strong>Ejemplo práctico:</strong> Utiliza un multímetro para medir el voltaje y la resistencia de una pila y una lámpara. Documenta los resultados y explica las diferencias.
+    </div>
+</section>
+<footer>
+    <p>¿Tienes dudas o quieres sugerir ejemplos para mejorar este módulo? ¡No dudes en editar este archivo o contactar al responsable del curso!</p>
+</footer>
+    </main>
+</body>
+</html>

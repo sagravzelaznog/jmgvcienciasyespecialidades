@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Circuitos en Paralelo - Curso de Electricidad Básica</title>
+    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">⚡ Electricidad Básica</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#sesiones">Sesiones</a></li>
+                <li><a href="../index.html#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido de la Sesión -->
+    <section class="sesion-header">
+        <div class="container">
+            <h1 class="sesion-title">Sesión 5: Circuitos en Paralelo</h1>
+            <p class="sesion-subtitle">Diseño y construcción de circuitos en paralelo</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion04.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion06.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+
+        <!-- Información de la sesión -->
+        <div class="sesion-content-main">
+            <div class="section">
+                <h2>📋 Información de la Sesión</h2>
+                <div class="info-box">
+                    <strong>Duración:</strong> 2.5 horas | <strong>Tipo:</strong> Práctica | <strong>Dificultad:</strong> Principiante
+                </div>
+                
+                <h3>🎯 Objetivos de Aprendizaje</h3>
+                <ul>
+                    <li>Construir circuitos eléctricos en paralelo</li>
+                    <li>Medir voltajes y corrientes en circuitos paralelo</li>
+                    <li>Aplicar las leyes de Kirchhoff para circuitos paralelo</li>
+                    <li>Calcular resistencias equivalentes en paralelo</li>
+                    <li>Comparar circuitos serie vs paralelo</li>
+                </ul>
+            </div>
+
+            <!-- Teoría -->
+            <div class="teoria-section">
+                <h2>🔬 Teoría: Circuitos en Paralelo</h2>
+                
+                <h3>¿Qué es un Circuito en Paralelo?</h3>
+                <p>Un circuito en paralelo es aquel donde los componentes están conectados entre los mismos dos puntos, proporcionando múltiples caminos para el flujo de corriente.</p>
+
+                <div class="info-box">
+                    <strong>Características principales:</strong>
+                    <ul>
+                        <li>Múltiples caminos para la corriente</li>
+                        <li>El voltaje es el mismo en todos los componentes</li>
+                        <li>La corriente total se divide entre las ramas</li>
+                        <li>Si un componente falla, los demás siguen funcionando</li>
+                    </ul>
+                </div>
+
+                <h3>Leyes de los Circuitos en Paralelo</h3>
+                
+                <h4>Ley de Voltaje en Paralelo</h4>
+                <p>El voltaje es el mismo en todas las ramas del circuito.</p>
+                <div class="formula">
+                    V₁ = V₂ = V₃ = Vₜₒₜₐₗ
+                </div>
+
+                <h4>Ley de Corriente en Paralelo (Primera Ley de Kirchhoff)</h4>
+                <p>La suma de las corrientes que entran es igual a la suma de las que salen.</p>
+                <div class="formula">
+                    Iₜₒₜₐₗ = I₁ + I₂ + I₃ + ... + Iₙ
+                </div>
+
+                <h4>Resistencia Equivalente en Paralelo</h4>
+                <p>La resistencia total se calcula como:</p>
+                <div class="formula">
+                    1/Rₜₒₜₐₗ = 1/R₁ + 1/R₂ + 1/R₃ + ... + 1/Rₙ
+                </div>
+                
+                <p>Para dos resistencias en paralelo:</p>
+                <div class="formula">
+                    Rₜₒₜₐₗ = (R₁ × R₂) / (R₁ + R₂)
+                </div>
+            </div>
+
+            <!-- Análisis de Circuitos Paralelo -->
+            <div class="section">
+                <h2>📊 Análisis de Circuitos en Paralelo</h2>
+
+                <h3>Ejemplo 1: Circuito Básico con Dos Resistencias</h3>
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Voltaje de alimentación: 12 V</li>
+                    <li>R₁ = 6 Ω</li>
+                    <li>R₂ = 3 Ω</li>
+                </ul>
+
+                <p><strong>Cálculos:</strong></p>
+                <div class="formula">
+                    Rₜₒₜₐₗ = (6 Ω × 3 Ω) / (6 Ω + 3 Ω) = 18 / 9 = 2 Ω
+                </div>
+                <div class="formula">
+                    Iₜₒₜₐₗ = Vₜₒₜₐₗ / Rₜₒₜₐₗ = 12 V / 2 Ω = 6 A
+                </div>
+                <div class="formula">
+                    I₁ = V / R₁ = 12 V / 6 Ω = 2 A
+                </div>
+                <div class="formula">
+                    I₂ = V / R₂ = 12 V / 3 Ω = 4 A
+                </div>
+
+                <div class="success-box">
+                    <strong>Verificación:</strong> I₁ + I₂ = 2 A + 4 A = 6 A ✓
+                </div>
+
+                <h3>Ejemplo 2: Circuito con Tres Resistencias</h3>
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Voltaje de alimentación: 24 V</li>
+                    <li>R₁ = 4 Ω</li>
+                    <li>R₂ = 6 Ω</li>
+                    <li>R₃ = 12 Ω</li>
+                </ul>
+
+                <p><strong>Cálculos:</strong></p>
+                <div class="formula">
+                    1/Rₜₒₜₐₗ = 1/4 + 1/6 + 1/12 = 3/12 + 2/12 + 1/12 = 6/12 = 1/2
+                </div>
+                <div class="formula">
+                    Rₜₒₜₐₗ = 2 Ω
+                </div>
+                <div class="formula">
+                    Iₜₒₜₐₗ = 24 V / 2 Ω = 12 A
+                </div>
+                <div class="formula">
+                    I₁ = 24 V / 4 Ω = 6 A
+                </div>
+                <div class="formula">
+                    I₂ = 24 V / 6 Ω = 4 A
+                </div>
+                <div class="formula">
+                    I₃ = 24 V / 12 Ω = 2 A
+                </div>
+            </div>
+
+            <!-- Práctica -->
+            <div class="practica-section">
+                <h2>🛠️ Práctica: Construcción de Circuitos en Paralelo</h2>
+
+                <h3>Materiales Necesarios</h3>
+                <ul>
+                    <li>Protoboard</li>
+                    <li>Resistencias: 220 Ω, 470 Ω, 1 kΩ</li>
+                    <li>Multímetro digital</li>
+                    <li>Cables de conexión</li>
+                    <li>Fuente de alimentación 5V o batería 9V</li>
+                    <li>LEDs de diferentes colores</li>
+                </ul>
+
+                <h3>Ejercicio 1: Circuito Básico con Dos Resistencias</h3>
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Coloca las resistencias de 220 Ω y 470 Ω en paralelo en el protoboard</li>
+                    <li>Conecta la fuente de alimentación</li>
+                    <li>Mide el voltaje aplicado (debe ser el mismo en ambas resistencias)</li>
+                    <li>Mide la corriente en cada rama</li>
+                    <li>Mide la corriente total del circuito</li>
+                    <li>Compara los valores medidos con los calculados</li>
+                </ol>
+
+                <h4>Tabla de Mediciones</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parámetro</th>
+                            <th>Valor Calculado</th>
+                            <th>Valor Medido</th>
+                            <th>% Error</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>R equivalente</td>
+                            <td>149.6 Ω</td>
+                            <td>___ Ω</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>I₁ (220 Ω)</td>
+                            <td>___ A</td>
+                            <td>___ A</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>I₂ (470 Ω)</td>
+                            <td>___ A</td>
+                            <td>___ A</td>
+                            <td>___ %</td>
+                        </tr>
+                        <tr>
+                            <td>I total</td>
+                            <td>___ A</td>
+                            <td>___ A</td>
+                            <td>___ %</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Ejercicio 2: LEDs en Paralelo</h3>
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Conecta tres LEDs de diferentes colores en paralelo</li>
+                    <li>Cada LED debe tener su resistencia limitadora</li>
+                    <li>Verifica que todos los LEDs funcionen independientemente</li>
+                    <li>Desconecta uno de los LEDs y observa que los demás siguen funcionando</li>
+                    <li>Mide la corriente de cada LED individualmente</li>
+                </ol>
+
+                <h3>Ejercicio 3: Comparación Serie vs Paralelo</h3>
+                <p><strong>Procedimiento:</strong></p>
+                <ol>
+                    <li>Construye el mismo circuito en serie y en paralelo</li>
+                    <li>Usa las mismas resistencias: 220 Ω y 470 Ω</li>
+                    <li>Mide voltajes y corrientes en ambas configuraciones</li>
+                    <li>Compara el brillo de LEDs en ambas configuraciones</li>
+                    <li>Analiza las diferencias de comportamiento</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>⚠️ Precauciones:</strong>
+                    <ul>
+                        <li>Verifica las polaridades de los LEDs</li>
+                        <li>Calcula las resistencias limitadoras antes de conectar</li>
+                        <li>No excedas la corriente máxima de los LEDs</li>
+                        <li>Usa resistencias apropiadas para limitar la corriente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Aplicaciones Prácticas -->
+            <div class="section">
+                <h2>🏠 Aplicaciones Prácticas de Circuitos en Paralelo</h2>
+
+                <h3>Instalaciones Eléctricas Residenciales</h3>
+                <p>Las instalaciones domésticas usan circuitos en paralelo:</p>
+                <ul>
+                    <li><strong>Ventaja:</strong> Cada dispositivo funciona independientemente</li>
+                    <li><strong>Ventaja:</strong> Voltaje constante en todos los dispositivos</li>
+                    <li><strong>Ventaja:</strong> Fácil agregar o quitar dispositivos</li>
+                    <li><strong>Desventaja:</strong> Mayor consumo de corriente total</li>
+                </ul>
+
+                <h3>Iluminación Moderna</h3>
+                <p>Los sistemas de iluminación LED usan conexiones en paralelo:</p>
+                <ul>
+                    <li>Control individual de cada luz</li>
+                    <li>Voltaje uniforme en todos los LEDs</li>
+                    <li>Facilidad de mantenimiento</li>
+                    <li>Eficiencia energética</li>
+                </ul>
+
+                <h3>Fuentes de Alimentación</h3>
+                <p>Las fuentes de alimentación modernas usan reguladores en paralelo:</p>
+                <ul>
+                    <li>Mayor capacidad de corriente</li>
+                    <li>Redundancia y confiabilidad</li>
+                    <li>Distribución de carga</li>
+                    <li>Mejor eficiencia</li>
+                </ul>
+
+                <h3>Baterías en Paralelo</h3>
+                <p>Las baterías se conectan en paralelo para:</p>
+                <ul>
+                    <li>Aumentar la capacidad (Ah)</li>
+                    <li>Mantener el mismo voltaje</li>
+                    <li>Mejorar la confiabilidad</li>
+                    <li>Distribuir la carga</li>
+                </ul>
+            </div>
+
+            <!-- Ventajas y Desventajas -->
+            <div class="section">
+                <h2>⚖️ Ventajas y Desventajas de Circuitos en Paralelo</h2>
+
+                <h3>Ventajas</h3>
+                <ul>
+                    <li><strong>Independencia:</strong> Cada componente funciona independientemente</li>
+                    <li><strong>Voltaje uniforme:</strong> Mismo voltaje en todos los componentes</li>
+                    <li><strong>Confiabilidad:</strong> Fallo de un componente no afecta a los demás</li>
+                    <li><strong>Flexibilidad:</strong> Fácil agregar o quitar componentes</li>
+                    <li><strong>Control individual:</strong> Cada componente se puede controlar por separado</li>
+                    <li><strong>Mayor corriente total:</strong> Suma de corrientes individuales</li>
+                </ul>
+
+                <h3>Desventajas</h3>
+                <ul>
+                    <li><strong>Mayor consumo:</strong> Más corriente total que en serie</li>
+                    <li><strong>Complejidad:</strong> Más cables y conexiones</li>
+                    <li><strong>Costo:</strong> Más componentes y cableado</li>
+                    <li><strong>Protección:</strong> Necesita protecciones individuales</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 Regla práctica:</strong> Usa circuitos en paralelo cuando necesites independencia de componentes, voltaje uniforme o mayor confiabilidad. Usa circuitos en serie cuando necesites limitar corriente o dividir voltaje.
+                </div>
+            </div>
+
+            <!-- Comparación Serie vs Paralelo -->
+            <div class="section">
+                <h2>🔄 Comparación: Serie vs Paralelo</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Serie</th>
+                            <th>Paralelo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Caminos de corriente</td>
+                            <td>Uno solo</td>
+                            <td>Múltiples</td>
+                        </tr>
+                        <tr>
+                            <td>Corriente</td>
+                            <td>Igual en todos</td>
+                            <td>Se divide</td>
+                        </tr>
+                        <tr>
+                            <td>Voltaje</td>
+                            <td>Se divide</td>
+                            <td>Igual en todos</td>
+                        </tr>
+                        <tr>
+                            <td>Resistencia total</td>
+                            <td>R₁ + R₂ + R₃</td>
+                            <td>1/(1/R₁ + 1/R₂ + 1/R₃)</td>
+                        </tr>
+                        <tr>
+                            <td>Fallo de componente</td>
+                            <td>Todo se detiene</td>
+                            <td>Los demás siguen</td>
+                        </tr>
+                        <tr>
+                            <td>Control individual</td>
+                            <td>No posible</td>
+                            <td>Posible</td>
+                        </tr>
+                        <tr>
+                            <td>Consumo total</td>
+                            <td>Menor</td>
+                            <td>Mayor</td>
+                        </tr>
+                        <tr>
+                            <td>Complejidad</td>
+                            <td>Simple</td>
+                            <td>Más compleja</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Actividades de Verificación -->
+            <div class="section">
+                <h2>✅ Actividades de Verificación</h2>
+
+                <h3>Problemas de Cálculo</h3>
+                <ol>
+                    <li>Un circuito en paralelo tiene R₁=4Ω, R₂=6Ω, R₃=12Ω y V=24V. Calcula:
+                        <ul>
+                            <li>Resistencia equivalente</li>
+                            <li>Corriente total</li>
+                            <li>Corriente en cada resistencia</li>
+                            <li>Potencia disipada en cada resistencia</li>
+                        </ul>
+                    </li>
+                    <li>¿Qué resistencia equivalente tendrás si conectas en paralelo resistencias de 10Ω, 20Ω y 30Ω?</li>
+                    <li>Si tienes dos resistencias de 100Ω en paralelo, ¿cuál es la resistencia equivalente?</li>
+                </ol>
+
+                <h3>Ejercicios Prácticos</h3>
+                <ol>
+                    <li>Construye un circuito con 3 LEDs en paralelo y mide las corrientes individuales</li>
+                    <li>Compara el brillo de LEDs en serie vs paralelo con el mismo voltaje</li>
+                    <li>Mide la resistencia equivalente de varias resistencias en paralelo</li>
+                    <li>Verifica que el voltaje sea el mismo en todas las ramas en paralelo</li>
+                </ol>
+
+                <h3>Análisis de Aplicaciones</h3>
+                <ol>
+                    <li>¿Por qué las casas usan circuitos en paralelo para la iluminación?</li>
+                    <li>Explica por qué los LEDs modernos se conectan en paralelo en lugar de serie</li>
+                    <li>¿Qué ventajas tiene conectar baterías en paralelo?</li>
+                    <li>¿Cuándo usarías un circuito en serie en lugar de paralelo?</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>💡 Consejo:</strong> Practica construyendo ambos tipos de circuitos con los mismos componentes para entender mejor las diferencias.
+                </div>
+            </div>
+
+            <!-- Recursos Adicionales -->
+            <div class="section">
+                <h2>📚 Recursos Adicionales</h2>
+                
+                <h3>Simuladores de Circuitos</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Falstad Circuit Simulator - Circuitos Paralelo</a></li>
+                    <li><a href="#" target="_blank">LTspice - Simulación avanzada</a></li>
+                    <li><a href="#" target="_blank">Tinkercad Circuits - Comparación Serie/Paralelo</a></li>
+                </ul>
+
+                <h3>Calculadoras Online</h3>
+                <ul>
+                    <li><a href="#" target="_blank">Calculadora de resistencias en paralelo</a></li>
+                    <li><a href="#" target="_blank">Calculadora de corriente en paralelo</a></li>
+                    <li><a href="#" target="_blank">Calculadora de potencia en paralelo</a></li>
+                </ul>
+
+                <h3>Proyectos Prácticos</h3>
+                <ul>
+                    <li>Construcción de una fuente de alimentación con múltiples salidas</li>
+                    <li>Diseño de un sistema de iluminación LED modular</li>
+                    <li>Creación de un cargador de baterías en paralelo</li>
+                    <li>Desarrollo de un sistema de monitoreo de múltiples sensores</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navegación entre sesiones -->
+        <div class="sesion-navigation">
+            <a href="sesion04.html" class="nav-btn">
+                ← Sesión anterior
+            </a>
+            <a href="sesion06.html" class="nav-btn next">
+                Siguiente sesión →
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; JMGV-PTEL 2025. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de entrada para secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar secciones
+        document.querySelectorAll('.section, .teoria-section, .practica-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Calculadora de circuito en paralelo
+        function calculateParallelCircuit() {
+            const voltage = parseFloat(document.getElementById('inputVoltage').value);
+            const resistance1 = parseFloat(document.getElementById('resistance1').value);
+            const resistance2 = parseFloat(document.getElementById('resistance2').value);
+            const resistance3 = parseFloat(document.getElementById('resistance3').value) || 0;
+            
+            let totalResistance;
+            if (resistance3 > 0) {
+                totalResistance = 1 / (1/resistance1 + 1/resistance2 + 1/resistance3);
+            } else {
+                totalResistance = (resistance1 * resistance2) / (resistance1 + resistance2);
+            }
+            
+            const totalCurrent = voltage / totalResistance;
+            const current1 = voltage / resistance1;
+            const current2 = voltage / resistance2;
+            const current3 = resistance3 > 0 ? voltage / resistance3 : 0;
+            
+            document.getElementById('results').innerHTML = `
+                <h4>Resultados:</h4>
+                <p><strong>Resistencia equivalente:</strong> ${totalResistance.toFixed(2)} Ω</p>
+                <p><strong>Corriente total:</strong> ${totalCurrent.toFixed(3)} A</p>
+                <p><strong>Corriente R₁:</strong> ${current1.toFixed(3)} A</p>
+                <p><strong>Corriente R₂:</strong> ${current2.toFixed(3)} A</p>
+                ${resistance3 > 0 ? `<p><strong>Corriente R₃:</strong> ${current3.toFixed(3)} A</p>` : ''}
+                <p><strong>Verificación:</strong> ${(current1 + current2 + current3).toFixed(3)} A</p>
+            `;
+        }
+    </script>
+</body>
+</html>

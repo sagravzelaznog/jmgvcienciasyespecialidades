@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+    <title>Conductores y Aislantes en el Hogar</title>
+    <style>
+        .title { font: bold 20px Arial; text-anchor: middle; }
+        .subtitle { font: bold 14px Arial; text-anchor: middle; }
+        .conductor { fill: #f1c40f; stroke: #d35400; }
+        .insulator { fill: #2ecc71; stroke: #27ae60; }
+        .house { fill: #d2b48c; }
+        .wire { stroke: #7f8c8d; stroke-width: 2; }
+        .text { font: 10px Arial; }
+    </style>
+
+    <!-- Fondo de la casa -->
+    <rect x="50" y="100" width="400" height="250" class="house" />
+    <polygon points="50,100 250,20 450,100" class="house" />
+    
+    <!-- Título -->
+    <text x="250" y="40" class="title">Conductores y Aislantes en el Hogar</text>
+    
+    <!-- Sección de conductores -->
+    <rect x="70" y="120" width="180" height="160" fill="white" rx="5" />
+    <text x="160" y="140" class="subtitle">Conductores</text>
+    
+    <!-- Ejemplos de conductores -->
+    <circle cx="100" cy="180" r="15" class="conductor" />
+    <text x="100" y="210" class="text" text-anchor="middle">Cable de cobre</text>
+    
+    <circle cx="160" cy="180" r="15" class="conductor" />
+    <text x="160" y="210" class="text" text-anchor="middle">Tuberías metálicas</text>
+    
+    <circle cx="130" cy="240" r="15" class="conductor" />
+    <text x="130" y="270" class="text" text-anchor="middle">Electrodomésticos</text>
+    
+    <!-- Sección de aislantes -->
+    <rect x="250" y="120" width="180" height="160" fill="white" rx="5" />
+    <text x="340" y="140" class="subtitle">Aislantes</text>
+    
+    <!-- Ejemplos de aislantes -->
+    <circle cx="280" cy="180" r="15" class="insulator" />
+    <text x="280" y="210" class="text" text-anchor="middle">Cubierta de cables</text>
+    
+    <circle cx="340" cy="180" r="15" class="insulator" />
+    <text x="340" y="210" class="text" text-anchor="middle">Mangos de herramientas</text>
+    
+    <circle cx="310" cy="240" r="15" class="insulator" />
+    <text x="310" y="270" class="text" text-anchor="middle">Enchufes de plástico</text>
+    
+    <!-- Líneas de conexión -->
+    <line x1="250" y1="150" x2="230" y2="150" class="wire" />
+    <line x1="250" y1="250" x2="230" y2="250" class="wire" />
+    
+    <!-- Explicación -->
+    <rect x="100" y="300" width="300" height="50" fill="#f8f9fa" rx="5" />
+    <text x="250" y="320" class="text" text-anchor="middle">Los conductores permiten el paso de la corriente eléctrica</text>
+    <text x="250" y="335" class="text" text-anchor="middle">Los aislantes evitan el paso de la corriente eléctrica</text>
+    
+    <!-- Leyenda -->
+    <rect x="100" y="360" width="30" height="15" class="conductor" />
+    <text x="140" y="372" class="text">Conductor</text>
+    
+    <rect x="250" y="360" width="30" height="15" class="insulator" />
+    <text x="290" y="372" class="text">Aislante</text>
+</svg>

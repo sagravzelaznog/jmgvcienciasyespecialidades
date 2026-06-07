@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6: Fusibles y Protecciones II | Componentes Eléctricos Básicos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sesión 6: Fusibles y Protecciones II</h1>
+            <p>Protecciones avanzadas y diseño de circuitos seguros</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-btn">← Volver al índice</a>
+        
+        <section class="session-content">
+            <div class="learning-objective">
+                <h2>Objetivo específico</h2>
+                <p>Al finalizar esta sesión, los estudiantes podrán seleccionar el dispositivo de protección adecuado para diferentes aplicaciones, comprender el funcionamiento de los disyuntores y aplicar principios avanzados de protección eléctrica.</p>
+            </div>
+
+            <div class="theory">
+                <h2>Contenido teórico</h2>
+                
+                <div class="concept-box">
+                    <h3>Dispositivos de protección avanzados</h3>
+                    <div class="protection-grid">
+                        <div class="protection-device">
+                            <h4>Disyuntores termomagnéticos</h4>
+                            <p>Protegen contra sobrecargas (térmico) y cortocircuitos (magnético). Se pueden resetear después de activarse.</p>
+                            <div class="device-symbol">[Símbolo disyuntor]</div>
+                        </div>
+                        <div class="protection-device">
+                            <h4>Interruptores Diferenciales</h4>
+                            <p>Detectan fugas de corriente a tierra, protegiendo contra descargas eléctricas.</p>
+                            <div class="device-symbol">[Símbolo diferencial]</div>
+                        </div>
+                        <div class="protection-device">
+                            <h4>Varistores (MOV)</h4>
+                            <p>Protegen contra sobretensiones transitorias, como las causadas por rayos.</p>
+                            <div class="device-symbol">[Símbolo varistor]</div>
+                        </div>
+                        <div class="protection-device">
+                            <h4>PTCs</h4>
+                            <p>Resistencias variables con la temperatura, usadas como fusibles auto-reseteables.</p>
+                            <div class="device-symbol">[Símbolo PTC]</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <h3>Selección de protecciones</h3>
+                    <div class="selection-guide">
+                        <div class="selection-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Identificar la corriente nominal</h4>
+                                <p>Calcular la corriente máxima esperada en el circuito</p>
+                            </div>
+                        </div>
+                        <div class="selection-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Considerar el tipo de carga</h4>
+                                <p>Motores, iluminación, electrónica, etc. tienen diferentes características de arranque</p>
+                            </div>
+                        </div>
+                        <div class="selection-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Evaluar condiciones ambientales</h4>
+                                <p>Temperatura, humedad y otros factores que afectan el rendimiento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visual-example">
+                <h2>Analogía práctica</h2>
+                <div class="analogy">
+                    <p>Imagina el sistema de protección eléctrica como un equipo de bomberos:</p>
+                    <ul>
+                        <li><strong>Fusibles:</strong> Como extintores que se consumen al usarse</li>
+                        <li><strong>Disyuntores:</strong> Como rociadores que se pueden resetear</li>
+                        <li><strong>Diferenciales:</strong> Como detectores de humo que avisan de peligros ocultos</li>
+                        <li><strong>Varistores:</strong> Como pararrayos que desvían las amenazas</li>
+                    </ul>
+                </div>
+                <div class="svg-container">
+                    <p><strong>Recurso interactivo:</strong> <a href="#" target="_blank">Simulador de selección de protecciones</a></p>
+                </div>
+            </div>
+
+            <div class="practical-activity">
+                <h2>Actividad práctica: Diseño de protección</h2>
+                <p><strong>Materiales necesarios:</strong> Tablero de prácticas, diferentes dispositivos de protección, cables, multímetro, fuentes de alimentación</p>
+                
+                <div class="activity-scenario">
+                    <h3>Escenario: Instalación de taller</h3>
+                    <p>Debes proteger un taller que tiene:</p>
+                    <ul>
+                        <li>3 máquinas herramientas (15A cada una)</li>
+                        <li>Iluminación general (5A)</li>
+                        <li>Enchufes varios (20A en total)</li>
+                        <li>Sistema de climatización (25A)</li>
+                    </ul>
+                    
+                    <div class="protection-design">
+                        <h4>Tu diseño debe incluir:</h4>
+                        <div class="design-requirements">
+                            <div class="requirement">
+                                <input type="checkbox" id="req1">
+                                <label for="req1">Protección general</label>
+                            </div>
+                            <div class="requirement">
+                                <input type="checkbox" id="req2">
+                                <label for="req2">Protección por circuitos</label>
+                            </div>
+                            <div class="requirement">
+                                <input type="checkbox" id="req3">
+                                <label for="req3">Protección diferencial</label>
+                            </div>
+                            <div class="requirement">
+                                <input type="checkbox" id="req4">
+                                <label for="req4">Protección contra sobretensiones</label>
+                            </div>
+                        </div>
+                        
+                        <div class="design-area">
+                            <h4>Diseña tu esquema de protección:</h4>
+                            <div class="design-canvas" contenteditable="true">
+                                [Haz clic aquí para dibujar tu diseño]
+                            </div>
+                            <button class="btn btn-small" id="guardar-diseno">Guardar diseño</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h2>Estudio de caso: Análisis de falla</h2>
+                <div class="case-content">
+                    <p><strong>Situación:</strong> En una fábrica, los fusibles del área de producción se queman frecuentemente, causando paradas costosas.</p>
+                    <p><strong>Datos:</strong></p>
+                    <ul>
+                        <li>Fusibles de 30A</li>
+                        <li>Corriente normal: 25A</li>
+                        <li>Máquinas con motores de inducción</li>
+                        <li>Variaciones de voltaje en la red</li>
+                    </ul>
+                    
+                    <div class="case-questions">
+                        <h4>Preguntas para análisis:</h4>
+                        <ol>
+                            <li>¿Qué factores podrían estar causando los fusibles quemados?</li>
+                            <li>¿Qué tipo de protección sería más adecuada para este caso?</li>
+                            <li>¿Qué mediciones recomendarías realizar?</li>
+                        </ol>
+                        <textarea placeholder="Escribe tu análisis..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reflection">
+                <h2>Pregunta de reflexión</h2>
+                <p>¿Cómo cambiaría tu enfoque de protección si estuvieras diseñando un sistema para una instalación médica crítica versus una aplicación industrial? Considera factores como confiabilidad, velocidad de respuesta y mantenimiento.</p>
+                <textarea rows="4" placeholder="Escribe tu reflexión aquí..." aria-label="Reflexión sobre diseño de protecciones"></textarea>
+            </div>
+
+            <div class="resources">
+                <h2>Recursos adicionales</h2>
+                <ul>
+                    <li><a href="#" target="_blank">Guía de códigos eléctricos (NOM-001-SEDE)</a></li>
+                    <li><a href="#" target="_blank">Calculadora de selección de protecciones</a></li>
+                    <li><a href="#" target="_blank">Video: Pruebas de operación de disyuntores</a></li>
+                </ul>
+            </div>
+
+            <div class="gamification">
+                <h2>Reto: El ingeniero de protección</h2>
+                <p><strong>Misión:</strong> Diseña el sistema de protección para un edificio de departamentos con:</p>
+                <ul>
+                    <li>10 departamentos (cada uno con cocina, baño y sala/recámara)</li>
+                    <li>Áreas comunes con ascensores y bombas de agua</li>
+                    <li>Estacionamiento con cargadores para autos eléctricos</li>
+                </ul>
+                <p><strong>Entrega:</strong> Diagrama unifilar con todas las protecciones necesarias</p>
+                <p><strong>Puntos:</strong></p>
+                <ul>
+                    <li>30 puntos por diseño completo</li>
+                    <li>20 puntos por eficiencia en la selección</li>
+                    <li>10 puntos por consideración de mantenimiento</li>
+                </ul>
+                <button class="btn" id="subir-proyecto">Subir proyecto</button>
+            </div>
+        </section>
+
+        <div class="session-navigation">
+            <a href="sesion5.html" class="btn">← Sesión anterior</a>
+            <a href="index.html" class="btn">Volver al índice</a>
+            <a href="sesion7.html" class="btn">Siguiente sesión →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <em>JMGV-PTEL</em> 2025 <em>curso electricidad 3</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <style>
+        /* Estilos específicos para esta sesión */
+        .protection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .protection-device {
+            background: white;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .protection-device:hover {
+            transform: translateY(-5px);
+        }
+        
+        .device-symbol {
+            height: 60px;
+            background: #f5f7fa;
+            border: 2px dashed #ccc;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .selection-guide {
+            margin: 1.5rem 0;
+        }
+        
+        .selection-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .selection-step:hover {
+            background: #f1f8ff;
+            transform: translateX(5px);
+        }
+        
+        .step-number {
+            background: var(--secondary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+        
+        .step-content h4 {
+            margin: 0 0 0.3rem 0;
+            color: var(--primary-color);
+        }
+        
+        .step-content p {
+            margin: 0;
+            color: #555;
+        }
+        
+        .design-requirements {
+            background: #f5f7fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        
+        .requirement {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .requirement input[type="checkbox"] {
+            margin-right: 0.8rem;
+        }
+        
+        .design-area {
+            margin-top: 1.5rem;
+        }
+        
+        .design-canvas {
+            min-height: 200px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: white;
+            color: #999;
+        }
+        
+        .case-study {
+            background: #fff8f0;
+            border-left: 4px solid #ff9800;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .case-questions {
+            margin-top: 1.5rem;
+        }
+        
+        .case-questions ol {
+            padding-left: 1.5rem;
+        }
+        
+        .case-questions li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .case-questions textarea {
+            width: 100%;
+            min-height: 100px;
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .protection-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .selection-step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: 0.8rem;
+            }
+        }
+        
+        /* Animaciones */
+        @keyframes highlight {
+            0% { background-color: #fffde7; }
+            50% { background-color: #fff9c4; }
+            100% { background-color: #fffde7; }
+        }
+        
+        .design-canvas:focus {
+            animation: highlight 2s ease-in-out;
+            outline: none;
+            color: #333;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Interacción para el área de diseño
+            const designCanvas = document.querySelector('.design-canvas');
+            if (designCanvas) {
+                designCanvas.addEventListener('click', function() {
+                    if (this.textContent.trim() === '[Haz clic aquí para dibujar tu diseño]') {
+                        this.textContent = '';
+                    }
+                });
+                
+                designCanvas.addEventListener('blur', function() {
+                    if (this.textContent.trim() === '') {
+                        this.textContent = '[Haz clic aquí para dibujar tu diseño]';
+                    }
+                });
+            }
+            
+            // Manejo del botón de guardar diseño
+            const guardarBtn = document.getElementById('guardar-diseno');
+            if (guardarBtn) {
+                guardarBtn.addEventListener('click', function() {
+                    alert('Diseño guardado. Recuerda anotar tus cálculos y consideraciones.');
+                });
+            }
+            
+            // Manejo del envío del proyecto
+            const subirProyectoBtn = document.getElementById('subir-proyecto');
+            if (subirProyectoBtn) {
+                subirProyectoBtn.addEventListener('click', function() {
+                    alert('¡Proyecto enviado para revisión! Recibirás retroalimentación pronto.');
+                });
+            }
+            
+            // Simulación de selección de requisitos
+            const requirements = document.querySelectorAll('.requirement input[type="checkbox"]');
+            requirements.forEach(req => {
+                req.addEventListener('change', function() {
+                    const label = this.nextElementSibling;
+                    if (this.checked) {
+                        label.style.textDecoration = 'line-through';
+                        label.style.color = '#4caf50';
+                    } else {
+                        label.style.textDecoration = 'none';
+                        label.style.color = 'inherit';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

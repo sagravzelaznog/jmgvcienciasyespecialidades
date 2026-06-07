@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: Radiación Solar y Orientación de Paneles</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .objective-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .activity {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .activity h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .practical-exercise {
+            background-color: #fff8e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffa000;
+        }
+        .practical-exercise h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .time {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .evaluation {
+            background-color: #f0f7f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        .evaluation h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al menú</a>
+        
+        <h1>Sesión 3: Radiación Solar y Orientación de Paneles</h1>
+        
+        <div class="objective-box">
+            <h3>Objetivo de la sesión:</h3>
+            <p>Comprender los conceptos fundamentales de la radiación solar, determinar los ángulos óptimos de inclinación para paneles solares y aprender a utilizar herramientas de medición solar para maximizar la eficiencia de los sistemas fotovoltaicos.</p>
+        </div>
+
+        <h2>1. Conceptos de radiación solar</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="activity">
+            <h4>Actividad: Análisis de la radiación solar</h4>
+            
+            <p><strong>Conceptos clave:</strong></p>
+            <ul>
+                <li><strong>Radiación solar:</strong> Energía emitida por el Sol que llega a la Tierra.</li>
+                <li><strong>Irradiancia:</strong> Potencia de la radiación solar por unidad de área (W/m²).</li>
+                <li><strong>Irradiación:</strong> Energía solar recibida por unidad de área en un período (kWh/m²/día).</li>
+                <li><strong>Componentes de la radiación:</strong>
+                    <ul>
+                        <li>Radiación directa: Rayos que llegan directamente del sol.</li>
+                        <li>Radiación difusa: Dispersada por la atmósfera.</li>
+                        <li>Radiación reflejada: Rebota en superficies cercanas.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="https://cdn.daa.net/images/energia-solar/Espectro-solar.jpg" alt="Espectro de radiación solar">
+                <p><em>Espectro de radiación solar (Fuente: cdn.daa.net)</em></p>
+            </div>
+            
+            <p class="time">Tiempo estimado: 15 minutos</p>
+        </div>
+
+        <h2>2. Ángulos óptimos de inclinación</h2>
+        <p><strong>Duración:</strong> 15 minutos</p>
+        
+        <div class="activity">
+            <h4>Actividad: Cálculo de ángulos</h4>
+            
+            <p><strong>Fórmula para ángulo de inclinación óptimo anual:</strong></p>
+            <div class="formula-display">
+                Ángulo de inclinación ≈ Latitud del lugar
+            </>
+            
+            <p><strong>Ajustes estacionales:</strong></p>
+            <ul>
+                <li><strong>Verano:</strong> Latitud - 15°</li>
+                <li><strong>Invierno:</strong> Latitud + 15°</li>
+                <li><strong>Primavera/Otoño:</strong> Latitud</li>
+            </ul>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio práctico:</h4>
+                <p>Calcular los ángulos óptimos para diferentes ciudades:</p>
+                <table class="data-table">
+                    <tr>
+                        <th>Ciudad</th>
+                        <th>Latitud</th>
+                        <th>Inclinación anual</th>
+                        <th>Verano</th>
+                        <th>Invierno</th>
+                    </tr>
+                    <tr>
+                        <td>Ciudad de México</td>
+                        <td>19.4° N</td>
+                        <td>19°</td>
+                        <td>4°</td>
+                        <td>34°</td>
+                    </tr>
+                    <tr>
+                        <td>Monterrey</td>
+                        <td>25.7° N</td>
+                        <td>26°</td>
+                        <td>11°</td>
+                        <td>41°</td>
+                    </tr>
+                    <tr>
+                        <td>Mérida</td>
+                        <td>20.9° N</td>
+                        <td>21°</td>
+                        <td>6°</td>
+                        <td>36°</td>
+                    </tr>
+                </>
+                
+                <p><strong>Actividad:</strong> Calcular los ángulos para tu ciudad.</p>
+            </div>
+            
+            <p class="time">Tiempo estimado: 15 minutos</p>
+        </div>
+
+        <h2>3. Uso de herramientas de medición solar</h2>
+        <p><strong>Duración:</strong> 10 minutos</p>
+        
+        <div class="activity">
+            <h4>Actividad: Instrumentos de medición</h4>
+            
+            <p><strong>Herramientas comunes:</strong></p>
+            <ol>
+                <li><strong>Pirheliómetro:</strong> Mide la radiación solar directa.</li>
+                <li><strong>Piranómetro:</strong> Mide la radiación solar global.</li>
+                <li><strong>Brújula solar:</strong> Determina el acimut solar.</li>
+                <li><strong>Inclinómetro:</strong> Mide ángulos de inclinación.</li>
+                <li><strong>Apps solares:</strong> Sun Seeker, Solar Surveyor, etc.</li>
+            </ol>
+            
+            <div class="practical-exercise">
+                <h4>Demostración: Uso de una brújula solar</h4>
+                <ol>
+                    <li>Ubicar el norte magnético con la brújula.</li>
+                    <li>Aplicar la declinación magnética local.</li>
+                    <li>Determinar el acimut solar para diferentes horas del día.</li>
+                </ol>
+            </div>
+            
+            <p class="time">Tiempo estimado: 10 minutos</p>
+        </div>
+
+        <h2>4. Cálculo de sombras y orientación óptima</h2>
+        <p><strong>Duración:</strong> 5 minutos</p>
+        
+        <div class="activity">
+            <h4>Actividad: Cálculo de sombras</h4>
+            
+            <p><strong>Fórmula para calcular la longitud de la sombra:</strong></p>
+            <div class="formula-display">
+                Longitud de sombra = Altura del objeto / tan(Altura solar)
+            </div>
+            
+            <p>Donde la altura solar se calcula como:</p>
+            <div class="formula-display">
+                Altura solar = 90° - |Latitud - Declinación solar|
+            </div>
+            
+            <div class="practical-exercise">
+                <h4>Ejercicio práctico:</h4>
+                <p>Calcular la sombra que proyectará un poste de 2m de altura el 21 de junio al mediodía solar en la Ciudad de México (19.4° N).</p>
+                <p><strong>Datos:</strong></p>
+                <ul>
+                    <li>Declinación solar el 21 de junio: +23.45°</li>
+                    <li>Altura solar = 90° - |19.4° - 23.45°| = 85.95°</li>
+                    <li>Longitud de sombra = 2m / tan(85.95°) ≈ 0.14m</li>
+                </ul>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://th.bing.com/th/id/R.0bc40882b00837edc3b071f76fd531e4?rik=6ikadLhjVeYUng&pid=ImgRaw&r=0&sres=1&sresct=1" alt="Trayectoria solar">
+                <p><em>Trayectoria solar en diferentes épocas del año</em></p>
+            </div>
+            
+            <p class="time">Tiempo estimado: 10 minutos</p>
+        </div>
+
+        <div class="evaluation">
+            <h3>Evaluación de la sesión</h3>
+            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos.</p>
+            <p><strong>Ejercicio de aplicación:</strong> Resolución de problemas de cálculo de sombras y ángulos óptimos.</p>
+            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre los diferentes tipos de paneles solares disponibles en el mercado y sus características técnicas.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sesion2.html" class="back-button">← Sesión anterior</a>
+            <a href="index.html" class="back-button">Menú principal</a>
+            <a href="sesion4.html" class="back-button next-button">Siguiente sesión →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

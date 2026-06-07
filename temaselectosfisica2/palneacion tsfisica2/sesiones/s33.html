@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass: Refracción de la Luz</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="header-titles">
+                <h1>MASTERCLASS: Refracción de la Luz</h1>
+                <p class="subtitle">Sesión 33: Cuando la luz cambia de velocidad y dobla la realidad.</p>
+            </div>
+            <button id="btn-teacher-33" class="btn-prism" onclick="unlockTeacherMode33()">Modo Maestro 🔒</button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="card refraction-card">
+            <h2 class="section-title">1. El Índice de Refracción (\(n\))</h2>
+            <div class="teacher-note-33 hidden">
+                <strong>💡 TIP PEDAGÓGICO (Física):</strong> Haga la analogía de un automóvil (la luz) pasando del asfalto (el vacío) a una zona de arena (el agua o cristal). El auto forzosamente disminuye su velocidad. El índice de refracción es simplemente una medida de "qué tan densa/frenadora" es la pista de arena.
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>La luz viaja a su máxima velocidad en el vacío (\(c \approx 300,000\) km/s). Cuando ingresa a un medio material (como agua, vidrio o diamante), interactúa con los átomos y <strong>su velocidad disminuye</strong> (\(v\)). El <strong>Índice de Refracción (\(n\))</strong> es un valor adimensional que indica qué tanto se frena la luz en ese material. Se calcula con la fórmula: <strong>\(n = \frac{c}{v}\)</strong>.</p>
+                
+                <h3>3 Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>El Vacío y el Aire:</strong> El vacío tiene un \(n = 1\) exacto. El aire frena la luz poquísimo, por lo que su \(n = 1.0003\) (casi idéntico al vacío).</li>
+                    <li><strong>El Agua:</strong> Tiene un \(n \approx 1.33\). Esto significa que la luz viaja un 33% más lento en tu vaso de agua que en el espacio exterior.</li>
+                    <li><strong>El Diamante:</strong> Tiene un \(n \approx 2.42\) (altísimo). Frena tanto la luz y la hace rebotar tanto en su interior, que causa ese "brillo" característico e intenso que fascina a la joyería.</li>
+                </ol>
+
+                <div class="practical-box">
+                    <h3>🛠️ 3 Ejercicios Prácticos y Observacionales</h3>
+                    <div class="exercise">
+                        <p><strong>1. La Moneda Mágica:</strong> Coloca una moneda en una taza opaca vacía. Aléjate hasta que el borde te tape la moneda. Sin moverte, pide que viertan agua. <em>Observación:</em> La moneda "aparece" de la nada. El cambio en el índice de refracción dobló los rayos de luz sobre el borde hacia tus ojos.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>2. El Vidrio Invisible (Demostración de laboratorio):</strong> Sumerge un tubo de vidrio Pyrex pequeño dentro de un vaso lleno de glicerina o aceite vegetal claro. <em>Observación:</em> El tubo desaparece. Tienen casi el mismo índice de refracción (\(n \approx 1.47\)), por lo que la luz no se dobla al pasar de uno a otro, volviéndolo "invisible".</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>3. Reto Algebraico:</strong> Si el índice de refracción del cristal de una ventana es \(n = 1.5\), ¿a qué velocidad viaja la luz dentro del cristal? <br><em>Solución:</em> Despejamos \(v\): \(v = \frac{c}{n} = \frac{300,000}{1.5} = 200,000\) km/s.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card refraction-card">
+            <h2 class="section-title">2. Ley de Snell y la Geometría de la Luz</h2>
+            <div class="teacher-note-33 hidden">
+                <strong>💡 TIP DE GEOMETRÍA (Regla de Oro):</strong> Explíqueles gráficamente: Si la luz pasa de un medio "rápido" a uno "lento" (ej. aire a agua), el rayo <strong>se acerca</strong> a la línea normal. Si pasa de un medio "lento" a uno "rápido" (agua a aire), el rayo <strong>se aleja</strong> de la normal.
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>Cuando la luz entra a un nuevo medio con un ángulo inclinado, no solo cambia su velocidad, sino que <strong>se dobla (cambia de dirección)</strong>. La <strong>Ley de Snell</strong> relaciona matemáticamente el ángulo de entrada (incidencia, \(\theta_1\)) con el ángulo de salida (refracción, \(\theta_2\)) usando sus índices de refracción: <strong>\(n_1 \cdot \sin(\theta_1) = n_2 \cdot \sin(\theta_2)\)</strong>. Todos los ángulos se miden respecto a la recta Normal.</p>
+                
+                <h3>3 Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>El Lápiz Roto:</strong> Al ver un lápiz dentro de un vaso con agua desde un ángulo, la luz que refleja el lápiz se dobla al salir del agua al aire. Tu cerebro proyecta esos rayos en línea recta, haciéndote creer que la punta está más arriba de donde realmente está.</li>
+                    <li><strong>Pesca con lanza:</strong> Los pescadores indígenas saben que el pez no está donde lo ven. Por la Ley de Snell, la imagen virtual está más arriba que el pez real. Deben apuntar "debajo" de la ilusión.</li>
+                    <li><strong>Espejismos en la carretera:</strong> En días calurosos, el asfalto calienta el aire cercano (\(n\) cambia con la temperatura). La luz del cielo se va curvando gradualmente hasta rebotar hacia tus ojos, haciéndote ver un "charco de agua" que en realidad es el cielo reflejado.</li>
+                </ol>
+
+                <div class="practical-box">
+                    <h3>🛠️ 3 Ejercicios Prácticos y Observacionales</h3>
+                    <div class="exercise">
+                        <p><strong>1. Exploración del Lápiz Roto:</strong> Mete un lápiz en un vaso cilíndrico de cristal con agua. Míralo desde arriba (0° a la normal), no pasa nada. Míralo de lado, se "rompe". Míralo por la curva del cilindro, se engorda. <em>Conclusión:</em> El ángulo de incidencia dictamina qué tanto se dobla la luz.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>2. Láser y Gelatina (o Acrílico):</strong> Apunta un puntero láser de forma oblicua hacia un bloque de acrílico transparente o gelatina clara. <em>Observación:</em> Verás cómo el rayo de luz viaja en línea recta en el aire, se "quiebra" drásticamente al entrar al bloque, y se vuelve a quebrar paralelamente al salir.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>3. Trigonometría de Snell (Cálculo):</strong> Un láser pasa del aire (\(n_1 = 1\)) al agua (\(n_2 = 1.33\)) con un ángulo de incidencia de 30°. ¿Cuál es el ángulo de refracción \(\theta_2\)?<br><em>Solución:</em> \(1 \cdot \sin(30^\circ) = 1.33 \cdot \sin(\theta_2)\) → \(0.5 = 1.33 \cdot \sin(\theta_2)\) → \(\sin(\theta_2) = 0.375\) → \(\theta_2 = \arcsin(0.375) \approx 22^\circ\). ¡El rayo se acercó a la normal!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card quiz-section">
+            <h2>💎 Quiz: Maestría Prismática</h2>
+            <p>10 preguntas para demostrar tu entendimiento de la refracción y la Ley de Snell.</p>
+            
+            <div id="quiz-container-33">
+                <div id="quiz-start-33">
+                    <button class="btn-prism" onclick="startQuiz33()">▶ Iniciar Kahoot de Refracción</button>
+                </div>
+
+                <div id="quiz-game-33" class="hidden">
+                    <div class="quiz-header">
+                        <span id="question-progress-33" class="hud-text">Pregunta 1/10</span>
+                        <span id="score-tracker-33" class="hud-text">Puntos: 0</span>
+                    </div>
+                    <h3 id="question-title-33">¿Cargando pregunta?</h3>
+                    <div class="answer-grid" id="answer-buttons-33">
+                        </div>
+                    <button id="btn-next-33" class="btn-prism hidden" onclick="nextQuestion33()">Siguiente Fotón ⏭</button>
+                </div>
+
+                <div id="quiz-results-33" class="hidden">
+                    <h3>¡Trayectoria Óptica Calculada!</h3>
+                    <p id="final-score-text-33" class="final-score"></p>
+                    <button class="btn-prism" onclick="resetQuiz33()">Reiniciar Laboratorio</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>copyright &copy;jmgv-ptel-2026. masterclass sesion 33 tsf2. todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+</body>
+</html>

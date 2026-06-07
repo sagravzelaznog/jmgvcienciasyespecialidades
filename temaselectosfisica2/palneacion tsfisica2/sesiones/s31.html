@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterclass: Óptica Geométrica - Reflexión</title>
+    <link rel="stylesheet" href="style.css">
+				    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="header-titles">
+                <h1>MASTERCLASS: Óptica Geométrica</h1>
+                <p class="subtitle">Sesión 31: La Ley de la Reflexión y los Espejos.</p>
+            </div>
+            <button id="btn-teacher" onclick="unlockTeacherMode()">Modo Maestro 🔒</button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="card">
+            <h2 class="section-title">1. La Ley de la Reflexión</h2>
+            <div class="teacher-note hidden">
+                <strong>💡 TIP PEDAGÓGICO (Física y Geometría):</strong> Haga mucho énfasis en que los ángulos siempre se miden respecto a la "Normal" (la línea imaginaria perpendicular a la superficie), NUNCA respecto a la superficie del espejo. Esto es el error #1 en los exámenes de ingreso a la universidad.
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>La reflexión ocurre cuando un rayo de luz choca contra una superficie y rebota regresando al medio del que provenía. La <strong>Ley de la Reflexión</strong> establece dos principios geométricos inquebrantables: 1) El rayo incidente, la recta normal (perpendicular a la superficie) y el rayo reflejado están en el mismo plano. 2) <strong>El ángulo de incidencia es exactamente igual al ángulo de reflexión ($\theta_i = \theta_r$)</strong>.</p>
+                
+                <h3>3 Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>Reflexión Especular (Lagos tranquilos):</strong> En una superficie perfectamente lisa (como un espejo o agua quieta), todos los rayos rebotan paralelos, formando una imagen clara de las montañas.</li>
+                    <li><strong>Reflexión Difusa (Paredes y hojas de papel):</strong> Una pared blanca refleja la luz, pero como es microscópicamente rugosa, los rayos rebotan en todas direcciones, iluminando el cuarto sin formar una imagen tuya en la pared.</li>
+                    <li><strong>El Periscopio:</strong> Usado en submarinos, emplea dos espejos planos a 45 grados para desviar la luz 90 grados dos veces, permitiendo ver por encima de obstáculos.</li>
+                </ol>
+
+                <div class="practical-box">
+                    <h3>🛠️ 3 Ejercicios Prácticos y Observacionales</h3>
+                    <div class="exercise">
+                        <p><strong>1. El Tiro al Blanco Láser:</strong> Apunta un puntero láser hacia un espejo plano apoyado en la mesa, intentando dar en una marca en la pared. Usa un transportador escolar para medir que, si entras a 30°, la luz saldrá exactamente a 30° respecto a la normal.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>2. Polvo revelador:</strong> En una habitación oscura, haz rebotar un láser en un espejo y espolvorea un poco de talco o usa humo sobre el área. <em>Efecto:</em> Podrás visualizar geométricamente los rayos incidente y reflejado flotando en el aire.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>3. Ejercicio Matemático:</strong> Si un rayo de luz golpea un espejo formando un ángulo de 40° CON LA SUPERFICIE del espejo. ¿Cuál es su ángulo de reflexión? <em>Solución:</em> La normal está a 90°. El ángulo de incidencia es $90° - 40° = 50°$. Por lo tanto, el ángulo de reflexión es <strong>50°</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">2. Espejos Planos</h2>
+            <div class="teacher-note hidden">
+                <strong>💡 TIP ANDRAGÓGICO:</strong> Explique el concepto de "Imagen Virtual". A los adultos les fascina saber que la imagen en el espejo del baño realmente no existe frente a ellos, sino que su cerebro proyecta las líneas de luz hacia "atrás" del espejo, creando una ilusión óptica a la misma distancia de profundidad.
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>Un espejo plano es una superficie reflectante sin curvatura. Las imágenes formadas por estos espejos tienen características geométricas muy específicas: son <strong>Virtuales</strong> (no se pueden proyectar en una pantalla, parecen estar "detrás" del espejo), <strong>Derechas</strong> (no están de cabeza), del <strong>mismo tamaño</strong> que el objeto, e presentan <strong>inversión lateral</strong> (la izquierda es la derecha).</p>
+                
+                <h3>3 Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>Ambulancias:</strong> Tienen la palabra escrita al revés en el cofre para que, por la inversión lateral del espejo retrovisor plano de los conductores, se lea correctamente.</li>
+                    <li><strong>Caleidoscopios:</strong> Utilizan varios espejos planos unidos en ángulos específicos (ej. 60°) para crear múltiples reflexiones simétricas de objetos pequeños.</li>
+                    <li><strong>Teleprompters o "Fantasmas" en TV:</strong> Un cristal semi-reflectante plano a 45 grados refleja el texto de una pantalla hacia el presentador, mientras la cámara graba a través del cristal sin ver las letras.</li>
+                </ol>
+
+                <div class="practical-box">
+                    <h3>🛠️ 3 Ejercicios Prácticos y Observacionales</h3>
+                    <div class="exercise">
+                        <p><strong>1. Mensaje en clave:</strong> Escribe tu nombre normal en un papel. Ahora intenta escribirlo mirándote en el espejo, sin ver tu mano directamente. <em>Efecto:</em> Observarás la dificultad que causa la inversión lateral geométrica en la coordinación ojo-mano.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>2. El túnel infinito:</strong> Coloca dos espejos planos mirándose frente a frente y pon un objeto pequeño (como una moneda) en medio. Asómate por un lado. <em>Efecto:</em> Verás infinitas reflexiones haciéndose cada vez más profundas.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>3. Geometría de distancia:</strong> Coloca una cinta métrica perpendicular a un espejo. Párate a 1 metro de distancia. <em>Observación:</em> Tu imagen virtual parece estar exactamente a 1 metro "adentro" del espejo. La distancia objeto-espejo es igual a la distancia espejo-imagen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">3. Espejos Esféricos</h2>
+            <div class="teacher-note hidden">
+                <strong>💡 REGLA MNEMOTÉCNICA PARA ALUMNOS:</strong> <br> - <strong>Cóncavo:</strong> Como una "cueva" (hundido). Converge la luz (la junta).<br> - <strong>Convexo:</strong> Como la "panza" de la cuchara. Diverge la luz (la dispersa). <br> La ecuación de Descartes (1/f = 1/do + 1/di) unifica esto algebraicamente.
+            </div>
+            
+            <div class="content">
+                <h3>Definición</h3>
+                <p>Son espejos cuya superficie reflectante es una porción de una esfera. Se dividen en dos: <br>
+                <strong>1) Cóncavos (Convergentes):</strong> La superficie interna refleja. Pueden formar imágenes reales (que se pueden proyectar) o virtuales, dependiendo de qué tan cerca esté el objeto del Foco.<br>
+                <strong>2) Convexos (Divergentes):</strong> La superficie externa refleja. Siempre forman imágenes virtuales, derechas y MÁS PEQUEÑAS, lo que amplía el campo de visión.</p>
+                
+                <h3>3 Ejemplos Conceptuales</h3>
+                <ol>
+                    <li><strong>Espejos de Maquillaje o Dentista (Cóncavos):</strong> Al estar muy cerca (dentro del foco), crean una imagen virtual gigante y derecha para ver detalles de la cara o los dientes.</li>
+                    <li><strong>Espejos de Seguridad en Tiendas o Curvas (Convexos):</strong> Amplían enormemente el campo visual, permitiendo ver todos los pasillos, aunque todo se ve más pequeño.</li>
+                    <li><strong>Faros de Auto o Linternas (Cóncavos-Parabólicos):</strong> Se coloca el foco de luz exactamente en el punto focal geométrico del espejo cóncavo; así, los rayos rebotan y salen completamente paralelos, iluminando a gran distancia.</li>
+                </ol>
+
+                <div class="practical-box">
+                    <h3>🛠️ 3 Ejercicios Prácticos y Observacionales</h3>
+                    <div class="exercise">
+                        <p><strong>1. El Laboratorio de la Cuchara:</strong> Toma una cuchara sopera muy brillante. Mírate en la parte hundida (cóncava) desde lejos; te verás de cabeza (imagen real invertida). Acércala mucho a tu ojo; te verás derecho y gigante (imagen virtual). Mírate en el dorso (convexo); siempre te verás derecho y pequeño.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>2. Concentración Solar:</strong> Usa un espejo de maquillaje de aumento (cóncavo) en un día soleado para reflejar la luz sobre un papel negro. Busca el punto más brillante ajustando la distancia. <em>Efecto:</em> Ese punto es el "Foco" geométrico. Al concentrar todos los rayos infrarrojos en un área pequeña, el papel comenzará a quemarse.</p>
+                    </div>
+                    <div class="exercise">
+                        <p><strong>3. Ecuación de los Espejos (1/f = 1/do + 1/di):</strong> Un objeto se coloca a 10 cm ($d_o$) de un espejo cóncavo con distancia focal de 5 cm ($f$). ¿Dónde aparece la imagen ($d_i$)? <em>Solución:</em> 1/5 = 1/10 + 1/$d_i$. Resolviendo, 1/$d_i$ = 1/10. La imagen aparece a 10 cm, invertida y del mismo tamaño (está en el Centro de Curvatura).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card quiz-section">
+            <h2>🎯 Quiz: Maestría en Reflexión Óptica</h2>
+            <p>10 preguntas para poner a prueba tus conocimientos geométricos de la luz.</p>
+            
+            <div id="quiz-container">
+                <div id="quiz-start">
+                    <button class="btn-primary" onclick="startQuiz()">▶ Iniciar Kahoot Óptico</button>
+                </div>
+
+                <div id="quiz-game" class="hidden">
+                    <div class="quiz-header">
+                        <span id="question-progress" class="hud-text">Pregunta 1/10</span>
+                        <span id="score-tracker" class="hud-text">Puntos: 0</span>
+                    </div>
+                    <h3 id="question-title">¿Cargando pregunta?</h3>
+                    <div class="answer-grid" id="answer-buttons">
+                        </div>
+                    <button id="btn-next" class="btn-primary hidden" onclick="nextQuestion()">Siguiente ⏭</button>
+                </div>
+
+                <div id="quiz-results" class="hidden">
+                    <h3>¡Simulación Óptica Completada!</h3>
+                    <p id="final-score-text" class="final-score"></p>
+                    <button class="btn-primary" onclick="resetQuiz()">Repetir Examen</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>copyright &copy;jmgv-ptel-2026. masterclass sesion 31 tsf2. todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
