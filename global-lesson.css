@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =========================================================================
+   VARIABLES GLOBALES (Auto-switch Día/Noche)
+========================================================================= */
+
+/* TEMA CLARO (Por defecto o cuando el sistema está en Light Mode) */
+:root {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-nav: rgba(255, 255, 255, 0.85);
+    
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --text-heading: #1e293b;
+    
+    --border-color: #e2e8f0;
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    
+    --primary-color: #0284c7; /* Azul elegante */
+    --accent-color: #10b981;  /* Verde esmeralda para éxitos/actividades */
+    --warning-color: #f59e0b;
+    
+    --box-info-bg: #e0f2fe;
+    --box-info-border: #38bdf8;
+    
+    --box-act-bg: #dcfce7;
+    --box-act-border: #34d399;
+}
+
+/* TEMA OSCURO (Automático cuando el sistema está en Dark Mode o es de noche) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-main: #0f172a;
+        --bg-card: #1e293b;
+        --bg-nav: rgba(15, 23, 42, 0.85);
+        
+        --text-main: #f8fafc;
+        --text-muted: #cbd5e1;
+        --text-heading: #f1f5f9;
+        
+        --border-color: #334155;
+        --shadow-soft: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        
+        --primary-color: #38bdf8;
+        --accent-color: #34d399;
+        --warning-color: #fbbf24;
+        
+        --box-info-bg: rgba(56, 189, 248, 0.1);
+        --box-info-border: #0ea5e9;
+        
+        --box-act-bg: rgba(52, 211, 153, 0.1);
+        --box-act-border: #10b981;
+    }
+}
+
+/* =========================================================================
+   ESTILOS BASE (Nivel Genio - Lectura)
+========================================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.7;
+    font-size: 1.05rem;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* =========================================================================
+   NAVEGACIÓN SUPERIOR (Glassmorphism)
+========================================================================= */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-nav);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+nav .titulo-principal {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-right: auto;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-color);
+    background-color: rgba(2, 132, 199, 0.1);
+}
+
+nav a.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* =========================================================================
+   CONTENEDOR PRINCIPAL
+========================================================================= */
+main {
+    max-width: 850px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+@media (max-width: 768px) {
+    main {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    nav {
+        justify-content: center;
+    }
+    nav .titulo-principal {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* =========================================================================
+   TIPOGRAFÍA Y ELEMENTOS DE TEXTO
+========================================================================= */
+h1, h2, h3, h4 {
+    color: var(--text-heading);
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+h2 {
+    font-size: 1.6rem;
+    border-left: 4px solid var(--primary-color);
+    padding-left: 0.8rem;
+}
+
+p {
+    margin-bottom: 1.2rem;
+    color: var(--text-main);
+}
+
+strong {
+    color: var(--text-heading);
+    font-weight: 600;
+}
+
+ul, ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: var(--text-main);
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+img, .img-principal {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+}
+
+.fig-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+/* =========================================================================
+   CAJAS DE INFORMACIÓN (Callouts)
+========================================================================= */
+.info-box, .actividad {
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.info-box {
+    background-color: var(--box-info-bg);
+    border-left: 4px solid var(--box-info-border);
+}
+
+.actividad {
+    background-color: var(--box-act-bg);
+    border-left: 4px solid var(--box-act-border);
+}
+
+/* Variantes opcionales si estaban en los cursos anteriores */
+.variante-azul, .variante-celeste {
+    background-color: var(--box-info-bg);
+    border-left-color: var(--primary-color);
+}
+.variante-cian {
+    background-color: rgba(6, 182, 212, 0.1);
+    border-left-color: #06b6d4;
+}
+.variante-rosa {
+    background-color: rgba(236, 72, 153, 0.1);
+    border-left-color: #ec4899;
+}
+
+/* =========================================================================
+   FOOTER DE LA LECCIÓN
+========================================================================= */
+.footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
