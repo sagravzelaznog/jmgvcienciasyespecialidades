@@ -4,7 +4,6 @@
    VARIABLES GLOBALES (Auto-switch Día/Noche)
 ========================================================================= */
 
-/* TEMA CLARO (Por defecto o cuando el sistema está en Light Mode) */
 :root {
     --bg-main: #f8fafc;
     --bg-card: #ffffff;
@@ -18,17 +17,28 @@
     --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     
     --primary-color: #0284c7; /* Azul elegante */
-    --accent-color: #10b981;  /* Verde esmeralda para éxitos/actividades */
-    --warning-color: #f59e0b;
+    --accent-color: #10b981;  /* Verde esmeralda */
+    --warning-color: #f59e0b; /* Naranja/Amarillo */
+    --danger-color: #ef4444;  /* Rojo */
+    --purple-color: #8b5cf6;  /* Púrpura */
     
+    /* Cajas base */
     --box-info-bg: #e0f2fe;
     --box-info-border: #38bdf8;
     
     --box-act-bg: #dcfce7;
     --box-act-border: #34d399;
+
+    --box-warn-bg: #fef3c7;
+    --box-warn-border: #f59e0b;
+
+    --box-danger-bg: #fee2e2;
+    --box-danger-border: #ef4444;
+
+    --box-purple-bg: #ede9fe;
+    --box-purple-border: #8b5cf6;
 }
 
-/* TEMA OSCURO (Automático cuando el sistema está en Dark Mode o es de noche) */
 @media (prefers-color-scheme: dark) {
     :root {
         --bg-main: #0f172a;
@@ -45,17 +55,28 @@
         --primary-color: #38bdf8;
         --accent-color: #34d399;
         --warning-color: #fbbf24;
+        --danger-color: #f87171;
+        --purple-color: #a78bfa;
         
         --box-info-bg: rgba(56, 189, 248, 0.1);
         --box-info-border: #0ea5e9;
         
         --box-act-bg: rgba(52, 211, 153, 0.1);
         --box-act-border: #10b981;
+
+        --box-warn-bg: rgba(245, 158, 11, 0.1);
+        --box-warn-border: #f59e0b;
+
+        --box-danger-bg: rgba(239, 68, 68, 0.1);
+        --box-danger-border: #ef4444;
+
+        --box-purple-bg: rgba(139, 92, 246, 0.1);
+        --box-purple-border: #8b5cf6;
     }
 }
 
 /* =========================================================================
-   ESTILOS BASE (Nivel Genio - Lectura)
+   ESTILOS BASE
 ========================================================================= */
 
 * {
@@ -74,9 +95,9 @@ body {
 }
 
 /* =========================================================================
-   NAVEGACIÓN SUPERIOR (Glassmorphism)
+   NAVEGACIÓN SUPERIOR Y CABECERAS (Legacy Support)
 ========================================================================= */
-nav {
+nav, .nav {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -93,14 +114,15 @@ nav {
     transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
-nav .titulo-principal {
+nav .titulo-principal, .logo, .nav-titulo {
     font-weight: 700;
     font-size: 1.25rem;
     color: var(--primary-color);
     margin-right: auto;
+    text-decoration: none;
 }
 
-nav a {
+nav a, .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 500;
@@ -110,21 +132,37 @@ nav a {
     transition: all 0.2s ease;
 }
 
-nav a:hover, nav a.active {
+nav a:hover, nav a.active, .nav-links a:hover {
     color: var(--primary-color);
     background-color: rgba(2, 132, 199, 0.1);
 }
 
-nav a.disabled {
-    opacity: 0.5;
-    pointer-events: none;
+nav ul.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Headers legacy */
+.header, .sesion-header {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
 }
 
 /* =========================================================================
-   CONTENEDOR PRINCIPAL
+   CONTENEDORES PRINCIPALES (Universal Wrapper)
 ========================================================================= */
-main {
-    max-width: 850px;
+/* Cubre <main>, .container, .page-container, .sesion-content-main */
+main, 
+.container, 
+.page-container, 
+.main-principal {
+    max-width: 900px;
     margin: 3rem auto;
     padding: 2rem;
     background-color: var(--bg-card);
@@ -134,24 +172,51 @@ main {
     transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
+/* Evitar dobles cajas cuando un contenedor está dentro de otro */
+main .container,
+.container .sesion-content-main,
+.page-container .phase-block {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0 auto 2rem;
+    background-color: transparent;
+}
+
 @media (max-width: 768px) {
-    main {
+    main, .container, .page-container, .main-principal {
         margin: 1rem;
         padding: 1.5rem;
-    }
-    nav {
-        justify-content: center;
-    }
-    nav .titulo-principal {
-        margin-right: 0;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 0.5rem;
     }
 }
 
 /* =========================================================================
-   TIPOGRAFÍA Y ELEMENTOS DE TEXTO
+   SECCIONES Y BLOQUES (Legacy Blocks)
+========================================================================= */
+.section, .teoria-section, .practica-section, .phase-block {
+    margin-bottom: 2.5rem;
+}
+
+.phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--box-info-bg);
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    font-weight: 600;
+    border-bottom: 2px solid var(--box-info-border);
+    color: var(--primary-color);
+}
+.phase-content {
+    border: 1px solid var(--border-color);
+    border-top: none;
+    padding: 1.5rem;
+    border-radius: 0 0 8px 8px;
+}
+
+/* =========================================================================
+   TIPOGRAFÍA
 ========================================================================= */
 h1, h2, h3, h4 {
     color: var(--text-heading);
@@ -161,9 +226,15 @@ h1, h2, h3, h4 {
     line-height: 1.3;
 }
 
-h1 {
+h1, .sesion-title {
     font-size: 2.2rem;
     text-align: center;
+    margin-bottom: 1rem;
+}
+.sesion-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
     margin-bottom: 2.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--border-color);
@@ -190,33 +261,36 @@ ul, ol {
     padding-left: 1.5rem;
     color: var(--text-main);
 }
+li { margin-bottom: 0.5rem; }
 
-li {
-    margin-bottom: 0.5rem;
-}
-
-img, .img-principal {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 2rem auto;
+/* Tablas (muy comunes en los cursos) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: var(--bg-main);
     border-radius: 8px;
-    box-shadow: var(--shadow-soft);
+    overflow: hidden;
 }
-
-.fig-caption {
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-style: italic;
-    margin-top: -1rem;
-    margin-bottom: 2rem;
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+th {
+    background-color: rgba(0,0,0,0.05);
+    color: var(--text-heading);
+    font-weight: 600;
+}
+@media (prefers-color-scheme: dark) {
+    th { background-color: rgba(255,255,255,0.05); }
 }
 
 /* =========================================================================
-   CAJAS DE INFORMACIÓN (Callouts)
+   CAJAS DE INFORMACIÓN Y ALERTAS (Universal Callouts)
 ========================================================================= */
-.info-box, .actividad {
+/* Base para todas las cajas */
+.info-box, .actividad, .warning-box, .danger-box, .success-box, .tip, .script, .didactic-example, .psych-note {
     padding: 1.2rem 1.5rem;
     margin: 1.5rem 0;
     border-radius: 8px;
@@ -224,38 +298,103 @@ img, .img-principal {
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
-.info-box {
+/* Info (Azul) */
+.info-box, .variante-azul {
     background-color: var(--box-info-bg);
     border-left: 4px solid var(--box-info-border);
 }
 
-.actividad {
+/* Actividad/Success (Verde) */
+.actividad, .success-box, .tip {
     background-color: var(--box-act-bg);
     border-left: 4px solid var(--box-act-border);
 }
 
-/* Variantes opcionales si estaban en los cursos anteriores */
-.variante-azul, .variante-celeste {
-    background-color: var(--box-info-bg);
-    border-left-color: var(--primary-color);
+/* Warning (Amarillo/Naranja) */
+.warning-box {
+    background-color: var(--box-warn-bg);
+    border-left: 4px solid var(--box-warn-border);
 }
-.variante-cian {
-    background-color: rgba(6, 182, 212, 0.1);
-    border-left-color: #06b6d4;
+
+/* Danger (Rojo) */
+.danger-box {
+    background-color: var(--box-danger-bg);
+    border-left: 4px solid var(--box-danger-border);
 }
-.variante-rosa {
-    background-color: rgba(236, 72, 153, 0.1);
-    border-left-color: #ec4899;
+
+/* Script / Didactic (Púrpura) */
+.script, .didactic-example, .psych-note {
+    background-color: var(--box-purple-bg);
+    border-left: 4px solid var(--box-purple-border);
+}
+.didactic-title {
+    display: block;
+    font-weight: 700;
+    color: var(--purple-color);
+    margin-bottom: 0.5rem;
 }
 
 /* =========================================================================
-   FOOTER DE LA LECCIÓN
+   BOTONES Y EXTRAS
 ========================================================================= */
-.footer {
+.nav-btn, .home-link, .btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--bg-main);
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    margin-bottom: 1rem;
+}
+.nav-btn:hover, .home-link:hover, .btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+.sesion-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+.formula {
+    background: var(--bg-main);
+    padding: 1rem;
+    text-align: center;
+    font-family: monospace;
+    font-size: 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 1rem 0;
+    color: var(--primary-color);
+}
+
+/* Multimedia */
+img, .img-principal, .svg-container {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 8px;
+    text-align: center;
+}
+.svg-container svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =========================================================================
+   FOOTER
+========================================================================= */
+.footer, footer, .navigation-footer, .fixed-footer {
     margin-top: 4rem;
     padding-top: 2rem;
+    padding-bottom: 2rem;
     border-top: 1px solid var(--border-color);
     text-align: center;
     color: var(--text-muted);
     font-size: 0.9rem;
+    background-color: var(--bg-nav);
 }
