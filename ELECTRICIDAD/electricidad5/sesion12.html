@@ -3,473 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 12: Mantenimiento de Sistemas Fotovoltaicos</title>
+    <title>Sesión 12: Mantenimiento y Diagnóstico</title>
+    <link rel="stylesheet" href="../../global-lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+        .maint-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
+
+        .maint-card {
+            background: #2c3e50;
+            padding: 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
-            background-color: #3498db;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            box-shadow: var(--shadow-soft);
         }
-        .back-button:hover {
-            background-color: #2980b9;
+
+        .maint-card h3 { color: var(--accent-color); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        
+        /* Simulator */
+        .simulator-box {
+            background: #1a252f;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .objective-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
+
+        .problem-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .issue-card {
+            background: #34495e;
+            border: 2px solid #7f8c8d;
+            border-radius: 10px;
             padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        .maintenance-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            border-left: 3px solid #3498db;
-        }
-        .safety-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        .safety-box h4 {
-            color: #c62828;
-            margin-top: 0;
-        }
-        .specs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .specs-table th, .specs-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        .specs-table th {
-            background-color: #f2f2f2;
-        }
-        .specs-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .practical-exercise {
-            background-color: #e8f5e9;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border-left: 3px solid #2e7d32;
-        }
-        .practical-exercise h4 {
-            color: #1b5e20;
-            margin-top: 0;
-        }
-        .time {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        .evaluation {
-            background-color: #f0f7f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        .evaluation h3 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        .tip-box {
-            background-color: #fff8e1;
-            border-left: 3px solid #ffa000;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .warning-box {
-            background-color: #ffebee;
-            border-left: 3px solid #f44336;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .note-box {
-            background-color: #e3f2fd;
-            border-left: 3px solid #1976d2;
-            padding: 10px 15px;
-            margin: 15px 0;
-        }
-        .image-container {
             text-align: center;
-            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
         }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
+
+        .issue-card.fixed {
+            border-color: #2ecc71;
+            background: rgba(46, 204, 113, 0.1);
         }
-        .checklist-item {
-            margin: 10px 0;
-            padding-left: 25px;
+
+        .issue-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .issue-1 { color: #95a5a6; } /* Polvo */
+        .issue-2 { color: #e74c3c; } /* Hotspot */
+        .issue-3 { color: #f39c12; } /* Sulfato */
+
+        .tools-area {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .tool-btn:hover { background: #3498db; transform: scale(1.05); }
+        .tool-btn.selected { background: #f1c40f; color: #333; font-weight: bold; }
+
+        .eff-bar-container {
+            width: 100%;
+            height: 30px;
+            background: #c0392b;
+            border-radius: 15px;
+            margin-top: 20px;
+            overflow: hidden;
             position: relative;
         }
-        .checklist-item:before {
-            content: "✓";
+
+        .eff-bar-fill {
+            height: 100%;
+            background: #2ecc71;
+            width: 40%; /* Empieza en 40% por los problemas */
+            transition: width 0.5s ease-out;
+        }
+
+        .eff-text {
             position: absolute;
-            left: 0;
-            color: #27ae60;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
             font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px black;
         }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            .specs-table {
-                font-size: 0.9em;
-            }
+
+        .click-target {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            cursor: crosshair;
         }
+
+        .fix-msg {
+            color: #2ecc71;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: none;
+        }
+        .issue-card.fixed .fix-msg { display: block; }
+        .issue-card.fixed .issue-desc { display: none; }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al menú</a>
-        
-        <h1>Sesión 12: Mantenimiento de Sistemas Fotovoltaicos</h1>
-        
-        <div class="objective-box">
-            <h3>Objetivo de la sesión:</h3>
-            <p>Conocer y aplicar los procedimientos de mantenimiento preventivo y correctivo para sistemas fotovoltaicos, incluyendo la limpieza de paneles, verificación de conexiones, diagnóstico de fallas comunes y registro de actividades para garantizar el máximo rendimiento y vida útil del sistema.</p>
-        </div>
 
-        <h2>1. Importancia del mantenimiento</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
+<main class="page-container">
+    <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Volver al Mapa de Conocimiento</a>
+
+    <div class="sesion-header">
+        <h1 class="sesion-title">Mantenimiento y Diagnóstico</h1>
+        <p class="sesion-subtitle">Sesión 12 - Módulo 4: Cuidando la Inversión</p>
+    </div>
+
+    <div class="info-box">
+        <strong><i class="fas fa-stethoscope"></i> Objetivo de Aprendizaje:</strong>
+        <p style="margin-bottom: 0; margin-top: 0.5rem;">Un sistema solar no se cuida solo. El polvo, el óxido y el calor son los enemigos silenciosos que destruyen la eficiencia. Aprenderás a diagnosticar fallas y a realizar el mantenimiento preventivo para que el sistema dure más de 20 años.</p>
+    </div>
+
+    <div class="teoria-section">
+        <h2>Los Tres Enemigos del Sistema Solar</h2>
         
-        <div class="maintenance-box">
-            <h4>1.1 Beneficios del mantenimiento regular</h4>
-            
-            <ul>
-                <li><strong>Máximo rendimiento:</strong> Los paneles sucios pueden perder hasta un 25% de su eficiencia</li>
-                <li><strong>Mayor vida útil:</strong> La detección temprana de problemas previene daños mayores</li>
-                <li><strong>Seguridad:</strong> Reduce riesgos eléctricos y estructurales</li>
-                <li><strong>Garantía:</strong> Muchos fabricantes requieren mantenimiento regular para mantener la garantía</li>
-                <li><strong>Retorno de inversión:</strong> Mejor rendimiento = mayor ahorro energético</li>
-            </ul>
-            
-            <div class="image-container">
-                <img src="https://tse1.mm.bing.net/th/id/OIP.ndLfNKsALJINKKQPyEILhgHaFj" alt="Mantenimiento de paneles solares" class="img-small">
-                <p><em>Limpieza y mantenimiento regular de paneles solares</em></p>
+        <div class="maint-grid">
+            <div class="maint-card">
+                <h3><i class="fas fa-smog" style="color:#bdc3c7;"></i> Capa de Polvo/Lodo</h3>
+                <p>Una capa gruesa de polvo (o excremento de aves) puede reducir la producción hasta un 25%. Los paneles no tienen limpiaparabrisas. Deben lavarse con agua y una esponja suave <strong>muy temprano en la mañana</strong> (si los lavas al mediodía, el choque térmico del agua fría estrellará el cristal hirviendo).</p>
             </div>
             
-            <h4>1.2 Frecuencia recomendada de mantenimiento</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Componente</th>
-                    <th>Mantenimiento</th>
-                    <th>Frecuencia</th>
-                </tr>
-                <tr>
-                    <td>Paneles solares</td>
-                    <td>Limpieza e inspección visual</td>
-                    <td>Cada 6 meses</td>
-                </tr>
-                <tr>
-                    <td>Estructuras de montaje</td>
-                    <td>Verificación de anclajes y corrosión</td>
-                    <td>Anual</td>
-                </tr>
-                <tr>
-                    <td>Cableado</td>
-                    <td>Inspección de aislamiento y conexiones</td>
-                    <td>Anual</td>
-                </tr>
-                <tr>
-                    <td>Baterías (si aplica)</td>
-                    <td>Nivel de electrolito y limpieza de bornes</td>
-                    <td>Trimestral</td>
-                </tr>
-                <tr>
-                    <td>Inversor</td>
-                    <td>Limpieza de ventiladores y verificación de parámetros</td>
-                    <td>Anual</td>
-                </tr>
-                <tr>
-                    <td>Sistema de monitoreo</td>
-                    <td>Verificación de funcionamiento</td>
-                    <td>Mensual</td>
-                </tr>
-            </table>
-        </div>
-
-        <h2>2. Mantenimiento de paneles solares</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="maintenance-box">
-            <h4>2.1 Limpieza de paneles</h4>
-            
-            <p><strong>Materiales necesarios:</strong></p>
-            <ul>
-                <li>Escobilla de cerdas suaves o esponja no abrasiva</li>
-                <li>Agua desmineralizada o destilada</li>
-                <li>Jabón neutro (opcional)</li>
-                <li>Manguera con boquilla de baja presión</li>
-                <li>Escalera o pértiga extensible (para techos altos)</li>
-                <li>Guantes de goma</li>
-                <li>Gafas de protección</li>
-            </ul>
-            
-            <p><strong>Procedimiento de limpieza:</strong></p>
-            <ol>
-                <li><strong>Desconectar el sistema:</strong> Seguir el procedimiento de bloqueo/etiquetado (LOTO)</li>
-                <li><strong>Enfriar los paneles:</strong> Limpiar temprano en la mañana o al atardecer</li>
-                <li><strong>Enjuagar con agua:</strong> Eliminar polvo y suciedad suelta</li>
-                <li><strong>Lavar suavemente:</strong> Usar agua con jabón neutro si es necesario</li>
-                <li><strong>Enjuagar bien:</strong> Evitar dejar residuos de jabón</li>
-                <li><strong>Secar al aire:</strong> O usar una escobilla de goma sin raspar</li>
-            </ol>
-            
-            <div class="warning-box">
-                <h4>¡Precaución!</h4>
-                <p>Nunca uses agua fría sobre paneles calientes, podrían agrietarse. Evita limpiar cuando los paneles estén calientes al tacto.</p>
+            <div class="maint-card">
+                <h3><i class="fas fa-fire" style="color:#e74c3c;"></i> Puntos Calientes (Hotspots)</h3>
+                <p>Si una hoja de árbol tapa una sola celda del panel, esa celda deja de producir y se convierte en una "resistencia" que absorbe la energía de las demás. Esto genera un calor tan intenso que puede derretir el plástico trasero e incendiar el panel. Se detectan con cámaras térmicas.</p>
             </div>
-            
-            <h4>2.2 Inspección visual</h4>
-            
-            <p>Buscar los siguientes problemas:</p>
-            <ul>
-                <li><strong>Grietas o roturas</strong> en las celdas o vidrio</li>
-                <li><strong>Puntos calientes</strong> (manchas oscuras)</li>
-                <li><strong>Descoloramiento</strong> o quemaduras</li>
-                <li><strong>Sellado deteriorado</strong> en los bordes</li>
-                <li><strong>Corrosión</strong> en los marcos o cajas de conexión</li>
-                <li><strong>Nidos de pájaros</strong> o excrementos persistentes</li>
-            </ul>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Usa una cámara térmica para identificar celdas calientes que pueden indicar microgrietas o fallas internas.</p>
+
+            <div class="maint-card">
+                <h3><i class="fas fa-car-battery" style="color:#f1c40f;"></i> Sulfatación de Bornes</h3>
+                <p>En sistemas con baterías de plomo-ácido, el ácido libera gases que oxidan y crean un polvo blanco/verdoso en las terminales (sulfato). Esto actúa como un aislante que impide que la electricidad fluya, haciendo creer que la batería está "muerta".</p>
             </div>
-        </div>
-
-        <h2>3. Mantenimiento de componentes eléctricos</h2>
-        <p><strong>Duración:</strong> 25 minutos</p>
-        
-        <div class="maintenance-box">
-            <h4>3.1 Baterías (sistemas aislados)</h4>
-            
-            <p><strong>Baterías de plomo-ácido inundadas:</strong></p>
-            <ul>
-                <li>Verificar nivel de electrolito mensualmente</li>
-                <li>Rellenar solo con agua destilada hasta el nivel indicado</li>
-                <li>Limpiar bornes con bicarbonato y agua para neutralizar la corrosión</li>
-                <li>Aplicar grasa dieléctrica después de limpiar</li>
-                <li>Verificar la tensión de flotación con multímetro</li>
-            </ul>
-            
-            <p><strong>Baterías selladas (AGM, Gel, Litio):</strong></p>
-            <ul>
-                <li>Inspeccionar visualmente en busca de abultamientos o fugas</li>
-                <li>Verificar conexiones y apriete de terminales</li>
-                <li>Medir voltaje en circuito abierto</li>
-                <li>Realizar pruebas de capacidad periódicas</li>
-            </ul>
-            
-            <h4>3.2 Inversores y reguladores</h4>
-            
-            <p><strong>Mantenimiento del inversor:</strong></p>
-            <ul>
-                <li>Limpiar rejillas de ventilación con aire comprimido</li>
-                <li>Verificar que los ventiladores funcionen correctamente</li>
-                <li>Revisar códigos de error en la pantalla</li>
-                <li>Medir voltaje de entrada/salida</li>
-                <li>Verificar conexiones de los terminales</li>
-            </ul>
-            
-            <p><strong>Mantenimiento del regulador de carga:</strong></p>
-            <ul>
-                <li>Verificar indicadores LED o pantalla</li>
-                <li>Medir voltaje de carga de las baterías</li>
-                <li>Verificar que los parámetros de carga sean los correctos</li>
-                <li>Limpiar terminales y conexiones</li>
-            </ul>
-            
-            <div class="note-box">
-                <p><strong>Nota:</strong> Consulta siempre el manual del fabricante para procedimientos específicos de mantenimiento y no realices ajustes en parámetros sin la debida capacitación.</p>
-            </div>
-            
-            <h4>3.3 Cableado y protecciones</h4>
-            
-            <ul>
-                <li><strong>Inspeccionar cables:</strong> Buscar signos de desgaste, roedores o daños por intemperie</li>
-                <li><strong>Verificar conexiones:</strong> Apretar terminales sueltos</li>
-                <li><strong>Revisar canaletas:</strong> Asegurar que estén bien fijas y sin daños</li>
-                <li><strong>Protecciones:</strong> Verificar que los fusibles estén en buen estado y sean del amperaje correcto</li>
-                <li><strong>Puesta a tierra:</strong> Medir la resistencia de tierra (debe ser <25Ω)</li>
-            </ul>
-        </div>
-
-        <h2>4. Diagnóstico de fallas comunes</h2>
-        <p><strong>Duración:</strong> 20 minutos</p>
-        
-        <div class="practical-exercise">
-            <h4>4.1 Problemas comunes y soluciones</h4>
-            
-            <table class="specs-table">
-                <tr>
-                    <th>Síntoma</th>
-                    <th>Posibles causas</th>
-                    <th>Solución</th>
-                </tr>
-                <tr>
-                    <td>Baja producción de energía</td>
-                    <td>Paneles sucios, sombreados, falla en cadenas, degradación</td>
-                    <td>Limpiar paneles, eliminar sombras, verificar cadenas con multímetro</td>
-                </tr>
-                <tr>
-                    <td>Inversor no enciende</td>
-                    <td>Sin alimentación CC, fusibles quemados, falla del inversor</td>
-                    <td>Verificar tensión de entrada, revisar fusibles, resetear inversor</td>
-                </tr>
-                <tr>
-                    <td>Baterías no cargan</td>
-                    <td>Regulador defectuoso, conexiones sueltas, baterías sulfatadas</td>
-                    <td>Verificar voltaje del panel, conexiones, estado de las baterías</td>
-                </tr>
-                <tr>
-                    <td>Pérdida de potencia en horas pico</td>
-                    <td>Sobrecalentamiento, sombras parciales, fallo en MPPT</td>
-                    <td>Mejorar ventilación, eliminar sombras, verificar seguimiento MPPT</td>
-                </tr>
-                <tr>
-                    <td>Ruidos anormales en inversor</td>
-                    <td>Ventiladores sucios, componentes electrónicos defectuosos</td>
-                    <td>Limpiar ventiladores, verificar condensadores inflados, contactar servicio técnico</td>
-                </tr>
-            </table>
-            
-            <h4>4.2 Uso de herramientas de diagnóstico</h4>
-            
-            <p><strong>Multímetro digital:</strong></p>
-            <ul>
-                <li>Medir voltaje de circuito abierto (Voc) y cortocircuito (Isc) de los paneles</li>
-                <li>Verificar voltaje de las baterías bajo carga y en reposo</li>
-                <li>Comprobar continuidad en cables y fusibles</li>
-            </ul>
-            
-            <p><strong>Pinza amperimétrica:</strong></p>
-            <ul>
-                <li>Medir corriente de salida de los paneles</li>
-                <li>Verificar carga/descarga de baterías</li>
-                <li>Identificar consumos fantasmas</li>
-            </ul>
-            
-            <p><strong>Analizador de redes:</strong> (para sistemas conectados a red)</p>
-            <ul>
-                <li>Verificar sincronización con la red</li>
-                <li>Medir calidad de la onda de salida</li>
-                <li>Detectar armónicos</li>
-            </ul>
-        </div>
-
-        <h2>5. Registro y documentación</h2>
-        <p><strong>Duración:</strong> 15 minutos</p>
-        
-        <div class="maintenance-box">
-            <h4>5.1 Hoja de registro de mantenimiento</h4>
-            
-            <p>Mantén un registro detallado que incluya:</p>
-            <ul>
-                <li>Fecha de la inspección</li>
-                <li>Condiciones climáticas</li>
-                <li>Lecturas de producción de energía (kWh/día)</li>
-                <li>Mediciones de tensión y corriente</li>
-                <li>Acciones realizadas</li>
-                <li>Piezas reemplazadas</li>
-                <li>Observaciones y recomendaciones</li>
-                <li>Firma del técnico</li>
-            </ul>
-            
-            <div class="tip-box">
-                <p><strong>Consejo:</strong> Usa aplicaciones móviles de monitoreo que permitan registrar automáticamente el rendimiento del sistema y generen alertas ante caídas de producción.</p>
-            </div>
-            
-            <h4>5.2 Plan de mantenimiento anual</h4>
-            
-            <p>Desarrolla un calendario de mantenimiento que incluya:</p>
-            <ul>
-                <li>Limpieza estacional de paneles</li>
-                <li>Revisión pre y pos temporada de lluvias/huracanes</li>
-                <li>Verificación de parámetros eléctricos trimestral</li>
-                <li>Revisión estructural anual</li>
-                <li>Actualizaciones de firmware (inversores con conectividad)</li>
-            </ul>
-        </div>
-
-        <div class="evaluation">
-            <h3>Evaluación de la sesión</h3>
-            <p><strong>Participación activa:</strong> Valorar la participación en los ejercicios prácticos y discusiones.</p>
-            <p><strong>Ejercicio práctico:</strong> Realización de una inspección de mantenimiento a un sistema fotovoltaico simulado.</p>
-            <p><strong>Cuestionario:</strong> Responder preguntas sobre diagnóstico de fallas y procedimientos de mantenimiento.</p>
-            <p><strong>Tarea para la próxima sesión:</strong> Investigar sobre normativas y estándares aplicables a instalaciones fotovoltaicas en tu localidad, incluyendo códigos eléctricos y requisitos de interconexión a red.</p>
-        </div>
-
-        <div class="nav-buttons">
-            <a href="sesion11.html" class="back-button">← Sesión anterior</a>
-            <a href="index.html" class="back-button">Menú principal</a>
-            <a href="sesion13.html" class="back-button next-button">Siguiente sesión →</a>
         </div>
     </div>
-    <footer>
-        <p>© <em> JMGV-PTEL-2025 </em>. <em>Curso de Energía Solar Fotovoltaica</em> - Todos los derechos reservados</p>
-    </footer>
 
-<!-- Firebase & Progress Tracker Inyectado Automáticamente -->
+    <div class="practica-section">
+        <h2>Clínica Solar: Simulador de Mantenimiento</h2>
+        <p>El sistema de un cliente ha bajado su eficiencia al 40%. Selecciona una herramienta del inventario y haz clic sobre el problema correcto para solucionarlo y restaurar la eficiencia al 100%.</p>
+
+        <div class="simulator-box">
+            
+            <div class="tools-area" id="tool-bar">
+                <button class="tool-btn" onclick="selectTool('water', this)">
+                    <i class="fas fa-hand-holding-water"></i> Manguera y Esponja
+                </button>
+                <button class="tool-btn" onclick="selectTool('bicarbonato', this)">
+                    <i class="fas fa-spray-can"></i> Agua + Bicarbonato + Cepillo
+                </button>
+                <button class="tool-btn" onclick="selectTool('trimmer', this)">
+                    <i class="fas fa-cut"></i> Tijeras de Podar
+                </button>
+            </div>
+
+            <div style="text-align:center; margin: 15px 0; color:#f1c40f; font-weight:bold; min-height:24px;" id="sim-feedback">
+                Selecciona una herramienta...
+            </div>
+
+            <div class="problem-area">
+                <!-- Problema 1 -->
+                <div class="issue-card" id="card-dust">
+                    <i class="fas fa-solar-panel issue-icon issue-1"></i>
+                    <div class="issue-desc">
+                        <strong>Paneles Opacos</strong><br>
+                        Cubiertos de polvo y polen de 6 meses.
+                    </div>
+                    <div class="fix-msg"><i class="fas fa-check-circle"></i> ¡Limpios y Brillantes!</div>
+                    <div class="click-target" onclick="applyFix('dust')"></div>
+                </div>
+
+                <!-- Problema 2 -->
+                <div class="issue-card" id="card-hotspot">
+                    <i class="fas fa-fire issue-icon issue-2"></i>
+                    <div class="issue-desc">
+                        <strong>Punto Caliente (Hotspot)</strong><br>
+                        Una rama de árbol creció y da sombra parcial a las 2:00 PM.
+                    </div>
+                    <div class="fix-msg"><i class="fas fa-check-circle"></i> ¡Sombra Eliminada!</div>
+                    <div class="click-target" onclick="applyFix('hotspot')"></div>
+                </div>
+
+                <!-- Problema 3 -->
+                <div class="issue-card" id="card-sulfate">
+                    <i class="fas fa-car-battery issue-icon issue-3"></i>
+                    <div class="issue-desc">
+                        <strong>Terminales Sulfatadas</strong><br>
+                        Polvo blanco/verde aislando los bornes de la batería.
+                    </div>
+                    <div class="fix-msg"><i class="fas fa-check-circle"></i> ¡Contactos Limpios!</div>
+                    <div class="click-target" onclick="applyFix('sulfate')"></div>
+                </div>
+            </div>
+
+            <div class="eff-bar-container">
+                <div class="eff-bar-fill" id="main-eff-bar"></div>
+                <div class="eff-text" id="main-eff-txt">Eficiencia Actual: 40%</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- QUIZ INTERACTIVO -->
+    <div class="quiz-container">
+        <!-- El Motor de Quizzes leerá este JSON -->
+        <script type="application/json">
+        [
+            {
+                "question": "Llegas a dar mantenimiento a la 1:00 PM en pleno verano. Los paneles están muy sucios. ¿Cuál es el procedimiento correcto?",
+                "options": [
+                    "Lanzarles agua fría a presión para quitarles la tierra rápido.",
+                    "Lavar con agua y jabón tallando con un cepillo de cerdas duras metálicas.",
+                    "No lavarlos a esa hora. Regresar muy temprano por la mañana o al atardecer para evitar que el choque térmico estrelle el cristal."
+                ],
+                "correctIndex": 2,
+                "explanation": "El cristal templado de un panel puede estar a más de 65°C a pleno mediodía. Si le arrojas agua fría de manguera, el cristal se contraerá de golpe y estallará en mil pedazos."
+            },
+            {
+                "question": "¿Qué le ocurre a un panel solar si el cliente deja que un árbol crezca y le dé sombra a solo una esquinita (una celda) del panel todos los días?",
+                "options": [
+                    "No pasa nada grave, solo pierde un 5% de energía.",
+                    "Esa celda ensombrecida se vuelve una resistencia para las demás celdas. Se sobrecalentará creando un 'Hotspot' (punto caliente) que puede quemar el panel permanentemente.",
+                    "El panel se adaptará y mandará la energía por otro lado."
+                ],
+                "correctIndex": 1,
+                "explanation": "Las celdas solares están conectadas en serie. Si bloqueas una, interrumpes el flujo de todas las demás. La energía se 'atora' en la celda sombreada, disipándose en forma de un calor extremo (Hotspot)."
+            },
+            {
+                "question": "En un sistema con baterías de Plomo-Ácido, notas que el inversor se apaga indicando 'Batería Baja', a pesar de que el voltímetro marca que tienen 12.8V (Llenas). Al revisar las baterías ves un polvo blanco esponjoso en los conectores de plomo. ¿Qué es y cómo lo arreglas?",
+                "options": [
+                    "Es moho. Hay que aplicar cloro.",
+                    "Es sulfatación por gases del ácido. Es un aislante eléctrico perfecto. Hay que desconectar, lavar con agua y bicarbonato, cepillar y volver a conectar apretando firmemente.",
+                    "Es azúcar de la lluvia. Solo hay que soplarlo."
+                ],
+                "correctIndex": 1,
+                "explanation": "La sulfatación aísla los cables. Aunque la batería esté llena, la electricidad no puede 'salir' hacia el inversor. Una mezcla de bicarbonato de sodio y agua neutraliza el ácido al instante, dejando el plomo limpio."
+            }
+        ]
+        </script>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="sesion-navigation">
+        <a href="sesion11.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Sesión Anterior</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-map"></i> Volver al Mapa</a>
+        <a href="sesion13.html" class="nav-btn next">Siguiente Sesión (Seguridad Total) <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; JMGV-PTEL 2025 <em>Curso Electricidad 5</em>. TODOS LOS DERECHOS RESERVADOS.</p>
+</footer>
+
+<script>
+    let currentTool = "";
+    let baseEff = 40;
+    
+    let state = {
+        dust: false,
+        hotspot: false,
+        sulfate: false
+    };
+
+    function selectTool(toolName, btnElement) {
+        currentTool = toolName;
+        
+        // Remove class from all
+        let btns = document.querySelectorAll('.tool-btn');
+        btns.forEach(b => b.classList.remove('selected'));
+        
+        // Add class to selected
+        btnElement.classList.add('selected');
+
+        let msg = "";
+        if(toolName === 'water') msg = "Manguera equipada: Lista para limpiar superficies suaves sin rayar.";
+        if(toolName === 'bicarbonato') msg = "Bicarbonato equipado: Listo para neutralizar ácidos y óxido.";
+        if(toolName === 'trimmer') msg = "Tijeras equipadas: Listas para podar obstrucciones físicas.";
+
+        document.getElementById('sim-feedback').textContent = msg;
+        document.getElementById('sim-feedback').style.color = "#3498db";
+    }
+
+    function applyFix(issue) {
+        const feedback = document.getElementById('sim-feedback');
+
+        if(currentTool === "") {
+            feedback.textContent = "¡Primero selecciona una herramienta de arriba!";
+            feedback.style.color = "#e74c3c";
+            return;
+        }
+
+        if(state[issue]) {
+            feedback.textContent = "Eso ya está reparado.";
+            return;
+        }
+
+        // Logic
+        if(issue === 'dust') {
+            if(currentTool === 'water') {
+                fixIt('dust', 20);
+                feedback.textContent = "¡Correcto! Lavar con agua y esponja elimina el polvo sin dañar el cristal.";
+            } else {
+                feedback.textContent = "Herramienta incorrecta para paneles polvosos.";
+                feedback.style.color = "#e74c3c";
+            }
+        }
+        else if(issue === 'hotspot') {
+            if(currentTool === 'trimmer') {
+                fixIt('hotspot', 20);
+                feedback.textContent = "¡Correcto! Al podar el árbol eliminas la sombra y evitas que la celda se sobrecaliente.";
+            } else {
+                feedback.textContent = "Herramienta incorrecta. No puedes 'lavar' una sombra.";
+                feedback.style.color = "#e74c3c";
+            }
+        }
+        else if(issue === 'sulfate') {
+            if(currentTool === 'bicarbonato') {
+                fixIt('sulfate', 20);
+                feedback.textContent = "¡Correcto! El bicarbonato neutraliza el ácido de la batería y limpia los bornes de plomo.";
+            } else {
+                feedback.textContent = "El agua sola no quita el sulfato fuertemente adherido.";
+                feedback.style.color = "#e74c3c";
+            }
+        }
+    }
+
+    function fixIt(issue, effBoost) {
+        state[issue] = true;
+        document.getElementById('card-' + issue).classList.add('fixed');
+        
+        baseEff += effBoost;
+        
+        const bar = document.getElementById('main-eff-bar');
+        const txt = document.getElementById('main-eff-txt');
+
+        bar.style.width = baseEff + "%";
+        txt.textContent = "Eficiencia Actual: " + baseEff + "%";
+
+        if(baseEff >= 100) {
+            document.getElementById('sim-feedback').textContent = "¡Mantenimiento Completo! Sistema al 100% de eficiencia.";
+            document.getElementById('sim-feedback').style.color = "#2ecc71";
+            document.getElementById('sim-feedback').style.fontSize = "1.2rem";
+        }
+    }
+</script>
+
+<!-- Firebase, Progress Tracker y Quiz Engine Inyectados Automáticamente -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script src="../../env.js"></script>
 <script src="../../progress-tracker.js"></script>
+<script src="../../quiz-engine.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       if (window.markLessonCompleted) {
-          window.markLessonCompleted('electricidad', 'sesion12');
+          window.markLessonCompleted('electricidad5', 'sesion12');
       }
   });
 </script>
